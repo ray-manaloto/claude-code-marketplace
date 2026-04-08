@@ -86,7 +86,7 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `mise-cpp-architect` | adopter | Surveys a C++ project and proposes cmake/ninja/ccache/linker/package-manager/clang-tools |
 | `mise-ai-cli-architect` | adopter | Proposes the AI CLI half of a `mise.toml` with redacted env + ai-status task; hands keys to `/mise-ai-keys` |
 
-### Skills (56)
+### Skills (64)
 
 **🆕 Zero-knowledge (9):** `mise-elevator-pitch`, `mise-vs-alternatives`, `mise-deployment-models`, `mise-install-paths`, `mise-host-vs-mise-tools` (the #1 newbie gotcha), `mise-shell-activation`, `mise-pathing-and-shims`, `mise-cli-cheatsheet`, `mise-troubleshooting`
 
@@ -101,6 +101,8 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 **📦 Language packs — v0.5 (10):** `mise-lang-node-overview`, `mise-lang-node-packages`, `mise-lang-python-overview`, `mise-lang-python-packages`, `mise-lang-go-overview`, `mise-lang-go-modules`, `mise-lang-ruby-overview`, `mise-lang-ruby-gems`, `mise-lang-rust-overview`, `mise-lang-rust-cargo`
 
 **🔁 Migration — v0.5 (5):** `mise-migrate-from-nvm`, `mise-migrate-from-pyenv`, `mise-migrate-from-rbenv`, `mise-migrate-from-tfenv`, `mise-migrate-from-direnv`
+
+**🍳 Cookbook — v0.6 (8):** `mise-cookbook-python-fastapi`, `mise-cookbook-node-nextjs`, `mise-cookbook-ruby-rails`, `mise-cookbook-terraform`, `mise-cookbook-docker-dev`, `mise-cookbook-cpp-cmake`, `mise-cookbook-neovim`, `mise-cookbook-go-service`
 
 **🧑‍💻 Contributor (4):** `mise-contrib-overview`, `mise-contrib-add-backend`, `mise-contrib-add-registry`, `mise-contrib-write-e2e-test`
 
@@ -130,8 +132,9 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | **v0.2** | Zero-knowledge layer + SessionStart nudging | ✅ shipped |
 | **v0.3** | Deployment — Docker, devcontainer, Codespaces, IDE patterns | ✅ shipped |
 | **v0.4** | C++ + AI CLI vertical (claude/codex/gemini/aichat) | ✅ shipped |
-| **v0.5** | Language packs (node/python/go/ruby/rust) + migration skills (nvm/pyenv/rbenv/tfenv/direnv) | ✅ shipped (this release) |
-| **v0.6** | Cookbook recipes (Python/Node/Ruby/Terraform/Docker/C++/Neovim) | next |
+| **v0.5** | Language packs (node/python/go/ruby/rust) + migration skills (nvm/pyenv/rbenv/tfenv/direnv) | ✅ shipped |
+| **v0.6** | Cookbook recipes (FastAPI / Next.js / Rails / Terraform / Docker / C++ / Neovim / Go) | ✅ shipped (this release) |
+| **v1.0** | LICENSE + CI validation workflow + public announcement | next |
 
 ## Recommended onboarding flow for new users
 
