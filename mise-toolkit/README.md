@@ -38,7 +38,7 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 
 ## Components
 
-### Slash commands (22)
+### Slash commands (27)
 
 | Command | Audience | Purpose |
 |---|---|---|
@@ -64,10 +64,15 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `/mise-codespaces-prebuild` | adopter | Devcontainer + GitHub Codespaces prebuild workflow |
 | `/mise-vscode-setup` | adopter | Wire VSCode to mise (extension or shims-on-PATH fallback) |
 | `/mise-jetbrains-setup` | adopter | Wire JetBrains IDEs (intellij-mise plugin or asdf-symlink workaround) |
+| `/mise-cpp-init` | adopter | Survey a C++ project and propose cmake/ninja/ccache/linker/clang-tools |
+| `/mise-cpp-bootstrap` | adopter | One-shot default C++ toolchain (cmake + ninja + ccache + clang-tools) |
+| `/mise-ai-init` | adopter | Install AI CLIs (claude, codex, aichat, gemini) with redacted env |
+| `/mise-ai-keys` ⚠️ | adopter | Guided API key setup (keychain / 1Password / shell rc) — user-only |
+| `/mise-cpp-ai-init` | adopter | Combined C++ + AI CLI setup in one merged `mise.toml` |
 
 ⚠️ = `disable-model-invocation: true` (user-triggered only — Claude cannot call autonomously).
 
-### Subagents (7)
+### Subagents (9)
 
 | Agent | Audience | Purpose |
 |---|---|---|
@@ -78,8 +83,10 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `mise-backend-expert` | contributor | Implements/reviews `src/backend/**` changes |
 | `mise-e2e-author` | contributor | Writes bash e2e tests under `e2e/**` |
 | `mise-deployment-architect` | adopter | Picks the right deployment model (host/Docker/devcontainer/Codespaces/CI) and coordinates handoffs |
+| `mise-cpp-architect` | adopter | Surveys a C++ project and proposes cmake/ninja/ccache/linker/package-manager/clang-tools |
+| `mise-ai-cli-architect` | adopter | Proposes the AI CLI half of a `mise.toml` with redacted env + ai-status task; hands keys to `/mise-ai-keys` |
 
-### Skills (33)
+### Skills (41)
 
 **🆕 Zero-knowledge (9):** `mise-elevator-pitch`, `mise-vs-alternatives`, `mise-deployment-models`, `mise-install-paths`, `mise-host-vs-mise-tools` (the #1 newbie gotcha), `mise-shell-activation`, `mise-pathing-and-shims`, `mise-cli-cheatsheet`, `mise-troubleshooting`
 
@@ -87,9 +94,13 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 
 **🐳 Deployment — v0.3 (10):** `mise-docker-patterns`, `mise-docker-base-images`, `mise-docker-bootstrap`, `mise-docker-multistage`, `mise-devcontainer-patterns`, `mise-codespaces`, `mise-vscode-integration`, `mise-jetbrains-integration`, `mise-neovim-integration`, `mise-ide-activation`
 
+**⚙️ C++ — v0.4 (5):** `mise-cpp-toolchain-overview`, `mise-cpp-cmake-ninja-ccache`, `mise-cpp-linker-fast`, `mise-cpp-package-managers`, `mise-cpp-clang-tools`
+
+**🤖 AI CLIs — v0.4 (3):** `mise-ai-cli-overview`, `mise-ai-cli-setup`, `mise-ai-cli-keys`
+
 **🧑‍💻 Contributor (4):** `mise-contrib-overview`, `mise-contrib-add-backend`, `mise-contrib-add-registry`, `mise-contrib-write-e2e-test`
 
-### Hooks (5)
+### Hooks (6)
 
 | Event | Matcher | Script | Purpose |
 |---|---|---|---|
@@ -97,6 +108,7 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | **PostToolUse** | `Edit\|Write` | `validate-mise-config.sh` | If a `mise*.toml` was edited → run `mise cfg ls` to validate |
 | **PostToolUse** | `Edit\|Write` | `lint-fix-rust.sh` | If a `*.rs` file in the jdx/mise repo was edited → `mise run lint-fix` |
 | **PostToolUse** | `Edit\|Write` | `lint-dockerfile.sh` | If a `Dockerfile` mentioning mise was edited → warn about missing trust, cache mounts, musl, activate (non-blocking) |
+| **PostToolUse** | `Edit\|Write` | `warn-plaintext-api-key.sh` | Warn if a file contains a plaintext Anthropic / OpenAI / Google key (non-blocking) |
 | **PreToolUse** | `Bash` | `block-direct-e2e.sh` | Block direct invocation of jdx/mise's `e2e/test_*` files |
 
 ### MCP servers (2)
@@ -112,9 +124,9 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 |---|---|---|
 | **v0.1** | Adopter + contributor base | ✅ shipped |
 | **v0.2** | Zero-knowledge layer + SessionStart nudging | ✅ shipped |
-| **v0.3** | Deployment — Docker, devcontainer, Codespaces, IDE patterns | ✅ shipped (this release) |
-| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini) — uses `data/ai-cli-research.md` | next |
-| **v0.5** | Language packs (`mise-lang-*`) + remaining migration skills (nvm/pyenv/etc.) | planned |
+| **v0.3** | Deployment — Docker, devcontainer, Codespaces, IDE patterns | ✅ shipped |
+| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini/aichat) | ✅ shipped (this release) |
+| **v0.5** | Language packs (`mise-lang-*`) + remaining migration skills (nvm/pyenv/etc.) | next |
 | **v0.6** | Cookbook recipes (Python/Node/Ruby/Terraform/Docker/C++/Neovim) | planned |
 
 ## Recommended onboarding flow for new users
