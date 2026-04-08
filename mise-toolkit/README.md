@@ -38,7 +38,7 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 
 ## Components
 
-### Slash commands (17)
+### Slash commands (22)
 
 | Command | Audience | Purpose |
 |---|---|---|
@@ -59,10 +59,15 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `/mise-lint-fix` | contributor | `mise run lint-fix` |
 | `/mise-render` | contributor | `mise run render` |
 | `/mise-snapshots` | contributor | `mise run snapshots` |
+| `/mise-dockerfile` | adopter | Generate a multi-stage Dockerfile with mise (builder + runtime, BuildKit cache) |
+| `/mise-devcontainer` | adopter | Generate `.devcontainer/devcontainer.json` wired for mise + VSCode |
+| `/mise-codespaces-prebuild` | adopter | Devcontainer + GitHub Codespaces prebuild workflow |
+| `/mise-vscode-setup` | adopter | Wire VSCode to mise (extension or shims-on-PATH fallback) |
+| `/mise-jetbrains-setup` | adopter | Wire JetBrains IDEs (intellij-mise plugin or asdf-symlink workaround) |
 
 ⚠️ = `disable-model-invocation: true` (user-triggered only — Claude cannot call autonomously).
 
-### Subagents (6)
+### Subagents (7)
 
 | Agent | Audience | Purpose |
 |---|---|---|
@@ -72,22 +77,26 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `mise-config-doctor` | all | Diagnoses bad `mise.toml`, runs `mise dr`, fixes trust |
 | `mise-backend-expert` | contributor | Implements/reviews `src/backend/**` changes |
 | `mise-e2e-author` | contributor | Writes bash e2e tests under `e2e/**` |
+| `mise-deployment-architect` | adopter | Picks the right deployment model (host/Docker/devcontainer/Codespaces/CI) and coordinates handoffs |
 
-### Skills (23)
+### Skills (33)
 
 **🆕 Zero-knowledge (9):** `mise-elevator-pitch`, `mise-vs-alternatives`, `mise-deployment-models`, `mise-install-paths`, `mise-host-vs-mise-tools` (the #1 newbie gotcha), `mise-shell-activation`, `mise-pathing-and-shims`, `mise-cli-cheatsheet`, `mise-troubleshooting`
 
 **🛠️ Adopter (10):** `mise-overview`, `mise-toml-anatomy`, `mise-trust-and-security`, `mise-tool-versioning`, `mise-backends-overview`, `mise-tasks-toml`, `mise-env-directives`, `mise-lockfile`, `mise-ci-github-actions`, `mise-migrate-from-asdf`
 
+**🐳 Deployment — v0.3 (10):** `mise-docker-patterns`, `mise-docker-base-images`, `mise-docker-bootstrap`, `mise-docker-multistage`, `mise-devcontainer-patterns`, `mise-codespaces`, `mise-vscode-integration`, `mise-jetbrains-integration`, `mise-neovim-integration`, `mise-ide-activation`
+
 **🧑‍💻 Contributor (4):** `mise-contrib-overview`, `mise-contrib-add-backend`, `mise-contrib-add-registry`, `mise-contrib-write-e2e-test`
 
-### Hooks (4)
+### Hooks (5)
 
 | Event | Matcher | Script | Purpose |
 |---|---|---|---|
 | **SessionStart** | — | `detect-mise-context.sh` | Active nudge: prints mise version, project config, trust state, tool count, missing required env vars, lockfile status at every session start |
 | **PostToolUse** | `Edit\|Write` | `validate-mise-config.sh` | If a `mise*.toml` was edited → run `mise cfg ls` to validate |
 | **PostToolUse** | `Edit\|Write` | `lint-fix-rust.sh` | If a `*.rs` file in the jdx/mise repo was edited → `mise run lint-fix` |
+| **PostToolUse** | `Edit\|Write` | `lint-dockerfile.sh` | If a `Dockerfile` mentioning mise was edited → warn about missing trust, cache mounts, musl, activate (non-blocking) |
 | **PreToolUse** | `Bash` | `block-direct-e2e.sh` | Block direct invocation of jdx/mise's `e2e/test_*` files |
 
 ### MCP servers (2)
@@ -102,9 +111,9 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | Version | Theme | Status |
 |---|---|---|
 | **v0.1** | Adopter + contributor base | ✅ shipped |
-| **v0.2** | Zero-knowledge layer + SessionStart nudging | ✅ shipped (this release) |
-| **v0.3** | Scenarios — Docker, devcontainer, Codespaces, IDE patterns | planned |
-| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini) — uses `data/ai-cli-research.md` | planned |
+| **v0.2** | Zero-knowledge layer + SessionStart nudging | ✅ shipped |
+| **v0.3** | Deployment — Docker, devcontainer, Codespaces, IDE patterns | ✅ shipped (this release) |
+| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini) — uses `data/ai-cli-research.md` | next |
 | **v0.5** | Language packs (`mise-lang-*`) + remaining migration skills (nvm/pyenv/etc.) | planned |
 | **v0.6** | Cookbook recipes (Python/Node/Ruby/Terraform/Docker/C++/Neovim) | planned |
 
