@@ -86,7 +86,7 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | `mise-cpp-architect` | adopter | Surveys a C++ project and proposes cmake/ninja/ccache/linker/package-manager/clang-tools |
 | `mise-ai-cli-architect` | adopter | Proposes the AI CLI half of a `mise.toml` with redacted env + ai-status task; hands keys to `/mise-ai-keys` |
 
-### Skills (41)
+### Skills (56)
 
 **🆕 Zero-knowledge (9):** `mise-elevator-pitch`, `mise-vs-alternatives`, `mise-deployment-models`, `mise-install-paths`, `mise-host-vs-mise-tools` (the #1 newbie gotcha), `mise-shell-activation`, `mise-pathing-and-shims`, `mise-cli-cheatsheet`, `mise-troubleshooting`
 
@@ -97,6 +97,10 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 **⚙️ C++ — v0.4 (5):** `mise-cpp-toolchain-overview`, `mise-cpp-cmake-ninja-ccache`, `mise-cpp-linker-fast`, `mise-cpp-package-managers`, `mise-cpp-clang-tools`
 
 **🤖 AI CLIs — v0.4 (3):** `mise-ai-cli-overview`, `mise-ai-cli-setup`, `mise-ai-cli-keys`
+
+**📦 Language packs — v0.5 (10):** `mise-lang-node-overview`, `mise-lang-node-packages`, `mise-lang-python-overview`, `mise-lang-python-packages`, `mise-lang-go-overview`, `mise-lang-go-modules`, `mise-lang-ruby-overview`, `mise-lang-ruby-gems`, `mise-lang-rust-overview`, `mise-lang-rust-cargo`
+
+**🔁 Migration — v0.5 (5):** `mise-migrate-from-nvm`, `mise-migrate-from-pyenv`, `mise-migrate-from-rbenv`, `mise-migrate-from-tfenv`, `mise-migrate-from-direnv`
 
 **🧑‍💻 Contributor (4):** `mise-contrib-overview`, `mise-contrib-add-backend`, `mise-contrib-add-registry`, `mise-contrib-write-e2e-test`
 
@@ -125,9 +129,9 @@ After installing, run `/mise-refresh-knowledge` to seed the live docs cache. If 
 | **v0.1** | Adopter + contributor base | ✅ shipped |
 | **v0.2** | Zero-knowledge layer + SessionStart nudging | ✅ shipped |
 | **v0.3** | Deployment — Docker, devcontainer, Codespaces, IDE patterns | ✅ shipped |
-| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini/aichat) | ✅ shipped (this release) |
-| **v0.5** | Language packs (`mise-lang-*`) + remaining migration skills (nvm/pyenv/etc.) | next |
-| **v0.6** | Cookbook recipes (Python/Node/Ruby/Terraform/Docker/C++/Neovim) | planned |
+| **v0.4** | C++ + AI CLI vertical (claude/codex/gemini/aichat) | ✅ shipped |
+| **v0.5** | Language packs (node/python/go/ruby/rust) + migration skills (nvm/pyenv/rbenv/tfenv/direnv) | ✅ shipped (this release) |
+| **v0.6** | Cookbook recipes (Python/Node/Ruby/Terraform/Docker/C++/Neovim) | next |
 
 ## Recommended onboarding flow for new users
 
