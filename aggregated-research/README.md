@@ -77,3 +77,7 @@ versions.
 `.lsp.json` registers `ty` (Astral's Python type checker / language server,
 pinned `0.0.74`) for `.py` files, driven through the `bin/ty` wrapper the same
 way as the CLI.
+
+## Why the hook pins mise's global config to the plugin's own `mise.toml`
+
+`mise install` acts on every config file in scope — the user's global `~/.config/mise/config.toml` included. Measured 2026-08-28: without the override the SessionStart hook installed 128 tools (2.3 GB) into `$CLAUDE_PLUGIN_DATA` before it was stopped. `MISE_GLOBAL_CONFIG_FILE` and `MISE_SYSTEM_CONFIG_FILE` both point at the plugin's `mise.toml`, so exactly two tools are in scope: the CLI and `ty`.
