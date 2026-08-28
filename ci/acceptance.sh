@@ -257,12 +257,14 @@ EXPECTED_INSTALLS="pipx-git-https-github-com-ray-manaloto-knowledge-base-git ty 
 "$CLAUDE_PLUGIN_ROOT/bin/mise-env" exec -- uv --version
 "$CLAUDE_PLUGIN_ROOT/bin/mise-env" exec -- gh --version
 
-# `set -e` aborts on a failing command, so `cmd; rc=$?` can only ever record 0 —
-# the rc check below was unable to fire. `if !` is the set -e-safe form.
+# `set -e` aborts on a failing command, so a bare `cmd; rc=$?` can only ever
+# record 0 — the rc check below was unable to fire. `cmd || rc=$?` is the form
+# that both survives `set -e` AND captures the real code. NOT `if ! cmd; then
+# rc=$?; fi`: inside the then-branch `$?` is the status of the negated test,
+# which is 0 unconditionally (probed in dash and /bin/sh, 2026-08-28) — that
+# reintroduces the very defect this block exists to remove.
 help_rc=0
-if ! env -u CLAUDE_PLUGIN_DATA "$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help.out 2>&1; then
-	help_rc=$?
-fi
+env -u CLAUDE_PLUGIN_DATA "$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help.out 2>&1 || help_rc=$?
 cat /tmp/help.out
 [ "$help_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help.out >/dev/null || {
 	echo "FAIL: --help did not print 'verbs: trackers' (rc=$help_rc)" >&2
@@ -273,10 +275,9 @@ cat /tmp/help.out
 # Bash tool inherits the variable from whichever plugin set it last. Arms the
 # real observed leak, not the merely-unset case above.
 foreign_rc=0
-if ! env CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/some-other-plugin" \
-	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-foreign.out 2>&1; then
-	foreign_rc=$?
-fi
+env CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/some-other-plugin" \
+	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-foreign.out 2>&1 \
+	|| foreign_rc=$?
 cat /tmp/help-foreign.out
 [ "$foreign_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help-foreign.out >/dev/null || {
 	echo "FAIL: a foreign CLAUDE_PLUGIN_DATA was obeyed instead of ignored (rc=$foreign_rc)" >&2
@@ -307,10 +308,9 @@ env HOME=/tmp/probe-home \
 # override was honoured.
 mkdir -p /tmp/emptyhome
 own_rc=0
-if ! env HOME=/tmp/emptyhome CLAUDE_PLUGIN_DATA="$CLAUDE_PLUGIN_DATA" \
-	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-own.out 2>&1; then
-	own_rc=$?
-fi
+env HOME=/tmp/emptyhome CLAUDE_PLUGIN_DATA="$CLAUDE_PLUGIN_DATA" \
+	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-own.out 2>&1 \
+	|| own_rc=$?
 cat /tmp/help-own.out
 [ "$own_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help-own.out >/dev/null || {
 	echo "FAIL: the plugin's OWN CLAUDE_PLUGIN_DATA was not honoured (rc=$own_rc)" >&2

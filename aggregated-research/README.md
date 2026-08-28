@@ -116,9 +116,10 @@ way as the CLI.
 
 ## Host regression arms
 
-Three probes catch the confinement regressing on a developer host — one that
+Four probes catch the confinement regressing on a developer host — one that
 already has `~/.config/mise/config.toml`, `~/.local/share/mise/shims` on
-PATH, and an activated `mise` shell:
+PATH, and an activated `mise` shell. These are HOST probes, run by hand;
+`ci/acceptance.sh` is the container suite and does not contain them:
 
 1. Fresh install: `rm -rf ~/.claude/plugins/data/aggregated-research-ray-manaloto`,
    then run the hook command with `CLAUDE_PLUGIN_ROOT`/`CLAUDE_PLUGIN_DATA`
