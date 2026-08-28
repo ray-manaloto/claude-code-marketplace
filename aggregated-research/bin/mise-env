@@ -5,7 +5,21 @@
 set -eu
 
 PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-DATA="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/aggregated-research-ray-manaloto}"
+
+# Claude Code exports CLAUDE_PLUGIN_DATA on a hook's spawned process
+# (hooks.md:487), but the Bash tool inherits whatever a plugin left in the
+# session environment — observed 2026-08-28 pointing at ANOTHER plugin's data
+# dir (codex-openai-codex), which made this wrapper refuse to start and would
+# have had `mkdir -p` create paths in that plugin's namespace. So honour the
+# variable only when it names THIS plugin's directory. The id is documented,
+# not guessed: ~/.claude/plugins/data/{id}, id = the plugin identifier with
+# characters outside [a-zA-Z0-9_-] replaced by `-` (plugins-reference.md:720),
+# so `aggregated-research@ray-manaloto` is the value below.
+PLUGIN_DATA_ID=aggregated-research-ray-manaloto
+DATA="$HOME/.claude/plugins/data/$PLUGIN_DATA_ID"
+case "${CLAUDE_PLUGIN_DATA:-}" in
+*/"$PLUGIN_DATA_ID" | */"$PLUGIN_DATA_ID"/) DATA="${CLAUDE_PLUGIN_DATA%/}" ;;
+esac
 
 if [ "${1:-}" = "exec" ] && [ ! -d "$DATA/mise/installs" ]; then
 	echo "aggregated-research: nothing installed under $DATA — the SessionStart hook has not run or failed; check the session-start output, then /reload-plugins or start a new session" >&2
