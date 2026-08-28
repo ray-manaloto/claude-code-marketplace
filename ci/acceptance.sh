@@ -84,13 +84,44 @@ export CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT"
 export CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/aggregated-research-ray-manaloto"
 
 if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
+	# Provenance without any schema dependency: the installed plugin root must
+	# be under the mounted /work checkout (measured on run 33186621864's init
+	# event: "path":"/work/aggregated-research") — this is what proves the PR
+	# under test, not main, was installed, and it fails closed on any schema
+	# change rather than passing silently.
+	case "$PLUGIN_ROOT" in
+		/work/*) ;;
+		*)
+			echo "FAIL: installed plugin root $PLUGIN_ROOT is not under the mounted /work checkout" >&2
+			tail -40 /tmp/install-agent.out >&2
+			exit 1
+			;;
+	esac
+
 	claude plugin marketplace list --json >/tmp/marketplaces-after-agent.json
 	echo "marketplace list after agent install: $(cat /tmp/marketplaces-after-agent.json)"
-	# .path's stored spelling is undocumented for a local source, so gate on the
-	# GitHub-source marker instead (a GitHub source always carries .repo; a local
-	# source never does) — the line above already printed .path as evidence.
-	jq -e '[.[] | select(.name == "ray-manaloto")] | length == 1 and (.[0] | has("repo") | not)' /tmp/marketplaces-after-agent.json >/dev/null || {
-		echo "FAIL: install agent registered ray-manaloto as a GitHub source, not the local /work checkout" >&2
+	# has("repo")|not (the b9ab477 gate) discriminates on key spelling, not
+	# provenance, and fails OPEN on a GitHub source whose marker is nested
+	# differently — replaced with the positive .source == "directory" marker
+	# actually printed by both green runs ("source":"github" x4, "directory"
+	# x1). A schema change then fails closed instead of passing.
+	RAY_ENTRIES="$(jq '[.[] | select(.name == "ray-manaloto")]' /tmp/marketplaces-after-agent.json)"
+	RAY_COUNT="$(printf '%s' "$RAY_ENTRIES" | jq 'length')"
+	case "$RAY_COUNT" in
+		1) ;;
+		0)
+			echo "FAIL: no ray-manaloto entry in marketplace list after session 1" >&2
+			tail -40 /tmp/install-agent.out >&2
+			exit 1
+			;;
+		*)
+			echo "FAIL: $RAY_COUNT ray-manaloto entries in marketplace list (expected exactly 1)" >&2
+			tail -40 /tmp/install-agent.out >&2
+			exit 1
+			;;
+	esac
+	printf '%s' "$RAY_ENTRIES" | jq -e '.[0].source == "directory"' >/dev/null || {
+		echo "FAIL: ray-manaloto registered as a GitHub source, not the local /work checkout (source=$(printf '%s' "$RAY_ENTRIES" | jq -r '.[0].source'))" >&2
 		tail -40 /tmp/install-agent.out >&2
 		exit 1
 	}
