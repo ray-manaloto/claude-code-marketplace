@@ -17,7 +17,12 @@ jobs:
           experimental: true
 
       - name: build the container image
-        run: mise oci build
+        # docs state root is required for apk layers; measured 2026-08-28 that
+        # apt layers ALSO need it here — dpkg maintainer scripts write to
+        # host paths (/var/cache/debconf, /var/lib/update-notifier) despite
+        # the --root rootfs override, and fail EACCES as the unprivileged
+        # runner user.
+        run: sudo -E "$(command -v mise)" oci build
 
       - name: smoke test — claude --version inside the image
         run: |
