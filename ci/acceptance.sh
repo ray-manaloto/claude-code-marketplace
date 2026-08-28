@@ -44,9 +44,14 @@ sh -c "$HOOK_CMD"
 
 CONFIG_LS="$("$CLAUDE_PLUGIN_ROOT/bin/mise-env" config ls)"
 echo "$CONFIG_LS"
-printf '%s\n' "$CONFIG_LS" | awk -v root="$CLAUDE_PLUGIN_ROOT" '
+# mise abbreviates $HOME as "~" in this output, so expand it before comparing.
+printf '%s\n' "$CONFIG_LS" | awk -v root="$CLAUDE_PLUGIN_ROOT" -v home="$HOME" '
 	NF == 0 { next }
-	{ path = $1; if (index(path, root) != 1) { print "FAIL: config path outside plugin root: " path; bad = 1 } }
+	{
+		path = $1
+		if (index(path, "~") == 1) { path = home substr(path, 2) }
+		if (index(path, root) != 1) { print "FAIL: config path outside plugin root: " path; bad = 1 }
+	}
 	END { if (bad) exit 1 }
 '
 
