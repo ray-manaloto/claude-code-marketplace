@@ -34,7 +34,7 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	set +e
 	(
 		cd /tmp
-		claude -p 'You are validating the marketplace under test, whose checkout is mounted at /work. Follow ONLY the installation instructions in /work/README.md and /work/aggregated-research/README.md. Use the local-development form because /work is the marketplace under test. CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1 is already exported. Install only the marketplace, dependency marketplaces, and plugin those READMEs name. Do not run the hook command, bin/mise-env, or anything under the plugin bin/ directory. Report the exact commands you ran.' \
+		claude -p 'You are validating the marketplace under test, whose checkout is mounted at /work. Follow ONLY the installation instructions in /work/README.md and /work/aggregated-research/README.md. Use the local-development form because /work is the marketplace under test. CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1 is already exported in your environment, so never prefix a command with it. Issue every claude command BARE: no leading VAR=value assignment, no cd, and no &&/;/| chaining — run one plain `claude ...` invocation per command, since your Bash access only allows commands starting with the word claude and a prefixed or chained form will be denied with nobody to approve it. Install only the marketplace, dependency marketplaces, and plugin those READMEs name. Do not run the hook command, bin/mise-env, or anything under the plugin bin/ directory. Report the exact commands you ran.' \
 			--allowedTools "Read,Bash(claude *)" \
 			--max-turns 40
 	) >/tmp/install-agent.out 2>&1
@@ -80,8 +80,11 @@ export CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/aggregated-research-ray-ma
 if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	claude plugin marketplace list --json >/tmp/marketplaces-after-agent.json
 	echo "marketplace list after agent install: $(cat /tmp/marketplaces-after-agent.json)"
-	jq -e 'any(.[]; .name == "ray-manaloto" and .path == "/work")' /tmp/marketplaces-after-agent.json >/dev/null || {
-		echo "FAIL: install agent did not register ray-manaloto from /work" >&2
+	# .path's stored spelling is undocumented for a local source, so gate on the
+	# GitHub-source marker instead (a GitHub source always carries .repo; a local
+	# source never does) — the line above already printed .path as evidence.
+	jq -e '[.[] | select(.name == "ray-manaloto")] | length == 1 and (.[0] | has("repo") | not)' /tmp/marketplaces-after-agent.json >/dev/null || {
+		echo "FAIL: install agent registered ray-manaloto as a GitHub source, not the local /work checkout" >&2
 		tail -40 /tmp/install-agent.out >&2
 		exit 1
 	}
@@ -97,6 +100,9 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	PRE_HOME_INSTALLS="$(ls "$HOME/.local/share/mise/installs" 2>/dev/null || true)"
 
 	echo "== session 2: fresh agent session fires the real hook and runs the CLI =="
+	# If CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS is exceeded, Claude Code
+	# proceeds WITHOUT plugins and logs an error — a failed hook_response
+	# assertion below may be this, not the hook itself failing.
 	SESSION_2_START="$(date +%s)"
 	set +e
 	(
