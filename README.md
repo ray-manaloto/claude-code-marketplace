@@ -35,7 +35,7 @@ claude plugin marketplace add mvanhorn/last30days-skill
 Then:
 
 ```sh
-claude plugin install aggregated-research@claude-code-marketplace
+claude plugin install aggregated-research@ray-manaloto
 ```
 
 For local development against this checkout:

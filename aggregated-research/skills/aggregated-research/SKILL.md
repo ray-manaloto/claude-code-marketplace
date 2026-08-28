@@ -23,7 +23,8 @@ If this repo carries a graphify graph (`graphify-out/graph.json`), query it
 first — it costs zero LLM tokens and may already hold the answer:
 
 ```bash
-mise run kb-query -- "<question>"
+graphify query "<question>"            # any repo with a graphify-out/ graph
+mise run kb-query -- "<question>"      # ray-manaloto/knowledge-base only: its hook DENIES a raw graphify
 ```
 
 Add `--prose` for a question about DOCUMENTS, `--idf` to rank the returned set.
@@ -61,19 +62,19 @@ gh api "repos/OWNER/REPO/contents/PATH?ref=TAG"
 `?ref=` goes **inside the path string**. `-f ref=v8.30.1` returns 404.
 
 **Source beats issue tracker.** Issues stay open after their fix ships — graphify
-
-# 959 read as "custom OpenAI endpoints are blocked" long after the feature landed
+#959 read as "custom OpenAI endpoints are blocked" long after the feature landed
 
 in 0.8.40. When a secondary artifact says impossible and it matters, read the code.
 
-### 3. Both trackers — issues AND PRs AND discussions
+### 3. Both trackers — issues AND PRs (discussions: presence only)
 
 ```bash
 aggregated-research trackers OWNER/REPO "TERM" --out .research/OWNER-REPO-TERM.json
 ```
 
 The CLI (installed by this plugin's SessionStart hook) does the channel check
-first and splits issues from PRs, so the two raw calls it replaces are shown
+first and splits issues from PRs. It records whether Discussions are enabled but
+does NOT search them — `search/issues` never covers Discussions, and no verb does yet, so the two raw calls it replaces are shown
 only to explain what it guards against:
 
 ```bash
@@ -116,7 +117,7 @@ adopted from the shipped doc without an execution — the skill's own P3 report
 flagged it as unverified — and the first attempt to run it refuted it. Corrected
 rather than overwritten, because the reasoning for preferring it still stands.)*
 
-**When breadth needs a lane, use `antigravity:research`.** It is cross-family
+**When breadth needs a lane, use `antigravity:research` (only if the `antigravity` plugin is installed — it is not a declared dependency).** It is cross-family
 (Gemini) grounded web legwork with Claude verifying the citations, it IS
 subagent-reachable, and it is the substitute for the paragraph above. Budget it:
 the `agy` subscription depletes fast, so it is a scarce reserve, not a routine
@@ -155,8 +156,7 @@ source question.
 
 Research leads are breadth, not truth. A lane that summarises a search-result
 snippet has not read the source. Spot-check every factual claim a lane returns —
-
-# 509's breadth lane asserted neither upstream repo was in the corpus while both
+#509's breadth lane asserted neither upstream repo was in the corpus while both
 
 manifests exist.
 

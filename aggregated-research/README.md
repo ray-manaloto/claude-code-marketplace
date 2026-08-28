@@ -50,7 +50,7 @@ skill's step 3); more verbs land in later slices. Run
 ## Dependencies
 
 This plugin's skill routes breadth research through four other plugins as
-optional dependencies. Install the marketplace for each **before** installing
+declared dependencies — the install cannot resolve without their marketplaces. Install the marketplace for each **before** installing
 this plugin, or `claude plugin install` will not be able to resolve the
 cross-marketplace dependency:
 
@@ -96,3 +96,6 @@ way as the CLI.
   `.data-dir` is written at the next session start — run `/reload-plugins` or
   start a new session.
 
+## When the hook fires
+
+A `SessionStart` hook with no `matcher` fires on every session-start event — startup, resume, `/clear`, compaction and fork. Once the tools are installed the run is a no-op (measured 0 s on the second run, 2026-08-28), so this costs nothing after the first install.
