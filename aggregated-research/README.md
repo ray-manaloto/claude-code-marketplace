@@ -13,31 +13,40 @@ On every session start (and on session resume — the hook fires on both),
 `hooks/hooks.json` runs:
 
 ```
-MISE_TRUSTED_CONFIG_PATHS="${CLAUDE_PLUGIN_ROOT}" MISE_DATA_DIR="${CLAUDE_PLUGIN_DATA}/mise" \
-  mise --cd "${CLAUDE_PLUGIN_ROOT}" install --yes \
-  && printf '%s' "${CLAUDE_PLUGIN_DATA}" > "${CLAUDE_PLUGIN_ROOT}/.data-dir" \
+"${CLAUDE_PLUGIN_ROOT}/bin/mise-env" install --yes \
   && echo "aggregated-research: CLI ready — run: aggregated-research --help"
 ```
 
+`bin/mise-env` is the ONE place the mise confinement is defined — the hook
+and both `bin/` wrappers below all call it, rather than each inlining its own
+`MISE_*` variables. It resolves the plugin root from its own path, resolves
+the data dir from `${CLAUDE_PLUGIN_DATA}` (falling back to the documented
+per-plugin path `~/.claude/plugins/data/aggregated-research-ray-manaloto` when
+that isn't set — see the wrapper section below), then runs `mise` with:
+
+- `MISE_CEILING_PATHS` set to the plugin root, so mise's config walk never
+  climbs past it into a host config directory (e.g. `~/.config/mise/`);
+- `MISE_GLOBAL_CONFIG_FILE` / `MISE_SYSTEM_CONFIG_FILE` pointed at the
+  plugin's own `mise.toml`;
+- `MISE_TRUSTED_CONFIG_PATHS` set to `<plugin root>:<data dir>` — the data
+  dir is included because installing the CLI performs a `uv` git checkout
+  whose own `mise.toml` lives under the data dir and must be trusted too (see
+  Troubleshooting);
+- `MISE_DATA_DIR` and `UV_CACHE_DIR` pointed under the data dir, so nothing is
+  written into the plugin's own (read-only, per-version) install tree;
+- `__MISE_DIFF` / `__MISE_SESSION` / `__MISE_ORIG_PATH` unset, so an already
+  `mise activate`d shell can't leak its own PATH state into the confined run.
+
 This installs the `aggregated-research` CLI (a `pipx`-backed mise tool pinned
 to a commit SHA of `ray-manaloto/knowledge-base`) and `ty` (for the LSP entry
-below) into `${CLAUDE_PLUGIN_DATA}` — a per-plugin, per-user data directory
-that survives plugin updates — rather than the plugin's own read-only install
-tree. `MISE_TRUSTED_CONFIG_PATHS` marks `${CLAUDE_PLUGIN_ROOT}` trusted for
-mise without any interactive prompt or state write, since a hook is
-non-interactive and the plugin root is a fresh path on every plugin version.
+below) into the per-plugin data directory — which survives plugin updates —
+rather than the plugin's own read-only install tree.
 
-It then records the resolved `${CLAUDE_PLUGIN_DATA}` path into
-`${CLAUDE_PLUGIN_ROOT}/.data-dir` — the two `bin/` wrappers below read this
-file, because `${CLAUDE_PLUGIN_DATA}` is exported only to hook/MCP/LSP
-subprocesses, not to Bash-tool commands, so a wrapper invoked as a bare Bash
-command cannot see it directly.
-
-**Caveat: `.data-dir` lives in the per-version plugin directory.** Right after
-a plugin UPDATE, `${CLAUDE_PLUGIN_ROOT}` points at a new install with no
-`.data-dir` file yet — the `bin/` wrappers fail loudly with a message telling
-you to start a new session (or run `/reload-plugins`) so the SessionStart hook
-re-runs and rewrites it. This is expected, not a bug.
+**No state is written under `${CLAUDE_PLUGIN_ROOT}`** (Claude Code docs: don't
+write state there — it's per-version). Earlier slices wrote a `.data-dir`
+marker file there; that file and its fallback-read logic are gone. The
+wrappers below resolve the same data-dir constant `mise-env` does, and fail
+loudly rather than silently if nothing is installed there yet.
 
 ## The CLI verbs
 
@@ -46,6 +55,14 @@ Once the hook has run, `aggregated-research` is on the Bash tool's PATH
 Today the CLI has one verb, `trackers` (issues/PRs/discussions search per the
 skill's step 3); more verbs land in later slices. Run
 `aggregated-research --help` for the current list.
+
+The install pulls the CLI's current full dependency set — measured 1.3 GB —
+because the tool isn't split into thin/heavy packages yet; that split is the
+next slice's job, not this one's.
+
+On a host without an SSH key configured for GitHub, set
+`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` before `claude plugin marketplace add` —
+the `owner/repo` shorthand clones over SSH by default.
 
 ## Dependencies
 
@@ -91,10 +108,30 @@ way as the CLI.
   confinement leaves untrusted. The shim is an orphan of an uninstalled
   `conda:git`; `mise prune` removes it. Measured 2026-08-28 (macOS, mise
   2026.8.14): identical hook, rc 1 with the shim on PATH, rc 0 without.
-- **`aggregated-research: SessionStart hook has not run yet`** from the CLI
-  right after a plugin update: the per-version plugin dir is new and its
-  `.data-dir` is written at the next session start — run `/reload-plugins` or
-  start a new session.
+- **`aggregated-research: nothing installed under <data dir>`** from a
+  wrapper: the SessionStart hook hasn't run yet for this data dir, or it
+  failed — check the session-start output, then `/reload-plugins` or start a
+  new session.
+
+## Host regression arms
+
+Three probes catch the confinement regressing on a developer host — one that
+already has `~/.config/mise/config.toml`, `~/.local/share/mise/shims` on
+PATH, and an activated `mise` shell:
+
+1. Fresh install: `rm -rf ~/.claude/plugins/data/aggregated-research-ray-manaloto`,
+   then run the hook command with `CLAUDE_PLUGIN_ROOT`/`CLAUDE_PLUGIN_DATA`
+   exported → rc 0; `ls .../mise/installs` lists exactly the CLI and `ty`;
+   `du -sh` ≈ 1.3G.
+2. Wrapper without `CLAUDE_PLUGIN_DATA` exported (the Bash-tool case):
+   `bin/aggregated-research --help` and `bin/ty --version` both rc 0. Then the
+   loud-failure case: point `CLAUDE_PLUGIN_DATA` at an empty directory → rc 2
+   with the "nothing installed" message.
+3. Negative control: run the OLD (pre-slice-3) hook line with `install --yes`
+   swapped for `config ls` — it lists the host's `~/.config/mise/config.toml`
+   alongside the plugin's own file. `bin/mise-env config ls` lists only the
+   plugin's own `mise.toml`. If the negative control ever stops leaking, the
+   control itself is broken, not the fix.
 
 ## When the hook fires
 
