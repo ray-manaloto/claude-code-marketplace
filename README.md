@@ -23,7 +23,10 @@ claude plugin marketplace add ray-manaloto/claude-code-marketplace
 `aggregated-research` depends on four other plugins for breadth research
 (firecrawl, exa, context7, last30days). A cross-marketplace dependency needs
 its target marketplace registered on the installing machine first, so add
-those four marketplaces **before** installing `aggregated-research`:
+those four marketplaces **before** installing `aggregated-research`. On a
+host with no SSH key configured for GitHub, set
+`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` first — the `owner/repo` shorthand below
+clones over SSH by default:
 
 ```sh
 claude plugin marketplace add firecrawl/firecrawl-claude-plugin
@@ -44,6 +47,13 @@ For local development against this checkout:
 claude plugin marketplace add /path/to/claude-code-marketplace
 claude plugin install aggregated-research
 ```
+
+## Acceptance
+
+`.github/workflows/acceptance.yml` is the definition of done: in an isolated
+Linux container it installs this marketplace, `aggregated-research`, and its
+four dependency plugins from scratch, runs the SessionStart hook, and (given
+`CLAUDE_CODE_OAUTH_TOKEN`) runs one real question through the plugin.
 
 ## Contributing
 
