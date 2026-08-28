@@ -69,11 +69,19 @@ in 0.8.40. When a secondary artifact says impossible and it matters, read the co
 ### 3. Both trackers — issues AND PRs AND discussions
 
 ```bash
+aggregated-research trackers OWNER/REPO "TERM" --out .research/OWNER-REPO-TERM.json
+```
+
+The CLI (installed by this plugin's SessionStart hook) does the channel check
+first and splits issues from PRs, so the two raw calls it replaces are shown
+only to explain what it guards against:
+
+```bash
 gh api repos/OWNER/REPO --jq '{issues: .has_issues, discussions: .has_discussions}'
 gh api -X GET search/issues -f q='repo:OWNER/REPO TERM' --jq '.total_count'
 ```
 
-The first line is not optional. **A count of zero from a channel that cannot
+The channel check is not optional. **A count of zero from a channel that cannot
 receive anything is not evidence** — `jdx/hk` has issues DISABLED, so an
 `is:issue` search there is structurally zero. **PRs still index under
 `search/issues`**: `repo:jdx/hk gitleaks` returned 9 hits on 2026-08-27, all pull

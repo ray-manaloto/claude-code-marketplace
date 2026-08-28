@@ -81,3 +81,18 @@ way as the CLI.
 ## Why the hook pins mise's global config to the plugin's own `mise.toml`
 
 `mise install` acts on every config file in scope — the user's global `~/.config/mise/config.toml` included. Measured 2026-08-28: without the override the SessionStart hook installed 128 tools (2.3 GB) into `$CLAUDE_PLUGIN_DATA` before it was stopped. `MISE_GLOBAL_CONFIG_FILE` and `MISE_SYSTEM_CONFIG_FILE` both point at the plugin's `mise.toml`, so exactly two tools are in scope: the CLI and `ty`.
+
+## Troubleshooting
+
+- **`Config files in ~/Library/Caches/uv/... are not trusted`** during the
+  SessionStart install, on a machine where `git` resolves to a mise shim
+  (`~/.local/share/mise/shims/git`): uv's `git submodule update` ran through
+  that shim, and the shim loads the checkout's own `mise.toml`, which the hook's
+  confinement leaves untrusted. The shim is an orphan of an uninstalled
+  `conda:git`; `mise prune` removes it. Measured 2026-08-28 (macOS, mise
+  2026.8.14): identical hook, rc 1 with the shim on PATH, rc 0 without.
+- **`aggregated-research: SessionStart hook has not run yet`** from the CLI
+  right after a plugin update: the per-version plugin dir is new and its
+  `.data-dir` is written at the next session start — run `/reload-plugins` or
+  start a new session.
+

@@ -1,5 +1,6 @@
 #!/bin/sh
 # aggregated-research/bin/ty
 here="$(cd "$(dirname "$0")/.." && pwd)"
-data="$(cat "$here/.data-dir" 2>/dev/null)" || { echo "aggregated-research: SessionStart hook has not run yet (no $here/.data-dir) — run /reload-plugins or start a new session" >&2; exit 2; }
+data="${CLAUDE_PLUGIN_DATA:-$(cat "$here/.data-dir" 2>/dev/null)}"
+[ -n "$data" ] || { echo "aggregated-research: SessionStart hook has not run yet (no $here/.data-dir) — run /reload-plugins or start a new session" >&2; exit 2; }
 MISE_GLOBAL_CONFIG_FILE="$here/mise.toml" MISE_SYSTEM_CONFIG_FILE="$here/mise.toml" MISE_TRUSTED_CONFIG_PATHS="$here" MISE_DATA_DIR="$data/mise" exec mise --cd "$here" exec -- ty "$@"
