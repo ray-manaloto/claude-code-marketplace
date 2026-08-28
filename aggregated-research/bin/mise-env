@@ -1,0 +1,26 @@
+#!/bin/sh
+# aggregated-research/bin/mise-env
+# The ONE place the mise confinement is defined. hooks.json SessionStart and
+# both bin/ wrappers call this instead of inlining MISE_* themselves.
+set -eu
+
+PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DATA="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/aggregated-research-ray-manaloto}"
+
+if [ "${1:-}" = "exec" ] && [ ! -d "$DATA/mise/installs" ]; then
+	echo "aggregated-research: nothing installed under $DATA — the SessionStart hook has not run or failed; check the session-start output, then /reload-plugins or start a new session" >&2
+	exit 2
+fi
+mkdir -p "$DATA"
+
+MISE_CEILING_PATHS="$PLUGIN_ROOT"
+MISE_GLOBAL_CONFIG_FILE="$PLUGIN_ROOT/mise.toml"
+MISE_SYSTEM_CONFIG_FILE="$PLUGIN_ROOT/mise.toml"
+MISE_TRUSTED_CONFIG_PATHS="$PLUGIN_ROOT:$DATA"
+MISE_DATA_DIR="$DATA/mise"
+UV_CACHE_DIR="$DATA/uv"
+export MISE_CEILING_PATHS MISE_GLOBAL_CONFIG_FILE MISE_SYSTEM_CONFIG_FILE \
+	MISE_TRUSTED_CONFIG_PATHS MISE_DATA_DIR UV_CACHE_DIR
+unset __MISE_DIFF __MISE_SESSION __MISE_ORIG_PATH 2>/dev/null || true
+
+exec mise --cd "$PLUGIN_ROOT" "$@"
