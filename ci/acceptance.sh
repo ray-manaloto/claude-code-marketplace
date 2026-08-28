@@ -84,20 +84,6 @@ export CLAUDE_PLUGIN_ROOT="$PLUGIN_ROOT"
 export CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/aggregated-research-ray-manaloto"
 
 if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
-	# Provenance without any schema dependency: the installed plugin root must
-	# be under the mounted /work checkout (measured on run 33186621864's init
-	# event: "path":"/work/aggregated-research") — this is what proves the PR
-	# under test, not main, was installed, and it fails closed on any schema
-	# change rather than passing silently.
-	case "$PLUGIN_ROOT" in
-		/work/*) ;;
-		*)
-			echo "FAIL: installed plugin root $PLUGIN_ROOT is not under the mounted /work checkout" >&2
-			tail -40 /tmp/install-agent.out >&2
-			exit 1
-			;;
-	esac
-
 	claude plugin marketplace list --json >/tmp/marketplaces-after-agent.json
 	echo "marketplace list after agent install: $(cat /tmp/marketplaces-after-agent.json)"
 	# has("repo")|not (the b9ab477 gate) discriminates on key spelling, not
@@ -122,6 +108,17 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	esac
 	printf '%s' "$RAY_ENTRIES" | jq -e '.[0].source == "directory"' >/dev/null || {
 		echo "FAIL: ray-manaloto registered as a GitHub source, not the local /work checkout (source=$(printf '%s' "$RAY_ENTRIES" | jq -r '.[0].source'))" >&2
+		tail -40 /tmp/install-agent.out >&2
+		exit 1
+	}
+	# Second positive check, same data: .path is the field measured "/work"
+	# verbatim on every green run so far (33186621864, 33187463915,
+	# 33187970377) — this is what proves the PR under test, not main, was
+	# installed. NOTE this is NOT installed_plugins.json's installPath, which
+	# always resolves to a plugins/cache/... copy regardless of source and so
+	# cannot be gated on for provenance.
+	printf '%s' "$RAY_ENTRIES" | jq -e '.[0].path == "/work"' >/dev/null || {
+		echo "FAIL: ray-manaloto marketplace .path is $(printf '%s' "$RAY_ENTRIES" | jq -r '.[0].path'), not /work" >&2
 		tail -40 /tmp/install-agent.out >&2
 		exit 1
 	}
