@@ -18,17 +18,25 @@ experimental = true
 pin = true
 
 [oci]
-from = "debian:bookworm-slim"
+# pinned to the amd64 manifest-list digest `docker inspect --format='{{index
+# .RepoDigests 0}}' debian:bookworm-slim` resolved to, matching the same
+# image ID (a8ac7f6c67ab) the green acceptance run pulled — measured
+# 2026-08-28. `mise oci build --from` accepts this form; probed that
+# `[oci].from` in TOML accepts it too (builds and pulls correctly).
+from = "debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe64d6990e4b07ea4171"
 # no `user` key: inherits debian:bookworm-slim's USER (root) — a non-root
 # user has no passwd entry / HOME on -slim, and both `claude` and the
 # plugin data dir write under `~`.
 
 [bootstrap.packages]
-"apt:git" = "latest"
-"apt:ca-certificates" = "latest"
-"apt:curl" = "latest"
+# versions are the amd64 candidates apt resolved on the pinned digest above
+# (`apt-cache policy`, measured 2026-08-28) — the same resolution the green
+# run's unpinned "latest" would have picked.
+"apt:git" = "1:2.39.5-0+deb12u3"
+"apt:ca-certificates" = "20250419~deb12u1"
+"apt:curl" = "7.88.1-10+deb12u15"
 # needed so `uv tool install` can build tree-sitter-dm (a graphifyy[all]
 # transitive dep with no linux-x86_64/py3.14 wheel) from source at
 # SessionStart install time — measured 2026-08-28: "error: [Errno 2] No such
 # file or directory: 'cc'" without it.
-"apt:build-essential" = "latest"
+"apt:build-essential" = "12.9"
