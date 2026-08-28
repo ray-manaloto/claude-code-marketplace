@@ -69,8 +69,8 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	claude -p 'Following ONLY /work/README.md and /work/aggregated-research/README.md, confirm the aggregated-research plugin is installed, then run `aggregated-research trackers openai/codex-plugin-cc "agent team tokens"` and print its JSON output verbatim.' \
 		--allowedTools "Read,Bash" \
 		| tee /tmp/agent.out
-	grep -F '"repo"' /tmp/agent.out >/dev/null || {
-		echo "FAIL: agent step did not print a \"repo\" field" >&2
+	grep -F '"adapter": "trackers"' /tmp/agent.out >/dev/null && grep -F '"hits"' /tmp/agent.out >/dev/null || {
+		echo "FAIL: agent step did not print the trackers adapter's JSON output" >&2
 		exit 1
 	}
 else
