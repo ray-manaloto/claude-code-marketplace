@@ -32,6 +32,14 @@ from = "debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859
 # versions are the amd64 candidates apt resolved on the pinned digest above
 # (`apt-cache policy`, measured 2026-08-28) — the same resolution the green
 # run's unpinned "latest" would have picked.
+#
+# The base-image digest above freezes the filesystem, but apt still resolves
+# these four against the LIVE bookworm/bookworm-security archive, which only
+# keeps the CURRENT version of each package. The next security bump for any
+# of git/ca-certificates/curl/build-essential makes this build fail loudly
+# with "Version ... was not found" instead of silently drifting to a newer
+# version — that's the chosen trade. When it happens: re-measure with
+# `apt-cache policy <pkg>` inside the pinned image and repin.
 "apt:git" = "1:2.39.5-0+deb12u3"
 "apt:ca-certificates" = "20250419~deb12u1"
 "apt:curl" = "7.88.1-10+deb12u15"

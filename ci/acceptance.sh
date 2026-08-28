@@ -82,7 +82,7 @@ printf '%s\n' "$CONFIG_LS" | awk -v root="$CLAUDE_PLUGIN_ROOT" -v home="$HOME" '
 INSTALLS_LS="$(ls "$CLAUDE_PLUGIN_DATA/mise/installs" 2>/dev/null | sort | tr '\n' ' ')"
 EXPECTED_INSTALLS="pipx-git-https-github-com-ray-manaloto-knowledge-base-git ty "
 [ "$INSTALLS_LS" = "$EXPECTED_INSTALLS" ] || {
-	echo "FAIL: data-dir installs were [$INSTALLS_LS], expected [$EXPECTED_INSTALLS]" >&2
+	echo "FAIL: data-dir installs were [$INSTALLS_LS], expected exactly the tools pinned in aggregated-research/mise.toml [$EXPECTED_INSTALLS] — if the plugin's tool list changed, update EXPECTED_INSTALLS here" >&2
 	exit 1
 }
 

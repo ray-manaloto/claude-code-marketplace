@@ -50,10 +50,15 @@ claude plugin install aggregated-research
 
 ## Acceptance
 
-`.github/workflows/acceptance.yml` is the definition of done: in an isolated
-Linux container it installs this marketplace, `aggregated-research`, and its
-four dependency plugins from scratch, runs the SessionStart hook, and (given
-`CLAUDE_CODE_OAUTH_TOKEN`) runs one real question through the plugin.
+`.github/workflows/acceptance.yml` is the install-and-run acceptance test: in
+an isolated Linux container, the script installs this marketplace,
+`aggregated-research`, and its four dependency plugins per this README, the
+SessionStart hook confines mise to the plugin's own tools, and the CLI runs
+both directly and (given `CLAUDE_CODE_OAUTH_TOKEN`) via an agent. It does not
+yet cover the agent-driven INSTALL arm — an agent following only these
+READMEs performing the install itself, rather than the script running the
+documented commands verbatim — tracked as
+[#2](https://github.com/ray-manaloto/claude-code-marketplace/issues/2).
 
 ## Contributing
 
