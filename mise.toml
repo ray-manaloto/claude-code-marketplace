@@ -27,3 +27,8 @@ from = "debian:bookworm-slim"
 "apt:git" = "latest"
 "apt:ca-certificates" = "latest"
 "apt:curl" = "latest"
+# needed so `uv tool install` can build tree-sitter-dm (a graphifyy[all]
+# transitive dep with no linux-x86_64/py3.14 wheel) from source at
+# SessionStart install time — measured 2026-08-28: "error: [Errno 2] No such
+# file or directory: 'cc'" without it.
+"apt:build-essential" = "latest"
