@@ -9,6 +9,12 @@
 # a file and check $? instead.
 set -eu
 
+# Confinement means nothing under this script writes into mise's default
+# install location — snapshot it before anything runs (both paths) and diff
+# at the end, so the baseline can't already include what session 1 (or step b)
+# wrote.
+PRE_HOME_INSTALLS="$(ls "$HOME/.local/share/mise/installs" 2>/dev/null || true)"
+
 echo "== step a: marketplace add (from mounted checkout, no auth) =="
 set +e
 env -u CLAUDE_CODE_OAUTH_TOKEN claude plugin marketplace add /work
@@ -89,15 +95,23 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 		exit 1
 	}
 
+	# An agent that skipped the four dependency marketplaces would still pass
+	# the single-name check above — assert all five (the aggregated-research
+	# marketplace itself plus its allowCrossMarketplaceDependenciesOn list from
+	# .claude-plugin/marketplace.json) are registered.
+	for m in ray-manaloto firecrawl exa context7-marketplace last30days-skill; do
+		jq -e --arg m "$m" 'any(.[]; .name == $m)' /tmp/marketplaces-after-agent.json >/dev/null || {
+			echo "FAIL: install agent did not register marketplace '$m'" >&2
+			tail -40 /tmp/install-agent.out >&2
+			exit 1
+		}
+	done
+
 	if [ -d "$CLAUDE_PLUGIN_DATA/mise/installs" ] && [ -n "$(ls -A "$CLAUDE_PLUGIN_DATA/mise/installs" 2>/dev/null)" ]; then
 		echo "FAIL: install agent warmed the plugin data-dir installs before session 2" >&2
 		tail -40 /tmp/install-agent.out >&2
 		exit 1
 	fi
-
-	# Confinement also means the real hook writes NOTHING under mise's default
-	# install location — snapshot it before session 2 starts and diff after.
-	PRE_HOME_INSTALLS="$(ls "$HOME/.local/share/mise/installs" 2>/dev/null || true)"
 
 	echo "== session 2: fresh agent session fires the real hook and runs the CLI =="
 	# If CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS is exceeded, Claude Code
@@ -108,8 +122,8 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	(
 		cd /tmp
 		CLAUDE_CODE_SYNC_PLUGIN_INSTALL=1 CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS=600000 \
-			claude -p 'Following ONLY /work/README.md and /work/aggregated-research/README.md, confirm the aggregated-research plugin is installed, then run `aggregated-research trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/agent-trackers.json` and report that you did.' \
-				--allowedTools "Read,Bash" \
+			claude -p 'Following ONLY /work/README.md and /work/aggregated-research/README.md, optionally run `claude plugin list` bare to confirm the aggregated-research plugin is installed, then run `aggregated-research trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/agent-trackers.json` bare and report that you did. Issue each command bare — no leading VAR=value, no cd, no &&/;/| chaining — your Bash access only allows those two exact command prefixes.' \
+				--allowedTools "Read,Bash(aggregated-research *),Bash(claude plugin list*)" \
 				--output-format stream-json --verbose
 	) >/tmp/agent.stream 2>/tmp/agent.err
 	agent_rc=$?
@@ -170,10 +184,6 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	echo "agent CLI run OK: $(cat /tmp/agent-trackers.json)"
 else
 	echo "== step d: run the SessionStart hook by hand, then check the confinement =="
-
-	# Confinement also means the hook writes NOTHING under mise's default
-	# install location — snapshot it before the hook runs and diff after.
-	PRE_HOME_INSTALLS="$(ls "$HOME/.local/share/mise/installs" 2>/dev/null || true)"
 
 	HOOK_CMD="$(jq -r '.hooks.SessionStart[0].hooks[0].command' "$CLAUDE_PLUGIN_ROOT/hooks/hooks.json")"
 	HOOK_CMD="$(printf '%s' "$HOOK_CMD" | sed "s#\${CLAUDE_PLUGIN_ROOT}#${CLAUDE_PLUGIN_ROOT}#g")"
