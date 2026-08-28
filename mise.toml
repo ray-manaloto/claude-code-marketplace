@@ -1,0 +1,25 @@
+# Container image definition for the acceptance workflow's OCI build
+# (`mise oci build`). NOT the plugin's own aggregated-research/mise.toml —
+# that stays confined to the plugin's two tools and is never touched by this
+# file (see .claude/CLAUDE.md / do-not invariants in the sibling repo).
+[tools]
+"npm:@anthropic-ai/claude-code" = "2.1.250"
+node = "26.8.1"
+github-cli = "2.98.0"
+uv = "0.12.7"
+jq = "1.8.2"
+
+[settings]
+experimental = true
+pin = true
+
+[oci]
+from = "debian:bookworm-slim"
+# no `user` key: inherits debian:bookworm-slim's USER (root) — a non-root
+# user has no passwd entry / HOME on -slim, and both `claude` and the
+# plugin data dir write under `~`.
+
+[bootstrap.packages]
+"apt:git" = "latest"
+"apt:ca-certificates" = "latest"
+"apt:curl" = "latest"
