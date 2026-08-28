@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "MISE_TRUSTED_CONFIG_PATHS=\"${CLAUDE_PLUGIN_ROOT}\" MISE_DATA_DIR=\"${CLAUDE_PLUGIN_DATA}/mise\" mise --cd \"${CLAUDE_PLUGIN_ROOT}\" install --yes && printf '%s' \"${CLAUDE_PLUGIN_DATA}\" > \"${CLAUDE_PLUGIN_ROOT}/.data-dir\" && echo \"aggregated-research: CLI ready — run: aggregated-research --help\""
+          }
+        ]
+      }
+    ]
+  }
+}
