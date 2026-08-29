@@ -318,12 +318,26 @@ cat /tmp/help-own.out
 }
 
 echo "== step d.5: run the CLI directly — the deterministic proof it works =="
-"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/direct-trackers.json
-jq -e '.adapter == "trackers" and (.hits | type == "array")' /tmp/direct-trackers.json >/dev/null || {
-	echo "FAIL: direct CLI run did not produce the expected trackers JSON shape" >&2
-	cat /tmp/direct-trackers.json >&2
+# Two arms, both real: a term known to HIT (checks a genuine hit count, not
+# just that "hits" is an array — an empty array is also an array) and a term
+# known to MISS (checks the null_result carries a DISCRIMINATING arm, proving
+# the search actually ran rather than silently returning nothing).
+echo "-- arm 1: a term known to hit --"
+"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/direct-trackers-hit.json
+jq -e '.adapter == "trackers" and .total_count > 0 and (.hits | length) > 0' /tmp/direct-trackers-hit.json >/dev/null || {
+	echo "FAIL: direct CLI run against a known-hit term produced no real hit" >&2
+	cat /tmp/direct-trackers-hit.json >&2
 	exit 1
 }
-echo "direct CLI run OK: $(cat /tmp/direct-trackers.json)"
+echo "direct CLI hit-arm OK: $(cat /tmp/direct-trackers-hit.json)"
+
+echo "-- arm 2: a term known to miss, must return a discriminating null --"
+"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" trackers openai/codex-plugin-cc "zzzznonexistentqueryterm9999xyz" --out /tmp/direct-trackers-miss.json
+jq -e '.adapter == "trackers" and .total_count == 0 and (.hits | length) == 0 and (.null_result.arms | length) > 0 and (.null_result.arms | any(.discriminates == true))' /tmp/direct-trackers-miss.json >/dev/null || {
+	echo "FAIL: direct CLI run against a known-miss term did not produce a discriminating null" >&2
+	cat /tmp/direct-trackers-miss.json >&2
+	exit 1
+}
+echo "direct CLI miss-arm OK: $(cat /tmp/direct-trackers-miss.json)"
 
 echo "== acceptance.sh: all steps completed =="
