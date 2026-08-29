@@ -40,7 +40,7 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	set +e
 	(
 		cd /tmp
-		claude -p 'You are validating the marketplace under test, whose checkout is mounted at /work. Follow ONLY the installation instructions in /work/README.md and /work/aggregated-research/README.md. Use the local-development form because /work is the marketplace under test. CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1 is already exported in your environment, so never prefix a command with it. Issue every claude command BARE: no leading VAR=value assignment, no cd, and no &&/;/| chaining — run one plain `claude ...` invocation per command, since your Bash access only allows commands starting with the word claude and a prefixed or chained form will be denied with nobody to approve it. Install only the marketplace, dependency marketplaces, and plugin those READMEs name. Do not run the hook command, bin/mise-env, or anything under the plugin bin/ directory. Report the exact commands you ran.' \
+		claude -p 'You are validating the marketplace under test, whose checkout is mounted at /work. Follow ONLY the installation instructions in /work/README.md and /work/plugins/aggregated-research/README.md. Use the local-development form because /work is the marketplace under test. CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1 is already exported in your environment, so never prefix a command with it. Issue every claude command BARE: no leading VAR=value assignment, no cd, and no &&/;/| chaining — run one plain `claude ...` invocation per command, since your Bash access only allows commands starting with the word claude and a prefixed or chained form will be denied with nobody to approve it. Install only the marketplace, dependency marketplaces, and plugin those READMEs name. Do not run the hook command, bin/mise-env, or anything under the plugin bin/ directory. Report the exact commands you ran.' \
 			--allowedTools "Read,Bash(claude *)" \
 			--max-turns 40
 	) >/tmp/install-agent.out 2>&1
@@ -150,7 +150,7 @@ if [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
 	(
 		cd /tmp
 		CLAUDE_CODE_SYNC_PLUGIN_INSTALL=1 CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS=600000 \
-			claude -p 'Following ONLY /work/README.md and /work/aggregated-research/README.md, optionally run `claude plugin list` bare to confirm the aggregated-research plugin is installed, then run `aggregated-research trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/agent-trackers.json` bare and report that you did. Issue each command bare — no leading VAR=value, no cd, no &&/;/| chaining — your Bash access only allows those two exact command prefixes.' \
+			claude -p 'Following ONLY /work/README.md and /work/plugins/aggregated-research/README.md, optionally run `claude plugin list` bare to confirm the aggregated-research plugin is installed, then run `aggregated-research trackers openai/codex-plugin-cc "agent team tokens" --out /tmp/agent-trackers.json` bare and report that you did. Issue each command bare — no leading VAR=value, no cd, no &&/;/| chaining — your Bash access only allows those two exact command prefixes.' \
 				--allowedTools "Read,Bash(aggregated-research *),Bash(claude plugin list*)" \
 				--output-format stream-json --verbose
 	) >/tmp/agent.stream 2>/tmp/agent.err
@@ -250,7 +250,7 @@ printf '%s\n' "$CONFIG_LS" | awk -v root="$CLAUDE_PLUGIN_ROOT" -v home="$HOME" '
 INSTALLS_LS="$(ls "$CLAUDE_PLUGIN_DATA/mise/installs" 2>/dev/null | sort | tr '\n' ' ')"
 EXPECTED_INSTALLS="pipx-git-https-github-com-ray-manaloto-knowledge-base-git ty "
 [ "$INSTALLS_LS" = "$EXPECTED_INSTALLS" ] || {
-	echo "FAIL: data-dir installs were [$INSTALLS_LS], expected exactly the tools pinned in aggregated-research/mise.toml [$EXPECTED_INSTALLS] — if the plugin's tool list changed, update EXPECTED_INSTALLS here" >&2
+	echo "FAIL: data-dir installs were [$INSTALLS_LS], expected exactly the tools pinned in plugins/aggregated-research/mise.toml [$EXPECTED_INSTALLS] — if the plugin's tool list changed, update EXPECTED_INSTALLS here" >&2
 	exit 1
 }
 

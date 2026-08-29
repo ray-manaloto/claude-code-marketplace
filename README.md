@@ -5,12 +5,12 @@ A curated marketplace of [Claude Code](https://claude.com/claude-code) plugins b
 
 ## Plugins
 
-### [aggregated-research](./aggregated-research/)
+### [aggregated-research](./plugins/aggregated-research/)
 
 Run a multi-source research sweep whose findings survive review — ordered
 cheapest-refutable-first, with a control arm on every null result and the
 tracker channel checked before any tracker null is believed. See
-[aggregated-research/README.md](./aggregated-research/README.md) for the
+[aggregated-research/README.md](./plugins/aggregated-research/README.md) for the
 SessionStart hook, the CLI, and the dependency plugins it routes breadth
 research through.
 
@@ -58,7 +58,7 @@ claude plugin install aggregated-research@ray-manaloto --yes
 
 `.github/workflows/acceptance.yml` is the install-and-run acceptance test. With
 `CLAUDE_CODE_OAUTH_TOKEN`, its first Claude Code session follows only this
-README and `aggregated-research/README.md` to install the mounted marketplace,
+README and `plugins/aggregated-research/README.md` to install the mounted marketplace,
 the four dependency marketplaces, and `aggregated-research`. A second, fresh
 session proves the real SessionStart hook loads the plugin, confines mise to
 the plugin's own tools, and runs the CLI. The script then repeats the CLI run
