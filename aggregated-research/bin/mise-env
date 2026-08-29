@@ -5,7 +5,34 @@
 set -eu
 
 PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-DATA="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/aggregated-research-ray-manaloto}"
+
+# Claude Code exports CLAUDE_PLUGIN_DATA on a hook's spawned process
+# (hooks.md:487), but the Bash tool inherits whatever a plugin left in the
+# session environment — observed 2026-08-28 pointing at ANOTHER plugin's data
+# dir (codex-openai-codex), which made this wrapper refuse to start and would
+# have had `mkdir -p` create paths in that plugin's namespace. So honour the
+# variable only when it names THIS plugin's directory. The id is documented,
+# not guessed: ~/.claude/plugins/data/{id}, id = the plugin identifier with
+# characters outside [a-zA-Z0-9_-] replaced by `-` (plugins-reference.md:720),
+# so `aggregated-research@ray-manaloto` is the value below.
+PLUGIN_DATA_ID=aggregated-research-ray-manaloto
+DATA="$HOME/.claude/plugins/data/$PLUGIN_DATA_ID"
+# Strip EVERY trailing slash before matching: `${v%/}` removes one, so a value
+# ending in `//` would otherwise fall through and be silently ignored.
+_given="${CLAUDE_PLUGIN_DATA:-}"
+while [ "$_given" != "${_given%/}" ]; do _given="${_given%/}"; done
+# `/*/<id>` requires an ABSOLUTE path whose FINAL component is exactly the id.
+# Absolute because a relative value would be mkdir'd against this wrapper's
+# unknown cwd; final-component because a path merely ENDING in the id
+# (.../not-aggregated-research-ray-manaloto) is a different plugin's business.
+# Ceiling: this accepts the id under any root, not only ~/.claude/plugins/data,
+# so that a future Claude Code may relocate the data root without breaking the
+# plugin — the reason the variable is honoured at all. It is not a security
+# boundary: anyone able to set CLAUDE_PLUGIN_DATA can set HOME too.
+case "$_given" in
+/*/"$PLUGIN_DATA_ID") DATA="$_given" ;;
+esac
+unset _given
 
 if [ "${1:-}" = "exec" ] && [ ! -d "$DATA/mise/installs" ]; then
 	echo "aggregated-research: nothing installed under $DATA — the SessionStart hook has not run or failed; check the session-start output, then /reload-plugins or start a new session" >&2

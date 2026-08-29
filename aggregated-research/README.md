@@ -20,9 +20,10 @@ On every session start (and on session resume — the hook fires on both),
 `bin/mise-env` is the ONE place the mise confinement is defined — the hook
 and both `bin/` wrappers below all call it, rather than each inlining its own
 `MISE_*` variables. It resolves the plugin root from its own path, resolves
-the data dir from `${CLAUDE_PLUGIN_DATA}` (falling back to the documented
-per-plugin path `~/.claude/plugins/data/aggregated-research-ray-manaloto` when
-that isn't set — see the wrapper section below), then runs `mise` with:
+the data dir to the documented per-plugin path
+`~/.claude/plugins/data/aggregated-research-ray-manaloto`, honouring
+`${CLAUDE_PLUGIN_DATA}` only when that variable names **this** plugin's
+directory (see the wrapper section below), then runs `mise` with:
 
 - `MISE_CEILING_PATHS` set to the plugin root, so mise's config walk never
   climbs past it into a host config directory (e.g. `~/.config/mise/`);
@@ -115,18 +116,30 @@ way as the CLI.
 
 ## Host regression arms
 
-Three probes catch the confinement regressing on a developer host — one that
+Four probes catch the confinement regressing on a developer host — one that
 already has `~/.config/mise/config.toml`, `~/.local/share/mise/shims` on
-PATH, and an activated `mise` shell:
+PATH, and an activated `mise` shell. These are HOST probes, run by hand;
+`ci/acceptance.sh` is the container suite and does not contain them:
 
 1. Fresh install: `rm -rf ~/.claude/plugins/data/aggregated-research-ray-manaloto`,
    then run the hook command with `CLAUDE_PLUGIN_ROOT`/`CLAUDE_PLUGIN_DATA`
    exported → rc 0; `ls .../mise/installs` lists exactly the CLI and `ty`;
    `du -sh` ≈ 1.3G.
-2. Wrapper without `CLAUDE_PLUGIN_DATA` exported (the Bash-tool case):
-   `bin/aggregated-research --help` and `bin/ty --version` both rc 0. Then the
-   loud-failure case: point `CLAUDE_PLUGIN_DATA` at an empty directory → rc 2
-   with the "nothing installed" message.
+2. Wrapper without `CLAUDE_PLUGIN_DATA` exported: `bin/aggregated-research
+   --help` and `bin/ty --version` both rc 0. Then the loud-failure case: point
+   `CLAUDE_PLUGIN_DATA` at an empty directory whose basename IS this plugin's
+   id → rc 2 with the "nothing installed" message.
+2a. **The real Bash-tool case is not "unset" — it is "set to another
+   plugin's directory".** Claude Code exports `CLAUDE_PLUGIN_DATA` on a hook's
+   spawned process (`hooks.md:487`), and the Bash tool inherits whatever a
+   plugin left behind; measured 2026-08-28 in a live session it held
+   `~/.claude/plugins/data/codex-openai-codex`. Against the pre-fix wrapper
+   (`eb3ba054916f`) that made `--help` exit 2 with "nothing installed", and
+   made a non-`exec` subcommand `mkdir -p` a directory inside that other
+   plugin's namespace. `bin/aggregated-research --help` with a foreign
+   `CLAUDE_PLUGIN_DATA` must be rc 0 and must create nothing. Note the
+   `--help` route alone cannot catch the mkdir half: it passes `exec`, which
+   returns at the not-installed guard before the `mkdir`.
 3. Negative control: run the OLD (pre-slice-3) hook line with `install --yes`
    swapped for `config ls` — it lists the host's `~/.config/mise/config.toml`
    alongside the plugin's own file. `bin/mise-env config ls` lists only the

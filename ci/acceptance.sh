@@ -257,11 +257,63 @@ EXPECTED_INSTALLS="pipx-git-https-github-com-ray-manaloto-knowledge-base-git ty 
 "$CLAUDE_PLUGIN_ROOT/bin/mise-env" exec -- uv --version
 "$CLAUDE_PLUGIN_ROOT/bin/mise-env" exec -- gh --version
 
-env -u CLAUDE_PLUGIN_DATA "$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help.out 2>&1
-help_rc=$?
+# `set -e` aborts on a failing command, so a bare `cmd; rc=$?` can only ever
+# record 0 — the rc check below was unable to fire. `cmd || rc=$?` is the form
+# that both survives `set -e` AND captures the real code. NOT `if ! cmd; then
+# rc=$?; fi`: inside the then-branch `$?` is the status of the negated test,
+# which is 0 unconditionally (probed in dash and /bin/sh, 2026-08-28) — that
+# reintroduces the very defect this block exists to remove.
+help_rc=0
+env -u CLAUDE_PLUGIN_DATA "$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help.out 2>&1 || help_rc=$?
 cat /tmp/help.out
 [ "$help_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help.out >/dev/null || {
 	echo "FAIL: --help did not print 'verbs: trackers' (rc=$help_rc)" >&2
+	exit 1
+}
+
+# A CLAUDE_PLUGIN_DATA naming ANOTHER plugin must be IGNORED, not obeyed: the
+# Bash tool inherits the variable from whichever plugin set it last. Arms the
+# real observed leak, not the merely-unset case above.
+foreign_rc=0
+env CLAUDE_PLUGIN_DATA="$HOME/.claude/plugins/data/some-other-plugin" \
+	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-foreign.out 2>&1 \
+	|| foreign_rc=$?
+cat /tmp/help-foreign.out
+[ "$foreign_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help-foreign.out >/dev/null || {
+	echo "FAIL: a foreign CLAUDE_PLUGIN_DATA was obeyed instead of ignored (rc=$foreign_rc)" >&2
+	exit 1
+}
+# ...and it must not CREATE anything there either. Deliberately not routed
+# through bin/aggregated-research: that always passes `exec`, which hits the
+# not-installed guard and returns before `mkdir -p` — so the check would be
+# unable to fail. A non-`exec` subcommand (what hooks.json's `install` is)
+# reaches the mkdir, which is the invocation that actually leaked.
+# Armed both ways 2026-08-28 against the pre-fix wrapper at eb3ba054916f:
+# it created `some-other-plugin`; this one creates only its own directory.
+rm -rf /tmp/probe-home
+mkdir -p /tmp/probe-home/.claude/plugins/data
+env HOME=/tmp/probe-home \
+	CLAUDE_PLUGIN_DATA=/tmp/probe-home/.claude/plugins/data/some-other-plugin \
+	"$CLAUDE_PLUGIN_ROOT/bin/mise-env" --version >/tmp/mkdir-probe.out 2>&1 || true
+[ ! -e /tmp/probe-home/.claude/plugins/data/some-other-plugin ] || {
+	echo "FAIL: the wrapper created a directory under another plugin's data namespace" >&2
+	ls -A /tmp/probe-home/.claude/plugins/data >&2
+	exit 1
+}
+
+# The ACCEPT branch, armed so it can actually fail. Passing the plugin's own
+# CLAUDE_PLUGIN_DATA proves nothing on its own — it equals the default, so a
+# wrapper that ignored the variable outright would pass too. Moving HOME makes
+# the default resolve somewhere empty, so the run can only succeed if the
+# override was honoured.
+mkdir -p /tmp/emptyhome
+own_rc=0
+env HOME=/tmp/emptyhome CLAUDE_PLUGIN_DATA="$CLAUDE_PLUGIN_DATA" \
+	"$CLAUDE_PLUGIN_ROOT/bin/aggregated-research" --help >/tmp/help-own.out 2>&1 \
+	|| own_rc=$?
+cat /tmp/help-own.out
+[ "$own_rc" -eq 0 ] && grep -F 'verbs: trackers' /tmp/help-own.out >/dev/null || {
+	echo "FAIL: the plugin's OWN CLAUDE_PLUGIN_DATA was not honoured (rc=$own_rc)" >&2
 	exit 1
 }
 
