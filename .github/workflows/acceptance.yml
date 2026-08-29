@@ -28,7 +28,11 @@ jobs:
         run: |
           set -o pipefail
           mise oci run --engine docker --image-dir mise-oci -- claude --version | tee /tmp/smoke.out
-          grep -F '2.1.250' /tmp/smoke.out
+          # Read the expected version from mise.toml's own pin rather than a
+          # hardcoded literal, so this check can't silently drift out of sync
+          # with the pin the way it did going from 2.1.250 -> 2.1.251.
+          pinned="$(grep -oP '"npm:@anthropic-ai/claude-code"\s*=\s*\{[^}]*version\s*=\s*"\K[^"]+' mise.toml)"
+          grep -F "$pinned" /tmp/smoke.out
 
       - name: acceptance — one container, full sequence
         env:
