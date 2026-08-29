@@ -1,0 +1,41 @@
+# Provisional constants inherited by the future spine agent-dispatch/verify loop.
+# VOTES_PER_CLAIM: vote count per claim.
+# REFUTATIONS_REQUIRED: refutation quorum required to kill a claim.
+# MAX_FETCH: maximum number of sources fetched per run.
+# MAX_VERIFY_CLAIMS: maximum number of claims ranked and verified per run.
+#
+# Source: a dated snapshot of Anthropic's bundled /deep-research workflow script,
+# extracted from the Claude Code CLI binary version 2.1.247 and recorded in the
+# ray-manaloto/knowledge-base repo at commit 03e07cc45f89 (2026-08-27), tracked
+# report docs/research/reports/2026-08-27-deep-research-internals.md. This is a
+# dated materialization and must never be re-derived against whichever Claude
+# Code CLI version happens to be running now.
+#
+# PROVISIONAL: knowledge-base issue #586, "Spine: tune the provisional budgets
+# against real runs", is expected to tune these values against real runs. Do not
+# invent replacement values in this file before that prototype supplies evidence.
+#
+# Config hygiene exception: aggregated-research/.lsp.json cannot contain $schema
+# or $comment because the plugin manifest's lspServers subschema treats every
+# top-level key as an LSP server name and rejects metadata keys. It is validated
+# through kb_setup.plugin_validate against that subschema, not a standalone
+# schemastore URL; no standalone .lsp.json schema exists on schemastore.
+#
+# Config hygiene note (kept here, not in the manifests): plugin.json and
+# marketplace.json do NOT carry a $comment field, even though their JSON Schema
+# permits additional top-level properties — `claude plugin validate` (run by
+# kb_setup.plugin_validate) treats ANY unknown-field warning other than "No
+# version specified" as a failure, so a $comment there breaks this repo's own
+# validation gate. Their non-obvious values, documented here instead:
+#   - marketplace.json's `allowCrossMarketplaceDependenciesOn` permits plugin
+#     dependencies to use these external marketplace names: firecrawl, exa,
+#     context7-marketplace, and last30days-skill.
+#   - plugin.json's `dependencies[].marketplace` values must be one of the
+#     names above.
+# hooks.json's $schema/$comment ARE safe: `claude plugin validate` does not
+# scan hooks.json content at all (confirmed live, 2026-08-29).
+
+VOTES_PER_CLAIM = 3
+REFUTATIONS_REQUIRED = 2
+MAX_FETCH = 15
+MAX_VERIFY_CLAIMS = 25
