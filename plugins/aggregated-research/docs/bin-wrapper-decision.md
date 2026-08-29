@@ -50,9 +50,9 @@ does not avoid this cost, it adds it.
   been observed to vary/leak across plugins in the same session. There is no
   flag on either generator that reads an env var at runtime and no
   per-invocation env-injection hook on either command.
-- The generated `bin/mise` sets exactly 3 of the 6 vars `bin/mise-env` sets
-  (`MISE_DATA_DIR`, `MISE_TRUSTED_CONFIG_PATHS`, plus `MISE_CONFIG_DIR`/
-  `MISE_CACHE_DIR`/`MISE_STATE_DIR`, which `bin/mise-env` does not set at all).
+- The generated `bin/mise` sets exactly 2 of the 6 vars `bin/mise-env` sets
+  (`MISE_DATA_DIR`, `MISE_TRUSTED_CONFIG_PATHS`) — plus `MISE_CONFIG_DIR`/
+  `MISE_CACHE_DIR`/`MISE_STATE_DIR`, which `bin/mise-env` does not set at all.
   It sets **none** of `MISE_CEILING_PATHS`, `MISE_GLOBAL_CONFIG_FILE`,
   `MISE_SYSTEM_CONFIG_FILE`, `UV_CACHE_DIR`, and has **zero** `CLAUDE_PLUGIN_DATA`
   foreign-value guard logic.
