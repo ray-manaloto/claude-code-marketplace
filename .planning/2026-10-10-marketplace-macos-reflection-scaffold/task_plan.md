@@ -24,6 +24,13 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | N2 | Necessary project Codex config and roles | Exact CLI schema; merged transports; role loading | Complete |
 | N3 | Separate development commands | No install/bootstrap; lightweight checks; OCI bytes preserved | Complete |
 | N4 | Fresh-session qualification and handoff | Worktree and unrelated-cwd probes; cold review | Complete |
+| 01a | Acquire exact template/helper/generator source and licenses | Pinned paths, hashes, immutable research preserved | Complete |
+| 01b | Small scratch preset adaptation and reuse ledger | License attribution; safe includes; independent review | Pending |
+
+Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
+Its post-commit baseline check exited 0 and the worktree was clean.
+Task 01 uses the accepted pinned shortlist; this is source qualification,
+not a new comparative research sweep or a runtime toolchain qualification.
 
 ## Acceptance required before completion
 

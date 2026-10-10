@@ -91,6 +91,18 @@
 
 ## Current status
 
-Onboarding qualification complete; local checkpoint recording in progress,
-unpublished. Parent is the sole writer. Next is task 01 from `docs/build-roadmap.md`.
+- Final onboarding evidence committed as `67bd482`; post-commit baseline check
+  exited 0 (all 19 original files) and the worktree was clean.
+- Task 01 offline preflight found only provisional README/tree mirrors and
+  release metadata. Exact pinned preset/helper/license bytes are missing.
+- Task 01a now acquires primary pinned sources into this worktree's evidence;
+  old source receipts remain immutable. Parent remains the sole writer.
+- Task 01a passed independent source review: 29 response hashes, 22 Git blob
+  identities/tree memberships, five complete trees and the v0.42.0 annotated-tag
+  chain verified. Parent baseline and staged whitespace checks both exited 0.
+  GitHub API/raw fetches through native fnox succeeded; native web's aminya tree
+  open was restricted while its Lukka preset open succeeded. No provider retry,
+  upstream execution, installation or runtime qualification occurred.
+
+Onboarding is qualified and committed locally, unpublished. Task 01 is active.
 Full OCI acceptance, research coverage and native build qualification remain pending.

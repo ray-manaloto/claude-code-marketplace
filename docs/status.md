@@ -12,6 +12,8 @@ own no files. See the [team contract](agents/codex-task-orchestration.md).
 - Source HEAD: `6b5b092efa6bdf678815073db42f69fae3f07ab3`.
 - Common Git directory: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git`.
 - N0–N4 implemented, independently reviewed and locally qualified.
+- Onboarding checkpoint: `67bd4827532864ecb934050dde6c0c11b92f9939`; clean
+  post-commit worktree and baseline check exit 0.
 - Cold review passed after one receipt-minimization finding was fixed/rechecked.
 - Delivery is local checkpoint commits only; no publication. Read actual
   HEAD/status before resuming; dated receipts identify their tested snapshots.
@@ -33,7 +35,8 @@ Full Claude/OCI acceptance, MCP connectivity and provider research are unqualifi
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
 Last30Days validation. No native core, compiler, vcpkg or build matrix exists yet.
 
-Next: task 01's bounded template reuse qualification. The global
+Active: task 01's pinned source acquisition and bounded scratch adaptation.
+The retained mirrors lack exact source/license bytes. The global
 build-tool foundation is task 04 and has a separate ownership phase; task 02's
 TCPM trial depends on it. Global Python promotion/telemetry and other repositories
 are separate streams. Containers and heavy builds need fresh capacity admission.
