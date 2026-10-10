@@ -104,5 +104,12 @@
   open was restricted while its Lukka preset open succeeded. No provider retry,
   upstream execution, installation or runtime qualification occurred.
 
-Onboarding is qualified and committed locally, unpublished. Task 01 is active.
+- Task 01b's four-file, 181-line scratch fixture passed independent configuration
+  review, structural checks and baseline preservation (exit 0, 19 originals).
+  Full upstream notices are retained. No CMake configure/build or generator ran.
+- Task 04a begins with read-only global mise ownership/tool inventory. Other
+  chats are actively migrating dotfiles host/shared locks and coordinating
+  containers; their work is separate and no global write is admitted yet.
+
+Onboarding and task 01 are qualified locally, unpublished. Task 04a is active.
 Full OCI acceptance, research coverage and native build qualification remain pending.

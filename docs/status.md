@@ -35,8 +35,11 @@ Full Claude/OCI acceptance, MCP connectivity and provider research are unqualifi
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
 Last30Days validation. No native core, compiler, vcpkg or build matrix exists yet.
 
-Active: task 01's pinned source acquisition and bounded scratch adaptation.
-The retained mirrors lack exact source/license bytes. The global
-build-tool foundation is task 04 and has a separate ownership phase; task 02's
+Task 01 passed: pinned source/license acquisition and the four-file
+[scratch adaptation](../scratch/template-reuse/README.md) have independent
+reviews and passing static/baseline checks. Native parsing/builds remain pending.
+
+Active: task 04a's read-only global ownership/tool inventory and prepared patch.
+The global build-tool foundation has a separate ownership phase; task 02's
 TCPM trial depends on it. Global Python promotion/telemetry and other repositories
 are separate streams. Containers and heavy builds need fresh capacity admission.

@@ -1,4 +1,4 @@
-# Native Codex onboarding
+# Marketplace onboarding and C++ foundation
 
 PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`
 Plan owner and sole implementation writer: parent Codex chat.
@@ -25,7 +25,9 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | N3 | Separate development commands | No install/bootstrap; lightweight checks; OCI bytes preserved | Complete |
 | N4 | Fresh-session qualification and handoff | Worktree and unrelated-cwd probes; cold review | Complete |
 | 01a | Acquire exact template/helper/generator source and licenses | Pinned paths, hashes, immutable research preserved | Complete |
-| 01b | Small scratch preset adaptation and reuse ledger | License attribution; safe includes; independent review | Pending |
+| 01b | Small scratch preset adaptation and reuse ledger | License attribution; safe includes; independent review | Complete |
+| 04a | Global tool ownership inventory and prepared patch | Concurrent-writer census; exact preimages; independent review | In progress |
+| 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Pending |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -43,9 +45,12 @@ not a new comparative research sweep or a runtime toolchain qualification.
 
 ## Admission and later work
 
-Only project-local lightweight work is admitted. Global settings, hooks, trust,
-credentials, model defaults, global mise, other projects, installs, containers,
-heavy builds, publication and destructive cleanup are outside this milestone.
+Project-local lightweight work and read-only ownership/tool inventory are admitted.
+Task 04a prepares the accepted later global mise phase before any host mutation.
+Global settings, hooks, trust, credentials, model defaults, other projects,
+containers, heavy builds, publication and destructive cleanup remain outside it.
+No global mise write or install is admitted until the separate ownership and
+preimage/review gate is settled.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;
