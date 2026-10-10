@@ -1,0 +1,96 @@
+# Progress
+
+## 2026-10-10 — takeover
+
+- Read all four required handoff files; independently matched canonical digest.
+- Verified clean worktree, detached source HEAD and Git common directory; ACK sent.
+- Separate START received; predecessor explicitly relinquished project writes.
+- Created `codex/marketplace-native-onboarding`; command exit 0.
+- Inventoried the repository and installed CLI; no tools installed or hooks changed.
+- Created the bounded plan and takeover record.
+- N0 passed: all 19 indexed source hashes matched; audit saved to
+  `evidence/onboarding/source-hash-audit.json` (exit 0).
+- Native workers `/root/config_inspector` and `/root/docs_reviewer` acknowledged
+  their read-only objective, ownership, first action and collaboration return
+  channel, and answered the parent's live status probes. Parent alone writes.
+- Current official Codex manual fetched through native fnox codex_research and
+  the OpenAI Docs helper (exit 0). No five-provider sweep or quota retry performed.
+- N1 documentation underway. Configuration lane found inherited Docker MCP;
+  launch qualification must avoid starting it. Native debug route under inspection.
+- N1 passed `/root/docs_reviewer` independent review: five files, 204 lines;
+  accepted decisions byte-identical (cmp exit 0). Two findings resolved: explicit
+  immutable plugin install tree and exact strict research-fanout invocation.
+- N2 adds only a three-child agent limit and three standalone read-only native
+  role files. No model, hook, trust, credential or MCP setting is persisted.
+- Inspector's native parser controls confirmed the limit type; `--strict-config`
+  is rejected on debug/mcp paths and must be qualified through exec instead.
+- Inspector's per-invocation MCP inventory: exit 0, 13 disabled servers, no mixed
+  command/url transports. Fresh context/role qualification is next.
+- Parent independently confirmed the project config layer through a temporary
+  invalid-type control and restored exact bytes. Both restored context probes
+  passed (exit 0); global config/hooks unchanged. See `native-config-controls.json`.
+- Native role smoke from unrelated cwd exited 0 in 94.6s using the existing
+  ChatGPT login and inherited model/effort. It reports all three custom roles and
+  a completed reviewer with the expected injected directive/read-only sandbox.
+  CLI JSONL omits V2 spawn/list metadata, so application proof remains under
+  inspection; an initial error event's message was omitted by receipt filtering.
+- That smoke also emitted a research-coverage guard notice: the read-only run
+  could not write strict-five receipts. No provider research was attempted and
+  no hooks were altered. Role/context checks do not establish research coverage.
+- Exact native app-server protocol schemas generated in a parent-owned temporary
+  directory (exit 0) for inspection without another blind inference run.
+- N2 passed: isolated app-server protocol probe returned native assigned-role,
+  parent/source metadata, the child directive and named completion; exit 0 in
+  123.8s. `/root/config_inspector` independently verified those fields and PASS.
+- Startup containment finding retained: the original 13-server CLI inventory
+  omitted four bundled endpoints that started in app-server. No tools were called
+  through them; owned app-server exited 0. Documentation now states this limit.
+- Corrected invocation-only disables use the actual installed plugin IDs and
+  `features.apps=false`. A startup-only probe loaded project guidance, observed no
+  MCP startup notifications and exited 0; no inference ran. Global config/hooks
+  hashes remain unchanged. The inherited chronicle warning is preserved.
+- Sanitized native protocol receipt: spawn brief retained as a hash and explicit
+  directive-absence check; internal message metadata removed. Role selection,
+  call IDs, direct thread metadata and plain child acknowledgment remain.
+- N3 started: separate development entry point using inherited mise guidance;
+  no tool installations or changes to existing OCI/plugin mise files.
+- N3 implementation: `mise.dev.toml`, `dev/mise`, and `dev/check.py` plus command
+  documentation. Config inventory contains only `mise.dev.toml` and zero tools;
+  both native tasks validate (exit 0). Static checks pass from root and unrelated
+  cwd, including all 19 baseline hashes; an existing `/usr/bin/false` interpreter
+  control propagates exit 1. Independent review is in progress.
+- N3 passed `/root/config_inspector` review with no actionable findings. Its
+  independent current-code baseline run exited 0 in 1.84s and matched all 19
+  originals after the file-stream cleanup. No worker wrote project files.
+- N4 started: promoted the dependency-preserving build task index, evidence guide
+  and current handoff. Fresh final context and cold review remain pending.
+- Final native context diagnostics passed from root, `/private/tmp`, and the
+  plugin directory; all current command/guidance markers matched, each exit 0,
+  project/global config and hook hashes unchanged.
+- Cold reviewer independently matched source roadmap/hash and prerequisite edges;
+  its baseline check passed (exit 0, all 19 originals). It found duplicate parent
+  prose containing a spawn brief after the structured event was minimized. That
+  duplicate is now replaced with a hash; native role/parent/completion and direct
+  child acknowledgment remain. Final reviewer disposition is pending.
+- Gitleaks 8.30.1 stdin scan passed on 139494 file bytes (no findings), including
+  dot-directory files without path-based exclusions. The initial mise lookup was
+  inactive and a harness syntax error ran no scan; both are recorded. Later
+  receipt minimization and documentation edits require a final snapshot scan.
+- N4 passed separate cold review and precise disposition recheck. Root/unrelated/
+  scoped guidance is qualified; no actionable review finding remains. Onboarding
+  checkpoint commits are being recorded before task 01 begins.
+- The first staged whitespace gate rejected the source decision copy's extra
+  blank line at EOF (exit 2); no commit occurred. Normalized only its trailing
+  newline in the project copy, leaving the immutable source untouched. The
+  initial N1 byte comparison remains a historical receipt; content otherwise
+  remains identical. Re-attestation matched all 19 source hashes and the index.
+- Local reviewed commits recorded: guidance `f5541b0`, native roles/runtime
+  `84fd9e6`, development checks `f9c0ec3`, and task/handoff docs `a39b1b3`.
+  Each staged whitespace check passed. Final evidence checkpoint follows the
+  snapshot checks. Task 01 preflight reads only existing pinned source receipts.
+
+## Current status
+
+Onboarding qualification complete; local checkpoint recording in progress,
+unpublished. Parent is the sole writer. Next is task 01 from `docs/build-roadmap.md`.
+Full OCI acceptance, research coverage and native build qualification remain pending.

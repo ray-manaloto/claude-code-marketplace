@@ -1,0 +1,39 @@
+{
+  "unit": "N2",
+  "reviewer": "/root/config_inspector",
+  "reviewed_at": "2026-10-10T22:44:38.427668+00:00",
+  "role_application": "PASS",
+  "evidence": [
+    "native-config-controls.json",
+    "native-role-protocol.json",
+    "native-startup-diagnostics.json",
+    "native-startup-corrected.json"
+  ],
+  "native_role_metadata_verified": true,
+  "native_completed_child_ids": [
+    "01a127f8-982c-7b73-8d28-784f5c298295"
+  ],
+  "protocol_exit_code": 0,
+  "corrected_startup_exit_code": 0,
+  "corrected_probe_no_mcp_startup_notifications": true,
+  "findings": [
+    {
+      "finding": "CLI JSONL omitted native spawn metadata and dropped an error diagnostic in the first receipt.",
+      "disposition": "Preserved as an earlier diagnostic gap; direct protocol receipt supplies role proof."
+    },
+    {
+      "finding": "CLI MCP inventory omitted four bundled startup endpoints.",
+      "disposition": "Preserved failure and corrected documentation; invocation-only actual plugin IDs plus apps=false show no MCP startup in a no-inference probe."
+    },
+    {
+      "finding": "Protocol event retained unnecessary internal message metadata and spawn payload.",
+      "disposition": "Removed metadata and retained brief hash, directive-absence assertion, role fields, call IDs and direct child evidence."
+    }
+  ],
+  "limits": [
+    "No provider research",
+    "No full OCI acceptance",
+    "No MCP connectivity qualification",
+    "Corrected containment was startup-only; no second inference under those extra disables"
+  ]
+}

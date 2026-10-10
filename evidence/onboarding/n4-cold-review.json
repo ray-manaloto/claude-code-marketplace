@@ -1,0 +1,25 @@
+{
+  "unit": "N4",
+  "reviewer": "/root/cold_reviewer",
+  "fork_turns": "none",
+  "verified_branch": "codex/marketplace-native-onboarding",
+  "reviewed_base_head": "6b5b092efa6bdf678815073db42f69fae3f07ab3",
+  "status": "PASS after disposition recheck",
+  "maintained_scope": ["AGENTS.md", "docs/onboarding.md", "docs/build-roadmap.md", "docs/status.md", "evidence/onboarding/README.md"],
+  "command": "./dev/mise run check:acceptance-baseline",
+  "exit_code": 0,
+  "checks": {"baseline": 19, "json": 18, "toml": 9, "shell": 5, "python": 1},
+  "source_roadmap_sha256_matches": true,
+  "task_edges_and_matrix_counts_match": true,
+  "local_document_links_resolve": true,
+  "findings": [{
+    "priority": "P3",
+    "finding": "Parent prose duplicated the full spawn brief after the structured call was minimized.",
+    "disposition": "Removed duplicate prose and retained its hash. Native role/parent/source fields, child acknowledgment and completion preserved.",
+    "independent_recheck": "PASS"
+  }],
+  "final_context_receipt_checked": true,
+  "remaining_actionable_findings": [],
+  "worker_wrote_files": false,
+  "limits": ["Corrected startup containment is no-inference", "Full OCI acceptance pending", "MCP connectivity unqualified", "Provider coverage incomplete", "Native builds pending"]
+}
