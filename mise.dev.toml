@@ -1,0 +1,11 @@
+# Use ./dev/mise. The root mise.toml remains the Linux OCI definition.
+# These checks use existing executables; this configuration installs no tools.
+[tasks.check]
+description = "Parse project manifests and scripts without installation or network access"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py'
+
+[tasks."check:acceptance-baseline"]
+description = "Also verify the 19 original files against the onboarding baseline"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
