@@ -26,7 +26,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | N4 | Fresh-session qualification and handoff | Worktree and unrelated-cwd probes; cold review | Complete |
 | 01a | Acquire exact template/helper/generator source and licenses | Pinned paths, hashes, immutable research preserved | Complete |
 | 01b | Small scratch preset adaptation and reuse ledger | License attribution; safe includes; independent review | Complete |
-| 04a | Global tool ownership inventory and prepared patch | Concurrent-writer census; exact preimages; independent review | In progress |
+| 04a | Global tool ownership inventory and prepared patch | Concurrent-writer census; exact preimages; independent review | Complete |
 | 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Pending |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.

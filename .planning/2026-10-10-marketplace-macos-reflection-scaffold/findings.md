@@ -15,7 +15,9 @@
 Strict-five research is incomplete: Context7 quota exhausted; Firecrawl Search
 HTTP 402 with provisional Serper/webclaw fallback; Last30Days internal no-results
 statuses rejected by the installed validator. Do not relabel these as successes
-or repeatedly retry known quota failures. No provider research has run in this chat.
+or repeatedly retry known quota failures. This chat acquired pinned GitHub
+sources/releases and native mise lock metadata; it did not rerun the five-provider
+comparative sweep. Attempted routes and failures are recorded in evidence.
 
 The previous Docker census stalled. Container ownership and heavy capacity remain
 unknown. Read-only review and lightweight repository work are explicitly admitted

@@ -111,5 +111,14 @@
   chats are actively migrating dotfiles host/shared locks and coordinating
   containers; their work is separate and no global write is admitted yet.
 
-Onboarding and task 01 are qualified locally, unpublished. Task 04a is active.
+Task 04a's private native fixture now passes eight positive controls and twenty-seven
+expected rejections. Explicit prefix guards replace the empty-string-tolerant
+`required` setting. Historical discovery and template-syntax failures are retained.
+Native mise generated three separate named locks with the accepted macOS assets;
+the default global config and lock remain byte-identical. Independent cold review
+passed after its root-equivalent prefix finding was confirmed, fixed and rechecked.
+The proposal is committed at `a07f40c`; its five maintained files total 183 lines.
+The final ownership admission record precedes task 04b. No tools have been installed.
+
+Onboarding, task 01 and task 04a are qualified locally, unpublished.
 Full OCI acceptance, research coverage and native build qualification remain pending.

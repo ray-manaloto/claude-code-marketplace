@@ -39,7 +39,13 @@ Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
 reviews and passing static/baseline checks. Native parsing/builds remain pending.
 
-Active: task 04a's read-only global ownership/tool inventory and prepared patch.
+Task 04a passed: the [prepared profiles](../dev/global-mise/README.md) and native
+named locks have 35 bounded controls and a passing independent cold review.
+Seven new destination files are enumerated; existing global config/lock and
+private backups match their preimages. No tool install or global write occurred.
+The proposal is committed at `a07f40c`; inspect its linked receipts for scope.
+
+Next: task 04b's explicitly recorded ownership admission and bounded installation.
 The global build-tool foundation has a separate ownership phase; task 02's
 TCPM trial depends on it. Global Python promotion/telemetry and other repositories
 are separate streams. Containers and heavy builds need fresh capacity admission.
