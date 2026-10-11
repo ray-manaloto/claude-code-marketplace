@@ -153,6 +153,15 @@ the partial tree are retained in
 Independent failure closure passed: the lease is free, builders are absent,
 protected state and the default environment match, and all 19 original files
 are preserved. The bounded partial inventory records both child configurations
-and six Ninja state hashes. Source inspection recommends a float-preserving
-standard infinity value; scratch controls precede any application. The compiler
-remains unqualified; no installation has run.
+and six Ninja state hashes. The initial one-line infinity candidate was
+superseded by the scratch controls below. The compiler remains unqualified;
+no installation has run.
+
+Task 07b5's scratch controls now pass for a two-header SDK request repair.
+The original failure and insufficient one-line workaround are retained as
+negative controls. Public math macros pass C++17/23/26 checks, both include
+orders pass, and the unchanged upstream clamping test builds and runs.
+Native VFS overlays leave actual source, generated headers and protected state
+unchanged. Independent review reproduced all sixteen outcomes and passed
+preservation/static checks. Normal incremental rules reach both header copies;
+guarded source application is next.

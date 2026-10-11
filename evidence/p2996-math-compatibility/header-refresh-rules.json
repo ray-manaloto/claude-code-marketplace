@@ -1,0 +1,459 @@
+{
+  "conclusion": {
+    "explanation": "Both existing outputs have direct source-file dependencies and copy_if_different with restat=1. The outer default graph reaches the compiler resource header and an always-run nested runtime build; the child default graph reaches generate-cxx-headers. Ordinary source edits therefore need no manual reconfiguration or stamp removal. Existing ExternalProject stamp dependencies can still cause automatic child configuration.",
+    "explicit_reconfigure_required_for_these_existing_header_edits": false,
+    "generated_headers_should_be_edited_directly": false,
+    "guarantee_of_no_automatic_child_configuration": false,
+    "manual_stamp_deletion_required": false,
+    "normal_outer_default_build_reaches_both_copy_rules": true
+  },
+  "copy_rules": [
+    {
+      "first_line": 51189,
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "last_line": 51192,
+      "text": "build lib/clang/21/include/float.h | ${cmake_ninja_workdir}lib/clang/21/include/float.h: CUSTOM_COMMAND /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h || bin/clang-tblgen lib/Support/BLAKE3/LLVMSupportBlake3 lib/libLLVMDemangle.a lib/libLLVMSupport.a lib/libLLVMTableGen.a tools/clang/lib/Headers/aarch64-resource-headers tools/clang/lib/Headers/arm-common-resource-headers tools/clang/lib/Headers/arm-resource-headers tools/clang/lib/Headers/core-resource-headers tools/clang/lib/Headers/cuda-resource-headers tools/clang/lib/Headers/hexagon-resource-headers tools/clang/lib/Headers/hip-resource-headers tools/clang/lib/Headers/hlsl-resource-headers tools/clang/lib/Headers/llvm-libc-resource-headers tools/clang/lib/Headers/loongarch-resource-headers tools/clang/lib/Headers/mips-resource-headers tools/clang/lib/Headers/opencl-resource-headers tools/clang/lib/Headers/openmp-resource-headers tools/clang/lib/Headers/ppc-htm-resource-headers tools/clang/lib/Headers/ppc-resource-headers tools/clang/lib/Headers/riscv-resource-headers tools/clang/lib/Headers/spirv-resource-headers tools/clang/lib/Headers/systemz-resource-headers tools/clang/lib/Headers/utility-resource-headers tools/clang/lib/Headers/ve-resource-headers tools/clang/lib/Headers/webassembly-resource-headers tools/clang/lib/Headers/windows-resource-headers tools/clang/lib/Headers/x86-resource-headers tools/clang/lib/Support/obj.clangSupport\n  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/tools/clang/lib/Headers && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E copy_if_different /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/./lib/../lib/clang/21/include/float.h\n  DESC = Copying clang's float.h...\n  restat = 1"
+    },
+    {
+      "first_line": 16162,
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "last_line": 16165,
+      "text": "build /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/include/c++/v1/float.h: CUSTOM_COMMAND /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/float.h\n  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/libcxx/include && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E copy_if_different /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/float.h /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/include/c++/v1/float.h\n  DESC = Copying CXX header float.h\n  restat = 1"
+    }
+  ],
+  "created_utc": "2026-10-11T07:46:21.851678+00:00",
+  "current_header_pairs": [
+    {
+      "bytes_equal": true,
+      "generated": {
+        "bytes": 6268,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/include/float.h",
+        "sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+        "snippets": []
+      },
+      "generated_mtime_ns": 1791701845014115000,
+      "source": {
+        "bytes": 6268,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h",
+        "sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+        "snippets": []
+      },
+      "source_mtime_ns": 1791689280900580479
+    },
+    {
+      "bytes_equal": true,
+      "generated": {
+        "bytes": 1944,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/include/c++/v1/float.h",
+        "sha256": "f40e5d57ecd44f9d55fdf3d2566828997144f4ef88db4a83edcb4fe7b47c0f93",
+        "snippets": []
+      },
+      "generated_mtime_ns": 1791702875243132000,
+      "source": {
+        "bytes": 1944,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/float.h",
+        "sha256": "f40e5d57ecd44f9d55fdf3d2566828997144f4ef88db4a83edcb4fe7b47c0f93",
+        "snippets": []
+      },
+      "source_mtime_ns": 1791689289497975664
+    }
+  ],
+  "direct_reconfigure_input_checks": [
+    {
+      "either_edited_header_listed_as_direct_reconfigure_input": false,
+      "full_line_sha256": "8d219b56c21145a848477c0761b136710882bd548eb5053084383a2ee34dad2b",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 126210
+    },
+    {
+      "either_edited_header_listed_as_direct_reconfigure_input": false,
+      "full_line_sha256": "62265180dd04a25d56b94095969d0100d389110daa0b5e7685b7a6141c133970",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 28205
+    }
+  ],
+  "disposition": "GRAPH_ATTESTED_NOT_EXECUTED",
+  "execution_scope": {
+    "compiler_cmake_ninja_commands": 0,
+    "inspector_repository_source_build_global_writes": 0,
+    "lease_acquired": false,
+    "network_calls": 0,
+    "parent_sole_writer": true,
+    "private_json_files_written": 1
+  },
+  "graphs": [
+    {
+      "bytes": 21509559,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "sha256": "d989f17ccf96634b5c81fb0981a32d080049e14cc660453c712d9c0db21a3edf"
+    },
+    {
+      "bytes": 4336707,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "sha256": "3a24513a4a6e7ac11bacd59b426145f9c66be7e2c31582524da1b8c12da2308e"
+    }
+  ],
+  "limitations": [
+    "This is an inspection of generated build rules and retained source CMake; no CMake, Ninja, compiler, dry run, or build was executed.",
+    "Incremental invalidation assumes ordinary edits that update source modification times; timestamp-preserving writes were not tested.",
+    "Other existing prerequisites or prior failures can stop the build before a copy executes; graph reachability is not successful refresh evidence.",
+    "No independent no-automatic-reconfigure claim: the ordinary ExternalProject configure step depends on builtins-done, and clobber/configuration prerequisites may invalidate it.",
+    "Large phony rule lines are recorded using exact full-line hashes, selected verified dependency tokens, and explicitly labeled bounded excerpts. Exact copy stanzas are complete."
+  ],
+  "nested_build": {
+    "command_lines": [
+      "  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake --build .",
+      "  DESC = Performing build step for 'runtimes'",
+      "  pool = console"
+    ],
+    "graph_line": 119670,
+    "prerequisites": "The generated compiler header is reached through an order-only clang-resource-headers dependency before runtime configure/build. Runtime configure also has an explicit builtins-done prerequisite. The child libc++ objects wait for generate-cxx-headers.",
+    "source_build_always": "llvm/cmake/modules/LLVMExternalProjectUtils.cmake:413 BUILD_ALWAYS 1"
+  },
+  "ordering_edges": [
+    {
+      "actual_line_excerpt": "build runtimes/runtimes-stamps/runtimes-build | ${cmake_ninja_workdir}runtimes/runtimes-stamps/runtimes-build: CUSTOM_COMMAND runtimes/runtimes-stamps/runtimes-configure || bin/clang bin/clang-tblgen bin/llvm-ar bin/llvm [excerpt; full-line hash and selected dependency retained]",
+      "category": "order_only",
+      "dependency": "tools/clang/lib/Headers/clang-resource-headers",
+      "full_line_characters": 15216,
+      "full_line_sha256": "b09627dd1ae6a30f440626a0537231f575884b7263c03dcf95b2b8f4cc946831",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 119670,
+      "origin": "runtimes/runtimes-stamps/runtimes-build"
+    },
+    {
+      "actual_line_excerpt": "build runtimes/runtimes-stamps/runtimes-configure | ${cmake_ninja_workdir}runtimes/runtimes-stamps/runtimes-configure: CUSTOM_COMMAND runtimes/builtins-stamps/builtins-done projects/runtimes/tmp/runtimes-cfgcmd.txt proje [excerpt; full-line hash and selected dependency retained]",
+      "category": "order_only",
+      "dependency": "tools/clang/lib/Headers/clang-resource-headers",
+      "full_line_characters": 15324,
+      "full_line_sha256": "7e08877264c45a9ff2d51600e05f7f1e41808ea529e18fbe03f6e95859c24c28",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 119679,
+      "origin": "runtimes/runtimes-stamps/runtimes-configure"
+    },
+    {
+      "actual_line_excerpt": "build runtimes/runtimes-stamps/runtimes-configure | ${cmake_ninja_workdir}runtimes/runtimes-stamps/runtimes-configure: CUSTOM_COMMAND runtimes/builtins-stamps/builtins-done projects/runtimes/tmp/runtimes-cfgcmd.txt proje [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "runtimes/builtins-stamps/builtins-done",
+      "full_line_characters": 15324,
+      "full_line_sha256": "7e08877264c45a9ff2d51600e05f7f1e41808ea529e18fbe03f6e95859c24c28",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 119679,
+      "origin": "runtimes/runtimes-stamps/runtimes-configure"
+    },
+    {
+      "actual_line_excerpt": "build cmake_object_order_depends_target_cxx_shared: phony || cmake_object_order_depends_target_cxxabi_shared cmake_object_order_depends_target_cxxabi_shared_objects cmake_object_order_depends_target_unwind_shared cmake_object_order_depends_target_unwind_shared_objects libcxx/include/generate-cxx-headers libcxxabi/include/generate-cxxabi-headers",
+      "category": "order_only",
+      "dependency": "libcxx/include/generate-cxx-headers",
+      "full_line_characters": 346,
+      "full_line_sha256": "cbcf6fe9059c6649b931f6d021989ab4e2686be51208298b2ca9049251be7f5f",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 16858,
+      "origin": "cmake_object_order_depends_target_cxx_shared"
+    },
+    {
+      "actual_line_excerpt": "build cmake_object_order_depends_target_cxx_static: phony || cmake_object_order_depends_target_cxxabi_static cmake_object_order_depends_target_cxxabi_static_objects cmake_object_order_depends_target_unwind_static cmake_object_order_depends_target_unwind_static_objects libcxx/include/generate-cxx-headers libcxxabi/include/generate-cxxabi-headers",
+      "category": "order_only",
+      "dependency": "libcxx/include/generate-cxx-headers",
+      "full_line_characters": 346,
+      "full_line_sha256": "2fecc79a37c13da98801ec9a1f1b2cde971805a4f103fb2116309943eb2b8fcd",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 17547,
+      "origin": "cmake_object_order_depends_target_cxx_static"
+    }
+  ],
+  "reachability_edges": [
+    {
+      "actual_line_excerpt": "build all: phony lib/Demangle/all lib/Support/all lib/TableGen/all utils/TableGen/all include/all lib/all utils/FileCheck/all utils/PerfectShuffle/all utils/count/all utils/not/all utils/UnicodeData/all utils/yaml-bench/all utils/split-file/all utils/mlgo-utils/all utils/llvm-test-mustache-spec/all projects/all tools/all runtimes/all cmake/modules/all utils/llvm-lit/all utils/llvm-locstats/all",
+      "category": "explicit",
+      "dependency": "tools/all",
+      "full_line_characters": 396,
+      "full_line_sha256": "c032a6d4158512a132f6672e7e6e24a811d5ca698d27ad02927c036070a993d5",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 123443,
+      "origin": "all"
+    },
+    {
+      "actual_line_excerpt": "build tools/all: phony tools/lto/all tools/gold/all tools/llvm-ar/all tools/llvm-config/all tools/llvm-ctxprof-util/all tools/llvm-lto/all tools/llvm-profdata/all tools/clang/all tools/bugpoint/all tools/bugpoint-passes/ [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "tools/clang/all",
+      "full_line_characters": 2240,
+      "full_line_sha256": "6cd1a82efa49bda47db0dd2b5926fc2e1b6e35f29eb9a6991b3a72f3fd0d8d4b",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 124262,
+      "origin": "tools/all"
+    },
+    {
+      "actual_line_excerpt": "build tools/clang/all: phony tools/clang/utils/TableGen/all tools/clang/include/all tools/clang/lib/all tools/clang/tools/all tools/clang/runtime/all tools/clang/cmake/modules/all tools/clang/utils/hmaptool/all",
+      "category": "explicit",
+      "dependency": "tools/clang/lib/all",
+      "full_line_characters": 210,
+      "full_line_sha256": "3b8e2d3489c65b5b74ccbcbf8153b2f57998df8ba445e85764e3c4e696cec933",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 124283,
+      "origin": "tools/clang/all"
+    },
+    {
+      "actual_line_excerpt": "build tools/clang/lib/all: phony tools/clang/lib/Headers/all tools/clang/lib/Basic/all tools/clang/lib/APINotes/all tools/clang/lib/Lex/all tools/clang/lib/Parse/all tools/clang/lib/AST/all tools/clang/lib/ASTMatchers/al [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "tools/clang/lib/Headers/all",
+      "full_line_characters": 821,
+      "full_line_sha256": "32724ff27f93d81752e2ca4c4f6c0f13313a8c17f7198f9992960954a9db4d42",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 124416,
+      "origin": "tools/clang/lib/all"
+    },
+    {
+      "actual_line_excerpt": "build tools/clang/lib/Headers/all: phony tools/clang/lib/Headers/clang-resource-headers tools/clang/lib/Headers/core-resource-headers tools/clang/lib/Headers/arm-common-resource-headers tools/clang/lib/Headers/arm-resour [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "tools/clang/lib/Headers/clang-resource-headers",
+      "full_line_characters": 1285,
+      "full_line_sha256": "e1fb8e603190aa2784b8fde7c659ea40c5839cfc306ae369398e966b337326af",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 124577,
+      "origin": "tools/clang/lib/Headers/all"
+    },
+    {
+      "actual_line_excerpt": "build tools/clang/lib/Headers/clang-resource-headers: phony lib/clang/21/include/builtins.h lib/clang/21/include/float.h lib/clang/21/include/inttypes.h lib/clang/21/include/iso646.h lib/clang/21/include/limits.h lib/cla [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "lib/clang/21/include/float.h",
+      "full_line_characters": 12527,
+      "full_line_sha256": "7daf4ccb9a43e1cbf970ae34bb1adb0b5291e74cdb39f979cf8f7ceae5b3c08e",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 50670,
+      "origin": "tools/clang/lib/Headers/clang-resource-headers"
+    },
+    {
+      "actual_line_excerpt": "build all: phony lib/Demangle/all lib/Support/all lib/TableGen/all utils/TableGen/all include/all lib/all utils/FileCheck/all utils/PerfectShuffle/all utils/count/all utils/not/all utils/UnicodeData/all utils/yaml-bench/all utils/split-file/all utils/mlgo-utils/all utils/llvm-test-mustache-spec/all projects/all tools/all runtimes/all cmake/modules/all utils/llvm-lit/all utils/llvm-locstats/all",
+      "category": "explicit",
+      "dependency": "runtimes/all",
+      "full_line_characters": 396,
+      "full_line_sha256": "c032a6d4158512a132f6672e7e6e24a811d5ca698d27ad02927c036070a993d5",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 123443,
+      "origin": "all"
+    },
+    {
+      "actual_line_excerpt": "build runtimes/all: phony runtimes/builtins runtimes/runtimes",
+      "category": "explicit",
+      "dependency": "runtimes/runtimes",
+      "full_line_characters": 61,
+      "full_line_sha256": "567ca57a2cd6faa1b8b3ad365e61b184fcc9386ab26e9f43c9c4b30372be86ae",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 124255,
+      "origin": "runtimes/all"
+    },
+    {
+      "actual_line_excerpt": "build runtimes/runtimes: phony runtimes/CMakeFiles/runtimes runtimes/CMakeFiles/runtimes-complete runtimes/runtimes-stamps/runtimes-done runtimes/runtimes-stamps/runtimes-build runtimes/runtimes-stamps/runtimes-configure [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "runtimes/runtimes-stamps/runtimes-build",
+      "full_line_characters": 1020,
+      "full_line_sha256": "7d4ed6bf9efaa322d94061ac4064458fc0e1fbf924905606248a52adad37da70",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+      "line": 119286,
+      "origin": "runtimes/runtimes"
+    },
+    {
+      "actual_line_excerpt": "build all: phony merge_runtime_commands /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996 [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "libcxx/all",
+      "full_line_characters": 778,
+      "full_line_sha256": "63cb12a9461fdd47a543b20e43b5b1ba2948d7cc2c82ddc63a707ee38635bc50",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 27951,
+      "origin": "all"
+    },
+    {
+      "actual_line_excerpt": "build libcxx/all: phony /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++.a libcxx/include/all libcxx/src/all libcxx/utils/all libcxx/modules/all libcxx/docs/all",
+      "category": "explicit",
+      "dependency": "libcxx/include/all",
+      "full_line_characters": 333,
+      "full_line_sha256": "8289319fbf6318c73d1c81bea292741037177891084b245083a8d1f46bd459d0",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 28112,
+      "origin": "libcxx/all"
+    },
+    {
+      "actual_line_excerpt": "build libcxx/include/all: phony libcxx/include/generate-cxx-headers",
+      "category": "explicit",
+      "dependency": "libcxx/include/generate-cxx-headers",
+      "full_line_characters": 67,
+      "full_line_sha256": "5bb2654fc7585cde147de710b4039fab380c60e74e3a151b4bcb0c4dab44c076",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 28126,
+      "origin": "libcxx/include/all"
+    },
+    {
+      "actual_line_excerpt": "build libcxx/include/generate-cxx-headers: phony libcxx/include/CMakeFiles/generate-cxx-headers /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/include/c++/v1/__algorithm/ [excerpt; full-line hash and selected dependency retained]",
+      "category": "explicit",
+      "dependency": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/include/c++/v1/float.h",
+      "full_line_characters": 231980,
+      "full_line_sha256": "0772459caf71bd8b9dc1f4fe04283bf1dd0b14045faef87fc9edaf48923fb673",
+      "graph": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja",
+      "line": 1753,
+      "origin": "libcxx/include/generate-cxx-headers"
+    }
+  ],
+  "roots": {
+    "build": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "source_base_pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e"
+  },
+  "schema_version": 1,
+  "source_cmake_refs": [
+    {
+      "bytes": 24623,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/CMakeLists.txt",
+      "sha256": "352a6d9ae2613c9eb5fb3ce4690db65ebebb545a4a360d802c9e3c4ee50ee28d",
+      "snippets": [
+        {
+          "first_line": 4,
+          "last_line": 10,
+          "text": "set(core_files\n  builtins.h\n  float.h\n  inttypes.h\n  iso646.h\n  limits.h\n  module.modulemap"
+        },
+        {
+          "first_line": 408,
+          "last_line": 416,
+          "text": "function(copy_header_to_output_dir src_dir file)\n  set(src ${src_dir}/${file})\n  if(\"${CMAKE_CFG_INTDIR}\" STREQUAL \".\")\n    set(dst ${output_dir}/${file})\n    add_custom_command(OUTPUT ${dst}\n      DEPENDS ${src}\n      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${src} ${dst}\n      COMMENT \"Copying clang's ${file}...\")\n    list(APPEND out_files ${dst})"
+        },
+        {
+          "first_line": 444,
+          "last_line": 449,
+          "text": "# Copy header files from the source directory to the build directory\nforeach( f ${files} ${cuda_wrapper_files} ${cuda_wrapper_bits_files}\n           ${ppc_wrapper_files} ${openmp_wrapper_files} ${zos_wrapper_files} ${hlsl_files}\n\t   ${llvm_libc_wrapper_files} ${llvm_offload_wrapper_files})\n  copy_header_to_output_dir(${CMAKE_CURRENT_SOURCE_DIR} ${f})\nendforeach( f )"
+        },
+        {
+          "first_line": 519,
+          "last_line": 526,
+          "text": "# The catch-all clang-resource-headers target\nadd_library(clang-resource-headers INTERFACE ${out_files})\nset_target_properties(\"clang-resource-headers\" PROPERTIES\n  FOLDER \"Clang/Resources\"\n  RUNTIME_OUTPUT_DIRECTORY \"${output_dir}\")\nadd_dependencies(\"clang-resource-headers\"\n                 \"core-resource-headers\"\n                 \"arm-common-resource-headers\""
+        }
+      ]
+    },
+    {
+      "bytes": 53199,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/CMakeLists.txt",
+      "sha256": "ebcd68b079cb2c6ba081a6e46cf7228ddaf52a3e6adaf1480ea50288b107bf09",
+      "snippets": [
+        {
+          "first_line": 1684,
+          "last_line": 1692,
+          "text": "foreach(f ${files})\n  set(src \"${CMAKE_CURRENT_SOURCE_DIR}/${f}\")\n  set(dst \"${LIBCXX_GENERATED_INCLUDE_DIR}/${f}\")\n  add_custom_command(OUTPUT ${dst}\n    DEPENDS ${src}\n    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${src} ${dst}\n    COMMENT \"Copying CXX header ${f}\")\n  list(APPEND _all_includes \"${dst}\")\nendforeach()"
+        },
+        {
+          "first_line": 1703,
+          "last_line": 1707,
+          "text": "add_custom_target(generate-cxx-headers ALL DEPENDS ${_all_includes})\n\nadd_library(cxx-headers INTERFACE)\ntarget_link_libraries(cxx-headers INTERFACE libcxx-libc-headers libcxx-abi-headers)\nadd_dependencies(cxx-headers generate-cxx-headers)"
+        }
+      ]
+    },
+    {
+      "bytes": 18422,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/cmake/modules/LLVMExternalProjectUtils.cmake",
+      "sha256": "aa3d39ca477cebb56b86c0bd2b125e3a2d367fed781e4d966242349ca294535e",
+      "snippets": [
+        {
+          "first_line": 159,
+          "last_line": 160,
+          "text": "  set(STAMP_DIR ${CMAKE_CURRENT_BINARY_DIR}/${name}-stamps/)\n  set(BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/${name}-bins/)"
+        },
+        {
+          "first_line": 296,
+          "last_line": 306,
+          "text": "  add_custom_command(\n    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${name}-clobber-stamp\n    DEPENDS ${ARG_DEPENDS}\n    COMMAND ${CMAKE_COMMAND} -E touch ${BINARY_DIR}/CMakeCache.txt\n    COMMAND ${CMAKE_COMMAND} -E touch ${STAMP_DIR}/${name}-mkdir\n    COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_CURRENT_BINARY_DIR}/${name}-clobber-stamp\n    COMMENT \"Clobbering bootstrap build and stamp directories\"\n    )\n\n  add_custom_target(${name}-clobber\n    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${name}-clobber-stamp)"
+        },
+        {
+          "first_line": 381,
+          "last_line": 387,
+          "text": "  ExternalProject_Add(${name}\n    DEPENDS ${ARG_DEPENDS} llvm-config\n    ${name}-clobber\n    PREFIX ${CMAKE_BINARY_DIR}/projects/${name}\n    SOURCE_DIR ${source_dir}\n    STAMP_DIR ${STAMP_DIR}\n    BINARY_DIR ${BINARY_DIR}"
+        },
+        {
+          "first_line": 410,
+          "last_line": 416,
+          "text": "    CMAKE_CACHE_DEFAULT_ARGS ${CMAKE_CACHE_DEFAULT_ARGS}\n    INSTALL_COMMAND \"\"\n    STEP_TARGETS configure build\n    BUILD_ALWAYS 1\n    USES_TERMINAL_CONFIGURE 1\n    USES_TERMINAL_BUILD 1\n    USES_TERMINAL_INSTALL 1"
+        }
+      ]
+    }
+  ],
+  "stamp_snapshot": [
+    {
+      "command": "  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake --build .",
+      "command_omitted_for_length": false,
+      "command_sha256": "0c95f5f37e16b479cd521a2c8ac294e9d2e0ad8cf72e3b801a73328b9bf9b08d",
+      "exists_at_inspection": false,
+      "explicit_dependencies": [
+        "runtimes/runtimes-stamps/runtimes-configure"
+      ],
+      "full_line_sha256": "b09627dd1ae6a30f440626a0537231f575884b7263c03dcf95b2b8f4cc946831",
+      "graph_line": 119670,
+      "mtime_ns": null,
+      "target": "runtimes/runtimes-stamps/runtimes-build"
+    },
+    {
+      "command": null,
+      "command_omitted_for_length": true,
+      "command_sha256": "f83136e4890e689a0334a53ae6ebe47dbc9456e0858e0aa64551261abd6c3aa1",
+      "exists_at_inspection": true,
+      "explicit_dependencies": [
+        "runtimes/builtins-stamps/builtins-done",
+        "projects/runtimes/tmp/runtimes-cfgcmd.txt",
+        "projects/runtimes/tmp/runtimes-cache-Release.cmake",
+        "runtimes/runtimes-stamps/runtimes-patch"
+      ],
+      "full_line_sha256": "7e08877264c45a9ff2d51600e05f7f1e41808ea529e18fbe03f6e95859c24c28",
+      "graph_line": 119679,
+      "mtime_ns": 1791702869282809248,
+      "target": "runtimes/runtimes-stamps/runtimes-configure"
+    },
+    {
+      "command": "  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E touch /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins//CMakeCache.txt && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E touch /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-stamps//runtimes-mkdir && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E touch /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-clobber-stamp",
+      "command_omitted_for_length": false,
+      "command_sha256": "e54fe716b8903339b14275aa5da150e144dff262dd2682e671b3115ae1399328",
+      "exists_at_inspection": true,
+      "explicit_dependencies": [
+        "bin/clang-21",
+        "bin/llvm-ar",
+        "bin/llvm-nm",
+        "bin/llvm-objdump",
+        "bin/llvm-libtool-darwin",
+        "bin/llvm-lipo"
+      ],
+      "full_line_sha256": "2fc82988cedf3249b822c9d77d5906de00bc59f4fc1516b2ea258c1ded1dc097",
+      "graph_line": 119646,
+      "mtime_ns": 1791702836768572976,
+      "target": "runtimes/runtimes-clobber-stamp"
+    },
+    {
+      "command": "  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake --build .",
+      "command_omitted_for_length": false,
+      "command_sha256": "0e0fbb94273af039d4e11c8cc6eade871df668bd358e4ec732925253b9b38cf2",
+      "exists_at_inspection": false,
+      "explicit_dependencies": [
+        "runtimes/builtins-stamps/builtins-configure"
+      ],
+      "full_line_sha256": "7901bb6633930420c05b459a753a9ef996a7166d8a044f962708aeec4d18a594",
+      "graph_line": 119523,
+      "mtime_ns": null,
+      "target": "runtimes/builtins-stamps/builtins-build"
+    },
+    {
+      "command": "  COMMAND = cd /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E make_directory /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/CMakeFiles && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E touch /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/CMakeFiles/builtins-complete && /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake -E touch /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-stamps/builtins-done",
+      "command_omitted_for_length": false,
+      "command_sha256": "a707cb52457f190b800d4d6292540446a12e61d8dc1a160572b7324de82e16d4",
+      "exists_at_inspection": true,
+      "explicit_dependencies": [
+        "runtimes/builtins-stamps/builtins-install",
+        "runtimes/builtins-stamps/builtins-mkdir",
+        "runtimes/builtins-stamps/builtins-download",
+        "runtimes/builtins-stamps/builtins-update",
+        "runtimes/builtins-stamps/builtins-patch",
+        "runtimes/builtins-stamps/builtins-configure",
+        "runtimes/builtins-stamps/builtins-build",
+        "runtimes/builtins-stamps/builtins-install"
+      ],
+      "full_line_sha256": "d9417281bd8b5700ba691ab9cb58f8b828ce368be130fcd13789d93c107ae5da",
+      "graph_line": 119514,
+      "mtime_ns": 1791702836739988110,
+      "target": "runtimes/builtins-stamps/builtins-done"
+    }
+  ],
+  "task": "07b paired math header incremental refresh source attestation"
+}

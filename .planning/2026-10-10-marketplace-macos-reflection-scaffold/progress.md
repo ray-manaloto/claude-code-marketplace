@@ -591,3 +591,29 @@ repeat live capacity and source checks under the canonical lease before build.
   three required tools exist and five are absent. The prefix remains absent.
 - Source-only diagnosis recommends numeric_limits<float>::infinity() to retain
   the original argument type. Candidate behavior is not yet compiled or tested.
+
+The failure checkpoint is committed at `df431a516da3af1fada4c2bbad8d9e60845aba29`;
+its post-commit baseline passed with a clean worktree. Task 07b5 admits bounded,
+sequential scratch controls under the canonical lease. Reproduce the failure,
+compare the one-line libc++ candidate with the SDK's compiler-header request
+contract, and run the existing upstream boundary test. No actual source,
+generated header, SDK, configured build or global tool mutation is admitted.
+- The first scratch run reproduced the original error and confirmed the libc++
+  workaround leaves public math macros missing. The compiler-header candidate
+  passed the failing translation unit, but the public fixture exposed incorrect
+  overlay ordering ahead of libc++'s wrapper. Its failed receipt is preserved;
+  the fixture now inserts the compiler header after the C++ wrapper directory.
+- Correct include ordering exposed the wrapper's own guard blocking subsequent
+  SDK requests. The candidate now forwards partial requests outside both full
+  header guards. Native VFS overlays retain actual include ordering; existing
+  library algorithms and original source/generated files remain unchanged.
+- The paired header candidate passes all sixteen expected command outcomes:
+  original and insufficient-workaround failures, repaired translation unit,
+  C++17/23/26 macros, both inclusion orders and the unchanged upstream boundary
+  test build/run. Exact logs, patch and scratch headers are retained. Source,
+  build and protected state are unchanged; independent review is next.
+- Independent scratch review passed without findings. One frozen reproduction
+  matched all sixteen outcomes, preserved both original header bodies and all
+  scoped source/build/protected state, and passed static/baseline checks.
+  The existing tiny-link missing-libLTO warning is retained. Graph inspection
+  confirms normal incremental copy rules for both headers; no build ran.

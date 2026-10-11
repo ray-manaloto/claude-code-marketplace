@@ -163,3 +163,26 @@ passed: cleanup, protected/default state, original files and partial inventory
 are verified. Three required tool names exist and five are absent; the prefix
 and runtime completion stamp are absent. A small header repair still needs
 scratch controls and independent review. No compiler or runtime is qualified.
+
+## SDK math request adaptation
+
+Task 07b5's [scratch probe](../dev/toolchains/p2996_math_probe.py) reproduces the
+missing macros in strict C++23. The candidate adds partial-request handling to
+Clang's resource `float.h` and forwarding to libc++'s wrapper, outside both full
+header guards. Their existing bodies and the clamping algorithm are unchanged.
+The separately considered one-line clamp workaround compiles that translation
+unit but leaves public math macros missing, so it is not the selected patch.
+
+Native VFS overlays preserve the real include search order without modifying
+source, generated headers or the SDK. All sixteen command outcomes match:
+two expected failures, the repaired translation unit, C++17/23/26 public macro
+checks, both request/include orders and the unchanged upstream boundary test.
+The latter builds without a C++ runtime and runs successfully; this qualifies
+the header behavior only. Source/build/protected state is unchanged.
+The [independent scratch review](../evidence/p2996-math-compatibility/preparation-review.json)
+passed after one reproduction and preservation/static checks. The tiny-link
+missing-libLTO warning is retained; full compiler/runtime acceptance is pending.
+[Generated-rule inspection](../evidence/p2996-math-compatibility/header-refresh-rules.json)
+confirms normal incremental copies from both source headers. No manual stamp
+deletion or reconfiguration is needed; automatic child configuration may recur.
+Guarded source application and another restart are separate operations.

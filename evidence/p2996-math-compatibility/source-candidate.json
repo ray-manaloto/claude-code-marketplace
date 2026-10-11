@@ -1,0 +1,129 @@
+{
+  "candidate": {
+    "added_lines": 11,
+    "bytes": 6541,
+    "deleted_lines": 0,
+    "sha256": "daf8cad2e875f21ca4ce40acc7c88afc38a6362c6adcccfd2896416cd9ac749c",
+    "source_or_generated_postimage_persisted": false,
+    "target_relative_path": "clang/lib/Headers/float.h",
+    "unified_diff": "--- a/clang/lib/Headers/float.h\n+++ b/clang/lib/Headers/float.h\n@@ -6,6 +6,15 @@\n  *\n  *===-----------------------------------------------------------------------===\n  */\n+\n+#ifdef __need_infinity_nan\n+/* Handle partial requests even after a normal inclusion of float.h. */\n+#  undef INFINITY\n+#  undef NAN\n+#  define INFINITY (__builtin_inff())\n+#  define NAN (__builtin_nanf(\"\"))\n+#  undef __need_infinity_nan\n+#else\n \n #ifndef __CLANG_FLOAT_H\n #define __CLANG_FLOAT_H\n@@ -185,3 +194,5 @@\n \n #endif /* __MVS__ */\n #endif /* __CLANG_FLOAT_H */\n+\n+#endif /* __need_infinity_nan */\n"
+  },
+  "contract": {
+    "difference_from_split_apple_header": "Apple uses a separately guarded helper. This minimal monolithic compatibility branch refreshes the two definitions on every explicit request and adds no helper header or module map change.",
+    "full_first_then_request": "The outer request condition is evaluated even after the full include guard is set, so the SDK can obtain the two macros on a later include.",
+    "guard_position": "The handler must be outside __CLANG_FLOAT_H. Placing it before that guard is the proposed minimal layout; a handler only inside the guard would be skipped if float.h or cfloat had already been included.",
+    "normal_mode_branches": "Without a request, the entire old header body, including __MVS__, fallback includes, original include guard, C23 and non-strict-mode undefinition/definition branches, is byte-for-byte unchanged.",
+    "repeat_requests": "Every explicit request undefines both macros before defining the exact existing tokens and consuming the request. This supports repeated requests without macro redefinition warnings by construction; actual diagnostics remain untested.",
+    "request_first_then_full": "The partial branch does not define __CLANG_FLOAT_H or the normal FLT/DBL/LDBL macros. A later normal inclusion can therefore execute the unchanged original header body.",
+    "request_path": "When __need_infinity_nan is defined, undefine and define exactly INFINITY (__builtin_inff()) and NAN (__builtin_nanf(\"\")), consume the request, and skip the normal full-header branch."
+  },
+  "created_utc": "2026-10-11T07:33:51.346455+00:00",
+  "disposition": "SOURCE_ONLY_CANDIDATE_UNIMPLEMENTED_UNTESTED",
+  "evidence": [
+    {
+      "bytes": 6268,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h",
+      "sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+      "snippets": [
+        {
+          "first_line": 1,
+          "last_line": 17,
+          "text": "/*===---- float.h - Characteristics of floating point types ----------------===\n *\n * Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.\n * See https://llvm.org/LICENSE.txt for license information.\n * SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception\n *\n *===-----------------------------------------------------------------------===\n */\n\n#ifndef __CLANG_FLOAT_H\n#define __CLANG_FLOAT_H\n\n#if defined(__MVS__) && __has_include_next(<float.h>)\n#include_next <float.h>\n#else\n\n/* If we're on MinGW, fall back to the system's float.h, which might have"
+        },
+        {
+          "first_line": 88,
+          "last_line": 93,
+          "text": "#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L) ||              \\\n    !defined(__STRICT_ANSI__)\n#  undef INFINITY\n#  undef NAN\n#endif\n"
+        },
+        {
+          "first_line": 161,
+          "last_line": 170,
+          "text": "#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L) ||              \\\n    !defined(__STRICT_ANSI__)\n   /* C23 5.2.5.3.3p29-30 */\n#  define INFINITY (__builtin_inff())\n#  define NAN (__builtin_nanf(\"\"))\n   /* C23 5.2.5.3.3p32 */\n#  define FLT_NORM_MAX __FLT_NORM_MAX__\n#  define DBL_NORM_MAX __DBL_NORM_MAX__\n#  define LDBL_NORM_MAX __LDBL_NORM_MAX__\n#endif"
+        },
+        {
+          "first_line": 185,
+          "last_line": 187,
+          "text": "\n#endif /* __MVS__ */\n#endif /* __CLANG_FLOAT_H */"
+        }
+      ]
+    },
+    {
+      "bytes": 1340,
+      "path": "/Library/Developer/CommandLineTools/usr/lib/clang/21/include/float.h",
+      "sha256": "e01d54aa02c8268038e34e98b1c8e87b0b71b6a0a3a23efec84a33fd5c42867f",
+      "snippets": [
+        {
+          "first_line": 10,
+          "last_line": 24,
+          "text": "#if defined(__MVS__) && __has_include_next(<float.h>)\n#include_next <float.h>\n#include <__float_header_macro.h>\n#else\n\n#if !defined(__need_infinity_nan)\n#define __need_float_float\n#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L) ||              \\\n    !defined(__STRICT_ANSI__)\n#define __need_infinity_nan\n#endif\n#include <__float_header_macro.h>\n#endif\n\n#ifdef __need_float_float"
+        },
+        {
+          "first_line": 36,
+          "last_line": 45,
+          "text": "#include <__float_float.h>\n#undef __need_float_float\n#endif\n\n#ifdef __need_infinity_nan\n#include <__float_infinity_nan.h>\n#undef __need_infinity_nan\n#endif\n\n#endif /* __MVS__ */"
+        }
+      ]
+    },
+    {
+      "bytes": 613,
+      "path": "/Library/Developer/CommandLineTools/usr/lib/clang/21/include/__float_infinity_nan.h",
+      "sha256": "544272ca97c2ba51fd362d5f35c8d7287e57001e9a8f29d51896b82be253ef72",
+      "snippets": [
+        {
+          "first_line": 10,
+          "last_line": 20,
+          "text": "#ifndef __CLANG_FLOAT_INFINITY_NAN_H\n#define __CLANG_FLOAT_INFINITY_NAN_H\n\n/* C23 5.2.5.3.3p29-30 */\n#undef INFINITY\n#undef NAN\n\n#define INFINITY (__builtin_inff())\n#define NAN (__builtin_nanf(\"\"))\n\n#endif /* __CLANG_FLOAT_INFINITY_NAN_H */"
+        }
+      ]
+    },
+    {
+      "bytes": 36109,
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/math.h",
+      "sha256": "29257328cdb3459ed98ac8ff2d1feae14e5c7caaf3f90d62dd24c22849c75b00",
+      "snippets": [
+        {
+          "first_line": 62,
+          "last_line": 84,
+          "text": "#if defined(__GNUC__)\n#   define    HUGE_VAL     __builtin_huge_val()\n#   define    HUGE_VALF    __builtin_huge_valf()\n#   define    HUGE_VALL    __builtin_huge_vall()\n#   if defined(__has_feature) && __has_feature(modules) && defined(__has_include) && __has_include(<float.h>)\n__END_DECLS\n#       define __need_infinity_nan\n#       include <float.h>\n#       undef __need_infinity_nan\n__BEGIN_DECLS\n#   else\n#       define    NAN          __builtin_nanf(\"0x7fc00000\")\n#   endif\n#else\n#   define    HUGE_VAL     1e500\n#   define    HUGE_VALF    1e50f\n#   define    HUGE_VALL    1e5000L\n#   define    NAN          __nan()\n#endif\n\n#if !defined(__GNUC__) || !defined(__has_feature) || !__has_feature(modules) || !defined(__has_include) || !__has_include(<float.h>)\n#define INFINITY    HUGE_VALF\n#endif"
+        }
+      ]
+    }
+  ],
+  "execution_scope": {
+    "build_configure_test_install_runs": 0,
+    "candidate_constructed_in_memory_only": true,
+    "compiler_or_preprocessor_runs": 0,
+    "network_calls": 0,
+    "private_output_files": 1,
+    "read_only_native_git_and_python_commands": true,
+    "source_sdk_generated_repository_global_writes": 0
+  },
+  "limitations": [
+    "No native preprocessing, compilation, module import or runtime behavior was tested.",
+    "Candidate adoption remains the parent decision after its bounded scratch controls."
+  ],
+  "mechanical_checks": {
+    "all_four_source_hashes_match_prior_observation": true,
+    "definition_lines_copied_byte_for_byte_from_original_lines_164_165": true,
+    "license_preamble_bytes_stay_first": true,
+    "original_bytes_recovered_exactly_after_removing_only_insertions": true,
+    "outer_conditional_is_first_nonblank_content_after_license_preamble": true
+  },
+  "parent_sole_writer": true,
+  "proposed_parent_controls_not_executed": [
+    "Request-first then normal full include; verify request is consumed and the normal include is not suppressed.",
+    "Normal full include then request; verify INFINITY and NAN have float type and expected builtin value properties.",
+    "Two explicit requests in succession; compile with macro redefinition warnings promoted to errors.",
+    "Normal no-request C23, C++23/C++26, and GNU-mode controls; compare standard-mode exposure with the unmodified header.",
+    "Actual cmath failure context using the candidate resource header, including cmath after cfloat."
+  ],
+  "schema_version": 1,
+  "source": {
+    "bytes": 6268,
+    "git_blob": "84551af473b28f6615dc90dd3c4be44f60085d5c",
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h",
+    "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf"
+  },
+  "task": "07b4 narrow compiler resource float.h compatibility candidate"
+}
