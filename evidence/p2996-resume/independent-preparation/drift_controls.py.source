@@ -1,0 +1,119 @@
+import argparse,ast,contextlib,copy,hashlib,io,json,os,shutil,sys,types
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace');PRIVATE=Path(__file__).parent
+HELPER=ROOT/'dev/toolchains/p2996_build.py';sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();load=lambda p:json.loads(Path(p).read_text())
+assert sha(HELPER)=='eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f'
+proposal=load(PRIVATE/'review-progress.json')['proposal'];adaptation=proposal['sdk_adaptation'];configuration=proposal['configuration']
+module=ast.parse(HELPER.read_text());main=next(n for n in module.body if isinstance(n,ast.FunctionDef) and n.name=='main');main_try=next(n for n in main.body if isinstance(n,ast.Try))
+compile_nodes=lambda nodes:compile(ast.fix_missing_locations(ast.Module(body=copy.deepcopy(nodes),type_ignores=[])),str(HELPER),'exec')
+compat_if=next(n for n in main_try.body if isinstance(n,ast.If) and isinstance(n.test,ast.Attribute) and n.test.attr=='sdk_compatibility')
+source_node=next(n for n in main_try.body if isinstance(n,ast.FunctionDef) and n.name=='source_state')
+build_if=next(n for n in main_try.body if isinstance(n,ast.If) and isinstance(n.test,ast.Attribute) and n.test.attr=='build');held=next(n for n in build_if.body if isinstance(n,ast.With))
+history_guard=next(n for n in held.body if isinstance(n,ast.Assert) and any(isinstance(x,ast.Name) and x.id=='history' for x in ast.walk(n)))
+SDK_FILES=tuple(row['path'] for row in adaptation['patch']['files']);results=[]
+
+def check(name,action,expected=None):
+    exception=None
+    try:action()
+    except BaseException as error:exception=error
+    assert (exception is None if expected is None else isinstance(exception,expected)),(name,repr(exception))
+    results.append({'case':name,'result':'PASS','observed_exception':type(exception).__name__ if exception else None})
+
+# Run only the actual argument-parsing AST. It must reject before mkdir or native commands.
+arg_end=next(i for i,n in enumerate(main.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='directory' for t in n.targets))
+original_argv=sys.argv
+sys.argv=['p2996_build.py','--run-dir',str(PRIVATE/'never-created'),'--sdk-compatibility']
+try:
+    def invalid_arguments():
+        with contextlib.redirect_stderr(io.StringIO()):exec(compile_nodes(main.body[:arg_end]),{'argparse':argparse,'Path':Path,'__doc__':'private parser control'})
+    check('sdk-compatibility-without-resume-rejected-before-writes',invalid_arguments,SystemExit)
+    assert not (PRIVATE/'never-created').exists()
+finally:sys.argv=original_argv
+
+# Exact new compatibility validation with copied receipt bytes, no helper execution.
+metadata=PRIVATE/'metadata';metadata.mkdir();compat=metadata/'evidence/p2996-sdk-compatibility'
+for name in adaptation['receipts']:
+    p=compat/name;p.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/'evidence/p2996-sdk-compatibility'/name,p)
+pristine_bytes={str(p):p.read_bytes() for p in compat.rglob('*') if p.is_file()}
+for name,mutate in [('valid-closed-application',None),('application-not-applied',lambda ns:ns['applied_override'].update(applied=False)),('application-review-failed',lambda ns:ns['review_override'].update(result='FAIL')),('application-review-has-finding',lambda ns:ns['review_override'].update(findings=[{'finding':'unsettled'}])),('application-receipt-byte-drift',lambda ns:(compat/'operation/qualification.json').write_bytes((compat/'operation/qualification.json').read_bytes()+b'\n')),('patch-byte-drift',lambda ns:(compat/'scratch/rdf-comparator.patch').write_bytes((compat/'scratch/rdf-comparator.patch').read_bytes()+b'\n'))]:
+    for p,content in pristine_bytes.items():Path(p).write_bytes(content)
+    applied=load(compat/'operation/qualification.json');reviewed=load(compat/'application-review.json')
+    ns={'Path':Path,'compat':compat,'args':types.SimpleNamespace(sdk_compatibility=True),'source':Path(configuration['source']),'configuration':configuration,'SDK_FILES':SDK_FILES,'__file__':str(HELPER),'digest':sha,'applied_override':applied,'review_override':reviewed}
+    def loads(path):
+        if path==compat/'operation/qualification.json':return applied
+        if path==compat/'application-review.json':return reviewed
+        return load(path)
+    ns['load']=loads
+    if mutate:mutate(ns)
+    check(name,lambda:exec(compile_nodes([compat_if]),ns),None if mutate is None else AssertionError)
+for p,content in pristine_bytes.items():Path(p).write_bytes(content)
+
+# Exercise exact source_state against private copies and inert Git responses.
+source_cases=[('valid-at-all-three-stages',None,None),('changed-source-head','head',AssertionError),('changed-base-tree','tree',AssertionError),('extra-untracked-source','extra',AssertionError),('staged-approved-change','staged',AssertionError),('changed-postimage','postimage',AssertionError),('source-symlink-escape','symlink',AssertionError),('changed-reviewed-receipt','receipt',AssertionError),('changed-native-diff','diff',AssertionError),('legacy-clean-source', 'legacy-clean',None),('legacy-dirty-source','legacy-dirty',AssertionError)]
+for name,change,expected in source_cases:
+    case=PRIVATE/name;case.mkdir();source=case/'source';source.mkdir();source_compat=case/'compat';source_compat.mkdir()
+    for row in adaptation['patch']['files']:
+        p=source/row['path'];p.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(Path(configuration['source'])/row['path'],p)
+    for receipt in adaptation['receipts']:
+        p=source_compat/receipt;p.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/'evidence/p2996-sdk-compatibility'/receipt,p)
+    status='\n'.join(sorted(' M '+path for path in SDK_FILES))+'\n';head=configuration['pin'];tree=configuration['tree'];diff=(ROOT/'evidence/p2996-sdk-compatibility/operation/source-diff.stdout').read_bytes()
+    active=copy.deepcopy(adaptation)
+    if change=='head':head='wrong'
+    elif change=='tree':tree='wrong'
+    elif change=='extra':status+='?? llvm/unreviewed.cpp\n'
+    elif change=='staged':status=status.replace(' M ','M  ',1)
+    elif change=='postimage':
+        p=source/SDK_FILES[0];p.write_bytes(p.read_bytes()+b'\n// private drift\n')
+    elif change=='symlink':
+        p=source/SDK_FILES[0];target=case/'outside-source';target.write_bytes(p.read_bytes());p.unlink();p.symlink_to(target)
+    elif change=='receipt':
+        p=source_compat/'application-review.json';p.write_bytes(p.read_bytes()+b'\n')
+    elif change=='diff':diff+=b'\nprivate drift\n'
+    elif change=='legacy-clean':active=None;status=''
+    elif change=='legacy-dirty':active=None
+    calls=[]
+    def run(label,argv):
+        calls.append(label)
+        if label.endswith('-head'):return head+'\n'
+        if label.endswith('-tree'):return tree+'\n'
+        if label.endswith('-status'):return status
+        assert label.endswith('-diff');(case/(label+'.stdout')).write_bytes(diff);return diff.decode()
+    ns={'configuration':configuration,'adaptation':active,'SDK_FILES':SDK_FILES,'source':source,'compat':source_compat,'directory':case,'digest':sha,'run':run,'git':['inert-git']}
+    exec(compile_nodes([source_node]),ns)
+    if change is None:
+        def stages():
+            for stage in ('source','source-immediate','source-after'):ns['source_state'](stage)
+        check(name,stages,expected);assert len(calls)==12
+    else:check(name,lambda:ns['source_state']('source-immediate'),expected)
+
+# Snapshot actual Ninja-state bytes only in scratch; test drift before and after admission.
+histdir=PRIVATE/'history';histdir.mkdir();history={}
+for original,digest in proposal['incremental_state'].items():
+    path=histdir/Path(original).name;shutil.copy2(original,path);assert sha(path)==digest;history[str(path)]=digest
+history_code=compile_nodes([history_guard]);history_ns={'history':history,'digest':sha,'Path':Path}
+check('unchanged-history-immediately-before-build',lambda:exec(history_code,history_ns))
+for name in ('.ninja_log','.ninja_deps'):
+    path=histdir/name;before=path.read_bytes();path.write_bytes(before+b'private drift\n')
+    check(name+'-drift-after-snapshot-rejected',lambda:exec(history_code,history_ns),AssertionError)
+    path.write_bytes(before)
+missing=histdir/'.ninja_log';saved=missing.read_bytes();missing.unlink();check('missing-history-rejected',lambda:exec(history_code,history_ns),FileNotFoundError);missing.write_bytes(saved)
+
+admission_code=compile_nodes(build_if.body[:5]);admitted=copy.deepcopy(proposal);operation_directory=PRIVATE/'fake-operation';review_path=PRIVATE/'fake-evidence/preparation-review.json'
+for name,change in [('matching-resume-admission',False),('history-drift-since-preparation-rejected-by-admission',True)]:
+    current=copy.deepcopy(admitted)
+    if change:current['incremental_state'][next(iter(current['incremental_state']))]='new-observed-hash'
+    admission={'helper_sha256':sha(HELPER),'proposal':admitted,'run_directory':str(operation_directory),'review_sha256':'review-sha'}
+    ns={'load':lambda p:admission if p.name=='admission.json' else {'result':'PASS: preparation'},'evidence':PRIVATE/'fake-evidence','Path':Path,'directory':operation_directory,'digest':lambda p:'review-sha' if p==review_path else sha(p),'__file__':str(HELPER),'proposal':current}
+    check(name,lambda:exec(admission_code,ns),AssertionError if change else None)
+
+# Confirm execution ordering statically; no build branch is run by these controls.
+positions={}
+for i,n in enumerate(held.body):
+    if isinstance(n,ast.Expr) and isinstance(n.value,ast.Call) and isinstance(n.value.func,ast.Name):
+        call=n.value
+        if call.func.id=='source_state':positions[call.args[0].value]=i
+        if call.func.id=='run' and call.args[0].value=='llvm-build':positions['llvm-build']=i
+    if n is history_guard:positions['history-guard']=i
+assert positions['source-immediate']<positions['history-guard']<positions['llvm-build']<positions['source-after']
+report={'result':'PASS','helper_sha256':sha(HELPER),'scope':'Exact new guard AST with copied receipts/source/history and inert responses; no lease or native build/apply/helper invocation','controls':results,'static_held_order':positions}
+(PRIVATE/'drift-controls.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'result':report['result'],'controls':len(results),'cases':[r['case'] for r in results],'static_held_order':positions},indent=2))

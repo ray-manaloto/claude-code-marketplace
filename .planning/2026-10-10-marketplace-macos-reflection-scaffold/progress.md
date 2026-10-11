@@ -550,3 +550,20 @@ canonical lease. Compiler restart remains a later reviewed operation.
   diff hash, all 1347 recorded outputs, eight generated files, both Ninja state
   files, protected shared state and original files match; the lease is free.
   Compilation remains incomplete. Incremental restart requires its own review.
+
+Task 07b2 is committed at `333e5379f888b1ac292ceca0162fe6a64f851ddd`;
+its post-commit baseline passed and the worktree was clean. Task 07b3 adds an
+explicit SDK-adapted resume route, binding applied-source receipts, exact
+postimages/diff and retained Ninja state. Source identity is checked before
+preparation, immediately under the lease and after build. Native preparation
+and independent drift-control review are pending; no restart has run.
+- Parent preparation exited 0 with all seven native commands passing; the
+  exact source and applied-review hashes match and protected state is unchanged.
+  Independent new guard controls and a fresh capacity census are active.
+- The fresh read-only capacity census reports 56.894 GiB free, 74% memory
+  free, no builders, the same Docker workload and a free canonical lease.
+  This observation admits no build; actual admission checks run inside the lease.
+- Independent restart preparation review passed: seven native commands and
+  24 source/receipt/history drift controls passed. Unchanged subprocess and
+  capacity logic retains its previous controls after AST/receipt comparison.
+  Source, retained build state, protected files and all original files match.

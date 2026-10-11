@@ -139,3 +139,9 @@ passed, source postimages match, reverse applicability passes, protected state
 is unchanged and the lease is released. Independent application closure passed,
 including all 1347 recorded build outputs, eight generated files and both Ninja
 state files. Compiler restart and runtime acceptance remain incomplete.
+
+Task 07b3 prepares an explicit SDK-adapted incremental restart. Source and
+receipt hashes are bound to a new proposal and rechecked immediately under the
+shared lease before compilation. Independent review passed with seven native
+preparation commands and 24 drift controls. Fresh capacity has no observed
+blocker; the separately admitted restart must repeat live checks under its lease.

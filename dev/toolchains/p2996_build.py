@@ -17,6 +17,7 @@ import time
 from gcc_install import ROOT, digest, package_state, preserved, read
 from mise_link_probe import snapshot
 from p2996_configure import LOCK_MODULE, LOCK_SHA
+from p2996_sdk_compat import FILES as SDK_FILES
 from vcpkg_register import install_entries
 
 
@@ -25,7 +26,10 @@ def main():
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--build", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--sdk-compatibility", action="store_true")
     args = parser.parse_args()
+    if args.sdk_compatibility and not args.resume:
+        parser.error("--sdk-compatibility requires --resume")
     directory = args.run_dir
     if not directory.is_absolute() or directory != directory.resolve() or directory.is_relative_to(ROOT):
         parser.error("use a new normalized absolute private directory outside this worktree")
@@ -35,7 +39,7 @@ def main():
     report = {"state": "running", "build_requested": args.build, "resume": args.resume,
               "helper_sha256": digest(Path(__file__)), "commands": []}
     load = lambda path: json.loads(path.read_text())
-    evidence = ROOT / "evidence/p2996-build"
+    evidence = ROOT / ("evidence/p2996-resume" if args.sdk_compatibility else "evidence/p2996-build")
     historical = read("install-preimages.json")
     before = {name: historical[name] for name in ("global_files", "packages", "glib_files")}
     normal_argv = historical["normal_environment"]["argv"]
@@ -138,9 +142,47 @@ def main():
         assert not os.path.lexists(prefix)
         assert args.resume or not (build / ".ninja_log").exists(), "existing build requires --resume"
         git = ["/usr/bin/git", "-c", "core.fsmonitor=false", "-C", source]
-        assert run("source-head", git + ["rev-parse", "HEAD"]).strip() == configuration["pin"]
-        assert run("source-tree", git + ["rev-parse", "HEAD^{tree}"]).strip() == configuration["tree"]
-        assert run("source-clean", git + ["status", "--porcelain", "--untracked-files=all"]) == ""
+        adaptation = None
+        compat = ROOT / "evidence/p2996-sdk-compatibility"
+        if args.sdk_compatibility:
+            applied = load(compat / "operation/qualification.json")
+            reviewed = load(compat / "application-review.json")
+            patch = applied["proposal"]["adaptation"]
+            assert applied["state"] == "PASS: exact source adaptation applied"
+            assert applied["applied"] and applied["lease_released"] and applied["protected_state_unchanged"]
+            assert len(applied["commands"]) == 11 and all(row["returncode"] == 0 for row in applied["commands"])
+            assert reviewed["result"].startswith("PASS") and not reviewed["findings"]
+            assert reviewed["operation_sha256"] == digest(compat / "operation/qualification.json")
+            assert reviewed["helper_sha256"] == applied["helper_sha256"] == digest(Path(__file__).with_name("p2996_sdk_compat.py"))
+            assert reviewed["patch_sha256"] == patch["patch_sha256"] == digest(compat / "scratch/rdf-comparator.patch")
+            assert reviewed["diff_sha256"] == applied["diff_sha256"]
+            assert patch == load(compat / "scratch/proposal.json")
+            assert patch["base_commit"] == configuration["pin"] and Path(patch["source"]) == source == source.resolve()
+            assert tuple(row["path"] for row in patch["files"]) == SDK_FILES
+            adaptation = {"patch": patch, "diff_sha256": applied["diff_sha256"],
+                          "receipts": {name: digest(compat / name) for name in
+                                       ("operation/qualification.json", "application-review.json",
+                                        "scratch/proposal.json", "scratch/rdf-comparator.patch")}}
+        history = {str(build / name): digest(build / name) for name in (".ninja_log", ".ninja_deps")} if args.resume else {}
+
+        def source_state(stage):
+            assert run(stage + "-head", git + ["rev-parse", "HEAD"]).strip() == configuration["pin"]
+            assert run(stage + "-tree", git + ["rev-parse", "HEAD^{tree}"]).strip() == configuration["tree"]
+            status = run(stage + "-status", git + ["status", "--porcelain", "--untracked-files=all"])
+            if adaptation is None:
+                assert status == ""
+                return
+            assert status.splitlines() == sorted(" M " + name for name in SDK_FILES)
+            for name, sha in adaptation["receipts"].items():
+                assert digest(compat / name) == sha
+            for row in adaptation["patch"]["files"]:
+                p = source / row["path"]
+                assert p == p.resolve() and p.is_relative_to(source)
+                assert digest(p) == row["after_sha256"], row["path"]
+            run(stage + "-diff", git + ["diff", "--no-ext-diff", "--binary"])
+            assert digest(directory / (stage + "-diff.stdout")) == adaptation["diff_sha256"]
+
+        source_state("source")
         inputs = configuration["inputs"] | {"CMAKE": configuration["cmake"], "MISE": configuration["mise"]}
         for row in inputs.values():
             assert digest(Path(row.get("resolved_path", row.get("path")))) == row["sha256"]
@@ -162,13 +204,14 @@ def main():
         assert observed == dict.fromkeys(keys[:6], "") | {
             "MARKETPLACE_CPP_LANE": "tools-only", "MAKEFLAGS": "-j4", "CMAKE_BUILD_PARALLEL_LEVEL": "4"}
         proposal = {"configuration": configuration, "workspace": str(workspace), "resume": args.resume,
+                    "sdk_adaptation": adaptation, "incremental_state": history,
                     "jobs_per_build": 4, "capacity_job_allowance": 8, "timeout_seconds": 21600,
                     "minimum_start_free_bytes": 32 * 1024**3, "disk_reserve_bytes": 8 * 1024**3,
                     "host_lock_sha256": LOCK_SHA, "inputs": inputs,
                     "receipts": {name: digest(configured / name) for name in
                                  ("admission.json", "operation/qualification.json", "operation-review.json", "generated-review.json")},
                     "helpers": {name: digest(Path(__file__).with_name(name)) for name in
-                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py", "p2996_configure.py")}}
+                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py", "p2996_configure.py", "p2996_sdk_compat.py")}}
         report.update(proposal=proposal, build_argv=list(map(str, command)), observed_environment=observed)
         protected()
         if args.build:
@@ -215,9 +258,12 @@ def main():
                     assert digest(Path(row.get("resolved_path", row.get("path")))) == row["sha256"]
                 for row in qualification["generated"]:
                     assert digest(Path(row["path"])) == row["sha256"]
+                source_state("source-immediate")
+                assert all(digest(Path(path)) == sha for path, sha in history.items())
                 assert not os.path.lexists(prefix)
                 report["lease"] = {"path": str(lease.lock_path(lease.HEAVY_GATE)), "held": True}
                 run("llvm-build", command, timeout=proposal["timeout_seconds"], descriptor=fd, monitor=True)
+                source_state("source-after")
                 assert not os.path.lexists(prefix)
                 required = [build / "bin" / name for name in ("clang", "clang++", "llvm-config", "clangd", "clang-format", "clang-tidy", "llvm-cov", "llvm-profdata")]
                 required += [build / "runtimes" / child / "CMakeCache.txt" for child in ("builtins-bins", "runtimes-bins")]

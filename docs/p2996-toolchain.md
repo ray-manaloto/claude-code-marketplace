@@ -139,3 +139,15 @@ records the five postimages, native reverse check and source diff hash.
 Independent closure confirms those identities, unchanged build/Ninja state,
 preserved protected files and a free canonical lease. The compiler now has a
 pinned base plus a separately hashed adaptation; build acceptance is pending.
+
+Task 07b3 prepares incremental restart with `--resume --sdk-compatibility`.
+The build helper binds the successful application, independent closure, exact
+patch and both retained Ninja state hashes into a new proposal. It verifies the
+base commit/tree, exact five-file status, postimages and Git diff before
+preparation, immediately under the canonical lease, and after the native build.
+Any extra source edit or changed receipt fails the operation. Restart receipts
+use `evidence/p2996-resume/`; the first failed build remains immutable.
+The existing subprocess cleanup, capacity limits and disk monitoring remain in
+force. Independent restart preparation review passed: all seven native
+preparation commands and 24 drift controls passed. Prior cleanup and capacity
+controls were retained after AST and receipt verification. No restart has run.
