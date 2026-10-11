@@ -33,6 +33,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 05a | GCC16 source/package inventory and prepared native bootstrap | Exact current mise contract, package identities and reviewed isolation | Complete |
 | 05b | Captured GCC bottles and installation preparation | Archive hashes, complete prefix writes, protected preimages and independent review | Complete |
 | 05c | Guarded native four-bottle installation | Immediate ownership/preimage/plan checks, native exit code, installed links and preserved defaults | Complete |
+| 05d | GCC16 environment and reflection witness | Exact compiler/stdlib/SDK identity, positive compile/link/run and negative flag control | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -68,7 +69,11 @@ Canonical Homebrew writes and compiler execution await that admission record.
 Task 05c's bounded installer and three review repairs have been independently
 verified. `evidence/gcc-bootstrap/install-admission.json` admits only the four
 reviewed native pours and two directory conversions after immediate guards.
-Compiler execution remains a later focused unit.
+Task 05c executed no compiler; runtime qualification follows in task 05d.
+Task 05d admits sequential, sixty-second-bounded compiler probes and one tiny
+reflection witness in a new private directory. The fresh census found no compiler
+or build processes; this does not admit a cold toolchain or matrix build. Existing
+global profiles are selected without edits; all protected preimages remain gates.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;

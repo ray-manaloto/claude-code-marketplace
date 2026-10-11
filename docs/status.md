@@ -33,8 +33,8 @@ the read-only research-guard limitation are preserved.
 
 Full Claude/OCI acceptance, MCP connectivity and provider research are unqualified.
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
-Last30Days validation. No native core, qualified compiler, vcpkg or application
-build matrix exists yet.
+Last30Days validation. No native core, P2996 LLVM, vcpkg or application build
+matrix exists yet. GCC runtime qualification is described below.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
@@ -75,8 +75,23 @@ Task 05c installed GCC 16.2.0, ISL 0.28, MPFR 4.2.2 and libmpc 1.4.1 through
 native mise after those checks. All command exit codes are 0; planned links,
 GLib preservation and unchanged global/default environment checks pass.
 Independent [installed-state review](../evidence/gcc-bootstrap/postinstall-review.json)
-passed. No compiler has executed yet;
-reflection and runtime qualification are the next focused unit.
+passed. Task 05d's [runtime witness](../evidence/gcc-runtime/qualification.json)
+passes through the existing `gcc16` environment: GCC 16.2.0, libstdc++ 16,
+ARM64 executables and the explicit macOS 27.0 SDK. Reflection compile/link/run
+exits 0; omitting `-freflection` exits 1. Both feature macros are `202603L`.
+Direct library loads and standard-library symbol bindings select libstdc++;
+dyld resolves it to the installed prefix. macOS system libc++ images also load,
+so their mere presence is not treated as compiler contamination.
+Defaults and all nine global files remain unchanged. Independent
+[runtime review](../evidence/gcc-runtime/runtime-review.json) passed after one
+complete rerun and verification of all receipts and protected files. The CMake
+toolchain fixture follows separately.
+
+Reproduce from this checkout using an existing Python 3.11+ interpreter and
+`python3 -B dev/toolchains/gcc_reflection.py --run-dir <new-private-directory>`.
+The script selects `MARKETPLACE_GCC16_PREFIX=/opt/homebrew/Cellar/gcc/16.2.0`
+only in its child environment and uses an empty cwd to avoid the root OCI setup.
+It writes bounded command logs and does not install tools or edit global profiles.
 
 The earlier Docker census found no running containers, but high host
 load and concurrent shipping leave heavy builds unadmitted. Global Python

@@ -1,0 +1,933 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T02:33:23.500615+00:00",
+  "result": "PASS for task 05d GCC16 runtime witness",
+  "findings_remaining": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "04eb6149e32e619a5ee377751d74cc02eedda045",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": "Five maintained files and generated gcc-runtime evidence; parent /root sole implementation writer",
+  "reviewed_inputs": [
+    {
+      "path": "dev/toolchains/gcc_reflection.py",
+      "sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b"
+    },
+    {
+      "path": "dev/toolchains/reflection.cpp",
+      "sha256": "2dc8709cc3a8ba2140eb357b092bfb4dd6283a3001ae7515bbd7c76c80553ec7"
+    },
+    {
+      "path": "docs/status.md",
+      "sha256": "18f2b7be2c41249ad29745789017cc5119bf5ad7b1ff05c24d00fa73d4c65ed9"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "fc802bc33d48d980d81f1d05242741d8eb0746c74b94145e5e369cda12f8090b"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "95a4296d425e795f3ffb8a7cad2a9e0a9858289971e9367ff06f4edcd9fe2bd0"
+    }
+  ],
+  "parent_evidence": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+      "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+    },
+    "commands": 26,
+    "logs_verified_against_original_and_retained_hashes": 52,
+    "retained_failures": [
+      {
+        "receipt": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/initial-failure.json",
+        "sha256": "ca7e2ccfb285686a0c25fcd6052fa7b959fe0379880c8d562f07a36240677160",
+        "command_count": 22,
+        "last_case": "reflection-build",
+        "last_returncode": 1,
+        "source_copy": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0230/reflection.cpp",
+        "source_sha256": "3e4d44c27b1d92c824dcdf6bf3782986ef2b5fb5fbef5acd2554f7f8d0bce2d6",
+        "runner_copy": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0230/gcc_reflection.py",
+        "runner_sha256": "14b5bd883f0adbcb73b0c0f425e1f05dff6c43d47546fa07eeafec510b7fac82"
+      },
+      {
+        "receipt": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/system-libcxx-check-failure.json",
+        "sha256": "6c6c6f44ba8280aacdc86464069cc239b5f9d019226e6ca8984e886325c7085e",
+        "command_count": 22,
+        "last_case": "reflection-run",
+        "last_returncode": 0,
+        "source_copy": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0234/reflection.cpp",
+        "source_sha256": "2dc8709cc3a8ba2140eb357b092bfb4dd6283a3001ae7515bbd7c76c80553ec7",
+        "runner_copy": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0234/gcc_reflection.py",
+        "runner_sha256": "ae9da9c93cd867dfa6eb4e27db88aadb4bd2aa7a88ae6a47b165bb0419211be7"
+      }
+    ]
+  },
+  "executed_runtime_check": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+      "--run-dir",
+      "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run"
+    ],
+    "outer_returncode": 0,
+    "observed_wall_time_seconds": 5.037502041,
+    "full_script_invocations": 1,
+    "receipt": {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/qualification.json",
+      "sha256": "1c507de66172f35521745752e55edc85481f3404bf05410c9981315577751fe6"
+    },
+    "admission": {
+      "owner": "/root",
+      "scope": "Sequential tiny compiler probes only; 60 seconds each",
+      "at": "2026-10-11T02:30:36.201531+00:00",
+      "census_returncode": 0,
+      "load_average": [
+        13.4306640625,
+        15.31494140625,
+        21.30224609375
+      ],
+      "cpu_count": 12,
+      "active_builds": []
+    },
+    "commands": [
+      {
+        "case": "default-before",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.201745+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stdout",
+            "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "named-profile",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.324509+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stdout",
+            "sha256": "89e5c3c05754b9d210647d9bda31af5fb41f0f7cf893c98ef169b34d3ad6d5c9"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "c-version",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.505508+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stdout",
+            "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cxx-version",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.747825+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stdout",
+            "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "compiler-configuration",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.872742+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stderr",
+            "sha256": "85fe6d52a399cd3fb120bd1441f71ed05c3fb8d790c8351e752f3828f4691805"
+          }
+        ]
+      },
+      {
+        "case": "sdk-path",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:36.995900+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stdout",
+            "sha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "sdk-version",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.008407+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stdout",
+            "sha256": "7b01c549928398a045692f24bcac7803b348524cdd76f21265b02984b2ba556a"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cc1plus-path",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.020663+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stdout",
+            "sha256": "986216123ef4fe59309fa072072c7e56c9e8484fea0fd0f8bec9f1837aac44a5"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libstdcpp-path",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.148099+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stdout",
+            "sha256": "ab361a48f3e791e8f5446ee68b454fe8b9e3cf6df848066d11f02a621d6467ff"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libgcc-path",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.276106+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stdout",
+            "sha256": "37ddd6d0c393d836bd6a82da7abdf679f47140aa5e220a3bcb8e38e521908c8b"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cxx-architecture",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.429845+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stdout",
+            "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cxx-libraries",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.436697+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stdout",
+            "sha256": "1f40b74a6411c6976376cdfd26e3246ede26bbda16cbac309c8b23364767f476"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cc1plus-architecture",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.457351+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stdout",
+            "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "cc1plus-libraries",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.463875+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stdout",
+            "sha256": "f41d67c96a5ef51d81ae6a37ab476d3a180ff385f2093f21abf4ce8ecc452c07"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libstdcpp-architecture",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.483094+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stdout",
+            "sha256": "f31727034b4f715eb79d8b4961bf28151cac23cf1cafe61000840420699049f2"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libstdcpp-libraries",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.489889+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stdout",
+            "sha256": "cd32b930fef5095eab52293adcc3b5b67f66c57a9d9c2d3abf9c1a9d91d8e686"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libgcc-architecture",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.510719+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stdout",
+            "sha256": "48b5e46aaad1f813680562b1cd4fdb022339fc40f2c61ba9d1575eeb267f819d"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "libgcc-libraries",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.517565+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stdout",
+            "sha256": "0041feb3b89dd73f1b76f7a52606c251b14acf38134ea738ad98e2a525b7b01e"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "feature-macros",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.538854+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stdout",
+            "sha256": "e14b925216fe73b35fb1c33cb58b5be1bbb32e66769909f8807667a572c54451"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "header-dependencies",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:37.667999+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stdout",
+            "sha256": "802eb11893a2876fafb14764bc79fd0f2478a7da752ad523048cdad9cb39cd05"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "reflection-build",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:38.015587+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stderr",
+            "sha256": "44a8df4d590eeffadacd30ca68fe50281345062e266d217023698a474dbf7193"
+          }
+        ]
+      },
+      {
+        "case": "reflection-run",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:39.984379+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stdout",
+            "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stderr",
+            "sha256": "c0f4185583c0ac520008e9ca772495e55a6ba7ad94ac651711dc265aabbffc2e"
+          }
+        ]
+      },
+      {
+        "case": "witness-libraries",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:40.274846+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stdout",
+            "sha256": "5511630a1c125aafc18521e6043a0849f289b47c78c23ccfcadf0a50de1ce121"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "witness-symbols",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:40.300429+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stdout",
+            "sha256": "8151264383ec25b1ff08f554064fe82a562e7806d6c078102f9fc8f46a1a8498"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "without-reflection",
+        "returncode": 1,
+        "started_at": "2026-10-11T02:30:40.324069+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stderr",
+            "sha256": "986102ce737678746483311163a46feaf9a92fb3bf0c1e78c7a93ce3490f1be3"
+          }
+        ]
+      },
+      {
+        "case": "default-after",
+        "returncode": 0,
+        "started_at": "2026-10-11T02:30:40.934241+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stdout",
+            "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    ],
+    "positive_compile_link_returncode": 0,
+    "positive_run_returncode": 0,
+    "without_reflection_returncode": 1,
+    "negative_binary_absent": true,
+    "selected_environment": {
+      "selected": {
+        "CC": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "CXX": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "AR": null,
+        "RANLIB": null,
+        "LD": null,
+        "AS": null,
+        "CPATH": null,
+        "C_INCLUDE_PATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "OBJC_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "PKG_CONFIG_PATH": null,
+        "PKG_CONFIG_LIBDIR": null,
+        "CMAKE_PREFIX_PATH": null,
+        "CMAKE_TOOLCHAIN_FILE": null,
+        "CMAKE_GENERATOR": null,
+        "CMAKE_C_COMPILER_LAUNCHER": null,
+        "CMAKE_CXX_COMPILER_LAUNCHER": null,
+        "SDKROOT": null,
+        "MACOSX_DEPLOYMENT_TARGET": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "MARKETPLACE_CPP_LANE": "gcc16",
+        "MARKETPLACE_P2996_PREFIX": null,
+        "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0",
+        "MAKEFLAGS": "-j2",
+        "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+      },
+      "path_sha256": "6899194f726297bb709c28c349e12340b341c8549e2dd5ce2b1d3767e8c3bf43",
+      "homebrew_llvm_on_path": true
+    },
+    "sdk": {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+    },
+    "feature_macros": {
+      "__cplusplus": "202400L",
+      "__GLIBCXX__": "20260807",
+      "__cpp_lib_reflection": "202603L",
+      "__cpp_impl_reflection": "202603L",
+      "_GLIBCXX_RELEASE": "16"
+    },
+    "identities": {
+      "cc": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "sha256": "406040ac6e22d01468e601a5aaa548e60af1c151efb056aa45d485d6804f0cd4"
+      },
+      "cxx": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363"
+      },
+      "meta": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/meta",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/meta",
+        "sha256": "d368e49966e65a0bce3cdcf38bbd0430b57100d21a09e40ba2e460c2db26b3f5"
+      },
+      "cc1plus": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+        "sha256": "d1105933191bc5c1713714b6da8480fe9cacb3bd802ec3a97a1bc4c07d3b753a"
+      },
+      "libstdc++": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+        "sha256": "d4d4cbc6f9d797bd64b6e88a62111b5d206c41d030b5d764a72558146da4d2ee"
+      },
+      "libgcc": {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+        "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+        "sha256": "18b55070e058297b9653a0da11f30d48363fe2002371f07fb53e88936cfec6c9"
+      }
+    },
+    "witness": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection",
+      "sha256": "621f57d144a40425ba632f7c3a787ef5e206c56163896e8e1fbe2cc1a745bbee",
+      "output": "reflection value=43\n"
+    },
+    "actual_meta_header": "/opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/meta",
+    "resolved_dependency_count": 275,
+    "sdk_dependency_count": 119,
+    "libcxx_header_dependencies": [],
+    "witness_direct_libraries": [
+      "/opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib",
+      "/usr/lib/libSystem.B.dylib"
+    ],
+    "stdlib_link_bound_symbols_checked": 15,
+    "runtime_loaded_libstdcxx": [
+      "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+    ],
+    "preserved_system_cxx_images": [
+      "dyld[28258]: <A21743EE-6E1C-3E74-97EA-7AF793DE4BDF> /usr/lib/libc++abi.dylib",
+      "dyld[28258]: <1E9BA4AA-B5DA-3CF3-80AC-4B880049573F> /usr/lib/libc++.1.dylib"
+    ]
+  },
+  "executed_static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T02:32:08.902271+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T02:32:09.140947+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/acceptance-baseline.stdout",
+          "sha256": "cafd4e75b0e901877ffe3cac89f803f8cfd6ae373c06de44912e938987bab57f"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "claude_baseline_counts": {
+    "baseline": 19,
+    "json": 142,
+    "python": 6,
+    "shell": 5,
+    "toml": 14
+  },
+  "independent_preservation_checks": {
+    "before_receipt": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/pre-state.json",
+    "after_receipt": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/post-run-checks.json",
+    "unchanged_counts": {
+      "globals": 9,
+      "packages": 8,
+      "glib": 2,
+      "public_links": 1791,
+      "runtime_identities": 6
+    },
+    "defaults_equal_original_preimage": true,
+    "all_five_maintained_inputs_unchanged_during_review": true
+  },
+  "static_review": [
+    "Fixture reflects the Record type, enumerates its data member, verifies member identifier and reflected type at compile time, splices access at runtime, and requires value 43 through a nontrivial std::string/iostream path.",
+    "Runner selects the existing gcc16 profile through native mise exec --fresh-env with absolute compilers and an explicit SDK; it preserves the ordinary LLVM environment before and after.",
+    "Source uses offline native mise with inherited installation disabled, reads installation prerequisites, admits only sequential tiny probes, bounds each command at 60 seconds, and terminates its owned process group on interruption/timeout.",
+    "Failure propagation records real return codes and logs before raising. Both retained earlier failures remain marked FAIL. Timeout and mocked-failure controls were not executed in this unit.",
+    "Direct load commands, the witness undefined-symbol library bindings and dyld image path jointly support the libstdc++ claim. System libc++ images are retained separately; their existence alone does not change the witness direct bindings.",
+    "Status/plan scope remains one GCC runtime fixture; CMake, P2996 LLVM and application matrix work remain later units."
+  ],
+  "not_executed": [
+    "Additional compiler invocations beyond the one full runner execution",
+    "Installers, global edits, network research, services, containers or heavy builds",
+    "CMake/vcpkg/application matrix, optimization/sanitizer/coverage matrix or relocated-consumer acceptance",
+    "P2996 LLVM build, full language conformance or broad compiler qualification",
+    "Fresh model sessions or full Claude OCI/provider/hook-runtime acceptance",
+    "Additional artificial timeout/failure injection tests"
+  ],
+  "shared_writes_by_reviewer": [],
+  "private_supporting_files": [
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/acceptance-baseline.stdout",
+      "sha256": "cafd4e75b0e901877ffe3cac89f803f8cfd6ae373c06de44912e938987bab57f"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/parent-evidence-review.json",
+      "sha256": "7709799d0655d45de08929cba049d03a170c0b61370542465779835f36d6c398"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/post-run-checks.json",
+      "sha256": "1e3f933e27f479ddd95dffa61ae936d9d3611e5d4a08bf4abef6e11dedf8a0d0"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/pre-state.json",
+      "sha256": "64a84d61486e7c40a675255ed29479ea9b1a124544e2742af49dd5eca9d462a1"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stdout",
+      "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stdout",
+      "sha256": "f41d67c96a5ef51d81ae6a37ab476d3a180ff385f2093f21abf4ce8ecc452c07"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stdout",
+      "sha256": "986216123ef4fe59309fa072072c7e56c9e8484fea0fd0f8bec9f1837aac44a5"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stderr",
+      "sha256": "85fe6d52a399cd3fb120bd1441f71ed05c3fb8d790c8351e752f3828f4691805"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stdout",
+      "sha256": "1f40b74a6411c6976376cdfd26e3246ede26bbda16cbac309c8b23364767f476"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stdout",
+      "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/empty.cpp",
+      "sha256": "c83f9c1be9494476e6ef5d2607fc290d09f694aab24bfdd1239997454ddc477b"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stdout",
+      "sha256": "e14b925216fe73b35fb1c33cb58b5be1bbb32e66769909f8807667a572c54451"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stdout",
+      "sha256": "802eb11893a2876fafb14764bc79fd0f2478a7da752ad523048cdad9cb39cd05"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stdout",
+      "sha256": "48b5e46aaad1f813680562b1cd4fdb022339fc40f2c61ba9d1575eeb267f819d"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stdout",
+      "sha256": "0041feb3b89dd73f1b76f7a52606c251b14acf38134ea738ad98e2a525b7b01e"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stdout",
+      "sha256": "37ddd6d0c393d836bd6a82da7abdf679f47140aa5e220a3bcb8e38e521908c8b"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stdout",
+      "sha256": "f31727034b4f715eb79d8b4961bf28151cac23cf1cafe61000840420699049f2"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stdout",
+      "sha256": "cd32b930fef5095eab52293adcc3b5b67f66c57a9d9c2d3abf9c1a9d91d8e686"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stdout",
+      "sha256": "ab361a48f3e791e8f5446ee68b454fe8b9e3cf6df848066d11f02a621d6467ff"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stdout",
+      "sha256": "89e5c3c05754b9d210647d9bda31af5fb41f0f7cf893c98ef169b34d3ad6d5c9"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/qualification.json",
+      "sha256": "1c507de66172f35521745752e55edc85481f3404bf05410c9981315577751fe6"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection",
+      "sha256": "621f57d144a40425ba632f7c3a787ef5e206c56163896e8e1fbe2cc1a745bbee"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stderr",
+      "sha256": "44a8df4d590eeffadacd30ca68fe50281345062e266d217023698a474dbf7193"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stderr",
+      "sha256": "c0f4185583c0ac520008e9ca772495e55a6ba7ad94ac651711dc265aabbffc2e"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stdout",
+      "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection.dSYM/Contents/Info.plist",
+      "sha256": "1d9bcb131ff5f9ccd39619b45ffbfafd6b5ae2d5355f5e7f6ab3385814a1bb1a"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection.dSYM/Contents/Resources/DWARF/reflection",
+      "sha256": "00832a8425b75dd598ad9c86180f45dc068adb284e2a3ab3dbf2f7e34a7c7d20"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection.dSYM/Contents/Resources/Relocations/aarch64/reflection.yml",
+      "sha256": "95ee572a7216f086c689fea8d971f5ca5a2d8af8bc48461e6ee60d04d8d28b96"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stdout",
+      "sha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stdout",
+      "sha256": "7b01c549928398a045692f24bcac7803b348524cdd76f21265b02984b2ba556a"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stderr",
+      "sha256": "986102ce737678746483311163a46feaf9a92fb3bf0c1e78c7a93ce3490f1be3"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stdout",
+      "sha256": "5511630a1c125aafc18521e6043a0849f289b47c78c23ccfcadf0a50de1ce121"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stdout",
+      "sha256": "8151264383ec25b1ff08f554064fe82a562e7806d6c078102f9fc8f46a1a8498"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    }
+  ]
+}

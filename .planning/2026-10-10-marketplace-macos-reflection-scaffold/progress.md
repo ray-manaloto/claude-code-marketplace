@@ -265,3 +265,30 @@ canonical prefix writes or compiler execution have occurred yet.
   match. A fresh default probe and development gates exited 0; no listener or
   lock holder remains. The exact review and ten private receipts are retained.
   Compiler/reflection execution is the next focused unit.
+
+Task 05c is committed at `04eb6149e32e619a5ee377751d74cc02eedda045`.
+Its post-commit baseline exited 0 with all 19 originals unchanged and a clean
+worktree. Task 05d opens the bounded GCC reflection witness. A fresh census found
+no compiler/build processes (12 CPUs; load 11.88/25.68/28.15); sequential tiny
+probes are admitted, with no global edits, package installation or heavy build.
+- First runtime attempt identified GCC/libstdc++ 16 and the macOS 27 SDK, then
+  failed because the witness omitted `typename` on a reflected type argument.
+  The initial source, runner, receipt and diagnostics are preserved; the fixture
+  now follows the compiler's diagnostic. No runtime pass is claimed yet.
+- The corrected witness compiled and ran with exit 0. A subsequent assertion
+  incorrectly rejected macOS system libc++ images in the process. Direct load
+  commands select libstdc++, runtime tracing resolves it to the installed GCC
+  prefix, and standard-library symbol bindings identify libstdc++. The check now
+  distinguishes those bindings from system images; the failed assertion remains.
+- The repaired runtime qualification passed: GCC 16.2.0 and ARM64 identities,
+  macOS 27.0 SDK, reflection macros `202603L`, real compile/link/run and an rc=1
+  missing-flag control. All 26 commands and 52 logs are retained, with unchanged
+  default environment and protected files. Independent runtime review follows.
+- Independent runtime review passed with no findings. Its single rerun exited 0
+  in 5.04 seconds with all 26 command outcomes reproduced. It rechecked nine
+  globals, eight packages, both GLib files, 1,791 links and six runtime identities;
+  static gates and all 19 original hashes pass. Exact review/text receipts are
+  retained; compiled outputs remain private. Task 05 is complete for this witness.
+- The staged whitespace check returned 2 only for seven immutable native logs
+  containing GCC version-line spaces and empty macro definitions. Their exact
+  reviewed hashes are preserved; the check excluding those logs returned 0.
