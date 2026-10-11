@@ -633,3 +633,18 @@ is admitted by this preparation unit.
   34 private guard controls and both static checks passed. Scoped source/build,
   protected state and all original files match. Real application remains a
   separate admitted operation.
+
+Task 07b6 is committed at `a4a902a412ac1a66ab11074068eb49b7d3cd1b66`;
+its post-commit baseline passed with a clean worktree. Operation 07b7 admits only
+the exact reviewed two-header patch in the private pinned source checkout.
+The admission binds helper/review/proposal and a new private run directory;
+immediate canonical-lease guards precede the write. Generated headers, build
+state, SDK and global tooling remain protected; compilation is a later operation.
+- Operation 07b7 exited 0 with all eighteen native commands passing. Exact
+  seven-file source state, cumulative diff and reverse applicability match;
+  generated/build/protected state and the default environment are unchanged.
+  The canonical lease is released. Independent application closure is next.
+- Independent application closure passed without findings: all 40 operation
+  records, 36 logs and the seven-file source state match. Generated/build and
+  protected inventories are preserved; the lease is free and no builders remain.
+  A fresh default consumer and static/baseline checks passed.

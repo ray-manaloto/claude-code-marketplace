@@ -169,4 +169,8 @@ guarded source application is next.
 Task 07b6 prepares that application with exact scratch evidence, source and
 retained build bindings. Independent review passed: seven native commands,
 34 private guard controls, preservation and static checks all passed. Source
-application is ready for its separate admission; no math patch has been applied.
+application was admitted separately as 07b7. All eighteen native commands passed
+and the two source headers now have their reviewed postimages. Generated/build
+and protected state are unchanged. Independent closure verified all operation
+records, source postimages, free lease and default consumer; static/baseline
+checks passed. Preparing the seven-file incremental restart is next.

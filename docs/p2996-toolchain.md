@@ -196,3 +196,12 @@ headers may change; generated headers wait for the separately admitted restart.
 The [preparation review](../evidence/p2996-math-application/preparation-review.json)
 passed one native reproduction, 34 private guard controls and static/baseline
 checks without findings. No real source application ran during preparation.
+
+Operation 07b7 applied the exact reviewed two-header patch. All eighteen native
+commands passed; the seven-file source state and reverse applicability match.
+The [operation receipt](../evidence/p2996-math-application/operation/qualification.json)
+records the cumulative diff, unchanged generated/build/protected state and
+released lease. Independent [application closure](../evidence/p2996-math-application/application-review.json)
+passed: exact operation/source identities, unchanged retained inventories,
+free lease, default consumer and original files all match. Restart preparation
+must now bind both adaptations and the retained child build state.
