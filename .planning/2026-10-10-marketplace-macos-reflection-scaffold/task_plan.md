@@ -38,6 +38,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 03a | Minimal native library, POD facade and smoke executable | Qualified GCC static/shared builds; private reflection flags; original acceptance hashes | Complete |
 | 06a | Pinned LLVM source and bounded bootstrap recipe | Exact commit/tree and license; matching runtimes; source-only acquisition and independent review | Complete |
 | 11a | Pinned vcpkg source and native registration preparation | Exact tool and registry provenance; isolated native link contract; independent review | Complete |
+| 11b | Private native vcpkg bootstrap | Pinned binary checksum, ARM64 execution, root discovery and independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

@@ -1,0 +1,746 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T04:18:53.898650+00:00",
+  "result": "PASS for task 11b private native vcpkg bootstrap and discovery",
+  "findings": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "cf9637d526e002901be636af918f7f4edf587bbe",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "reviewed_maintained_inputs": [
+    {
+      "path": "dev/toolchains/vcpkg_bootstrap.py",
+      "sha256": "4f47abfcaf953e37583a87507d27ced2216805c7abd22944181392922e2a9baf"
+    },
+    {
+      "path": "docs/vcpkg-toolchain.md",
+      "sha256": "f232a07a63dd27dc1fee7f5b597f86ff0ce3a8e4ccd7f96bea0fad5db1b75dea"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "3954220469e7c1e79b12f832f7f738816bee952a5571f55db286f307d1c81ddb"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "47078165027a7c24ad2413b3dbee91cace7528e17c686ab825c1afb2d5ba3842"
+    }
+  ],
+  "parent_evidence": {
+    "result": "PASS",
+    "qualification_sha256": "18f9d3f4978737a84330f393098d31791e66149ce57b72a95c8a961dcc45063b",
+    "helper_sha256": "4f47abfcaf953e37583a87507d27ced2216805c7abd22944181392922e2a9baf",
+    "binary": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg",
+      "sha512": "1cc2c658e8bcbdaa522f30e6c4a21ef85c68de1e8c6b5d5bbf5476ca2f44acc479f1367c045439f84ce4f3d912bccc05aefbeb2a5d0293f0168758759356486b",
+      "sha256": "f6adb17ce4df42bcb36d143664689de7ecce951739cd3e555e0c2e4ba04fa263",
+      "bytes": 12409856
+    },
+    "executable_release": "2026-09-26",
+    "version": "2026-09-26-51bf87ca6e9bf3e622d84ff323bd202ab1ca0c0b",
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+    "source_pin": "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "source_tree": "6b25d118fef8953f62969191719e0197d646d36d",
+    "source_inputs": [
+      {
+        "path": "LICENSE.txt",
+        "sha256": "1ee376fc340e0aa6ad6a3581c94126e741468705096ac92263048a21daa86460"
+      },
+      {
+        "path": "README.md",
+        "sha256": "7b449beaf0f8b3bbfd40e70cf40d1c8065e4fcd390be39da3e429af4b632748d"
+      },
+      {
+        "path": "bootstrap-vcpkg.sh",
+        "sha256": "87edce330ffadb27c86f10b7f3a5fc08d8c4241b9040c3759dfbb04cc85fb26a"
+      },
+      {
+        "path": "ports/fmt/portfile.cmake",
+        "sha256": "041c48f80df5d0a2ba4d1334d5887e723cfd231b0e18bf18d25480658e4b6231"
+      },
+      {
+        "path": "ports/fmt/vcpkg.json",
+        "sha256": "1a82f63057d79eb46c1c743079baed6aa36015acc54798cf6a86ba62bf3276db"
+      },
+      {
+        "path": "scripts/bootstrap.sh",
+        "sha256": "0baab23dd959bf69a8a53c2884dbda0e1b490c80fde57285c130f122bb12adde"
+      },
+      {
+        "path": "scripts/vcpkg-tool-metadata.txt",
+        "sha256": "44e7a8763d73c9aada61519845235baf55a97d2f931d5ae3a01ae338a591f397"
+      },
+      {
+        "path": "versions/baseline.json",
+        "sha256": "f5d250241c01bcf8ef83dd00360e3e30bc9fce66c5d19f6c0bffe7bcadcb4371"
+      },
+      {
+        "path": "versions/f-/fmt.json",
+        "sha256": "9ace1cf636605745a8e6ea1ac1a99761ba5b8a5d70ce38e4db8013a6e6feea41"
+      }
+    ],
+    "parent_command_count": 12,
+    "parent_logs_verified": [
+      {
+        "case": "source-head",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-head.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-head.stdout",
+        "sha256": "4aafa6331cae9e9c7b7c2c83f548d76e9b5e0ef6c4f781ea44208e88a3128d2d"
+      },
+      {
+        "case": "source-head",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-head.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-head.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "source-tree",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-tree.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-tree.stdout",
+        "sha256": "93a42215001c50dbefeefab30de07cb3aae02d41a83d4cf5941d41211a74a57d"
+      },
+      {
+        "case": "source-tree",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-tree.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-tree.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "source-clean-before",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-clean-before.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-clean-before.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "source-clean-before",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-clean-before.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-clean-before.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "native-bootstrap",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/native-bootstrap.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/native-bootstrap.stdout",
+        "sha256": "fb1f4dda3af1b550140dcee979a6bad31984bd91ca0e708c512b7a7bb28960c7"
+      },
+      {
+        "case": "native-bootstrap",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/native-bootstrap.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/native-bootstrap.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "architectures",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/architectures.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/architectures.stdout",
+        "sha256": "9cb483fd3739db2602d4c5bf672f4af954dc6dad82b36e8642b034af58f11c11"
+      },
+      {
+        "case": "architectures",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/architectures.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/architectures.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "file",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/file.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/file.stdout",
+        "sha256": "4c1d4c941f1c557419c47502999bb826d7bddc6a88a32918baab9e8e55d52ff7"
+      },
+      {
+        "case": "file",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/file.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/file.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "libraries",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/libraries.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/libraries.stdout",
+        "sha256": "fea5aa2ec69e8b4eb832d2159c0a378903fd150e44846b618d7a34fcbd632a42"
+      },
+      {
+        "case": "libraries",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/libraries.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/libraries.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "arm64-version",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/arm64-version.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/arm64-version.stdout",
+        "sha256": "355a6ff9edf32011b688404f6fe22343d586f32329eed525262285d42660b0d0"
+      },
+      {
+        "case": "arm64-version",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/arm64-version.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/arm64-version.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "native-link",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/native-link.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/native-link.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "native-link",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/native-link.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/native-link.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "fresh-version",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/fresh-version.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/fresh-version.stdout",
+        "sha256": "674c64a880d6e3012b4d3c7e4158f9f56e09c6e6cd45107adac099cb3c91c86f"
+      },
+      {
+        "case": "fresh-version",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/fresh-version.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/fresh-version.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "fresh-triplets",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/fresh-triplets.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/fresh-triplets.stdout",
+        "sha256": "e0b3828128640ced3ae3af005eb434730779e78afa0697227cd4b02f07744e53"
+      },
+      {
+        "case": "fresh-triplets",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/fresh-triplets.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/fresh-triplets.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "source-clean-after",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-clean-after.stdout",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-clean-after.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "source-clean-after",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/source-clean-after.stderr",
+        "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/source-clean-after.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "prior_independent_qualification_sha256": "c905d56c51fbcb0c57eacb76712e277691644ef0a6387c37c6ed8e947df99b7f",
+    "prior_independent_logs_verified": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/version.stdout",
+        "sha256": "92044869ea358c0fb7a4fd3f7f7262160292ee6bdb8d6b45d3df580fccfb7988"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/version.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-bare-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-bare-rejected.stderr",
+        "sha256": "4cad805cd4bc29f0e916fbaa3cb14323306b08dc90dc150c4645f6fdc8dd1f49"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-link.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-link.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-idempotent.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-idempotent.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-overwrite-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-overwrite-rejected.stderr",
+        "sha256": "3a9f131ceb60c5b67f772f4c1a4a1e1f41a58c87c96c506a69cde91a1bb294f4"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-latest-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-latest-rejected.stderr",
+        "sha256": "0d1deb54783c506d57f09f2c009eb3fa52da757315be76cd51b1f07ad44cb981"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-fresh-consumer.stdout",
+        "sha256": "70c8391717b453269db09ed9cbf074126d69902294d629c075155ed0c05f8bf2"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/clang-p2996-fresh-consumer.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-bare-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-bare-rejected.stderr",
+        "sha256": "29909245f43d57a0fb28d6b24c02bb8c4def9445802f511e66f6405a71bbab33"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-link.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-link.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-idempotent.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-idempotent.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-overwrite-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-overwrite-rejected.stderr",
+        "sha256": "45a00b78ff1c08fe3d1579c68b8700b76e258466db7209d9ec291a4db7aaffc6"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-latest-rejected.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-latest-rejected.stderr",
+        "sha256": "0d1deb54783c506d57f09f2c009eb3fa52da757315be76cd51b1f07ad44cb981"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-fresh-consumer.stdout",
+        "sha256": "8817c0abcc72dfb9f2db35069ca3d56a45793c7563063f25551c8084a6adfb1c"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/prior-independent-probe/vcpkg-fresh-consumer.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "native_install_namespace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/mise/data/installs/asdf-vcpkg",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+    "native_mise": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "version": "2026.10.7",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+    }
+  },
+  "independent_identity_checks": {
+    "commands": [
+      {
+        "case": "project-head",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "returncode": 0,
+        "stdout": "cf9637d526e002901be636af918f7f4edf587bbe\n",
+        "stderr": ""
+      },
+      {
+        "case": "project-branch",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "branch",
+          "--show-current"
+        ],
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "returncode": 0,
+        "stdout": "codex/marketplace-native-onboarding\n",
+        "stderr": ""
+      },
+      {
+        "case": "project-common-directory",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+        "stderr": ""
+      },
+      {
+        "case": "source-head",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "returncode": 0,
+        "stdout": "e456309491fd875487bf02b8a0dca76c1b1b00cc\n",
+        "stderr": ""
+      },
+      {
+        "case": "source-tree",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "returncode": 0,
+        "stdout": "6b25d118fef8953f62969191719e0197d646d36d\n",
+        "stderr": ""
+      },
+      {
+        "case": "source-clean",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ],
+        "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "case": "source-detached",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "symbolic-ref",
+          "-q",
+          "HEAD"
+        ],
+        "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "returncode": 1,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "case": "source-ignored-products",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "status",
+          "--porcelain",
+          "--ignored",
+          "--untracked-files=all",
+          "--",
+          "vcpkg",
+          "vcpkg.disable-metrics"
+        ],
+        "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "returncode": 0,
+        "stdout": "!! vcpkg\n!! vcpkg.disable-metrics\n",
+        "stderr": ""
+      },
+      {
+        "case": "binary-architectures",
+        "argv": [
+          "/usr/bin/lipo",
+          "-archs",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg"
+        ],
+        "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs",
+        "returncode": 0,
+        "stdout": "x86_64 arm64\n",
+        "stderr": ""
+      }
+    ],
+    "git_environment": {
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_CONFIG_GLOBAL": "/dev/null",
+      "GIT_TERMINAL_PROMPT": "0",
+      "inherited_GIT_variables": "removed"
+    }
+  },
+  "independent_runtime_checks": {
+    "started_at": "2026-10-11T04:17:08.354892+00:00",
+    "scope": "Exactly one version and one help-triplet invocation through fresh private mise state; existing native registration symlink copied verbatim",
+    "environment": {
+      "HOME": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/home",
+      "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+      "TMPDIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/tmp",
+      "NO_COLOR": "1",
+      "MISE_OFFLINE": "1",
+      "MISE_AUTO_INSTALL": "0",
+      "MISE_EXEC_AUTO_INSTALL": "0",
+      "MISE_AUTO_ENV": "0",
+      "MISE_TASK_RUN_AUTO_INSTALL": "0",
+      "MISE_NOT_FOUND_AUTO_INSTALL_REGISTRY": "0",
+      "VCPKG_DISABLE_METRICS": "1",
+      "VCPKG_DOWNLOADS": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/downloads",
+      "GIT_CONFIG_GLOBAL": "/dev/null",
+      "GIT_CONFIG_SYSTEM": "/dev/null",
+      "GIT_TERMINAL_PROMPT": "0",
+      "MISE_DATA_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/data",
+      "MISE_CONFIG_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/config",
+      "MISE_CACHE_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cache",
+      "MISE_STATE_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/state",
+      "MISE_TMP_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/tmp",
+      "MISE_SYSTEM_CONFIG_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/system-config",
+      "MISE_SYSTEM_DATA_DIR": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/system-data",
+      "XDG_CACHE_HOME": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/xdg-cache",
+      "XDG_CONFIG_HOME": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/xdg-config",
+      "XDG_DATA_HOME": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/xdg-data",
+      "XDG_STATE_HOME": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/xdg-state",
+      "MISE_CEILING_PATHS": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cwd",
+      "MISE_GLOBAL_CONFIG_FILE": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/config/absent.toml",
+      "MISE_SYSTEM_CONFIG_FILE": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/system-config/absent.toml"
+    },
+    "source_namespace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/mise/data/installs/asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "private_namespace": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/data/installs/asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "namespace_target": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+    "commands": [
+      {
+        "case": "version",
+        "argv": [
+          "/Users/rmanaloto/.local/bin/mise",
+          "--no-config",
+          "--no-hooks",
+          "--no-env",
+          "-C",
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cwd",
+          "exec",
+          "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+          "--no-deps",
+          "--",
+          "/usr/bin/arch",
+          "-arm64",
+          "vcpkg",
+          "version",
+          "--debug",
+          "--disable-metrics"
+        ],
+        "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cwd",
+        "started_at": "2026-10-11T04:17:08.355457+00:00",
+        "returncode": 0,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/version.stdout",
+            "sha256": "b02c795a5c006a89d0fc00fcea3158e6c0534b001b3e62c072e011eaf40b4f40"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/version.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "triplets",
+        "argv": [
+          "/Users/rmanaloto/.local/bin/mise",
+          "--no-config",
+          "--no-hooks",
+          "--no-env",
+          "-C",
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cwd",
+          "exec",
+          "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+          "--no-deps",
+          "--",
+          "/usr/bin/arch",
+          "-arm64",
+          "vcpkg",
+          "help",
+          "triplet",
+          "--disable-metrics"
+        ],
+        "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime/cwd",
+        "started_at": "2026-10-11T04:17:08.398456+00:00",
+        "returncode": 0,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/triplets.stdout",
+            "sha256": "e0b3828128640ced3ae3af005eb434730779e78afa0697227cd4b02f07744e53"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/triplets.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    ],
+    "state": "PASS: ARM64 version and source triplets through fresh private mise",
+    "triplet_counts": {
+      "Built-in Triplets": 13,
+      "Community Triplets": 91
+    },
+    "triplets_match_source_tree": true,
+    "finished_at": "2026-10-11T04:17:08.438657+00:00"
+  },
+  "static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "started_at": "2026-10-11T04:17:27.596481+00:00",
+      "returncode": 0,
+      "finished_at": "2026-10-11T04:17:27.832482+00:00",
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "started_at": "2026-10-11T04:17:27.833200+00:00",
+      "returncode": 0,
+      "finished_at": "2026-10-11T04:17:28.336890+00:00",
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/acceptance-baseline.stdout",
+          "sha256": "fe69a868d1c6386176821f1e86b8c113cfe69b89133c998562d003e44de8a4cc"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "claude_baseline_counts": {
+    "baseline": 19,
+    "json": 237,
+    "python": 9,
+    "shell": 6,
+    "toml": 14
+  },
+  "protected_state_unchanged": true,
+  "protected_counts": {
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shim_entries": 835,
+    "wrapper_entries": 0,
+    "source_git_metadata": 4,
+    "binary_and_metrics_marker": 2,
+    "original_bootstrap_entries": 58,
+    "maintained_inputs": 4
+  },
+  "existing_receipts_unchanged": true,
+  "source_clean": true,
+  "checks_not_run": [
+    "Bootstrap helper was never invoked by reviewer",
+    "No download, source acquisition, install or network access",
+    "No global mise registration, profile edit, shim mutation or native link rerun",
+    "No dependency build, compilation, LLVM work or application matrix",
+    "No injected guard failure or timeout; failure paths inspected statically",
+    "No model session, service, container, provider or full Claude/OCI acceptance"
+  ],
+  "disposition": "No actionable regression found. The exact macOS binary and private source-root discovery are qualified; global registration and dependency/application acceptance remain pending.",
+  "receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/acceptance-baseline.stdout",
+      "sha256": "fe69a868d1c6386176821f1e86b8c113cfe69b89133c998562d003e44de8a4cc"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/guard-review.json",
+      "sha256": "5805c939f65f22179bdcfb14f66611987f4cbdb350604815bbfd094777521f1d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/identity-checks.json",
+      "sha256": "ed7c54fed3bcb1bb96ccc42adb2978629292bd8ca7f0d3b407c69033145b8ea1"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/parent-evidence-review.json",
+      "sha256": "111491a03782de7b2dd025ffdcb6cebb58d1702010eb41bbbfd1be573b682070"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/post-checks.json",
+      "sha256": "f9bd048260390aa2337a78810a415e40ed0f6bfbdd309b9305589050bb32eb89"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/pre-state.json",
+      "sha256": "f0d8b5201bb4919f6c2ce8a07e2fe36010ff9bc8cd16d1266b982adef288cc5e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/runtime-checks.json",
+      "sha256": "7a6f1ce9798a5811042e8b90428ec4b68b74dcef6d87dc38a1dd8eca67073b03"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/static-checks.json",
+      "sha256": "05fc2e8ff7418c3c50735ea81499b2e2ccd5f1c0f787a68648235ba0cce1424a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/triplets.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/triplets.stdout",
+      "sha256": "e0b3828128640ced3ae3af005eb434730779e78afa0697227cd4b02f07744e53"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs/version.stdout",
+      "sha256": "b02c795a5c006a89d0fc00fcea3158e6c0534b001b3e62c072e011eaf40b4f40"
+    }
+  ]
+}

@@ -383,3 +383,20 @@ and its cold build remain pending. No global registration is admitted here.
   checks passed, including all 19 original acceptance hashes. Current globals,
   package/GLib state and shims were unchanged. Bootstrap and global registration
   remain pending; the heavy lease still belongs to the delivery operation.
+
+Task 11a is committed at `cf9637d526e002901be636af918f7f4edf587bbe`.
+The post-commit baseline exited 0 and the worktree was clean. Task 11b admits
+the pinned native macOS bootstrap in private storage, explicit binary checks
+and private native mise discovery. Global registration, profile changes and
+dependency builds remain outside this operation.
+- Native bootstrap and eleven accompanying source/binary/discovery checks
+  exited 0. The 12,409,856-byte universal executable matches the pinned SHA-512;
+  explicit ARM64 execution reports 2026-09-26 at tool commit 51bf87ca.
+  Fresh private mise discovery finds the exact source root without VCPKG_ROOT.
+  Source tracking and protected global/package/shim state remain unchanged.
+  Parent retains all command logs; independent review is pending.
+- Independent review passed: actual checksums/architectures/source identity
+  match, fresh ARM64 version and triplet-help commands exit 0, and all 104
+  triplet names match the pinned source. Both static checks pass, including
+  the 19 original acceptance hashes. Protected state is unchanged. No bootstrap
+  rerun, global registration or dependency build was performed by the reviewer.

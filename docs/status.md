@@ -34,7 +34,7 @@ the read-only research-guard limitation are preserved.
 Full Claude/OCI acceptance, MCP connectivity and provider research are unqualified.
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
 Last30Days validation. The minimal GCC native core is now qualified as described
-below. LLVM source preparation is complete; the LLVM compiler, vcpkg runtime,
+below. LLVM source preparation is complete; the LLVM compiler, global vcpkg registration,
 dependencies, application matrix and packages remain unqualified.
 
 Task 01 passed: pinned source/license acquisition and the four-file
@@ -103,8 +103,10 @@ Task 06a is committed at `fe108bce6f5226005c5082bc85fba7ae31d2aeb6`:
 review and script-mode controls. No LLVM configuration or build has run.
 Task 11a's [vcpkg preparation](vcpkg-toolchain.md) passed independent source review
 and reproduction of all thirteen private native registration cases. This admits
-no global registration or actual vcpkg execution. The shared heavy lease remains
-occupied; the next independent operation is the private native vcpkg bootstrap.
+no global registration. Task 11b's private native bootstrap subsequently passed
+checksum, ARM64 execution and root-discovery checks with independent review.
+The shared heavy lease remains occupied. Global vcpkg registration and the
+project manifest are the next independent unit.
 
 Reproduce from this checkout using an existing Python 3.11+ interpreter and
 `python3 -B dev/toolchains/gcc_reflection.py --run-dir <new-private-directory>`.

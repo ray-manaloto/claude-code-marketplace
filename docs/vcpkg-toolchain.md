@@ -1,7 +1,7 @@
 # Pinned vcpkg preparation
 
 Task 11a acquires source and qualifies isolated native mise registration.
-It does not bootstrap vcpkg, install dependencies or register a global tool.
+Its private experiment does not run vcpkg or register a global tool.
 Independent review passed and reproduced all thirteen private link cases once;
 the 19-file original acceptance baseline also passed.
 
@@ -13,7 +13,7 @@ The clean detached checkout is
 - Initial registry baseline: `e456309491fd875487bf02b8a0dca76c1b1b00cc`,
   recorded independently from the executable source identity.
 - Native bootstrap metadata selects executable release `2026-09-26` and
-  its pinned SHA-512 for `vcpkg-macos`. This binary is not yet acquired.
+  its pinned SHA-512 for `vcpkg-macos`, subsequently qualified in task 11b below.
 - The registry selects compiled `fmt` 12.2.0, port revision 1, Git tree
   `7ca0b8c0026883daf28a0db75f6b4964bae2979a`.
 
@@ -50,7 +50,31 @@ afterward; it does not restore historical shared state. See the
 
 Reproduce with an existing Python 3.11+ and a new private absolute directory:
 `python3 -B dev/toolchains/mise_link_probe.py --run-dir /absolute/new/probe`.
-Bootstrap, global promotion and profile updates need their own reviewed
-operation, fresh writer census and preimage checks. Dependency builds also
+Global promotion and profile updates need their own reviewed operation,
+fresh writer census and preimage checks. Dependency builds also
 require the shared heavy lease. Source qualification used primary GitHub
 acquisition under native fnox; it is not a new five-provider research audit.
+
+## Private native bootstrap
+
+Task 11b ran the pinned upstream `bootstrap-vcpkg.sh -disableMetrics` once.
+Its [bounded helper](../dev/toolchains/vcpkg_bootstrap.py) requires the exact
+reviewed checkout and absent binary/partial/metrics-marker files. It uses a
+private HOME, downloads and XDG directories; it never records inherited secrets.
+All twelve native commands exited 0. The downloaded universal macOS executable
+matches the pinned SHA-512, contains an ARM64 slice and runs explicitly through
+`arch -arm64`. Its version is `2026-09-26-51bf87ca6e9bf3e622d84ff323bd202ab1ca0c0b`.
+The tracked checkout remains clean and metrics are disabled.
+
+The private prefix at
+`~/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix`
+exposes `bin/vcpkg` as a symlink to that exact checkout's executable. Native mise
+links it only in a private data root. A fresh process, without `VCPKG_ROOT`,
+finds the expected source root through the symlink and lists its triplets.
+Global files, package states, GLib, shims and wrappers are unchanged. Exact
+exits, binary identity and log hashes are in the
+[bootstrap receipt](../evidence/vcpkg-bootstrap/native/qualification.json).
+The [independent review](../evidence/vcpkg-bootstrap/bootstrap-review.json) passed:
+fresh ARM64 version and triplet-help commands exited 0, all 104 triplet names
+matched the pinned tree, and static/19-file baseline checks passed. The bootstrap
+was not rerun. No dependency build or global registration ran.

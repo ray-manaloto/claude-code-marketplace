@@ -1,0 +1,150 @@
+{
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "cf9637d526e002901be636af918f7f4edf587bbe\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "branch",
+        "--show-current"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "codex/marketplace-native-onboarding\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-common-directory",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    },
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 0,
+      "stdout": "e456309491fd875487bf02b8a0dca76c1b1b00cc\n",
+      "stderr": ""
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 0,
+      "stdout": "6b25d118fef8953f62969191719e0197d646d36d\n",
+      "stderr": ""
+    },
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "source-detached",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "symbolic-ref",
+        "-q",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "source-ignored-products",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "status",
+        "--porcelain",
+        "--ignored",
+        "--untracked-files=all",
+        "--",
+        "vcpkg",
+        "vcpkg.disable-metrics"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 0,
+      "stdout": "!! vcpkg\n!! vcpkg.disable-metrics\n",
+      "stderr": ""
+    },
+    {
+      "case": "binary-architectures",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg"
+      ],
+      "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-bootstrap-review-hrr7wihs",
+      "returncode": 0,
+      "stdout": "x86_64 arm64\n",
+      "stderr": ""
+    }
+  ],
+  "git_environment": {
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "/dev/null",
+    "GIT_TERMINAL_PROMPT": "0",
+    "inherited_GIT_variables": "removed"
+  }
+}

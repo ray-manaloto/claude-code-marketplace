@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-10-11T04:14:54.815848+00:00",
+  "commands": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "tasks": 2
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "checks": {
+        "baseline": 19,
+        "json": 235,
+        "python": 9,
+        "shell": 6,
+        "toml": 14
+      }
+    }
+  ],
+  "scope": "Static checks after private vcpkg bootstrap; no dependency build or global registration."
+}
