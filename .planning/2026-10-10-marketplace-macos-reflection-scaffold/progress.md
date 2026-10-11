@@ -1215,3 +1215,42 @@ interfaces are retained. Native confinement and all dependency builds remain pen
 - Staging identified native final blank lines in four CMake error logs. Their
   exact bytes remain preserved; one scoped Git attribute disables only that
   whitespace diagnostic for this unit's stderr files. The staged check passed.
+- Task 12c3a is committed at `de913727bd6d41c1d7d2c11b52a384902dbd6eec`;
+  its post-commit baseline passed all 19 originals with a clean worktree. The
+  source commit preceded the final scan-metadata disposition receipt; all 51
+  raw files passed, and the sole metadata finding was a verified file digest.
+- Task 12c3b prepares four ordinary fmt installs with private per-triplet state,
+  constrained environments and one-job build limits. Native execution awaits review
+  and fresh capacity; no dependency build has started.
+- Five preparation controls passed for constrained environments and exact
+  ordinary-install arguments. Retained source confirms one-job build propagation;
+  `--cmake-args` is omitted because it would imply editable mode. The frozen
+  runner now awaits independent pre-run review.
+- Independent review found one resource-description issue: the pinned helper
+  permits two concurrent Debug/Release configure processes and compiler probes.
+  The contract now explicitly allows that bound with one job per dependency
+  build. All six new synthetic receipt controls passed; the narrow correction
+  awaits review before native admission.
+- R1 passed independent delta review. The admitted native run returned 1 after
+  its first fmt install returned 0; the host detector reports Apple `cc`/`c++`
+  aliases rather than `clang`/`clang++`. The other three installs did not run.
+  All 12 child PIDs ended, the lease was free, defaults matched, and shared
+  state/source preservation passed. Original files and logs remain retained.
+- Read-only diagnosis exposed a cache-key parser crossing blank lines. Exact
+  alias/version inputs and a parser limited to individual lines now pass both
+  actual cache controls, a CRLF key control and one complete inspection of the
+  retained static package. The original run remains failed; fresh execution
+  awaits independent repair review and capacity admission.
+- Independent failure/repair review passed without further findings. Fresh
+  capacity and the repeated under-lease checks admitted a new private retry.
+  It returned 0 in 64.67 seconds with 29 expected command outcomes: all four
+  triplets built Debug/Release fmt libraries, compiler/ABI checks passed, and
+  all eight libraries are ARM64. Native dynamic-library receipts distinguish
+  P2996 libc++ from GCC libstdc++. All child PIDs ended, the lease was free,
+  defaults matched, and source/shared-state preservation passed. Exact text
+  receipts are retained for final artifact review; consumers remain pending.
+- Final independent artifact review passed: all 162 text copies, eight reviewed
+  snapshots, 29 outcomes, eight installed library hashes and 16 Config/target
+  metadata files matched. The five maintained files include narrow whitespace
+  attributes preserving raw CMake/Ninja/stdout bytes. No native checks were
+  repeated for review. Task 12c3b is closed; consumer/runtime execution is next.

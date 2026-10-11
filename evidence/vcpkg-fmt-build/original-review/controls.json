@@ -1,0 +1,67 @@
+{
+  "result": "PASS six new bounded inspect_cell AST controls",
+  "helper_sha256": "e6e2c37510052e3da1f6756ae3b614ba863ce13f2db2eb58ada0bbbd67caf628",
+  "contract_sha256": "b58d623fbc92f45a8816b90b9931f0840e034ebf15f901c640cd3167f7a067a4",
+  "calls": 6,
+  "cases": [
+    {
+      "case": "valid-p2996-dynamic",
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "error": null,
+      "private_fixture_unchanged": true
+    },
+    {
+      "case": "valid-gcc16-static",
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "error": null,
+      "private_fixture_unchanged": true
+    },
+    {
+      "case": "duplicate-detector-marker",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "error": {
+        "type": "AssertionError",
+        "helper_line": 60
+      },
+      "private_fixture_unchanged": true
+    },
+    {
+      "case": "wrong-port-compiler-version",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "error": {
+        "type": "AssertionError",
+        "helper_line": 75
+      },
+      "private_fixture_unchanged": true
+    },
+    {
+      "case": "missing-debug-compiled-library",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "error": {
+        "type": "AssertionError",
+        "helper_line": 84
+      },
+      "private_fixture_unchanged": true
+    },
+    {
+      "case": "wrong-additional-abi-file",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "error": {
+        "type": "AssertionError",
+        "helper_line": 89
+      },
+      "private_fixture_unchanged": true
+    }
+  ],
+  "method": "Only inspect_cell compiled from AST; injected fixture-only digest and inventory stub. Synthetic compiler/library bytes are non-executable; no real prefix inventory or candidate imports.",
+  "native_commands": 0,
+  "historical_controls_replayed": 0,
+  "shared_writes": 0,
+  "fixtures_excluded_from_support_manifest": true
+}

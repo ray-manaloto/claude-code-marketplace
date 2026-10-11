@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETE_SOURCE_PREREQUISITE",
+  "task": "12c3b fmt native logging and concurrency",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+    "common_git": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "closing_head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec"
+  },
+  "disposition": {
+    "omit_all_cmake_args": true,
+    "reason": "--cmake-args=-DPORT_DEBUG=ON is parsed and forwarded, but the -D definition implies editable mode. Parent chose to preserve the ordinary non-editable compiler-information and ABI path.",
+    "diagnostics": "Parent will use the supported outer --debug switch and retained process/file outputs where available. This report does not claim outer --debug sets PORT_DEBUG.",
+    "port_debug_compiler_option_independence": "NOT_CLAIMED; parent explicitly removed that requirement after accepting omission of the option."
+  },
+  "supported_but_omitted_argument": {
+    "argv_element": "--cmake-args=-DPORT_DEBUG=ON",
+    "parser": "Standard repeatable option (arguments:405; constants:208).",
+    "forwarding": "Raw -DPORT_DEBUG=ON enters the port-script CMake arguments (build:943-946,1202-1203).",
+    "install_policy_effects": [
+      "install:1264-1266 recognizes any cmake argument beginning -D; install:1321-1322 makes this editable mode.",
+      "Manifest installs reject this effective editable mode (install:1356-1365).",
+      "Classic planning receives Editable::Yes (install:1412-1416).",
+      "build:1393-1396 disables binary caching and returns before the compiler-info assignment at 1399. This is a concrete ABI-path effect, even though the supplied variable is intended for diagnostics."
+    ]
+  },
+  "concurrency": {
+    "environment": {
+      "VCPKG_MAX_CONCURRENCY": "1"
+    },
+    "chain": [
+      {
+        "source": "constants:563; system:798-823,840",
+        "result": "get_concurrency() reads VCPKG_MAX_CONCURRENCY, parses positive integer 1 and returns unsigned 1; it is cached per process."
+      },
+      {
+        "source": "constants:394; build:790-800",
+        "result": "get_generic_cmake_build_args defines VCPKG_CONCURRENCY=1 for port-script CMake."
+      },
+      {
+        "source": "cmake_build:16-19",
+        "result": "With generator Ninja, build_param=-v and parallel_param=-j1; no_parallel_param also equals -j1."
+      },
+      {
+        "source": "cmake_build:44-52,65-82",
+        "result": "Each selected Debug/Release invocation is CMake --build . --config <configuration> -- -v -j1, forwarding -j1 to Ninja."
+      }
+    ],
+    "scope": "Source proof for the pinned helper when the selected generator is Ninja and the variable is not overridden by port/triplet code; not an observed native run."
+  },
+  "source_bindings": [
+    {
+      "id": "constants",
+      "lines": [
+        208,
+        394,
+        563
+      ],
+      "purpose": "Exact cmake-args, VCPKG_CONCURRENCY and VCPKG_MAX_CONCURRENCY spellings.",
+      "path": "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/include/vcpkg/base/contractual-constants.h",
+      "sha256": "b0fc7bf4f1dcd7538cfdb6656b8dbf79703d944f9f24e3d1f99caf3ea1b0d958",
+      "bytes": 45296,
+      "archive_member": "vcpkg-tool-2026-09-26/include/vcpkg/base/contractual-constants.h",
+      "archive_match": true
+    },
+    {
+      "id": "arguments",
+      "lines": [
+        318,
+        405
+      ],
+      "purpose": "Standard outer debug switch and Standard repeatable cmake-args option.",
+      "path": "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/src/vcpkg/vcpkgcmdarguments.cpp",
+      "sha256": "855b0ce8d2d135d74d5fd58ed3d1defd8498f717ed250bbd0761d8ef9fa4ceab",
+      "bytes": 34946,
+      "archive_member": "vcpkg-tool-2026-09-26/src/vcpkg/vcpkgcmdarguments.cpp",
+      "archive_match": true
+    },
+    {
+      "id": "build",
+      "lines": [
+        "790-803",
+        "943-946",
+        "1202-1203",
+        "1393-1399"
+      ],
+      "purpose": "Port-script argument forwarding, concurrency definition and editable ABI early return.",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/commands.build.cpp",
+      "sha256": "8a2cae098a28327ca4ece8f64ca51d1570240216a04738baaa7c076d4df51689",
+      "bytes": 108701,
+      "archive_member": "vcpkg-tool-2026-09-26/src/vcpkg/commands.build.cpp",
+      "archive_match": true
+    },
+    {
+      "id": "install",
+      "lines": [
+        "1264-1266",
+        "1321-1322",
+        "1356-1365",
+        "1412-1416"
+      ],
+      "purpose": "Any -D argument implies editable; rejected in manifest mode and passed into classic install planning.",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-install-source-prerequisite/src/vcpkg/commands.install.cpp",
+      "sha256": "a8c2c93c8b2efade69c60b09cf635f0c54d8018c43fd5df69516a506117315b3",
+      "bytes": 74511,
+      "archive_member": "vcpkg-tool-2026-09-26/src/vcpkg/commands.install.cpp",
+      "archive_match": true
+    },
+    {
+      "id": "system",
+      "lines": [
+        "798-840"
+      ],
+      "purpose": "Positive integer environment override and cached concurrency value.",
+      "path": "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/src/vcpkg/base/system.cpp",
+      "sha256": "2eda9f237597d26e75433d2b26b462fca078de00efca2bcc5a61c495a4cc8760",
+      "bytes": 30478,
+      "archive_member": "vcpkg-tool-2026-09-26/src/vcpkg/base/system.cpp",
+      "archive_match": true
+    },
+    {
+      "id": "cmake_build",
+      "lines": [
+        "16-19",
+        "44-52",
+        "65-82"
+      ],
+      "purpose": "Ninja -v/-j flags and Debug/Release build invocations.",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_build.cmake",
+      "sha256": "6d1c27080fe3e768b5e7b968d6a28a37db154ebcb214297de25f10b6713511e1",
+      "bytes": 3858,
+      "retained_ports_checkout_head": "e456309491fd875487bf02b8a0dca76c1b1b00cc"
+    }
+  ],
+  "provenance": {
+    "tool_tag": "2026-09-26",
+    "tool_commit": "51bf87ca6e9bf3e622d84ff323bd202ab1ca0c0b",
+    "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/2026-09-26.zip",
+    "archive_bytes": 3792141,
+    "archive_sha512": "19669a5f107cb02693fe5968687cf83e3ae13692c16a389ff08ff5d51caddf4d885c961e91c60ee2adfbd242dffcdd8987dbcb2f59a71b797a9c7f95e9d89934",
+    "archive_reverified": true,
+    "archive_source_members_reverified_in_memory": 5,
+    "receipts": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/metrics-source/inventory.json",
+        "sha256": "efced186fe96398b95f3e6ec532ac53a10078356572dc4881cb87e32f8d6ee5b"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/install-source/inventory.json",
+        "sha256": "3f67b4d78687ab8bfe69037879b5937614b1e73dd73d8a8ac26e6de5aa3f0b17"
+      }
+    ],
+    "ports_helper": "The sixth file is the retained vcpkg ports helper at the recorded checkout HEAD; its exact current byte digest is recorded separately from the vcpkg-tool archive."
+  },
+  "execution": {
+    "native_commands": 0,
+    "project_source_imports": 0,
+    "network_requests": 0,
+    "profile_operations": 0,
+    "shared_inventory_runs": 0,
+    "compilers_or_vcpkg_run": false,
+    "source_files_dumped_or_written": 0,
+    "source_or_host_guides_repeated": false,
+    "source_binding_count": 6,
+    "source_hashes_unchanged_at_close": true,
+    "private_artifact_allowlist": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/fmt-logging-concurrency-ppI2gp/report.json"
+    ],
+    "tools": "Node REPL filesystem/crypto reads and in-memory ZIP member decompression only; one private report write."
+  },
+  "limits": [
+    "The selected omission resolves the logging prerequisite without changing install policy.",
+    "No native fmt build, compiler detection, Ninja scheduling, logging visibility or runtime acceptance is claimed."
+  ]
+}

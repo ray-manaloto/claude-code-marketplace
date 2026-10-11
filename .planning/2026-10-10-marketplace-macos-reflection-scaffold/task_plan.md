@@ -80,6 +80,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c2a | pkg-config prerequisite preparation | Exact native profile discovery, provisioning source/ownership contract if required | Complete |
 | 12c2b | Guarded native pkgconf installation | Reviewed write set; fresh capacity; native exit, links, package lookup and preserved defaults | Complete |
 | 12c3a | Qualified pkgconf ABI and fmt build inputs | Exact selection guards, retained ABI entries and bounded CMake controls | Complete |
+| 12c3b | Private native fmt builds | Reviewed build/configure limits; fresh capacity; native exits, detector and ABI receipts | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -220,3 +221,11 @@ Bind the already-qualified pkgconf selection and executable/runtime ABI inputs;
 keep fmt as a compiled library without modules for the smallest parity witness.
 Bounded CMake script controls perform no compiler detection, dependency build,
 installation, lease acquisition or shared writes.
+
+Task 12c3b prepares one private fmt build helper, composition docs and these
+planning files. Review exact inputs, four ordinary manifest installs, fresh
+per-triplet state and confinement before fresh capacity admission. Allow one job
+per dependency build and up to two concurrent Debug/Release CMake configure
+processes, including their compiler probes, within the single leased operation.
+Keep compiler tracking and both dependency configurations enabled. No shared
+installation, binary cache, consumer build or full matrix is included.

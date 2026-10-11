@@ -1,0 +1,50 @@
+{
+  "result": "PASS requested file bindings; one source finding retained separately",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "bindings": {
+    "head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+    "helper": "e6e2c37510052e3da1f6756ae3b614ba863ce13f2db2eb58ada0bbbd67caf628",
+    "contract": "b58d623fbc92f45a8816b90b9931f0840e034ebf15f901c640cd3167f7a067a4",
+    "candidate": "b872414cdac9963fde857e2de3c6d0bfbfa8dc2df1525d8fa98f183a63678af6"
+  },
+  "candidate_files": 4,
+  "contract_inputs": 65,
+  "source_inputs": 18,
+  "tools": 15,
+  "unique_abi_paths": 22,
+  "download_sha512_checks": 2,
+  "exact_copy_pairs": 6,
+  "retained_parent_controls": 5,
+  "parent_controls_returncode": 0,
+  "parent_static_returncodes": [
+    0,
+    0
+  ],
+  "parent_baseline_original_files": 19,
+  "scan_returncodes": {
+    "raw": 1,
+    "disposition": 0
+  },
+  "scan_disposition": "One exact content digest independently matched the bound public receipt.",
+  "native_commands": 0,
+  "candidate_functions_executed": 0,
+  "maintained_writes": 0,
+  "shared_writes": 0,
+  "concurrency_finding": {
+    "path": "dev/toolchains/vcpkg_fmt.py",
+    "line": 39,
+    "source_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+    "source_lines": [
+      248,
+      272
+    ],
+    "fmt_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/fmt/portfile.cmake",
+    "finding": "The one-job environment controls compilation/build invocations, but the unchanged helper launches two configure processes through Ninja without -j1. Original whole-install wording must be narrowed or configure scheduling constrained.",
+    "executed_runtime_reproduction": false
+  }
+}

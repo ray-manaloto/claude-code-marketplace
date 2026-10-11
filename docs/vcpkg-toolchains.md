@@ -131,5 +131,25 @@ conflicting `PKGCONFIG` variable/cache, and adds the executable and package
 library bytes to the target ABI inputs. The shared triplet selects
 `FMT_MODULE=OFF` for the compiled-library witness while retaining both dependency
 configurations. All eight script controls and independent source/receipt review
-passed with no findings. Actual host/target compiler selection and fmt linkage
-remain unqualified.
+passed with no findings. Native compiler selection and fmt linkage are qualified
+separately below.
+
+Task 12c3b prepares four sequential private fmt installs, each with fresh
+detector/build/package/installed roots and both dependency configurations.
+Each dependency build uses one job; the pinned helper may run the two
+Debug/Release CMake configure processes and their compiler probes concurrently.
+The runner keeps host CC/CXX unset, constrains PATH, checks exact detector and
+ABI inputs, and reuses the qualified source-copy and sandbox contracts. Fresh
+capacity, a canonical lease and independent review precede native execution.
+Compiled commands, package artifacts and later consumers remain separate gates.
+The first P2996 static install returned 0, then receipt validation rejected the
+host compiler alias spelling. The retained artifacts now pass read-only checks
+with exact Apple `cc`/`c++` aliases and a cache parser confined to individual
+lines. Independent repair review passed. The fresh four-triplet retry returned 0
+with 29 expected command outcomes and eight Debug/Release ARM64 libraries.
+Compiler detectors, ABI inputs and actual compile/link logs match the selected
+Clang/libc++ and GCC/libstdc++ lanes. The lease was released, every child exited,
+and the pinned source, protected shared state and default profile were preserved.
+The [native receipts](../evidence/vcpkg-fmt-build/native-closure.json) passed
+independent artifact review with no findings. Application consumer parity and
+dynamic loader execution remain separate gates.

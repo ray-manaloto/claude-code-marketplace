@@ -1,0 +1,408 @@
+{
+  "base_head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+  "disk_reserve_bytes": 8589934592,
+  "scope": "Four sequential ordinary fmt manifest installs with fresh private per-triplet roots; source and baseline bindings; no consumers or shared installation",
+  "vcpkg_source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+  "vcpkg_commit": "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+  "vcpkg_tree": "6b25d118fef8953f62969191719e0197d646d36d",
+  "prefixes": {
+    "p2996": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "gcc16": "/opt/homebrew/Cellar/gcc/16.2.0"
+  },
+  "profiles": {
+    "p2996": "evidence/mise-renovate/operation/p2996-profile.stdout",
+    "gcc16": "evidence/mise-renovate/operation/gcc16-profile.stdout"
+  },
+  "managed_tools": {
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "version": "4.4.4"
+    },
+    "ninja": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "version": "1.13.2"
+    }
+  },
+  "downloads": [
+    {
+      "path": "/private/tmp/marketplace-task12-fmt-source-hlRMJq/fmtlib-fmt-12.2.0.tar.gz",
+      "filename": "fmtlib-fmt-12.2.0.tar.gz",
+      "sha512": "5ac2ba0f54a484999ed5407d82b77aad170cea49a267decd2c0eedadf3b14413e2a83fcc8e9ca9c16640595e019b8636e160f72314d8be50653324e82ac745eb"
+    },
+    {
+      "path": "/private/tmp/marketplace-task12-fmt-source-hlRMJq/fmt-backport-4813.patch",
+      "filename": "fmt-backport-4813.patch",
+      "sha512": "afda8fdfcdcb4b0dd5df4d4dae96a57a85fb9c4b65d0b49d51258f0913d4aed93ed146ebf96ed7b277490b1dde6c7117f43332013071441a96c3147520de8368"
+    }
+  ],
+  "inputs": {
+    "vcpkg.json": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316",
+    "dev/toolchains/gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+    "dev/toolchains/mise_runtime.py": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+    "dev/toolchains/p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+    "dev/toolchains/p2996_install.py": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+    "dev/toolchains/vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+    "evidence/p2996-math-resume/operation/p2996_build.py.source": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "evidence/mise-runtime/contract.json": "2a9f8646ae2cc3bd76ddd424eae64c91e0efb4ba6f1eadaeef6c90dbf367b752",
+    "evidence/mise-runtime/runtime-review.json": "f55c12c638822bd2981b6501f363fa02a5437e5a333ecae57641501069842ed5",
+    "evidence/vcpkg-bootstrap/native/qualification.json": "18f9d3f4978737a84330f393098d31791e66149ce57b72a95c8a961dcc45063b",
+    "evidence/vcpkg-private/source-copy-manifest.json": "2ebb74916051c41bbb8201378d6f3cf3401688fdcaddec378ce61012716d4b49",
+    "evidence/vcpkg-private/fmt-source/inventory.json": "69a4618e67a8ece9f1f8780cb38e100a4fedbd2486c31ce9b3122ecab06ed478",
+    "evidence/vcpkg-private/metrics-source/inventory.json": "efced186fe96398b95f3e6ec532ac53a10078356572dc4881cb87e32f8d6ee5b",
+    "evidence/vcpkg-private/sandbox-source/inventory.json": "f55a9c97bd10c1c9ba24b8b612542c372efce95c8cc4bbf4679de7ba84571f95",
+    "evidence/vcpkg-private/install-source/inventory.json": "3f67b4d78687ab8bfe69037879b5937614b1e73dd73d8a8ac26e6de5aa3f0b17",
+    "evidence/vcpkg-p2996-triplets/host-controls-prerequisite.json": "3edb783735443a0d8d1fc15630fa8cfa9608aeb95210e78faf403d667f543697",
+    "evidence/vcpkg-gcc16-triplets/independent-review/review.json": "1226640f7240c06d0d9bf6f9fb35b1532dac83f9f6f3ec0e0c13eedf7fca0998",
+    "evidence/vcpkg-p2996-triplets/final-review/review.json": "9d1177e249350fef3590576a982c0f9f1d94db04f2ab98634fe66dfa42edc134",
+    "evidence/iwyu-build/operation/default-after.stdout": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+    "evidence/iwyu-build/operation/named-profile.stdout": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473",
+    "evidence/core-p2996/operation/p2996-profile.stdout": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+    "evidence/core-p2996/operation/gcc16-profile.stdout": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+    "triplets/arm64-osx-gcc16-dynamic.cmake": "d3e5fc1c2de7837909baa0526e8e5cc8b7d61c751b7429371122156999027b15",
+    "triplets/arm64-osx-gcc16-static.cmake": "66754e5c52ffe52e698c49c95bea4066d613297a098c204c8fb0464d23977d71",
+    "triplets/arm64-osx-p2996-dynamic.cmake": "a5aa70f0d08717334be8038a2f19d3abc5d51be0409071df34497473b72ce645",
+    "triplets/arm64-osx-p2996-static.cmake": "b71ea0c73d2db81bf2013f090a550721b702e0505678be82923ab719a1a6a376",
+    "triplets/common/macos-arm64.cmake": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a",
+    "cmake/toolchains/gcc16-macos-arm64.cmake": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+    "cmake/toolchains/p2996-macos-arm64.cmake": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112",
+    "cmake/toolchains/vcpkg-macos-arm64.cmake": "12646f84d82707b9ae4fa6d7db8455e116c758309bcf28467faf348c899fd05c",
+    "evidence/vcpkg-private/source-identity/inventory.json": "694905c486207968a285b80c364dfdebcdd2e33b4aa1bd1939b27a20721bfb0b",
+    "evidence/vcpkg-private/source-identity/proof.json": "570293e2ddec47700de826c8244c55f5ee0c8e01967fec22096a658ded583a97",
+    "evidence/vcpkg-private/source-identity-copy-manifest.json": "e0121d0348a31ed06d751637eecdc06fde3ead14ec9573163c8deaaacb3ea431",
+    "dev/toolchains/mise_renovate.py": "df47f68eb8825ef6b444c5f33ddb6144f27771ae42e703fa315de899783bd1aa",
+    "evidence/mise-renovate/contract.json": "45351436cf7ed5d68280efd5925e2e4eab39c9040e0dd71fd9d089a38214b892",
+    "evidence/mise-renovate/closure-review.json": "bc35e382a29cee0ffc22117221643699eb8dd11b3e0fd509bdfeadd922f4e465",
+    "evidence/mise-renovate/native-execution.json": "cf2be27072958f7fb51f92585adff9f95837543c88d116eaa474a338a6864460",
+    "evidence/mise-renovate/closure-disposition.json": "d3963c000cd435e19bfe3a35e80c8f2ca4c4918464b5638ab9daf2cf21bd4f8d",
+    "evidence/vcpkg-private/contract.json": "f0b710d15389ae7091fb2af0aa35207712989a1312510996a6f467c116c02c8d",
+    "evidence/vcpkg-private/closure-review.json": "61e4c4bfc437fe97ddb538d5c4189dbd7e3f605f4544d3d34554ae091be323e1",
+    "evidence/vcpkg-private/native-execution.json": "1b80e026e8a4dbe64e65396e3d0350eeca0f85f7dec20086c24d524301ef05f4",
+    "evidence/mise-renovate/operation/default-after.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "evidence/mise-renovate/operation/p2996-profile.stdout": "9b2f8ed032ab499b1163f236170fd47da7e80a435df8180e3e11b16468a334fe",
+    "evidence/mise-renovate/operation/gcc16-profile.stdout": "cc00d9513773e9a7863b6bce6663e5885d62bd095998a6acb1cf846a90553524",
+    "evidence/vcpkg-private-retry/reattestation-postcommit.json": "2eb82f9e13ec1238817792982420d52de0004ea94c43a8733a1a20f04fb85fdd",
+    "dev/toolchains/vcpkg_private.py": "7e1d7cae675be05b70e96c429e38240125be8e9cd88c2ffe007664a10921b60a",
+    "evidence/vcpkg-private-retry/contract.json": "1099e0df49d3a6e022f76297424b0456365333700c086d1d0d7a1905f03bfda5",
+    "evidence/vcpkg-private-retry/closure-review.json": "522829e86a34e82f4d217c7d0c37782b4b2dad8b41dfff724cd3be7405c18e17",
+    "evidence/vcpkg-private-retry/operation/qualification.json": "9b3482e5b6f9d6d4338943d169819d183739de5647778b7d487f26574c1777c9",
+    "evidence/pkgconf-install/qualified-package-inputs.json": "3ba4a5797011cb1178b4b4e0383ce158e25b21fa2b206fc2068f6936e9d7e75f",
+    "evidence/pkgconf-install/closure-review.json": "0f2b0218126b112c3e898310a9e6e1ee9ff648474d0133e73567c5771c64ecf4",
+    "evidence/vcpkg-abi-inputs/independent-review/review.json": "7cff8c7840ef66d1534094514f5bb9e99ce63ff649926a1e2d23e0bfe3022080",
+    "evidence/vcpkg-abi-inputs/closure-review.json": "e04782ab82936a4414541b81f668b3e1507d13bac1a38ff0efc452cdaeb82043",
+    "evidence/vcpkg-abi-inputs/source-bindings.json": "4edd24fe55d8b072badeb7b428100eb014e609a9cd7086954bb9d8804971e75a",
+    "evidence/vcpkg-abi-inputs/closure-secret-scan.json": "178c30df1e36d49a25c82a75f42330c5cbc0b20e0c919842971878b47da25c0e",
+    "evidence/vcpkg-fmt-build/logging-concurrency-prerequisite.json": "18f0fea593674325ebd89bb18ce9ec04dbed7d625b54b19296ba017d2b53055e",
+    "evidence/vcpkg-fmt-build/vcpkg-abi-postcommit.json": "db3632c737167f11b839179f31fb0fbf9fd0ab9c4e6496d32393149716b02030",
+    "evidence/vcpkg-native-prerequisites/prerequisite.json": "d39f8f8812d2184e5545c3a1420510329f500f45472486c7e7fa9409d8d0c002",
+    "evidence/vcpkg-native-prerequisites/pkgconf-wiring/prerequisite.md": "311fc0968ce714ff2f06e6920b9bc1410ca8084ecd9c786bedc6de8e5c2a407e",
+    "evidence/core-p2996/operation/configured-evidence/p2996-static/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+    "evidence/vcpkg-abi-inputs/controls/p2996-static.stdout": "ba72dd1030113788b03c28adf2aa9212df6e265abc6f7ea060d1a1d3d1574237",
+    "evidence/vcpkg-abi-inputs/controls/p2996-dynamic.stdout": "d078b919a39205bd11df0c917922f89839fa0213a0104099cce4b118ec683edb",
+    "evidence/core-p2996/operation/configured-evidence/gcc16-static/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake": "8c760554ca7b7f7feb14324d11115273ce31ce7720eec93e2929eef1e8bf9c8a",
+    "evidence/vcpkg-abi-inputs/controls/gcc16-static.stdout": "83baa55d4aae193477c60683eb5a9acead582ac721dec97bb688545901352824",
+    "evidence/vcpkg-abi-inputs/controls/gcc16-dynamic.stdout": "e7ca7a5172fae3b47b05c28b518859047f27c413d8ee0752ca1852a1e015f8f7"
+  },
+  "tools": {
+    "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+    "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg": "f6adb17ce4df42bcb36d143664689de7ecce951739cd3e555e0c2e4ba04fa263",
+    "/usr/bin/sandbox-exec": "58839ef01b4eef8aac0d2aa8f9d1c074ae45aafe3533965b030672450064acc8",
+    "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3": "d0e9565120f3993236213e0cba0ae07cecb08bf7f7490fca9d1fc2c2c6803ebd",
+    "/Library/Developer/CommandLineTools/usr/bin/clang": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9",
+    "/Library/Developer/CommandLineTools/usr/bin/clang++": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9",
+    "/usr/bin/git": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+    "/usr/bin/xcrun": "bbe7671518a3905f9d3fce54312fbc77c2876b0d62aca74a0688fa869d31a8a9",
+    "/bin/ps": "a06fe087161557f1f8c030672eaedcd90bc6a8e92b8f2d44e07cffedc3349205",
+    "/Applications/Docker.app/Contents/Resources/bin/docker": "6c33f6c851de8ea6729a44f952b41774973a6d20768ea514dfa700497c884392",
+    "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246",
+    "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1",
+    "/usr/bin/lipo": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+    "/usr/bin/otool": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2"
+  },
+  "source_inventory": "evidence/vcpkg-private/source-identity/inventory.json",
+  "default_profile": "evidence/mise-renovate/operation/default-after.stdout",
+  "install_timeout_seconds": 600,
+  "jobs_per_build": 1,
+  "source_inputs": {
+    "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/include/vcpkg/base/contractual-constants.h": "b0fc7bf4f1dcd7538cfdb6656b8dbf79703d944f9f24e3d1f99caf3ea1b0d958",
+    "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/src/vcpkg/vcpkgcmdarguments.cpp": "855b0ce8d2d135d74d5fd58ed3d1defd8498f717ed250bbd0761d8ef9fa4ceab",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/commands.build.cpp": "8a2cae098a28327ca4ece8f64ca51d1570240216a04738baaa7c076d4df51689",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-install-source-prerequisite/src/vcpkg/commands.install.cpp": "a8c2c93c8b2efade69c60b09cf635f0c54d8018c43fd5df69516a506117315b3",
+    "/private/tmp/marketplace-task12-host-controls-61uddlnb/source/src/vcpkg/base/system.cpp": "2eda9f237597d26e75433d2b26b462fca078de00efca2bcc5a61c495a4cc8760",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_build.cmake": "6d1c27080fe3e768b5e7b968d6a28a37db154ebcb214297de25f10b6713511e1",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_fixup_pkgconfig.cmake": "1a15f6c6d8e2b244d83a7514a0412d339127d2217d1df60ad1388b546c85f777",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/z_vcpkg_setup_pkgconfig_path.cmake": "adf3bbc7e70bf1847661023662a91f09a7cc0d4396c7164bef4a81abcfb657ea",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/vcpkg-tool-source/src/vcpkg/commands.build.cpp": "8a2cae098a28327ca4ece8f64ca51d1570240216a04738baaa7c076d4df51689",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/vcpkg-tool-source/src/vcpkg/cmakevars.cpp": "3f5ad515cf14b940b454630b5b0c7727c9c60d4cd1314a926a5a44922feaeca1",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/fmt/portfile.cmake": "041c48f80df5d0a2ba4d1334d5887e723cfd231b0e18bf18d25480658e4b6231",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/fmt-source/source/CMakeLists.txt": "94acf4a02003fe017676806206a7946a3e92d5c44784cd9dd34aa224e7711e0a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/CMakeLists.txt": "eb3a229344dd5eb273e791adf163cebe6cfcf31dda3df0a87363f8eb7c84fcb0",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/ports.cmake": "ae49e729c370bed1954cdd64875854fe1bb2ae4b9ed0316f6777d32ffeb9bd4a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_install.cmake": "3ae7886dc8434fac6f1e61190cc355fdec5fbd4f60758e2de20423cf49c91369"
+  },
+  "pkgconf_binary": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+  "host_compiler": {
+    "C": "/Library/Developer/CommandLineTools/usr/bin/clang",
+    "CXX": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+    "id": "AppleClang"
+  },
+  "compilers": {
+    "p2996": {
+      "C": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+      "CXX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "id": "Clang",
+      "version": "21.0.0"
+    },
+    "gcc16": {
+      "C": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+      "CXX": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "id": "GNU",
+      "version": "16.2.0"
+    }
+  },
+  "abi_inputs": {
+    "arm64-osx-p2996-static": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+        "sha256": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+        "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519"
+      },
+      {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/SDKSettings.json",
+        "sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+        "sha256": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "sha256": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+        "sha256": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "sha256": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta",
+        "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/include/stddef.h",
+        "sha256": "b3e62a046ddf28d09eedebe6eb9461cb7060e47cad2c69964b222c4eea10347e"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "sha256": "87c316fd2a1b279d7f5de0923932faedec2e88f2d91f401eda006dfe6cf82d0f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "sha256": "f2883b16322dc2c782f451f34fdda34c935455a6a6fffe5bb1632d369c4d176f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "sha256": "feead6b9a8b3f844c54263fbda9cf32d960eb2f414a0d2c71f3dd46817de2895"
+      }
+    ],
+    "arm64-osx-p2996-dynamic": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+        "sha256": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+        "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519"
+      },
+      {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/SDKSettings.json",
+        "sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+        "sha256": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "sha256": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+        "sha256": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "sha256": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta",
+        "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/include/stddef.h",
+        "sha256": "b3e62a046ddf28d09eedebe6eb9461cb7060e47cad2c69964b222c4eea10347e"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "sha256": "87c316fd2a1b279d7f5de0923932faedec2e88f2d91f401eda006dfe6cf82d0f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "sha256": "f2883b16322dc2c782f451f34fdda34c935455a6a6fffe5bb1632d369c4d176f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "sha256": "feead6b9a8b3f844c54263fbda9cf32d960eb2f414a0d2c71f3dd46817de2895"
+      }
+    ],
+    "arm64-osx-gcc16-static": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+        "sha256": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+        "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519"
+      },
+      {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/SDKSettings.json",
+        "sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+        "sha256": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "sha256": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "sha256": "406040ac6e22d01468e601a5aaa548e60af1c151efb056aa45d485d6804f0cd4"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1",
+        "sha256": "36971b5c126df0a50514944fcc8e0205942491058533ce8514cf3f4eb108871c"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+        "sha256": "d1105933191bc5c1713714b6da8480fe9cacb3bd802ec3a97a1bc4c07d3b753a"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+        "sha256": "d4d4cbc6f9d797bd64b6e88a62111b5d206c41d030b5d764a72558146da4d2ee"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+        "sha256": "18b55070e058297b9653a0da11f30d48363fe2002371f07fb53e88936cfec6c9"
+      }
+    ],
+    "arm64-osx-gcc16-dynamic": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+        "sha256": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+        "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519"
+      },
+      {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/SDKSettings.json",
+        "sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+        "sha256": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "sha256": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "sha256": "406040ac6e22d01468e601a5aaa548e60af1c151efb056aa45d485d6804f0cd4"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1",
+        "sha256": "36971b5c126df0a50514944fcc8e0205942491058533ce8514cf3f4eb108871c"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+        "sha256": "d1105933191bc5c1713714b6da8480fe9cacb3bd802ec3a97a1bc4c07d3b753a"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+        "sha256": "d4d4cbc6f9d797bd64b6e88a62111b5d206c41d030b5d764a72558146da4d2ee"
+      },
+      {
+        "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+        "sha256": "18b55070e058297b9653a0da11f30d48363fe2002371f07fb53e88936cfec6c9"
+      }
+    ]
+  }
+}
