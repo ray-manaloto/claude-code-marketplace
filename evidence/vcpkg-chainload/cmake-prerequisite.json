@@ -1,0 +1,726 @@
+{
+  "schema": 1,
+  "kind": "task12-vcpkg-chainload-source-prerequisite",
+  "recorded_at": "2026-10-11T16:04:47.119Z",
+  "status": "SOURCE_CONSTRAINTS_IDENTIFIED_NATIVE_UNADMITTED",
+  "identity": {
+    "initial": {
+      "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+      "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+      "branch": "codex/marketplace-native-onboarding",
+      "head": "1ddd107bffe56226ae2a5c115fcb4e2ae6b7b6b9",
+      "method": "read exact Git administrative text files; no git executable"
+    },
+    "closing_head": "374beaa6239b9e2e4ecf2f998285ff64139f8d21",
+    "compiler_source_closing_checks": [
+      {
+        "key": "p2996",
+        "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+        "matches_initial": true
+      },
+      {
+        "key": "gcc16",
+        "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+        "matches_initial": true
+      }
+    ]
+  },
+  "scope": {
+    "owner": "parent is sole maintained-file writer",
+    "reads": "two current compiler toolchains, four exact pinned vcpkg CMake files, one exact prerequisite receipt, exact Git administrative identity files",
+    "no_scope_expansion": true,
+    "native_task12_admission": false,
+    "maintained_file_writes": 0,
+    "global_file_writes": 0,
+    "native_commands": 0,
+    "network_calls": 0,
+    "compiler_or_cmake_execution": 0,
+    "profile_or_protection_execution": 0,
+    "private_output_files": 1,
+    "command_exit_codes": [],
+    "failed_routes": []
+  },
+  "prerequisite": {
+    "path": "/private/tmp/marketplace-task12-prerequisites-g_spu0p_/inventory.json",
+    "sha256": "d3ff8917469393176fbcd29c45e9716bfe5b85347a0a8fedbe47b43b744c55ed",
+    "expected_sha256": "d3ff8917469393176fbcd29c45e9716bfe5b85347a0a8fedbe47b43b744c55ed",
+    "hash_matches": true,
+    "reuse": "accept resolved fmt pins/download inventory, four lane/linkage triplets, native host helper reuse, and four application configuration mapping; do not re-explore them"
+  },
+  "source_identity": {
+    "vcpkg": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "head": "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+      "tree": "6b25d118fef8953f62969191719e0197d646d36d"
+    },
+    "method": "four source SHA256/size/Git-blob SHA1 values match the exact prerequisite receipt; no new Git command or full-tree scan"
+  },
+  "sources": [
+    {
+      "id": "gcc16",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+      "bytes": 2053,
+      "line_count": 42
+    },
+    {
+      "id": "p2996",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "bytes": 4647,
+      "line_count": 89
+    },
+    {
+      "id": "detect",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/CMakeLists.txt",
+      "sha256": "eb3a229344dd5eb273e791adf163cebe6cfcf31dda3df0a87363f8eb7c84fcb0",
+      "bytes": 3521,
+      "line_count": 88
+    },
+    {
+      "id": "prerequisite",
+      "path": "/private/tmp/marketplace-task12-prerequisites-g_spu0p_/inventory.json",
+      "sha256": "d3ff8917469393176fbcd29c45e9716bfe5b85347a0a8fedbe47b43b744c55ed",
+      "bytes": 29370,
+      "line_count": 701
+    },
+    {
+      "id": "vcpkg",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/buildsystems/vcpkg.cmake",
+      "sha256": "f911a8769d07e10b26ce651f3cef6f52f2d5e598e3504d7f19e70bcbd3b3b25b",
+      "bytes": 50385,
+      "line_count": 988
+    },
+    {
+      "id": "osx",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+      "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519",
+      "bytes": 3177,
+      "line_count": 74
+    },
+    {
+      "id": "configure",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+      "sha256": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+      "bytes": 15566,
+      "line_count": 356
+    }
+  ],
+  "source_consistency": [
+    {
+      "key": "osx",
+      "sha256_matches_prerequisite": true,
+      "bytes_match": true,
+      "git_blob": "7ce21f5e7ed0264fc16fcfe09823ef2a19c514e6",
+      "git_blob_matches_prerequisite": true
+    },
+    {
+      "key": "vcpkg",
+      "sha256_matches_prerequisite": true,
+      "bytes_match": true,
+      "git_blob": "65ec8f13bfdfcd152081c649c502f36fa273eab0",
+      "git_blob_matches_prerequisite": true
+    },
+    {
+      "key": "detect",
+      "sha256_matches_prerequisite": true,
+      "bytes_match": true,
+      "git_blob": "cad0a71eb99fa6e7755804f5b35c1fda0eef6071",
+      "git_blob_matches_prerequisite": true
+    },
+    {
+      "key": "configure",
+      "sha256_matches_prerequisite": true,
+      "bytes_match": true,
+      "git_blob": "5839ecfb8ef473d42451d5674842dca3228639e6",
+      "git_blob_matches_prerequisite": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "policy-scope",
+      "severity": "blocking_for_unchanged_direct_chainload",
+      "observation": "P2996 requires native Darwin arm64 and CMake >=4.4, then requires CMP0210 to be NEW. Pinned vcpkg.cmake pushes a VERSION 3.16 policy scope before including the chainloader, so an application minimum 4.4 alone is not a sufficient nested-scope contract. Compiler detection independently begins with minimum 3.20 and enables C/CXX.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            2,
+            10
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            35,
+            40
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            206,
+            215
+          ]
+        },
+        {
+          "source": "detect",
+          "lines": [
+            1,
+            12
+          ]
+        }
+      ],
+      "status": "source-confirmed; native failure not executed"
+    },
+    {
+      "id": "no-safe-unchanged-include-order",
+      "severity": "blocking_for_unchanged_direct_composition",
+      "observation": "Native osx.cmake appends -fPIC and VCPKG C/CXX base flags to _FLAGS_INIT. P2996 assigns its own _FLAGS_INIT and checks existing CMAKE_C/CXX_FLAGS against those exact base values. Native osx first is overwritten by the later P2996 assignments. P2996 first allows native additions afterward, but initialized/reloaded or propagated flags containing those additions conflict with the unchanged P2996 equality gate.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            62,
+            63
+          ]
+        },
+        {
+          "source": "p2996",
+          "lines": [
+            74,
+            81
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            1,
+            2
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            57,
+            72
+          ]
+        }
+      ],
+      "status": "source-derived composition constraint; native re-entry not executed"
+    },
+    {
+      "id": "native-osx-contract",
+      "severity": "required_preservation",
+      "observation": "The custom chainloader suppresses default selection in the port helper. It therefore must deliberately compose the pinned native osx behavior: processor/native cross-compiling semantics, PIC, paired C/CXX base and Debug/Release flags, linker base and Debug/Release flags, and try_compile propagation. Its one-time guard prevents repeated appends and must be respected.",
+      "refs": [
+        {
+          "source": "configure",
+          "lines": [
+            166,
+            177
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            180,
+            203
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            1,
+            22
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            24,
+            55
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            57,
+            72
+          ]
+        }
+      ],
+      "status": "source-confirmed"
+    },
+    {
+      "id": "gcc-sdk-inputs",
+      "severity": "required_explicit_inputs",
+      "observation": "GCC16 does not provide a default SDK or deployment target: it requires an absolute SDK with SDKSettings.json plus an explicit numeric major.minor deployment value; architecture must be arm64. The port helper translates VCPKG_OSX_SYSROOT, VCPKG_OSX_DEPLOYMENT_TARGET and VCPKG_OSX_ARCHITECTURES into CMAKE_* arguments. That source proves the port path only, not detector invocation. Current GCC guards validate path shape/existence and version format, not equality with a particular qualified SDK; the adapter/operation must retain the qualified literal values and reject substitutions.",
+      "refs": [
+        {
+          "source": "gcc16",
+          "lines": [
+            32,
+            40
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            211,
+            216
+          ]
+        }
+      ],
+      "status": "source-confirmed; numeric/path values for GCC must remain bound to its qualified receipt"
+    },
+    {
+      "id": "environment-is-required",
+      "severity": "required_child_context",
+      "observation": "Both compiler files consume MARKETPLACE_CPP_LANE and the selected MARKETPLACE_*_PREFIX directly from ENV. P2996 pins its prefix literally and rejects mismatched CC/CXX plus its listed environment pollution; GCC validates its normalized prefix and a smaller pollution set. Passing a CMake variable with the same name does not satisfy these ENV reads. Exact vcpkg-tool child-environment filtering/pass-through and compiler-detector argv are not implemented by the inspected files, so preserving the launch profile is a necessary requirement but not proof of child propagation.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            11,
+            24
+          ]
+        },
+        {
+          "source": "p2996",
+          "lines": [
+            31,
+            51
+          ]
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            6,
+            20
+          ]
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            21,
+            30
+          ]
+        }
+      ],
+      "status": "source-confirmed requirement; vcpkg-tool forwarding UNVERIFIED"
+    },
+    {
+      "id": "configuration-boundary",
+      "severity": "required_matrix_preservation",
+      "observation": "Port helper produces separate CMAKE_BUILD_TYPE=Release and Debug commands, and skips a configuration only when VCPKG_BUILD_TYPE is restricted. The application can remain Ninja Multi-Config; vcpkg supplies release fallback mapping for MinSizeRel and RelWithDebInfo, which is not a separately compiled four-configuration dependency set.",
+      "refs": [
+        {
+          "source": "configure",
+          "lines": [
+            231,
+            244
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            258,
+            263
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            287,
+            313
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            218,
+            230
+          ]
+        }
+      ],
+      "status": "source-confirmed; no configurations executed"
+    }
+  ],
+  "smallest_recommendation": {
+    "status": "proposal only; no adapter created and no native compatibility claim",
+    "shape": "One small vcpkg composition adapter for each compiler lane or one bounded shared adapter dispatching the already-qualified lanes, plus a narrow opt-in composition correction in the P2996 compiler file. Do not duplicate the qualified compiler/runtime configuration.",
+    "policy": [
+      "Keep the CMake >=4.4/native-host guard. At the P2996 adapter entry, reject an explicitly conflicting policy default and set CMP0210 NEW immediately before including the qualified compiler file, so its existing policy guard remains meaningful inside the vcpkg scope.",
+      "Pass -DCMAKE_POLICY_DEFAULT_CMP0210=NEW to the application invocation and through triplet VCPKG_CMAKE_CONFIGURE_OPTIONS for real port projects. The helper appends that options list at configure lines 220-223. Do not claim a local policy SET inside an included adapter alone establishes the policy of the enclosing application/port targets.",
+      "Require the actual detector invocation to establish the same NEW policy context before its compiler checks. Whether the vcpkg-tool compiler-detection path forwards triplet options or needs another narrowly admitted mechanism is unresolved by these four CMake sources; attest its argv/cache/policy before task12 runtime qualification."
+    ],
+    "flags": [
+      "Opt in to the pinned native-osx composition before the existing P2996 final C/CXX flag comparison. Seed the qualified P2996 base _FLAGS_INIT values once per configure scope, include pinned scripts/toolchains/osx.cmake once to append the native additions, then strip the final composed values before exact comparison with any already-defined CMAKE_C/CXX_FLAGS.",
+      "On a second include in the same configure scope, retain the composed _FLAGS_INIT values; do not reset them to the P2996 base after _VCPKG_OSX_TOOLCHAIN has prevented re-appending. A fresh configure/try_compile scope must deterministically reconstruct the same composed values.",
+      "Retain native per-config compile/link init flags and CMAKE_TRY_COMPILE_PLATFORM_VARIABLES. Keep P2996 CMAKE_CXX_LINK_FLAGS, private C++ libraries/rpath, SDK/prefix guards, and active EXECUTABLE compiler/try_compile checks unchanged.",
+      "Do not clear or temporarily hide existing CMAKE_C/CXX_FLAGS, turn off the exact mismatch gate, force compiler success, disable linking, or use an unguarded copy of the qualified toolchain to make composition appear to pass."
+    ],
+    "gcc": [
+      "Supply VCPKG_OSX_SYSROOT, VCPKG_OSX_DEPLOYMENT_TARGET and VCPKG_OSX_ARCHITECTURES=arm64 in the triplet for the port helper. Supply the matching CMAKE_* values for the application.",
+      "For compiler detection, seed the already-qualified literal SDK/deployment values before including gcc16-macos-arm64.cmake, without FORCE, and validate equality. The original file will reject missing values, but will not by itself reject an existing different SDK containing SDKSettings.json.",
+      "Include the pinned native osx.cmake without P2996-specific flags. The GCC compiler file does not overwrite _FLAGS_INIT or impose the P2996 exact-base-flags equality problem."
+    ],
+    "environment": [
+      "Require MARKETPLACE_CPP_LANE and exactly the selected MARKETPLACE_P2996_PREFIX or MARKETPLACE_GCC16_PREFIX in all compiler detection, port configure/build, application and try_compile child contexts. Retain matching CC/CXX where supplied and the pre-existing isolated pollution contract.",
+      "An explicit tracked vcpkg environment-pass-through configuration is the proposed interface for those lane/prefix names, but its exact current vcpkg-tool consumption is not proven in this bounded CMake read. Do not use an untracked broad environment bypass or infer propagation from the parent shell alone."
+    ],
+    "configuration": [
+      "Keep VCPKG_BUILD_TYPE undefined for real fmt Debug and Release artifacts; pass both C and CXX variants when setting any VCPKG compile-flag family.",
+      "Use the same corrected adapter and frozen nested source hashes for application Ninja Multi-Config and both port configurations. Preserve the accepted four lane/linkage triplets and dependency/application linkage distinction."
+    ]
+  },
+  "required_future_controls": [
+    {
+      "id": "old-policy",
+      "kind": "negative",
+      "input": "Explicit CMP0210=OLD/default OLD in the adapter or port/application context",
+      "expected": "Reject before compiler qualification; do not silently override an explicit conflict. Record effective NEW for every accepted context.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            2,
+            10
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            39,
+            40
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            209,
+            210
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unexpected-base-flags",
+      "kind": "negative",
+      "input": "Already-defined CMAKE_C_FLAGS or CMAKE_CXX_FLAGS containing an extra unadmitted token, or omitting the required composed PIC/core flags",
+      "expected": "Exact final-value guard rejects; do not clear the cache value to make the check pass.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            62,
+            81
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            57,
+            62
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wrong-compiler-or-prefix",
+      "kind": "negative",
+      "input": "Conflicting CMAKE_C/CXX_COMPILER, missing selected ENV prefix/lane, mismatched P2996 prefix or CC/CXX, or GCC prefix that is absent/non-normalized",
+      "expected": "Reject through the corresponding compiler/prefix guard; separately reject the wrong or simultaneous lane context in the operation harness.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            11,
+            15
+          ]
+        },
+        {
+          "source": "p2996",
+          "lines": [
+            31,
+            44
+          ]
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            6,
+            14
+          ]
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            21,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "id": "polluted-environment",
+      "kind": "negative",
+      "input": "A populated variable from the existing lane pollution list, such as CXXFLAGS or SDKROOT",
+      "expected": "Reject before compiler use; vcpkg child contexts must retain the same empty pollution contract.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            16,
+            24
+          ]
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            15,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unpaired-port-flags",
+      "kind": "negative",
+      "input": "Define a VCPKG_CXX_FLAGS family without the corresponding VCPKG_C_FLAGS family, or vice versa",
+      "expected": "The pinned helper rejects the mismatched defined/undefined pair.",
+      "refs": [
+        {
+          "source": "configure",
+          "lines": [
+            3,
+            9
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            166,
+            168
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gcc-sdk-boundary",
+      "kind": "negative",
+      "input": "Missing SDK, nonexistent SDKSettings.json, malformed deployment target, wrong architecture, or a different otherwise-valid SDK",
+      "expected": "Existing GCC guards reject the first four conditions; the proposed adapter/operation equality check must reject substitution of a different valid SDK. This stronger equality check is not implemented in the current GCC file.",
+      "refs": [
+        {
+          "source": "gcc16",
+          "lines": [
+            32,
+            40
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            211,
+            216
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compiler-check-bypass",
+      "kind": "negative",
+      "input": "CMAKE_*_COMPILER_FORCED, CMAKE_TRY_COMPILE_NO_PLATFORM_VARIABLES, or non-EXECUTABLE try_compile target",
+      "expected": "P2996 continues to reject; no vcpkg adaptation may disable this gate.",
+      "refs": [
+        {
+          "source": "p2996",
+          "lines": [
+            82,
+            88
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reentry-and-native-flag-witness",
+      "kind": "required_positive_control",
+      "input": "Fresh configure, repeated toolchain inclusion, reconfigure, and compiler try_compile; paired inert VCPKG base/Debug/Release sentinel flags",
+      "expected": "Exactly one -fPIC/native append, no lost admitted VCPKG flags, deterministic final base flags, correct per-config flags, and preserved private C++ link flags in the actual compile/link commands.",
+      "refs": [
+        {
+          "source": "osx",
+          "lines": [
+            1,
+            22
+          ]
+        },
+        {
+          "source": "osx",
+          "lines": [
+            57,
+            72
+          ]
+        },
+        {
+          "source": "p2996",
+          "lines": [
+            64,
+            81
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detector-and-port-context",
+      "kind": "required_positive_control",
+      "input": "Actual detector plus real fmt Debug/Release and application Multi-Config child processes",
+      "expected": "Capture effective policy, compiler path/hash, selected lane/prefix, SDK/deployment/architecture, runtime/link flags and allowed environment facts without exposing secrets. Parent environment alone is insufficient evidence.",
+      "refs": [
+        {
+          "source": "detect",
+          "lines": [
+            1,
+            12
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            180,
+            216
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            231,
+            244
+          ]
+        }
+      ]
+    },
+    {
+      "id": "configuration-completeness",
+      "kind": "required_positive_control",
+      "input": "All admitted lane/linkage triplets with unrestricted VCPKG_BUILD_TYPE, then four application configurations",
+      "expected": "Both Debug and Release compiled fmt artifacts are present and used by intended consumers. A release-only port build cannot satisfy the two-configuration requirement.",
+      "refs": [
+        {
+          "source": "configure",
+          "lines": [
+            258,
+            263
+          ]
+        },
+        {
+          "source": "configure",
+          "lines": [
+            287,
+            313
+          ]
+        },
+        {
+          "source": "vcpkg",
+          "lines": [
+            218,
+            230
+          ]
+        }
+      ]
+    }
+  ],
+  "unverified": [
+    "No CMake adapter or toolchain correction was implemented.",
+    "No policy, configure, build, linker, compiler-detector, runtime, ABI-invalidation, profile or negative-control execution occurred.",
+    "Exact vcpkg-tool construction of detector argv and sanitized child environment remains outside inspected CMake source; a wrapper-only or top-level-only propagation claim would be unverified.",
+    "CMAKE_POLICY_DEFAULT_CMP0210 and explicit local policy-setting are proposed integration mechanisms; full effective-policy propagation must be attested in the actual detector/port/application and try_compile paths.",
+    "The GCC qualified SDK/deployment literal values must come from the accepted GCC qualification; this source-only read proves required arguments and validation gaps, not a new SDK qualification.",
+    "No source/defaults were changed; task12 native admission remains with the parent after preceding work units."
+  ],
+  "decisive_excerpts": [
+    {
+      "key": "p2996",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "range": [
+        2,
+        10
+      ],
+      "text": "2: if(CMAKE_VERSION VERSION_LESS \"4.4\" OR\n3:    NOT CMAKE_HOST_SYSTEM_NAME STREQUAL \"Darwin\" OR\n4:    NOT CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"arm64\")\n5:   message(FATAL_ERROR \"Use CMake 4.4+ on native macOS ARM64.\")\n6: endif()\n7: cmake_policy(GET CMP0210 _p2996_link_policy)\n8: if(NOT _p2996_link_policy STREQUAL \"NEW\")\n9:   message(FATAL_ERROR \"Set cmake_minimum_required(VERSION 4.4) before project().\")\n10: endif()"
+    },
+    {
+      "key": "p2996",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "range": [
+        62,
+        81
+      ],
+      "text": "62: set(CMAKE_C_FLAGS_INIT \"--no-default-config -fno-blocks -resource-dir \\\"${_p2996_prefix}/lib/clang/21\\\"\")\n63: set(CMAKE_CXX_FLAGS_INIT \"${CMAKE_C_FLAGS_INIT} -stdlib=libc++ -nostdinc++ -isystem \\\"${_p2996_prefix}/include/c++/v1\\\"\")\n64: # Native per-language link flags survive the ABI check's STANDARD_LIBRARIES reset.\n65: set(_p2996_link \"-nostdlib++ \\\"${_p2996_prefix}/lib/libc++.dylib\\\" \\\"${_p2996_prefix}/lib/libc++abi.dylib\\\" \\\"${_p2996_prefix}/lib/libunwind.dylib\\\" -Wl,-rpath,\\\"${_p2996_prefix}/lib\\\"\")\n66: if(DEFINED CMAKE_CXX_LINK_FLAGS AND NOT CMAKE_CXX_LINK_FLAGS STREQUAL _p2996_link)\n67:   message(FATAL_ERROR \"Conflicting C++ link flags; use a fresh build directory.\")\n68: endif()\n69: set(CMAKE_CXX_LINK_FLAGS \"${_p2996_link}\")\n70: if(CMAKE_CXX_STANDARD_LIBRARIES OR CMAKE_CXX_STANDARD_LIBRARIES_INIT)\n71:   message(FATAL_ERROR \"Unexpected extra C++ standard libraries.\")\n72: endif()\n73: set(CMAKE_CXX_STANDARD_LIBRARIES_INIT \"\")\n74: foreach(_language C CXX)\n75:   if(DEFINED CMAKE_${_language}_FLAGS)\n76:     string(STRIP \"${CMAKE_${_language}_FLAGS}\" _existing_flags)\n77:     if(NOT _existing_flags STREQUAL CMAKE_${_language}_FLAGS_INIT)\n78:       message(FATAL_ERROR \"Conflicting ${_language} flags; use a fresh build directory.\")\n79:     endif()\n80:   endif()\n81: endforeach()"
+    },
+    {
+      "key": "vcpkg",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/buildsystems/vcpkg.cmake",
+      "sha256": "f911a8769d07e10b26ce651f3cef6f52f2d5e598e3504d7f19e70bcbd3b3b25b",
+      "range": [
+        39,
+        40
+      ],
+      "text": "39: cmake_policy(PUSH)\n40: cmake_policy(VERSION 3.16)"
+    },
+    {
+      "key": "vcpkg",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/buildsystems/vcpkg.cmake",
+      "sha256": "f911a8769d07e10b26ce651f3cef6f52f2d5e598e3504d7f19e70bcbd3b3b25b",
+      "range": [
+        206,
+        215
+      ],
+      "text": "206: # Determine whether the toolchain is loaded during a try-compile configuration\n207: get_property(Z_VCPKG_CMAKE_IN_TRY_COMPILE GLOBAL PROPERTY IN_TRY_COMPILE)\n208: \n209: if(VCPKG_CHAINLOAD_TOOLCHAIN_FILE)\n210:     include(\"${VCPKG_CHAINLOAD_TOOLCHAIN_FILE}\")\n211: endif()\n212: \n213: if(VCPKG_TOOLCHAIN)\n214:     cmake_policy(POP)\n215:     return()"
+    },
+    {
+      "key": "detect",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/CMakeLists.txt",
+      "sha256": "eb3a229344dd5eb273e791adf163cebe6cfcf31dda3df0a87363f8eb7c84fcb0",
+      "range": [
+        1,
+        12
+      ],
+      "text": "1: cmake_minimum_required(VERSION 3.20)\n2: project(detect_compiler NONE)\n3: \n4: if(CMAKE_GENERATOR STREQUAL \"Ninja\" AND CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n5:     set(CMAKE_C_COMPILER_WORKS 1)\n6:     set(CMAKE_C_COMPILER_FORCED 1)\n7:     set(CMAKE_CXX_COMPILER_WORKS 1)\n8:     set(CMAKE_CXX_COMPILER_FORCED 1)\n9: endif()\n10: \n11: enable_language(C)\n12: enable_language(CXX)"
+    },
+    {
+      "key": "osx",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/toolchains/osx.cmake",
+      "sha256": "6da8c7aca6421bea02b0d9740d7e31effb964fbbed635328895c072175595519",
+      "range": [
+        57,
+        72
+      ],
+      "text": "57:     string(APPEND CMAKE_C_FLAGS_INIT \" -fPIC ${VCPKG_C_FLAGS} \")\n58:     string(APPEND CMAKE_CXX_FLAGS_INIT \" -fPIC ${VCPKG_CXX_FLAGS} \")\n59:     string(APPEND CMAKE_C_FLAGS_DEBUG_INIT \" ${VCPKG_C_FLAGS_DEBUG} \")\n60:     string(APPEND CMAKE_CXX_FLAGS_DEBUG_INIT \" ${VCPKG_CXX_FLAGS_DEBUG} \")\n61:     string(APPEND CMAKE_C_FLAGS_RELEASE_INIT \" ${VCPKG_C_FLAGS_RELEASE} \")\n62:     string(APPEND CMAKE_CXX_FLAGS_RELEASE_INIT \" ${VCPKG_CXX_FLAGS_RELEASE} \")\n63: \n64:     string(APPEND CMAKE_MODULE_LINKER_FLAGS_INIT \" ${VCPKG_LINKER_FLAGS} \")\n65:     string(APPEND CMAKE_SHARED_LINKER_FLAGS_INIT \" ${VCPKG_LINKER_FLAGS} \")\n66:     string(APPEND CMAKE_EXE_LINKER_FLAGS_INIT \" ${VCPKG_LINKER_FLAGS} \")\n67:     string(APPEND CMAKE_MODULE_LINKER_FLAGS_DEBUG_INIT \" ${VCPKG_LINKER_FLAGS_DEBUG} \")\n68:     string(APPEND CMAKE_SHARED_LINKER_FLAGS_DEBUG_INIT \" ${VCPKG_LINKER_FLAGS_DEBUG} \")\n69:     string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG_INIT \" ${VCPKG_LINKER_FLAGS_DEBUG} \")\n70:     string(APPEND CMAKE_MODULE_LINKER_FLAGS_RELEASE_INIT \" ${VCPKG_LINKER_FLAGS_RELEASE} \")\n71:     string(APPEND CMAKE_SHARED_LINKER_FLAGS_RELEASE_INIT \" ${VCPKG_LINKER_FLAGS_RELEASE} \")\n72:     string(APPEND CMAKE_EXE_LINKER_FLAGS_RELEASE_INIT \" ${VCPKG_LINKER_FLAGS_RELEASE} \")"
+    },
+    {
+      "key": "gcc16",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+      "range": [
+        32,
+        40
+      ],
+      "text": "32: if(NOT IS_ABSOLUTE \"${CMAKE_OSX_SYSROOT}\" OR NOT EXISTS \"${CMAKE_OSX_SYSROOT}/SDKSettings.json\")\n33:   message(FATAL_ERROR \"Pass CMAKE_OSX_SYSROOT from the qualified SDK receipt.\")\n34: endif()\n35: if(NOT CMAKE_OSX_DEPLOYMENT_TARGET MATCHES \"^[0-9]+[.][0-9]+$\")\n36:   message(FATAL_ERROR \"Pass an explicit qualified CMAKE_OSX_DEPLOYMENT_TARGET.\")\n37: endif()\n38: set(CMAKE_OSX_ARCHITECTURES \"arm64\" CACHE STRING \"Qualified GCC architecture\")\n39: if(NOT CMAKE_OSX_ARCHITECTURES STREQUAL \"arm64\")\n40:   message(FATAL_ERROR \"Only the qualified arm64 architecture is admitted.\")"
+    },
+    {
+      "key": "configure",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+      "sha256": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+      "range": [
+        211,
+        228
+      ],
+      "text": "211:     # Sets configuration variables for macOS builds\n212:     foreach(config_var IN ITEMS INSTALL_NAME_DIR OSX_DEPLOYMENT_TARGET OSX_SYSROOT OSX_ARCHITECTURES)\n213:         if(DEFINED VCPKG_${config_var})\n214:             vcpkg_list(APPEND arg_OPTIONS \"-DCMAKE_${config_var}=${VCPKG_${config_var}}\")\n215:         endif()\n216:     endforeach()\n217: \n218:     vcpkg_list(PREPEND arg_OPTIONS \"-DFETCHCONTENT_FULLY_DISCONNECTED=ON\")\n219: \n220:     # Allow overrides / additional configuration variables from triplets\n221:     if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS)\n222:         vcpkg_list(APPEND arg_OPTIONS ${VCPKG_CMAKE_CONFIGURE_OPTIONS})\n223:     endif()\n224:     if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE)\n225:         vcpkg_list(APPEND arg_OPTIONS_RELEASE ${VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE})\n226:     endif()\n227:     if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG)\n228:         vcpkg_list(APPEND arg_OPTIONS_DEBUG ${VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG})"
+    }
+  ]
+}

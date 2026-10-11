@@ -1,0 +1,532 @@
+{
+  "schema": 1,
+  "kind": "task12-detector-options-and-child-environment-prerequisite",
+  "recorded_at": "2026-10-11T16:13:25.470Z",
+  "reviewer": "/root/docs_reviewer",
+  "status": "CMAKE_HELPER_FORWARDING_CONFIRMED_TOOL_BOUNDARY_UNVERIFIED_NATIVE_UNADMITTED",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "374beaa6239b9e2e4ecf2f998285ff64139f8d21",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "source_identity": {
+    "checkout": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+    "git_admin": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/.git",
+    "common_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/.git",
+    "branch": null,
+    "head": "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "method": "exact Git administrative text files; no Git executable",
+    "tree": "6b25d118fef8953f62969191719e0197d646d36d",
+    "tree_basis": "reuse prior hash-qualified Git receipt; current administrative HEAD equals its pin"
+  },
+  "prerequisites": [
+    {
+      "path": "/private/tmp/marketplace-task12-prerequisites-g_spu0p_/inventory.json",
+      "sha256": "d3ff8917469393176fbcd29c45e9716bfe5b85347a0a8fedbe47b43b744c55ed"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-vcpkg-chainload-prerequisite-20261011T160548372Z.json",
+      "sha256": "994534aafed00ef2e88b999da790e5b4d9c455737c7b608f76da28303a1f4e9f"
+    }
+  ],
+  "scope": {
+    "parent_sole_writer": true,
+    "full_scan_repeated": false,
+    "maintained_or_global_writes": 0,
+    "network_calls": 0,
+    "git_vcpkg_cmake_compiler_profile_protected_docker_lease_execution": 0,
+    "private_output_files": 1,
+    "filesystem_readers": [
+      "one initial /usr/bin/python3 -B filesystem-only command",
+      "subsequent node_repl fs reads and hashes; no subprocess calls"
+    ],
+    "shell_command_ledger": [
+      {
+        "chunk": "8ed986",
+        "command": "/usr/bin/python3 -B heredoc: read/hash two receipts, detector portfile/manifest and tool metadata only",
+        "exit_code": 0
+      }
+    ],
+    "node_repl_calls_succeeded": true
+  },
+  "sources": [
+    {
+      "relative": "scripts/detect_compiler/portfile.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/portfile.cmake",
+      "sha256": "b2d148c0e913b01e2f9417622acf11d864170575e105aa8e242d693d687bd25a",
+      "bytes": 839,
+      "line_count": 31,
+      "refs": [
+        [
+          16,
+          24
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 16,
+          "end": 24,
+          "text": "set(VCPKG_BUILD_TYPE release)\n\nvcpkg_configure_cmake(\n    SOURCE_PATH \"${CMAKE_CURRENT_LIST_DIR}\"\n    PREFER_NINJA\n    OPTIONS\n        \"-DVCPKG_COMPILER_CACHE_FILE=${VCPKG_COMPILER_CACHE_FILE}\"\n\n)"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/detect_compiler/CMakeLists.txt",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/CMakeLists.txt",
+      "sha256": "eb3a229344dd5eb273e791adf163cebe6cfcf31dda3df0a87363f8eb7c84fcb0",
+      "bytes": 3521,
+      "line_count": 87,
+      "refs": [
+        [
+          1,
+          12
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 12,
+          "text": "cmake_minimum_required(VERSION 3.20)\nproject(detect_compiler NONE)\n\nif(CMAKE_GENERATOR STREQUAL \"Ninja\" AND CMAKE_SYSTEM_NAME STREQUAL \"Windows\")\n    set(CMAKE_C_COMPILER_WORKS 1)\n    set(CMAKE_C_COMPILER_FORCED 1)\n    set(CMAKE_CXX_COMPILER_WORKS 1)\n    set(CMAKE_CXX_COMPILER_FORCED 1)\nendif()\n\nenable_language(C)\nenable_language(CXX)"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/cmake/vcpkg_configure_cmake.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_configure_cmake.cmake",
+      "sha256": "e2f0cfea5cdd7a7569bad8d9a46c67f6e525e6bf540395d6e59c2827dd6b40ae",
+      "bytes": 16531,
+      "line_count": 374,
+      "refs": [
+        [
+          196,
+          211
+        ],
+        [
+          236,
+          259
+        ],
+        [
+          322,
+          330
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 196,
+          "end": 211,
+          "text": "    if(NOT VCPKG_CHAINLOAD_TOOLCHAIN_FILE)\n        z_vcpkg_select_default_vcpkg_chainload_toolchain()\n    endif()\n\n    vcpkg_list(APPEND arg_OPTIONS\n        \"-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${VCPKG_CHAINLOAD_TOOLCHAIN_FILE}\"\n        \"-DVCPKG_TARGET_TRIPLET=${TARGET_TRIPLET}\"\n        \"-DVCPKG_SET_CHARSET_FLAG=${vcpkg_set_charset_flag}\"\n        \"-DVCPKG_PLATFORM_TOOLSET=${VCPKG_PLATFORM_TOOLSET}\"\n        \"-DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON\"\n        \"-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON\"\n        \"-DCMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY=ON\"\n        \"-DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=TRUE\"\n        \"-DCMAKE_VERBOSE_MAKEFILE=ON\"\n        \"-DVCPKG_APPLOCAL_DEPS=OFF\"\n        \"-DCMAKE_TOOLCHAIN_FILE=${SCRIPTS}/buildsystems/vcpkg.cmake\""
+        },
+        {
+          "start": 236,
+          "end": 259,
+          "text": "    # Sets configuration variables for macOS builds\n    foreach(config_var IN ITEMS INSTALL_NAME_DIR OSX_DEPLOYMENT_TARGET OSX_SYSROOT OSX_ARCHITECTURES)\n        if(DEFINED \"VCPKG_${config_var}\")\n            vcpkg_list(APPEND arg_OPTIONS \"-DCMAKE_${config_var}=${VCPKG_${config_var}}\")\n        endif()\n    endforeach()\n\n    # Allow overrides / additional configuration variables from triplets\n    if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS)\n        vcpkg_list(APPEND arg_OPTIONS ${VCPKG_CMAKE_CONFIGURE_OPTIONS})\n    endif()\n    if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE)\n        vcpkg_list(APPEND arg_OPTIONS_RELEASE ${VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE})\n    endif()\n    if(DEFINED VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG)\n        vcpkg_list(APPEND arg_OPTIONS_DEBUG ${VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG})\n    endif()\n\n    vcpkg_list(SET rel_command\n        \"${CMAKE_COMMAND}\" \"${arg_SOURCE_PATH}\"\n        -G \"${generator}\"\n        \"-DCMAKE_BUILD_TYPE=Release\"\n        \"-DCMAKE_INSTALL_PREFIX=${CURRENT_PACKAGES_DIR}\"\n        ${arg_OPTIONS} ${arg_OPTIONS_RELEASE})"
+        },
+        {
+          "start": 322,
+          "end": 330,
+          "text": "        if(NOT DEFINED VCPKG_BUILD_TYPE OR \"${VCPKG_BUILD_TYPE}\" STREQUAL \"release\")\n            message(STATUS \"${configuring_message}-rel\")\n            file(MAKE_DIRECTORY \"${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel\")\n            vcpkg_execute_required_process(\n                COMMAND ${rel_command}\n                WORKING_DIRECTORY \"${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel\"\n                LOGNAME \"${arg_LOGNAME}-rel\"\n                SAVE_LOG_FILES CMakeCache.txt\n            )"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/ports.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/ports.cmake",
+      "sha256": "ae49e729c370bed1954cdd64875854fe1bb2ae4b9ed0316f6777d32ffeb9bd4a",
+      "bytes": 11635,
+      "line_count": 268,
+      "refs": [
+        [
+          1,
+          8
+        ],
+        [
+          145,
+          148
+        ],
+        [
+          174,
+          176
+        ],
+        [
+          200,
+          209
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 8,
+          "text": "cmake_minimum_required(VERSION 3.21)\nif(POLICY CMP0174)\n    # Use CMake 3.31 behavior for cmake_parse_arguments(PARSE_ARGV)\n    cmake_policy(SET CMP0174 NEW)\nendif()\nif(CMAKE_VERSION VERSION_GREATER_EQUAL \"4.0\")\n    set(ENV{CMAKE_POLICY_VERSION_MINIMUM} 3.5)\nendif()"
+        },
+        {
+          "start": 145,
+          "end": 148,
+          "text": "if(CMD STREQUAL \"BUILD\")\n    set(CMAKE_TRIPLET_FILE \"${TARGET_TRIPLET_FILE}\")\n    if(NOT EXISTS \"${CMAKE_TRIPLET_FILE}\")\n        message(FATAL_ERROR \"Unsupported target triplet. Triplet file does not exist: ${CMAKE_TRIPLET_FILE}\")"
+        },
+        {
+          "start": 174,
+          "end": 176,
+          "text": "    file(MAKE_DIRECTORY \"${CURRENT_BUILDTREES_DIR}\" \"${CURRENT_PACKAGES_DIR}\")\n\n    include(\"${CMAKE_TRIPLET_FILE}\")"
+        },
+        {
+          "start": 200,
+          "end": 209,
+          "text": "    if (DEFINED VCPKG_PORT_CONFIGS)\n        foreach(VCPKG_PORT_CONFIG IN LISTS VCPKG_PORT_CONFIGS)\n            include(\"${VCPKG_PORT_CONFIG}\")\n        endforeach()\n    endif()\n\n    set(Z_VCPKG_ERROR_LOG_COLLECTION_FILE \"${CURRENT_BUILDTREES_DIR}/error-logs-${TARGET_TRIPLET}.txt\")\n    file(REMOVE \"${Z_VCPKG_ERROR_LOG_COLLECTION_FILE}\")\n\n    include(\"${CURRENT_PORT_DIR}/portfile.cmake\")"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/cmake/vcpkg_execute_required_process.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_execute_required_process.cmake",
+      "sha256": "2df167e6e7f37c8038e02a3ebbfb239fa55de0b384ed4532d33f5483710a608b",
+      "bytes": 5393,
+      "line_count": 144,
+      "refs": [
+        [
+          63,
+          70
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 63,
+          "end": 70,
+          "text": "    vcpkg_execute_in_download_mode(\n        COMMAND ${arg_COMMAND}\n        RESULT_VARIABLE error_code\n        WORKING_DIRECTORY \"${arg_WORKING_DIRECTORY}\"\n        ${timeout_param}\n        ${output_param}\n        ${error_param}\n    )"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/cmake/vcpkg_execute_in_download_mode.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_execute_in_download_mode.cmake",
+      "sha256": "75a3cabe04d6bbaf1f73555516dd3c492edbed22cea204835c3620db5d948851",
+      "bytes": 1847,
+      "line_count": 46,
+      "refs": [
+        [
+          29,
+          35
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 29,
+          "end": 35,
+          "text": "    cmake_language(CALL \"${Z_VCPKG_EXECUTE_PROCESS_NAME}\"\n        ${arg_UNPARSED_ARGUMENTS}\n        ${output_variable_param}\n        ${error_variable_param}\n        ${result_variable_param}\n        ${results_variable_param}\n    )"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/cmake/execute_process.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/execute_process.cmake",
+      "sha256": "5fbd550bf71c9bf9b6b3863d77455f7c39639956e660d75847b323bf87e45e1f",
+      "bytes": 429,
+      "line_count": 12,
+      "refs": [
+        [
+          1,
+          12
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 12,
+          "text": "if (NOT DEFINED Z_VCPKG_OVERRIDEN_EXECUTE_PROCESS)\n  set(Z_VCPKG_OVERRIDEN_EXECUTE_PROCESS ON)\n\n  if (DEFINED VCPKG_DOWNLOAD_MODE)\n    function(execute_process)\n      message(FATAL_ERROR \"This command cannot be executed in Download Mode.\\nHalting portfile execution.\\n\")\n    endfunction()\n    set(Z_VCPKG_EXECUTE_PROCESS_NAME \"_execute_process\")\n  else()\n    set(Z_VCPKG_EXECUTE_PROCESS_NAME \"execute_process\")\n  endif()\nendif()"
+        }
+      ]
+    },
+    {
+      "relative": "scripts/bootstrap.sh",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/bootstrap.sh",
+      "sha256": "0baab23dd959bf69a8a53c2884dbda0e1b490c80fde57285c130f122bb12adde",
+      "bytes": 9912,
+      "line_count": 270,
+      "refs": [
+        [
+          188,
+          195
+        ],
+        [
+          215,
+          230
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 188,
+          "end": 195,
+          "text": "# Read the vcpkg-tool config file to determine what release to download\n. \"$vcpkgRootDir/scripts/vcpkg-tool-metadata.txt\"\n\nvcpkgDownloadTool=\"ON\"\nif [ \"$UNAME\" = \"Darwin\" ]; then\n    echo \"Downloading vcpkg-macos...\"\n    vcpkgToolReleaseSha=$VCPKG_MACOS_SHA\n    vcpkgToolName=\"vcpkg-macos\""
+        },
+        {
+          "start": 215,
+          "end": 230,
+          "text": "if [ \"$vcpkgDownloadTool\" = \"ON\" ]; then\n    vcpkgDownloadFile \"https://github.com/microsoft/vcpkg-tool/releases/download/$VCPKG_TOOL_RELEASE_TAG/$vcpkgToolName\" \"$vcpkgRootDir/vcpkg\" $vcpkgToolReleaseSha\nelse\n    vcpkgToolReleaseArchive=\"$VCPKG_TOOL_RELEASE_TAG.zip\"\n    vcpkgToolUrl=\"https://github.com/microsoft/vcpkg-tool/archive/$vcpkgToolReleaseArchive\"\n    baseBuildDir=\"$vcpkgRootDir/buildtrees/_vcpkg\"\n    buildDir=\"$baseBuildDir/build\"\n    archivePath=\"$downloadsDir/$vcpkgToolReleaseArchive\"\n    srcBaseDir=\"$baseBuildDir/src\"\n    srcDir=\"$srcBaseDir/vcpkg-tool-$VCPKG_TOOL_RELEASE_TAG\"\n\n    if [ -e \"$archivePath\" ]; then\n        vcpkgCheckEqualFileHash \"$vcpkgToolUrl\" \"$archivePath\" \"$vcpkgToolReleaseSha\"\n    else\n        echo \"Downloading vcpkg tool sources\"\n        vcpkgDownloadFile \"$vcpkgToolUrl\" \"$archivePath\" \"$vcpkgToolReleaseSha\""
+        }
+      ]
+    },
+    {
+      "relative": "scripts/vcpkg-tool-metadata.txt",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/vcpkg-tool-metadata.txt",
+      "sha256": "44e7a8763d73c9aada61519845235baf55a97d2f931d5ae3a01ae338a591f397",
+      "bytes": 771,
+      "line_count": 6,
+      "refs": [
+        [
+          1,
+          6
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 6,
+          "text": "VCPKG_TOOL_RELEASE_TAG=2026-09-26\nVCPKG_MACOS_SHA=1cc2c658e8bcbdaa522f30e6c4a21ef85c68de1e8c6b5d5bbf5476ca2f44acc479f1367c045439f84ce4f3d912bccc05aefbeb2a5d0293f0168758759356486b\nVCPKG_MUSLC_SHA=80118cfc299e5a9697b55be6bec2e92505e334e24b4d596801bdd733d5ce06ef3742ad19f12c4c2e97647ce1b27597767d613b8a66827f1d58ed4bdde5e010fb\nVCPKG_GLIBC_SHA=a81a11341eb72b19be919cfae67d8090dc9f3321361ed3b3c5381fdadb07ed6ecdf10f5332939fb36d9e128874e0c6f13ad547867122043533bb3e4922e1d9b0\nVCPKG_GLIBC_ARM64_SHA=f58d2f8ca986b4f7fb508d7aaf1d517ce517a22aac92c97e3c2606b2fdc19b7ee170f97d68a9756e56378f1ee00421c297fb812d86907e39768ad8f0e657c371\nVCPKG_TOOL_SOURCE_SHA=19669a5f107cb02693fe5968687cf83e3ae13692c16a389ff08ff5d51caddf4d885c961e91c60ee2adfbd242dffcdd8987dbcb2f59a71b797a9c7f95e9d89934"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "detector-helper-is-builtin",
+      "status": "source-confirmed",
+      "statement": "detect_compiler/portfile.cmake sets VCPKG_BUILD_TYPE release and calls builtin vcpkg_configure_cmake, not the host vcpkg-cmake port helper.",
+      "refs": [
+        {
+          "source": "scripts/detect_compiler/portfile.cmake",
+          "lines": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "triplet-to-configure-option-route",
+      "status": "source-confirmed CMake-side route; tool entrypoint still unverified",
+      "statement": "ports.cmake BUILD handling includes TARGET_TRIPLET_FILE before CURRENT_PORT_DIR/portfile.cmake. The builtin configure helper appends VCPKG_CMAKE_CONFIGURE_OPTIONS and _RELEASE, then uses both in the Release command. Therefore a triplet option -DCMAKE_POLICY_DEFAULT_CMP0210=NEW is preserved by this helper path, provided vcpkg-tool invokes the detector through this path with the intended triplet.",
+      "refs": [
+        {
+          "source": "scripts/ports.cmake",
+          "lines": [
+            145,
+            176
+          ]
+        },
+        {
+          "source": "scripts/ports.cmake",
+          "lines": [
+            200,
+            209
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            243,
+            259
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            322,
+            330
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detector-macos-chainload-inputs",
+      "status": "source-confirmed helper behavior",
+      "statement": "The builtin helper forwards VCPKG_CHAINLOAD_TOOLCHAIN_FILE and the pinned vcpkg integration toolchain, and maps VCPKG_OSX_SYSROOT, VCPKG_OSX_DEPLOYMENT_TARGET and VCPKG_OSX_ARCHITECTURES into CMAKE_* options.",
+      "refs": [
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            196,
+            228
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            236,
+            241
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy-context-not-qualified",
+      "status": "UNVERIFIED end-to-end",
+      "statement": "Detector CMakeLists starts with minimum 3.20 and enables C and CXX. Parent application policy is not proof of detector policy. Actual detector argv/cache, nested integration/adapter effective CMP0210, and try_compile contexts still require exact-tool source/native receipts. ports.cmake also sets child ENV CMAKE_POLICY_VERSION_MINIMUM=3.5 on CMake >=4; that is not a CMP0210 NEW guarantee.",
+      "refs": [
+        {
+          "source": "scripts/detect_compiler/CMakeLists.txt",
+          "lines": [
+            1,
+            12
+          ]
+        },
+        {
+          "source": "scripts/ports.cmake",
+          "lines": [
+            1,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "environment-forwarding-boundary",
+      "status": "UNVERIFIED",
+      "statement": "Direct CMake process wrappers forward commands without defining MARKETPLACE_* pass-through or tracked ABI policy. They cannot establish what environment vcpkg-tool supplies to the outer CMake process. VCPKG_ENV_PASSTHROUGH is the proposed tracked interface, but its actual consumption and ABI hashing for this executable release require source inspection. Do not substitute CMake cache variables, broad/untracked environment bypass, or assume parent shell inheritance suffices.",
+      "requested_names": [
+        "MARKETPLACE_CPP_LANE",
+        "exactly the selected MARKETPLACE_P2996_PREFIX or MARKETPLACE_GCC16_PREFIX"
+      ],
+      "consumer_refs_from_inspector": [
+        {
+          "source": "p2996",
+          "lines": [
+            11,
+            24
+          ],
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake"
+        },
+        {
+          "source": "p2996",
+          "lines": [
+            31,
+            51
+          ],
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake"
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            6,
+            20
+          ],
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake"
+        },
+        {
+          "source": "gcc16",
+          "lines": [
+            21,
+            30
+          ],
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake"
+        }
+      ],
+      "refs": [
+        {
+          "source": "scripts/cmake/vcpkg_execute_required_process.cmake",
+          "lines": [
+            63,
+            70
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_execute_in_download_mode.cmake",
+          "lines": [
+            29,
+            35
+          ]
+        },
+        {
+          "source": "scripts/cmake/execute_process.cmake",
+          "lines": [
+            1,
+            12
+          ]
+        }
+      ]
+    }
+  ],
+  "bounded_tool_source_presence": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/buildtrees/_vcpkg",
+      "exists": false
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/buildtrees/_vcpkg/src/vcpkg-tool-2026-09-26",
+      "exists": false
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/downloads/2026-09-26.zip",
+      "exists": false
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/src/vcpkg/build.cpp",
+      "exists": false
+    }
+  ],
+  "tool_release": {
+    "repository": "https://github.com/microsoft/vcpkg-tool",
+    "tag": "2026-09-26",
+    "source_archive_url": "https://github.com/microsoft/vcpkg-tool/archive/2026-09-26.zip",
+    "source_archive_sha512": "19669a5f107cb02693fe5968687cf83e3ae13692c16a389ff08ff5d51caddf4d885c961e91c60ee2adfbd242dffcdd8987dbcb2f59a71b797a9c7f95e9d89934",
+    "archive_filename": "2026-09-26.zip",
+    "archive_top_directory": "vcpkg-tool-2026-09-26",
+    "metadata_source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/vcpkg-tool-metadata.txt",
+    "metadata_sha256": "44e7a8763d73c9aada61519845235baf55a97d2f931d5ae3a01ae338a591f397",
+    "macos_asset_url": "https://github.com/microsoft/vcpkg-tool/releases/download/2026-09-26/vcpkg-macos",
+    "macos_asset_sha512": "1cc2c658e8bcbdaa522f30e6c4a21ef85c68de1e8c6b5d5bbf5476ca2f44acc479f1367c045439f84ce4f3d912bccc05aefbeb2a5d0293f0168758759356486b",
+    "recorded_bootstrap_binary": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg",
+      "sha512": "1cc2c658e8bcbdaa522f30e6c4a21ef85c68de1e8c6b5d5bbf5476ca2f44acc479f1367c045439f84ce4f3d912bccc05aefbeb2a5d0293f0168758759356486b",
+      "sha256": "f6adb17ce4df42bcb36d143664689de7ecce951739cd3e555e0c2e4ba04fa263",
+      "bytes": 12409856
+    },
+    "commit_or_tag_object": "UNVERIFIED: metadata pins tag and archive digest, not Git commit/tree"
+  },
+  "minimal_parent_acquisition": {
+    "preferred": "Acquire the exact official source ZIP above and verify its recorded SHA512 before inspecting/extracting source. No acquisition performed here.",
+    "metadata_endpoint": "https://api.github.com/repos/microsoft/vcpkg-tool/git/ref/tags/2026-09-26",
+    "source_targets": [
+      {
+        "path": "src/vcpkg/build.cpp",
+        "purpose": "detector invocation, action environment and tracked ABI/environment inputs",
+        "official_tag_url": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/2026-09-26/src/vcpkg/build.cpp",
+        "existence_at_release": "UNVERIFIED until archive/tree inventory; follow exact includes or platform-split files if this release differs"
+      },
+      {
+        "path": "include/vcpkg/build.h",
+        "purpose": "PreBuildInfo and environment/ABI field declarations",
+        "official_tag_url": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/2026-09-26/include/vcpkg/build.h",
+        "existence_at_release": "UNVERIFIED until archive/tree inventory; follow exact includes or platform-split files if this release differs"
+      },
+      {
+        "path": "src/vcpkg/cmakevars.cpp",
+        "purpose": "triplet variable extraction and pass-through variable collection",
+        "official_tag_url": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/2026-09-26/src/vcpkg/cmakevars.cpp",
+        "existence_at_release": "UNVERIFIED until archive/tree inventory; follow exact includes or platform-split files if this release differs"
+      },
+      {
+        "path": "src/vcpkg/base/system.process.cpp",
+        "purpose": "clean/modified child environment construction and process launch",
+        "official_tag_url": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/2026-09-26/src/vcpkg/base/system.process.cpp",
+        "existence_at_release": "UNVERIFIED until archive/tree inventory; follow exact includes or platform-split files if this release differs"
+      },
+      {
+        "path": "include/vcpkg/base/system.process.h",
+        "purpose": "environment/process API contract",
+        "official_tag_url": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/2026-09-26/include/vcpkg/base/system.process.h",
+        "existence_at_release": "UNVERIFIED until archive/tree inventory; follow exact includes or platform-split files if this release differs"
+      }
+    ],
+    "license_target": "LICENSE.txt; verify exact archive path and retain source license",
+    "follow_edges_only": true
+  },
+  "remaining_evidence": [
+    "Exact vcpkg-tool release commit/tree and source bytes; expected local bootstrap-source paths are absent",
+    "Tool C++ invocation connects compiler detection to the observed ports.cmake/helper triplet route",
+    "Tool filters/forwards selected MARKETPLACE ENV names and includes their values in tracked ABI inputs",
+    "Actual compiler detector, fmt port, application and try_compile effective policy/environment witnesses after admission",
+    "Source/native evidence of absence or rejection for missing/wrong lane/prefix and conflicting policy; no qualification claimed now"
+  ]
+}

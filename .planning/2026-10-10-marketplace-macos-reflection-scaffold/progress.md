@@ -1046,3 +1046,15 @@ is implemented; independent preparation review and native admission remain pendi
   checks exited 0. Current moved/resource/fixture/original-IWYU inventories and
   protected state match; staging is absent and all 19 original files are intact.
   Task 09 is qualified for this fixture and explicit copied-resource selection.
+
+Task 09c2 is committed at `b136d75f6809a53381de0dfba1fd61da8e705796`;
+the post-commit baseline passed and the worktree was clean. Task 12a1 now
+prepares shared vcpkg composition with the existing compiler files. Exact
+CMake and vcpkg-tool source receipts identify policy, flag, environment and
+compiler-cache boundaries. The five-file implementation is prepared; script
+controls and independent review remain. No native dependency work is admitted.
+- All 71 CMake script controls passed. Independent review verified all 218
+  copy pairs, 67 intended rejection diagnostics and four positive witnesses.
+  Six additional script runs proved standalone P2996 equivalence and nested
+  native-vcpkg policy behavior for both lanes. No findings remain; compiler,
+  dependency and application qualification still require native operations.

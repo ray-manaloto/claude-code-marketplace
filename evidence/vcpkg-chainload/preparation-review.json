@@ -1,0 +1,569 @@
+{
+  "schema": 1,
+  "kind": "independent-task12a1-preparation-review",
+  "recorded_at": "2026-10-11T16:49:18.441Z",
+  "reviewer": "config_inspector",
+  "disposition": "PASS_FOR_PREPARATION_ONLY",
+  "findings": [],
+  "identity": {
+    "initial": {
+      "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "branch": "codex/marketplace-native-onboarding",
+      "head": "b136d75f6809a53381de0dfba1fd61da8e705796",
+      "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+      "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace"
+    },
+    "closing_head": "b136d75f6809a53381de0dfba1fd61da8e705796",
+    "identity_method": "exact Git administrative text reads; one authorized git-show for old P2996 source"
+  },
+  "candidate": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/candidate.json",
+    "sha256": "6e33211376d91481c7558543711ad0d44389d734ae0ffa901b6ed370008759d9",
+    "base_head": "b136d75f6809a53381de0dfba1fd61da8e705796",
+    "all_six_bindings_match_at_start_and_end": true,
+    "closing_checks": [
+      {
+        "path": "cmake/toolchains/p2996-macos-arm64.cmake",
+        "expected_sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112",
+        "actual_sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112",
+        "match": true
+      },
+      {
+        "path": "cmake/toolchains/vcpkg-macos-arm64.cmake",
+        "expected_sha256": "12646f84d82707b9ae4fa6d7db8455e116c758309bcf28467faf348c899fd05c",
+        "actual_sha256": "12646f84d82707b9ae4fa6d7db8455e116c758309bcf28467faf348c899fd05c",
+        "match": true
+      },
+      {
+        "path": "cmake/toolchains/gcc16-macos-arm64.cmake",
+        "expected_sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+        "actual_sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+        "match": true
+      },
+      {
+        "path": "docs/vcpkg-toolchains.md",
+        "expected_sha256": "9b6cd98ccf02b2fd90afa61bcc164b2b95d96239f9ab6f3621946090c4889f1c",
+        "actual_sha256": "9b6cd98ccf02b2fd90afa61bcc164b2b95d96239f9ab6f3621946090c4889f1c",
+        "match": true
+      },
+      {
+        "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        "expected_sha256": "fab6bd838480cbdf8e11f27b583e21aec0b89707f8b9f512c5ff6e77ac6805e2",
+        "actual_sha256": "fab6bd838480cbdf8e11f27b583e21aec0b89707f8b9f512c5ff6e77ac6805e2",
+        "match": true
+      },
+      {
+        "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "expected_sha256": "88d273e9776e847c42884de76b802cd277a4bc31e4cdbb4696c403ff6386242f",
+        "actual_sha256": "88d273e9776e847c42884de76b802cd277a4bc31e4cdbb4696c403ff6386242f",
+        "match": true
+      }
+    ]
+  },
+  "scope": {
+    "maintained_file_writes": 0,
+    "global_file_writes": 0,
+    "network_calls": 0,
+    "source_mutations": 0,
+    "project_configures": 0,
+    "compiler_commands": 0,
+    "vcpkg_executions": 0,
+    "builds": 0,
+    "installs": 0,
+    "profiles": 0,
+    "protected_scans": 0,
+    "docker_or_lease_operations": 0,
+    "read_only_git_commands": 1,
+    "cmake_script_commands": 6,
+    "max_command_timeout_seconds": 20,
+    "private_output_directory": "/private/tmp/marketplace-task12a1-review-6sr39N",
+    "source_archives_copied": 0,
+    "full_inventories_repeated": 0
+  },
+  "input_receipts": [
+    {
+      "id": "docs",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/vcpkg-toolchains.md",
+      "sha256": "9b6cd98ccf02b2fd90afa61bcc164b2b95d96239f9ab6f3621946090c4889f1c",
+      "bytes": 2657
+    },
+    {
+      "id": "adapter",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/vcpkg-macos-arm64.cmake",
+      "sha256": "12646f84d82707b9ae4fa6d7db8455e116c758309bcf28467faf348c899fd05c",
+      "bytes": 4683
+    },
+    {
+      "id": "p2996",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112",
+      "bytes": 5729
+    },
+    {
+      "id": "candidate",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/candidate.json",
+      "sha256": "6e33211376d91481c7558543711ad0d44389d734ae0ffa901b6ed370008759d9",
+      "bytes": 935
+    },
+    {
+      "id": "prerequisite",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/cmake-prerequisite.json",
+      "sha256": "994534aafed00ef2e88b999da790e5b4d9c455737c7b608f76da28303a1f4e9f",
+      "bytes": 32355
+    },
+    {
+      "id": "boundary",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/tool-boundary-review.json",
+      "sha256": "9831194df2b1646821c4e467ba5a23179c8740dbfb863e0d58ad24e3d4197f1a",
+      "bytes": 24474
+    },
+    {
+      "id": "plan",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "fab6bd838480cbdf8e11f27b583e21aec0b89707f8b9f512c5ff6e77ac6805e2",
+      "bytes": 14587
+    },
+    {
+      "id": "progress",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "88d273e9776e847c42884de76b802cd277a4bc31e4cdbb4696c403ff6386242f",
+      "bytes": 75757
+    },
+    {
+      "id": "gcc16",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+      "bytes": 2053
+    },
+    {
+      "id": "control_location",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/control-location.json",
+      "sha256": "ee37b273b8ee501ac58f7c64df7245fcd3da4870f1b70b41abb733386b25becb",
+      "bytes": 208
+    },
+    {
+      "id": "detector",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/detector-prerequisite.json",
+      "sha256": "fa1a46ad2ecbd748a20c32e11b37b69076121d8a62eabb2f14e702e4b697e59d",
+      "bytes": 25690
+    },
+    {
+      "id": "controls_manifest",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/controls-copy-manifest.json",
+      "sha256": "bd362d3421237d8d252e7aacd5fc2aa1549790c3a438d4cbd3fb906662bc067b",
+      "bytes": 75479
+    },
+    {
+      "id": "static",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/pre-review-static.json",
+      "sha256": "23b06203580379c870a02379b91bc615e314260dacc3decd085057bce7201bc0",
+      "bytes": 623
+    },
+    {
+      "id": "scan",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/pre-review-secret-scan.json",
+      "sha256": "2ca751d5ba37455ae0e2c6fa72eca238e53b60e7abccda070559a4e78b7858b7",
+      "bytes": 49469
+    },
+    {
+      "id": "sdk",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/sdk-prerequisite.json",
+      "sha256": "02c851c4f703635973a2e32984507cbc4af5e1b7861cd898bcfdd5e345a161e4",
+      "bytes": 459
+    },
+    {
+      "id": "native_vcpkg",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/buildsystems/vcpkg.cmake",
+      "sha256": "f911a8769d07e10b26ce651f3cef6f52f2d5e598e3504d7f19e70bcbd3b3b25b",
+      "bytes": 50385
+    }
+  ],
+  "retained_controls": {
+    "manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-chainload/controls-copy-manifest.json",
+      "sha256": "bd362d3421237d8d252e7aacd5fc2aa1549790c3a438d4cbd3fb906662bc067b"
+    },
+    "verified_original_copy_pairs": 218,
+    "each_pair_checked": "SHA256 and byte length for both named original and retained copy equal manifest",
+    "cases": 71,
+    "positive_expected_exit_0": 4,
+    "negative_expected_exit_1": 67,
+    "intended_guard_diagnostics_matched": 67,
+    "generic_nonzero_only_accepted": false,
+    "replayed_cases": 0,
+    "diagnostic_audit": {
+      "path": "/private/tmp/marketplace-task12a1-review-6sr39N/retained-diagnostic-audit.json",
+      "sha256": "6f9130aff782d9ad55dc1b552510fd09d792e2aa5552035b1949bfc5b34ac812",
+      "bytes": 51495
+    },
+    "positive_field_checks": "All four retained cases match exact core/native/sentinel compile flags, private C++ link flags, SDK/deployment/architecture, policy, Debug/Release C/CXX flags and linker flags. Source-generated witnesses assert unchanged repeated inclusion and one PIC token."
+  },
+  "source_assessment": [
+    {
+      "file": "cmake/toolchains/p2996-macos-arm64.cmake",
+      "lines": [
+        62,
+        83
+      ],
+      "result": "The opt-in composition path is exact-path and SHA256 pinned, rejects precomposition, seeds qualified base flags once, includes native osx.cmake before final equality checks, and retains composed values across repeated includes. Standalone mode continues the previous initializer behavior.",
+      "additional_lines": [
+        [
+          85,
+          108
+        ]
+      ],
+      "outside_composition": {
+        "prefix_byte_equal": true,
+        "runtime_and_remaining_guards_byte_equal": true,
+        "only_replaced_section": {
+          "before_lines": [
+            62,
+            63
+          ],
+          "after_lines": [
+            62,
+            83
+          ]
+        }
+      }
+    },
+    {
+      "file": "cmake/toolchains/vcpkg-macos-arm64.cmake",
+      "lines": [
+        2,
+        60
+      ],
+      "result": "The shared adapter validates native host/CMake, explicit policy conflicts, exact lane/prefix and triplet shape, opposite prefix absence, CC/CXX agreement, paired flags, exact qualified SDK/deployment/architecture, tracking and executable-check requirements."
+    },
+    {
+      "file": "cmake/toolchains/vcpkg-macos-arm64.cmake",
+      "lines": [
+        61,
+        80
+      ],
+      "result": "It binds the native osx bytes, delegates to the qualified lane file, composes GCC native flags directly, verifies the final existing base flags, and retains target-triplet propagation."
+    },
+    {
+      "file": "docs/vcpkg-toolchains.md",
+      "lines": [
+        3,
+        31
+      ],
+      "result": "Preparation-only status and native qualification gaps are explicit. Environment inheritance, tracking and compiler-cache statements agree with the bound tool-boundary review; no new runtime acceptance is claimed."
+    },
+    {
+      "file": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "lines": [
+        158,
+        162
+      ],
+      "result": "Five maintained-file preparation scope and script-mode-only admission agree with the candidate."
+    },
+    {
+      "file": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "lines": [
+        1050,
+        1055
+      ],
+      "result": "Prior task closure is separated from current implementation/preparation and pending review. Native task12 work remains unadmitted."
+    }
+  ],
+  "focused_gaps": {
+    "standalone": {
+      "status": "PASS",
+      "byte_equal": true,
+      "stdout_sha256": "d82d33ea76633bbed59c56401667a9ae641f49cf45b0466a785e7fbd9a4a7f96",
+      "stdout_bytes": 1550,
+      "old_toolchain_sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "current_toolchain_sha256": "9edc3147dc86a162e3b63282eac99dbc207446ee4c374bf2cfee24ce106d3112",
+      "script_sha256": "02d3d6c97c5b1cfe7e663ad9884fbeb1392ed1f080caebc1ed685d0b662a9f54",
+      "variables": 10,
+      "repeated_includes_per_process": 2,
+      "compiler_execution": false
+    },
+    "nested_policy": {
+      "status": "PASS",
+      "script": "/private/tmp/marketplace-task12a1-review-6sr39N/native-policy-nesting.cmake",
+      "script_sha256": "b70848053204550f3f2540cfc084b5d9ad1fefb11c7eda5db477387d38f69db4",
+      "cases": [
+        {
+          "case": "nested-p2996-application",
+          "returncode": 0,
+          "policy_witness": "-- NATIVE_POLICY_NESTING=PASS;lane=p2996;minimum=4.4;first_entry=;second_entry=NEW;outer=NEW",
+          "stderr_empty": true
+        },
+        {
+          "case": "nested-p2996-detector-port",
+          "returncode": 0,
+          "policy_witness": "-- NATIVE_POLICY_NESTING=PASS;lane=p2996;minimum=3.20;first_entry=NEW;second_entry=NEW;outer=NEW",
+          "stderr_empty": true
+        },
+        {
+          "case": "nested-gcc16-application",
+          "returncode": 0,
+          "policy_witness": "-- NATIVE_POLICY_NESTING=PASS;lane=gcc16;minimum=4.4;first_entry=;second_entry=NEW;outer=NEW",
+          "stderr_empty": true
+        },
+        {
+          "case": "nested-gcc16-detector-port",
+          "returncode": 0,
+          "policy_witness": "-- NATIVE_POLICY_NESTING=PASS;lane=gcc16;minimum=3.20;first_entry=NEW;second_entry=NEW;outer=NEW",
+          "stderr_empty": true
+        }
+      ],
+      "method": "CMake -P includes the actual pinned scripts/buildsystems/vcpkg.cmake with VCPKG_TOOLCHAIN=TRUE and manifest install disabled, reaching its real VERSION 3.16 scope and chainloader then returning at lines 213-215. Both lanes cover application minimum 4.4 with initially unset nested policy and lower minimum 3.20 with explicit policy default NEW. Each process includes the native file twice and verifies unchanged flags, one PIC token and outer policy NEW.",
+      "limit": "The early-return script path intentionally does not run project(), enable_language(), compiler detection, manifest installation, or vcpkg executable."
+    }
+  },
+  "commands": [
+    {
+      "id": "git-show-old-p2996",
+      "argv": [
+        "/usr/bin/git",
+        "--no-pager",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "show",
+        "b136d75f6809a53381de0dfba1fd61da8e705796:cmake/toolchains/p2996-macos-arm64.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 21,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/git-show-old-p2996.stdout",
+        "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+        "bytes": 4647
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/git-show-old-p2996.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "standalone-before",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DREVIEW_TOOLCHAIN:FILEPATH=/private/tmp/marketplace-task12a1-review-6sr39N/p2996-before.cmake",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-equivalence.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 37,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-before.stdout",
+        "sha256": "d82d33ea76633bbed59c56401667a9ae641f49cf45b0466a785e7fbd9a4a7f96",
+        "bytes": 1550
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-before.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "standalone-after",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DREVIEW_TOOLCHAIN:FILEPATH=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-equivalence.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 36,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-after.stdout",
+        "sha256": "d82d33ea76633bbed59c56401667a9ae641f49cf45b0466a785e7fbd9a4a7f96",
+        "bytes": 1550
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/standalone-after.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "nested-p2996-application",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DREVIEW_MINIMUM=4.4",
+        "-DREVIEW_EXPECT_ENTRY_POLICY=",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/native-policy-nesting.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 45,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-p2996-application.stdout",
+        "sha256": "7429a85a594c8e2f9a185766a3096fa0aaea3662f4852e1054c8e069b4c9d66e",
+        "bytes": 1128
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-p2996-application.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "nested-p2996-detector-port",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_POLICY_DEFAULT_CMP0210=NEW",
+        "-DREVIEW_MINIMUM=3.20",
+        "-DREVIEW_EXPECT_ENTRY_POLICY=NEW",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/native-policy-nesting.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 46,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-p2996-detector-port.stdout",
+        "sha256": "99e01a48b8af02c49692670b437c067a5498ac723a9c195074846e83b7ce6dc8",
+        "bytes": 1132
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-p2996-detector-port.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "nested-gcc16-application",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DREVIEW_MINIMUM=4.4",
+        "-DREVIEW_EXPECT_ENTRY_POLICY=",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/native-policy-nesting.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 60,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-gcc16-application.stdout",
+        "sha256": "19a367d3c680a72618403706ef2942b36d5ebd579d2803c42512efcd8e9db90a",
+        "bytes": 176
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-gcc16-application.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "id": "nested-gcc16-detector-port",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_POLICY_DEFAULT_CMP0210=NEW",
+        "-DREVIEW_MINIMUM=3.20",
+        "-DREVIEW_EXPECT_ENTRY_POLICY=NEW",
+        "-P",
+        "/private/tmp/marketplace-task12a1-review-6sr39N/native-policy-nesting.cmake"
+      ],
+      "cwd": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "timeout_ms": 20000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 77,
+      "stdout": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-gcc16-detector-port.stdout",
+        "sha256": "a6c367809cc6e09828e3d997008027ec07bdb9e98bfc8f7bd3cdb5573806eeb7",
+        "bytes": 180
+      },
+      "stderr": {
+        "path": "/private/tmp/marketplace-task12a1-review-6sr39N/nested-gcc16-detector-port.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "execution_environment": {
+    "method": "explicit small environment; no inherited secret-bearing context or profile",
+    "base": {
+      "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+      "HOME": "/Users/rmanaloto",
+      "TMPDIR": "/private/tmp/marketplace-task12a1-review-6sr39N",
+      "LC_ALL": "C",
+      "LANG": "C",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_CONFIG_GLOBAL": "/dev/null",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "lane_variants": {
+      "p2996": {
+        "MARKETPLACE_CPP_LANE": "p2996",
+        "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+      },
+      "gcc16": {
+        "MARKETPLACE_CPP_LANE": "gcc16",
+        "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0"
+      }
+    },
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    }
+  },
+  "parent_validation_reused": {
+    "static_receipt_sha256": "23b06203580379c870a02379b91bc615e314260dacc3decd085057bce7201bc0",
+    "observed_returncodes": [
+      {
+        "argv": [
+          "./dev/mise",
+          "tasks",
+          "validate"
+        ],
+        "returncode": 0
+      },
+      {
+        "argv": [
+          "./dev/mise",
+          "run",
+          "check:acceptance-baseline"
+        ],
+        "returncode": 0
+      }
+    ],
+    "original_baseline_files": 19,
+    "independently_reexecuted": false,
+    "secret_scan_receipt_sha256": "2ca751d5ba37455ae0e2c6fa72eca238e53b60e7abccda070559a4e78b7858b7",
+    "secret_scan_reexecuted": false
+  },
+  "unverified": [
+    "No native compiler detection or compiler/try_compile execution occurred. Script-mode behavior does not establish actual CMake language initialization or build acceptance.",
+    "Real fmt Debug/Release artifacts, four-configuration applications, linkage/runtime provenance, additional-file ABI/cache mutation controls and private-root confinement remain pending separately admitted task12 native operations.",
+    "The review reuses the exact detector and vcpkg-tool source receipts for environment/option routing and ABI/cache boundaries. It does not redo acquisition, full source inventory, protected-state scanning or research-provider activity.",
+    "No repository commit, push, publish or native-task admission is created by this review."
+  ],
+  "artifact_manifest": "/private/tmp/marketplace-task12a1-review-6sr39N/artifact-manifest.json"
+}

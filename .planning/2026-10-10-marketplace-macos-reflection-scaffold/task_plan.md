@@ -71,6 +71,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 09b1 | Reattest replaced mise runtime | Exact single-path change, existing profile parity, protected-state checks and independent review | Complete |
 | 09c1 | IWYU reflection advice and fixer | Exact include recommendations, restricted fixer, native rebuild/run and clean reanalysis | Complete |
 | 09c2 | IWYU copied-resource relocation | Moved-copy identity, explicit resource override, actual header trace and negative control | Complete |
+| 12a1 | Shared vcpkg chainloader preparation | Pinned source boundaries, policy/flag composition and bounded CMake controls | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -153,6 +154,12 @@ Do not treat source-backed tool pins or 96 candidate trees / 384 cells as runtim
 qualified. Preserve all inherited research failures.
 
 ## Evidence
+
+Task 12a1 admits the P2996 composition correction, shared vcpkg chainloader,
+`docs/vcpkg-toolchains.md` and these two planning files. Retained source receipts
+and bounded CMake script-mode controls are allowed; no compiler detection,
+dependency build, installation, shared-source mutation or cache service is
+included. Native task 12 operations receive separate capacity admission.
 
 See `findings.md`, `progress.md`, and `docs/agents/codex-task-orchestration.md`.
 Historical handoff sources stay immutable in the source checkout and original
