@@ -141,3 +141,22 @@ global file had been copied or tool installed. The application followed below.
 
 Onboarding, task 01 and task 04 are qualified locally, unpublished.
 Full OCI acceptance, research coverage and native build qualification remain pending.
+
+Task 04 is committed at `41fd9fd`; its post-commit baseline check exited 0 and
+the worktree was clean. Task 02 begins with the accepted pinned TCPM source,
+a project-local uv environment and the qualified CMake 4.4.4. No global Python
+change, compiler installation, configure/build, service or OCI execution is included.
+
+- Task 02a acquired 19 pinned TCPM sources through native fnox and verified
+  their Git blob identities. A private uv environment installed TCPM 0.3.3 at
+  the accepted commit with locked parsimonious 0.11.0 and regex 2026.9.29.
+  All 13 installed module files match source receipts; lock/sync/version/help/
+  provenance probes exited 0. Global mise files remain unchanged.
+- TCPM's moving default schema fetch will be disabled during the bounded trial;
+  qualified native CMake 4.4.4 supplies the required parser gate. This does not
+  convert a skipped generator-side check into a pass. Independent 02a review
+  precedes matrix generation.
+- Task 02a passed independent source/environment review with no findings.
+  The reviewer rechecked all 19 blobs, 13 installed files, direct Git identity,
+  lock/runtime dependencies and all five exact command logs. Parent baseline
+  exited 0 with 19 originals; direct-input secret scan passed.
