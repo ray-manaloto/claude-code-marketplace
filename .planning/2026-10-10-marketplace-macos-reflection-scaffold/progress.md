@@ -880,3 +880,17 @@ build/test/runtime cells and eight fresh isolation failures. Runtime is pending.
 - Independent reproduction passed all three probes, four native cells and
   eight controls. Complete preservation, lease release and all 19 acceptance
   hashes passed without candidate findings; task 10a2 is qualified.
+
+Task 10a2 is committed at `df5c430f6a34da5a565b675a0bc2a42b889ba620`;
+the post-commit baseline passed with a clean worktree. Task 03b1 prepares only
+the root CMake file and core/smoke sources, plus these planning records.
+The fork uses `__has_feature(reflection)` instead of the GCC SD-6 macros;
+compiler-specific guards preserve the private reflection boundary. The GCC
+MinSizeRel workaround remains scoped to GNU, P2996 module scanning is disabled,
+and CTest success must require a zero exit. Native two-compiler qualification
+and failure controls follow separately in task 03b2.
+- Applied the three proposed source files after matching all 19 primary
+  references, excerpts and original bytes. Independent source review is pending.
+- Independent source/static review passed without findings; all 19 references,
+  24 read bindings and original acceptance hashes match. The changed core's
+  native compile/link/runtime behavior remains unverified until task 03b2.

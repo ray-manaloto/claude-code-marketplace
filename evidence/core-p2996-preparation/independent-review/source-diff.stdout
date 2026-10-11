@@ -1,0 +1,120 @@
+diff --git a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
+index 8484a7a..c459c84 100644
+--- a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
++++ b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
+@@ -880,3 +880,14 @@ build/test/runtime cells and eight fresh isolation failures. Runtime is pending.
+ - Independent reproduction passed all three probes, four native cells and
+   eight controls. Complete preservation, lease release and all 19 acceptance
+   hashes passed without candidate findings; task 10a2 is qualified.
++
++Task 10a2 is committed at `df5c430f6a34da5a565b675a0bc2a42b889ba620`;
++the post-commit baseline passed with a clean worktree. Task 03b1 prepares only
++the root CMake file and core/smoke sources, plus these planning records.
++The fork uses `__has_feature(reflection)` instead of the GCC SD-6 macros;
++compiler-specific guards preserve the private reflection boundary. The GCC
++MinSizeRel workaround remains scoped to GNU, P2996 module scanning is disabled,
++and CTest success must require a zero exit. Native two-compiler qualification
++and failure controls follow separately in task 03b2.
++- Applied the three proposed source files after matching all 19 primary
++  references, excerpts and original bytes. Independent source review is pending.
+diff --git a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
+index 73788db..e1a1811 100644
+--- a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
++++ b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
+@@ -63,6 +63,8 @@ acceptance before expanding it; parent writes, workers inspect and review.
+ | 08c | LLVM source-based coverage fixture | Fresh reflection profiles; exact branch counts; missing-data control and independent review | Complete |
+ | 10a1 | P2996 CMake toolchain preparation | Exact compiler/runtime contract, native CMake link propagation and independent source review | Complete |
+ | 10a2 | Native P2996 CMake fixture | Actual ABI/custom probes, four build/test/runtime cells, isolation controls and independent review | Complete |
++| 03b1 | Native core P2996 compatibility preparation | Compiler-specific guards, private flags, honest CTest exits and independent source review | In progress |
++| 03b2 | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Pending |
+ 
+ Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
+ Its post-commit baseline check exited 0 and the worktree was clean.
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6fee8c1..88f4680 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -4,11 +4,18 @@ project(AggregatedResearch VERSION 0.1.0 LANGUAGES CXX)
+ if(NOT CMAKE_GENERATOR STREQUAL "Ninja Multi-Config")
+   message(FATAL_ERROR "Use the qualified Ninja Multi-Config development lane.")
+ endif()
+-if(NOT "$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "gcc16" OR
+-   NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR
+-   NOT CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL "16.2.0" OR
+-   NOT CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake")
+-  message(FATAL_ERROR "Only the task-10b GCC16 toolchain is qualified for this skeleton.")
++if("$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "gcc16" AND
++   CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
++   CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL "16.2.0" AND
++   CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake")
++  set(_research_core_lane "gcc16")
++elseif("$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "p2996" AND
++       CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND
++       CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL "21.0.0" AND
++       CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/p2996-macos-arm64.cmake")
++  set(_research_core_lane "p2996")
++else()
++  message(FATAL_ERROR "Use the qualified GCC16 or P2996 toolchain for this skeleton.")
+ endif()
+ set(CMAKE_CONFIGURATION_TYPES Debug Release RelWithDebInfo MinSizeRel CACHE STRING "Build configurations" FORCE)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+@@ -25,16 +32,20 @@ target_link_libraries(research_core_smoke PRIVATE AggregatedResearch::core)
+ target_compile_options(research_core_smoke PRIVATE -pedantic-errors -Wall -Wextra -Werror)
+ set_target_properties(research_core research_core_smoke PROPERTIES
+   CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
++if(_research_core_lane STREQUAL "p2996")
++  set_target_properties(research_core research_core_smoke PROPERTIES CXX_SCAN_FOR_MODULES OFF)
++endif()
+ # GCC 16.2 C++26 constexpr exception symbols duplicate when decloning is enabled.
+ # The isolated witness and reverse control are retained in evidence/core-skeleton.
+-foreach(_target research_core research_core_smoke)
+-  target_compile_options(${_target} PRIVATE "$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>")
+-endforeach()
++if(_research_core_lane STREQUAL "gcc16")
++  foreach(_target research_core research_core_smoke)
++    target_compile_options(${_target} PRIVATE "$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>")
++  endforeach()
++endif()
+ 
+ enable_testing()
+ add_test(NAME research_core_smoke COMMAND research_core_smoke)
+-set_tests_properties(research_core_smoke PROPERTIES
+-  PASS_REGULAR_EXPRESSION "reflection value=43, members=1" TIMEOUT 10)
++set_tests_properties(research_core_smoke PROPERTIES TIMEOUT 10)
+ file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt" CONTENT
+ "library=$<TARGET_FILE:research_core>
+ binary=$<TARGET_FILE:research_core_smoke>
+diff --git a/src/core.cpp b/src/core.cpp
+index 513adbb..2bfe0cc 100644
+--- a/src/core.cpp
++++ b/src/core.cpp
+@@ -3,7 +3,11 @@
+ #include <meta>
+ #include <type_traits>
+ 
+-#if !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)
++#if defined(__clang__)
++#if !__has_feature(reflection) || !defined(_LIBCPP_VERSION) || _LIBCPP_VERSION != 210000
++#error Reflection requires the qualified P2996 compiler and libc++.
++#endif
++#elif !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)
+ #error Reflection must be enabled in the compiler and standard library.
+ #endif
+ 
+diff --git a/src/smoke.cpp b/src/smoke.cpp
+index 28f3f22..20d76a5 100644
+--- a/src/smoke.cpp
++++ b/src/smoke.cpp
+@@ -2,7 +2,11 @@
+ 
+ #include <iostream>
+ 
+-#if defined(__cpp_impl_reflection)
++#if defined(__clang__)
++#if __has_feature(reflection)
++#error Reflection implementation flags must not leak through the public interface.
++#endif
++#elif defined(__cpp_impl_reflection)
+ #error Reflection implementation flags must not leak through the public interface.
+ #endif
+ 

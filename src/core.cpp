@@ -3,7 +3,11 @@
 #include <meta>
 #include <type_traits>
 
-#if !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)
+#if defined(__clang__)
+#if !__has_feature(reflection) || !defined(_LIBCPP_VERSION) || _LIBCPP_VERSION != 210000
+#error Reflection requires the qualified P2996 compiler and libc++.
+#endif
+#elif !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)
 #error Reflection must be enabled in the compiler and standard library.
 #endif
 

@@ -2,7 +2,11 @@
 
 #include <iostream>
 
-#if defined(__cpp_impl_reflection)
+#if defined(__clang__)
+#if __has_feature(reflection)
+#error Reflection implementation flags must not leak through the public interface.
+#endif
+#elif defined(__cpp_impl_reflection)
 #error Reflection implementation flags must not leak through the public interface.
 #endif
 

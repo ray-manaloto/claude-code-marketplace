@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "task": "03b1 native-core P2996 source preparation; later 03b2 runtime qualification",
+  "created_at": "2026-10-11T12:26:59.904Z",
+  "result": "SOURCE PROPOSAL COMPLETE; candidates are not implemented and all new native outcomes remain UNVERIFIED",
+  "reviewer": "/root/config_inspector",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "a99c7900115128108a3a525de687a2a1f137b07c",
+    "method": "Read Git administrative text only; working-tree cleanliness is not inferred",
+    "final_head": "df5c430f6a34da5a565b675a0bc2a42b889ba620",
+    "final_identity_method": "Read the known branch ref after the parent supplied the settled 10a2 commit; no further source exploration."
+  },
+  "ownership": {
+    "implementation_writer": "Parent only",
+    "reviewer_project_writes": [],
+    "reviewer_global_writes": [],
+    "reviewer_private_writes": "This one source-proposal JSON only",
+    "authorization": "Read-only preparation and one private receipt; no implementation or native qualification authorized by this brief"
+  },
+  "bounded_allowlist": {
+    "task_03b1_source_files": [
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp"
+    ],
+    "task_03b1_parent_planning_files": [
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+    ],
+    "unchanged_public_header": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a"
+    },
+    "later_03b2": "A separately reviewed guarded runner and generated evidence, not part of 03b1 implementation scope"
+  },
+  "candidates": [
+    {
+      "path": "CMakeLists.txt",
+      "content": "cmake_minimum_required(VERSION 4.4)\nproject(AggregatedResearch VERSION 0.1.0 LANGUAGES CXX)\n\nif(NOT CMAKE_GENERATOR STREQUAL \"Ninja Multi-Config\")\n  message(FATAL_ERROR \"Use the qualified Ninja Multi-Config development lane.\")\nendif()\nif(\"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"gcc16\" AND\n   CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" AND\n   CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL \"16.2.0\" AND\n   CMAKE_TOOLCHAIN_FILE STREQUAL \"${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake\")\n  set(_research_core_lane \"gcc16\")\nelseif(\"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"p2996\" AND\n       CMAKE_CXX_COMPILER_ID STREQUAL \"Clang\" AND\n       CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL \"21.0.0\" AND\n       CMAKE_TOOLCHAIN_FILE STREQUAL \"${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/p2996-macos-arm64.cmake\")\n  set(_research_core_lane \"p2996\")\nelse()\n  message(FATAL_ERROR \"Use the qualified GCC16 or P2996 toolchain for this skeleton.\")\nendif()\nset(CMAKE_CONFIGURATION_TYPES Debug Release RelWithDebInfo MinSizeRel CACHE STRING \"Build configurations\" FORCE)\nset(CMAKE_EXPORT_COMPILE_COMMANDS ON)\noption(BUILD_SHARED_LIBS \"Build the research core as a shared library\" OFF)\n\nadd_library(research_core src/core.cpp)\nadd_library(AggregatedResearch::core ALIAS research_core)\ntarget_include_directories(research_core PUBLIC \"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>\")\ntarget_compile_options(research_core PRIVATE -freflection -pedantic-errors -Wall -Wextra -Werror)\nset_target_properties(research_core PROPERTIES POSITION_INDEPENDENT_CODE YES)\n\nadd_executable(research_core_smoke src/smoke.cpp)\ntarget_link_libraries(research_core_smoke PRIVATE AggregatedResearch::core)\ntarget_compile_options(research_core_smoke PRIVATE -pedantic-errors -Wall -Wextra -Werror)\nset_target_properties(research_core research_core_smoke PROPERTIES\n  CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)\nif(_research_core_lane STREQUAL \"p2996\")\n  set_target_properties(research_core research_core_smoke PROPERTIES CXX_SCAN_FOR_MODULES OFF)\nendif()\n# GCC 16.2 C++26 constexpr exception symbols duplicate when decloning is enabled.\n# The isolated witness and reverse control are retained in evidence/core-skeleton.\nif(_research_core_lane STREQUAL \"gcc16\")\n  foreach(_target research_core research_core_smoke)\n    target_compile_options(${_target} PRIVATE \"$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>\")\n  endforeach()\nendif()\n\nenable_testing()\nadd_test(NAME research_core_smoke COMMAND research_core_smoke)\nset_tests_properties(research_core_smoke PROPERTIES TIMEOUT 10)\nfile(GENERATE OUTPUT \"${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt\" CONTENT\n\"library=$<TARGET_FILE:research_core>\nbinary=$<TARGET_FILE:research_core_smoke>\nconfiguration=$<CONFIG>\nshared=${BUILD_SHARED_LIBS}\n\")\n",
+      "absolute_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "original_sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+      "candidate_sha256": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e",
+      "candidate_lines": 54,
+      "original_content": "cmake_minimum_required(VERSION 4.4)\nproject(AggregatedResearch VERSION 0.1.0 LANGUAGES CXX)\n\nif(NOT CMAKE_GENERATOR STREQUAL \"Ninja Multi-Config\")\n  message(FATAL_ERROR \"Use the qualified Ninja Multi-Config development lane.\")\nendif()\nif(NOT \"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"gcc16\" OR\n   NOT CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" OR\n   NOT CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL \"16.2.0\" OR\n   NOT CMAKE_TOOLCHAIN_FILE STREQUAL \"${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake\")\n  message(FATAL_ERROR \"Only the task-10b GCC16 toolchain is qualified for this skeleton.\")\nendif()\nset(CMAKE_CONFIGURATION_TYPES Debug Release RelWithDebInfo MinSizeRel CACHE STRING \"Build configurations\" FORCE)\nset(CMAKE_EXPORT_COMPILE_COMMANDS ON)\noption(BUILD_SHARED_LIBS \"Build the research core as a shared library\" OFF)\n\nadd_library(research_core src/core.cpp)\nadd_library(AggregatedResearch::core ALIAS research_core)\ntarget_include_directories(research_core PUBLIC \"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>\")\ntarget_compile_options(research_core PRIVATE -freflection -pedantic-errors -Wall -Wextra -Werror)\nset_target_properties(research_core PROPERTIES POSITION_INDEPENDENT_CODE YES)\n\nadd_executable(research_core_smoke src/smoke.cpp)\ntarget_link_libraries(research_core_smoke PRIVATE AggregatedResearch::core)\ntarget_compile_options(research_core_smoke PRIVATE -pedantic-errors -Wall -Wextra -Werror)\nset_target_properties(research_core research_core_smoke PROPERTIES\n  CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)\n# GCC 16.2 C++26 constexpr exception symbols duplicate when decloning is enabled.\n# The isolated witness and reverse control are retained in evidence/core-skeleton.\nforeach(_target research_core research_core_smoke)\n  target_compile_options(${_target} PRIVATE \"$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>\")\nendforeach()\n\nenable_testing()\nadd_test(NAME research_core_smoke COMMAND research_core_smoke)\nset_tests_properties(research_core_smoke PROPERTIES\n  PASS_REGULAR_EXPRESSION \"reflection value=43, members=1\" TIMEOUT 10)\nfile(GENERATE OUTPUT \"${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt\" CONTENT\n\"library=$<TARGET_FILE:research_core>\nbinary=$<TARGET_FILE:research_core_smoke>\nconfiguration=$<CONFIG>\nshared=${BUILD_SHARED_LIBS}\n\")\n",
+      "implementation_status": "PROPOSED ONLY"
+    },
+    {
+      "path": "src/core.cpp",
+      "content": "#include <aggregated_research/core.hpp>\n\n#include <meta>\n#include <type_traits>\n\n#if defined(__clang__)\n#if !__has_feature(reflection) || !defined(_LIBCPP_VERSION) || _LIBCPP_VERSION != 210000\n#error Reflection requires the qualified P2996 compiler and libc++.\n#endif\n#elif !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)\n#error Reflection must be enabled in the compiler and standard library.\n#endif\n\nnamespace aggregated_research {\nnamespace {\nstruct Record { std::int32_t value; };\nconstexpr auto member = std::meta::nonstatic_data_members_of(\n    ^^Record, std::meta::access_context::current())[0];\nconstexpr auto member_count = std::meta::nonstatic_data_members_of(\n    ^^Record, std::meta::access_context::current()).size();\nstatic_assert(member_count == 1);\nstatic_assert(std::meta::identifier_of(member) == \"value\");\nstatic_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);\nstatic_assert(std::is_trivially_default_constructible_v<ReflectionProbe>);\nstatic_assert(std::is_trivially_copyable_v<ReflectionProbe>);\nstatic_assert(std::is_standard_layout_v<ReflectionProbe>);\n}  // namespace\n\nReflectionProbe reflection_probe() noexcept {\n    Record record{42};\n    record.[:member:] += 1;\n    return {record.[:member:], static_cast<std::uint32_t>(member_count)};\n}\n}  // namespace aggregated_research\n",
+      "absolute_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "original_sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+      "candidate_sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "candidate_lines": 34,
+      "original_content": "#include <aggregated_research/core.hpp>\n\n#include <meta>\n#include <type_traits>\n\n#if !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)\n#error Reflection must be enabled in the compiler and standard library.\n#endif\n\nnamespace aggregated_research {\nnamespace {\nstruct Record { std::int32_t value; };\nconstexpr auto member = std::meta::nonstatic_data_members_of(\n    ^^Record, std::meta::access_context::current())[0];\nconstexpr auto member_count = std::meta::nonstatic_data_members_of(\n    ^^Record, std::meta::access_context::current()).size();\nstatic_assert(member_count == 1);\nstatic_assert(std::meta::identifier_of(member) == \"value\");\nstatic_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);\nstatic_assert(std::is_trivially_default_constructible_v<ReflectionProbe>);\nstatic_assert(std::is_trivially_copyable_v<ReflectionProbe>);\nstatic_assert(std::is_standard_layout_v<ReflectionProbe>);\n}  // namespace\n\nReflectionProbe reflection_probe() noexcept {\n    Record record{42};\n    record.[:member:] += 1;\n    return {record.[:member:], static_cast<std::uint32_t>(member_count)};\n}\n}  // namespace aggregated_research\n",
+      "implementation_status": "PROPOSED ONLY"
+    },
+    {
+      "path": "src/smoke.cpp",
+      "content": "#include <aggregated_research/core.hpp>\n\n#include <iostream>\n\n#if defined(__clang__)\n#if __has_feature(reflection)\n#error Reflection implementation flags must not leak through the public interface.\n#endif\n#elif defined(__cpp_impl_reflection)\n#error Reflection implementation flags must not leak through the public interface.\n#endif\n\nint main() {\n    const auto result = aggregated_research::reflection_probe();\n    std::cout << \"reflection value=\" << result.value\n              << \", members=\" << result.member_count << '\\n';\n    return result.value == 43 && result.member_count == 1 ? 0 : 1;\n}\n",
+      "absolute_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "original_sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+      "candidate_sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a",
+      "candidate_lines": 18,
+      "original_content": "#include <aggregated_research/core.hpp>\n\n#include <iostream>\n\n#if defined(__cpp_impl_reflection)\n#error Reflection implementation flags must not leak through the public interface.\n#endif\n\nint main() {\n    const auto result = aggregated_research::reflection_probe();\n    std::cout << \"reflection value=\" << result.value\n              << \", members=\" << result.member_count << '\\n';\n    return result.value == 43 && result.member_count == 1 ? 0 : 1;\n}\n",
+      "implementation_status": "PROPOSED ONLY"
+    }
+  ],
+  "smallest_patch_rationale": [
+    "The current root rejects every compiler except the exact GCC16 tuple; add only the exact p2996/Clang21.0.0/qualified-toolchain tuple. Both lanes still require Ninja Multi-Config and four configurations.",
+    "The GNU MinSizeRel decloning option must stay on both GNU targets and be absent from P2996 commands. Disable scanning only on the two P2996 targets to match the already qualified fixture; preserve the recorded GNU module-scanning behavior.",
+    "The qualified fork supplies __has_feature(reflection) but not the two SD-6 reflection macros used by the current core. The source candidate uses the Clang builtin and the already qualified _LIBCPP_VERSION==210000, while retaining the original GNU macro condition exactly.",
+    "The P2996 smoke guard must inspect __has_feature(reflection); the current __cpp_impl_reflection-only guard cannot detect that fork flag. The GNU negative guard remains unchanged.",
+    "Remove root PASS_REGULAR_EXPRESSION, retain TIMEOUT 10, and require exact stdout plus native exit zero in the later runner. Keep the private old-regex comparison as regression evidence."
+  ],
+  "qualified_fork_provenance": {
+    "source_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "recorded_before_and_after_head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "head_log_sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+    "qualification_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+    "qualification_sha256": "02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8",
+    "status_note": "The qualified source has seven retained local edits; it is not claimed clean. None is a macro-definition file inspected here.",
+    "recorded_modified_paths": [
+      "clang/lib/Headers/float.h",
+      "libcxx/include/float.h",
+      "llvm/include/llvm/CodeGen/RDFGraph.h",
+      "llvm/include/llvm/CodeGen/RDFRegisters.h",
+      "llvm/lib/CodeGen/RDFLiveness.cpp",
+      "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      "llvm/lib/Target/Hexagon/RDFCopy.h"
+    ],
+    "status_log_sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+    "installed_prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "installed_meta_matches_source": true,
+    "installed_version_matches_source": true,
+    "macro_absence_scope": "No matches in bounded clang include/lib implementation-file search or whole source/installed libc++ header-tree search. InitPreprocessor and installed meta/version were also read and hashed directly. No compiler macro dump was executed."
+  },
+  "recorded_prerequisites": {
+    "gcc_core": {
+      "qualification_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification.json",
+      "qualification_sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159",
+      "review_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "review_sha256": "2c89612b5d7398d6b84f648a899d18d97d2813cddb27b2075f5fee2a889156c1",
+      "result": "PASS: native skeleton, GCC16 static/shared, four configurations",
+      "cells": [
+        "static-Debug",
+        "static-Release",
+        "static-RelWithDebInfo",
+        "static-MinSizeRel",
+        "shared-Debug",
+        "shared-Release",
+        "shared-RelWithDebInfo",
+        "shared-MinSizeRel"
+      ],
+      "commands": 57,
+      "qualification_binding_matches_review": true,
+      "scope": "Recorded parent and settled independent GCC03a qualification; not rerun here"
+    },
+    "p2996_cmake": {
+      "qualification_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+      "qualification_sha256": "02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8",
+      "helper_sha256": "b2b0a4b2fdff733dfc149b90773940ba64cc7654e83f34f6dac82119a0086ade",
+      "result": "PASS: native P2996 CMake probes and four configuration cells",
+      "commands": 51,
+      "positive_rc0": 43,
+      "expected_negative_rc1": 8,
+      "protected_state_unchanged": true,
+      "lease_released": true,
+      "scope": "Parent qualification plus newly supplied settled independent 10a2 closure are hash-bound. This source proposal does not rerun those gates.",
+      "independent_closure": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/cmake-review.json",
+        "sha256": "7f40d3b4e57d3b12760e7bb7a162c3c039ed9a84e2d0c610ae985d0ebc8c985c",
+        "result": "PASS: independent cold source, receipt and one fresh native CMake review",
+        "committed_head": "df5c430f6a34da5a565b675a0bc2a42b889ba620",
+        "scope": "Exact newly supplied report read and hash-bound; no review checks rerun."
+      }
+    }
+  },
+  "flags_and_boundaries": {
+    "p2996_common_compile_tokens": [
+      "--no-default-config",
+      "-fno-blocks",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "-std=c++26",
+      "-arch",
+      "arm64",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-mmacosx-version-min=27.0"
+    ],
+    "strict_target_tokens": [
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror"
+    ],
+    "core_only_tokens": [
+      "-freflection",
+      "-fPIC"
+    ],
+    "smoke_reflection_token": "Must be absent; CXX_SCAN_FOR_MODULES OFF for both P2996 targets",
+    "cxx_link_only_tokens": [
+      "-nostdlib++",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+      "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib"
+    ],
+    "link_scope": "Require on P2996 executable and shared-library CXX links under CMP0210 NEW. Static archive construction does not receive CXX runtime-link assertions.",
+    "expected_config_flags": {
+      "Debug": [
+        "-g"
+      ],
+      "Release": [
+        "-O3",
+        "-DNDEBUG"
+      ],
+      "RelWithDebInfo": [
+        "-O2",
+        "-g",
+        "-DNDEBUG"
+      ],
+      "MinSizeRel": [
+        "-Os",
+        "-DNDEBUG"
+      ]
+    },
+    "gcc_preservation": "Retain the existing compiler/toolchain/libstdc++ lane, target-private reflection, strict diagnostics, PIC core, and MinSizeRel-only -fno-declone-ctor-dtor on both targets. No libc++ or P2996-only compiler flags may leak into GNU commands.",
+    "public_boundary": "core.hpp remains fixed-width integers plus ReflectionProbe reflection_probe() noexcept. No reflection flags, std::meta types or STL objects are added to the public interface.",
+    "export_implications": [
+      "The existing C++ symbol remains the public callable boundary, with current default visibility. No export header, hidden-visibility policy, export map, installation or package export is proposed.",
+      "Fresh shared linking and runtime must prove the smoke consumer resolves the public function from the exact per-cell dylib. Record a global/defined symbol inventory and identify the function by demangling; do not invent an exact-one-symbol guarantee or treat incidental weak standard-library symbols as a new public API.",
+      "Static core means libresearch_core.a, not a fully static process. Its executable still links the three private P2996 runtime dylibs.",
+      "Keep the two compiler families in separate build trees; this proposal does not qualify GCC/libstdc++ consumers of a P2996/libc++ core or other cross-compiler ABI combinations."
+    ],
+    "runtime_expectation": "Every P2996 process must load canonical private libc++, libc++abi and libunwind paths. Shared cells additionally load their exact freshly built core dylib; static cells do not load a core dylib. GCC cells retain the recorded private libstdc++ origin and their own matching library family."
+  },
+  "compact_validation_plan": {
+    "task_03b1": [
+      "Parent applies only the three exact candidates and its two planning records, preserving original source/receipt hashes. No compiler/CMake run in this source/static unit.",
+      "Perform source/static review of exact lane tuples, unchanged GNU branches, conditional scanner/workaround settings, public boundary and CTest exit semantics. Run the existing lightweight task validation and acceptance-baseline checks under normal ownership; this reviewer did not run them.",
+      "Settle the independent source review and final commit before admitting 03b2."
+    ],
+    "task_03b2": [
+      "Reuse the reviewed 10a2 admission, frozen bounded runner, signal/process-group cleanup, host lease, normal/named environment snapshots, source identity and final protected-state checks. Bind settled 10a2 closure and 03b1 source review/final HEAD, all source/toolchain inputs, compiler/tool/runtime identities, SDK, helper hash and one exact fresh run directory. Do not rerun the older 03a harness or its whole historical guard battery.",
+      "Create four fresh trees: p2996/static, p2996/shared, gcc16/static, gcc16/shared. Configure each with pinned absolute CMake/Ninja, Ninja Multi-Config, its exact toolchain, BUILD_SHARED_LIBS OFF/ON, --debug-trycompile and CMAKE_TRY_COMPILE_CONFIGURATION=Debug. Root enables CXX only, so capture its CXX ABI probe immediately; do not claim the fixture's three probes were repeated by the root.",
+      "Before any later CMake call, retain generated commands/text plus fresh ABI object/executable and ABI COPY_FILE hashes, using the corrected narrow parser and confined outputs. Record actual static archive commands/tools separately; 10a2 metadata lists /usr/bin/ar, private llvm-ar/llvm-ranlib and /usr/bin/ld, but does not qualify archive creation. Bind the tools actually used before building.",
+      "Build Debug, Release, RelWithDebInfo and MinSizeRel sequentially with --parallel 1 and bounded timeouts in each tree: 16 cells total, eight P2996 and eight GCC. Require exactly eight CDB rows per tree grouped by (core or smoke, configuration), distinct confined outputs and expected dialect/strict/PIC/reflection/workaround/scanning flags. Check actual CXX shared/executable link commands and archive commands separately.",
+      "For every cell require CTest exit zero and exactly one test, then direct native exit zero and exact stdout reflection value=43, members=1 followed by a newline. Verify Mach-O ARM64 executable/library (or ARM64 archive), fresh binary/library hashes, correct suffix/type and generated manifest. Inspect shared/executable dependency metadata, rpaths and DYLD_PRINT_LIBRARIES canonical origins. Export inspection is read-only and bounded to the built core.",
+      "Run the original/patched macro and CTest controls below in private copies, retain actual argv/exit/stdout/stderr/output-presence evidence, and require each expected outcome. Keep failed-run artifacts. Preserve baseline/global/prefix/source files in finally and settle independent review before claiming native 03b2 acceptance."
+    ]
+  },
+  "required_private_controls": [
+    {
+      "case": "original-core-guard-on-p2996",
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "source_sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+      "action": "Compile an exact private byte copy with the admitted P2996 common flags, -freflection, include root/include and -c to a fresh private output.",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection must be enabled in the compiler and standard library.",
+      "meaning": "Required failing control preserving the original macro behavior; do not silently replace the old source or relabel it as a successful qualification."
+    },
+    {
+      "case": "updated-core-without-reflection",
+      "candidate_sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "action": "Compile the candidate private copy without -freflection under the admitted P2996 lane.",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection requires the qualified P2996 compiler and libc++.",
+      "meaning": "The new positive guard must still reject an unenabled implementation."
+    },
+    {
+      "case": "original-smoke-leak-comparison",
+      "source_sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+      "action": "Compile an exact private original smoke copy with P2996 -freflection and -c only.",
+      "expected_native_returncode": 0,
+      "meaning": "The old guard is expected to miss the fork flag; this is a deliberately bad comparison, not an accepted interface behavior."
+    },
+    {
+      "case": "updated-smoke-rejects-reflection",
+      "candidate_sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a",
+      "action": "Compile the patched smoke copy with -freflection under each admitted compiler lane; require the explicit leakage diagnostic and no successful object.",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection implementation flags must not leak through the public interface."
+    },
+    {
+      "case": "ctest-old-regex-comparison",
+      "private_CTestTestfile_contents": "add_test(nonzero \"/bin/sh\" \"-c\" [=[printf 'reflection value=43, members=1\\n'; exit 1]=])\nset_tests_properties(nonzero PROPERTIES TIMEOUT 10 PASS_REGULAR_EXPRESSION \"reflection value=43, members=1\")\n",
+      "proposed_native_argv": [
+        "<pinned ctest>",
+        "--test-dir",
+        "<fresh private old-regex directory>",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "expected_ctest_returncode": 0,
+      "child_returncode": 1,
+      "meaning": "Expected reproduction of matching-output/nonzero false pass."
+    },
+    {
+      "case": "ctest-corrected-exit-contract",
+      "private_CTestTestfile_contents": "add_test(nonzero \"/bin/sh\" \"-c\" [=[printf 'reflection value=43, members=1\\n'; exit 1]=])\nset_tests_properties(nonzero PROPERTIES TIMEOUT 10)\n",
+      "proposed_native_argv": [
+        "<pinned ctest>",
+        "--test-dir",
+        "<fresh private corrected directory>",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "expected_ctest_returncode": 8,
+      "child_returncode": 1,
+      "meaning": "CTest must fail even though the child prints the exact success line. The pinned native exit code is a future expectation, not an observed result."
+    }
+  ],
+  "remaining_limitations": [
+    "No source candidate has been written to the project, syntax-checked with CMake, compiled or run.",
+    "The stricter core diagnostics, static archive construction, shared-library link/runtime/export behavior and combined core static/shared four-configuration matrix remain UNVERIFIED for P2996.",
+    "Settled 10a2 qualifies its executable fixture and probes; it does not establish core/static/shared acceptance.",
+    "No installed/relocated consumer, cross-compiler ABI, provider/adapter behavior, packaging, vcpkg graph, module, sanitizer/coverage matrix or OCI acceptance is claimed."
+  ],
+  "source_preparation_blockers": [],
+  "primary_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+      "line_ranges": [
+        [
+          7,
+          12
+        ],
+        [
+          17,
+          32
+        ],
+        [
+          34,
+          43
+        ]
+      ],
+      "supports": "Current GCC-only gate, private reflection, GNU workaround and weak CTest registration.",
+      "excerpts": [
+        "7: if(NOT \"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"gcc16\" OR\n8:    NOT CMAKE_CXX_COMPILER_ID STREQUAL \"GNU\" OR\n9:    NOT CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL \"16.2.0\" OR\n10:    NOT CMAKE_TOOLCHAIN_FILE STREQUAL \"${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake\")\n11:   message(FATAL_ERROR \"Only the task-10b GCC16 toolchain is qualified for this skeleton.\")\n12: endif()",
+        "17: add_library(research_core src/core.cpp)\n18: add_library(AggregatedResearch::core ALIAS research_core)\n19: target_include_directories(research_core PUBLIC \"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>\")\n20: target_compile_options(research_core PRIVATE -freflection -pedantic-errors -Wall -Wextra -Werror)\n21: set_target_properties(research_core PROPERTIES POSITION_INDEPENDENT_CODE YES)\n22: \n23: add_executable(research_core_smoke src/smoke.cpp)\n24: target_link_libraries(research_core_smoke PRIVATE AggregatedResearch::core)\n25: target_compile_options(research_core_smoke PRIVATE -pedantic-errors -Wall -Wextra -Werror)\n26: set_target_properties(research_core research_core_smoke PROPERTIES\n27:   CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)\n28: # GCC 16.2 C++26 constexpr exception symbols duplicate when decloning is enabled.\n29: # The isolated witness and reverse control are retained in evidence/core-skeleton.\n30: foreach(_target research_core research_core_smoke)\n31:   target_compile_options(${_target} PRIVATE \"$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>\")\n32: endforeach()",
+        "34: enable_testing()\n35: add_test(NAME research_core_smoke COMMAND research_core_smoke)\n36: set_tests_properties(research_core_smoke PROPERTIES\n37:   PASS_REGULAR_EXPRESSION \"reflection value=43, members=1\" TIMEOUT 10)\n38: file(GENERATE OUTPUT \"${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt\" CONTENT\n39: \"library=$<TARGET_FILE:research_core>\n40: binary=$<TARGET_FILE:research_core_smoke>\n41: configuration=$<CONFIG>\n42: shared=${BUILD_SHARED_LIBS}\n43: \")"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+      "line_ranges": [
+        [
+          3,
+          15
+        ]
+      ],
+      "supports": "Fixed-width POD public C++ API with no reflection types or export macros.",
+      "excerpts": [
+        "3: #include <cstdint>\n4: \n5: namespace aggregated_research {\n6: \n7: // Foundation witness only; no research provider or adapter behavior is exposed yet.\n8: struct ReflectionProbe {\n9:     std::int32_t value;\n10:     std::uint32_t member_count;\n11: };\n12: \n13: [[nodiscard]] ReflectionProbe reflection_probe() noexcept;\n14: \n15: }  // namespace aggregated_research"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+      "line_ranges": [
+        [
+          3,
+          22
+        ],
+        [
+          25,
+          30
+        ]
+      ],
+      "supports": "Original SD-6 guard, existing reflection operations, POD assertions and implementation.",
+      "excerpts": [
+        "3: #include <meta>\n4: #include <type_traits>\n5: \n6: #if !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)\n7: #error Reflection must be enabled in the compiler and standard library.\n8: #endif\n9: \n10: namespace aggregated_research {\n11: namespace {\n12: struct Record { std::int32_t value; };\n13: constexpr auto member = std::meta::nonstatic_data_members_of(\n14:     ^^Record, std::meta::access_context::current())[0];\n15: constexpr auto member_count = std::meta::nonstatic_data_members_of(\n16:     ^^Record, std::meta::access_context::current()).size();\n17: static_assert(member_count == 1);\n18: static_assert(std::meta::identifier_of(member) == \"value\");\n19: static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);\n20: static_assert(std::is_trivially_default_constructible_v<ReflectionProbe>);\n21: static_assert(std::is_trivially_copyable_v<ReflectionProbe>);\n22: static_assert(std::is_standard_layout_v<ReflectionProbe>);",
+        "25: ReflectionProbe reflection_probe() noexcept {\n26:     Record record{42};\n27:     record.[:member:] += 1;\n28:     return {record.[:member:], static_cast<std::uint32_t>(member_count)};\n29: }\n30: }  // namespace aggregated_research"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+      "line_ranges": [
+        [
+          5,
+          14
+        ]
+      ],
+      "supports": "Original leakage guard, exact success output and value-dependent exit status.",
+      "excerpts": [
+        "5: #if defined(__cpp_impl_reflection)\n6: #error Reflection implementation flags must not leak through the public interface.\n7: #endif\n8: \n9: int main() {\n10:     const auto result = aggregated_research::reflection_probe();\n11:     std::cout << \"reflection value=\" << result.value\n12:               << \", members=\" << result.member_count << '\\n';\n13:     return result.value == 43 && result.member_count == 1 ? 0 : 1;\n14: }"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "line_ranges": [
+        [
+          1,
+          15
+        ],
+        [
+          53,
+          88
+        ]
+      ],
+      "supports": "Qualified lane/SDK/architecture and exact common/private-runtime link flags.",
+      "excerpts": [
+        "1: # Current task-07d prefix; changing it requires a new runtime qualification.\n2: if(CMAKE_VERSION VERSION_LESS \"4.4\" OR\n3:    NOT CMAKE_HOST_SYSTEM_NAME STREQUAL \"Darwin\" OR\n4:    NOT CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"arm64\")\n5:   message(FATAL_ERROR \"Use CMake 4.4+ on native macOS ARM64.\")\n6: endif()\n7: cmake_policy(GET CMP0210 _p2996_link_policy)\n8: if(NOT _p2996_link_policy STREQUAL \"NEW\")\n9:   message(FATAL_ERROR \"Set cmake_minimum_required(VERSION 4.4) before project().\")\n10: endif()\n11: set(_p2996_prefix \"$ENV{MARKETPLACE_P2996_PREFIX}\")\n12: if(NOT \"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"p2996\" OR\n13:    NOT _p2996_prefix STREQUAL \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix\")\n14:   message(FATAL_ERROR \"Select the task-07d qualified global mise p2996 environment.\")\n15: endif()",
+        "53: set(CMAKE_OSX_SYSROOT \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\" CACHE PATH \"Task-07d SDK\")\n54: set(CMAKE_OSX_DEPLOYMENT_TARGET \"27.0\" CACHE STRING \"Task-07d deployment target\")\n55: set(CMAKE_OSX_ARCHITECTURES \"arm64\" CACHE STRING \"Task-07d architecture\")\n56: if(NOT CMAKE_OSX_SYSROOT STREQUAL \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\" OR\n57:    NOT EXISTS \"${CMAKE_OSX_SYSROOT}/SDKSettings.json\" OR\n58:    NOT CMAKE_OSX_DEPLOYMENT_TARGET STREQUAL \"27.0\" OR\n59:    NOT CMAKE_OSX_ARCHITECTURES STREQUAL \"arm64\")\n60:   message(FATAL_ERROR \"SDK, deployment target and architecture must match task 07d.\")\n61: endif()\n62: set(CMAKE_C_FLAGS_INIT \"--no-default-config -fno-blocks -resource-dir \\\"${_p2996_prefix}/lib/clang/21\\\"\")\n63: set(CMAKE_CXX_FLAGS_INIT \"${CMAKE_C_FLAGS_INIT} -stdlib=libc++ -nostdinc++ -isystem \\\"${_p2996_prefix}/include/c++/v1\\\"\")\n64: # Native per-language link flags survive the ABI check's STANDARD_LIBRARIES reset.\n65: set(_p2996_link \"-nostdlib++ \\\"${_p2996_prefix}/lib/libc++.dylib\\\" \\\"${_p2996_prefix}/lib/libc++abi.dylib\\\" \\\"${_p2996_prefix}/lib/libunwind.dylib\\\" -Wl,-rpath,\\\"${_p2996_prefix}/lib\\\"\")\n66: if(DEFINED CMAKE_CXX_LINK_FLAGS AND NOT CMAKE_CXX_LINK_FLAGS STREQUAL _p2996_link)\n67:   message(FATAL_ERROR \"Conflicting C++ link flags; use a fresh build directory.\")\n68: endif()\n69: set(CMAKE_CXX_LINK_FLAGS \"${_p2996_link}\")\n70: if(CMAKE_CXX_STANDARD_LIBRARIES OR CMAKE_CXX_STANDARD_LIBRARIES_INIT)\n71:   message(FATAL_ERROR \"Unexpected extra C++ standard libraries.\")\n72: endif()\n73: set(CMAKE_CXX_STANDARD_LIBRARIES_INIT \"\")\n74: foreach(_language C CXX)\n75:   if(DEFINED CMAKE_${_language}_FLAGS)\n76:     string(STRIP \"${CMAKE_${_language}_FLAGS}\" _existing_flags)\n77:     if(NOT _existing_flags STREQUAL CMAKE_${_language}_FLAGS_INIT)\n78:       message(FATAL_ERROR \"Conflicting ${_language} flags; use a fresh build directory.\")\n79:     endif()\n80:   endif()\n81: endforeach()\n82: if(CMAKE_C_COMPILER_FORCED OR CMAKE_CXX_COMPILER_FORCED OR\n83:    CMAKE_TRY_COMPILE_NO_PLATFORM_VARIABLES OR\n84:    (DEFINED CMAKE_TRY_COMPILE_TARGET_TYPE AND\n85:     NOT CMAKE_TRY_COMPILE_TARGET_TYPE STREQUAL \"EXECUTABLE\"))\n86:   message(FATAL_ERROR \"Compiler and try_compile link checks must remain enabled.\")\n87: endif()\n88: set(CMAKE_TRY_COMPILE_TARGET_TYPE \"EXECUTABLE\")"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+      "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11",
+      "line_ranges": [
+        [
+          17,
+          36
+        ]
+      ],
+      "supports": "Positive/negative feature detection, disabled module scanning, target-private reflection and TIMEOUT-only CTest.",
+      "excerpts": [
+        "17: try_compile(_private_runtime_links SOURCE_FROM_CONTENT private_runtime.cpp [=[\n18: #if __has_feature(reflection)\n19: #error \"Reflection must remain target-private\"\n20: #endif\n21: #include <string>\n22: int main() { return std::string(\"private\").size() != 7; }\n23: ]=] CMAKE_FLAGS \"-DCMAKE_CXX_SCAN_FOR_MODULES=OFF\"\n24:     CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO\n25:     NO_CACHE OUTPUT_VARIABLE _private_runtime_log)\n26: file(WRITE \"${CMAKE_BINARY_DIR}/private-runtime-try-compile.log\" \"${_private_runtime_log}\")\n27: if(NOT _private_runtime_links)\n28:   message(FATAL_ERROR \"Private C++ runtime try_compile failed; inspect the retained log.\")\n29: endif()\n30: add_executable(reflection \"../../dev/toolchains/p2996_reflection.cpp\")\n31: set_target_properties(reflection PROPERTIES CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES\n32:     CXX_EXTENSIONS NO CXX_SCAN_FOR_MODULES OFF)\n33: target_compile_options(reflection PRIVATE -freflection)\n34: enable_testing()\n35: add_test(NAME reflection COMMAND reflection)\n36: set_tests_properties(reflection PROPERTIES TIMEOUT 10)"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "line_ranges": [
+        [
+          1,
+          16
+        ]
+      ],
+      "supports": "Already qualified feature detection, private libc++ version and reflection operations.",
+      "excerpts": [
+        "1: #if !__has_feature(reflection)\n2: #error \"P2996 reflection requires -freflection\"\n3: #else\n4: #include <meta>\n5: #include <iostream>\n6: #include <stdexcept>\n7: #include <string>\n8: #include <type_traits>\n9: \n10: static_assert(_LIBCPP_VERSION == 210000);\n11: static_assert(__cplusplus > 202302L);\n12: struct Record { int value; };\n13: constexpr auto member = std::meta::nonstatic_data_members_of(\n14:     ^^Record, std::meta::access_context::current())[0];\n15: static_assert(std::meta::identifier_of(member) == \"value\");\n16: static_assert(std::is_same_v<typename [:std::meta::type_of(member):], int>);"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+      "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+      "line_ranges": [
+        [
+          73,
+          120
+        ]
+      ],
+      "supports": "Original eight-cell GCC behavior and compile/runtime checks; reuse its contract, not its older runner.",
+      "excerpts": [
+        "73:     options=['-G','Ninja Multi-Config','-DCMAKE_MAKE_PROGRAM='+ninja,\n74:              '-DCMAKE_TOOLCHAIN_FILE='+str(ROOT/'cmake/toolchains/gcc16-macos-arm64.cmake'),\n75:              '-DCMAKE_OSX_SYSROOT='+sdk,'-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0']\n76:     first=directory/'declone-first.cpp';second=directory/'declone-second.cpp'\n77:     first.write_text('#include <stdexcept>\\nint probe() { return 42; }\\n')\n78:     second.write_text('#include <stdexcept>\\nint probe(); int main() { return probe() == 42 ? 0 : 1; }\\n')\n79:     cxx=runtime['identities']['cxx']['path']\n80:     for label,flags,expected in [('declone-red',['-Os'],1),('declone-fixed',['-Os','-fno-declone-ctor-dtor'],0),\n81:                                  ('declone-reverse',['-O2','-fdeclone-ctor-dtor'],1)]:\n82:         output=directory/label\n83:         _,err=run(label,base+[cxx,'-std=c++26','-isysroot',sdk,*flags,str(first),str(second),'-o',str(output)],expected)\n84:         if expected: assert 'duplicate symbol' in err\n85:         else: run(label+'-run',base+[str(output)])\n86:     report['cells']={}\n87:     for linkage in ('static','shared'):\n88:         build=directory/linkage\n89:         run('configure-'+linkage,base+[cmake,'-S',str(ROOT),'-B',str(build),*options,\n90:                                       '-DBUILD_SHARED_LIBS='+('ON' if linkage=='shared' else 'OFF')])\n91:         for config in ('Debug','Release','RelWithDebInfo','MinSizeRel'):\n92:             cell=linkage+'-'+config\n93:             run('build-'+cell,base+[cmake,'--build',str(build),'--config',config,'--parallel','1','--verbose'])\n94:             test,_=run('test-'+cell,base+[ctest,'--test-dir',str(build),'-C',config,'--output-on-failure','--no-tests=error'])\n95:             assert '100% tests passed' in test and 'out of 1' in test\n96:             summary=dict(line.split('=',1) for line in (build/('core-'+config+'.txt')).read_text().splitlines() if line)\n97:             binary=Path(summary['binary']); library=Path(summary['library'])\n98:             assert library.suffix==('.dylib' if linkage=='shared' else '.a')\n99:             architecture,_=run('architecture-'+cell,['/usr/bin/file','-b',str(binary)])\n100:             assert 'arm64' in architecture\n101:             architecture,_=run('library-architecture-'+cell,['/usr/bin/lipo','-archs',str(library)])\n102:             assert architecture.strip()=='arm64'\n103:             output,dyld=run('runtime-'+cell,base+['/usr/bin/env','DYLD_PRINT_LIBRARIES=1',str(binary)])\n104:             assert output=='reflection value=43, members=1\\n'\n105:             assert '/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib' in dyld\n106:             assert ('libresearch_core.dylib' in dyld)==(linkage=='shared')\n107:             libraries,_=run('libraries-'+cell,['/usr/bin/otool','-L',str(binary)])\n108:             assert 'libstdc++.6.dylib' in libraries and 'libc++.1.dylib' not in libraries\n109:             assert ('libresearch_core.dylib' in libraries)==(linkage=='shared')\n110:             report['cells'][cell]={'binary':str(binary),'binary_sha256':digest(binary),\n111:                                    'library':str(library),'library_sha256':digest(library),'summary':summary}\n112:         commands=json.loads((build/'compile_commands.json').read_text())\n113:         assert len(commands)==8\n114:         for row in commands:\n115:             command=row['command']; assert command.startswith(runtime['identities']['cxx']['path'])\n116:             assert '-std=c++26' in command and '-isysroot '+sdk in command\n117:             assert ('-freflection' in command)==(Path(row['file']).name=='core.cpp')\n118:             assert ('-fno-declone-ctor-dtor' in command)==('MinSizeRel' in command)\n119:             assert '/opt/homebrew/opt/llvm' not in command and '-stdlib=libc++' not in command\n120:         report[linkage+'_compile_commands']=commands"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "sha256": "2c89612b5d7398d6b84f648a899d18d97d2813cddb27b2075f5fee2a889156c1",
+      "line_ranges": [
+        [
+          4,
+          10
+        ],
+        [
+          49,
+          62
+        ],
+        [
+          244,
+          255
+        ]
+      ],
+      "supports": "Accepted GCC qualification and explicit exclusions.",
+      "excerpts": [
+        "4:   \"result\": \"PASS for task 03a minimal native GCC16 skeleton\",\n5:   \"findings_remaining\": [],\n6:   \"checkout\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\",\n7:   \"branch\": \"codex/marketplace-native-onboarding\",\n8:   \"head\": \"637dbe8b0d059be519f1c4b743555ac4c75aaf24\",\n9:   \"git_common_directory\": \"/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\",\n10:   \"scope\": [",
+        "49:     \"unchanged_during_review\": true\n50:   },\n51:   \"parent_evidence\": {\n52:     \"qualification\": \"evidence/core-skeleton/qualification.json\",\n53:     \"sha256\": \"b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159\",\n54:     \"commands\": 57,\n55:     \"exact_log_hashes_verified\": 114,\n56:     \"cells\": 8,\n57:     \"failed_attempt_receipts_verified\": 2,\n58:     \"diagnostic_runs_verified\": 5,\n59:     \"gcc_source_commit\": \"78d4ac73dd391005b895a6148cd9831e28e1208b\",\n60:     \"source_acquisition_records_verified\": 8,\n61:     \"documentation_license_verified\": true,\n62:     \"details\": \"/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/parent-evidence-review.json\"",
+        "244:     \"Only four implementation files plus two short required planning records; all source and prerequisite hashes unchanged during review.\",\n245:     \"Reflection introspection and member splicing are confined to core.cpp. The public facade contains only fixed-width integers and has trivial-default, trivial-copy and standard-layout assertions.\",\n246:     \"The smoke consumer links the actual library and compiles without -freflection; its preprocessor guard rejects leakage. Every generated compile command confirmed target-private reflection.\",\n247:     \"CMake requires the qualified GCC16 toolchain and Ninja Multi-Config, C++26 without extensions, strict diagnostics, ARM64 and explicit SDK through the qualified toolchain.\",\n248:     \"The MinSizeRel workaround only disables constructor/destructor decloning on the two targets. Language mode, exceptions and RTTI remain enabled. Pinned GCC manual and real red/fix/reverse controls support this scope.\",\n249:     \"The harness records actual command return codes/log hashes, fails on an unexpected result, kills its owned process group on timeout/interruption, and checks protected state in finally. Timeout and interruption paths were reviewed statically only.\"\n250:   ],\n251:   \"not_executed\": [\n252:     \"No extra harness rerun or expanded configuration matrix\",\n253:     \"No artificial timeout/interruption or process-failure injection\",\n254:     \"No dependency install, global edit, network route, model session, cache server, daemon, container or OCI acceptance\",\n255:     \"No P2996 LLVM lane, vcpkg dependency graph, sanitizer/coverage matrix, installed or relocated consumer, native module, plugin adapter or provider behavior qualification\""
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+      "sha256": "02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8",
+      "line_ranges": [
+        [
+          2,
+          2
+        ],
+        [
+          1580,
+          1594
+        ],
+        [
+          2235,
+          2304
+        ],
+        [
+          2347,
+          2348
+        ]
+      ],
+      "supports": "Parent-only native 10a2 pass, exact helper/tool/input binding and preservation.",
+      "excerpts": [
+        "2:   \"state\": \"PASS: native P2996 CMake probes and four configuration cells\",",
+        "1580:   \"helper_sha256\": \"b2b0a4b2fdff733dfc149b90773940ba64cc7654e83f34f6dac82119a0086ade\",\n1581:   \"witness_sha256\": \"23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41\",\n1582:   \"registration_review_sha256\": \"9b8e92ac14d9304d7055fa00a3348612251e8bd27247db0ead946179bc835437\",\n1583:   \"admission_sha256\": \"a92482b8b1128c52819b38cb3b226b184e52387a8d5f0c26ed47a48c47ea530e\",\n1584:   \"fixture_inputs\": {\n1585:     \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake\": \"47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9\",\n1586:     \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt\": \"8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11\",\n1587:     \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp\": \"23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41\"\n1588:   },\n1589:   \"source_contract_sha256\": \"fc2f97efb1e768e98ede0ef76f3c1ced54ddfef081fc8532cd531fda4e19fb5c\",\n1590:   \"tool_hashes\": {\n1591:     \"/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake\": \"80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb\",\n1592:     \"/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja\": \"458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815\",\n1593:     \"/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest\": \"3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88\"\n1594:   },",
+        "2235:   \"configurations\": {\n2236:     \"Debug\": {\n2237:       \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Debug/reflection\",\n2238:       \"sha256\": \"c34ee8fc46bce560f58ec4bae76b3f67b7c2f84c7727085e1719e2939635e411\",\n2239:       \"summary\": {\n2240:         \"compiler\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++\",\n2241:         \"version\": \"21.0.0\",\n2242:         \"sdk\": \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\",\n2243:         \"architecture\": \"arm64\",\n2244:         \"configuration\": \"Debug\",\n2245:         \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Debug/reflection\"\n2246:       },\n2247:       \"loaded_private_images\": [\n2248:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib\",\n2249:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib\",\n2250:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib\"\n2251:       ]\n2252:     },\n2253:     \"Release\": {\n2254:       \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Release/reflection\",\n2255:       \"sha256\": \"f6e0a705a2c6306e2c4d5181c726df90dd999bc00b8209738445d7344e818b5c\",\n2256:       \"summary\": {\n2257:         \"compiler\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++\",\n2258:         \"version\": \"21.0.0\",\n2259:         \"sdk\": \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\",\n2260:         \"architecture\": \"arm64\",\n2261:         \"configuration\": \"Release\",\n2262:         \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Release/reflection\"\n2263:       },\n2264:       \"loaded_private_images\": [\n2265:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib\",\n2266:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib\",\n2267:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib\"\n2268:       ]\n2269:     },\n2270:     \"RelWithDebInfo\": {\n2271:       \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/RelWithDebInfo/reflection\",\n2272:       \"sha256\": \"41c7c901afe1f3933a1180756b5e94157e9a42b6958a997a5206302654e91b70\",\n2273:       \"summary\": {\n2274:         \"compiler\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++\",\n2275:         \"version\": \"21.0.0\",\n2276:         \"sdk\": \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\",\n2277:         \"architecture\": \"arm64\",\n2278:         \"configuration\": \"RelWithDebInfo\",\n2279:         \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/RelWithDebInfo/reflection\"\n2280:       },\n2281:       \"loaded_private_images\": [\n2282:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib\",\n2283:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib\",\n2284:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib\"\n2285:       ]\n2286:     },\n2287:     \"MinSizeRel\": {\n2288:       \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/MinSizeRel/reflection\",\n2289:       \"sha256\": \"036e2f0180b446ab0782899776735f9829301b0e992cbd5904bbbbb6a3ef833c\",\n2290:       \"summary\": {\n2291:         \"compiler\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++\",\n2292:         \"version\": \"21.0.0\",\n2293:         \"sdk\": \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\",\n2294:         \"architecture\": \"arm64\",\n2295:         \"configuration\": \"MinSizeRel\",\n2296:         \"binary\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/MinSizeRel/reflection\"\n2297:       },\n2298:       \"loaded_private_images\": [\n2299:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib\",\n2300:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib\",\n2301:         \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib\"\n2302:       ]\n2303:     }\n2304:   },",
+        "2347:   \"lease_released\": true,\n2348:   \"protected_state_unchanged\": true"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/InitPreprocessor.cpp",
+      "sha256": "52c88f096dffee38426eeb2233cd703b4764c662e3601e9a047dc37e51ba3069",
+      "line_ranges": [],
+      "supports": "No SD-6 reflection definitions in this source; bounded clang include/lib search also found none.",
+      "excerpts": []
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/Features.def",
+      "sha256": "7e6cf9759a0aaf730b222fd3c7334576bdf628bee7501de6de16b97f9a89d596",
+      "line_ranges": [
+        [
+          324,
+          330
+        ]
+      ],
+      "supports": "reflection feature maps directly to LangOpts.Reflection.",
+      "excerpts": [
+        "324: FEATURE(reflection, LangOpts.Reflection)\n325: FEATURE(parameter_reflection, LangOpts.ParameterReflection)\n326: FEATURE(attribute_reflection, LangOpts.AttributeReflection)\n327: FEATURE(expansion_statements, LangOpts.ExpansionStatements)\n328: FEATURE(annotation_attributes, LangOpts.AnnotationAttributes)\n329: FEATURE(entity_proxy_reflection, LangOpts.EntityProxyReflection)\n330: FEATURE(reflection_latest, LangOpts.ReflectionLatest)"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Lex/PPMacroExpansion.cpp",
+      "sha256": "5888efba9d40ab41ad29e25b0672d2110169a80216cbceed252132ecd284dfe0",
+      "line_ranges": [
+        [
+          353,
+          355
+        ],
+        [
+          1088,
+          1102
+        ],
+        [
+          1741,
+          1747
+        ]
+      ],
+      "supports": "__has_feature builtin registration, table dispatch and expansion.",
+      "excerpts": [
+        "353:   // Clang Extensions.\n354:   Ident__FILE_NAME__ = RegisterBuiltinMacro(\"__FILE_NAME__\");\n355:   Ident__has_feature = RegisterBuiltinMacro(\"__has_feature\");",
+        "1088: /// HasFeature - Return true if we recognize and implement the feature\n1089: /// specified by the identifier as a standard language feature.\n1090: static bool HasFeature(const Preprocessor &PP, StringRef Feature) {\n1091:   const LangOptions &LangOpts = PP.getLangOpts();\n1092: \n1093:   // Normalize the feature name, __foo__ becomes foo.\n1094:   if (Feature.starts_with(\"__\") && Feature.ends_with(\"__\") &&\n1095:       Feature.size() >= 4)\n1096:     Feature = Feature.substr(2, Feature.size() - 4);\n1097: \n1098: #define FEATURE(Name, Predicate) .Case(#Name, Predicate)\n1099:   return llvm::StringSwitch<bool>(Feature)\n1100: #include \"clang/Basic/Features.def\"\n1101:       .Default(false);\n1102: #undef FEATURE",
+        "1741:   } else if (II == Ident__has_feature) {\n1742:     EvaluateFeatureLikeBuiltinMacro(OS, Tok, II, *this, false,\n1743:       [this](Token &Tok, bool &HasLexedNextToken) -> int {\n1744:         IdentifierInfo *II = ExpectFeatureIdentifierInfo(Tok, *this,\n1745:                                            diag::err_feature_check_malformed);\n1746:         return II && HasFeature(*this, II->getName());\n1747:       });"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangOptions.def",
+      "sha256": "2d0c4d4c2c01e2bbe075b5b59f309ade6b918676b7637d26928e2a5216a166a2",
+      "line_ranges": [
+        [
+          312,
+          318
+        ]
+      ],
+      "supports": "Experimental reflection language option defaults to zero.",
+      "excerpts": [
+        "312: LANGOPT(Reflection          , 1, 0, \"Experimental C++26 Reflection\")\n313: LANGOPT(ParameterReflection , 1, 0, \"Augments C++26 Reflection with function parameter reflection\")\n314: LANGOPT(AttributeReflection , 1, 0, \"Augments C++26 Reflection with standard attribute reflection\")\n315: LANGOPT(ExpansionStatements , 1, 0, \"Experimental C++26 Expansion Statements\")\n316: LANGOPT(AnnotationAttributes, 1, 0, \"Experimental C++26 support for annotations\")\n317: LANGOPT(EntityProxyReflection, 1, 0, \"Augments C++26 Reflection with entity proxy reflection\")\n318: LANGOPT(ReflectionLatest    , 1, 0, \"Enable all experimental C++26 features supported by Clang/P2996\")"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/meta",
+      "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2",
+      "line_ranges": [
+        [
+          421,
+          443
+        ]
+      ],
+      "supports": "Private reflection implementation uses __has_feature(reflection), not SD-6 reflection macros.",
+      "excerpts": [
+        "421: #include <__config>\n422: #include <bit>\n423: #include <initializer_list>\n424: #include <optional>\n425: \n426: #include <__ranges/access.h>\n427: #include <__ranges/concepts.h>\n428: #include <__ranges/size.h>\n429: \n430: #include <source_location>\n431: #include <span>\n432: #include <string>\n433: #include <string_view>\n434: #include <type_traits>\n435: #include <variant>\n436: #include <vector>\n437: \n438: #if __has_feature(reflection)\n439: \n440: _LIBCPP_BEGIN_NAMESPACE_REFLECTION_V2\n441: \n442: // An opaque handle to a reflected entity.\n443: using info = decltype(^^int);"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/version",
+      "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860",
+      "line_ranges": [],
+      "supports": "No SD-6 reflection macro definition in version; whole include tree search found none.",
+      "excerpts": []
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta",
+      "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2",
+      "line_ranges": [
+        [
+          421,
+          443
+        ]
+      ],
+      "supports": "Installed header is byte-identical to the qualified fork source; no SD-6 reflection macro definitions.",
+      "excerpts": [
+        "421: #include <__config>\n422: #include <bit>\n423: #include <initializer_list>\n424: #include <optional>\n425: \n426: #include <__ranges/access.h>\n427: #include <__ranges/concepts.h>\n428: #include <__ranges/size.h>\n429: \n430: #include <source_location>\n431: #include <span>\n432: #include <string>\n433: #include <string_view>\n434: #include <type_traits>\n435: #include <variant>\n436: #include <vector>\n437: \n438: #if __has_feature(reflection)\n439: \n440: _LIBCPP_BEGIN_NAMESPACE_REFLECTION_V2\n441: \n442: // An opaque handle to a reflected entity.\n443: using info = decltype(^^int);"
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/version",
+      "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860",
+      "line_ranges": [],
+      "supports": "Installed header is byte-identical to the qualified fork source; no SD-6 reflection macro definitions.",
+      "excerpts": []
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+      "line_ranges": [
+        [
+          29,
+          35
+        ]
+      ],
+      "supports": "Recorded archive/link tool selections; actual static/archive commands still require qualification.",
+      "excerpts": [
+        "29: set(CMAKE_AR \"/usr/bin/ar\")\n30: set(CMAKE_CXX_COMPILER_AR \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ar\")\n31: set(CMAKE_RANLIB \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib\")\n32: set(CMAKE_CXX_COMPILER_RANLIB \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib\")\n33: set(CMAKE_LINKER \"/usr/bin/ld\")\n34: set(CMAKE_LINKER_LINK \"\")\n35: set(CMAKE_LINKER_LLD \"\")"
+      ]
+    }
+  ],
+  "read_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "sha256": "2c89612b5d7398d6b84f648a899d18d97d2813cddb27b2075f5fee2a889156c1"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification.json",
+      "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/closure-checks.json",
+      "sha256": "5a5ebbedce28535514a0409c70069fceb0234ca56d1c3ad2a677cf4aa1d273ec"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+      "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+      "sha256": "02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation-manifest.json",
+      "sha256": "e5745ecee2720ae1b0cfb34b38ad291f49b91c9951ba81761134d7f2570113a2"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/pre-run-review.json",
+      "sha256": "da034d805769f9346d44f211a8c0e9e004a7937a8f91c92bf76ff43976c467af"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+      "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/InitPreprocessor.cpp",
+      "sha256": "52c88f096dffee38426eeb2233cd703b4764c662e3601e9a047dc37e51ba3069"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/Features.def",
+      "sha256": "7e6cf9759a0aaf730b222fd3c7334576bdf628bee7501de6de16b97f9a89d596"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/meta",
+      "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/version",
+      "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta",
+      "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/version",
+      "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Lex/PPMacroExpansion.cpp",
+      "sha256": "5888efba9d40ab41ad29e25b0672d2110169a80216cbceed252132ecd284dfe0"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangOptions.def",
+      "sha256": "2d0c4d4c2c01e2bbe075b5b59f309ade6b918676b7637d26928e2a5216a166a2"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/cmake-review.json",
+      "sha256": "7f40d3b4e57d3b12760e7bb7a162c3c039ed9a84e2d0c610ae985d0ebc8c985c"
+    }
+  ],
+  "actual_routes": {
+    "tools": [
+      "functions orchestration",
+      "mcp__node_repl__js with node:fs/promises and node:crypto",
+      "exec_command for two bounded read-only rg searches"
+    ],
+    "native_processes": [
+      {
+        "command": "rg --line-number --no-heading --glob *.{cpp,h,def,inc} __cpp_impl_reflection|__cpp_lib_reflection|__cpp_reflection <qualified clang/include> <qualified clang/lib>",
+        "working_directory": "/private/tmp",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "",
+        "meaning": "No pattern matches, not an execution error; MISE_AUTO_INSTALL=0, MISE_EXEC_AUTO_INSTALL=0, MISE_OFFLINE=1"
+      },
+      {
+        "command": "rg --line-number --no-heading __cpp_impl_reflection|__cpp_lib_reflection|__cpp_reflection <qualified source libcxx/include> <installed private include/c++/v1>",
+        "working_directory": "/private/tmp",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "",
+        "meaning": "No pattern matches, not an execution error; same no-auto-install/offline controls"
+      }
+    ],
+    "failed_read_routes": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/core",
+        "error": "ENOENT",
+        "resolution": "Root CMakeLists identified include/ and src/; bounded reads used those paths."
+      }
+    ],
+    "compiler_commands": [],
+    "cmake_commands": [],
+    "installers": [],
+    "network_calls": [],
+    "external_research_providers": [],
+    "maintained_or_global_writes": [],
+    "private_receipt_write": "One mode-0600 private JSON, two writes: initial draft and requested final prerequisite/identity binding; exact readback after each."
+  },
+  "status_ack": {
+    "identity_ack_sent": true,
+    "live_status_probe_answered": true,
+    "final_git_head": "df5c430f6a34da5a565b675a0bc2a42b889ba620",
+    "all_23_read_input_hashes_unchanged": true,
+    "no_compiler_or_cmake_execution": true,
+    "no_maintained_or_global_writes": true,
+    "settled_10a2_prerequisite_bound": true
+  },
+  "superseded_unpublished_draft_sha256": "1262ff02bf95f08f20fee185435f3515e46e60340d8f6b097a582422ad961434"
+}

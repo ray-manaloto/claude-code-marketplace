@@ -1,0 +1,606 @@
+{
+  "result": "PASS: 03b1 independent source/static preparation review; native core acceptance UNVERIFIED",
+  "reviewer": "/root/cold_bottle_review",
+  "at": "2026-10-11T12:38:35.982943+00:00",
+  "findings": [],
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "df5c430f6a34da5a565b675a0bc2a42b889ba620",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "scope": [
+    "CMakeLists.txt",
+    "src/core.cpp",
+    "src/smoke.cpp",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "candidate_hashes": {
+    "CMakeLists.txt": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e",
+    "src/core.cpp": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+    "src/smoke.cpp": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a"
+  },
+  "maintained_files": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "sha256": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e",
+      "bytes": 2771
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "bytes": 1351
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a",
+      "bytes": 595
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "55b83a5ede78c3f3189d34546a12d559fd93145d48eb3fc245597f63a43c0104",
+      "bytes": 12182
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "03b896308a52045289fce0995c38d6ed9014bfc1bed6e758c1a4eb16e1878fbf",
+      "bytes": 64256
+    }
+  ],
+  "source_contract_sha256": "e36c9a1567d6a89249856a49bccc284d63275efa811b96f4a039d8814e790a3e",
+  "prerequisite_cmake_review_sha256": "7f40d3b4e57d3b12760e7bb7a162c3c039ed9a84e2d0c610ae985d0ebc8c985c",
+  "postcommit_receipt_sha256": "6f4187d284f483657d4cb4bd410086e6d563d93a8398eb30a685f1f3b44b2932",
+  "source_verification": {
+    "all_19_primary_reference_hashes_and_excerpts_match": true,
+    "all_24_read_bindings_match": true,
+    "original_reference_handling": "The three replaced files use preserved original_content; all three original strings were compared byte-for-byte with git show HEAD:<path>. Other primary references and read bindings match their live files.",
+    "all_three_applied_files_exactly_equal_proposal": true,
+    "header_unchanged": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+      "bytes": 333
+    },
+    "reference_details": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+        "sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+        "line_ranges": [
+          [
+            7,
+            12
+          ],
+          [
+            17,
+            32
+          ],
+          [
+            34,
+            43
+          ]
+        ],
+        "reference_kind": "preserved original",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+        "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+        "line_ranges": [
+          [
+            3,
+            15
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+        "sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+        "line_ranges": [
+          [
+            3,
+            22
+          ],
+          [
+            25,
+            30
+          ]
+        ],
+        "reference_kind": "preserved original",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+        "sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+        "line_ranges": [
+          [
+            5,
+            14
+          ]
+        ],
+        "reference_kind": "preserved original",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+        "line_ranges": [
+          [
+            1,
+            15
+          ],
+          [
+            53,
+            88
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+        "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11",
+        "line_ranges": [
+          [
+            17,
+            36
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+        "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+        "line_ranges": [
+          [
+            1,
+            16
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+        "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+        "line_ranges": [
+          [
+            73,
+            120
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+        "sha256": "2c89612b5d7398d6b84f648a899d18d97d2813cddb27b2075f5fee2a889156c1",
+        "line_ranges": [
+          [
+            4,
+            10
+          ],
+          [
+            49,
+            62
+          ],
+          [
+            244,
+            255
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+        "sha256": "02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8",
+        "line_ranges": [
+          [
+            2,
+            2
+          ],
+          [
+            1580,
+            1594
+          ],
+          [
+            2235,
+            2304
+          ],
+          [
+            2347,
+            2348
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/InitPreprocessor.cpp",
+        "sha256": "52c88f096dffee38426eeb2233cd703b4764c662e3601e9a047dc37e51ba3069",
+        "line_ranges": [],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/Features.def",
+        "sha256": "7e6cf9759a0aaf730b222fd3c7334576bdf628bee7501de6de16b97f9a89d596",
+        "line_ranges": [
+          [
+            324,
+            330
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Lex/PPMacroExpansion.cpp",
+        "sha256": "5888efba9d40ab41ad29e25b0672d2110169a80216cbceed252132ecd284dfe0",
+        "line_ranges": [
+          [
+            353,
+            355
+          ],
+          [
+            1088,
+            1102
+          ],
+          [
+            1741,
+            1747
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangOptions.def",
+        "sha256": "2d0c4d4c2c01e2bbe075b5b59f309ade6b918676b7637d26928e2a5216a166a2",
+        "line_ranges": [
+          [
+            312,
+            318
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/meta",
+        "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2",
+        "line_ranges": [
+          [
+            421,
+            443
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/version",
+        "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860",
+        "line_ranges": [],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta",
+        "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2",
+        "line_ranges": [
+          [
+            421,
+            443
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/version",
+        "sha256": "1b6c933d830fc498c673d82ed8d30be4cc0980c959acbaae791917036daec860",
+        "line_ranges": [],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+        "sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+        "line_ranges": [
+          [
+            29,
+            35
+          ]
+        ],
+        "reference_kind": "live file",
+        "excerpts_match": true
+      }
+    ],
+    "prerequisite_semantics": "Settled GCC03a and P2996 executable10a2 receipt identities and dispositions were inspected. Neither is relabeled as native acceptance of this changed core.",
+    "historical_proposal_label": "SOURCE PROPOSAL/PROPOSED ONLY strings describe the preserved proposal snapshot; current application is evidenced separately by exact candidate bytes and source-verification.json."
+  },
+  "static_assessments": [
+    {
+      "path": "CMakeLists.txt",
+      "lines": [
+        7,
+        19
+      ],
+      "assessment": "Only exact admitted tuples pass: gcc16/GNU/16.2.0/absolute GCC toolchain or p2996/Clang/21.0.0/absolute P2996 toolchain. All other combinations reach FATAL_ERROR. Existing toolchains retain prefix and host guards."
+    },
+    {
+      "path": "src/core.cpp",
+      "lines": [
+        6,
+        12
+      ],
+      "assessment": "Clang uses its builtin __has_feature(reflection) and requires _LIBCPP_VERSION 210000. The fork feature table maps reflection to LangOpts.Reflection, whose default is zero, and the qualified meta header uses the same predicate. GCC still reaches the original two SD-6 macro checks. No compiler preprocessor run was performed."
+    },
+    {
+      "path": "src/smoke.cpp",
+      "lines": [
+        5,
+        17
+      ],
+      "assessment": "Clang now rejects enabled reflection using its actual feature predicate; GCC retains the original implementation-macro leakage check. Success still requires value 43 and member count 1, with failure returned as nonzero."
+    },
+    {
+      "path": "CMakeLists.txt",
+      "lines": [
+        24,
+        44
+      ],
+      "assessment": "-freflection remains PRIVATE to research_core. Core and smoke retain C++26 required/no extensions and strict compile options; PIC remains enabled on the library. P2996 alone disables module scanning, and only gcc16 receives the existing MinSizeRel -fno-declone-ctor-dtor workaround on both targets."
+    },
+    {
+      "path": "include/aggregated_research/core.hpp",
+      "lines": [
+        3,
+        15
+      ],
+      "assessment": "Unchanged public fixed-width POD-style ReflectionProbe and noexcept facade expose no reflection type, meta header or ownership object. Existing core assertions preserve trivial construction/copyability and standard layout; cross-compiler ABI compatibility is not claimed."
+    },
+    {
+      "path": "CMakeLists.txt",
+      "lines": [
+        46,
+        48
+      ],
+      "assessment": "Removing PASS_REGULAR_EXPRESSION restores normal process-exit failure semantics while retaining the 10-second test timeout. Installed CMake docs explicitly state that this regex property ignores the process exit code. Failure controls remain planned for03b2."
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "lines": [
+        66,
+        67
+      ],
+      "assessment": "03b1 is explicitly source/static preparation; 03b2 is pending native static/shared two-compiler qualification. Progress preserves the same boundary and does not claim this patch was compiled."
+    }
+  ],
+  "additional_primary_docs": [
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_test/PASS_REGULAR_EXPRESSION.rst",
+      "sha256": "fe8e9836c7c8e4693b42d9e8d90a6d1db818a0bcd40bbfbe573c985af5209b80",
+      "bytes": 1565,
+      "lines": [
+        4,
+        9
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_tgt/CXX_SCAN_FOR_MODULES.rst",
+      "sha256": "ff5382462e892806b217975d8531f0369cce802293e08345dbb2111152f383b4",
+      "bytes": 987,
+      "lines": [
+        5,
+        22
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/target_compile_options.rst",
+      "sha256": "c740f591817b8b54f682d9c18e91d994ca857daef1ac072ad0d5e11efce3fee4",
+      "bytes": 2798,
+      "lines": [
+        20,
+        36
+      ]
+    }
+  ],
+  "executed_checks": {
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-p2996-preparation-review-g9s3rsut/invocation.json",
+      "sha256": "d4768750be136013b337df429ff510828aab18216aa631bebd5a1bf4a9f7daf5",
+      "bytes": 903
+    },
+    "receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-p2996-preparation-review-g9s3rsut/static-checks.json",
+      "sha256": "f5834097a16326d13e8c0f9ed721a49f243607fa1bd5707276d4abd011fc338e",
+      "bytes": 21130
+    },
+    "commands": [
+      {
+        "case": "identity",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--show-toplevel",
+          "--git-common-dir",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.013586707995273173
+      },
+      {
+        "case": "branch",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.012619666988030076
+      },
+      {
+        "case": "original-0",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "show",
+          "HEAD:CMakeLists.txt"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.011432416969910264
+      },
+      {
+        "case": "original-1",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "show",
+          "HEAD:src/core.cpp"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.01260733394883573
+      },
+      {
+        "case": "original-2",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "show",
+          "HEAD:src/smoke.cpp"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.012428916990756989
+      },
+      {
+        "case": "changed-files",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "diff",
+          "--name-only"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.025111583061516285
+      },
+      {
+        "case": "source-diff",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "diff",
+          "--",
+          "CMakeLists.txt",
+          "src/core.cpp",
+          "src/smoke.cpp",
+          ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+          ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.02493787498679012
+      },
+      {
+        "case": "tasks-validate",
+        "argv": [
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+          "tasks",
+          "validate"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.021610083058476448
+      },
+      {
+        "case": "acceptance-baseline",
+        "argv": [
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+          "run",
+          "check:acceptance-baseline"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.540725167025812
+      },
+      {
+        "case": "status",
+        "argv": [
+          "/usr/bin/git",
+          "--no-optional-locks",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "status",
+          "--porcelain",
+          "--untracked-files=normal"
+        ],
+        "returncode": 0,
+        "elapsed_seconds": 0.04126854194328189
+      }
+    ],
+    "all_commands_returned_zero": true,
+    "tasks_validate_returncode": 0,
+    "acceptance_baseline_returncode": 0,
+    "static_counts": {
+      "baseline": 19,
+      "json": 832,
+      "python": 41,
+      "shell": 6,
+      "toml": 14
+    },
+    "original_19_acceptance_hashes_passed": true,
+    "private_harness_syntax_check_returncode": 0
+  },
+  "preservation": {
+    "all_five_maintained_files_unchanged_during_review": true,
+    "unchanged_public_header": true,
+    "all_control_and_reference_hashes_unchanged_during_checks": true,
+    "only_expected_five_tracked_changes_and_new_evidence_directory": true,
+    "status": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n M CMakeLists.txt\n M src/core.cpp\n M src/smoke.cpp\n?? evidence/core-p2996-preparation/\n",
+    "reviewer_project_or_global_edits": false,
+    "shared_heavy_lease_acquired": false
+  },
+  "native_status": "UNVERIFIED for changed core: no CMake configure, compiler, linker, archive, CTest, loader, runtime or export qualification ran in this unit.",
+  "not_run": [
+    "No CMake/compiler/configure/build/installer or old guard battery.",
+    "No full protected-prefix/source-build inventory, global/mise mutation, shared lease, services, containers, network, model sessions or further agents.",
+    "No two-compiler static/shared cell matrix, macro negative controls, CTest failure controls, shared/export/runtime-origin checks or relocated consumer acceptance.",
+    "No full Claude SessionStart/provider/OCI acceptance; original 19 hashes establish preservation only."
+  ],
+  "delivery_notes": "Parent remains sole writer; plan/progress closure and final post-import checks are parent delivery work. Candidate source hashes above are the exact reviewed bytes.",
+  "status_probe_answered": true
+}
