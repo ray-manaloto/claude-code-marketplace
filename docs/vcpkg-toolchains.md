@@ -89,3 +89,13 @@ all other profile values and the reconstructed historical PATH hash must match.
 Both `bin` and `node_modules/.bin` are bound separately; prefixes are not rewritten.
 All 15 commands exited 0 and the default environment was restored. The two
 earlier failed comparisons remain preserved; independent artifact review passed.
+
+Task 12c1b prepares the private vcpkg retry using the qualified 12c1a guard and
+its exact default/P2996/GCC16 profile receipts. The copy, confinement and tool
+selection procedure is unchanged. A new contract and operation directory retain
+the earlier failed attempt; independent review and fresh capacity precede execution.
+The admitted retry exited 0. All 24 command outcomes matched, including three
+expected denials. Both profiles selected the exact managed CMake/Ninja tools;
+source/default protections passed and the lease was released. Independent artifact
+review passed all 52 copied files, 48 logs and 24 command outcomes with no findings.
+This does not qualify compiler detection or built dependencies.

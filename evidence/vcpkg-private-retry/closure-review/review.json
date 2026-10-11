@@ -1,0 +1,113 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c1b final artifact-only closure review",
+  "reviewer": "/root/cold_bottle_review",
+  "created_at": "2026-10-11T19:20:16.242501+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "f61f9035f88e2d5f4b943ed386d2ed404cae6897",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "7e1d7cae675be05b70e96c429e38240125be8e9cd88c2ffe007664a10921b60a",
+  "contract_sha256": "1099e0df49d3a6e022f76297424b0456365333700c086d1d0d7a1905f03bfda5",
+  "candidate_sha256": "1800281a0e2424747240f9bb0f51b9f4d22f874e7aa20619de1eabff406828a1",
+  "closure_candidate_sha256": "1800281a0e2424747240f9bb0f51b9f4d22f874e7aa20619de1eabff406828a1",
+  "qualification_sha256": "9b3482e5b6f9d6d4338943d169819d183739de5647778b7d487f26574c1777c9",
+  "native_execution_sha256": "b10cd9834e568b5a236f24ea4337fc8fc4b3a459b14175a67d918c8f1e493e0a",
+  "admission_sha256": "4a6ccf9b738e26049e3ce78d520b1cab358ca361162eb8946410c5ade8c67eab",
+  "pre_run_review_sha256": "3053dab5abbd56157518b61eb548d99b92d2f2705f0695bc72e37776b71531ce",
+  "native_admitted_candidate_sha256": "75e54fc51d62c68c9147c50c21f0c9eaa33ebe6805e3a4b61eaa3c904f5ec7b1",
+  "source_inventory_reference_sha256": "92ac723785c11073453b37bce2a3ead0416e4379e3f5b7bd08d9c843f42e7b99",
+  "scope": "Closure of the existing admitted private-copy, confinement and host-tool selection operation only. Parent remains sole implementation writer; reviewer made no maintained-file changes.",
+  "disposition": "No findings. The exact retained native operation supports closure of 12c1b for the documented scope. Native dependency builds, compiler detection and Claude/OCI acceptance remain unqualified. This artifact review does not newly attest current shared state or replay native execution.",
+  "executed_reviewer_check": {
+    "kind": "Filesystem-only artifact audit: exact hashes, bytes, JSON, argv and inspected source literals",
+    "exit_code": 0,
+    "elapsed_seconds": 0.11649375001434237,
+    "timeout_seconds": 30,
+    "script_sha256": "eb560997fcbc79b41ed31a9ded49941a0ec6bb40822065aa33a6d06a769ca684",
+    "contract_input_hashes": 45,
+    "closure_candidate_file_hashes": 4,
+    "operation_source_copy_pairs": 52,
+    "prior_review_source_copy_pairs": 10,
+    "postcommit_source_copy_pairs": 1,
+    "actual_command_argument_matches": 24,
+    "actual_command_log_files": 48,
+    "original_Claude_hashes_and_sizes": 19,
+    "frozen_files_stable_through_packaging": 185
+  },
+  "retained_runtime_evidence_verified": {
+    "operation_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-retry-20261011T191404Z",
+    "native_wrapper_returncode": 0,
+    "command_count": 24,
+    "command_returncode_zero": 21,
+    "expected_returncode_73_cases": [
+      "outside-write",
+      "symlink-write",
+      "network-denied"
+    ],
+    "all_three_denial_stdout": "DENIED:1\n",
+    "all_stderr_logs_empty": true,
+    "all_commands_within_recorded_15_20_or_60_second_bounds": true,
+    "sandbox_policy_exact_to_reviewed_helper": true,
+    "private_allowed_file": "private\n",
+    "outside_sentinel": "preserve\n",
+    "escape_symlink_target_exact": true,
+    "escaped_file_absent": true,
+    "copied_vcpkg_commit_and_tree_match_contract": true,
+    "both_profiles_byte_equal_to_bound_references": true,
+    "both_lanes_select_exact_managed_cmake_ninja_paths": true,
+    "four_fetch_outputs_and_four_version_outputs_match": true,
+    "real_HOME_preserved_in_both_selection_outputs": true,
+    "private_environment_exact_and_cache_provider_variables_absent": true,
+    "default_before_after_and_qualified_reference_byte_identical": true,
+    "private_final_three_files_checked_directly": true,
+    "other_small_private_final_directories_empty": true,
+    "fresh_capacity_receipt_bound_by_admission": true,
+    "operation_capacity_values_reconciled_with_recorded_process_and_Docker_logs": true,
+    "writer_census_before_after_recorded_with_no_lock_holders": true,
+    "historical_failed_attempt_preserved": true,
+    "reviewer_native_replay": false
+  },
+  "source_and_guard_evidence_limits": {
+    "source_inventory_records": 17644,
+    "operation_source_before_and_committed_inventory_sha256": "694905c486207968a285b80c364dfdebcdd2e33b4aa1bd1939b27a20721bfb0b",
+    "inventory_reference_matches_actual_files_byte_for_byte_and_parsed": true,
+    "full_live_source_inventory_recomputed": false,
+    "copy_equality_and_initial_precopy_guards": "Supported by the exact reviewed helper control flow reaching the recorded native commands; no independent replay.",
+    "final_source_and_shared_protection": "Recorded protected_state_unchanged true follows final guard and source inventory equality in the unchanged helper finally block. No live reattestation by reviewer.",
+    "lease_release": "Recorded lease_released true is assigned only after leaving the existing held-lease context. No current lease probe by reviewer."
+  },
+  "static_scope_review": {
+    "implementation": "Helper and contract are byte-identical to the reviewed preparation. Failure propagation and finally preservation checks remain unchanged.",
+    "fresh_environment": "Both recorded named profiles and default restoration used the existing no-hooks, fresh-env, no-deps argv. No model/Claude session was started.",
+    "docs/vcpkg-toolchains.md:97": "Accurately reports the 24 expected outcomes and limited copy/confinement/tool scope; final review remains pending in the frozen candidate.",
+    "task_plan.md:79": "Native passed; closure review.",
+    "task_plan.md:195": "Excludes dependency build, compiler detection, global writes and cache providers.",
+    "progress.md:1155": "Records actual native success, preserved source/default state and released lease while awaiting artifact closure."
+  },
+  "retained_parent_static_checks": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private-retry/closure-static.json",
+    "sha256": "7381ad5517edf9e19a36c4dadacc2b235ff1b48509dfbe19206df64b5626beac",
+    "returncodes": [
+      0,
+      0
+    ],
+    "baseline_original_files": 19,
+    "reviewer_reran_checks": false
+  },
+  "checks_not_run": [
+    "Candidate main(), protected(), prepare(), candidate imports or control batteries",
+    "Live mise/profile/vcpkg/compiler/sandbox/Docker commands",
+    "Lease acquisition/status, fresh capacity or writer census",
+    "Full current source, private vcpkg source or shared-state inventories",
+    "New installs, services, containers, model sessions or network operations",
+    "Native compiler detection, dependency builds, provider/hook runtime or full Claude/OCI acceptance"
+  ],
+  "shared_mutations": 0,
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-retry-closure-review-_j4jsr79/supporting-manifest.json",
+    "sha256": "53b3e3480ea3289837567c10157c55cff242fd28c13f1b0d8c99f34f5288f300",
+    "explicit_files": 7
+  }
+}

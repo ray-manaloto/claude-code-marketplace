@@ -76,6 +76,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12b1 | GCC16 overlay triplet preparation | Shared-input reuse, GCC ABI entries and focused script controls | Complete |
 | 12c1 | Private vcpkg execution preparation | Reviewed source binding and native fail-closed receipt | Prepared; native held by shared drift |
 | 12c1a | Observed mise update reattestation | Exact metadata changes, preserved compiler guards and existing profile parity | Complete |
+| 12c1b | Private vcpkg qualification retry | Qualified shared state; fresh capacity; copy, confinement and host-tool selection | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -191,5 +192,9 @@ historical receipts and every unrelated protection check. No installation,
 global write, compiler/vcpkg execution or lease acquisition is included.
 
 See `findings.md`, `progress.md`, and `docs/agents/codex-task-orchestration.md`.
+Task 12c1b admits the unchanged private vcpkg probe under the qualified 12c1a
+guard and current profile receipts, after independent review and fresh capacity.
+Only the helper, composition docs and these planning files are maintained.
+No dependency build, compiler detection, global write or cache provider is included.
 Historical handoff sources stay immutable in the source checkout and original
 research directories. New receipts belong only to this worktree.

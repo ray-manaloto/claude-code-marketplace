@@ -1,0 +1,28 @@
+--- /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/native-hold/vcpkg_private.py.source
++++ /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_private.py
+@@ -16,12 +16,13 @@
+ import time
+ 
+ from gcc_install import ROOT, census, digest, read
+-from mise_runtime import function, load, protected
++from mise_runtime import function, load
++from mise_renovate import protected
+ from p2996_configure import LOCK_MODULE, LOCK_SHA
+ from p2996_install import prefix_inventory
+ 
+-EVIDENCE = ROOT / "evidence/vcpkg-private"
+-CONTRACT_SHA = "f0b710d15389ae7091fb2af0aa35207712989a1312510996a6f467c116c02c8d"
++EVIDENCE = ROOT / "evidence/vcpkg-private-retry"
++CONTRACT_SHA = "1099e0df49d3a6e022f76297424b0456365333700c086d1d0d7a1905f03bfda5"
+ PRIVATE_NAMES = ("cwd", "downloads", "buildtrees", "packages", "installed", "registries", "cache", "tmp", "manifest")
+ 
+ 
+@@ -128,7 +129,7 @@
+         report["writer_census_before"] = census()
+         assert run("project-head", ["/usr/bin/git", "-C", ROOT, "rev-parse", "HEAD"]).strip() == contract["base_head"]
+         normal = run("default-before", normal_argv)
+-        assert normal == (ROOT / "evidence/mise-runtime/operation/default-after.stdout").read_text()
++        assert normal == (ROOT / contract["default_profile"]).read_text()
+         spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+         lease = importlib.util.module_from_spec(spec)
+         spec.loader.exec_module(lease)

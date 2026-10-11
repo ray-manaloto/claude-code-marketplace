@@ -1147,3 +1147,17 @@ interfaces are retained. Native confinement and all dependency builds remain pen
 - Independent artifact review passed without findings: all 30 command logs,
   four profile/proof/isolation comparisons, restored defaults and both retained
   failures were verified. Task 12c1a is complete; native vcpkg remains pending.
+- Task 12c1a is committed at `f61f9035f88e2d5f4b943ed386d2ed404cae6897`;
+  the post-commit baseline passed with all 19 original files and a clean worktree.
+  Task 12c1b prepares the private vcpkg retry using the qualified guard and current
+  profile receipts. Its procedure is unchanged; new review and fresh capacity
+  precede native execution. No dependency build is included.
+- Independent delta review and fresh capacity passed. The native private probe
+  exited 0 with all 24 expected outcomes: private writes succeed, outside/symlink
+  writes and loopback access are denied, and both lanes select the exact managed
+  CMake/Ninja tools. Full source/protected-state checks and default restoration
+  passed; the shared lease was released. Final artifact review precedes closure.
+- Task 12c1b artifact review passed without findings: all 52 copies, 48 logs,
+  24 exact command outcomes and preserved original inputs were verified. The
+  lightweight baseline also passed. Private execution qualification is complete;
+  native compiler detection and dependency builds remain the next phase.
