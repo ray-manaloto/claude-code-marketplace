@@ -31,6 +31,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 02a | Pinned TCPM source and local development environment | Blob/source identity, locked dependencies, CLI smoke | Complete |
 | 02b | Representative native preset matrix | Deterministic regeneration, exclusions, four native preset kinds | Complete |
 | 05a | GCC16 source/package inventory and prepared native bootstrap | Exact current mise contract, package identities and reviewed isolation | Complete |
+| 05b | Captured GCC bottles and installation preparation | Archive hashes, complete prefix writes, protected preimages and independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -60,6 +61,9 @@ installation, host qualification and independent application review passed. Broa
 global ownership, compiler builds and host-heavy capacity remain unadmitted.
 Task 05a permits read-only compiler inventory, primary-source acquisition and
 project-local preparation. It does not authorize installation or compilation.
+Task 05b prepares a bounded four-bottle operation. Download and inspect archives
+privately, then record ownership, preimages and exact write targets before apply.
+Canonical Homebrew writes and compiler execution await that admission record.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;

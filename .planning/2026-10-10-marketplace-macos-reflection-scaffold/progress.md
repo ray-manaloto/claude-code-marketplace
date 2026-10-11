@@ -203,3 +203,32 @@ heavy capacity remains unadmitted. No compiler or unknown service was touched.
   the listener closed. Nine global files and eight package receipt/link states
   remain unchanged. Parent baseline and direct-input secret scan exited 0.
   GCC installation and compiler/runtime acceptance remain outstanding.
+
+Task 05a is committed at `694db52`; its post-commit baseline exited 0 with all
+19 originals unchanged and a clean worktree. Task 05b opens the private bottle
+inspection and installation-admission unit; no prefix write is admitted yet.
+
+- Four captured bottles downloaded through native fnox and passed SHA-256
+  verification; offline inspection enumerates 1,791 absent public destinations.
+  ISL requires two native directory conversions under share/gdb. Both original
+  GLib files and the link are backed up; partial-commit behavior is documented.
+- Exact preimage checking stopped before installation when global mise config
+  and lock changed. Semantic comparison isolates four unrelated tool versions;
+  compiler/env settings and seven named files are unchanged. Fresh private
+  preimages protect the updates and record the new normal PATH digest.
+- The inspector's usage-limit failure was reported; its subsequent invocation
+  resumed successfully. Independent archive/link verification passed. The
+  prior dependency updater has exited; its current source can invoke untargeted
+  mise install, but cannot attribute the external global updates. Final review
+  and a fresh package-writer census still precede any canonical prefix write.
+- Cold review identified missing preimages for opt/linked parents and native
+  control paths. The refreshed offline manifest includes all 106 parents and
+  25 controls, with directory modes. Earlier manifests remain preserved.
+- Independent 05b preparation review passed after reproducing the final offline
+  manifest and rechecking source/archive identities, backups and native failure
+  behavior. All 19 original files still match; task validation, baseline and
+  direct-input secret scan exited 0. Installation remains a separate operation
+  with immediate ownership, preimage and native-plan guards.
+- The staged whitespace gate returned 2 solely for the immutable upstream GCC
+  patch's context spaces/tabs. Its verified bytes are preserved. The same gate
+  excluding that one source snapshot returned 0; the disposition is recorded.

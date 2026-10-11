@@ -64,7 +64,13 @@ Task 05a passed: exact GCC package/source inventory and the
 Both native runs resolve eight captured formulae to four missing bottles and
 reject missing GCC metadata. No compiler is installed or qualified yet.
 
-Next: task 05b's bottle inspection, prefix ownership and bounded installation
-admission. The earlier Docker census found no running containers, but high host
+Task 05b has verified four downloaded archives and enumerated their prefix
+writes. Two shared debugger directories require native expansion while
+preserving GLib. External global tool updates triggered a preimage stop; fresh
+private baselines preserve those updates. Independent preparation review passed
+after parent/control preimages were completed. GCC is still uninstalled; the next
+operation requires fresh package-writer, exact-preimage and native-plan checks.
+
+The earlier Docker census found no running containers, but high host
 load and concurrent shipping leave heavy builds unadmitted. Global Python
 promotion/telemetry and other repositories remain separate streams.

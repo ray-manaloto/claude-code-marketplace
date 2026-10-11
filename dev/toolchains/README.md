@@ -56,9 +56,34 @@ then reproduced both native cases and confirmed the listener was closed. The
 [review receipt](../../evidence/gcc-bootstrap/preparation-review.json) records the
 exact reviewed inputs and remaining installation boundary.
 
+## Bottle and prefix inspection
+
+`gcc_bottles.py` downloads the four captured `arm64_tahoe` archives into a new
+private directory, verifies every SHA-256 and inspects tar members without
+extracting or executing them. `--archives-from <cache/system-brew/bottles>`
+repeats inspection offline. The [manifest](../../evidence/gcc-bootstrap/bottles.json)
+enumerates archive contents, 1,791 public links, 106 parent preimages and 25
+native control paths, including bootstrap directories and installation locks.
+Every public leaf is absent. The four formula racks are absent too.
+
+ISL's debugger helper requires native mise to expand `share/gdb` and its
+`auto-load` child into real directories. The existing GLib `opt` subtree remains
+reachable through a preserved symlink. Both staging paths are absent; private
+preimages retain the original link and both GLib files. Native rollback does
+not undo these directory conversions or already completed dependency installs.
+A failed batch therefore requires inspection of its actual partial state.
+
+A preparation check stopped when another operation changed global mise config
+and lock bytes. The semantic diff contains only four unrelated tool versions;
+compiler/environment settings and all seven named files are unchanged. Fresh
+private preimages preserve these updates. The current normal PATH has a new
+digest, so installation must compare against that fresh baseline. The external
+writer was not attributed; the proposed installer uses private configuration
+and has no global config/lock write scope.
+
 ## Installation admission still required
 
-Before task 05b, recheck concurrent package writers and the four absent kegs,
+Before installation, recheck concurrent package writers and the four absent kegs,
 retain current receipts/links and normal compiler environment, inspect the
 complete proposed prefix writes and verify bottle hashes. Use one native mise
 installer job with captured metadata, no source fallback and no existing-package

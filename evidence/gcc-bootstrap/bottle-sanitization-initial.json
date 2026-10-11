@@ -1,0 +1,92 @@
+{
+  "recorded_at": "2026-10-11T01:43:20.838621+00:00",
+  "argv": [
+    "/Users/rmanaloto/.local/share/mise/installs/gitleaks/8.30.1/gitleaks",
+    "stdin",
+    "--redact=100",
+    "--ignore-gitleaks-allow",
+    "--no-banner"
+  ],
+  "returncode": 1,
+  "input_bytes": 2132654,
+  "inputs": [
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "44ec08adf8ad2bbb80feecad367f7e2718b3eee8e0d806a013b71bf305bdc426"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "c13a036ee7962f55e1574d0c399c184b43da46624810c6e28f5aafd9fe49f84b"
+    },
+    {
+      "path": "dev/toolchains/README.md",
+      "sha256": "59aa198ffa426317b1c26ee46aadfdb4acc29cfca7a25dcf8128568efdd32088"
+    },
+    {
+      "path": "dev/toolchains/gcc_bottles.py",
+      "sha256": "14911e7c9e05f5dd9eed9ed3898dca280e988ef7f8e8db717fda232b16b4848e"
+    },
+    {
+      "path": "docs/status.md",
+      "sha256": "c0760a70964c7fad98318102e927ebbf3d8be1bd53c102681160a953eefe235a"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottle-inspection-review.json",
+      "sha256": "976212cbdf94d7ddea452720c896287527380e82ee695f00544ee84b128dc35d"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottles-initial.json",
+      "sha256": "533a935d8d4ca2d9f0032216e7ecbb7b34cbbce5d5f239688c120a8c00c29056"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottles.json",
+      "sha256": "275fbcacc8863ec6b24a1fd34350b26e5084d8d40ca7d0ef123a0377fa43158c"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/global-drift-keys.json",
+      "sha256": "4cea1fe07801dc6f4e8296882e6a7ac4e33c6420ed74d662eb9c46379e6a3764"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-provenance.json",
+      "sha256": "0fb26227ae020b5dd27b7266ed910c6d0a28438273ae09257dbd18873dfc2857"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-source/LICENSE.txt.metadata.json",
+      "sha256": "89383cf51626cd9da07ce2f132bba40aaa98c8af36b5df28631e27c395211a18"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-source/LICENSE.txt.source",
+      "sha256": "f80329e58613ad669c0e73cb132d8060b9b2c55e339c73848068e4d1567f4627"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-source/gcc-16.2.0.diff.metadata.json",
+      "sha256": "98032347fd99e66a75000a267504f49a40cdb3961ab76b7305294d3eee86958f"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-source/gcc-16.2.0.diff.source",
+      "sha256": "578a78ae0bc62a02f260b6a20c7f23e71deee16ed644e9cb5619247be4df5a71"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-proposal.json",
+      "sha256": "adf8bfbc7065bd0ec2dfb384ed14cf86510c8af4d475f186f31bbff9e5b9a3ee"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/preimage-drift.json",
+      "sha256": "204e18bb8aa6ae31b283c523abb1fb76a66ec1e3456acb0b67f64dc61590a727"
+    }
+  ],
+  "stdout": "",
+  "stderr": "8:43PM INF scanned ~2132654 bytes (2.13 MB) in 546ms\n8:43PM WRN leaks found: 1\n",
+  "false_positive_disposition": {
+    "rule": "generic-api-key",
+    "file": "evidence/gcc-bootstrap/install-proposal.json",
+    "line": 54,
+    "verified_content": "Public SHA-256 of global-drift-keys.json; no credential value",
+    "proposal_sha256": "adf8bfbc7065bd0ec2dfb384ed14cf86510c8af4d475f186f31bbff9e5b9a3ee",
+    "resolution": "Store artifact path and sha256 in explicit fields instead of using the path as a JSON key. Scanner rules remain unchanged."
+  }
+}
