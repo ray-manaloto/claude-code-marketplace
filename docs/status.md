@@ -37,15 +37,20 @@ Last30Days validation. No native core, compiler, vcpkg or build matrix exists ye
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
-reviews and passing static/baseline checks. Native parsing/builds remain pending.
+reviews and passing static/baseline checks. Native CMake preset listing now passes;
+compiler configuration and builds remain pending.
 
 Task 04a passed: the [prepared profiles](../dev/global-mise/README.md) and native
 named locks have 35 bounded controls and a passing independent cold review.
-Seven new destination files are enumerated; existing global config/lock and
-private backups match their preimages. No tool install or global write occurred.
-The proposal is committed at `a07f40c`; inspect its linked receipts for scope.
+The proposal is committed at `a07f40c` and preparation evidence at `605cb8d`.
 
-Next: task 04b's explicitly recorded ownership admission and bounded installation.
-The global build-tool foundation has a separate ownership phase; task 02's
-TCPM trial depends on it. Global Python promotion/telemetry and other repositories
-are separate streams. Containers and heavy builds need fresh capacity admission.
+Task 04b applied seven new named files and installed only CMake 4.4.4 and
+sccache 0.18.0; Ninja 1.13.2 was reused unchanged. Native installation exited 0.
+The [host checks](../evidence/tool-foundation/host-qualification.json) pass:
+managed paths, ARM64 support, versions, profile environment controls and native
+preset listing. Default config/lock bytes, compiler settings and PATH match the
+pre-apply state. Independent application review passed after two recording fixes.
+
+Next: task 02's bounded TCPM trial. Global Python
+promotion/telemetry and other repositories are separate streams. Containers,
+compiler builds and other heavy work need fresh capacity admission.

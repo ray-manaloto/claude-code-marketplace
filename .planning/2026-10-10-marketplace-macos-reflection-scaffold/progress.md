@@ -118,7 +118,26 @@ Native mise generated three separate named locks with the accepted macOS assets;
 the default global config and lock remain byte-identical. Independent cold review
 passed after its root-equivalent prefix finding was confirmed, fixed and rechecked.
 The proposal is committed at `a07f40c`; its five maintained files total 183 lines.
-The final ownership admission record precedes task 04b. No tools have been installed.
+The evidence checkpoint is `605cb8d3fed18e24af7a2867e92338e32dbf7ddf`;
+its post-commit baseline check exited 0 and the worktree was clean.
+At task 04b's admission checkpoint, all seven destinations were absent and no
+global file had been copied or tool installed. The application followed below.
 
-Onboarding, task 01 and task 04a are qualified locally, unpublished.
+- Task 04b rechecked private preimages, target absence and live concurrent work.
+  Seven new global files were exclusively created with mode 0600; default
+  compiler/environment and PATH probes remained identical. The native dry run
+  selected only the two missing tools and already installed Ninja.
+- Native locked installation exited 0 in 26.9s: CMake 4.4.4 and sccache 0.18.0
+  installed, Ninja 1.13.2 reused. Its scanned log is retained unchanged.
+- Host qualification passed managed paths/hashes, ARM64 binaries, versions,
+  polluted compiler environments, missing-prefix rejection and native CMake
+  preset listing. Default config/lock bytes and normal environment remain intact.
+  No compiler, build or sccache server ran. Independent application review follows.
+- Task 04b passed independent application review: exact seven-file state,
+  preimages, binaries, 12 successful probes and two expected rejections verified.
+  The admission-time sentence was clarified and the ignored installation log
+  explicitly staged. No actionable findings remain. Parent baseline exited 0;
+  the application evidence and documentation passed a gitleaks stdin scan.
+
+Onboarding, task 01 and task 04 are qualified locally, unpublished.
 Full OCI acceptance, research coverage and native build qualification remain pending.

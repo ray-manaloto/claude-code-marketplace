@@ -1,14 +1,24 @@
-# Prepared global mise foundation — task 04a
+# Global mise foundation — tasks 04a/04b
 
-These files are a reviewable proposal, not active global configuration.
-The parent owns this project copy. The accepted later global phase requires
-an exclusive writer, exact preimages, independent review and fresh checks
-before application. Never run a blanket global install or host chezmoi apply.
+The seven configuration/lock files were applied after scoped ownership admission,
+private preimages and independent proposal review. This directory retains the
+exact applied bytes; preparation comments describe their earlier proposal state.
+The parent owns this project copy and the seven new global destinations.
+Never run a blanket global install or host chezmoi apply.
+
+The [application receipt](../../evidence/tool-foundation/global-application.json)
+records exclusive creation, an unchanged normal environment and the successful
+26.9-second native installation. The [host qualification](../../evidence/tool-foundation/host-qualification.json)
+records exact binary paths/hashes, ARM64 support, all three versions, selected
+environment controls and native CMake preset listing. Independent
+[application review](../../evidence/tool-foundation/application-review.json)
+passed. Compiler execution and sccache caching remain unqualified.
 
 ## Destination and scope
 
-Copy the four TOMLs and three generated `mise.<environment>.lock` files with
-their relative paths into `~/.config/mise/` only after admission. The existing
+The four TOMLs and three generated `mise.<environment>.lock` files now exist at
+their relative paths under `~/.config/mise/`, with mode 0600. Do not overwrite
+an existing destination by repeating this installation. The existing
 `config.toml`, `mise.lock`, hooks, trust, Python pins, other tools and default
 compiler configuration are outside this patch.
 
@@ -59,7 +69,7 @@ directory whose project configuration is known. Do not invoke either through
 the repository's root OCI config. `dev/mise` intentionally isolates static
 development checks and does not load these global environments.
 
-## Admission and installation sequence
+## Recorded admission and installation sequence
 
 1. Reconcile the active global mise writer and shared host capacity. Active
    dotfiles host/shared-lock migration is separate work; a process snapshot or
@@ -79,11 +89,13 @@ development checks and does not load these global environments.
 6. Compare a fresh normal environment to its preimage, then recheck selected
    named environments with polluted compiler variables. Preserve actual exits.
 
-Only the installed Ninja 1.13.2 is currently a matching candidate. The inventory
-found CMake 4.4.3/4.4.2 and a separate GitHub-backend sccache 0.14.0. Native
-registry choices must match the prepared aliases at installation. Primary
+Native mise installed CMake 4.4.4 and sccache 0.18.0 and reused Ninja 1.13.2
+without changing its binary. All three resolve inside their exact managed
+installation directories and support ARM64. The older CMake 4.4.3/4.4.2 and
+GitHub-backend sccache 0.14.0 installations remain separate. Primary
 [release receipts](../../evidence/tool-foundation/release-verification.json)
-confirm the accepted tags and macOS assets, not downloaded or installed bytes.
+confirm the accepted tags and macOS assets; installed binary identities are
+recorded separately in the host qualification receipt.
 
 The global base config and lock have exact private backups (0600 files in a
 0700 directory); only their hashes/paths are in project evidence. Strict-five

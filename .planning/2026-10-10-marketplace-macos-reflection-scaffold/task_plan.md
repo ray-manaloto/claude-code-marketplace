@@ -27,7 +27,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 01a | Acquire exact template/helper/generator source and licenses | Pinned paths, hashes, immutable research preserved | Complete |
 | 01b | Small scratch preset adaptation and reuse ledger | License attribution; safe includes; independent review | Complete |
 | 04a | Global tool ownership inventory and prepared patch | Concurrent-writer census; exact preimages; independent review | Complete |
-| 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Pending |
+| 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -49,8 +49,12 @@ Project-local lightweight work and read-only ownership/tool inventory are admitt
 Task 04a prepares the accepted later global mise phase before any host mutation.
 Global settings, hooks, trust, credentials, model defaults, other projects,
 containers, heavy builds, publication and destructive cleanup remain outside it.
-No global mise write or install is admitted until the separate ownership and
-preimage/review gate is settled.
+Task 04b's bounded admission is recorded in
+`evidence/tool-foundation/global-admission.json`: seven new named files and three
+explicit managed build-tool versions, one installer job, no existing default
+config/lock changes. The seven files were applied after preimage checks; native
+installation, host qualification and independent application review passed. Broader
+global ownership, compiler builds and host-heavy capacity remain unadmitted.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;

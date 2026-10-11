@@ -20,8 +20,10 @@ sources/releases and native mise lock metadata; it did not rerun the five-provid
 comparative sweep. Attempted routes and failures are recorded in evidence.
 
 The previous Docker census stalled. Container ownership and heavy capacity remain
-unknown. Read-only review and lightweight repository work are explicitly admitted
-by START; no container, compiler build or shared tool install is admitted.
+unknown. START admitted read-only review and lightweight repository work.
+Task 04b subsequently recorded scoped admission for seven new global mise files
+and three pinned build tools. Installation and host environment checks pass;
+no container or compiler build is admitted.
 
 ## Sources
 
