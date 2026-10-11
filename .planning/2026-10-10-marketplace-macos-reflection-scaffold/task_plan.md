@@ -61,6 +61,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 08a | LLVM formatting, clangd and archive fixture | Actual formatted reflection compile/archive/link/run; isolated clangd CDB check; independent review | Complete |
 | 08b | LLVM tidy and static-analysis controls | Intended diagnostics and failing exits; corrected clean cases; reflection parsing and independent review | Complete |
 | 08c | LLVM source-based coverage fixture | Fresh reflection profiles; exact branch counts; missing-data control and independent review | Complete |
+| 10a1 | P2996 CMake toolchain preparation | Exact compiler/runtime contract, native CMake link propagation and independent source review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

@@ -1,0 +1,1030 @@
+{
+  "schema_version": 1,
+  "task": "10a P2996 CMake source-contract preparation",
+  "result": "SOURCE PROPOSAL COMPLETE; all new native behavior UNVERIFIED",
+  "created_at": "2026-10-11T11:15:46.353Z",
+  "scope": {
+    "owner": "config_inspector read-only source lane; parent is sole project/global writer",
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "expected_start_head": "c9160b8e9c794aea3b76579dac026fac9e28dd4b",
+    "observed_start_head": "c9160b8e9c794aea3b76579dac026fac9e28dd4b",
+    "observed_end_head": "c9160b8e9c794aea3b76579dac026fac9e28dd4b",
+    "branch": "codex/marketplace-native-onboarding",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "identity_method": "Read worktree .git, Git administrative HEAD/commondir and loose branch ref. No Git process or working-tree mutation.",
+    "runtime_status": "UNVERIFIED",
+    "subprocess_invocations": [],
+    "installed_tool_invocations": [],
+    "network_routes": [],
+    "repository_writes": [],
+    "global_writes": [],
+    "private_writes": "This one new JSON proposal only; candidate CMake files remain strings inside this proposal."
+  },
+  "prerequisite_bindings": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-init-source-notes-20261011.json",
+      "sha256": "942cd002bce6d5c570c6fc8c372929b0e1d729837a73c169928b9cf9dd7b2c6e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-reflection-20261011T093605Z/compiler-version.stdout",
+      "sha256": "79b24b929fef5acb92eee8d736bf3b85901f72fc5662062eaeafb7c3cb77c12f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain/CMakeLists.txt",
+      "sha256": "b1be8ede864896b6e099f747285006b53f3345a6ce9510ab90fb9421dc3f78b5"
+    }
+  ],
+  "exact_07d_contract": {
+    "source_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "source_commit_status": "Recorded qualified identity; not a fresh source Git attestation in this source-only brief",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "c_compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+    "cxx_compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+    "recorded_compiler_banner": "clang version 21.0.0git (https://github.com/bloomberg/clang-p2996.git f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin\nBuild config: +assertions\n",
+    "architecture": "arm64",
+    "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "deployment_target": "27.0",
+    "resource_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+    "cxx_include_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+    "explicit_cxx_libraries": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib"
+    ],
+    "rpath": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+    "qualified_loaded_private_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+    ],
+    "original_compile_flags": [
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+    ],
+    "original_build_argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-reflection-20261011T093605Z/cwd",
+      "-E",
+      "p2996",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "-nostdlib++",
+      "-O0",
+      "-g",
+      "-v",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+      "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+      "-o",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-reflection-20261011T093605Z/reflection"
+    ],
+    "expected_reflection_stdout": "reflection value=43 exception=ok\n",
+    "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+  },
+  "recommendation": {
+    "decision": "Use CMAKE_CXX_LINK_FLAGS with CMP0210 NEW for the complete private C++ runtime link fragment. Keep CMAKE_CXX_STANDARD_LIBRARIES_INIT empty.",
+    "abi_exception": "CMakeDetermineCompilerABI.cmake lines 85-88 passes -DCMAKE_CXX_STANDARD_LIBRARIES= for non-MSVC ABI checks. CMAKE_CXX_STANDARD_LIBRARIES_INIT alone is insufficient for the requested ABI/private-runtime invariant.",
+    "native_alternative": "Installed 4.4.4 documents CMAKE_<LANG>_LINK_FLAGS as language-specific, link-only, applied to executable/shared/module targets with CMP0210 NEW; try_compile propagates both the flags and this policy. No custom link rule or extra override file is needed.",
+    "language_split": {
+      "CMAKE_C_FLAGS_INIT": "--no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\"",
+      "CMAKE_CXX_FLAGS_INIT": "--no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"",
+      "CMAKE_CXX_LINK_FLAGS": "-nostdlib++ \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib\" \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib\" \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib\" -Wl,-rpath,\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib\"",
+      "CMAKE_CXX_STANDARD_LIBRARIES_INIT": "",
+      "CMAKE_C_LINK_FLAGS": "Not modified; no C++ runtime libraries or C++-specific options enter the C link lane."
+    },
+    "native_platform_variables": {
+      "CMAKE_OSX_ARCHITECTURES": "arm64",
+      "CMAKE_OSX_SYSROOT": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "CMAKE_OSX_DEPLOYMENT_TARGET": "27.0"
+    },
+    "target_private": {
+      "target": "reflection",
+      "compile_options": [
+        "-freflection"
+      ],
+      "CXX_STANDARD": 26,
+      "CXX_STANDARD_REQUIRED": true,
+      "CXX_EXTENSIONS": false,
+      "CXX_SCAN_FOR_MODULES": false
+    },
+    "platform_ownership": "Darwin retains executable creation flags and native shared/module link templates. Darwin-Initialize selects Apple-Clang; Apple-Clang provides -isysroot and -mmacosx-version-min=. Do not set CMAKE_SYSTEM_NAME for this native build or replace CMAKE_CXX_LINK_EXECUTABLE/CMAKE_CXX_CREATE_SHARED_LIBRARY.",
+    "no_cache_launcher": "Reject C and CXX compiler/linker launchers in cache/variables and environment; do not activate sccache.",
+    "four_configurations": [
+      "Debug",
+      "Release",
+      "RelWithDebInfo",
+      "MinSizeRel"
+    ],
+    "standard_libraries_init_status": "Intentionally empty native alternative, not an omitted prerequisite."
+  },
+  "candidate_files": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "status": "PROPOSED CONTENT ONLY; not written",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "line_count": 88,
+      "content": "# Current task-07d prefix; changing it requires a new runtime qualification.\nif(CMAKE_VERSION VERSION_LESS \"4.4\" OR\n   NOT CMAKE_HOST_SYSTEM_NAME STREQUAL \"Darwin\" OR\n   NOT CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL \"arm64\")\n  message(FATAL_ERROR \"Use CMake 4.4+ on native macOS ARM64.\")\nendif()\ncmake_policy(GET CMP0210 _p2996_link_policy)\nif(NOT _p2996_link_policy STREQUAL \"NEW\")\n  message(FATAL_ERROR \"Set cmake_minimum_required(VERSION 4.4) before project().\")\nendif()\nset(_p2996_prefix \"$ENV{MARKETPLACE_P2996_PREFIX}\")\nif(NOT \"$ENV{MARKETPLACE_CPP_LANE}\" STREQUAL \"p2996\" OR\n   NOT _p2996_prefix STREQUAL \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix\")\n  message(FATAL_ERROR \"Select the task-07d qualified global mise p2996 environment.\")\nendif()\nforeach(_variable CFLAGS CXXFLAGS CPPFLAGS LDFLAGS CPATH C_INCLUDE_PATH\n    CPLUS_INCLUDE_PATH OBJC_INCLUDE_PATH LIBRARY_PATH COMPILER_PATH SDKROOT\n    MACOSX_DEPLOYMENT_TARGET CMAKE_OSX_ARCHITECTURES DYLD_LIBRARY_PATH\n    DYLD_FALLBACK_LIBRARY_PATH DYLD_FRAMEWORK_PATH DYLD_INSERT_LIBRARIES\n    CCC_OVERRIDE_OPTIONS)\n  if(NOT \"$ENV{${_variable}}\" STREQUAL \"\")\n    message(FATAL_ERROR \"Unexpected ${_variable}; use the isolated p2996 environment.\")\n  endif()\nendforeach()\nforeach(_entry bin/clang bin/clang++ lib/clang/21/include/stddef.h\n    include/c++/v1/meta lib/libc++.dylib lib/libc++abi.dylib lib/libunwind.dylib)\n  if(NOT EXISTS \"${_p2996_prefix}/${_entry}\")\n    message(FATAL_ERROR \"Missing qualified prefix entry: ${_entry}\")\n  endif()\nendforeach()\nforeach(_language C CXX)\n  if(_language STREQUAL \"C\")\n    set(_compiler \"${_p2996_prefix}/bin/clang\")\n    set(_environment_compiler \"$ENV{CC}\")\n  else()\n    set(_compiler \"${_p2996_prefix}/bin/clang++\")\n    set(_environment_compiler \"$ENV{CXX}\")\n  endif()\n  if((DEFINED CMAKE_${_language}_COMPILER AND\n      NOT CMAKE_${_language}_COMPILER STREQUAL _compiler) OR\n     (NOT _environment_compiler STREQUAL \"\" AND\n      NOT _environment_compiler STREQUAL _compiler))\n    message(FATAL_ERROR \"Conflicting ${_language} compiler; use a fresh build directory.\")\n  endif()\n  set(CMAKE_${_language}_COMPILER \"${_compiler}\")\n  foreach(_kind COMPILER_LAUNCHER LINKER_LAUNCHER)\n    if(NOT \"${CMAKE_${_language}_${_kind}}\" STREQUAL \"\" OR\n       NOT \"$ENV{CMAKE_${_language}_${_kind}}\" STREQUAL \"\")\n      message(FATAL_ERROR \"Compiler and linker launchers are not admitted.\")\n    endif()\n  endforeach()\nendforeach()\nset(CMAKE_OSX_SYSROOT \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\" CACHE PATH \"Task-07d SDK\")\nset(CMAKE_OSX_DEPLOYMENT_TARGET \"27.0\" CACHE STRING \"Task-07d deployment target\")\nset(CMAKE_OSX_ARCHITECTURES \"arm64\" CACHE STRING \"Task-07d architecture\")\nif(NOT CMAKE_OSX_SYSROOT STREQUAL \"/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\" OR\n   NOT EXISTS \"${CMAKE_OSX_SYSROOT}/SDKSettings.json\" OR\n   NOT CMAKE_OSX_DEPLOYMENT_TARGET STREQUAL \"27.0\" OR\n   NOT CMAKE_OSX_ARCHITECTURES STREQUAL \"arm64\")\n  message(FATAL_ERROR \"SDK, deployment target and architecture must match task 07d.\")\nendif()\nset(CMAKE_C_FLAGS_INIT \"--no-default-config -fno-blocks -resource-dir \\\"${_p2996_prefix}/lib/clang/21\\\"\")\nset(CMAKE_CXX_FLAGS_INIT \"${CMAKE_C_FLAGS_INIT} -stdlib=libc++ -nostdinc++ -isystem \\\"${_p2996_prefix}/include/c++/v1\\\"\")\n# Native per-language link flags survive the ABI check's STANDARD_LIBRARIES reset.\nset(_p2996_link \"-nostdlib++ \\\"${_p2996_prefix}/lib/libc++.dylib\\\" \\\"${_p2996_prefix}/lib/libc++abi.dylib\\\" \\\"${_p2996_prefix}/lib/libunwind.dylib\\\" -Wl,-rpath,\\\"${_p2996_prefix}/lib\\\"\")\nif(DEFINED CMAKE_CXX_LINK_FLAGS AND NOT CMAKE_CXX_LINK_FLAGS STREQUAL _p2996_link)\n  message(FATAL_ERROR \"Conflicting C++ link flags; use a fresh build directory.\")\nendif()\nset(CMAKE_CXX_LINK_FLAGS \"${_p2996_link}\")\nif(CMAKE_CXX_STANDARD_LIBRARIES OR CMAKE_CXX_STANDARD_LIBRARIES_INIT)\n  message(FATAL_ERROR \"Unexpected extra C++ standard libraries.\")\nendif()\nset(CMAKE_CXX_STANDARD_LIBRARIES_INIT \"\")\nforeach(_language C CXX)\n  if(DEFINED CMAKE_${_language}_FLAGS)\n    string(STRIP \"${CMAKE_${_language}_FLAGS}\" _existing_flags)\n    if(NOT _existing_flags STREQUAL CMAKE_${_language}_FLAGS_INIT)\n      message(FATAL_ERROR \"Conflicting ${_language} flags; use a fresh build directory.\")\n    endif()\n  endif()\nendforeach()\nif(CMAKE_C_COMPILER_FORCED OR CMAKE_CXX_COMPILER_FORCED OR\n   CMAKE_TRY_COMPILE_NO_PLATFORM_VARIABLES OR\n   (DEFINED CMAKE_TRY_COMPILE_TARGET_TYPE AND\n    NOT CMAKE_TRY_COMPILE_TARGET_TYPE STREQUAL \"EXECUTABLE\"))\n  message(FATAL_ERROR \"Compiler and try_compile link checks must remain enabled.\")\nendif()\nset(CMAKE_TRY_COMPILE_TARGET_TYPE \"EXECUTABLE\")\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+      "status": "PROPOSED CONTENT ONLY; not written",
+      "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11",
+      "line_count": 44,
+      "content": "cmake_minimum_required(VERSION 4.4)\nif(NOT CMAKE_GENERATOR STREQUAL \"Ninja Multi-Config\")\n  message(FATAL_ERROR \"This fixture requires Ninja Multi-Config.\")\nendif()\nset(CMAKE_CONFIGURATION_TYPES \"Debug;Release;RelWithDebInfo;MinSizeRel\" CACHE STRING \"Fixture configurations\")\nif(NOT CMAKE_CONFIGURATION_TYPES STREQUAL \"Debug;Release;RelWithDebInfo;MinSizeRel\")\n  message(FATAL_ERROR \"Use all four admitted configurations in a fresh build directory.\")\nendif()\nproject(MarketplaceP2996Fixture LANGUAGES C CXX)\nforeach(_language C CXX)\n  if(NOT CMAKE_${_language}_COMPILER_ID STREQUAL \"Clang\" OR\n     NOT CMAKE_${_language}_COMPILER_VERSION VERSION_EQUAL \"21.0.0\")\n    message(FATAL_ERROR \"Use the exact P2996 fork qualified in task 07d.\")\n  endif()\nendforeach()\nset(CMAKE_EXPORT_COMPILE_COMMANDS ON)\ntry_compile(_private_runtime_links SOURCE_FROM_CONTENT private_runtime.cpp [=[\n#if __has_feature(reflection)\n#error \"Reflection must remain target-private\"\n#endif\n#include <string>\nint main() { return std::string(\"private\").size() != 7; }\n]=] CMAKE_FLAGS \"-DCMAKE_CXX_SCAN_FOR_MODULES=OFF\"\n    CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO\n    NO_CACHE OUTPUT_VARIABLE _private_runtime_log)\nfile(WRITE \"${CMAKE_BINARY_DIR}/private-runtime-try-compile.log\" \"${_private_runtime_log}\")\nif(NOT _private_runtime_links)\n  message(FATAL_ERROR \"Private C++ runtime try_compile failed; inspect the retained log.\")\nendif()\nadd_executable(reflection \"../../dev/toolchains/p2996_reflection.cpp\")\nset_target_properties(reflection PROPERTIES CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES\n    CXX_EXTENSIONS NO CXX_SCAN_FOR_MODULES OFF)\ntarget_compile_options(reflection PRIVATE -freflection)\nenable_testing()\nadd_test(NAME reflection COMMAND reflection)\nset_tests_properties(reflection PROPERTIES TIMEOUT 10)\nfile(GENERATE OUTPUT \"${CMAKE_BINARY_DIR}/qualified-$<CONFIG>.txt\" CONTENT\n\"compiler=${CMAKE_CXX_COMPILER}\nversion=${CMAKE_CXX_COMPILER_VERSION}\nsdk=${CMAKE_OSX_SYSROOT}\narchitecture=${CMAKE_OSX_ARCHITECTURES}\nconfiguration=$<CONFIG>\nbinary=$<TARGET_FILE:reflection>\n\")\n"
+    }
+  ],
+  "fixture_expectations": [
+    {
+      "stage": "Before later admitted configure",
+      "status": "PLANNED UNVERIFIED",
+      "requirements": [
+        "Re-attest exact 07d installed prefix/source/runtime binding and protected state with the parent-owned existing gate. CMake 4.4.4 and Ninja 1.13.2 are the recorded intended tool identities; this brief executed neither.",
+        "Use the existing named p2996 environment, a new normalized absolute private build directory, exact absolute compiler/toolchain/CMake/Ninja paths, and a bounded approved cache-argument list. No preset inheritance, initial-cache script, user/project inclusion hook or different toolchain is admitted.",
+        "Retain actual environment projection without secrets; inherited CFLAGS/CXXFLAGS/CPPFLAGS/LDFLAGS/header/library/SDK/loader override variables must be absent or empty. CC/CXX, when set, must equal the exact selected compiler paths."
+      ]
+    },
+    {
+      "stage": "Configure and compiler tests",
+      "status": "PLANNED UNVERIFIED",
+      "requirements": [
+        "Configure with Ninja Multi-Config and this separate toolchain; all four CONFIGURATION_TYPES must be exact.",
+        "Require C and CXX compiler-ID, ABI and compiler-work checks to succeed, without COMPILER_FORCED, a STATIC_LIBRARY try_compile type, disabled platform propagation or stale cached success.",
+        "Retain configure/try_compile logs and actual generated compile/link commands. CXX ABI and custom private_runtime.cpp try_compile links must contain -nostdlib++, all three exact private dylib paths and the private rpath even when STANDARD_LIBRARIES is empty.",
+        "The ordinary private_runtime.cpp uses private libc++ under C++26, rejects global reflection with __has_feature(reflection), and must compile and link. It is not executed, so its link success is not a loader proof.",
+        "C compilation/links must not contain -stdlib=libc++, -nostdinc++, -nostdlib++, -freflection or private C++ libraries. Reflection -freflection and -std=c++26 must appear on the reflection target compile only; the global CXX compile flags must omit reflection."
+      ]
+    },
+    {
+      "stage": "Four build/test cells",
+      "status": "PLANNED UNVERIFIED",
+      "requirements": [
+        "Sequential cmake --build <private-build> --config <configuration> --parallel 1 --verbose for each Debug, Release, RelWithDebInfo, MinSizeRel; retain native argv/rc/stdout/stderr. No implicit all-config build.",
+        "CTest with each explicit configuration must return 0. Preserve native process status: the candidate does not set PASS_REGULAR_EXPRESSION because CMake documents that this ignores ordinary exit status.",
+        "For each produced reflection binary, independently require native rc=0, exact stdout \"reflection value=43 exception=ok\\n\", no unexpected stderr, and the same three canonical private loaded runtime images as task07d. DYLD_PRINT_LIBRARIES evidence may occupy stderr during a separate loader-origin run.",
+        "Verify target/header/resource/SDK paths from generated commands and dependency information, linked libraries and rpath from binary metadata, and loader origins at run time. Reject Apple/system C++ runtime substitution even if build/test exits are zero.",
+        "Capture qualified-$<CONFIG>.txt, compile_commands.json, relevant generated Ninja/link rules and final source/protected-state hashes. Neither a compiler version string nor a successful try_compile proves fork provenance or runtime origin."
+      ]
+    }
+  ],
+  "planned_negative_controls": [
+    {
+      "case": "Inherited CXXFLAGS",
+      "expectation": "Fresh isolated configure with CXXFLAGS=-DUNADMITTED must fail at the toolchain environment guard; retain rc/logs, no source mutation."
+    },
+    {
+      "case": "Wrong lane/prefix/compiler/architecture/SDK/deployment",
+      "expectation": "Each corresponding explicit guard should fail in a separate fresh private control tree; an exact invalid input list can be bounded by parent admission."
+    },
+    {
+      "case": "sccache or other launcher",
+      "expectation": "Any nonempty C/CXX compiler/linker launcher variable or environment must fail; no launcher should execute."
+    },
+    {
+      "case": "Global reflection leak",
+      "expectation": "The custom try_compile source emits #error if reflection is enabled globally; ordinary configure must succeed with -freflection only on the reflection target."
+    },
+    {
+      "case": "Bypassed compiler checks",
+      "expectation": "COMPILER_FORCED, non-EXECUTABLE try_compile target type, or TRY_COMPILE_NO_PLATFORM_VARIABLES must be rejected."
+    }
+  ],
+  "limitations": [
+    "All candidate syntax, configure behavior, generated flags, compiler/ABI tests, four configurations, executable runtime behavior and shared/module link behavior remain UNVERIFIED in this brief. Source evidence supports the design; it is not native acceptance.",
+    "The smallest fixture has one reflection executable plus a normal C++ executable try_compile. It does not qualify shared/module loader behavior. The native CXX_LINK_FLAGS contract covers those target kinds in source; a separately admitted shared/module fixture is required before claiming runtime acceptance there.",
+    "Task07d qualified one direct -O0/-g build. Release, RelWithDebInfo and MinSizeRel optimization behavior and CMake defaults are new qualification cells, not inherited passes.",
+    "The fixed prefix and SDK literals intentionally bind this first fixture to the currently qualified installation; relocation or a new SDK/prefix requires updated binding and requalification. Equality to these normalized absolute constants preserves the existing GCC isolation requirement without a separate path-normalization operation.",
+    "FLAGS_INIT variables only initialize fresh caches. The candidate rejects conflicting generic language flags, compilers, link flags and key platform values, but is not a sandbox against arbitrary later project code, per-config cache injection, custom rule hooks or global properties. Parent must use a fresh tree and an explicit bounded configure/environment contract, then inspect real emitted commands.",
+    "Compiler detection can make preliminary compiler-ID attempts outside ordinary target linking. Preserve those logs and distinguish any preliminary compiler-ID attempt from the mandatory CXX ABI/private-runtime link; do not infer all compiler-ID attempts used explicit dylibs without checking.",
+    "The quoted native CXX_LINK_FLAGS fragment is parsed/requoted by CMake 4.4.4; its actual driver argument ordering must be inspected during the later native gate. No custom link template has been substituted.",
+    "Existing GCC files were read only for guard parity. They are untouched. No vcpkg chainloading, project-core integration, extra dependency resolution, shared-runtime admission, install/export, cache qualification or global mise change is proposed by this unit."
+  ],
+  "source_references": [
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake",
+      "sha256": "4d3fbcc46648144d52247304ec75f43833ecd24c015a5cbd192ac5d42d2ce75a",
+      "id": "abi-libraries-cleared",
+      "line_ranges": [
+        [
+          82,
+          93
+        ],
+        [
+          123,
+          134
+        ]
+      ],
+      "fact": "Non-MSVC ABI try_compile explicitly empties STANDARD_LIBRARIES, so INIT alone does not keep the private runtime link.",
+      "excerpts": [
+        {
+          "start": 82,
+          "end": 93,
+          "text": "    if(lang STREQUAL \"CXX\")\n      set(CMAKE_${lang}_SCAN_FOR_MODULES OFF)\n    endif()\n    if(NOT \"x${CMAKE_${lang}_COMPILER_ID}\" STREQUAL \"xMSVC\")\n      # Avoid adding our own platform standard libraries for compilers\n      # from which we might detect implicit link libraries.\n      list(APPEND CMAKE_FLAGS \"-DCMAKE_${lang}_STANDARD_LIBRARIES=\")\n    endif()\n    list(JOIN LINK_OPTIONS \" \" LINK_OPTIONS)\n    list(APPEND CMAKE_FLAGS \"-DEXE_LINKER_FLAGS=${LINK_OPTIONS}\")\n\n    __TestCompiler_setTryCompileTargetType()"
+        },
+        {
+          "start": 123,
+          "end": 134,
+          "text": "    try_compile(CMAKE_${lang}_ABI_COMPILED\n      SOURCES ${src}\n      CMAKE_FLAGS ${CMAKE_FLAGS}\n                  # Ignore unused flags when we are just determining the ABI.\n                  \"--no-warn-unused-cli\"\n      COMPILE_DEFINITIONS ${COMPILE_DEFINITIONS}\n      NO_CACHE\n      OUTPUT_VARIABLE OUTPUT\n      COPY_FILE \"${BIN}\"\n      COPY_FILE_ERROR _copy_error\n      __CMAKE_INTERNAL ABI\n      )"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXInformation.cmake",
+      "sha256": "477236eeaa4a4d0300b9cd8ec349b24d8876090211ede11a3bed50ab22f0b440",
+      "id": "cxx-init-and-launchers",
+      "line_ranges": [
+        [
+          94,
+          115
+        ],
+        [
+          144,
+          176
+        ]
+      ],
+      "fact": "CXXFLAGS is prepended; standard libraries are cache initialized; launcher environments are consumed; native compile/link rules are separate.",
+      "excerpts": [
+        {
+          "start": 94,
+          "end": 115,
+          "text": "# add the flags to the cache based\n# on the initial values computed in the platform/*.cmake files\n# use _INIT variables so that this only happens the first time\n# and you can set these flags in the cmake cache\nset(CMAKE_CXX_FLAGS_INIT \"$ENV{CXXFLAGS} ${CMAKE_CXX_FLAGS_INIT}\")\n\ncmake_initialize_per_config_variable(CMAKE_CXX_FLAGS \"Flags used by the CXX compiler\")\n\nif(CMAKE_CXX_STANDARD_LIBRARIES_INIT)\n  set(CMAKE_CXX_STANDARD_LIBRARIES \"${CMAKE_CXX_STANDARD_LIBRARIES_INIT}\"\n    CACHE STRING \"Libraries linked by default with all C++ applications.\")\n  mark_as_advanced(CMAKE_CXX_STANDARD_LIBRARIES)\nendif()\n\nif(NOT CMAKE_CXX_COMPILER_LAUNCHER AND DEFINED ENV{CMAKE_CXX_COMPILER_LAUNCHER})\n  set(CMAKE_CXX_COMPILER_LAUNCHER \"$ENV{CMAKE_CXX_COMPILER_LAUNCHER}\"\n    CACHE STRING \"Compiler launcher for CXX.\")\nendif()\n\nif(NOT CMAKE_CXX_LINKER_LAUNCHER AND DEFINED ENV{CMAKE_CXX_LINKER_LAUNCHER})\n  set(CMAKE_CXX_LINKER_LAUNCHER \"$ENV{CMAKE_CXX_LINKER_LAUNCHER}\"\n    CACHE STRING \"Linker launcher for CXX.\")"
+        },
+        {
+          "start": 144,
+          "end": 176,
+          "text": "# create a shared C++ library\nif(NOT CMAKE_CXX_CREATE_SHARED_LIBRARY)\n  set(CMAKE_CXX_CREATE_SHARED_LIBRARY\n      \"<CMAKE_CXX_COMPILER> <CMAKE_SHARED_LIBRARY_CXX_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>\")\nendif()\n\n# create a c++ shared module copy the shared library rule by default\nif(NOT CMAKE_CXX_CREATE_SHARED_MODULE)\n  set(CMAKE_CXX_CREATE_SHARED_MODULE ${CMAKE_CXX_CREATE_SHARED_LIBRARY})\nendif()\n\n\n# Create a static archive incrementally for large object file counts.\n# If CMAKE_CXX_CREATE_STATIC_LIBRARY is set it will override these.\nif(NOT DEFINED CMAKE_CXX_ARCHIVE_CREATE)\n  set(CMAKE_CXX_ARCHIVE_CREATE \"<CMAKE_AR> qc <TARGET> <LINK_FLAGS> <OBJECTS>\")\nendif()\nif(NOT DEFINED CMAKE_CXX_ARCHIVE_APPEND)\n  set(CMAKE_CXX_ARCHIVE_APPEND \"<CMAKE_AR> q <TARGET> <LINK_FLAGS> <OBJECTS>\")\nendif()\nif(NOT DEFINED CMAKE_CXX_ARCHIVE_FINISH)\n  set(CMAKE_CXX_ARCHIVE_FINISH \"<CMAKE_RANLIB> <TARGET>\")\nendif()\n\n# compile a C++ file into an object file\nif(NOT CMAKE_CXX_COMPILE_OBJECT)\n  set(CMAKE_CXX_COMPILE_OBJECT\n    \"<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT> -c <SOURCE>\")\nendif()\n\nif(NOT CMAKE_CXX_LINK_EXECUTABLE)\n  set(CMAKE_CXX_LINK_EXECUTABLE\n    \"<CMAKE_CXX_COMPILER> <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>\")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCInformation.cmake",
+      "sha256": "ce7d0799f61032c5caec45d26c1d7afe7f59ff9377e87f176aa1649caa1bf979",
+      "id": "c-init-and-launchers",
+      "line_ranges": [
+        [
+          94,
+          111
+        ]
+      ],
+      "fact": "C initialization consumes CFLAGS and has independent C launchers.",
+      "excerpts": [
+        {
+          "start": 94,
+          "end": 111,
+          "text": "set(CMAKE_C_FLAGS_INIT \"$ENV{CFLAGS} ${CMAKE_C_FLAGS_INIT}\")\n\ncmake_initialize_per_config_variable(CMAKE_C_FLAGS \"Flags used by the C compiler\")\n\nif(CMAKE_C_STANDARD_LIBRARIES_INIT)\n  set(CMAKE_C_STANDARD_LIBRARIES \"${CMAKE_C_STANDARD_LIBRARIES_INIT}\"\n    CACHE STRING \"Libraries linked by default with all C applications.\")\n  mark_as_advanced(CMAKE_C_STANDARD_LIBRARIES)\nendif()\n\nif(NOT CMAKE_C_COMPILER_LAUNCHER AND DEFINED ENV{CMAKE_C_COMPILER_LAUNCHER})\n  set(CMAKE_C_COMPILER_LAUNCHER \"$ENV{CMAKE_C_COMPILER_LAUNCHER}\"\n    CACHE STRING \"Compiler launcher for C.\")\nendif()\n\nif(NOT CMAKE_C_LINKER_LAUNCHER AND DEFINED ENV{CMAKE_C_LINKER_LAUNCHER})\n  set(CMAKE_C_LINKER_LAUNCHER \"$ENV{CMAKE_C_LINKER_LAUNCHER}\"\n    CACHE STRING \"Linker launcher for C.\")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCommonLanguageInclude.cmake",
+      "sha256": "63e32c7d86299cdb1d804e2695ddc5e6f2553f5d016ca259290dc7e98a679f89",
+      "id": "ldflags-environment",
+      "line_ranges": [
+        [
+          9,
+          16
+        ]
+      ],
+      "fact": "LDFLAGS is appended to executable, shared and module linker flags.",
+      "excerpts": [
+        {
+          "start": 9,
+          "end": 16,
+          "text": "string(APPEND CMAKE_EXE_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\nstring(APPEND CMAKE_SHARED_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\nstring(APPEND CMAKE_MODULE_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\n\ncmake_initialize_per_config_variable(CMAKE_EXE_LINKER_FLAGS    \"Flags used by the linker\")\ncmake_initialize_per_config_variable(CMAKE_SHARED_LINKER_FLAGS \"Flags used by the linker during the creation of shared libraries\")\ncmake_initialize_per_config_variable(CMAKE_MODULE_LINKER_FLAGS \"Flags used by the linker during the creation of modules\")\ncmake_initialize_per_config_variable(CMAKE_STATIC_LINKER_FLAGS \"Flags used by the archiver during the creation of static libraries\")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINK_FLAGS.rst",
+      "sha256": "401a4afd80ab55a95d9ce70aef63b60e3e38b76dc5b2eae79390d3aa0f36c05e",
+      "id": "native-cxx-link-flags",
+      "line_ranges": [
+        [
+          4,
+          31
+        ]
+      ],
+      "fact": "Language-wide link flags apply only to compiler invocations driving links, with CMP0210 NEW; contents are parsed and requoted.",
+      "excerpts": [
+        {
+          "start": 4,
+          "end": 31,
+          "text": ".. versionadded:: 4.3\n\nLanguage-wide flags for language ``<LANG>`` used when linking for all\nconfigurations. These flags will be passed to all invocations of the compiler\nwhich drive linking.\n\nThe flags in this variable will obey the following behavior with respect to\nordering of flags from other variables.\n\n* They will be passed after those added by :variable:`CMAKE_<LANG>_FLAGS` and\n  :variable:`CMAKE_<LANG>_FLAGS_<CONFIG>`.\n* They will be passed after those added by :variable:`CMAKE_EXE_LINKER_FLAGS`,\n  :variable:`CMAKE_EXE_LINKER_FLAGS_<CONFIG>`,\n  :variable:`CMAKE_SHARED_LINKER_FLAGS`,\n  :variable:`CMAKE_SHARED_LINKER_FLAGS_<CONFIG>`,\n  :variable:`CMAKE_MODULE_LINKER_FLAGS`,\n  and :variable:`CMAKE_MODULE_LINKER_FLAGS_<CONFIG>` depending on the given\n  target type.\n* They will be passed before those added by\n  :variable:`CMAKE_<LANG>_LINK_FLAGS_<CONFIG>`.\n* They will be passed before those added by commands such\n  as :command:`add_link_options` and :command:`target_link_options`.\n\nUse of this variable is enabled when policy :policy:`CMP0210` is ``NEW``.\n\n.. include:: ../command/include/LINK_LIBRARIES_LINKER.rst\n\nThis support implies to parse and re-quote the content of the variable."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/policy/CMP0210.rst",
+      "sha256": "f1ac5b7e70aa3494c09620a0924abcd74955cc8814a71b0187441baf9f9aea23",
+      "id": "cmp0210",
+      "line_ranges": [
+        [
+          6,
+          23
+        ]
+      ],
+      "fact": "NEW extends per-language link flags to executable, shared and module libraries.",
+      "excerpts": [
+        {
+          "start": 6,
+          "end": 23,
+          "text": ":variable:`CMAKE_<LANG>_LINK_FLAGS` adds link flags to all target types.\n\nIn CMake 4.2 and below, :variable:`CMAKE_<LANG>_LINK_FLAGS` held flags\nrelevant to target creation and applied when linking executables only. It was\nundocumented and originally intended for internal use only, but still\navailable for projects and users to set in order to control linking behavior.\n\nCMake 4.3 and above repurpose this variable to add per-language link flags for\nall target types that link (executables, shared libraries, and module\nlibraries).\n\nThis policy provides compatibility with projects that relied on this variable\nand have not been updated to be aware of the change.\n\nThe ``OLD`` behavior for this policy is to apply\n:variable:`CMAKE_<LANG>_LINK_FLAGS` to invocations of the compiler which drive\nlinking for executables only. The ``NEW`` behavior is to apply the flags to\nall target types."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/try_compile.rst",
+      "sha256": "e99785bed743d93d0af1ed241d6ef8c5b0a70359853d41bca2325d0c8c8a24db",
+      "id": "try-compile-propagation",
+      "line_ranges": [
+        [
+          72,
+          106
+        ],
+        [
+          121,
+          129
+        ],
+        [
+          317,
+          328
+        ],
+        [
+          341,
+          357
+        ],
+        [
+          427,
+          430
+        ]
+      ],
+      "fact": "Source-content executable try_compile is supported; link flags and CMP0210 are propagated.",
+      "excerpts": [
+        {
+          "start": 72,
+          "end": 106,
+          "text": "  try_compile(<compileResultVar>\n              [SOURCES_TYPE <type>]\n              {SOURCES <srcfile>...                 |\n               SOURCE_FROM_CONTENT <name> <content> |\n               SOURCE_FROM_VAR <name> <var>         |\n               SOURCE_FROM_FILE <name> <path>       }...\n              [LOG_DESCRIPTION <text>]\n              [NO_CACHE]\n              [NO_LOG]\n              [CMAKE_FLAGS <flags>...]\n              [COMPILE_DEFINITIONS <defs>...]\n              [LINK_OPTIONS <options>...]\n              [LINK_LIBRARIES <libs>...]\n              [LINKER_LANGUAGE <lang>]\n              [OUTPUT_VARIABLE <var>]\n              [COPY_FILE <fileName> [COPY_FILE_ERROR <var>]]\n              [<LANG>_STANDARD <std>]\n              [<LANG>_STANDARD_REQUIRED <bool>]\n              [<LANG>_EXTENSIONS <bool>]\n              )\n\n.. versionadded:: 3.25\n\nTry building an executable or static library from one or more source files.\nThe binary type is determined by variable\n:variable:`CMAKE_TRY_COMPILE_TARGET_TYPE`.\nBuild success returns boolean ``true`` and build failure returns boolean\n``false`` in ``<compileResultVar>`` (cached unless ``NO_CACHE`` is specified).\n\nIn this form, one or more source files must be provided. Additionally, one of\n``SOURCES`` and/or ``SOURCE_FROM_*`` must precede other keywords.\n\nIf :variable:`CMAKE_TRY_COMPILE_TARGET_TYPE` is unset or is set to\n``EXECUTABLE``, the sources must include a definition for ``main`` and CMake\nwill create a ``CMakeLists.txt`` file to build the source(s) as an executable."
+        },
+        {
+          "start": 121,
+          "end": 129,
+          "text": "CMake automatically generates, for each ``try_compile`` operation, a\nunique directory under ``${CMAKE_BINARY_DIR}/CMakeFiles/CMakeScratch``\nwith an unspecified name.  These directories are cleaned automatically unless\n:option:`--debug-trycompile <cmake --debug-trycompile>` is passed to :program:`cmake`.\nSuch directories from previous runs are also unconditionally cleaned at the\nbeginning of any :program:`cmake` execution.\n\nThis command supports an alternate signature for CMake older than 3.25.\nThe signature above is recommended for clarity."
+        },
+        {
+          "start": 317,
+          "end": 328,
+          "text": "  If set, the following variables are passed in to the generated\n  try_compile CMakeLists.txt to initialize compile target properties with\n  default values:\n\n  * :variable:`CMAKE_CUDA_RUNTIME_LIBRARY`\n  * :variable:`CMAKE_ENABLE_EXPORTS`\n  * :variable:`CMAKE_EXECUTABLE_ENABLE_EXPORTS`\n  * :variable:`CMAKE_SHARED_LIBRARY_ENABLE_EXPORTS`\n  * :variable:`CMAKE_EXE_LINKER_FLAGS`, unless using CMake versions\n    prior to 4.0 without policy :policy:`CMP0056` set to ``NEW``\n  * :variable:`CMAKE_<LANG>_LINK_FLAGS`, unless using CMake versions\n    prior to 4.3 without policy :policy:`CMP0210` set to ``NEW``"
+        },
+        {
+          "start": 341,
+          "end": 357,
+          "text": "Some policies are set automatically in the generated test project\nas needed to honor the state of the calling project:\n\n* :policy:`CMP0065` (in CMake versions prior to 4.0)\n* :policy:`CMP0083`\n* :policy:`CMP0091`\n* :policy:`CMP0104`\n* :policy:`CMP0123`\n* :policy:`CMP0126`\n* :policy:`CMP0128`\n* :policy:`CMP0136`\n* :policy:`CMP0141`\n* :policy:`CMP0155`\n* :policy:`CMP0157`\n* :policy:`CMP0181`\n* :policy:`CMP0184`\n* :policy:`CMP0210`"
+        },
+        {
+          "start": 427,
+          "end": 430,
+          "text": ".. versionadded:: 4.3\n  If :policy:`CMP0210` is set to ``NEW``, :variable:`CMAKE_<LANG>_LINK_FLAGS`\n  and :variable:`CMAKE_<LANG>_LINK_FLAGS_<CONFIG>` are propagated into the\n  test project's build configuration."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin.cmake",
+      "sha256": "8e19ed912c8620791f4dbac14d162cd58569aab9f7499c539434b8f0619e6613",
+      "id": "darwin-native-link-rules",
+      "line_ranges": [
+        [
+          42,
+          55
+        ],
+        [
+          81,
+          98
+        ]
+      ],
+      "fact": "Under CMP0210 NEW Darwin does not overwrite CXX_LINK_FLAGS and retains native executable/shared/module creation behavior.",
+      "excerpts": [
+        {
+          "start": 42,
+          "end": 55,
+          "text": "cmake_policy(GET CMP0210 _CMP0210)\nforeach(lang C CXX OBJC OBJCXX)\n  set(CMAKE_${lang}_OSX_COMPATIBILITY_VERSION_FLAG \"-compatibility_version \")\n  set(CMAKE_${lang}_OSX_CURRENT_VERSION_FLAG \"-current_version \")\n\n  set(CMAKE_EXECUTABLE_CREATE_${lang}_FLAGS \"-Wl,-search_paths_first -Wl,-headerpad_max_install_names\")\n  if (NOT _CMP0210 STREQUAL \"NEW\")\n    set(CMAKE_${lang}_LINK_FLAGS \"${CMAKE_EXECUTABLE_CREATE_${lang}_FLAGS}\")\n  endif()\n\n  set(CMAKE_SHARED_LIBRARY_CREATE_${lang}_FLAGS \"-dynamiclib -Wl,-headerpad_max_install_names\")\n  set(CMAKE_SHARED_MODULE_CREATE_${lang}_FLAGS \"-bundle -Wl,-headerpad_max_install_names\")\n  set(CMAKE_SHARED_MODULE_LOADER_${lang}_FLAG \"-Wl,-bundle_loader,\")\nendforeach()"
+        },
+        {
+          "start": 81,
+          "end": 98,
+          "text": "foreach(lang C CXX Fortran OBJC OBJCXX)\n  # Xcode does not support -isystem yet.\n  if(XCODE)\n    set(CMAKE_INCLUDE_SYSTEM_FLAG_${lang})\n  endif()\n\n  set(CMAKE_${lang}_CREATE_SHARED_LIBRARY\n    \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <SONAME_FLAG> <TARGET_INSTALLNAME_DIR><TARGET_SONAME> <OBJECTS> <LINK_LIBRARIES>\")\n\n  set(CMAKE_${lang}_CREATE_SHARED_MODULE\n      \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>\")\n\n  set(CMAKE_${lang}_CREATE_MACOSX_FRAMEWORK\n      \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <SONAME_FLAG> <TARGET_INSTALLNAME_DIR><TARGET_SONAME> <OBJECTS> <LINK_LIBRARIES>\")\n\n  # Set default framework search path flag for languages known to use a\n  # preprocessor that may find headers in frameworks.\n  set(CMAKE_${lang}_FRAMEWORK_SEARCH_FLAG -F)"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Apple-Clang.cmake",
+      "sha256": "64ec25e27b86045ca1120bb402b09c2707537bad0657e4c29bd544297141048a",
+      "id": "apple-clang-flags",
+      "line_ranges": [
+        [
+          8,
+          15
+        ]
+      ],
+      "fact": "Apple-Clang owns dynamiclib/bundle flags, SDK flag and deployment target flag.",
+      "excerpts": [
+        {
+          "start": 8,
+          "end": 15,
+          "text": "macro(__apple_compiler_clang lang)\n  set(CMAKE_${lang}_VERBOSE_FLAG \"-v -Wl,-v\") # also tell linker to print verbose output\n  set(CMAKE_SHARED_LIBRARY_CREATE_${lang}_FLAGS \"-dynamiclib -Wl,-headerpad_max_install_names\")\n  set(CMAKE_SHARED_MODULE_CREATE_${lang}_FLAGS \"-bundle -Wl,-headerpad_max_install_names\")\n  set(CMAKE_${lang}_SYSROOT_FLAG \"-isysroot\")\n  set(CMAKE_${lang}_OSX_DEPLOYMENT_TARGET_FLAG \"-mmacosx-version-min=\")\n  if(NOT CMAKE_${lang}_COMPILER_VERSION VERSION_LESS 3.2)\n    set(CMAKE_${lang}_SYSTEM_FRAMEWORK_SEARCH_FLAG \"-iframework \")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin-Initialize.cmake",
+      "sha256": "179623773d33a1a082f15413c41776a21e4f3a7cad0e09eb953584475c719255",
+      "id": "darwin-platform-selection",
+      "line_ranges": [
+        [
+          18,
+          20
+        ],
+        [
+          42,
+          78
+        ]
+      ],
+      "fact": "Darwin chooses Apple compiler modules and can otherwise inherit architecture/SDK environment.",
+      "excerpts": [
+        {
+          "start": 18,
+          "end": 20,
+          "text": "# Save CMAKE_OSX_ARCHITECTURES from the environment.\nset(CMAKE_OSX_ARCHITECTURES \"$ENV{CMAKE_OSX_ARCHITECTURES}\" CACHE STRING\n  \"Build architectures for OSX\")"
+        },
+        {
+          "start": 42,
+          "end": 78,
+          "text": "# macOS, iOS, tvOS, visionOS, and watchOS should lookup compilers from\n# Platform/Apple-${CMAKE_CXX_COMPILER_ID}-<LANG>\nset(CMAKE_EFFECTIVE_SYSTEM_NAME \"Apple\")\n\n#----------------------------------------------------------------------------\n# CMAKE_OSX_SYSROOT\n\nif(CMAKE_OSX_SYSROOT)\n  # Use the existing value without further computation to choose a default.\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"${CMAKE_OSX_SYSROOT}\")\nelseif(NOT \"x$ENV{SDKROOT}\" STREQUAL \"x\" AND\n        (NOT \"x$ENV{SDKROOT}\" MATCHES \"/\" OR IS_DIRECTORY \"$ENV{SDKROOT}\"))\n  # Use the value of SDKROOT from the environment.\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"$ENV{SDKROOT}\")\nelseif(CMAKE_SYSTEM_NAME STREQUAL iOS)\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"iphoneos\")\nelseif(CMAKE_SYSTEM_NAME STREQUAL tvOS)\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"appletvos\")\nelseif(CMAKE_SYSTEM_NAME STREQUAL visionOS)\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"xros\")\nelseif(CMAKE_SYSTEM_NAME STREQUAL watchOS)\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"watchos\")\nelse()\n  set(_CMAKE_OSX_SYSROOT_DEFAULT \"\")\nendif()\n\n# Set cache variable - end user may change this during ccmake or cmake-gui configure.\n# Choose the type based on the current value.\nset(_CMAKE_OSX_SYSROOT_TYPE STRING)\nforeach(_v CMAKE_OSX_SYSROOT _CMAKE_OSX_SYSROOT_DEFAULT)\n  if(\"x${${_v}}\" MATCHES \"/\")\n    set(_CMAKE_OSX_SYSROOT_TYPE PATH)\n    break()\n  endif()\nendforeach()\nset(CMAKE_OSX_SYSROOT \"${_CMAKE_OSX_SYSROOT_DEFAULT}\" CACHE ${_CMAKE_OSX_SYSROOT_TYPE}\n  \"The product will be built against the headers and libraries located inside the indicated SDK.\")"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS_INIT.rst",
+      "sha256": "68c7c190e33a7eb6ec96ec3e3153bb227ea6f0036d15ece33d2080afe2091332",
+      "id": "flags-init-contract",
+      "line_ranges": [
+        [
+          6,
+          16
+        ]
+      ],
+      "fact": "INIT fills a new language flags cache entry only once; inherited language flags prepend; use quoted command fragments.",
+      "excerpts": [
+        {
+          "start": 6,
+          "end": 16,
+          "text": "Value used to initialize the :variable:`CMAKE_<LANG>_FLAGS` cache entry\nthe first time a build tree is configured for language ``<LANG>``.\nThis variable is meant to be set by a :variable:`toolchain file\n<CMAKE_TOOLCHAIN_FILE>`.  CMake may prepend or append content to\nthe value based on the environment and target platform.  For example,\nthe contents of a ``xxxFLAGS`` environment variable will be prepended,\nwhere ``xxx`` will be language-specific but not necessarily the same as\n``<LANG>`` (e.g. :envvar:`CXXFLAGS` for ``CXX``, :envvar:`FFLAGS` for\n``Fortran``, and so on).\nThis value is a command-line string fragment. Therefore, multiple options\nshould be separated by spaces, and options with spaces should be quoted."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS.rst",
+      "sha256": "4cabf40e6f280d839a5fd2d8d262a9a973ca170af126841fad107605cdf977a1",
+      "id": "flags-compile-and-link",
+      "line_ranges": [
+        [
+          4,
+          16
+        ],
+        [
+          32,
+          41
+        ]
+      ],
+      "fact": "Language flags reach both compile and link invocations; C and CXX initialization are independent.",
+      "excerpts": [
+        {
+          "start": 4,
+          "end": 16,
+          "text": "Language-wide flags for language ``<LANG>`` used when building for\nall configurations.  These flags will be passed to all invocations\nof the compiler.  This includes invocations that drive compiling\nand those that drive linking.\n\nFor each language, if this variable is not defined, it is initialized\nand stored in the cache using values from environment variables in\ncombination with CMake's builtin defaults for the toolchain:\n\n* ``CMAKE_C_FLAGS``:\n  Initialized by the :envvar:`CFLAGS` environment variable.\n* ``CMAKE_CXX_FLAGS``:\n  Initialized by the :envvar:`CXXFLAGS` environment variable."
+        },
+        {
+          "start": 32,
+          "end": 41,
+          "text": "This value is a command-line string fragment. Therefore, multiple options\nshould be separated by spaces, and options with spaces should be quoted.\n\nThe flags in this variable will be passed before those in the\nper-configuration :variable:`CMAKE_<LANG>_FLAGS_<CONFIG>` variable.\nOn invocations driving compiling, flags from both variables will be passed\nbefore flags added by commands such as :command:`add_compile_options` and\n:command:`target_compile_options`. On invocations driving linking,\nthey will be passed before flags added by commands such as\n:command:`add_link_options` and :command:`target_link_options`."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_STANDARD_LIBRARIES.rst",
+      "sha256": "cd63dd557204561da9ec3d1f4fb5c9ba8bd7bcf1db40be908daa9ff7a0408db3",
+      "id": "standard-libraries-contract",
+      "line_ranges": [
+        [
+          6,
+          12
+        ]
+      ],
+      "fact": "Standard libraries are for language platform libraries in all executable/shared links, but the ABI module intentionally clears this route.",
+      "excerpts": [
+        {
+          "start": 6,
+          "end": 12,
+          "text": "Libraries linked into every executable and shared library linked\nfor language ``<LANG>``.  This is meant for specification of system\nlibraries needed by the language for the current platform.\n\nThis variable should not be set by project code.  It is meant to be set by\nCMake's platform information modules for the current toolchain, or by a\ntoolchain file when used with :variable:`CMAKE_TOOLCHAIN_FILE`."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_SYSROOT.rst",
+      "sha256": "002bf8bdc38096a27725c0d0baa5787aa49e0feda3246cc9f11d66e2116b4b8d",
+      "id": "sdk-contract",
+      "line_ranges": [
+        [
+          4,
+          16
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "fact": "An explicit absolute SDK avoids environment/default SDK resolution.",
+      "excerpts": [
+        {
+          "start": 4,
+          "end": 16,
+          "text": "Specify the location or name of the macOS platform SDK to be used.\n\nIf not set explicitly, the value is initialized by the ``SDKROOT``\nenvironment variable, if set.  Otherwise, the value defaults to empty,\nand the compiler is expected to choose a default macOS SDK on its own.\n\n.. versionchanged:: 4.0\n  The default is now empty.  Previously a default was computed based on\n  the :variable:`CMAKE_OSX_DEPLOYMENT_TARGET` or the host platform.\n\nIn order to pass an explicit macOS SDK via the compiler's ``-isysroot`` flag,\nusers may configure their build tree with ``-DCMAKE_OSX_SYSROOT=macosx``,\nor ``export SDKROOT=\"$(xcrun --sdk macosx --show-sdk-path)\"`` in their"
+        },
+        {
+          "start": 27,
+          "end": 31,
+          "text": "* Some Clang compilers have no default macOS SDK selection.  For these,\n  if :variable:`CMAKE_OSX_SYSROOT` is empty, CMake will automatically pass\n  ``-isysroot`` with the macOS SDK printed by ``xcrun --show-sdk-path``.\n\n.. include:: include/CMAKE_OSX_VARIABLE.rst"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_DEPLOYMENT_TARGET.rst",
+      "sha256": "ca07b3e87b21e14d0537a32f89f56ac9eca96bf7600d1d039319cf24499a4563",
+      "id": "deployment-contract",
+      "line_ranges": [
+        [
+          7,
+          21
+        ],
+        [
+          32,
+          39
+        ]
+      ],
+      "fact": "An explicit deployment value prevents MACOSX_DEPLOYMENT_TARGET/default inheritance.",
+      "excerpts": [
+        {
+          "start": 7,
+          "end": 21,
+          "text": "For builds targeting macOS (:variable:`CMAKE_SYSTEM_NAME` is ``Darwin``), if\n``CMAKE_OSX_DEPLOYMENT_TARGET`` is not explicitly set, a default is set:\n\n* If the ``MACOSX_DEPLOYMENT_TARGET`` environment variable is non-empty,\n  its value is the default.\n\n* Otherwise, if using the :generator:`Xcode` generator, and the host's\n  macOS version is older than the macOS SDK (:variable:`CMAKE_OSX_SYSROOT`,\n  if set, or Xcode's default SDK), the host's macOS version is the default.\n\n  .. versionchanged:: 4.0\n\n    Previously this was done for all generators, not just Xcode.\n\n* Otherwise, the default is empty."
+        },
+        {
+          "start": 32,
+          "end": 39,
+          "text": "Other Generators\n\n  If ``CMAKE_OSX_DEPLOYMENT_TARGET`` is set to a non-empty value, it is passed\n  to the compiler via the ``-mmacosx-version-min`` flag or equivalent.\n  Otherwise, no such flag is added, so the compiler's default deployment\n  target is used.\n\n.. include:: include/CMAKE_OSX_VARIABLE.rst"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_ARCHITECTURES.rst",
+      "sha256": "0c3a6fb226c4b95963ddd57815c69f66c6256bd33d47090cef121c02bae0d001",
+      "id": "architecture-contract",
+      "line_ranges": [
+        [
+          4,
+          14
+        ]
+      ],
+      "fact": "The architecture variable initializes targets; otherwise compiler defaults apply.",
+      "excerpts": [
+        {
+          "start": 4,
+          "end": 14,
+          "text": "Target specific architectures for macOS and iOS.\n\nThis variable is used to initialize the :prop_tgt:`OSX_ARCHITECTURES`\nproperty on each target as it is created.  See that target property\nfor additional information.\n\nIf ``CMAKE_OSX_ARCHITECTURES`` is not set, the compiler's default target\narchitecture is used.  For compilers provided by Xcode, this is the host\nmachine's architecture.\n\n.. include:: include/CMAKE_OSX_VARIABLE.rst"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Compiler/Clang.cmake",
+      "sha256": "84025c6ea7edb05ccf45793f96e5a9d89bc64f061f89a3bd1e24ba0c4b75af51",
+      "id": "cpp26-standard-switch",
+      "line_ranges": [
+        [
+          198,
+          208
+        ]
+      ],
+      "fact": "For the recorded Clang 21 compiler, CXX_STANDARD 26 with extensions disabled selects -std=c++26.",
+      "excerpts": [
+        {
+          "start": 198,
+          "end": 208,
+          "text": "    set(_clang_version_std23 17.0)\n    if(CMAKE_SYSTEM_NAME STREQUAL \"Android\")\n      set(_clang_version_std23 18.0)\n    endif()\n\n    if(NOT CMAKE_${lang}_COMPILER_VERSION VERSION_LESS \"${_clang_version_std23}\")\n      set(CMAKE_${lang}23_STANDARD_COMPILE_OPTION \"-std=c++23\")\n      set(CMAKE_${lang}23_EXTENSION_COMPILE_OPTION \"-std=gnu++23\")\n      set(CMAKE_${lang}26_STANDARD_COMPILE_OPTION \"-std=c++26\")\n      set(CMAKE_${lang}26_EXTENSION_COMPILE_OPTION \"-std=gnu++26\")\n      set(CMAKE_${lang}_STANDARD_LATEST 26)"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/target_compile_options.rst",
+      "sha256": "c740f591817b8b54f682d9c18e91d994ca857daef1ac072ad0d5e11efce3fee4",
+      "id": "private-reflection-option",
+      "line_ranges": [
+        [
+          12,
+          21
+        ],
+        [
+          30,
+          35
+        ]
+      ],
+      "fact": "PRIVATE compile options apply to the owning target and do not become interface options or link flags.",
+      "excerpts": [
+        {
+          "start": 12,
+          "end": 21,
+          "text": "Adds options to the :prop_tgt:`COMPILE_OPTIONS` or\n:prop_tgt:`INTERFACE_COMPILE_OPTIONS` target properties. These options\nare used when compiling the given ``<target>``, which must have been\ncreated by a command such as :command:`add_executable` or\n:command:`add_library` and must not be an :ref:`ALIAS target <Alias Targets>`.\n\n.. note::\n\n  These options are not used when linking the target.\n  See the :command:`target_link_options` command for that."
+        },
+        {
+          "start": 30,
+          "end": 35,
+          "text": "The ``INTERFACE``, ``PUBLIC`` and ``PRIVATE`` keywords are required to\nspecify the :ref:`scope <Target Command Scope>` of the following arguments.\n``PRIVATE`` and ``PUBLIC`` items will populate the :prop_tgt:`COMPILE_OPTIONS`\nproperty of ``<target>``.  ``PUBLIC`` and ``INTERFACE`` items will populate the\n:prop_tgt:`INTERFACE_COMPILE_OPTIONS` property of ``<target>``.\nThe following arguments specify compile options.  Repeated calls for the same"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_tgt/CXX_SCAN_FOR_MODULES.rst",
+      "sha256": "ff5382462e892806b217975d8531f0369cce802293e08345dbb2111152f383b4",
+      "id": "disable-unneeded-module-scan",
+      "line_ranges": [
+        [
+          12,
+          23
+        ]
+      ],
+      "fact": "OFF avoids a clang-scan-deps build invocation for the ordinary translation unit.",
+      "excerpts": [
+        {
+          "start": 12,
+          "end": 23,
+          "text": "This property is initialized by the value of the\n:variable:`CMAKE_CXX_SCAN_FOR_MODULES` variable if it is set when a target is\ncreated.\n\nWhen this property is set ``ON`` or unset, CMake will scan the target's\n``CXX`` sources at build time and add module dependency information to the\ncompile line as necessary.  When this property is set ``OFF``, CMake will not\nscan the target's ``CXX`` sources at build time.\n\nNote that scanning is only performed if C++20 or higher is enabled for the\ntarget.  Scanning for modules in the target's sources belonging to file sets\nof type ``CXX_MODULES`` is always performed."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/generator/Ninja Multi-Config.rst",
+      "sha256": "8dfee9fdcd877599a50cbb47b1f4dfba6a504fe7504e8cc47faf32857b31fbd7",
+      "id": "four-configurations",
+      "line_ranges": [
+        [
+          12,
+          24
+        ],
+        [
+          36,
+          39
+        ]
+      ],
+      "fact": "Multi-Config uses CONFIGURATION_TYPES; the default omits MinSizeRel, so the candidate names all four.",
+      "excerpts": [
+        {
+          "start": 12,
+          "end": 24,
+          "text": "Unlike the :generator:`Ninja` generator, ``Ninja Multi-Config`` generates\nmultiple configurations at once with :variable:`CMAKE_CONFIGURATION_TYPES`\ninstead of only one configuration with :variable:`CMAKE_BUILD_TYPE`. One\n``build-<Config>.ninja`` file will be generated for each of these\nconfigurations (with ``<Config>`` being the configuration name.) These files\nare intended to be run with ``ninja -f build-<Config>.ninja``. A\n``build.ninja`` file is also generated, using the configuration from either\n:variable:`CMAKE_DEFAULT_BUILD_TYPE` or the first item from\n:variable:`CMAKE_CONFIGURATION_TYPES`.\n\n``cmake --build . --config <Config>`` will always use ``build-<Config>.ninja``\nto build. If no :option:`--config <cmake--build --config>` argument is\nspecified, :option:`cmake --build . <cmake --build>` will use ``build.ninja``."
+        },
+        {
+          "start": 36,
+          "end": 39,
+          "text": ":variable:`CMAKE_CONFIGURATION_TYPES`\n  Specifies the total set of configurations to build. Unlike with other\n  multi-config generators, this variable has a value of\n  ``Debug;Release;RelWithDebInfo`` by default."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_TARGET_TYPE.rst",
+      "sha256": "6fb4da32646371a45887e1e1b57bb98559c6d1532a666d8118d7c59ea51df3cc",
+      "id": "do-not-skip-link-checks",
+      "line_ranges": [
+        [
+          6,
+          17
+        ]
+      ],
+      "fact": "EXECUTABLE performs a link while STATIC_LIBRARY skips the linker.",
+      "excerpts": [
+        {
+          "start": 6,
+          "end": 17,
+          "text": "Type of target generated for :command:`try_compile` calls using the\nsource file signature.  Valid values are:\n\n``EXECUTABLE``\n  Use :command:`add_executable` to name the source file in the\n  generated project.  This is the default if no value is given.\n\n``STATIC_LIBRARY``\n  Use :command:`add_library` with the ``STATIC`` option to name the\n  source file in the generated project.  This avoids running the\n  linker and is intended for use with cross-compiling toolchains\n  that cannot link without custom flags or linker scripts."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_test/PASS_REGULAR_EXPRESSION.rst",
+      "sha256": "fe8e9836c7c8e4693b42d9e8d90a6d1db818a0bcd40bbfbe573c985af5209b80",
+      "id": "do-not-copy-pass-regex",
+      "line_ranges": [
+        [
+          4,
+          9
+        ]
+      ],
+      "fact": "PASS_REGULAR_EXPRESSION ignores ordinary process exit status; use normal CTest exit status and separately require exact stdout.",
+      "excerpts": [
+        {
+          "start": 4,
+          "end": 9,
+          "text": "The test output (stdout or stderr) must match this regular expression\nfor the test to pass. The process exit code is ignored. Tests that exceed\nthe timeout specified by :prop_test:`TIMEOUT` still fail regardless of\n``PASS_REGULAR_EXPRESSION``. System-level test failures including\nsegmentation faults, signal abort, or heap errors may fail the test even\nif ``PASS_REGULAR_EXPRESSION`` is matched."
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeInitializeConfigs.cmake",
+      "sha256": "1301ec4871a37c30a333a76084d33a4af82a5b6daaa2d6afbb7a7369b00097e5",
+      "id": "config-cache-initialization",
+      "line_ranges": [
+        [
+          8,
+          12
+        ],
+        [
+          14,
+          34
+        ]
+      ],
+      "fact": "Language/config flags use existing cache entries if present; fresh private trees and explicit checks are required.",
+      "excerpts": [
+        {
+          "start": 8,
+          "end": 12,
+          "text": "function(cmake_initialize_per_config_variable _PREFIX _DOCSTRING)\n  string(STRIP \"${${_PREFIX}_INIT}\" _INIT)\n  set(\"${_PREFIX}\" \"${_INIT}\"\n    CACHE STRING \"${_DOCSTRING} during all build types.\")\n  mark_as_advanced(\"${_PREFIX}\")"
+        },
+        {
+          "start": 14,
+          "end": 34,
+          "text": "  if (NOT CMAKE_NOT_USING_CONFIG_FLAGS)\n    set(_CONFIGS Debug Release MinSizeRel RelWithDebInfo)\n\n    get_property(_GENERATOR_IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)\n    if (_GENERATOR_IS_MULTI_CONFIG)\n      list(APPEND _CONFIGS ${CMAKE_CONFIGURATION_TYPES})\n    else()\n      if (NOT CMAKE_NO_BUILD_TYPE)\n        set(CMAKE_BUILD_TYPE \"${CMAKE_BUILD_TYPE_INIT}\" CACHE STRING\n          \"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ...\")\n      endif()\n      list(APPEND _CONFIGS ${CMAKE_BUILD_TYPE})\n    endif()\n\n    list(REMOVE_DUPLICATES _CONFIGS)\n    foreach(_BUILD_TYPE IN LISTS _CONFIGS)\n      if (NOT \"${_BUILD_TYPE}\" STREQUAL \"\")\n        string(TOUPPER \"${_BUILD_TYPE}\" _BUILD_TYPE)\n        string(STRIP \"${${_PREFIX}_${_BUILD_TYPE}_INIT}\" _INIT)\n        set(\"${_PREFIX}_${_BUILD_TYPE}\" \"${_INIT}\"\n          CACHE STRING \"${_DOCSTRING} during ${_BUILD_TYPE} builds.\")"
+        }
+      ]
+    }
+  ],
+  "input_reads": {
+    "installed_cmake_module_and_help_files": [
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXInformation.cmake",
+        "sha256": "477236eeaa4a4d0300b9cd8ec349b24d8876090211ede11a3bed50ab22f0b440"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCInformation.cmake",
+        "sha256": "ce7d0799f61032c5caec45d26c1d7afe7f59ff9377e87f176aa1649caa1bf979"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin-Initialize.cmake",
+        "sha256": "179623773d33a1a082f15413c41776a21e4f3a7cad0e09eb953584475c719255"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Apple-Clang.cmake",
+        "sha256": "64ec25e27b86045ca1120bb402b09c2707537bad0657e4c29bd544297141048a"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin.cmake",
+        "sha256": "8e19ed912c8620791f4dbac14d162cd58569aab9f7499c539434b8f0619e6613"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Apple-Clang-CXX.cmake",
+        "sha256": "12e6cd8c0a59cd714a9507588f52517383331a3b972d6ffd0199379ae6cd6638"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Apple-Clang-C.cmake",
+        "sha256": "c65a51c8afcb89dc4757ea1e1b07e97d466ce3cdc8563c3c8c2719fadc9ddd09"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS_INIT.rst",
+        "sha256": "68c7c190e33a7eb6ec96ec3e3153bb227ea6f0036d15ece33d2080afe2091332"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_STANDARD_LIBRARIES.rst",
+        "sha256": "cd63dd557204561da9ec3d1f4fb5c9ba8bd7bcf1db40be908daa9ff7a0408db3"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_TARGET_TYPE.rst",
+        "sha256": "6fb4da32646371a45887e1e1b57bb98559c6d1532a666d8118d7c59ea51df3cc"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Compiler/Clang-CXX.cmake",
+        "sha256": "3537e214b8683407e9e3711457cb6a8b04779fe480fb4282459e946969a7d5b0"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_PLATFORM_VARIABLES.rst",
+        "sha256": "0df20805cab4244880c4b58736da025d54043f6269b566ea79b315a8c21f1d00"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake",
+        "sha256": "4d3fbcc46648144d52247304ec75f43833ecd24c015a5cbd192ac5d42d2ce75a"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeInitializeConfigs.cmake",
+        "sha256": "1301ec4871a37c30a333a76084d33a4af82a5b6daaa2d6afbb7a7369b00097e5"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeSystemSpecificInformation.cmake",
+        "sha256": "664346220947100185616597c9d2f9194019cfa5a3fd92df53bed88536ec4426"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeTestCXXCompiler.cmake",
+        "sha256": "95497992c561ab4cc674273ec1ec8b1752ce2d0b08309d3c8fed10cde3c1ba8f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_SYSROOT.rst",
+        "sha256": "002bf8bdc38096a27725c0d0baa5787aa49e0feda3246cc9f11d66e2116b4b8d"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Compiler/Clang.cmake",
+        "sha256": "84025c6ea7edb05ccf45793f96e5a9d89bc64f061f89a3bd1e24ba0c4b75af51"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_DEPLOYMENT_TARGET.rst",
+        "sha256": "ca07b3e87b21e14d0537a32f89f56ac9eca96bf7600d1d039319cf24499a4563"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS.rst",
+        "sha256": "4cabf40e6f280d839a5fd2d8d262a9a973ca170af126841fad107605cdf977a1"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_ARCHITECTURES.rst",
+        "sha256": "0c3a6fb226c4b95963ddd57815c69f66c6256bd33d47090cef121c02bae0d001"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCommonLanguageInclude.cmake",
+        "sha256": "63e32c7d86299cdb1d804e2695ddc5e6f2553f5d016ca259290dc7e98a679f89"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_CONFIGURATION.rst",
+        "sha256": "e6fe6028cf1e115156b433266f891fdb34eed7ffb520b7a16fef7fd235f86aa1"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/generator/Ninja Multi-Config.rst",
+        "sha256": "8dfee9fdcd877599a50cbb47b1f4dfba6a504fe7504e8cc47faf32857b31fbd7"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/policy/CMP0210.rst",
+        "sha256": "f1ac5b7e70aa3494c09620a0924abcd74955cc8814a71b0187441baf9f9aea23"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_tgt/CXX_STANDARD.rst",
+        "sha256": "239ebf2df8b1008c679ea114843472250e639b7a9cba47aab01a134dcc6ccb0e"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_tgt/CXX_SCAN_FOR_MODULES.rst",
+        "sha256": "ff5382462e892806b217975d8531f0369cce802293e08345dbb2111152f383b4"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINK_FLAGS.rst",
+        "sha256": "401a4afd80ab55a95d9ce70aef63b60e3e38b76dc5b2eae79390d3aa0f36c05e"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINK_FLAGS_CONFIG.rst",
+        "sha256": "b925a89ac0b121453746e27b2de284e7661a05b167918b630aa505f19e07758f"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/manual/cmake-toolchains.7.rst",
+        "sha256": "1400c9f96a82c65a5365f891832ca0c409420abc87fdf7df329609e067448a73"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/target_compile_options.rst",
+        "sha256": "c740f591817b8b54f682d9c18e91d994ca857daef1ac072ad0d5e11efce3fee4"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/try_compile.rst",
+        "sha256": "e99785bed743d93d0af1ed241d6ef8c5b0a70359853d41bca2325d0c8c8a24db"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TOOLCHAIN_FILE.rst",
+        "sha256": "55cede612848ca6011a811ff3b760b8ba425ab7dfed4a56423c968511d75b00a"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINKER_LAUNCHER.rst",
+        "sha256": "6117641d77522f6b39d9e30817ef18b09e9d2e004fda39f3bb53641db792696a"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_COMPILER_LAUNCHER.rst",
+        "sha256": "6e2cceff030526e3bfbdea6e70ec0f02a5e74f4027b290b4032f3605aae19951"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_test/PASS_REGULAR_EXPRESSION.rst",
+        "sha256": "fe8e9836c7c8e4693b42d9e8d90a6d1db818a0bcd40bbfbe573c985af5209b80"
+      }
+    ],
+    "context_files": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-init-source-notes-20261011.json",
+        "sha256": "942cd002bce6d5c570c6fc8c372929b0e1d729837a73c169928b9cf9dd7b2c6e"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain/CMakeLists.txt",
+        "sha256": "b1be8ede864896b6e099f747285006b53f3345a6ce9510ab90fb9421dc3f78b5"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.git",
+        "sha256": "c14070ba93d40162e5c6ebe6db6e6ca5d3e028587ba6a164806a8a7ab00bb034"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/onboarding.md",
+        "sha256": "eea3c2ee345a72adcfad9abbdd369915309ed3675ff5ddf0c8ab6277a24895d7"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/accepted-decisions.md",
+        "sha256": "c832008771c6d91703cde7a8d58452d230dcfb242589997a8963d5219c8ed910"
+      }
+    ],
+    "selected_plan": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "b158c15634af685b5df8b7ef45d71cab6768c50e184f5f8dac461db86622ee40"
+    },
+    "directories_listed": [
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection",
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform",
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable"
+    ]
+  },
+  "routes": {
+    "actual_tools": [
+      "functions tool metadata discovery/orchestration",
+      "mcp__node_repl__js with node:fs/promises and node:crypto"
+    ],
+    "actual_file_operations": [
+      "readFile of bounded local sources/receipts and Git administrative text",
+      "readdir of the four listed source/evidence directories",
+      "writeFile with exclusive create and mode 0600 for this private JSON, followed by readFile/stat readback"
+    ],
+    "failed_routes": [
+      {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_STANDARD_LIBRARIES_INIT.rst",
+        "error": "ENOENT",
+        "resolution": "No separate help file exists at the guessed path. The installed CMakeCXXInformation.cmake lines 102-106 provides the INIT-to-cache contract; STANDARD_LIBRARIES.rst documents language semantics."
+      }
+    ],
+    "not_run": [
+      "Git CLI",
+      "CMake executable/help/version/configure/build",
+      "compiler/linker/analyzer or runtime probes",
+      "Ninja/CTest/sccache",
+      "network/provider research",
+      "global configuration modification",
+      "repository or pinned source writes"
+    ]
+  },
+  "verification": {
+    "source_reference_rehash": "PASS: all 23 referenced installed files unchanged before receipt creation",
+    "prerequisite_rehash": "PASS: preliminary receipt, 07d receipt/version log, witness and both existing GCC files match their bound hashes",
+    "candidate_content_status": "Strings only; no CMake parser or other native execution",
+    "output_readback": "The writer requires exact readback equality and parsed JSON validity before reporting success"
+  }
+}

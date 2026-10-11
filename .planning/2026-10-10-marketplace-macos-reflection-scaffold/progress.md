@@ -852,3 +852,14 @@ gates are reused. Native coverage support remains unverified.
 - Independent reproduction matched all counts and runtime origins, including
   the intended absent-data exit. Complete preservation and all 19 original
   acceptance hashes passed without findings; task 08c is qualified.
+
+Task 08c is committed at `f4cf7d771fb06cb9d33f73d9adc1f1a5c4df4f05`;
+its post-commit baseline passed with a clean worktree. Task 10a1 prepares the
+P2996 CMake toolchain and four-configuration fixture in five maintained files.
+The installed CMake source shows that ABI probes clear standard libraries;
+CMP0210 NEW and native C++ link flags preserve the private runtime contract.
+This unit admits source/static review only; native qualification is task 10a2.
+- Independent source/static review passed without findings; all 23 references,
+  candidate semantics and original acceptance hashes passed. The reviewer's
+  private bookkeeping failure and corrected actual exits are retained. Native
+  CMake behavior remains unverified and follows as task 10a2.
