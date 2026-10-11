@@ -1,0 +1,230 @@
+{
+  "state": "PASS",
+  "started_at": "2026-10-11T14:45:46.421071+00:00",
+  "commands": [
+    {
+      "case": "help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/help.stdout",
+          "sha256": "0913d3ce4988cca562e0045fb6fac0d9c905a5e159d0943f856951eeee23b5d8",
+          "bytes": 222
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/help.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "case": "relative",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+        "--run-dir",
+        "relative"
+      ],
+      "returncode": 2,
+      "expected_returncode": 2,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/relative.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/relative.stderr",
+          "sha256": "5a25ef9e30b0ea70e38529d24daaf34bb249bb19d335ef78cee9de5cfbb27247",
+          "bytes": 173
+        }
+      ]
+    },
+    {
+      "case": "project",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+        "--run-dir",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/iwyu-rejected-review"
+      ],
+      "returncode": 2,
+      "expected_returncode": 2,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/project.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/project.stderr",
+          "sha256": "5a25ef9e30b0ea70e38529d24daaf34bb249bb19d335ef78cee9de5cfbb27247",
+          "bytes": 173
+        }
+      ]
+    },
+    {
+      "case": "llvm-build",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+        "--run-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/iwyu-rejected-review"
+      ],
+      "returncode": 2,
+      "expected_returncode": 2,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/llvm-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/llvm-build.stderr",
+          "sha256": "5a25ef9e30b0ea70e38529d24daaf34bb249bb19d335ef78cee9de5cfbb27247",
+          "bytes": 173
+        }
+      ]
+    }
+  ],
+  "pure_controls": [
+    {
+      "case": "admission-positive",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "admission-helper",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-directory",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-review-hash",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-review-fail",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-open-finding",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-proposal-hash",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "admission-proposal-content",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "compile-and-plan-positive-synthetic",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "missing-compile-row",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-compiler",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-sdk",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-arch",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "reflection-leak",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "private-product-stdlib",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "changed-planned-token",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-dependency-option",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-dependency-output",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-dependency-file",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "missing-planned-action",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "wrong-fork-library",
+      "outcome": "REJECTED",
+      "exception": "AssertionError"
+    }
+  ],
+  "helper_sha256": "79b573e5096602a8bca131b629617cde021fc5beec8fc4b0ec7d60e96ba7c895",
+  "proposal_sha256": "96cf5096daba64364db9b2563d6ab98d676b928e4815d81b2fe671b7850c8c46",
+  "retained_copy_pairs": 84,
+  "retained_preparation_commands": 40,
+  "retained_preparation_logs": 80,
+  "retained_wrapper_exits": [
+    0,
+    0
+  ],
+  "current_source_files_checked": 854,
+  "current_global_config_files_checked": 9,
+  "admitted_inputs": 52,
+  "tools": 11,
+  "original_Claude_files": 19,
+  "recorded_static_gate_exits": [
+    0,
+    0
+  ],
+  "static_gates_rerun": false,
+  "old_helper_reconstruction": "Exact comparator-only reversal, matched to prior proposal hash",
+  "new_native_configure_compiler_build_install_count": 0,
+  "lease_or_docker_checks": 0,
+  "findings": [],
+  "completed_at": "2026-10-11T14:45:47.294787+00:00"
+}

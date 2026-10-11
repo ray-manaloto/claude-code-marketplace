@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/review_installation.py", line 294, in <module>
+    if __name__=='__main__':{'audit':audit,'lease':lease_probe}[sys.argv[1]]()
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/review_installation.py", line 148, in audit
+    report['protected_before']=protected()
+                               ~~~~~~~~~^^
+  File "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/review_installation.py", line 53, in protected
+    return scope['protected']()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/review_preparation.py", line 94, in protected
+    scope['protected']()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py", line 76, in protected
+    assert digest(p) == row["sha256"] and p.stat().st_size == row["bytes"], str(p)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: /Users/rmanaloto/.local/bin/mise

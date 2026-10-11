@@ -6,7 +6,9 @@ Task 09a prepares the accepted [IWYU commit](https://github.com/include-what-you
 [source acquisition](../evidence/iwyu-source/operation/acquisition.json) passed
 all ten Git commands, verified 854 working-tree files against their Git blobs,
 and matched both earlier pinned CMake/license fragments. No source was patched.
-Native configure, build, installation and analysis remain unverified.
+Native configure/build/install and independent artifact verification passed.
+Current runtime drift is recorded below; analysis, resource relocation and
+advice/rebuild remain unverified.
 
 The retained [upstream license](../evidence/iwyu-source/upstream/LICENSE.TXT.source)
 is University of Illinois/NCSA. Both `iwyu_getopt` files carry that license
@@ -45,3 +47,24 @@ recommendation exits and the rebuilt reflection fixture from that moved tree.
 Moving LLVM itself, global registration and full upstream test-suite acceptance
 are separate, unqualified operations. [Independent preparation
 review](../evidence/iwyu-source/preparation-review.json) passed without findings.
+
+## Private native operation
+
+Task 09b's `dev/toolchains/iwyu_build.py` first records a preparation proposal.
+Its `--execute` mode requires the independently reviewed proposal, exact helper
+hash and fresh admission for a new private run directory. It repeats the shared
+lease, process/container census, CPU/disk checks and protected-state checks.
+Configure, build and install have 180/1800/120-second limits and retained logs;
+the build uses one job and keeps an 8 GiB disk reserve. Generated and executed
+commands must match, and the installed ARM64 binary must load the exact fork
+LLVM/Clang libraries with the Apple bootstrap standard library. License notices
+are retained in the private install tree. The [native operation](../evidence/iwyu-build/operation/qualification.json)
+passed all forty commands. Eleven retained warnings instantiate one upstream
+`EnumeratorSpec` switch omission; bounded reflection analysis remains required.
+
+The [artifact review](../evidence/iwyu-build/installation-review.json) verifies
+all forty exits, sixteen executed commands and installed dependencies. Its
+10,588 current-state checks found only the shared mise executable replaced after
+the operation, from 2026.10.7 to 2026.10.8. Attribution is unestablished. Preserve
+both runtime identities and the successful historical operation; task 09b1 must
+reattest the new runtime and existing profiles before semantic qualification.

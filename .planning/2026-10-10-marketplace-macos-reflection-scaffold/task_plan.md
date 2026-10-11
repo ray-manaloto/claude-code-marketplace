@@ -67,6 +67,8 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 03b2a | Native core command acceptance rules | Recorded native command replay, rejection controls and independent review | Complete |
 | 03b2b | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Complete |
 | 09a | Pinned IWYU source and matching-fork build preparation | Exact source/license identity, native LLVM package contract and independent review | Complete |
+| 09b | Guarded private IWYU build and installation | Fresh shared capacity, exact compiler/link commands, native exits, dependencies and independent review | Historical pass; current runtime drift |
+| 09b1 | Reattest replaced mise runtime | Exact single-path change, existing profile parity, protected-state checks and independent review | Pending |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -135,6 +137,12 @@ qualified fork's headers/libraries using its admitted Apple bootstrap runtime;
 qualifying reflection analysis and relocation requires a later native operation.
 Script-mode CMake guard checks are admitted; they configure no project and run
 no compiler. Installation, global registration and shared-prefix writes are excluded.
+
+Task 09b separately admits the reviewed one-job private IWYU operation in
+`evidence/iwyu-build/admission.json`, after fresh capacity and independent
+pre-run review. The runner repeats the canonical lease/census and exact input
+checks before configure/build/install; shared source, LLVM prefix and defaults
+remain protected. Analysis, relocation and global registration are later gates.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;
 then a separately admitted global tool foundation and TCPM trial; compiler,

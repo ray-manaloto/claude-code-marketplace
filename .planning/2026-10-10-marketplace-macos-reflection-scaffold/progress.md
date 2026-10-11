@@ -958,3 +958,23 @@ build, analysis, relocation and installation remain unverified.
 - Independent review passed the source tree reconstruction, all eleven new
   controls and before/after preservation without findings. All 19 original
   files match; native IWYU execution remains a separate unqualified operation.
+
+Task 09a is committed at `ec1b5353ec9ab684d5a3668675778ca503923d4a`;
+the post-commit baseline passed with a clean worktree. Task 09b prepares a
+private, one-job IWYU configure/build/install operation with the shared lease,
+durable logs, exact generated/executed commands and protected source/defaults.
+Native execution and its independent preparation review remain pending.
+- The final preparation proposal passed twenty read-only commands and both
+  lightweight gates. Fresh shared-lock, process and Docker capacity checks pass;
+  independent review is pending before the native operation.
+- Independent preparation review passed all 21 data controls and four argument
+  cases without findings. The exact reviewed helper is admitted for one private
+  configure/build/install; final native exit and artifact review remain pending.
+- The admitted native operation exited 0: configure/build/install, all sixteen
+  exact compile/link commands, ARM64/version/library witnesses, source/default
+  preservation and lease release passed. Independent final artifact review is pending.
+- Independent artifact verification passed all forty native receipts. Current
+  inspection found the shared mise binary replaced after the successful run;
+  all other 10,588 checked records match. Attribution is unestablished. Retain
+  this historical pass and the live drift finding; task 09b1 must reattest the
+  replacement and existing profiles before continuing to IWYU semantics.

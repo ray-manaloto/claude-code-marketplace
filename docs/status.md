@@ -48,6 +48,11 @@ Task 08c's source-based coverage fixture passed independent reproduction with
 fresh raw/merged profiles, exact branch counts and a failing missing-data control.
 The later application coverage cross-product remains pending.
 
+Task 09's pinned [IWYU source and private build](iwyu-toolchain.md) passed native
+installation and independent artifact verification. The shared mise executable
+changed afterward to 2026.10.8; all other protected records match. Task 09b1
+reattests this runtime before reflection analysis, relocation and advice/rebuild.
+
 Task 10a's [P2996 CMake fixture](../scratch/p2996-toolchain/README.md) passed
 native ABI/custom probes, four build/test/runtime cells and eight isolation
 controls with independent reproduction. Private libc++ origins and protected

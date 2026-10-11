@@ -1,0 +1,294 @@
+from pathlib import Path
+from datetime import UTC, datetime
+import ast
+import fcntl
+import hashlib
+import json
+import os
+import re
+import shlex
+import stat
+import struct
+import sys
+
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+E=ROOT/'evidence/iwyu-build'
+D=Path(__file__).parent
+HEAD='ec1b5353ec9ab684d5a3668675778ca503923d4a'
+HELPER_SHA='79b573e5096602a8bca131b629617cde021fc5beec8fc4b0ec7d60e96ba7c895'
+OP_SHA='b82423af01bcb5a6154b02b0086a1d61895c5c36f69cc3fff12dcc2d7eb0fb80'
+PROPOSAL_SHA='96cf5096daba64364db9b2563d6ab98d676b928e4815d81b2fe671b7850c8c46'
+OP=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z')
+
+
+def sha(path):
+    with Path(path).open('rb') as stream: return hashlib.file_digest(stream,'sha256').hexdigest()
+
+def load(path): return json.loads(Path(path).read_text())
+def save(name,data): (D/name).write_text(json.dumps(data,indent=2)+'\n')
+def rec(path):
+    p=Path(path)
+    return {'path':str(p),'sha256':sha(p),'bytes':p.stat().st_size}
+
+def check_record(row,path=None):
+    p=Path(path or row['path'])
+    if not p.is_absolute(): p=ROOT/p
+    assert sha(p)==row['sha256'],str(p)
+    if 'bytes' in row: assert p.stat().st_size==row['bytes'],str(p)
+
+def identity():
+    gitdir=Path((ROOT/'.git').read_text().strip().removeprefix('gitdir: '))
+    assert (gitdir/'HEAD').read_text()=='ref: refs/heads/codex/marketplace-native-onboarding\n'
+    common=(gitdir/(gitdir/'commondir').read_text().strip()).resolve()
+    assert common==Path('/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git')
+    assert (common/'refs/heads/codex/marketplace-native-onboarding').read_text().strip()==HEAD
+    return {'checkout':str(ROOT),'branch':'codex/marketplace-native-onboarding','head':HEAD,'common_git_directory':str(common)}
+
+def protected():
+    old=Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/review_preparation.py')
+    assert sha(old)=='aaf0ec60e5ae4b3cfc2ed2669a5d13798ad2a008a92fbf6fc6c86c7e2f49c97e'
+    node=next(n for n in ast.parse(old.read_text()).body if isinstance(n,ast.FunctionDef) and n.name=='protected')
+    scope=globals().copy()
+    exec(compile(ast.Module(body=[node],type_ignores=[]),str(old),'exec'),scope)
+    return scope['protected']()
+
+def source_current(source,acquired):
+    before=load(ROOT/'evidence/iwyu-source/independent-review/source-before.json')
+    files={r['path']:r for r in acquired['verified_files']}
+    assert len(files)==854
+    assert {str(p.relative_to(source)) for p in source.rglob('*') if '.git' not in p.relative_to(source).parts and (p.is_file() or p.is_symlink())}==set(files)
+    for name,row in files.items():
+        p=source/name
+        assert p.is_file() and not p.is_symlink()
+        check_record(row,p)
+        assert oct(stat.S_IMODE(p.stat().st_mode))==before[name]['mode']
+    assert (source/'.git/HEAD').read_text().strip()==acquired['pin']
+    return {str(p.relative_to(source/'.git')):{'sha256':sha(p),'mode':oct(stat.S_IMODE(p.stat().st_mode))} for p in (source/'.git').rglob('*') if p.is_file()}
+
+def macho(path):
+    data=Path(path).read_bytes()
+    magic,cpu,subtype,kind,ncmds,size,flags,reserved=struct.unpack_from('<8I',data)
+    assert magic==0xfeedfacf and cpu==0x0100000c and kind==2
+    out={'architecture':'arm64','cpu_subtype':subtype,'filetype':'MH_EXECUTE','dylibs':[],'rpaths':[]}
+    offset=32
+    for _ in range(ncmds):
+        cmd,cmdsize=struct.unpack_from('<II',data,offset)
+        assert cmdsize>=8 and offset+cmdsize<=32+size
+        if cmd in (0xc,0x80000018,0x8000001f,0x8000001c):
+            start=struct.unpack_from('<I',data,offset+8)[0]
+            value=data[offset+start:offset+cmdsize].split(b'\0',1)[0].decode()
+            out['rpaths' if cmd==0x8000001c else 'dylibs'].append(value)
+        elif cmd==0x32:
+            platform,minimum,sdk,ntools=struct.unpack_from('<4I',data,offset+8)
+            out['platform']=platform
+            out['minimum_macos']=[minimum>>16,(minimum>>8)&255,minimum&255]
+            out['sdk']=[sdk>>16,(sdk>>8)&255,sdk&255]
+        offset+=cmdsize
+    assert offset==32+size
+    return out
+
+def audit():
+    report={'state':'RUNNING','started_at':datetime.now(UTC).isoformat(),'native_subprocesses':0}
+    save('artifact-audit.json',report)
+    try:
+        report['git_identity']=identity()
+        maintained=['dev/toolchains/iwyu_build.py','docs/iwyu-toolchain.md','.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md','.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md']
+        frozen={p:sha(ROOT/p) for p in maintained}
+        assert frozen[maintained[0]]==HELPER_SHA
+        assert sha(E/'operation/qualification.json')==OP_SHA and sha(OP/'qualification.json')==OP_SHA
+        q=load(E/'operation/qualification.json');proposal=load(E/'proposal.json');admission=load(E/'admission.json');review=load(E/'pre-run-review.json')
+        assert q['state']=='PASS: private IWYU build and installation; semantic qualification pending'
+        assert q['execute'] and q['lease_released'] and q['protected_state_unchanged']
+        assert q['helper_sha256']==HELPER_SHA and q['proposal']==proposal
+        assert sha(E/'proposal.json')==PROPOSAL_SHA==admission['proposal_sha256']==review['proposal_sha256']
+        assert q['admission_sha256']==sha(E/'admission.json') and admission['helper_sha256']==HELPER_SHA
+        assert admission['run_directory']==str(OP) and admission['base_head']==HEAD==proposal['base_head']
+        assert admission['review_sha256']==sha(E/'pre-run-review.json') and review['result'].startswith('PASS') and review['findings']==[]
+        manifest=load(E/'operation-manifest.json');assert len(manifest['files'])==104 and len(manifest['private_artifacts'])==41
+        for row in manifest['files']:
+            check_record(row,ROOT/row['path']);check_record(row,row['source'])
+        for row in manifest['private_artifacts']:check_record(row)
+        preflight_manifest=load(E/'preflight-manifest.json')
+        for row in preflight_manifest['files']:
+            check_record(row,ROOT/row['path']);check_record(row,row['source'])
+        report['original_copy_pairs']=104
+        report['private_artifacts']=41
+        report['preflight_copy_pairs']=len(preflight_manifest['files'])
+        assert len(q['commands'])==40 and all(r['returncode']==0 for r in q['commands'])
+        for command in q['commands']:
+            assert command['elapsed_seconds']>=0
+            for row in command['logs']:check_record(row)
+        commands={r['case']:r for r in q['commands']}
+        assert len(commands)==40
+        invocation=load(E/'invocation/invocation.json')
+        assert invocation['returncode']==0 and invocation['state']=='complete' and invocation['helper_sha256']==HELPER_SHA
+        assert invocation['argv'][1:]==['-B',str(ROOT/'dev/toolchains/iwyu_build.py'),'--run-dir',str(OP),'--execute']
+        for row in invocation['logs']:check_record(row)
+        wrapped=[json.loads(line) for line in Path(invocation['logs'][0]['path']).read_text().splitlines()]
+        assert [r for r in wrapped if 'case' in r]==[{'case':r['case'],'returncode':0} for r in q['commands']]
+        assert wrapped[-1]=={'state':q['state'],'receipt':str(OP/'qualification.json')}
+        assert Path(invocation['logs'][1]['path']).read_bytes()==b''
+        capacity=load(E/'preflight/capacity.json')
+        assert admission['capacity_sha256']==sha(E/'preflight/capacity.json')
+        assert capacity['state'].startswith('PASS') and capacity['lease_released']
+        assert capacity['helper_sha256']==HELPER_SHA and capacity['proposal_sha256']==PROPOSAL_SHA
+        assert len(capacity['commands'])==5 and all(r['returncode']==0 for r in capacity['commands'])
+        for command in capacity['commands']:
+            for row in command['logs']:check_record(row)
+        assert q['capacity']['active']==[] and q['capacity']['cpus']==12
+        assert q['capacity']['free_bytes']>=8*1024**3 and q['capacity']['load'][0]<=2*q['capacity']['cpus']
+        process_lines=(OP/'capacity-processes.stdout').read_text().splitlines()
+        active=[l for l in process_lines if re.fullmatch(r'(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|ld|clangd|clang-tidy',Path(l.split(maxsplit=2)[-1]).name)]
+        assert active==[] and sum(float(l.split()[1]) for l in process_lines)==q['capacity']['total_cpu_percent']
+        assert q['capacity']['total_cpu_percent']<=75*q['capacity']['cpus']
+        assert (OP/'docker-context.stdout').read_text().strip()==admission['docker_context']
+        assert (OP/'docker-census.stdout').read_text().splitlines()==admission['containers']
+        cpu=sum(float(json.loads(l)['CPUPerc'].rstrip('%')) for l in (OP/'docker-stats.stdout').read_text().splitlines())
+        assert cpu==q['capacity']['container_cpu_percent'] and cpu<=50*q['capacity']['cpus']
+        report['protected_before']=protected()
+        for p,h in proposal['inputs'].items():assert sha(ROOT/p)==h,p
+        for p,h in proposal['tools'].items():assert sha(p)==h,p
+        assert sha(Path(proposal['sdk']['path'])/'SDKSettings.json')==proposal['sdk']['settings_sha256']
+        acquired=load(ROOT/'evidence/iwyu-source/operation/acquisition.json')
+        source=Path(proposal['source']);prefix=Path(proposal['llvm_prefix']);build=OP/'build';install=OP/'prefix'
+        source_git=source_current(source,acquired)
+        for stage in ('before','immediate','after'):
+            for label in ('iwyu','llvm'):
+                for key in ('head','tree','status','diff'):
+                    data=(OP/f'{stage}-{label}-{key}.stdout').read_bytes()
+                    if label=='iwyu' and key=='diff':assert data==b''
+                    else:
+                        ref=ROOT/'evidence'/('iwyu-source' if label=='iwyu' else 'p2996-registration')/'operation'/((key if label=='iwyu' else 'source-after-'+key)+'.stdout')
+                        assert data==ref.read_bytes(),str(ref)
+        assert (OP/'default-before.stdout').read_bytes()==(OP/'default-after.stdout').read_bytes()==(ROOT/'evidence/p2996-registration/operation/default-after.stdout').read_bytes()
+        assert load(OP/'named-profile.stdout')==proposal['selected_environment']
+        assert proposal['selected_environment']['selected']['MARKETPLACE_CPP_LANE']=='tools-only'
+        cache={}
+        for line in (build/'CMakeCache.txt').read_text().splitlines():
+            if line and not line.startswith(('#','//')) and '=' in line and ':' in line.split('=',1)[0]:
+                name,rest=line.split(':',1);cache[name]=rest.split('=',1)[1]
+        bootstrap=load(ROOT/'evidence/iwyu-source/native-prerequisite.json')['bootstrap'];tools=bootstrap['tools']
+        cxx=tools['cxx']['path'];sdk=bootstrap['sdk']['path']
+        expected={'CMAKE_BUILD_TYPE':'Release','CMAKE_C_COMPILER':tools['cc']['path'],'CMAKE_CXX_COMPILER':cxx,'CMAKE_C_FLAGS':'','CMAKE_CXX_FLAGS':'','CMAKE_CXX_FLAGS_RELEASE':'-O3 -DNDEBUG','CMAKE_MAKE_PROGRAM':tools['ninja']['path'],'CMAKE_INSTALL_PREFIX':str(install),'CMAKE_OSX_SYSROOT':sdk,'CMAKE_OSX_ARCHITECTURES':'arm64','CMAKE_OSX_DEPLOYMENT_TARGET':'27.0','CMAKE_GENERATOR':'Ninja','CMAKE_EXPORT_COMPILE_COMMANDS':'ON','LLVM_DIR':str(prefix/'lib/cmake/llvm'),'Clang_DIR':str(prefix/'lib/cmake/clang'),'LLVM_ENABLE_LIBCXX':'OFF','LLVM_STATIC_LINK_CXX_STDLIB':'OFF','IWYU_LINK_CLANG_DYLIB':'ON','IWYU_RESOURCE_RELATIVE_TO':'clang','LLVM_PARALLEL_COMPILE_JOBS':'1','LLVM_PARALLEL_LINK_JOBS':'1','CMAKE_DISABLE_FIND_PACKAGE_Python3':'TRUE'}
+        assert {k:cache.get(k) for k in expected}==expected
+        assert all(cache.get(k) in (None,'') for k in ('CMAKE_TOOLCHAIN_FILE','CLANG_RESOURCE_DIR','IWYU_RESOURCE_DIR','CMAKE_INSTALL_RPATH','CMAKE_BUILD_RPATH','CMAKE_C_COMPILER_LAUNCHER','CMAKE_CXX_COMPILER_LAUNCHER'))
+        database=load(build/'compile_commands.json');planned=(OP/'build-commands.stdout').read_text().splitlines()
+        actual=[re.sub(r'^\[\d+/\d+\] ','',l) for l in (OP/'build.stdout').read_text().splitlines() if re.match(r'^\[\d+/\d+\] ',l)]
+        assert len(database)==15 and len(planned)==16 and planned==actual
+        known=['iwyu','iwyu_ast_util','iwyu_cache','iwyu_driver','iwyu_getopt','iwyu_globals','iwyu_include_picker','iwyu_lexer_utils','iwyu_location_util','iwyu_output','iwyu_path_util','iwyu_port','iwyu_preprocessor','iwyu_regex','iwyu_verrs']
+        assert [Path(r['file']).name for r in database]==[n+'.cc' for n in known]
+        ninja=(build/'build.ninja').read_text();rules_text=(build/'CMakeFiles/rules.ninja').read_text()
+        rules={m[0]:dict(re.findall(r'^  (\w+) = (.*)$',m[1],re.M)) for m in re.findall(r'^rule (\S+)\n((?:  .*\n)+)',rules_text,re.M)}
+        blocks={m[0]:(m[1],m[2],dict(re.findall(r'^  (\w+) = (.*)$',m[3],re.M))) for m in re.findall(r'^build ([^\n:]+): (\S+) ([^\n]*)\n((?:  .*\n)*)',ninja,re.M)}
+        def expand(rule,values):
+            value=re.sub(r'\$\{(\w+)\}|\$(\w+)',lambda m:values.get(m[1] or m[2],''),rules[rule]['command'])
+            assert '$' not in value
+            return shlex.split(value)
+        objects=[]
+        for line,row in zip(planned[:-1],database):
+            argv=shlex.split(row['command']);obj=str(Path(row['output']).relative_to(build));objects.append(obj)
+            assert argv[0]==cxx and Path(row['directory'])==build and Path(row['file']).parent==source
+            assert all(f in argv for f in ('-std=c++17','-fno-exceptions','-fno-rtti','-UNDEBUG','-I'+str(prefix/'include'),'-O3','-DNDEBUG','-fPIC'))
+            assert argv[argv.index('-isysroot')+1]==sdk and argv[argv.index('-arch')+1]=='arm64'
+            assert not any('-freflection' in f or 'include/c++/v1' in f or f.startswith('-stdlib=') for f in argv)
+            assert '-DIWYU_RESOURCE_BINARY_PATH="'+str(prefix/'bin/clang-21')+'"' in argv
+            native=shlex.split(line);pos=native.index('-MT')-1
+            assert native[pos:pos+5]==['-MD','-MT',obj,'-MF',obj+'.d']
+            reduced=native[:pos]+native[pos+5:];assert reduced==argv
+            rule,inputs,variables=blocks[obj];assert inputs.split(' || ')[0]==row['file'] and variables['pool']=='compile_job_pool'
+            assert expand(rule,variables|{'in':row['file'],'out':obj})==native
+        rule,inputs,variables=blocks['bin/include-what-you-use']
+        assert inputs.split(' | ')[0].split()==objects and variables['pool']=='link_job_pool'
+        assert expand(rule,variables|{'in':' '.join(objects),'out':'bin/include-what-you-use'})==shlex.split(planned[-1])
+        assert all(str(prefix/'lib'/n) in shlex.split(planned[-1]) for n in ('libclang-cpp.dylib','libLLVM.dylib'))
+        assert re.search(r'pool compile_job_pool\n  depth = 1\n',rules_text) and re.search(r'pool link_job_pool\n  depth = 1\n',rules_text)
+        sys.dont_write_bytecode=True;sys.path.insert(0,str(ROOT/'dev/toolchains'))
+        from p2996_install import prefix_inventory
+        assert prefix_inventory(install)==q['installed']['inventory'] and len(q['installed']['inventory'])==27
+        installed_files={r['path'] for r in q['installed']['inventory'] if r['kind']=='file'}
+        manifest_files=(build/'install_manifest.txt').read_text().splitlines();assert manifest_files==q['installed']['manifest'] and len(manifest_files)==17
+        expected_files={str(Path(p).relative_to(install)) for p in manifest_files}|{'share/licenses/include-what-you-use/'+n for n in ('LICENSE.TXT','iwyu_getopt.cc','iwyu_getopt.h')}
+        assert installed_files==expected_files and len(installed_files)==20
+        for n in ('LICENSE.TXT','iwyu_getopt.cc','iwyu_getopt.h'):assert sha(source/n)==sha(install/'share/licenses/include-what-you-use'/n)
+        for p in manifest_files:
+            path=Path(p)
+            if path.name=='include-what-you-use':continue
+            original=source/path.name
+            assert sha(original)==sha(path),str(original)
+        binary=install/'bin/include-what-you-use';assert sha(binary)==q['installed']['binary_sha256']
+        image=macho(binary)
+        expected_deps=['@rpath/libclang-cpp.dylib','@rpath/libLLVM.dylib','/usr/lib/libc++.1.dylib','/usr/lib/libSystem.B.dylib']
+        assert image['dylibs']==expected_deps and image['rpaths']==['@loader_path/../lib',str(prefix/'lib')]
+        assert image['platform']==1 and image['minimum_macos']==[27,0,0] and image['sdk']==[27,0,0]
+        assert (OP/'architecture.stdout').read_text().strip()=='arm64'
+        native_deps=[l.strip().split(' (compatibility version ',1)[0] for l in (OP/'libraries.stdout').read_text().splitlines()[1:]]
+        assert native_deps==image['dylibs']
+        native_rpaths=re.findall(r'cmd LC_RPATH\n\s+cmdsize \d+\n\s+path (.*?) \(offset \d+\)',(OP/'rpaths.stdout').read_text())
+        assert native_rpaths==image['rpaths']
+        version='include-what-you-use 0.25 (git:791e69e) based on clang version 21.0.0git (https://github.com/bloomberg/clang-p2996.git f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e)\n'
+        assert q['installed']['version']==version==(OP/'version.stdout').read_text()
+        lines=(OP/'version.stderr').read_text().splitlines()
+        loaded=[re.fullmatch(r'dyld\[\d+\]: <[A-F0-9-]+> (.+)',l) for l in lines]
+        auxiliary=[l for l,m in zip(lines,loaded) if not m]
+        delayed=[re.fullmatch(r'dyld\[\d+\]: move loaded to delayed: (.+)',l) for l in auxiliary]
+        assert all(delayed)
+        paths=[m[1] for m in loaded if m]
+        assert all(m[1] in {Path(p).name for p in paths if p.startswith(('/System/','/usr/lib/'))} for m in delayed)
+        private=[p for p in paths if not p.startswith(('/System/','/usr/lib/'))]
+        assert private==[str(binary),str(prefix/'lib/libclang-cpp.dylib'),str(prefix/'lib/libLLVM.dylib')]
+        assert '/usr/lib/libc++.1.dylib' in paths and not any(p.startswith(str(prefix/'lib/libc++')) for p in paths)
+        warnings=load(E/'warning-disposition.json');check_record(warnings['log']);check_record(warnings['configure_warning'])
+        build_lines=(OP/'build.stdout').read_text().splitlines()
+        actual_warnings=[{'line':n,'text':l} for n,l in enumerate(build_lines,1) if 'warning:' in l]
+        assert actual_warnings==warnings['warnings'] and len(actual_warnings)==11 and len({r['text'] for r in actual_warnings})==1
+        assert "EnumeratorSpec' not handled in switch" in actual_warnings[0]['text']
+        assert (OP/'configure.stderr').read_text().count('CMake Warning (policy)')==1 and 'CMP0219' in (OP/'configure.stderr').read_text()
+        for row in load(ROOT/'evidence/onboarding/baseline-files.json')['files']:check_record(row,ROOT/row['path'])
+        report['protected_after']=protected();assert report['protected_after']==report['protected_before']
+        assert source_current(source,acquired)==source_git
+        assert {p:sha(ROOT/p) for p in maintained}==frozen
+        for p,h in proposal['inputs'].items():assert sha(ROOT/p)==h,p
+        for p,h in proposal['tools'].items():assert sha(p)==h,p
+        assert sha(E/'operation/qualification.json')==OP_SHA and identity()==report['git_identity']
+        report.update(state='PASS',maintained_files=frozen,operation=rec(E/'operation/qualification.json'),helper_sha256=HELPER_SHA,
+            proposal=rec(E/'proposal.json'),admission=rec(E/'admission.json'),pre_run_review=rec(E/'pre-run-review.json'),
+            evidence_manifest=rec(E/'operation-manifest.json'),invocation=rec(E/'invocation/invocation.json'),wrapper_returncode=0,
+            commands=[{'case':r['case'],'returncode':r['returncode'],'elapsed_seconds':r['elapsed_seconds']} for r in q['commands']],
+            original_log_hashes_verified=80,preflight_command_exits=[0]*5,capacity=q['capacity'],input_hashes=len(proposal['inputs']),tool_hashes=len(proposal['tools']),
+            source_files=854,source_git_metadata_unchanged=True,source_observations_matched_baselines=24,default_before_after_matched_registration=True,
+            named_profile_matched_proposal=True,cache_values=expected,compile_units=15,link_commands=1,ninja_cdb_recorded_executed_exact=True,
+            installed_inventory_entries=27,installed_files=20,native_install_manifest_entries=17,added_license_files=3,installed_binary=rec(binary),macho=image,
+            version=version,dyld_images=len(paths),dyld_delayed_notices=len(delayed),dyld_non_system_images=private,warning_disposition=rec(E/'warning-disposition.json'),build_warnings=11,configure_policy_warnings=1,
+            original_Claude_files=19,findings=[],not_run=['compiler or IWYU invocation','profile or environment probes','CMake configure, build or install','network','services or containers','old guard batteries','analysis, resource query, relocation, advice/fixer or reflection rebuild','final lightweight baseline; parent owns it'])
+    except BaseException as error:
+        report.update(state='FAIL',error=repr(error))
+        raise
+    finally:
+        report['completed_at']=datetime.now(UTC).isoformat();save('artifact-audit.json',report)
+    print(json.dumps({'state':report['state'],'original_copy_pairs':104,'private_artifacts':41,'native_commands_observed':40,'compile_units':15,'installed_entries':27,'preserved':True}))
+
+
+def lease_probe():
+    assert load(D/'artifact-audit.json')['state']=='PASS'
+    path=Path('/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock')
+    module=Path('/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py')
+    assert sha(module)=='b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20'
+    assert path.is_file() and not path.is_symlink()
+    before=rec(path)|{'mode':oct(stat.S_IMODE(path.stat().st_mode)),'inode':path.stat().st_ino,'mtime_ns':path.stat().st_mtime_ns}
+    nodes=[n for n in ast.parse(module.read_text()).body if isinstance(n,ast.FunctionDef) and n.name in ('_try_lock','_probe_free')]
+    assert len(nodes)==2
+    scope={'Path':Path,'fcntl':fcntl}
+    exec(compile(ast.Module(body=nodes,type_ignores=[]),str(module),'exec'),scope)
+    report={'started_at':datetime.now(UTC).isoformat(),'module':rec(module),'before':before,'canonical_path':str(path),'probe_invocations':1}
+    try:
+        free=scope['_probe_free'](path)
+        after=rec(path)|{'mode':oct(stat.S_IMODE(path.stat().st_mode)),'inode':path.stat().st_ino,'mtime_ns':path.stat().st_mtime_ns}
+        assert before==after and free
+        report.update(state='PASS',canonical_lease_free=True,acquired_nonblocking_and_immediately_released=True,owner_record_unchanged=True,after=after)
+    except BaseException as error:
+        report.update(state='FAIL',error=repr(error));raise
+    finally:
+        report['completed_at']=datetime.now(UTC).isoformat();save('lease-check.json',report)
+    print(json.dumps({'state':'PASS','canonical_lease_free':True,'probe_invocations':1,'owner_record_unchanged':True}))
+
+if __name__=='__main__':{'audit':audit,'lease':lease_probe}[sys.argv[1]]()

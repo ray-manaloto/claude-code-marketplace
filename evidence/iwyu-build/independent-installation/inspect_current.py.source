@@ -1,0 +1,78 @@
+from pathlib import Path
+from datetime import UTC,datetime
+import hashlib,json,os,stat,sys
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+D=Path(__file__).parent
+
+def sha(path):
+    with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
+def load(path):return json.loads(Path(path).read_text())
+def record(path):
+    p=Path(path);v={'lexists':os.path.lexists(p),'exists':p.exists()}
+    if v['lexists']:v['lstat_mode']=oct(stat.S_IMODE(p.lstat().st_mode))
+    if v['exists']:v.update(resolved_path=str(p.resolve()),mode=oct(stat.S_IMODE(p.stat().st_mode)))
+    v['symlink_target']=os.readlink(p) if p.is_symlink() else None
+    if p.is_file():v.update(sha256=sha(p),bytes=p.stat().st_size,mtime_ns=p.stat().st_mtime_ns)
+    return v
+report={'state':'RUNNING','started_at':datetime.now(UTC).isoformat(),'native_subprocesses':0,'mismatches':[],'checks':[]}
+def compare(category,path,expected,actual):
+    good=expected==actual
+    row={'category':category,'path':str(path),'matched':good}
+    report['checks'].append(row)
+    if not good:report['mismatches'].append(row|{'expected':expected,'actual':actual})
+try:
+    proposal=load(ROOT/'evidence/iwyu-build/proposal.json')
+    for name in ('gcc_install.py','gcc_bottles.py','mise_link_probe.py','p2996_install.py','vcpkg_register.py'):
+        p=ROOT/'dev/toolchains'/name
+        assert sha(p)==proposal['inputs']['dev/toolchains/'+name],str(p)
+    sys.dont_write_bytecode=True;sys.path.insert(0,str(ROOT/'dev/toolchains'))
+    from gcc_install import package_state
+    from mise_link_probe import snapshot
+    from vcpkg_register import install_entries
+    from p2996_install import prefix_inventory
+    baseline=load(ROOT/'evidence/p2996-registration/independent-registration/post-state.json')
+    inv=load(ROOT/'evidence/p2996-install/independent-installation/post-install-inventory.json')
+    for name,expected in baseline['protected']['global_files'].items():
+        p=Path.home()/'.config/mise'/name;a=record(p)
+        compare('global_file',p,expected,{'sha256':a.get('sha256'),'mode':a.get('mode')})
+        if a['symlink_target'] is not None:compare('global_file_symlink',p,None,a['symlink_target'])
+    for name,expected in baseline['protected']['packages'].items():
+        try:actual=package_state(name)
+        except Exception as error:actual={'error':repr(error)}
+        compare('package',name,expected,actual)
+    for name,expected in baseline['protected']['glib_files'].items():compare('glib',name,expected,{'sha256':record(name).get('sha256')})
+    for name,expected in baseline['directories'].items():
+        current=snapshot(Path(name))
+        for key in sorted(set(expected)|set(current)):compare('mise_directory_entry',str(Path(name)/key),expected.get(key),current.get(key))
+        report.setdefault('directory_counts',{})[name]={'expected':len(expected),'current':len(current)}
+    current=install_entries(Path.home()/'.local/share/mise/installs');expected=baseline['install_entries']
+    for key in sorted(set(expected)|set(current)):compare('mise_install_entry',key,expected.get(key),current.get(key))
+    report['mise_install_entry_counts']={'expected':len(expected),'current':len(current)}
+    for row in inv['records']:
+        p=Path(row['path']);actual=record(p);keys=['lexists','exists']
+        if row['lexists']:keys.append('lstat_mode')
+        if row['exists']:keys+=['resolved_path','mode']
+        if 'sha256' in row:keys+=['sha256','bytes']
+        expect={k:row[k] for k in keys}|{'symlink_target':row.get('symlink_target')}
+        compare('source_build_record',p,expect,{k:actual.get(k) for k in expect})
+    expected={r['path']:r for r in load(ROOT/'evidence/p2996-install/operation/prefix-inventory.json')};current={r['path']:r for r in prefix_inventory(Path(inv['prefix']))}
+    for key in sorted(set(expected)|set(current)):compare('qualified_llvm_prefix',str(Path(inv['prefix'])/key),expected.get(key),current.get(key))
+    report['llvm_prefix_counts']={'expected':len(expected),'current':len(current)}
+    acquired=load(ROOT/'evidence/iwyu-source/operation/acquisition.json');source=Path(acquired['source']);modes=load(ROOT/'evidence/iwyu-source/independent-review/source-before.json')
+    for row in acquired['verified_files']:
+        p=source/row['path'];a=record(p)
+        expect={k:row[k] for k in ('sha256','bytes')}|{'mode':modes[row['path']]['mode'],'symlink_target':None}
+        compare('iwyu_source',p,expect,{k:a.get(k) for k in expect})
+    for path,expected in proposal['inputs'].items():compare('proposal_input',ROOT/path,expected,sha(ROOT/path))
+    for path,expected in proposal['tools'].items():compare('proposal_tool',path,expected,sha(path))
+    sdk=Path(proposal['sdk']['path'])/'SDKSettings.json';compare('sdk',sdk,proposal['sdk']['settings_sha256'],sha(sdk))
+    for row in load(ROOT/'evidence/onboarding/baseline-files.json')['files']:
+        p=ROOT/row['path'];compare('original_Claude_file',p,{k:row[k] for k in ('sha256','bytes')},{'sha256':sha(p),'bytes':p.stat().st_size})
+    installed=load(ROOT/'evidence/iwyu-build/operation/qualification.json')['installed'];expected={r['path']:r for r in installed['inventory']};current={r['path']:r for r in prefix_inventory(Path(installed['prefix']))}
+    for key in sorted(set(expected)|set(current)):compare('new_iwyu_prefix',str(Path(installed['prefix'])/key),expected.get(key),current.get(key))
+    report.update(state='LIVE_DRIFT' if report['mismatches'] else 'PASS',checks_completed=len(report['checks']),mismatch_records=len(report['mismatches']),unique_mismatch_paths=sorted({r['path'] for r in report['mismatches']}))
+except BaseException as error:
+    report.update(state='INSPECTION_ERROR',error=repr(error));raise
+finally:
+    report['completed_at']=datetime.now(UTC).isoformat();(D/'current-preservation.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({k:report[k] for k in ('state','checks_completed','mismatch_records','unique_mismatch_paths')}))
