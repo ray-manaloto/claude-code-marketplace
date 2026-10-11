@@ -215,3 +215,9 @@ Parent probes passed, including reflection and exception handling, all three
 private runtime images, and the intended negative control. [Independent runtime review](../evidence/p2996-reflection/reflection-review.json)
 passed with preserved prefix, source/build, protected/default state and all
 original files. Global mise registration is next.
+
+Reflection qualification is committed at `5c0de926a7c07c0a5d732543a83068d84370627c`.
+Task 07e1's native mise registration preparation passed both thirteen-command
+trials and all sixteen focused guards. [Independent review](../evidence/p2996-registration/preparation-review.json)
+passed with the namespace absent and protected/default state unchanged.
+Global registration receives a separate operation after this checkpoint.

@@ -750,3 +750,19 @@ Runtime qualification and independent review are pending.
   origins and unchanged prefix, retained files and protected/default state.
   The receipt-schema defect was caught and fixed before execution. All 19
   originals pass; global mise registration remains the next separate phase.
+
+Task 07d is committed at `5c0de926a7c07c0a5d732543a83068d84370627c`;
+its post-commit baseline passed with a clean worktree. Task 07e1 prepares the
+accepted native `asdf:clang-p2996` registration in a private mise staging root.
+The helper binds the qualified prefix and review, snapshots protected state,
+backs up global preimages privately and reuses the reviewed exclusive namespace
+promotion. Actual promotion needs a separate reviewed admission and fresh writer
+census. Default compiler settings, profiles and shims remain protected.
+- Parent preparation passed all thirteen native commands. Private mise link,
+  discovery and compiler identity passed; the global namespace is absent.
+  Prefix, source/build, protected state and default consumer remain unchanged.
+  Independent preparation and targeted promotion-guard review are next.
+- Independent preparation matched the parent proposal and passed all thirteen
+  native commands. All sixteen focused guard controls, the original-file baseline
+  and complete preservation checks passed without findings. The namespace is
+  still absent; scoped promotion is the next separately recorded operation.

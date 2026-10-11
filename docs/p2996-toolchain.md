@@ -251,3 +251,19 @@ Independent [installation review](../evidence/p2996-install/installation-review.
 passed complete inventory, metadata/RPATH, seven archive-table and preservation
 checks. The fat builtins archive was verified through its exact private ARM64
 slice after native ar rejected the wrapper. Compiler/runtime qualification remains.
+
+## Registration preparation
+
+Task 07d qualified the installed fork and private runtimes with reflection,
+string/stream and exception handling; independent reproduction passed.
+`dev/toolchains/p2996_register.py --run-dir /absolute/new/private/directory`
+prepares `asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e` using the
+previously qualified native link contract. The version denotes the base fork
+commit; the installation and reflection receipts also bind the seven SDK
+adaptations. The proposed global change is one absent install namespace linking
+to the existing qualified prefix. `--apply` requires the preparation review,
+exact admission, immediate writer census and protected preimages.
+Preparation, promotion and global discovery are separate recorded results.
+The [preparation review](../evidence/p2996-registration/preparation-review.json)
+passed the native staging trial, sixteen guard controls and preservation checks.
+No global promotion occurred during preparation.

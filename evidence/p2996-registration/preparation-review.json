@@ -1,0 +1,668 @@
+{
+  "result": "PASS: task 07e1 private registration preparation only",
+  "findings": [],
+  "resolved_findings": [],
+  "reviewer": "config_inspector",
+  "reviewed_at": "2026-10-11T10:09:35.026256+00:00",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "5c0de926a7c07c0a5d732543a83068d84370627c",
+    "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_register.py",
+  "helper_sha256": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+  "proposal": {
+    "destination": "/Users/rmanaloto/.local/share/mise/installs/asdf-clang-p2996",
+    "preimage": "absent",
+    "tool": "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "namespace": {
+      "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "sha256": null
+      }
+    },
+    "bindings": {
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/reflection-review.json": "9d5b57920a299e72048805595226fda7b1eb16e413d41580bc55b1e0d99c4b79",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/installation-review.json": "5777c93c132338b9755fbdd19e2701a086fbc2911686f61bd88cb7cad960347e",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-state.json": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json": "f0847874e3b48e2ce1752237c8053f36a2e28530a091df4d0b3a9e343a439af4",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159"
+    },
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+      "p2996_math_apply.py": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2",
+      "p2996_install.py": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3"
+    }
+  },
+  "proposal_identity_sha256": "49aa38002f04f0c9a117affa083659b8ff75e5e448f69e15cebd13cb886f5988",
+  "private_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z",
+  "parent_preparation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/preparation/qualification.json",
+    "sha256": "0f036644f391f065313817615a6b569c88c3263ff1247135c2d40886a66e5220",
+    "bytes": 20644
+  },
+  "parent_manifest": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/preparation-manifest.json",
+    "sha256": "7b4fb65dd64893320d694677cbdf6181cac5fad2d92f618de96832bed7169771",
+    "bytes": 12671
+  },
+  "parent_evidence_verification": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/parent-evidence-validation.json",
+      "sha256": "a356d3326c7b3f76c8b591c54ea5ab62f54af91f2212f3730c88a9e183141676",
+      "bytes": 25434
+    },
+    "records_verified": 29,
+    "native_logs_verified": 52,
+    "bound_inputs_verified": 6,
+    "bound_helpers_verified": 8
+  },
+  "native_preparation_invocation": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_register.py",
+      "--run-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation"
+    ],
+    "cwd": "/private/tmp",
+    "returncode": 0,
+    "elapsed_seconds": 10.591588709037751,
+    "stdout": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation.stdout",
+      "sha256": "b79cdc8c385baffe4b34351c358cf9aa9dce1203d4299f7c8a3014e3007a073f",
+      "bytes": 809
+    },
+    "stderr": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "helper_sha256_before": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+    "helper_sha256_after": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+    "environment_keys": [
+      "HOME",
+      "LOGNAME",
+      "NO_COLOR",
+      "PATH",
+      "PLAN_ID",
+      "PWF_PLAN_ROOT",
+      "PYTHONDONTWRITEBYTECODE",
+      "PYTHONNOUSERSITE",
+      "USER"
+    ],
+    "apply_requested": false,
+    "qualification_summary": {
+      "state": "PASS: private registration preparation",
+      "helper_sha256": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+      "protected_state_unchanged": true,
+      "apply_requested": false,
+      "promotion_attempted": false,
+      "promoted": false,
+      "destination_observed": {
+        "lexists": false,
+        "is_symlink": false,
+        "namespace": null
+      },
+      "commands": 13,
+      "native_exits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proposal_matches_parent": true,
+      "qualification_sha256": "7d7d21f0274cdc9c9d81ea496711c035d8ab1129100b0f7d939ecab5e5deef10"
+    }
+  },
+  "native_preparation": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/qualification.json",
+    "sha256": "7d7d21f0274cdc9c9d81ea496711c035d8ab1129100b0f7d939ecab5e5deef10",
+    "bytes": 21423
+  },
+  "native_command_exits": [
+    {
+      "case": "default-before",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-link",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-head",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-tree",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-status",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-diff",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-where",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-where.stdout",
+          "sha256": "53b575a1877d7485da5ec57082dca5b13d731dfcad93fc0fe33b53f0fd7be88e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-where.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-version",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-version.stdout",
+          "sha256": "79b24b929fef5acb92eee8d736bf3b85901f72fc5662062eaeafb7c3cb77c12f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-head",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-tree",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-status",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-diff",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "targeted_guard_controls": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls.json",
+      "sha256": "85297dec97acda6938300945913f8ad6cc33d74a3393fee0d982f7a8f0196750",
+      "bytes": 9135
+    },
+    "invocation": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls-invocation.json",
+      "sha256": "3f173061cf1dd19d838d1dcf4545a506799e26ebcfa909879622d383dae2c3f7",
+      "bytes": 924
+    },
+    "case_count": 16,
+    "result": "PASS",
+    "real_promotions": 0
+  },
+  "reused_controls": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/reused-controls.json",
+    "sha256": "139e23c631106a89a39b3d6edaf9e248b484ab522bd3358b2a0a6fc33971391e",
+    "bytes": 4351
+  },
+  "static_check": {
+    "argv": [
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+      "run",
+      "check:acceptance-baseline"
+    ],
+    "cwd": "/private/tmp",
+    "returncode": 0,
+    "elapsed_seconds": 0.7107020419789478,
+    "environment_overrides": {
+      "MARKETPLACE_MISE_BIN": "/Users/rmanaloto/.local/bin/mise",
+      "MARKETPLACE_PYTHON": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3"
+    },
+    "logs": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/acceptance-baseline.stdout",
+        "sha256": "86afb7d25d2caff569e06129878642dcd2def49cb47f54517b30e66e453b1e32",
+        "bytes": 172
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/acceptance-baseline.stderr",
+        "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae",
+        "bytes": 83
+      }
+    ]
+  },
+  "static_counts": {
+    "baseline": 19,
+    "json": 648,
+    "python": 27,
+    "shell": 6,
+    "toml": 14
+  },
+  "preservation": {
+    "result": "PASS",
+    "checked_at": "2026-10-11T10:05:25.941770+00:00",
+    "method": "Exact frozen helper protected() AST executed read-only with its real dependencies and bound inventories after the single static/all-19 gate",
+    "helper_sha256": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+    "prefix_entries": 6411,
+    "retained_records": 159,
+    "global_file_count": 9,
+    "package_count": 8,
+    "glib_file_count": 2,
+    "global_install_entries": 2198,
+    "directory_entry_counts": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "destination_absent": true,
+    "protected_state_unchanged": true,
+    "maintained_preimages": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_register.py",
+        "sha256": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+        "sha256": "5d038aa69055efb36b987fdfbd462a52270e60a5495c33cb33659b69395ab96b",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+        "sha256": "4e30c4e94c19b769adf51c303fb9982ce41fd1e66864d88a0aa8467f90ad1d2e",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        "sha256": "b92e8af790a0c67b4efc3221929688df3449412f2e7ca71e7e4dad3dc7d733d3",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "sha256": "7f96a87344d0ce7d801fda9a059d33ac80988ea5118dfecf7ea695f85e08186e",
+        "unchanged": true
+      }
+    ]
+  },
+  "default_consumer_before_after_bytes_equal": true,
+  "global_destination_absent": true,
+  "global_promotion_performed": false,
+  "protected_state_unchanged": true,
+  "private_backups_handling": {
+    "count_parent": 9,
+    "count_reviewer": 9,
+    "hashes_and_modes_verified": true,
+    "contents_printed_or_copied_to_shared_evidence": false
+  },
+  "static_review": [
+    "Run directory must be new, absolute, normalized and outside protected project/source/build/config/mise roots.",
+    "The helper binds the reviewed reflection result, installed inventories and imported helpers before staging native registration.",
+    "Preparation creates private staging and backups and proves native link/where/compiler identity plus default preservation.",
+    "Apply requires matching helper/review/proposal/run directory, a fresh strict writer census, protected preimages, same-device staging and exact namespace before the imported exclusive rename.",
+    "Final preservation distinguishes absent pre-promotion state from an exact promoted namespace and always records observed destination state."
+  ],
+  "inspection_notes": [
+    "Initial combined Git identity command printed the branch twice; a separate native git rev-parse HEAD returned the expected full SHA.",
+    "Initial broad documentation/manifest output was truncated; relevant current sections and receipt fields were subsequently inspected in bounded reads.",
+    "A guessed evidence/mise-link directory was absent during a file listing; prior registration receipts were found under evidence/vcpkg-registration. No missing-path result was counted as verification."
+  ],
+  "limits": [
+    "Preparation review is not global admission or promotion. Parent commits this unit and obtains a separate fresh admission.",
+    "No compiler build/reflection rerun, installation, network/Docker command, profile/shim change, actual global rename or other-repository write was performed.",
+    "AST controls exercise exactly the new guards with private fixtures; the valid apply case stops at a recording stub. Native promotion and subprocess failure suites are reused by exact source/receipt identity.",
+    "All global preimage backup contents remain in private directories and are excluded from the supporting manifest."
+  ],
+  "supporting_receipts": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/review-setup.json",
+      "sha256": "cf35bbe7e413d730b6f890ebade40a8052aff4629ec9cfde048c0843a105c59f",
+      "bytes": 2409
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation-invocation.json",
+      "sha256": "7d52deec4f1f18e161fa814a267c66f9dc1e3a0be8918c08e84b3356eeda762d",
+      "bytes": 2088
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation.stdout",
+      "sha256": "b79cdc8c385baffe4b34351c358cf9aa9dce1203d4299f7c8a3014e3007a073f",
+      "bytes": 809
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard_controls.py",
+      "sha256": "3e1d578d24018e09b229e81153a938569499981fb2c8a663fdf976a59324ec72",
+      "bytes": 10890
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls.json",
+      "sha256": "85297dec97acda6938300945913f8ad6cc33d74a3393fee0d982f7a8f0196750",
+      "bytes": 9135
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls-invocation.json",
+      "sha256": "3f173061cf1dd19d838d1dcf4545a506799e26ebcfa909879622d383dae2c3f7",
+      "bytes": 924
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls.stdout",
+      "sha256": "45dc51912e7a523e452824080ab069f000c2405fee88c09e4ec48b53e35ac75d",
+      "bytes": 273
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-controls.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/static-checks.json",
+      "sha256": "0b61c2d1642907d2c1e064e1ed53588fe24219de8b8b7d0c7035765ceab3d1a1",
+      "bytes": 972
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/acceptance-baseline.stdout",
+      "sha256": "86afb7d25d2caff569e06129878642dcd2def49cb47f54517b30e66e453b1e32",
+      "bytes": 172
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/acceptance-baseline.stderr",
+      "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae",
+      "bytes": 83
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/preservation-after.json",
+      "sha256": "b598d3c0a095427ab49765a35e905feb6d907335d2995c08f317b38fbea0f123",
+      "bytes": 1944
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/parent-evidence-validation.json",
+      "sha256": "a356d3326c7b3f76c8b591c54ea5ab62f54af91f2212f3730c88a9e183141676",
+      "bytes": 25434
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/reused-controls.json",
+      "sha256": "139e23c631106a89a39b3d6edaf9e248b484ab522bd3358b2a0a6fc33971391e",
+      "bytes": 4351
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/qualification.json",
+      "sha256": "7d7d21f0274cdc9c9d81ea496711c035d8ab1129100b0f7d939ecab5e5deef10",
+      "bytes": 21423
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-link.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-link.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-before-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-where.stdout",
+      "sha256": "53b575a1877d7485da5ec57082dca5b13d731dfcad93fc0fe33b53f0fd7be88e",
+      "bytes": 204
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-where.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-version.stdout",
+      "sha256": "79b24b929fef5acb92eee8d736bf3b85901f72fc5662062eaeafb7c3cb77c12f",
+      "bytes": 307
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/native-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/native-preparation/source-after-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "supporting_manifest": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/supporting-manifest.json",
+    "sha256": "e99b4e3a63a7c11b4594fbffa62585a9d9ba1e90651cccf93d01117f589bd6d2",
+    "bytes": 11877
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-11T09:50:50.222032+00:00",
+  "commands": [
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 643, \"python\": 26, \"shell\": 6, \"toml\": 14}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "5c0de926a7c07c0a5d732543a83068d84370627c\n",
+      "stderr": ""
+    }
+  ],
+  "clean": true
+}
