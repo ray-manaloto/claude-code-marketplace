@@ -1,0 +1,75 @@
+{
+  "result": "PASS: 12c3a bounded source and receipt review; no findings",
+  "findings": [],
+  "unit": "12c3a pkgconf selector and ABI inputs",
+  "reviewer": "cold_bottle_review",
+  "created_at": "2026-10-11T20:43:36.750175+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "8cca82e40a07936a035b01a36df290ec3e1c251c",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "a5843383e4bcc591fac62749decbb3759c0e559709159fc4832797293616793f",
+  "common_sha256": "9e0ce33ce9822980889534331a48de656021c7c04b5f311515161176d84bfe1a",
+  "source_bindings_sha256": "4edd24fe55d8b072badeb7b428100eb014e609a9cd7086954bb9d8804971e75a",
+  "controls_sha256": "3305caa567f09d7ba3ca569d7139bed663ea109103d6ac1dfb4065c0815890db",
+  "scope": "Four maintained files: common triplet, composition documentation and selected task_plan/progress. The parent remains the sole implementation writer.",
+  "static_assessment": [
+    "The common-file delta reconstructs the exact previously bound common triplet after removing the 16 new selector/list lines and FMT_MODULE option. Existing lane, platform, compiler tracking and both-build-type guards are preserved.",
+    "The pinned selector uses PKG_CONFIG and caches PKGCONFIG; generic acquisition returns early for an existing truthy PKGCONFIG. The new guard checks environment, visible variable, shadowed cache and resolved entry destination before accepting the selection.",
+    "The two qualified package file paths are appended to the existing ABI list. Retained source serializes these names, hashes actual file contents, and hashes the tracked PKG_CONFIG string under ENV:PKG_CONFIG. This is source verification, not an executed vcpkg ABI result.",
+    "The pinned CMake helper appends the triplet configure options to both Debug and Release. FMT_MODULE=OFF bypasses the optional module target while preserving the regular compiled fmt library, CMP0210 setting and both configurations.",
+    "Documentation and planning facts accurately limit qualification to script controls; host/target compiler identity, compiled dependency linkage and runtime parity remain pending."
+  ],
+  "artifact_checks": {
+    "candidate_file_hashes": 4,
+    "retained_source_hashes": 9,
+    "prerequisite_receipt_hashes": 7,
+    "exact_source_copy_pairs": 29,
+    "native_command_log_files": 16,
+    "native_control_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "native_wrapper_returncode": 0,
+    "positive_cases": "Four triplets, two includes per fresh process, prior ABI list order retained, two exact package hashes, tracked PKG_CONFIG, CMP0210 and FMT_MODULE options.",
+    "negative_cases": "Missing environment, wrong environment, conflicting visible PKGCONFIG and conflicting shadowed cache all reach the intended fatal guard.",
+    "prerequisite_package": "Qualified identities agree with the settled 12c2b closure; no installation checks repeated.",
+    "parent_static_returncodes": [
+      0,
+      0
+    ],
+    "parent_baseline_original_file_count": 19,
+    "postcommit_receipt": "HEAD 8cca82e40a07936a035b01a36df290ec3e1c251c; rc0; clean before and after."
+  },
+  "executed_reviewer_check": {
+    "method": "One bounded file/JSON/hash/log audit; no source imports, CMake or candidate execution.",
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "-B",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-abi-review-3ok4q9uv/audit.py"
+    ],
+    "returncode": 0,
+    "started_at": "2026-10-11T20:42:56.265022+00:00",
+    "finished_at": "2026-10-11T20:42:56.304523+00:00",
+    "elapsed_seconds": 0.0395274170441553,
+    "timeout_seconds": 30,
+    "script_sha256": "0a687ebdb050bf23dd9c6f5fc093d2a9c7026dfea4274d4d4512b57b291c62fe",
+    "input_files_read": 92
+  },
+  "claude_acceptance_preservation": "No Claude acceptance file is in the four-file maintained delta. The retained static baseline receipt reports all 19 originals passing. The reviewer did not replay that baseline or OCI/provider acceptance.",
+  "checks_not_run": [
+    "Any native control replay or new CMake/compiler/pkgconf/vcpkg execution",
+    "Installed package, shared prefix/source or protected-state inventories",
+    "Profiles, leases, capacity checks, installs, services, containers, network or model sessions",
+    "Actual dependency builds, ABI extraction, compiler parity, fmt consumers or full Claude OCI/provider acceptance"
+  ],
+  "maintained_file_mutations": 0,
+  "shared_mutations": 0,
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-abi-review-3ok4q9uv/supporting-manifest.json"
+}

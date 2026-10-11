@@ -125,3 +125,11 @@ returned 0 with 28 successful commands, exact keg/link postimages, five valid
 ARM64 signatures/runtime dependencies, native package lookup and preserved
 defaults. Independent artifact review passed with no findings; no dependency
 build ran.
+
+Task 12c3a binds the qualified pkgconf entry through `PKG_CONFIG`, rejects a
+conflicting `PKGCONFIG` variable/cache, and adds the executable and package
+library bytes to the target ABI inputs. The shared triplet selects
+`FMT_MODULE=OFF` for the compiled-library witness while retaining both dependency
+configurations. All eight script controls and independent source/receipt review
+passed with no findings. Actual host/target compiler selection and fmt linkage
+remain unqualified.

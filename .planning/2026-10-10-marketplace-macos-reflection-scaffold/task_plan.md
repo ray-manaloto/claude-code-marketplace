@@ -79,6 +79,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c1b | Private vcpkg qualification retry | Qualified shared state; fresh capacity; copy, confinement and host-tool selection | Complete |
 | 12c2a | pkg-config prerequisite preparation | Exact native profile discovery, provisioning source/ownership contract if required | Complete |
 | 12c2b | Guarded native pkgconf installation | Reviewed write set; fresh capacity; native exit, links, package lookup and preserved defaults | Complete |
+| 12c3a | Qualified pkgconf ABI and fmt build inputs | Exact selection guards, retained ABI entries and bounded CMake controls | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -213,3 +214,9 @@ and these planning files. Review the exact pinned archive, native command and
 postimage allowlist before admission. Installation requires fresh shared capacity,
 canonical lease and immediate prefix/writer checks; preserve all existing guards.
 No compiler/dependency build or global mise configuration change is included.
+
+Task 12c3a admits the common triplet, composition docs and these planning files.
+Bind the already-qualified pkgconf selection and executable/runtime ABI inputs;
+keep fmt as a compiled library without modules for the smallest parity witness.
+Bounded CMake script controls perform no compiler detection, dependency build,
+installation, lease acquisition or shared writes.

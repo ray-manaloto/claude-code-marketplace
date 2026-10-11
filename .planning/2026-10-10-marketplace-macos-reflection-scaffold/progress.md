@@ -1200,3 +1200,18 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   defaults/protected state were preserved and the lease released. Artifact
   review passed all 61 copies, 56 logs, 50 keg entries and 30 links without
   findings. Task 12c2b is complete; dependency builds remain pending.
+- Task 12c2b is committed at `8cca82e40a07936a035b01a36df290ec3e1c251c`.
+  The post-commit baseline passed all 19 original files with a clean worktree.
+  Task 12c3a adds exact pkgconf selection and ABI inputs to the common triplet
+  and disables fmt modules for the compiled-library witness. Bounded script
+  controls and independent review precede native dependency work.
+- All eight CMake script controls passed: four triplets retained their prior
+  inputs and exact pkgconf hashes; four missing/conflicting-selection controls
+  failed as intended. Reentry stayed stable and package/source bytes matched.
+  Independent review is pending; no compiler or dependency execution occurred.
+- Independent source/receipt review passed with no findings: nine exact sources,
+  seven prerequisites, 29 copies and all eight command outcomes matched. Task
+  12c3a is complete; native compiler detection and dependency builds remain pending.
+- Staging identified native final blank lines in four CMake error logs. Their
+  exact bytes remain preserved; one scoped Git attribute disables only that
+  whitespace diagnostic for this unit's stderr files. The staged check passed.

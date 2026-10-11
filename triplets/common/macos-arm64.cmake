@@ -43,7 +43,7 @@ set(VCPKG_CMAKE_SYSTEM_NAME Darwin)
 set(VCPKG_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk")
 set(VCPKG_OSX_DEPLOYMENT_TARGET "27.0")
 set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${_marketplace_project}/cmake/toolchains/vcpkg-macos-arm64.cmake")
-set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_POLICY_DEFAULT_CMP0210=NEW")
+set(VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_POLICY_DEFAULT_CMP0210=NEW" "-DFMT_MODULE=OFF")
 set(VCPKG_ENV_PASSTHROUGH MARKETPLACE_CPP_LANE "${_marketplace_triplet_environment}")
 # vcpkg hashes the top-level triplet/chainloader, but not their nested includes.
 # Forced system tools report internal version 0; bind their actual bytes as well.
@@ -54,6 +54,22 @@ set(VCPKG_HASH_ADDITIONAL_FILES
     "${VCPKG_OSX_SYSROOT}/SDKSettings.json"
     "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake"
     "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja")
+set(_marketplace_pkg_config "/opt/homebrew/bin/pkg-config")
+set(_marketplace_pkgconf_binary "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf")
+if(NOT "$ENV{PKG_CONFIG}" STREQUAL "${_marketplace_pkg_config}" OR
+   (DEFINED PKGCONFIG AND NOT "${PKGCONFIG}" STREQUAL "${_marketplace_pkg_config}") OR
+   (DEFINED CACHE{PKGCONFIG} AND NOT "$CACHE{PKGCONFIG}" STREQUAL "${_marketplace_pkg_config}") OR
+   NOT EXISTS "${_marketplace_pkg_config}" OR IS_DIRECTORY "${_marketplace_pkg_config}")
+  message(FATAL_ERROR "Use the qualified pkgconf entry through PKG_CONFIG in a fresh process.")
+endif()
+file(REAL_PATH "${_marketplace_pkg_config}" _marketplace_pkgconf_selected)
+if(NOT _marketplace_pkgconf_selected STREQUAL _marketplace_pkgconf_binary)
+  message(FATAL_ERROR "The pkg-config entry must resolve to qualified pkgconf 3.0.8.")
+endif()
+list(APPEND VCPKG_ENV_PASSTHROUGH PKG_CONFIG)
+list(APPEND VCPKG_HASH_ADDITIONAL_FILES
+    "${_marketplace_pkgconf_binary}"
+    "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib")
 foreach(_marketplace_input IN LISTS _marketplace_triplet_inputs)
   list(APPEND VCPKG_HASH_ADDITIONAL_FILES "${_marketplace_triplet_prefix}/${_marketplace_input}")
 endforeach()
