@@ -475,3 +475,24 @@ manifest remain unchanged. Exact preimages and census are rechecked on apply.
 - The full staged whitespace check reported one trailing space in immutable
   native consumer debug output. Its original bytes/hash are preserved; the
   maintained-source whitespace check passes. The disposition is retained.
+
+Task 11d is committed at `e32a5e8e779216903759b6c34db7c7a581f35d50`.
+Its post-commit baseline exited 0 and the worktree was clean. Task 07a prepares
+the cold-build helper, toolchain/status documentation and these planning records.
+Source inspection confirms inherited child build limits and separate install
+exit requirements. No build is admitted by this preparation unit; operation 07b
+requires independent review, fresh capacity and the shared heavy lease.
+- All six preparation commands passed. The selected environment exposes four
+  jobs after mise profile loading; source, generated files and shared preimages
+  match. Task validation and the original 19-file baseline passed. Independent
+  interruption/reserve controls and a fresh read-only capacity census are running.
+- Independent review reproduced a post-spawn receipt-write failure that could
+  leave the child running. The cleanup block now starts immediately after spawn;
+  the original helper and inert reproduction are retained. The reviewer will
+  retest the repair before any build admission.
+- The repaired receipt path reaped its inert child. A second control exposed
+  repeated termination interrupting cleanup; handled signals are now ignored
+  through termination, reap and the failure receipt. That repair is under review.
+- Final independent review passed: both cleanup regressions, eight inert
+  subprocess controls, eleven admission controls and one six-command preparation.
+  Static/baseline checks passed and protected shared state is unchanged.

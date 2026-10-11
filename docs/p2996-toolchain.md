@@ -83,3 +83,28 @@ state are unchanged; no prefix or LLVM compiler was installed. Independent
 [operation review](../evidence/p2996-configure/operation-review.json) passed.
 The optional `ld-classic` fallback and CMP0219 compatibility probe are resolved.
 Task 07 must bound nested runtime builds as well as the outer Ninja invocation.
+
+## Bounded build preparation
+
+Task 07a prepares the [build helper](../dev/toolchains/p2996_build.py) against the
+reviewed outer configuration. Its default mode checks source/tool/generated-file
+identity, the actual profile environment and protected shared state without
+building. `--build` requires a matching independent review and admission, then
+acquires the shared heavy lease and checks current host/container capacity.
+`--resume` explicitly selects an existing incremental build history.
+
+The outer command selects four jobs. `CMAKE_BUILD_PARALLEL_LEVEL=4` is set after
+mise selection so nested CMake build commands inherit it. Capacity planning
+allows eight outer/child job slots; this is not an aggregate process limit and
+does not bound nested configure probes. The operation requires 32 GiB free at
+start, checks an 8 GiB reserve every fifteen seconds, and stops its own process
+group on timeout, interruption or reserve failure. Logs and actual final exits
+are retained; the six-hour deadline does not imply success.
+
+The build writes the existing private build tree. Later installation must
+record separate root, builtins and runtime install exits because the upstream
+outer wrapper ignores child install failures. Reflection and installed-runtime
+witnesses remain separate gates.
+The [independent preparation review](../evidence/p2996-build/preparation-review.json)
+passed after two cleanup repairs: six native preparation commands, eight inert
+subprocess controls and eleven admission controls. Actual compilation is pending.

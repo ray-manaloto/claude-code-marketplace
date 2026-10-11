@@ -1,0 +1,698 @@
+{
+  "actual_routes": [
+    "functions.exec / exec_command",
+    "Native absolute Python 3.14.8 for bounded probes and sanitized serialization",
+    "Hash-pinned local host_lock.py status function only",
+    "Native /bin/ps with comm field; no raw args",
+    "Native sysctl/top/memory_pressure -Q/df plus os.statvfs",
+    "Existing Docker Desktop CLI context ls / ps / stats / allowlisted inspect fields"
+  ],
+  "baseline": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/capacity-inspection/summary.json",
+    "phase_hashes_reverified": true,
+    "purpose": "Reuse resolved native read-only probe routes and exact prior container identity; none of the old capacity observations is treated as current.",
+    "sha256": "c0457fb4cdfe6b65f8458ad1e22cdc69ab778c4ec4f1e00b2a330057b817dfdf"
+  },
+  "candidate": {
+    "aggregate_limit": "Not a hard aggregate job/process limit; child configure probes may exceed the allowance.",
+    "build": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "conservative_job_slot_allowance": 8,
+    "git_head_command_rc": 0,
+    "inherited_child_jobs": 4,
+    "lease": "One canonical host-wide heavy lease must be acquired by parent; this inspection retains none.",
+    "max_seconds": 21600,
+    "observed_HEAD": "e32a5e8e779216903759b6c34db7c7a581f35d50",
+    "outer_jobs": 4
+  },
+  "disposition": "OBSERVATIONS_ONLY; no build admission or lease",
+  "docker": {
+    "baseline_expected_container_id": "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4",
+    "baseline_image_id": "NOT_RECORDED_IN_PREVIOUS_CAPACITY_RECEIPT",
+    "checks": [
+      {
+        "argv": [
+          "/Applications/Docker.app/Contents/Resources/bin/docker",
+          "--context",
+          "desktop-linux",
+          "ps",
+          "--no-trunc",
+          "--format",
+          "{\"id\":{{json .ID}},\"state\":{{json .State}},\"status\":{{json .Status}},\"name\":{{json .Names}}}"
+        ],
+        "data": [
+          {
+            "id": "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4",
+            "matches_previous_full_id": true,
+            "matches_previous_name_sha256": true,
+            "name_sha256": "8e2187b3a9c364fe71d82631c6d94f71f3449a4c501f059972f981a197dc2215",
+            "state": "running",
+            "status": "Up About an hour"
+          }
+        ],
+        "elapsed_seconds": 0.04,
+        "name": "docker-current-running-containers",
+        "rc": 0,
+        "started_at": "2026-10-11T05:40:35.349182+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 178,
+        "stdout_sha256": "55e82d0aea9780f3be4133e76471f2f304480846b7cc9755f466b0ef199ca73e",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/Applications/Docker.app/Contents/Resources/bin/docker",
+          "--context",
+          "desktop-linux",
+          "stats",
+          "--no-stream",
+          "--format",
+          "{\"id\":{{json .ID}},\"cpu_percent\":{{json .CPUPerc}},\"memory_usage\":{{json .MemUsage}},\"memory_percent\":{{json .MemPerc}},\"pids\":{{json .PIDs}}}",
+          "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4"
+        ],
+        "data": [
+          {
+            "cpu_percent": "5.16%",
+            "cpu_percent_value": 5.16,
+            "id": "79f1f7ab1130",
+            "memory_percent": "0.85%",
+            "memory_percent_value": 0.85,
+            "memory_usage": "135.6MiB / 15.6GiB",
+            "pids": "4"
+          }
+        ],
+        "elapsed_seconds": 1.042,
+        "name": "docker-current-container-utilization",
+        "rc": 0,
+        "started_at": "2026-10-11T05:40:35.391234+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 116,
+        "stdout_sha256": "52e7c47235b3b66e7dae1fa5dbd4ab30028bf2cf8b50ca7271db4395245a0930",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/Applications/Docker.app/Contents/Resources/bin/docker",
+          "--context",
+          "desktop-linux",
+          "inspect",
+          "--format",
+          "{\"id\":{{json .Id}},\"image_id\":{{json .Image}},\"image_reference\":{{json .Config.Image}},\"running\":{{json .State.Running}},\"status\":{{json .State.Status}},\"started_at\":{{json .State.StartedAt}}}",
+          "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4"
+        ],
+        "data": [
+          {
+            "id": "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4",
+            "image_id": "sha256:5023df74acf7a094ed0ff56cd03f38606e18875209c864eaef838fcc6bcf4f7d",
+            "image_reference": "vsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86",
+            "running": true,
+            "started_at": "2026-10-11T04:33:31.651243221Z",
+            "status": "running"
+          }
+        ],
+        "elapsed_seconds": 0.023,
+        "name": "docker-current-container-identity",
+        "rc": 0,
+        "started_at": "2026-10-11T05:40:35.391492+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 337,
+        "stdout_sha256": "4bcb667f094f92b9d28f266388ceeb81f8d4a94a06bb112e2bffc2b316f7c83a",
+        "timed_out": false,
+        "timeout_seconds": 20
+      }
+    ],
+    "context_socket_inventory": [
+      {
+        "context": "default",
+        "exists": true,
+        "is_socket": true,
+        "path": "/var/run/docker.sock",
+        "resolved_path": "/Users/rmanaloto/.docker/run/docker.sock"
+      },
+      {
+        "context": "desktop-linux",
+        "exists": true,
+        "is_socket": true,
+        "path": "/Users/rmanaloto/.docker/run/docker.sock",
+        "resolved_path": "/Users/rmanaloto/.docker/run/docker.sock"
+      },
+      {
+        "context": "colima",
+        "exists": false,
+        "is_socket": false,
+        "path": "/Users/rmanaloto/.config/colima/default/docker.sock",
+        "resolved_path": "/Users/rmanaloto/.config/colima/default/docker.sock"
+      },
+      {
+        "context": "orbstack",
+        "exists": true,
+        "is_socket": true,
+        "path": "/Users/rmanaloto/.orbstack/run/docker.sock",
+        "resolved_path": "/Users/rmanaloto/.orbstack/run/docker.sock"
+      }
+    ],
+    "current_context": "desktop-linux",
+    "generated_at": "2026-10-11T05:40:36.434329+00:00",
+    "limits": "Other inactive contexts were not queried. Existing earlier evidence records unreachable OrbStack; that is not evidence of zero containers. No service was started, stopped or changed."
+  },
+  "final_lock_check": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "-c",
+      "HASH_PINNED_STATUS_ONLY"
+    ],
+    "data": {
+      "holder_pid": null,
+      "record_sha256": "ad95d5fa651ba86d8923fe1238d24a4f1988a752acfe426ac72ac7c04471bc17",
+      "status": "free"
+    },
+    "elapsed_seconds": 0.05,
+    "rc": 1,
+    "started_at": "2026-10-11T05:42:08.819591+00:00",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "28befb64fab2c1cf232c3ee0ba02c97eb4cc85783c313f9da1504cd972edce98",
+    "timeout_seconds": 20
+  },
+  "generated_at": "2026-10-11T05:42:08.869838+00:00",
+  "host": {
+    "canonical_lock": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+    "checks": [
+      {
+        "argv": [
+          "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+          "-B",
+          "-c",
+          "HASH_PINNED_STATUS_ONLY"
+        ],
+        "data": {
+          "holder_pid": null,
+          "record_sha256": "ad95d5fa651ba86d8923fe1238d24a4f1988a752acfe426ac72ac7c04471bc17",
+          "since": null,
+          "status": "free",
+          "status_rc": 1
+        },
+        "elapsed_seconds": 0.053,
+        "name": "canonical-heavy-gate-status",
+        "rc": 1,
+        "started_at": "2026-10-11T05:39:11.717798+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 155,
+        "stdout_sha256": "af698a09e317ae5856e8be73b218d74223505254d75dca85bb8a4ba9867b56b8",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pcpu=,pmem=,rss=,etime=,comm="
+        ],
+        "data": {
+          "compiler_or_build_matches": [],
+          "docker_service_summary": [
+            {
+              "cpu_percent": 0,
+              "elapsed": "04:06:12",
+              "executable": "com.docker.backend",
+              "memory_percent": 0.1,
+              "pid": 46192,
+              "ppid": 1,
+              "rss_kib": 76176
+            },
+            {
+              "cpu_percent": 0,
+              "elapsed": "04:06:10",
+              "executable": "com.docker.backend",
+              "memory_percent": 0.3,
+              "pid": 46287,
+              "ppid": 46192,
+              "rss_kib": 271072
+            },
+            {
+              "cpu_percent": 0,
+              "elapsed": "04:06:10",
+              "executable": "com.docker.backend",
+              "memory_percent": 0.1,
+              "pid": 46288,
+              "ppid": 46192,
+              "rss_kib": 76768
+            },
+            {
+              "cpu_percent": 0,
+              "elapsed": "04:06:08",
+              "executable": "com.docker.build",
+              "memory_percent": 0,
+              "pid": 46739,
+              "ppid": 46288,
+              "rss_kib": 44720
+            },
+            {
+              "cpu_percent": 0,
+              "elapsed": "04:06:07",
+              "executable": "Docker Desktop",
+              "memory_percent": 0.2,
+              "pid": 46744,
+              "ppid": 46288,
+              "rss_kib": 179392
+            },
+            {
+              "cpu_percent": 0,
+              "elapsed": "02:29:10",
+              "executable": "com.docker.virtualization",
+              "memory_percent": 0,
+              "pid": 96188,
+              "ppid": 46287,
+              "rss_kib": 42912
+            }
+          ],
+          "limitations": "Executable names only; no raw args. ps CPU is a lifetime-weighted snapshot, not interval aggregate utilization. Generic interpreter workloads are not classified from names alone.",
+          "normalization": "Known CLI process display titles are reduced to executable names; raw args were never requested and raw census text is not persisted.",
+          "parse_errors": 0,
+          "top_cpu": [
+            {
+              "cpu_percent": 29.4,
+              "elapsed": "11-12:04:28",
+              "executable": "WindowServer",
+              "memory_percent": 0.2,
+              "pid": 637,
+              "ppid": 1,
+              "rss_kib": 158224
+            },
+            {
+              "cpu_percent": 19,
+              "elapsed": "09-14:16:57",
+              "executable": "zed",
+              "memory_percent": 0.8,
+              "pid": 71668,
+              "ppid": 1,
+              "rss_kib": 850672
+            },
+            {
+              "cpu_percent": 10.8,
+              "elapsed": "05-21:08:52",
+              "executable": "claude",
+              "memory_percent": 0.4,
+              "pid": 31025,
+              "ppid": 31015,
+              "ps_comm_display_title_removed": true,
+              "rss_kib": 412432
+            },
+            {
+              "cpu_percent": 8,
+              "elapsed": "00:00",
+              "executable": "python3",
+              "memory_percent": 0,
+              "pid": 38784,
+              "ppid": 46737,
+              "rss_kib": 24928
+            },
+            {
+              "cpu_percent": 7.1,
+              "elapsed": "04:06:13",
+              "executable": "Codex (Service)",
+              "memory_percent": 0.1,
+              "pid": 46106,
+              "ppid": 45989,
+              "rss_kib": 131040
+            },
+            {
+              "cpu_percent": 6.9,
+              "elapsed": "02:29:10",
+              "executable": "com.apple.Virtualization.VirtualMachine",
+              "memory_percent": 23.6,
+              "pid": 96190,
+              "ppid": 1,
+              "rss_kib": 23759616
+            },
+            {
+              "cpu_percent": 5.2,
+              "elapsed": "04:06:07",
+              "executable": "Codex (Renderer)",
+              "memory_percent": 1.5,
+              "pid": 46743,
+              "ppid": 45989,
+              "rss_kib": 1487152
+            },
+            {
+              "cpu_percent": 2.5,
+              "elapsed": "11-12:04:29",
+              "executable": "notifyd",
+              "memory_percent": 0,
+              "pid": 631,
+              "ppid": 1,
+              "rss_kib": 5504
+            },
+            {
+              "cpu_percent": 2.2,
+              "elapsed": "11-12:04:29",
+              "executable": "opendirectoryd",
+              "memory_percent": 0,
+              "pid": 606,
+              "ppid": 1,
+              "rss_kib": 14384
+            },
+            {
+              "cpu_percent": 1.7,
+              "elapsed": "04:06:08",
+              "executable": "codex",
+              "memory_percent": 0.6,
+              "pid": 46737,
+              "ppid": 45989,
+              "rss_kib": 632608
+            },
+            {
+              "cpu_percent": 1.6,
+              "elapsed": "11-12:08:10",
+              "executable": "launchd",
+              "memory_percent": 0,
+              "pid": 1,
+              "ppid": 0,
+              "rss_kib": 23808
+            },
+            {
+              "cpu_percent": 1.6,
+              "elapsed": "06-04:42:23",
+              "executable": "claude",
+              "memory_percent": 0.3,
+              "pid": 62466,
+              "ppid": 62431,
+              "ps_comm_display_title_removed": true,
+              "rss_kib": 345408
+            },
+            {
+              "cpu_percent": 1.4,
+              "elapsed": "11-12:04:14",
+              "executable": "cfprefsd",
+              "memory_percent": 0,
+              "pid": 969,
+              "ppid": 1,
+              "rss_kib": 4768
+            },
+            {
+              "cpu_percent": 1.4,
+              "elapsed": "11-12:03:44",
+              "executable": "Activity Monitor",
+              "memory_percent": 0.1,
+              "pid": 1332,
+              "ppid": 1,
+              "rss_kib": 52720
+            },
+            {
+              "cpu_percent": 1.4,
+              "elapsed": "01:49:19",
+              "executable": "Google Chrome",
+              "memory_percent": 0.8,
+              "pid": 68813,
+              "ppid": 1,
+              "rss_kib": 832240
+            }
+          ],
+          "total_processes": 1074,
+          "virtualization": [
+            {
+              "cpu_percent": 0,
+              "elapsed": "02:29:10",
+              "executable": "com.docker.virtualization",
+              "memory_percent": 0,
+              "pid": 96188,
+              "ppid": 46287,
+              "rss_kib": 42912
+            },
+            {
+              "cpu_percent": 6.9,
+              "elapsed": "02:29:10",
+              "executable": "com.apple.Virtualization.VirtualMachine",
+              "memory_percent": 23.6,
+              "pid": 96190,
+              "ppid": 1,
+              "rss_kib": 23759616
+            }
+          ]
+        },
+        "elapsed_seconds": 0.052,
+        "name": "process-executable-cpu-census",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.719085+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 131341,
+        "stdout_sha256": "96c465a70da038f9bb4b2a174858958dbd71ec296bcfed19dacafdde7da22268",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "hw.physicalcpu",
+          "hw.logicalcpu",
+          "hw.memsize",
+          "vm.loadavg"
+        ],
+        "data": "hw.physicalcpu: 12\nhw.logicalcpu: 12\nhw.memsize: 103079215104\nvm.loadavg: { 5.35 5.41 5.35 }",
+        "elapsed_seconds": 0.008,
+        "name": "host-hardware-load",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.719398+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 93,
+        "stdout_sha256": "5bf4e209622674afbe7f2679ae537244e73258ec5298df5ddce21bc67767f696",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/usr/bin/top",
+          "-l",
+          "2",
+          "-s",
+          "2",
+          "-n",
+          "12",
+          "-o",
+          "cpu",
+          "-stats",
+          "pid,command,cpu,mem"
+        ],
+        "data": {
+          "cpu_samples": [
+            {
+              "busy_percent": 21.57,
+              "idle_percent": 78.43,
+              "system_percent": 12.26,
+              "user_percent": 9.3
+            },
+            {
+              "busy_percent": 22.6,
+              "idle_percent": 77.4,
+              "system_percent": 11.1,
+              "user_percent": 11.93
+            }
+          ],
+          "evaluated_sample_index": 1,
+          "sample_interpretation": "Use second top sample for measured interval. First sample is retained but not used for threshold.",
+          "summary_lines": [
+            "Processes: 1071 total, 3 running, 1068 sleeping, 8499 threads ",
+            "Load Avg: 5.35, 5.41, 5.35 ",
+            "PhysMem: 93G used (6314M wired, 21G compressor), 2102M unused.",
+            "VM: 569T vsize, 57G framework vsize, 338783(0) swapins, 1288020(0) swapouts.",
+            "Processes: 1072 total, 2 running, 1070 sleeping, 8502 threads ",
+            "Load Avg: 5.24, 5.38, 5.34 ",
+            "PhysMem: 93G used (6215M wired, 21G compressor), 2096M unused.",
+            "VM: 569T vsize, 57G framework vsize, 338783(0) swapins, 1288020(0) swapouts."
+          ]
+        },
+        "elapsed_seconds": 3.215,
+        "name": "host-interval-cpu",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.720653+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 1983,
+        "stdout_sha256": "5df92761ab357062e347a326374ee08584b66cb84e862ffcf0f4ceff0492aa40",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "data": {
+          "reported_free_percent": 71,
+          "text": "The system has 103079215104 (6291456 pages with a page size of 16384).\nSystem-wide memory free percentage: 71%"
+        },
+        "elapsed_seconds": 0.008,
+        "name": "host-memory-pressure",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.721789+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 111,
+        "stdout_sha256": "34b1fac2122d0ad60c819e48d3a8cb28d03179ced7d1802a0cfaf5de93609b38",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/bin/df",
+          "-k",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build"
+        ],
+        "data": "Filesystem   1024-blocks       Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5  1948455240 1860841852  59720916    97% 32930956 597209160    5%   /System/Volumes/Data",
+        "elapsed_seconds": 0.006,
+        "name": "build-volume-free-disk",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.721967+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 192,
+        "stdout_sha256": "0929a84c4aecc19f0223b6f839d2c61d19f7ba1d9d162999b414759ab4e503d7",
+        "timed_out": false,
+        "timeout_seconds": 20
+      },
+      {
+        "argv": [
+          "/Applications/Docker.app/Contents/Resources/bin/docker",
+          "context",
+          "ls",
+          "--format",
+          "{{json .}}"
+        ],
+        "data": [
+          {
+            "current": false,
+            "endpoint_kind": "unix",
+            "endpoint_local_socket": "/Users/rmanaloto/.config/colima/default/docker.sock",
+            "error_present": false,
+            "name": "colima"
+          },
+          {
+            "current": false,
+            "endpoint_kind": "unix",
+            "endpoint_local_socket": "/var/run/docker.sock",
+            "error_present": false,
+            "name": "default"
+          },
+          {
+            "current": true,
+            "endpoint_kind": "unix",
+            "endpoint_local_socket": "/Users/rmanaloto/.docker/run/docker.sock",
+            "error_present": false,
+            "name": "desktop-linux"
+          },
+          {
+            "current": false,
+            "endpoint_kind": "unix",
+            "endpoint_local_socket": "/Users/rmanaloto/.orbstack/run/docker.sock",
+            "error_present": false,
+            "name": "orbstack"
+          }
+        ],
+        "elapsed_seconds": 0.393,
+        "name": "docker-contexts",
+        "rc": 0,
+        "started_at": "2026-10-11T05:39:11.724903+00:00",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 585,
+        "stdout_sha256": "81246c984f31ad88911c8e69051b73d4eefdb0ed0938a1847e0c0976599187b1",
+        "timed_out": false,
+        "timeout_seconds": 20
+      }
+    ],
+    "disk": {
+      "available_bytes": 61154168832,
+      "available_gib": 56.954,
+      "f_bavail": 14930217,
+      "f_frsize": 4096,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+      "source": "os.statvfs; f_bavail for this user",
+      "total_bytes": 1995218165760
+    },
+    "generated_at": "2026-10-11T05:39:14.936005+00:00",
+    "host_lock_source": {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+      "sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20"
+    },
+    "lock_after": {
+      "exists": true,
+      "inode": 450449811,
+      "mtime_ns": 1791695528749640000,
+      "sha256": "a24542646584d91d01b3c87ce134d8f837bf64b1c443b6dec34270aa951ceb73",
+      "size": 60
+    },
+    "lock_before": {
+      "exists": true,
+      "inode": 450449811,
+      "mtime_ns": 1791695528749640000,
+      "sha256": "a24542646584d91d01b3c87ce134d8f837bf64b1c443b6dec34270aa951ceb73",
+      "size": 60
+    },
+    "lock_file_content_and_metadata_unchanged": true
+  },
+  "limitations": [
+    "Snapshot observations do not reserve capacity; parent must recheck live after acquiring the canonical lease.",
+    "ps executable census cannot classify generic interpreter workloads or names outside its explicit compiler/build matcher.",
+    "Current desktop-linux context was queried; default resolves to the same socket. Other inactive contexts were not queried in this receipt.",
+    "Previous capacity evidence did not record an image ID. The full container ID and name hash match; image ID/reference are recorded fresh here.",
+    "No claim of P2996 build completion, installation, runtime correctness, or hard aggregate job limit."
+  ],
+  "material_blockers": [],
+  "observed_threshold_comparisons": {
+    "all_bounded_native_read_probes_succeeded": true,
+    "all_current_container_cpu_at_most_100_percent": true,
+    "canonical_lock_observed_free": true,
+    "interval_aggregate_cpu_busy_at_most_50_percent": true,
+    "memory_pressure_free_at_least_50_percent": true,
+    "no_observed_compiler_build_executable_match": true,
+    "observed_disk_above_8_gib_monitor_reserve": true,
+    "same_single_running_container": true,
+    "start_disk_at_least_32_gib": true
+  },
+  "schema_version": 1,
+  "scope": {
+    "build_configure_compiler_or_install_invocations": 0,
+    "global_configuration_edits": 0,
+    "lease_acquired": false,
+    "network_acquisitions": 0,
+    "per_probe_timeout_seconds": 20,
+    "private_receipt_writes": 1,
+    "repository_edits": 0,
+    "services_started_stopped_or_changed": 0,
+    "unknown_process_signals": 0
+  },
+  "summary": {
+    "available_disk_gib": 56.954,
+    "compiler_build_matches": 0,
+    "container_cpu_percent": [
+      5.16
+    ],
+    "current_context": "desktop-linux",
+    "disk_headroom_above_monitor_reserve_gib": 48.954,
+    "disk_headroom_above_start_threshold_gib": 24.954,
+    "hardware": "12 physical and 12 logical CPUs; 96 GiB RAM",
+    "interval_cpu_busy_percent": 22.6,
+    "lock_status": "free",
+    "memory_pressure_free_percent": 71,
+    "no_admission_decision": true,
+    "running_container_count": 1
+  },
+  "task": "07b bounded read-only capacity preparation",
+  "thresholds": {
+    "aggregate_cpu_busy_percent_max": 50,
+    "compiler_build_process_matches_max": 0,
+    "each_existing_container_cpu_percent_max": 100,
+    "memory_pressure_free_percent_min": 50,
+    "running_disk_reserve_gib_min": 8,
+    "start_free_disk_gib_min": 32
+  }
+}

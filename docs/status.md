@@ -123,3 +123,7 @@ capacity checks and acquisition of the shared lease. Generated files and runtime
 commands are retained and independently reviewed. Protected state is unchanged;
 the lease is released. Compiler builds and runtime qualification remain pending.
 Global Python promotion/telemetry and other repositories remain separate streams.
+
+Task 07a prepares the guarded cold-build operation with explicit nested build
+limits, durable logs, timeout cleanup and disk reserves. Independent preparation
+review passed after two cleanup repairs; the actual compiler build is next.

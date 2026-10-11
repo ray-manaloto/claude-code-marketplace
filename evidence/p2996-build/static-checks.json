@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-11 05:36:00 UTC",
+  "commands": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "77dfe5",
+        "wall_time_seconds": 0.1596255,
+        "exit_code": 0,
+        "original_token_count": 11,
+        "output": "✓ All 2 task(s) validated successfully\n"
+      }
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "5b56a8",
+        "wall_time_seconds": 0.883952292,
+        "exit_code": 0,
+        "original_token_count": 65,
+        "output": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n{\"checks\": {\"baseline\": 19, \"json\": 332, \"python\": 12, \"shell\": 6, \"toml\": 14}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n"
+      }
+    }
+  ]
+}

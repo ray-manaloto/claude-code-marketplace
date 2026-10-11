@@ -1,0 +1,36 @@
+{
+  "case": "second-SIGTERM-during-five-second-cleanup",
+  "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+  "method": "Exact helper run/interrupted AST; private inert child ignores group TERM and sends two actual SIGTERM events 0.7 seconds apart",
+  "exception": "KeyboardInterrupt('received signal 15')",
+  "alive_on_function_exit": true,
+  "row": {
+    "case": "termination-during-cleanup",
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "-c",
+      "import signal,os,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(0.7);os.kill(os.getppid(),signal.SIGTERM);time.sleep(60)"
+    ],
+    "started_at": "2026-10-11T05:41:24.925826+00:00",
+    "pid": 43772,
+    "interrupted": true,
+    "returncode": null,
+    "elapsed_seconds": 0.8758770839776844,
+    "logs": [
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/termination-during-cleanup/termination-during-cleanup.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/termination-during-cleanup/termination-during-cleanup.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "all_owned_children_reaped_by_reviewer": true,
+  "final_child_returncodes": [
+    -9
+  ],
+  "result": "REGRESSION reproduced"
+}
