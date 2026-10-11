@@ -1,0 +1,160 @@
+{
+  "status": "COMPLETE_SOURCE_PREREQUISITE_NATIVE_BASELINE_UNEXECUTED",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "refs/heads/codex/marketplace-native-onboarding",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "observed_start_head": "e81ba5db9621c36334d10a1c6e4ce5cad63ba79c"
+  },
+  "tcpm_commit": "f532db0b25843aaad0dd6c481923c6840425485b",
+  "qualified_reuse": {
+    "python": "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+    "uv": "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+    "environment": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env",
+    "tcpm": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/bin/tcpm",
+    "generation_flags": [
+      "--non-interactive",
+      "--no-schema-validation",
+      "--presets-version",
+      "12",
+      "--template-file",
+      "<parent-owned baseline template>",
+      "--presets-file",
+      "<new private generation-N>/CMakePresets.json",
+      "--stdout"
+    ],
+    "prior_generations_identical": true,
+    "prior_generated_sha256": "e463f4424508522c4c39a272f202c5fb131b637471a911ba730d5a7a43caaaef"
+  },
+  "recommended_shape": {
+    "configure_axes": {
+      "compiler": [
+        "p2996",
+        "gcc16"
+      ],
+      "core": [
+        "core-static",
+        "core-shared"
+      ],
+      "fmt": [
+        "fmt-static",
+        "fmt-dynamic"
+      ]
+    },
+    "configuration": [
+      "Debug",
+      "Release",
+      "RelWithDebInfo",
+      "MinSizeRel"
+    ],
+    "visible_counts": {
+      "configure": 8,
+      "build": 32,
+      "test": 32,
+      "workflow": 8
+    },
+    "workflow_steps": 9,
+    "compiler_selection": "compiler shape inherits [lane-{parameter}]; two ordinary hidden native lane parents provide exact compiler environments",
+    "project_linkage": "{pq}(this).literal('{parameter}').replace('core-static', 'OFF').replace('core-shared', 'ON')",
+    "fmt_linkage": "{pq}(this).literal('{parameter}').replace('fmt-static', 'static').replace('fmt-dynamic', 'dynamic')",
+    "cross_axis_composition": "Native CMake $env{MARKETPLACE_CPP_LANE} and $env{MARKETPLACE_DEPENDENCY_LINKAGE} in the unshaped common preset",
+    "axis_values_unique": true,
+    "custom_generator": false,
+    "constraints": [
+      "Use unique raw parameter values across axes, such as core-static/core-shared and fmt-static/fmt-dynamic.",
+      "Each compiler choice sets MARKETPLACE_CPP_LANE, its exact named prefix, and an empty opposite named prefix.",
+      "Do not set axis-specific environment or BUILD_SHARED_LIBS defaults in the common preset that precedes parameter presets in inheritance.",
+      "Keep native CMake environment macros in the unshaped common preset; braces in TCPM shape strings must be doubled."
+    ]
+  },
+  "source_observations": {
+    "rendering_tokens": "_rendering.py lines 17-52; recursive key/value/list formatting lines 55-68; configure inheritance lines 104-107",
+    "generator_matrix": "_generators.py lines 160-168 indexes shapes by raw value; 188-220 products axes and appends workflow shape-parameters",
+    "qualified_workflows": "qualify.py lines 39-51 require one configure followed by build/test for four configurations; no workflow inheritance or condition",
+    "root_connection": "Root CMake was read at task start; parent subsequently prepared fmt integration outside this source-only review"
+  },
+  "source_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/CMakePresetsVendorTemplate.json",
+      "sha256": "aefab55ced7a1392955bfce303f028126501ef8e4926286e6100a5f8471d5723",
+      "bytes": 3444
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/matrix-review.json",
+      "sha256": "dbb13d84ef0585f0d551fba9547fff6b42aa2b078cacafe03c6012e6a3d90b7a",
+      "bytes": 2063
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/qualify.py",
+      "sha256": "8764d86d0f48918dfc35ee0a69e156a8a8cac80095aac43943677f0686dab3aa",
+      "bytes": 7198
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/README.md",
+      "sha256": "9cb0fae436fb078becb385d1b201550849855b8e972884f1d0902e0e9ad9b03c",
+      "bytes": 2997
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/environment-qualification.json",
+      "sha256": "0dacd2ebe96c5c50057400e2de13e890cd3b3c1cfe3e722cf28e8288f849442c",
+      "bytes": 15819
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/environment-python313.json",
+      "sha256": "d2b86c0b5d0c087c7441292e344a171b4138ecd2b55e4cbb40983e80eda008cd",
+      "bytes": 16140
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/matrix-python313.json",
+      "sha256": "6c9e2d8cc3760d8bed88deb68207702fff67be473fadd8aec6ad10df8b9fbcc6",
+      "bytes": 22932
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/source/docs/guide/index.rst.source",
+      "sha256": "a83821c7ce72b43e8876780e8c9b37c3ad939d818ba517917d425a7e17a39bc6",
+      "bytes": 537
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/source/src/tcpm/_rendering.py.source",
+      "sha256": "c829b3770a3ee4c1613bef2bf090c6a540ad3bb31359ed79a22e473c5165ff4e",
+      "bytes": 5332
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/pyproject.toml",
+      "sha256": "1c79c8838a628edf2c52595e27424f64d550612bcc493a4328ef024e2f0000eb",
+      "bytes": 253
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/source/src/tcpm/_generators.py.source",
+      "sha256": "6c0742ae531e6e502f032215c831d93dba214cb91771c484bed5d82ddc041790",
+      "bytes": 9072
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tcpm/source/docs/appendix.rst.source",
+      "sha256": "60d463a5fec1273cda8b72efbbd931cbfd4c5d6c1a388de499e16c24fae99755",
+      "bytes": 177
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/uv.lock",
+      "sha256": "34f917088da69ec20c7d8a9540a4aa5578fcc5761a959b660a9391cfd616ef0f",
+      "bytes": 6988
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "sha256": "c60bbd195b5338dc608af2d2b9a05f7da404374cf9a4625b3598bdca70b4430e",
+      "bytes": 3440
+    }
+  ],
+  "execution": {
+    "native_commands": 0,
+    "tcpm_invocations": 0,
+    "cmake_invocations": 0,
+    "network_calls": 0,
+    "binary_hashes": 0,
+    "repository_writes": 0
+  },
+  "artifact_allowlist": [
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-baseline-prerequisite-Dt4UK8/prerequisite.json"
+  ],
+  "self_hash_excluded": true
+}

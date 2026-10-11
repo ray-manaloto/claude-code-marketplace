@@ -1,0 +1,89 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "b3f1adfe6bc634e08b47f1b2912ee94c09f405ba\n",
+      "stderr": "",
+      "elapsed_seconds": 0.18789487495087087
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "CMakeLists.txt",
+        "dev/toolchains/vcpkg_consumer.py",
+        "docs/vcpkg-toolchains.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "evidence/vcpkg-consumers"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.25326112494803965
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.27692199987359345
+    },
+    {
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "Qualify core consumers against retained fmt builds"
+      ],
+      "returncode": 0,
+      "stdout": "[codex/marketplace-native-onboarding e81ba5d] Qualify core consumers against retained fmt builds\n 49 files changed, 8338 insertions(+), 2 deletions(-)\n create mode 100644 dev/toolchains/vcpkg_consumer.py\n create mode 100644 evidence/vcpkg-consumers/admission.json\n create mode 100644 evidence/vcpkg-consumers/artifact-candidate.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review-copy-manifest.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review/compare.py\n create mode 100644 evidence/vcpkg-consumers/artifact-review/comparison.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review/execution.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review/review.json\n create mode 100644 evidence/vcpkg-consumers/artifact-review/supporting-manifest.json\n create mode 100644 evidence/vcpkg-consumers/artifact-secret-scan.json\n create mode 100644 evidence/vcpkg-consumers/artifact-static.json\n create mode 100644 evidence/vcpkg-consumers/candidate-inputs.json\n create mode 100644 evidence/vcpkg-consumers/candidate.json\n create mode 100644 evidence/vcpkg-consumers/capacity-copy-manifest.json\n create mode 100644 evidence/vcpkg-consumers/capacity/capacity.json\n create mode 100644 evidence/vcpkg-consumers/capacity/capacity.py.source\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-census.stderr\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-census.stdout\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-context.stderr\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-context.stdout\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-stats.stderr\n create mode 100644 evidence/vcpkg-consumers/capacity/docker-stats.stdout\n create mode 100644 evidence/vcpkg-consumers/capacity/execution.json\n create mode 100644 evidence/vcpkg-consumers/capacity/processes.stderr\n create mode 100644 evidence/vcpkg-consumers/capacity/processes.stdout\n create mode 100644 evidence/vcpkg-consumers/closure-secret-scan.json\n create mode 100644 evidence/vcpkg-consumers/closure-static.json\n create mode 100644 evidence/vcpkg-consumers/composition-prerequisite.json\n create mode 100644 evidence/vcpkg-consumers/contract.json\n create mode 100644 evidence/vcpkg-consumers/fmt-postcommit.json\n create mode 100644 evidence/vcpkg-consumers/native-closure.json\n create mode 100644 evidence/vcpkg-consumers/native-execution.json\n create mode 100644 evidence/vcpkg-consumers/native-launch.json\n create mode 100644 evidence/vcpkg-consumers/operation/qualification.json\n create mode 100644 evidence/vcpkg-consumers/operation/text-receipts.json\n create mode 100644 evidence/vcpkg-consumers/pre-review-secret-scan.json\n create mode 100644 evidence/vcpkg-consumers/pre-review-static.json\n create mode 100644 evidence/vcpkg-consumers/pre-run-review.json\n create mode 100644 evidence/vcpkg-consumers/preparation-review-copy-manifest.json\n create mode 100644 evidence/vcpkg-consumers/preparation-review/compare.py\n create mode 100644 evidence/vcpkg-consumers/preparation-review/comparison.json\n create mode 100644 evidence/vcpkg-consumers/preparation-review/execution.json\n create mode 100644 evidence/vcpkg-consumers/preparation-review/review.json\n create mode 100644 evidence/vcpkg-consumers/preparation-review/supporting-manifest.json\n",
+      "stderr": "",
+      "elapsed_seconds": 0.6830561249516904
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "e81ba5db9621c36334d10a1c6e4ce5cad63ba79c\n",
+      "stderr": "",
+      "elapsed_seconds": 0.3276324160397053
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.3078987922053784
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1692, \"python\": 124, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.9644054579548538
+    }
+  ]
+}

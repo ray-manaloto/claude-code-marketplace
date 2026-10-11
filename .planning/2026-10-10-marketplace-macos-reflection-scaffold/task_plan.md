@@ -82,6 +82,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c3a | Qualified pkgconf ABI and fmt build inputs | Exact selection guards, retained ABI entries and bounded CMake controls | Complete |
 | 12c3b | Private native fmt builds | Reviewed build/configure limits; fresh capacity; native exits, detector and ABI receipts | Complete |
 | 12c3c | Application and fmt consumer parity | Public vcpkg composition; eight build/run cells; actual loader paths and preserved dependency roots | Complete |
+| 13a | Native baseline preset preparation | Deterministic TCPM generation; eight trees, 32 cells, independent linkage and four preset kinds | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -238,3 +239,11 @@ core target. Disable vcpkg automatic installation and keep dependency roots
 read-only. Native configure/build/run requires independent preparation review,
 fresh capacity and the canonical lease. No dependency rebuild, global write,
 binary cache, instrumentation family or full baseline matrix is included.
+
+Task 13a admits root CMake integration, the existing smoke source, one native
+TCPM baseline template and these planning records. Generated native preset JSON
+is checked mechanically and committed. Keep core/fmt linkage independent and
+use the four retained fmt installations with installation disabled. Generation
+and native preset listing may run without configuring a project or invoking a
+compiler. The full 32-cell native operation follows separate review and fresh
+capacity admission. No dependency rebuild, cache or instrumentation is included.

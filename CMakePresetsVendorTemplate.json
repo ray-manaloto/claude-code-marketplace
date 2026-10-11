@@ -1,0 +1,100 @@
+{
+  "version": 12,
+  "$comment": "Native baseline. Set MARKETPLACE_BUILD_ROOT to a fresh private operation directory. Shape expressions adapted from TCPM tryme at f532db0b25843aaad0dd6c481923c6840425485b; Copyright Amazon.com Inc. or its affiliates; MIT. Full notice: evidence/tcpm/source/LICENSE.rst.source.",
+  "cmakeMinimumRequired": {"major": 4, "minor": 4, "patch": 4},
+  "configurePresets": [
+    {
+      "name": "baseline-common", "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "$env{MARKETPLACE_BUILD_ROOT}/${presetName}",
+      "installDir": "$env{MARKETPLACE_BUILD_ROOT}/install/${presetName}",
+      "environment": {"CC": null, "CXX": null},
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+        "CMAKE_CXX_STANDARD": "26", "CMAKE_CXX_STANDARD_REQUIRED": "ON", "CMAKE_CXX_EXTENSIONS": "OFF",
+        "CMAKE_MAKE_PROGRAM": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "CMAKE_TOOLCHAIN_FILE": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/vcpkg-macos-arm64.cmake",
+        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/triplets",
+        "VCPKG_TARGET_TRIPLET": "arm64-osx-$env{MARKETPLACE_CPP_LANE}-$env{MARKETPLACE_DEPENDENCY_LINKAGE}",
+        "VCPKG_INSTALLED_DIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-$env{MARKETPLACE_CPP_LANE}-$env{MARKETPLACE_DEPENDENCY_LINKAGE}/installed",
+        "VCPKG_MANIFEST_MODE": "OFF", "VCPKG_MANIFEST_INSTALL": "OFF", "VCPKG_APPLOCAL_DEPS": "OFF",
+        "CMAKE_FIND_USE_PACKAGE_REGISTRY": "OFF", "CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY": "OFF",
+        "RESEARCH_CORE_WITH_FMT": "ON"
+      }
+    },
+    {
+      "name": "lane-p2996", "hidden": true,
+      "environment": {
+        "MARKETPLACE_CPP_LANE": "p2996",
+        "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "MARKETPLACE_GCC16_PREFIX": null
+      }
+    },
+    {
+      "name": "lane-gcc16", "hidden": true,
+      "environment": {
+        "MARKETPLACE_CPP_LANE": "gcc16",
+        "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0",
+        "MARKETPLACE_P2996_PREFIX": null
+      }
+    }
+  ],
+  "vendor": {
+    "tcpm": {
+      "version": 1, "word-separator": "-",
+      "preset-groups": {
+        "configure": {
+          "prefix": "configure", "common": ["baseline-common"],
+          "parameters": {"compiler": ["p2996", "gcc16"], "core": ["core-static", "core-shared"], "dependency": ["fmt-static", "fmt-dynamic"]},
+          "shape": {
+            "compiler": {"inherits": ["lane-{parameter}"]},
+            "core": {"cacheVariables": {"BUILD_SHARED_LIBS": "{pq}(this).literal('{parameter}').replace('core-static', 'OFF').replace('core-shared', 'ON')"}},
+            "dependency": {"environment": {"MARKETPLACE_DEPENDENCY_LINKAGE": "{pq}(this).literal('{parameter}').replace('fmt-static', 'static').replace('fmt-dynamic', 'dynamic')"}}
+          }
+        },
+        "build": {
+          "prefix": "build",
+          "parameters": {
+            "configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
+            "compiler": ["p2996", "gcc16"], "core": ["core-static", "core-shared"], "dependency": ["fmt-static", "fmt-dynamic"]
+          },
+          "shape": {
+            "configuration": {
+              "configuration": "{parameter}", "jobs": 1,
+              "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')"
+            }
+          }
+        },
+        "test": {
+          "prefix": "test",
+          "parameters": {
+            "configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
+            "compiler": ["p2996", "gcc16"], "core": ["core-static", "core-shared"], "dependency": ["fmt-static", "fmt-dynamic"]
+          },
+          "shape": {
+            "configuration": {
+              "configuration": "{parameter}",
+              "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')",
+              "output": {"outputOnFailure": true}, "execution": {"jobs": 1, "noTestsAction": "error"}
+            }
+          }
+        },
+        "workflow": {
+          "prefix": "workflow",
+          "parameters": {"compiler": ["p2996", "gcc16"], "core": ["core-static", "core-shared"], "dependency": ["fmt-static", "fmt-dynamic"]},
+          "shape-parameters": {"configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"]},
+          "shape": {
+            "compiler": {"steps": [{"type": "configure", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'configure')"}]},
+            "configuration": {
+              "steps": [
+                {"type": "build", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'build-{parameter}')"},
+                {"type": "test", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'test-{parameter}')"}
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

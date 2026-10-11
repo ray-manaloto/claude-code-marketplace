@@ -1,0 +1,1248 @@
+{
+    "version": 12,
+    "$comment": "Native baseline. Set MARKETPLACE_BUILD_ROOT to a fresh private operation directory. Shape expressions adapted from TCPM tryme at f532db0b25843aaad0dd6c481923c6840425485b; Copyright Amazon.com Inc. or its affiliates; MIT. Full notice: evidence/tcpm/source/LICENSE.rst.source.",
+    "cmakeMinimumRequired": {
+        "major": 4,
+        "minor": 4,
+        "patch": 4
+    },
+    "configurePresets": [
+        {
+            "name": "baseline-common",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "$env{MARKETPLACE_BUILD_ROOT}/${presetName}",
+            "installDir": "$env{MARKETPLACE_BUILD_ROOT}/install/${presetName}",
+            "environment": {
+                "CC": null,
+                "CXX": null
+            },
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+                "CMAKE_CXX_STANDARD": "26",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_CXX_EXTENSIONS": "OFF",
+                "CMAKE_MAKE_PROGRAM": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+                "CMAKE_TOOLCHAIN_FILE": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/vcpkg-macos-arm64.cmake",
+                "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/triplets",
+                "VCPKG_TARGET_TRIPLET": "arm64-osx-$env{MARKETPLACE_CPP_LANE}-$env{MARKETPLACE_DEPENDENCY_LINKAGE}",
+                "VCPKG_INSTALLED_DIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-$env{MARKETPLACE_CPP_LANE}-$env{MARKETPLACE_DEPENDENCY_LINKAGE}/installed",
+                "VCPKG_MANIFEST_MODE": "OFF",
+                "VCPKG_MANIFEST_INSTALL": "OFF",
+                "VCPKG_APPLOCAL_DEPS": "OFF",
+                "CMAKE_FIND_USE_PACKAGE_REGISTRY": "OFF",
+                "CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY": "OFF",
+                "RESEARCH_CORE_WITH_FMT": "ON"
+            }
+        },
+        {
+            "name": "lane-p2996",
+            "hidden": true,
+            "environment": {
+                "MARKETPLACE_CPP_LANE": "p2996",
+                "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+                "MARKETPLACE_GCC16_PREFIX": null
+            }
+        },
+        {
+            "name": "lane-gcc16",
+            "hidden": true,
+            "environment": {
+                "MARKETPLACE_CPP_LANE": "gcc16",
+                "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0",
+                "MARKETPLACE_P2996_PREFIX": null
+            }
+        },
+        {
+            "name": "configure-compiler-p2996",
+            "hidden": true,
+            "inherits": [
+                "lane-p2996"
+            ]
+        },
+        {
+            "name": "configure-compiler-gcc16",
+            "hidden": true,
+            "inherits": [
+                "lane-gcc16"
+            ]
+        },
+        {
+            "name": "configure-core-core-static",
+            "hidden": true,
+            "cacheVariables": {
+                "BUILD_SHARED_LIBS": "OFF"
+            }
+        },
+        {
+            "name": "configure-core-core-shared",
+            "hidden": true,
+            "cacheVariables": {
+                "BUILD_SHARED_LIBS": "ON"
+            }
+        },
+        {
+            "name": "configure-dependency-fmt-static",
+            "hidden": true,
+            "environment": {
+                "MARKETPLACE_DEPENDENCY_LINKAGE": "static"
+            }
+        },
+        {
+            "name": "configure-dependency-fmt-dynamic",
+            "hidden": true,
+            "environment": {
+                "MARKETPLACE_DEPENDENCY_LINKAGE": "dynamic"
+            }
+        },
+        {
+            "name": "configure-p2996-core-static-fmt-static",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-p2996",
+                "configure-core-core-static",
+                "configure-dependency-fmt-static"
+            ]
+        },
+        {
+            "name": "configure-p2996-core-static-fmt-dynamic",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-p2996",
+                "configure-core-core-static",
+                "configure-dependency-fmt-dynamic"
+            ]
+        },
+        {
+            "name": "configure-p2996-core-shared-fmt-static",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-p2996",
+                "configure-core-core-shared",
+                "configure-dependency-fmt-static"
+            ]
+        },
+        {
+            "name": "configure-p2996-core-shared-fmt-dynamic",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-p2996",
+                "configure-core-core-shared",
+                "configure-dependency-fmt-dynamic"
+            ]
+        },
+        {
+            "name": "configure-gcc16-core-static-fmt-static",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-gcc16",
+                "configure-core-core-static",
+                "configure-dependency-fmt-static"
+            ]
+        },
+        {
+            "name": "configure-gcc16-core-static-fmt-dynamic",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-gcc16",
+                "configure-core-core-static",
+                "configure-dependency-fmt-dynamic"
+            ]
+        },
+        {
+            "name": "configure-gcc16-core-shared-fmt-static",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-gcc16",
+                "configure-core-core-shared",
+                "configure-dependency-fmt-static"
+            ]
+        },
+        {
+            "name": "configure-gcc16-core-shared-fmt-dynamic",
+            "inherits": [
+                "baseline-common",
+                "configure-compiler-gcc16",
+                "configure-core-core-shared",
+                "configure-dependency-fmt-dynamic"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build-Debug-p2996-core-static-fmt-static",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-static"
+        },
+        {
+            "name": "build-Debug-p2996-core-static-fmt-dynamic",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-Debug-p2996-core-shared-fmt-static",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-static"
+        },
+        {
+            "name": "build-Debug-p2996-core-shared-fmt-dynamic",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-Debug-gcc16-core-static-fmt-static",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-static"
+        },
+        {
+            "name": "build-Debug-gcc16-core-static-fmt-dynamic",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-Debug-gcc16-core-shared-fmt-static",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-static"
+        },
+        {
+            "name": "build-Debug-gcc16-core-shared-fmt-dynamic",
+            "configuration": "Debug",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-Release-p2996-core-static-fmt-static",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-static"
+        },
+        {
+            "name": "build-Release-p2996-core-static-fmt-dynamic",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-Release-p2996-core-shared-fmt-static",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-static"
+        },
+        {
+            "name": "build-Release-p2996-core-shared-fmt-dynamic",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-Release-gcc16-core-static-fmt-static",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-static"
+        },
+        {
+            "name": "build-Release-gcc16-core-static-fmt-dynamic",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-Release-gcc16-core-shared-fmt-static",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-static"
+        },
+        {
+            "name": "build-Release-gcc16-core-shared-fmt-dynamic",
+            "configuration": "Release",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-core-static-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-static"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-core-static-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-core-shared-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-static"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-core-shared-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-RelWithDebInfo-gcc16-core-static-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-static"
+        },
+        {
+            "name": "build-RelWithDebInfo-gcc16-core-static-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-RelWithDebInfo-gcc16-core-shared-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-static"
+        },
+        {
+            "name": "build-RelWithDebInfo-gcc16-core-shared-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-core-static-fmt-static",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-static"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-core-static-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-core-shared-fmt-static",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-static"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-core-shared-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic"
+        },
+        {
+            "name": "build-MinSizeRel-gcc16-core-static-fmt-static",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-static"
+        },
+        {
+            "name": "build-MinSizeRel-gcc16-core-static-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic"
+        },
+        {
+            "name": "build-MinSizeRel-gcc16-core-shared-fmt-static",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-static"
+        },
+        {
+            "name": "build-MinSizeRel-gcc16-core-shared-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "jobs": 1,
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-Debug-p2996-core-static-fmt-static",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-p2996-core-static-fmt-dynamic",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-p2996-core-shared-fmt-static",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-p2996-core-shared-fmt-dynamic",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-gcc16-core-static-fmt-static",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-gcc16-core-static-fmt-dynamic",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-gcc16-core-shared-fmt-static",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Debug-gcc16-core-shared-fmt-dynamic",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-p2996-core-static-fmt-static",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-p2996-core-static-fmt-dynamic",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-p2996-core-shared-fmt-static",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-p2996-core-shared-fmt-dynamic",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-gcc16-core-static-fmt-static",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-gcc16-core-static-fmt-dynamic",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-gcc16-core-shared-fmt-static",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-Release-gcc16-core-shared-fmt-dynamic",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-core-static-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-core-static-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-core-shared-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-core-shared-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-gcc16-core-static-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-gcc16-core-static-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-gcc16-core-shared-fmt-static",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-gcc16-core-shared-fmt-dynamic",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-core-static-fmt-static",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-core-static-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-core-shared-fmt-static",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-core-shared-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-gcc16-core-static-fmt-static",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-core-static-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-gcc16-core-static-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-core-static-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-gcc16-core-shared-fmt-static",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-core-shared-fmt-static",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        },
+        {
+            "name": "test-MinSizeRel-gcc16-core-shared-fmt-dynamic",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-core-shared-fmt-dynamic",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "jobs": 1,
+                "noTestsAction": "error"
+            }
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "workflow-p2996-core-static-fmt-static",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-core-static-fmt-static"
+                }
+            ]
+        },
+        {
+            "name": "workflow-p2996-core-static-fmt-dynamic",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-core-static-fmt-dynamic"
+                }
+            ]
+        },
+        {
+            "name": "workflow-p2996-core-shared-fmt-static",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-core-shared-fmt-static"
+                }
+            ]
+        },
+        {
+            "name": "workflow-p2996-core-shared-fmt-dynamic",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-core-shared-fmt-dynamic"
+                }
+            ]
+        },
+        {
+            "name": "workflow-gcc16-core-static-fmt-static",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-gcc16-core-static-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-gcc16-core-static-fmt-static"
+                }
+            ]
+        },
+        {
+            "name": "workflow-gcc16-core-static-fmt-dynamic",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-gcc16-core-static-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-gcc16-core-static-fmt-dynamic"
+                }
+            ]
+        },
+        {
+            "name": "workflow-gcc16-core-shared-fmt-static",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-gcc16-core-shared-fmt-static"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-gcc16-core-shared-fmt-static"
+                }
+            ]
+        },
+        {
+            "name": "workflow-gcc16-core-shared-fmt-dynamic",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-gcc16-core-shared-fmt-dynamic"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-gcc16-core-shared-fmt-dynamic"
+                }
+            ]
+        }
+    ],
+    "vendor": {
+        "tcpm": {
+            "version": 1,
+            "word-separator": "-",
+            "preset-groups": {
+                "configure": {
+                    "prefix": "configure",
+                    "common": [
+                        "baseline-common"
+                    ],
+                    "parameters": {
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "core": [
+                            "core-static",
+                            "core-shared"
+                        ],
+                        "dependency": [
+                            "fmt-static",
+                            "fmt-dynamic"
+                        ]
+                    },
+                    "shape": {
+                        "compiler": {
+                            "inherits": [
+                                "lane-{parameter}"
+                            ]
+                        },
+                        "core": {
+                            "cacheVariables": {
+                                "BUILD_SHARED_LIBS": "{pq}(this).literal('{parameter}').replace('core-static', 'OFF').replace('core-shared', 'ON')"
+                            }
+                        },
+                        "dependency": {
+                            "environment": {
+                                "MARKETPLACE_DEPENDENCY_LINKAGE": "{pq}(this).literal('{parameter}').replace('fmt-static', 'static').replace('fmt-dynamic', 'dynamic')"
+                            }
+                        }
+                    }
+                },
+                "build": {
+                    "prefix": "build",
+                    "parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ],
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "core": [
+                            "core-static",
+                            "core-shared"
+                        ],
+                        "dependency": [
+                            "fmt-static",
+                            "fmt-dynamic"
+                        ]
+                    },
+                    "shape": {
+                        "configuration": {
+                            "configuration": "{parameter}",
+                            "jobs": 1,
+                            "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')"
+                        },
+                        "compiler": {},
+                        "core": {},
+                        "dependency": {}
+                    }
+                },
+                "test": {
+                    "prefix": "test",
+                    "parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ],
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "core": [
+                            "core-static",
+                            "core-shared"
+                        ],
+                        "dependency": [
+                            "fmt-static",
+                            "fmt-dynamic"
+                        ]
+                    },
+                    "shape": {
+                        "configuration": {
+                            "configuration": "{parameter}",
+                            "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')",
+                            "output": {
+                                "outputOnFailure": true
+                            },
+                            "execution": {
+                                "jobs": 1,
+                                "noTestsAction": "error"
+                            }
+                        },
+                        "compiler": {},
+                        "core": {},
+                        "dependency": {}
+                    }
+                },
+                "workflow": {
+                    "prefix": "workflow",
+                    "parameters": {
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "core": [
+                            "core-static",
+                            "core-shared"
+                        ],
+                        "dependency": [
+                            "fmt-static",
+                            "fmt-dynamic"
+                        ]
+                    },
+                    "shape-parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ]
+                    },
+                    "shape": {
+                        "compiler": {
+                            "steps": [
+                                {
+                                    "type": "configure",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'configure')"
+                                }
+                            ]
+                        },
+                        "configuration": {
+                            "steps": [
+                                {
+                                    "type": "build",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'build-{parameter}')"
+                                },
+                                {
+                                    "type": "test",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'test-{parameter}')"
+                                }
+                            ]
+                        },
+                        "core": {},
+                        "dependency": {}
+                    }
+                }
+            }
+        }
+    }
+}

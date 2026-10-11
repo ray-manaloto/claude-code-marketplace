@@ -1275,3 +1275,26 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   command records matched. Runtime evidence is limited to selected library
   presence and observed behavior; system libraries also loaded. Task 12c3c is
   closed. The full independent-linkage, four-configuration baseline is next.
+- Task 12c3c committed as `e81ba5db9621c36334d10a1c6e4ce5cad63ba79c`;
+  final-HEAD baseline passed and the worktree was clean. Task 13a now prepares
+  eight native baseline trees and 32 cells from the qualified TCPM generator.
+  Core and dependency linkage stay independent; smoke formatting will exercise
+  the compiled fmt dependency through the actual core target.
+- Prepared opt-in fmt integration in the root target model and smoke source.
+  The existing POD facade and private reflection flags remain intact. Baseline
+  presets will select retained packages and exercise transitive compiled fmt
+  linkage; native builds remain pending the separate execution gate.
+- Added the root TCPM template with native inherited compiler environments,
+  independent core/dependency axes, and configure/build/test/workflow presets.
+  Each build and test uses one job; all package installation controls are off.
+  Deterministic generation and native listing checks are next.
+- TCPM source review confirmed native inheritance and identified distinct axis
+  labels as necessary. Two generations are byte-identical; CMake 4.4.4 lists
+  8 configure, 32 build, 32 test and 8 workflow presets. Mechanical checks
+  resolved every compiler/linkage tuple and retained fmt path. No compiler or
+  project configure ran; independent source/artifact review is pending.
+- Independent Task 13a review passed with no findings. Both retained generator
+  outputs and private generated files match the committed preset candidate;
+  all inheritance and tuple mappings passed. The reviewer corrected an inert
+  TCPM metadata assumption and retained both rc1/rc0 audit receipts. Exact
+  candidate texts are retained. Native 32-cell acceptance is the next unit.
