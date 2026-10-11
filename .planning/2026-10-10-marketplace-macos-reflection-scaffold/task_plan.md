@@ -34,6 +34,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 05b | Captured GCC bottles and installation preparation | Archive hashes, complete prefix writes, protected preimages and independent review | Complete |
 | 05c | Guarded native four-bottle installation | Immediate ownership/preimage/plan checks, native exit code, installed links and preserved defaults | Complete |
 | 05d | GCC16 environment and reflection witness | Exact compiler/stdlib/SDK identity, positive compile/link/run and negative flag control | Complete |
+| 10b | GCC16 CMake toolchain fixture | Intended compiler/SDK/libstdc++, four Multi-Config build/test cells and isolation controls | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -74,6 +75,10 @@ Task 05d admits sequential, sixty-second-bounded compiler probes and one tiny
 reflection witness in a new private directory. The fresh census found no compiler
 or build processes; this does not admit a cold toolchain or matrix build. Existing
 global profiles are selected without edits; all protected preimages remain gates.
+Task 10b admits only the tiny CMake fixture and sequential one-job builds in a
+new private directory. Its five maintained files are the toolchain, fixture
+CMakeLists/README and selected plan/progress. No dependency or compiler build,
+global edit, source bootstrap or cache server is included.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;

@@ -292,3 +292,18 @@ probes are admitted, with no global edits, package installation or heavy build.
 - The staged whitespace check returned 2 only for seven immutable native logs
   containing GCC version-line spaces and empty macro definitions. Their exact
   reviewed hashes are preserved; the check excluding those logs returned 0.
+
+Task 05d is committed at `8f006a72ed03ce7e5e35b9b79fc94f8c69ee8302`.
+Post-commit baseline exited 0 with all 19 originals unchanged and a clean
+worktree. Task 10b opens the small GCC CMake fixture, following the accepted
+05-to-10b dependency edge before the separately admitted LLVM operation.
+- Native CMake configuration passed. Debug, Release, RelWithDebInfo and MinSizeRel
+  each built with one job, passed CTest and produced ARM64 reflection executables
+  loading the qualified libstdc++. Wrong-profile, inherited-flag, architecture
+  and compiler controls all failed with the expected diagnostics. All 28 commands
+  are retained; default environment and runtime identities remain unchanged.
+  Independent fixture/toolchain review follows.
+- Independent task 10b review passed without findings. One fresh private run
+  reproduced all 28 expected outcomes; its 56 command logs and exact review
+  are retained. Protected state and all 19 original acceptance hashes remain
+  unchanged. Task 10b is complete for the four-cell GCC compiler fixture.
