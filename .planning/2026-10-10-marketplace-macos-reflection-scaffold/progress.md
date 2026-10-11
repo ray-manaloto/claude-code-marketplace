@@ -178,3 +178,28 @@ change, compiler installation, configure/build, service or OCI execution is incl
   findings, including a no-update rerun and source/runtime/log re-attestation.
   Parent baseline and direct-input secret scan both exited 0. Task 02 is
   qualified locally; Python 3.14's generation failure remains recorded.
+
+Task 02 is committed at `ad6b63bc732afdd119262849b7873712b5d917a4`.
+Its post-commit baseline check exited 0 (19 originals, 76 JSON, two Python,
+five shell and fourteen TOML files); the checkpoint worktree was clean.
+Task 05a begins with read-only compiler/native mise inventory and primary-source
+preparation. A fresh Docker census succeeded: `desktop-linux`, no running
+containers. Host load was about 60 on twelve CPUs while another chat was shipping;
+heavy capacity remains unadmitted. No compiler or unknown service was touched.
+
+- Task 05a acquired exact mise 2026.10.7 source and GCC 16.2.0 metadata/formula
+  source. Source review verified the eight-package closure and canonical
+  Homebrew write boundary; the named profile does not isolate installation.
+- Native dry runs pass: four missing bottles, no source build, existing package
+  receipts/links and nine global mise files unchanged. Unsupported version pins
+  warn/skip with rc=0, so the receipt checks behavior as well as return codes.
+- Native URL replacement replays all eight verified public metadata snapshots.
+  The plan matches the live dry run, and removing GCC metadata fails with no
+  planned installation. Both loopback servers stopped. Initial helper filename
+  and version-argument errors are retained.
+- Independent 05a review passed: all 32 acquisition records, 20 mise source
+  blobs, the tag chain, formula identity and closure verified. A separate native
+  snapshot rerun reproduced the plan and missing-input rejection, then confirmed
+  the listener closed. Nine global files and eight package receipt/link states
+  remain unchanged. Parent baseline and direct-input secret scan exited 0.
+  GCC installation and compiler/runtime acceptance remain outstanding.

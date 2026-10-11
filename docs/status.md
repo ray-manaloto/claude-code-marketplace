@@ -33,7 +33,8 @@ the read-only research-guard limitation are preserved.
 
 Full Claude/OCI acceptance, MCP connectivity and provider research are unqualified.
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
-Last30Days validation. No native core, compiler, vcpkg or build matrix exists yet.
+Last30Days validation. No native core, qualified compiler, vcpkg or application
+build matrix exists yet.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
@@ -51,6 +52,19 @@ managed paths, ARM64 support, versions, profile environment controls and native
 preset listing. Default config/lock bytes, compiler settings and PATH match the
 pre-apply state. Independent application review passed after two recording fixes.
 
-Next: task 02's bounded TCPM trial. Global Python
-promotion/telemetry and other repositories are separate streams. Containers,
-compiler builds and other heavy work need fresh capacity admission.
+Task 02 passed at `ad6b63bc732afdd119262849b7873712b5d917a4`: the
+[TCPM trial](../scratch/tcpm-trial/README.md) generates three trees and twelve
+cells reproducibly; native CMake accepts all four preset kinds and rejects
+invalid workflows. Independent review reproduced the checked-in JSON. Python
+3.14 failed during generation; the successful private Python 3.13 environment
+uses the same generator source and leaves global Python unchanged.
+
+Task 05a passed: exact GCC package/source inventory and the
+[native snapshot plan](../dev/toolchains/README.md) have independent review.
+Both native runs resolve eight captured formulae to four missing bottles and
+reject missing GCC metadata. No compiler is installed or qualified yet.
+
+Next: task 05b's bottle inspection, prefix ownership and bounded installation
+admission. The earlier Docker census found no running containers, but high host
+load and concurrent shipping leave heavy builds unadmitted. Global Python
+promotion/telemetry and other repositories remain separate streams.

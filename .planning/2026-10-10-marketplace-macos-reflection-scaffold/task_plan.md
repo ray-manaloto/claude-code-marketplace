@@ -30,6 +30,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Complete |
 | 02a | Pinned TCPM source and local development environment | Blob/source identity, locked dependencies, CLI smoke | Complete |
 | 02b | Representative native preset matrix | Deterministic regeneration, exclusions, four native preset kinds | Complete |
+| 05a | GCC16 source/package inventory and prepared native bootstrap | Exact current mise contract, package identities and reviewed isolation | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -57,6 +58,8 @@ explicit managed build-tool versions, one installer job, no existing default
 config/lock changes. The seven files were applied after preimage checks; native
 installation, host qualification and independent application review passed. Broader
 global ownership, compiler builds and host-heavy capacity remain unadmitted.
+Task 05a permits read-only compiler inventory, primary-source acquisition and
+project-local preparation. It does not authorize installation or compilation.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;
