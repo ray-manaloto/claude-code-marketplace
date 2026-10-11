@@ -267,3 +267,11 @@ Preparation, promotion and global discovery are separate recorded results.
 The [preparation review](../evidence/p2996-registration/preparation-review.json)
 passed the native staging trial, sixteen guard controls and preservation checks.
 No global promotion occurred during preparation.
+
+Task 07e2's [registration operation](../evidence/p2996-registration/operation/qualification.json)
+promoted the reviewed namespace and passed all thirteen native commands.
+[Independent closure](../evidence/p2996-registration/registration-review.json)
+verified fresh global discovery, compiler identity and exact preservation, with
+only the namespace directory and pinned symlink added to the install inventory.
+Build, installation, reflection/runtime qualification and registration have now
+passed. LLVM tool fixtures, CMake application use and IWYU remain separate gates.

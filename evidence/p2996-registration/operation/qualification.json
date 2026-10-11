@@ -1,0 +1,509 @@
+{
+  "state": "PASS: global namespace promotion",
+  "apply_requested": true,
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T10:13:08.804338+00:00",
+      "pid": 23493,
+      "returncode": 0,
+      "elapsed_seconds": 0.12737104203552008,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-link",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/stage/cwd",
+        "link",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+      ],
+      "started_at": "2026-10-11T10:13:08.991176+00:00",
+      "pid": 23494,
+      "returncode": 0,
+      "elapsed_seconds": 0.023217624984681606,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T10:13:09.015865+00:00",
+      "pid": 23495,
+      "returncode": 0,
+      "elapsed_seconds": 0.0228564590215683,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T10:13:09.039845+00:00",
+      "pid": 23496,
+      "returncode": 0,
+      "elapsed_seconds": 0.02155929198488593,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T10:13:09.062344+00:00",
+      "pid": 23497,
+      "returncode": 0,
+      "elapsed_seconds": 1.3491249160142615,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T10:13:10.413060+00:00",
+      "pid": 23504,
+      "returncode": 0,
+      "elapsed_seconds": 0.27496712491847575,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-where",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/stage/cwd",
+        "where",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e"
+      ],
+      "started_at": "2026-10-11T10:13:14.502800+00:00",
+      "pid": 23526,
+      "returncode": 0,
+      "elapsed_seconds": 0.02410245791543275,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-where.stdout",
+          "sha256": "abd685c019cc6a90a772317fc68e1994a332bca8dc551459cf592ca37db57357"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-where.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/stage/cwd",
+        "exec",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "--no-deps",
+        "--",
+        "clang++",
+        "--no-default-config",
+        "--version"
+      ],
+      "started_at": "2026-10-11T10:13:14.528203+00:00",
+      "pid": 23527,
+      "returncode": 0,
+      "elapsed_seconds": 0.13803054101299495,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-version.stdout",
+          "sha256": "79b24b929fef5acb92eee8d736bf3b85901f72fc5662062eaeafb7c3cb77c12f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/native-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T10:13:14.668272+00:00",
+      "pid": 23528,
+      "returncode": 0,
+      "elapsed_seconds": 0.13773750001564622,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T10:13:14.807700+00:00",
+      "pid": 23529,
+      "returncode": 0,
+      "elapsed_seconds": 0.023398375022225082,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T10:13:14.832485+00:00",
+      "pid": 23530,
+      "returncode": 0,
+      "elapsed_seconds": 0.025012458092533052,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T10:13:14.858673+00:00",
+      "pid": 23531,
+      "returncode": 0,
+      "elapsed_seconds": 0.8564599159872159,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T10:13:15.716844+00:00",
+      "pid": 23537,
+      "returncode": 0,
+      "elapsed_seconds": 0.365317374933511,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/source-after-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "helper_sha256": "f8bdee61f82f8c598a31c87d86163d3bf6ea97e8beccc810a9aa06b919be6263",
+  "promotion_attempted": true,
+  "promoted": true,
+  "global_preimages": {
+    "config.toml": {
+      "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/config.toml"
+    },
+    "mise.lock": {
+      "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/mise.lock"
+    },
+    "config.cpp-build.toml": {
+      "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/config.cpp-build.toml"
+    },
+    "config.gcc16.toml": {
+      "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/config.gcc16.toml"
+    },
+    "config.p2996.toml": {
+      "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/config.p2996.toml"
+    },
+    "cpp-foundation/common.toml": {
+      "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/cpp-foundation/common.toml"
+    },
+    "mise.cpp-build.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/mise.cpp-build.lock"
+    },
+    "mise.gcc16.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/mise.gcc16.lock"
+    },
+    "mise.p2996.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-promotion-20261011T101244Z/backups/mise.p2996.lock"
+    }
+  },
+  "proposal": {
+    "destination": "/Users/rmanaloto/.local/share/mise/installs/asdf-clang-p2996",
+    "preimage": "absent",
+    "tool": "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "namespace": {
+      "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "sha256": null
+      }
+    },
+    "bindings": {
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/reflection-review.json": "9d5b57920a299e72048805595226fda7b1eb16e413d41580bc55b1e0d99c4b79",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/installation-review.json": "5777c93c132338b9755fbdd19e2701a086fbc2911686f61bd88cb7cad960347e",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-state.json": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json": "f0847874e3b48e2ce1752237c8053f36a2e28530a091df4d0b3a9e343a439af4",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159"
+    },
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+      "p2996_math_apply.py": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2",
+      "p2996_install.py": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3"
+    }
+  },
+  "census": {
+    "recorded_at": "2026-10-11T10:13:10.747834+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "blockers": []
+  },
+  "census_immediate": {
+    "recorded_at": "2026-10-11T10:13:12.952529+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "blockers": []
+  },
+  "discovery": {
+    "path": "/Users/rmanaloto/.local/share/mise/installs/asdf-clang-p2996/f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "resolved_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "compiler_version": "clang version 21.0.0git (https://github.com/bloomberg/clang-p2996.git f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin\nBuild config: +assertions\n"
+  },
+  "protected_state_unchanged": true,
+  "destination_observed": {
+    "lexists": true,
+    "is_symlink": false,
+    "namespace": {
+      "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "sha256": null
+      }
+    }
+  }
+}

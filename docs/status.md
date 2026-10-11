@@ -221,3 +221,14 @@ Task 07e1's native mise registration preparation passed both thirteen-command
 trials and all sixteen focused guards. [Independent review](../evidence/p2996-registration/preparation-review.json)
 passed with the namespace absent and protected/default state unchanged.
 Global registration receives a separate operation after this checkpoint.
+Preparation is committed at `38c61dfd9ae46d1f102b38c2dba37fd46714c000`.
+Task 07e2's [scoped admission](../evidence/p2996-registration/admission.json)
+records fresh ownership for the reviewed namespace promotion. Native execution
+and independent post-registration preservation/discovery review are pending.
+The operation now passed all thirteen native commands and promoted the exact
+namespace. Global discovery, compiler identity and protected/default checks
+passed; independent registration review remains.
+[Independent registration review](../evidence/p2996-registration/registration-review.json)
+passed with exact native discovery and only the two admitted install entries
+added. All protected/default state and original files passed. Task 07 is now
+qualified; LLVM tool fixtures and CMake/IWYU integration follow separately.

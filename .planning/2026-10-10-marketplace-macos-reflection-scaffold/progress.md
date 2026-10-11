@@ -766,3 +766,19 @@ census. Default compiler settings, profiles and shims remain protected.
   native commands. All sixteen focused guard controls, the original-file baseline
   and complete preservation checks passed without findings. The namespace is
   still absent; scoped promotion is the next separately recorded operation.
+
+Task 07e1 is committed at `38c61dfd9ae46d1f102b38c2dba37fd46714c000`;
+its post-commit baseline passed with a clean worktree. Task 07e2 has fresh writer
+and chat censuses, exact reviewed admission and private preimage backups.
+Only the new `asdf-clang-p2996` install namespace is admitted. The frozen helper
+rechecks ownership and protected state immediately before exclusive promotion.
+Native completion and independent post-registration review remain pending.
+- The frozen helper exited 0 after exclusive promotion. All thirteen native
+  commands passed; global native discovery resolves the qualified prefix and
+  compiler identity. Immediate writer/preimage guards and final protected/default
+  checks passed. Independent registration review is next.
+- Independent review passed without findings. Fresh native global discovery,
+  compiler identity and the default consumer passed. The exact namespace directory
+  and pinned link are the only added install entries; prefix, source/build,
+  configuration, shims and original files remain preserved. Task 07 is qualified;
+  the next small unit exercises formatting, clangd and native archives.
