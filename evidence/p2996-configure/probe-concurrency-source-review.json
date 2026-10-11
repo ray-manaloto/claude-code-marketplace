@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-11T04:51:51.867280+00:00",
+  "task": "06b exact CMake 4.4.4 try_compile concurrency source inspection",
+  "repository_head_at_start": "ad73b79b05c669574649af3c05e282ec417646e1",
+  "scope": {
+    "repository_edits": false,
+    "compiler_invocations": 0,
+    "cmake_invocations": 0,
+    "ninja_invocations": 0,
+    "network_acquisitions": 0,
+    "writes": "This private JSON report only"
+  },
+  "upstream_provenance": {
+    "version": "v4.4.4",
+    "acquisition_owner": "parent",
+    "parent_reported_verification": "Git blobs checked against retained API commit/root/source trees; initial receipt failed for wrong license filename Copyright.txt, corrected followup passed with LICENSE.rst. This inspection independently hashes retained file bytes; it does not repeat remote verification."
+  },
+  "conclusion": {
+    "source_trace": "PASS",
+    "native_ninja_j1": "UNVERIFIED",
+    "cmake_build_parallel_level_is_probe_limit": false,
+    "observed_logic": "cmCoreTryCompile passes NO_BUILD_PARALLEL_LEVEL, cmMakefile/global generator forward it unchanged, and Ninja generator omits -j. It also receives an empty native-options vector.",
+    "smallest_source_backed_option": "Keep the current native Ninja executable and qualified bootstrap cache. Treat 06b as one admitted outer configure bounded to 600 seconds, with feature probes and no LLVM target execution. Do not claim a one-job Ninja limit from CMAKE_BUILD_PARALLEL_LEVEL.",
+    "native_pool_alternative": "CMake supports a depth-one named pool, compile/link pool initialization, and explicitly forwarded platform variables. This is not qualified for this LLVM configure: LLVM changes compile/link pool names, JOB_POOLS global property takes precedence over CMAKE_JOB_POOLS, and unassigned custom commands are outside those pools. A probe-only pool setup and retained generated-graph verification would be additional work, not evidence already obtained.",
+    "runtime_acceptance": "NOT RUN; source inspection cannot establish actual process concurrency."
+  },
+  "source_records": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-source-20261011T044616Z/cmGlobalGenerator.cxx.source",
+      "sha256": "39067ee1ecfec27b30865176954e6cd3e63545704a556a87836153f32a3a9b04",
+      "bytes": 143734,
+      "line_ranges": [
+        [
+          2405,
+          2414
+        ],
+        [
+          2440,
+          2445
+        ],
+        [
+          2505,
+          2508
+        ]
+      ],
+      "finding": "Copies jobs into cmBuildArgs and forwards it to Ninja; try-compile native options are empty."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-source-20261011T044616Z/cmGlobalNinjaGenerator.cxx.source",
+      "sha256": "83239b9d173ef70edeb1cf26a9e5515e4c7a9ed71839240fef6340c6b8a470c9",
+      "bytes": 118873,
+      "line_ranges": [
+        [
+          1012,
+          1040
+        ]
+      ],
+      "finding": "Adds -j only when jobs is neither NO_BUILD_PARALLEL_LEVEL nor DEFAULT_BUILD_PARALLEL_LEVEL."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-followup-20261011T044725Z/cmCoreTryCompile.cxx.source",
+      "sha256": "5a2bebc54faf2dff8b9c427b82b96e07d4134139d424ba21aaca6f395d3921d5",
+      "bytes": 57761,
+      "line_ranges": [
+        [
+          1107,
+          1111
+        ],
+        [
+          1144,
+          1148
+        ],
+        [
+          1206,
+          1212
+        ],
+        [
+          1250,
+          1253
+        ]
+      ],
+      "finding": "Calls TryCompile with NO_BUILD_PARALLEL_LEVEL; separately supports forwarding named platform variables to inner cache."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-followup-20261011T044725Z/cmMakefile.cxx.source",
+      "sha256": "c80da0317ae216e5599a31436bdfaa5a7272766f463f41bfa0894b5c610678ee",
+      "bytes": 144018,
+      "line_ranges": [
+        [
+          3348,
+          3354
+        ],
+        [
+          3422,
+          3453
+        ],
+        [
+          3477,
+          3479
+        ]
+      ],
+      "finding": "Loads forwarded cache args, then passes jobs unchanged to global generator."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-followup-20261011T044725Z/LICENSE.rst.source",
+      "sha256": "4382e7c1879ac90e3f101a395d23846fa4dbcaa1eed7265b43681e348754825d",
+      "bytes": 1498,
+      "line_ranges": [],
+      "finding": "Retained corrected source-license file, not executed."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/envvar/CMAKE_BUILD_PARALLEL_LEVEL.rst",
+      "sha256": "507a388de05cd5178d61086430d2aa4adb036f4f82b0c68d44557c5da58333d8",
+      "bytes": 581,
+      "line_ranges": [
+        [
+          8,
+          14
+        ]
+      ],
+      "finding": "Documentation limits this environment variable to cmake --build."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_gbl/JOB_POOLS.rst",
+      "sha256": "6706a494e5b99caffa3112ee739195425a5d3a2d2dcce03bb6eb012ea7625ac4",
+      "bytes": 1357,
+      "line_ranges": [
+        [
+          4,
+          9
+        ],
+        [
+          17,
+          34
+        ]
+      ],
+      "finding": "Pool depth limits jobs assigned to that pool; compiler and linker defaults can choose pools."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_JOB_POOLS.rst",
+      "sha256": "4be9ef66a234528b6dc71f0e22085acb724155b64f7f7cbd56cf26321f53415d",
+      "bytes": 218,
+      "line_ranges": [
+        [
+          6,
+          8
+        ]
+      ],
+      "finding": "Fallback only when global JOB_POOLS is unset."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_JOB_POOL_COMPILE.rst",
+      "sha256": "68150f7198f6d56f09b65a35744776ea2dbcd721ac92cb9b7b34ace349946899",
+      "bytes": 206,
+      "line_ranges": [
+        [
+          4,
+          6
+        ]
+      ],
+      "finding": "Initializes compile pool on targets."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_JOB_POOL_LINK.rst",
+      "sha256": "64d82645812218a35f8a5590761adbec76021aa79e157390e65fb2968aeb6cfd",
+      "bytes": 194,
+      "line_ranges": [
+        [
+          4,
+          6
+        ]
+      ],
+      "finding": "Initializes link pool on targets."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_PLATFORM_VARIABLES.rst",
+      "sha256": "0df20805cab4244880c4b58736da025d54043f6269b566ea79b315a8c21f1d00",
+      "bytes": 1495,
+      "line_ranges": [
+        [
+          6,
+          16
+        ],
+        [
+          30,
+          37
+        ]
+      ],
+      "finding": "Toolchain/platform mechanism for forwarding variables; whole-project signature is policy dependent."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/cmake/modules/HandleLLVMOptions.cmake",
+      "sha256": "1f6cced3ad60b8201f682efed3352b0b843c149c86450bf116981c8a5b155394",
+      "bytes": 64713,
+      "line_ranges": [
+        [
+          56,
+          61
+        ],
+        [
+          83,
+          85
+        ]
+      ],
+      "finding": "LLVM sets compile_job_pool and link_job_pool separately and changes CMAKE_JOB_POOL_COMPILE/LINK."
+    }
+  ],
+  "actual_routes": [
+    "Local read-only shell searches and bounded source reads via rg, sed and Python -B",
+    "Private report written using existing absolute Python 3.14.8 executable"
+  ],
+  "research_routes_not_run_here": [
+    "Exa",
+    "Firecrawl",
+    "Last30Days",
+    "Context7",
+    "GitHub",
+    "fnox acquisition"
+  ],
+  "notes": "No new research acquisition was requested of this inspector; parent supplied pinned source. All source reads in this followup completed rc=0. No compiler, configure, build, service or global configuration operation ran."
+}

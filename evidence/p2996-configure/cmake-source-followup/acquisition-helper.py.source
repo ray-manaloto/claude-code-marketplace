@@ -1,0 +1,26 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import urllib.request,json,hashlib,os
+os.umask(0o077)
+prior=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/cmake-probe-source-20261011T044616Z')
+old=json.loads((prior/'acquisition.json').read_text());pin=old['commit']
+root=prior.parent/('cmake-probe-followup-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'));root.mkdir()
+r={'state':'running','commit':pin,'prior_receipt':str(prior/'acquisition.json'),'prior_sha256':hashlib.sha256((prior/'acquisition.json').read_bytes()).hexdigest(),'route':'native fnox codex_research; exact primary source followup after license-path correction','records':[]}
+def save(): (root/'acquisition.json').write_text(json.dumps(r,indent=2)+'\n')
+try:
+    src={i['path']:i for i in json.loads((prior/'source-tree.json').read_text())['tree']}
+    top={i['path']:i for i in json.loads((prior/'root-tree.json').read_text())['tree']}
+    for filename in ['cmCoreTryCompile.cxx','cmMakefile.cxx','LICENSE.rst']:
+        source=filename if filename=='LICENSE.rst' else 'Source/'+filename
+        entry=top[filename] if filename=='LICENSE.rst' else src[filename]
+        url='https://raw.githubusercontent.com/Kitware/CMake/'+pin+'/'+source
+        row={'url':url,'path':str(root/(filename+'.source'))};r['records'].append(row);save()
+        with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'marketplace-toolchain-qualification'}),timeout=30) as response:
+            data=response.read();row['http_status']=response.status
+        assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==entry['sha']
+        Path(row['path']).write_bytes(data);row.update(bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),git_blob=entry['sha']);save()
+        print(json.dumps({'file':filename,'status':row['http_status'],'bytes':len(data)}),flush=True)
+    r['state']='PASS'
+except BaseException as e:
+    r.update(state='FAIL',error=repr(e));raise
+finally: save();print(json.dumps({'state':r['state'],'receipt':str(root/'acquisition.json')}),flush=True)

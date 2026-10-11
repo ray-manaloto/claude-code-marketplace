@@ -57,3 +57,29 @@ Retain the configure command/cache and inspect the generated runtime commands.
 Build resumption must reuse those exact inputs and retain every final exit code.
 The cold build requires a fresh host/container census and the shared heavy lease.
 Do not infer compiler/tool support from this prepared cache or from source presence.
+
+## Guarded outer configuration
+
+Task 06b's [operation helper](../dev/toolchains/p2996_configure.py) defaults to
+preparation. It compares the final reviewed cache, clean source, native tools,
+SDK and protected shared state, and records the proposed configure command.
+`--configure` additionally requires a matching independent review and admission
+receipt, the shared heavy lease, an inherited-descriptor check and a fresh bounded
+host/container census. It runs only the outer configure, with a 600-second timeout
+and process-group cleanup. No LLVM build or install target is selected.
+
+The [exact CMake source inspection](../evidence/p2996-configure/probe-concurrency-source-review.json)
+shows that try-compile does not pass the build parallel-level setting to Ninja.
+The operation therefore admits feature probes without claiming a one-job limit.
+Generated builtin/runtime configure commands and caches require separate review
+for the new compiler, exact SDK, ARM64 architecture and matching runtime options.
+Calling their configure targets can trigger compiler builds and belongs to task 07.
+
+The first [outer configure](../evidence/p2996-configure/operation/qualification.json)
+passed all 14 commands with exit 0, including fresh capacity and lease checks.
+Its exact generated files are retained with hashes. Defaults and protected shared
+state are unchanged; no prefix or LLVM compiler was installed. Independent
+[runtime-graph review](../evidence/p2996-configure/generated-review.json) and
+[operation review](../evidence/p2996-configure/operation-review.json) passed.
+The optional `ld-classic` fallback and CMP0219 compatibility probe are resolved.
+Task 07 must bound nested runtime builds as well as the outer Ninja invocation.

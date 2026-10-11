@@ -428,3 +428,32 @@ writer/preimage checks; this planning step admits no global mutation.
   helper passed its single native reproduction, all eight commands and nine
   focused guard controls. Task validation and the 19-file baseline passed;
   protected shared state is unchanged and the global namespace remains absent.
+
+Task 11c is committed at `ad73b79b05c669574649af3c05e282ec417646e1`.
+The post-commit baseline exited 0 and the worktree was clean. Operation 11d
+still waits for a clear writer census. Task 06b prepares a bounded outer LLVM
+configure while that validation runs. Its maintained scope is one operation
+helper, toolchain/status documentation and these planning files. Exact CMake
+source will resolve the configure-probe concurrency contract. Actual configure
+requires fresh capacity and the shared heavy lease; no build target is admitted.
+
+- Retained exact CMake source and the corrected license acquisition, including
+  the initial failed route. Independent source tracing confirms that configure
+  probes do not inherit a strict Ninja job count from the build-level setting.
+- The first preparation guard rejected an older cache-probe receipt. Its failed
+  logs and helper are preserved; the helper now uses the final reviewed cache.
+  Fresh preparation and independent review are next. The delivery chat is idle;
+  host/container capacity is being independently rechecked.
+- Fresh capacity inspection found the canonical lease free and the host idle
+  enough for the bounded configure. The existing low-load container is preserved
+  and checked by exact identity and utilization. Independent preparation review
+  passed all eight commands, 23 guard controls and native lease inheritance.
+  The parent will record admission before running compiler feature probes.
+- The admitted outer configure completed with exit 0; all 14 commands passed.
+  Exact generated cache, runtime commands, Ninja graph and compiler metadata are
+  retained. The lease was released and protected state is unchanged. Independent
+  generated-graph and operation-receipt reviews are running before unit closure.
+- Both final reviews passed without findings. All 12 original/copied generated
+  artifacts match; optional linker fallback and policy diagnostics are resolved.
+  Preserved native/upstream whitespace triggers the full staged whitespace check;
+  maintained-source whitespace passes. Task 07 must also bound nested builds.

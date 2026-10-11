@@ -41,6 +41,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 11b | Private native vcpkg bootstrap | Pinned binary checksum, ARM64 execution, root discovery and independent review | Complete |
 | 11c | vcpkg promotion preparation and project manifest | Reviewed namespace-only helper; controlled guards; native manifest check | Complete |
 | 11d | Scoped global vcpkg promotion | Fresh ownership/preimages; exact reviewed helper; native global discovery | Planned |
+| 06b | Guarded P2996 outer configure | Fresh shared capacity; exact inputs; generated runtime commands; independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

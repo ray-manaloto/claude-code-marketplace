@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-11T05:02:49.519686+00:00",
+  "commands": [
+    {
+      "case": "context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "returncode": 0,
+      "stdout": "desktop-linux\n",
+      "stderr": ""
+    },
+    {
+      "case": "containers",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "returncode": 0,
+      "stdout": "79f1f7ab1130\t5023df74acf7\n",
+      "stderr": ""
+    },
+    {
+      "case": "stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "returncode": 0,
+      "stdout": "{\"BlockIO\":\"1.93GB / 1.19GB\",\"CPUPerc\":\"5.16%\",\"Container\":\"79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4\",\"ID\":\"79f1f7ab1130\",\"MemPerc\":\"0.85%\",\"MemUsage\":\"135.7MiB / 15.6GiB\",\"Name\":\"dotfiles-dotfiles-rmanaloto-273897ea-amd64-26233\",\"NetIO\":\"2.13MB / 313kB\",\"PIDs\":\"4\"}\n",
+      "stderr": ""
+    }
+  ]
+}

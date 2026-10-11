@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-10-11T04:59:04.746247+00:00",
+  "phase": "container-utilization-and-owner-hints",
+  "checks": [
+    {
+      "name": "docker-container-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "--context",
+        "desktop-linux",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}",
+        "79f1f7ab1130"
+      ],
+      "rc": 0,
+      "seconds": 1.041,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": [
+        {
+          "ID": "79f1f7ab1130",
+          "CPUPerc": "3.88%",
+          "MemUsage": "135.5MiB / 15.6GiB",
+          "MemPerc": "0.85%",
+          "PIDs": "4"
+        }
+      ]
+    },
+    {
+      "name": "docker-container-owner-labels",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "--context",
+        "desktop-linux",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"local_folder\":{{json (index .Config.Labels \"devcontainer.local_folder\")}},\"compose_working_dir\":{{json (index .Config.Labels \"com.docker.compose.project.working_dir\")}}}",
+        "79f1f7ab1130"
+      ],
+      "rc": 0,
+      "seconds": 0.025,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": {
+        "id": "79f1f7ab113035f7ec38e73566fd435f22dfeddd81ea31ad9c7416cb84ffd6e4",
+        "devcontainer_local_folder": null,
+        "compose_working_dir": null,
+        "labels_are_owner_hints_only": true
+      }
+    }
+  ],
+  "correction_to_prior_receipt": "OrbStack socket existed and its explicit-context ps was attempted, rc=1 daemon-unreachable; it was not skipped and cannot be counted as zero containers. Colima socket was absent and was skipped."
+}

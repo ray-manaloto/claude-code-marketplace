@@ -1,0 +1,33 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import urllib.request,json,hashlib,os
+os.umask(0o077)
+root=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation')/('cmake-probe-source-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+root.mkdir()
+r={'state':'running','tag':'v4.4.4','route':'native fnox codex_research; primary exact-version source verification','records':[]}
+def save(): (root/'acquisition.json').write_text(json.dumps(r,indent=2)+'\n')
+def get(url,name):
+    row={'url':url,'path':str(root/name)};r['records'].append(row);save()
+    req=urllib.request.Request(url,headers={'User-Agent':'marketplace-toolchain-qualification'})
+    with urllib.request.urlopen(req,timeout=30) as response: data=response.read();row['http_status']=response.status
+    (root/name).write_bytes(data)
+    row.update(bytes=len(data),sha256=hashlib.sha256(data).hexdigest());save()
+    print(json.dumps({'name':name,'status':row['http_status'],'bytes':len(data)}),flush=True)
+    return data
+try:
+    base='https://api.github.com/repos/Kitware/CMake'
+    commit=json.loads(get(base+'/commits/v4.4.4','commit.json'));r['commit']=commit['sha'];r['tree']=commit['commit']['tree']['sha']
+    tree=json.loads(get(base+'/git/trees/'+r['tree'],'root-tree.json'))['tree']
+    root_entries={i['path']:i for i in tree}
+    entries={i['path']:i for i in json.loads(get(base+'/git/trees/'+root_entries['Source']['sha'],'source-tree.json'))['tree']}
+    for filename in ['cmGlobalGenerator.cxx','cmGlobalNinjaGenerator.cxx','Copyright.txt']:
+        source=filename if filename=='Copyright.txt' else 'Source/'+filename
+        entry=root_entries[filename] if filename=='Copyright.txt' else entries[filename]
+        data=get('https://raw.githubusercontent.com/Kitware/CMake/'+r['commit']+'/'+source,filename+'.source')
+        assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==entry['sha']
+        r['records'][-1]['git_blob']=entry['sha']
+    r['state']='PASS'
+except BaseException as e:
+    r.update(state='FAIL',error=repr(e));raise
+finally:
+    save();print(json.dumps({'state':r['state'],'receipt':str(root/'acquisition.json')}),flush=True)

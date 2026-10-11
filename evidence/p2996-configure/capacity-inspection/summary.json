@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-10-11T05:00:02.533071+00:00",
+  "task": "06b host-capacity check for one outer LLVM configure <=600 seconds",
+  "host_lock_source": {
+    "path": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+    "sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20"
+  },
+  "checks": [
+    {
+      "name": "canonical-heavy-gate-status-final",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "HASH_PINNED_STATUS_ONLY"
+      ],
+      "rc": 1,
+      "seconds": 0.052,
+      "data": {
+        "status": "free",
+        "holder_pid": null,
+        "since": null,
+        "label_class": null
+      },
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "memory-pressure-query",
+      "argv": [
+        "/usr/bin/memory_pressure",
+        "-Q"
+      ],
+      "rc": 0,
+      "seconds": 0.004,
+      "data": "The system has 103079215104 (6291456 pages with a page size of 16384).\nSystem-wide memory free percentage: 71%",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "phase_receipts": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/host-capacity-initial-20261011T045742577769Z.json",
+      "sha256": "fbb28877c311f3071428ff673437f73f2d8e01cd98717e4dc26d92fc01b49115"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/host-capacity-docker-20261011T045828034779Z.json",
+      "sha256": "33f6bb12c576fccab579d93b57a463da081288765a31c88c929da87e49781fc3"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/host-capacity-container-20261011T045904746247Z.json",
+      "sha256": "d551cba4e41f8251fdd477bd91c306fba49104bbf28f6b9d2944a0d5c0d30f2d"
+    }
+  ],
+  "interpretation": {
+    "capacity": "AVAILABLE_AT_OBSERVATION_IF_FINAL_LOCK_FREE",
+    "lease": "NOT ACQUIRED by inspector; parent must atomically acquire canonical heavy-gate before launch, and defer if acquisition fails.",
+    "hardware": "12 logical/physical CPUs, 96 GiB RAM",
+    "cpu": "Interval top second sample 84.7% idle; virtualization PID 96190 at 5.2% CPU versus earlier reported ~400%, which was not reproduced.",
+    "memory": "93 GiB used, 21 GiB compressor, ~2.2 GiB unused in top; no swap-ins or swap-outs during measured interval. Query result retained separately.",
+    "docker": "Current desktop-linux and default resolve to same Docker socket and each reported the same single container 79f1f7ab1130. Stats rc=0: 3.88% CPU, 135.5 MiB memory, 4 PIDs. Name suggests dotfiles, but checked ownership labels were absent; exact task owner unverified.",
+    "other_contexts": "Colima socket absent: skipped. OrbStack socket present but ps rc=1 daemon-unreachable: state unknown, not zero containers.",
+    "ownership": "Virtualization process and Docker container metrics are separate observations; no proof maps every unit of VM load to that container or task."
+  },
+  "operation_limits": [
+    "Parent holds canonical heavy-gate for duration.",
+    "Maximum 600-second outer configure with feature probes only.",
+    "No LLVM build or install target.",
+    "Strict Ninja one-job probe execution remains UNVERIFIED."
+  ],
+  "scope": {
+    "repository_writes": false,
+    "global_configuration_writes": false,
+    "services_changed": false,
+    "signals_sent": false,
+    "compiler_configure_build_runs": 0,
+    "outbound_chat_messages": 0,
+    "private_sanitized_receipts_only": true,
+    "per_probe_timeout_seconds": 20
+  },
+  "actual_routes": [
+    "Existing absolute Python 3.14.8",
+    "Hash-pinned local host_lock.py status function",
+    "Native ps/sysctl/top/vm_stat/memory_pressure query",
+    "Existing Docker CLI context/ps/stats and allowlisted inspect labels"
+  ],
+  "receipt_correction": "The second phase limitation text incorrectly grouped OrbStack with skipped contexts; third phase and this report correct it. OrbStack ps was attempted and failed rc=1."
+}

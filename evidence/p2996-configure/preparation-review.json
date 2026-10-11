@@ -1,0 +1,641 @@
+{
+  "schema_version": 1,
+  "result": "PASS for task 06b preparation and guarded outer-configure helper only",
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T05:10:21.614166+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad73b79b05c669574649af3c05e282ec417646e1",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+  "findings": [],
+  "reviewed_inputs": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_configure.py",
+      "sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+      "sha256": "0d261b2e3e38ea58dcf49a77134b0f8eae15d69883143f52223e5d3e22a03cd9"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+      "sha256": "2489d7fb8e59bfdac2bdd05a3b73068acad8757ab93b600e7bd0a12c3cf1bc52"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "8c0d322731c764460e3077ed48691427628718a47feba871b88ac12da196d880"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "166362841adc03af0a157fafb97f6dbaf5268501bab624b006bb5c38dc4a8798"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/source-review.json",
+      "sha256": "d86a8a86a9641b504a870674792b70dd8abeeb7d26cea6ea1fe0fdb1838d206b"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/review-receipts/qualification.json",
+      "sha256": "b79bd9b32e4cbb57c4ab96794b80e3bf519508ac2c3aa21993d68dc8c5ce1fe6"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/git/acquisition.json",
+      "sha256": "5de2736f424107af66fdadbe694bf6dbb23f320d69a3cb8b444365d1e25d7ba4"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/source-inspection.json",
+      "sha256": "c1ed29fd0f1cd3da10a33b865bd7af71233326e727d0f865315b4c323387039d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/source-inspection.md",
+      "sha256": "be5ff5fa444814527a390876bda296e90de43e5db06e67d509c755cebd571d24"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/probe-concurrency-source-review.json",
+      "sha256": "8f7793ae9b07e34ba80fbdc7760f2a1508534af1f8568fe0881eb80855b0772b"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/preparation/qualification.json",
+      "sha256": "2029b043d554417576130c270c09369c972e936b6a8ddc54a4bb72b4e2499790"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/capacity-inspection/summary.json",
+      "sha256": "c0457fb4cdfe6b65f8458ad1e22cdc69ab778c4ec4f1e00b2a330057b817dfdf"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996-bootstrap.cmake",
+      "sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+      "sha256": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_bottles.py",
+      "sha256": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py",
+      "sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "sha256": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+      "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+      "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+      "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/SDKSettings.json",
+      "sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+      "sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20"
+    }
+  ],
+  "proposal": {
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      }
+    },
+    "sdk": {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+    },
+    "mise": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "version": "2026.10.7",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+    },
+    "cmake": {
+      "version": "4.4.4",
+      "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+      "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+      "file_returncode": 0
+    },
+    "layout": [
+      "build",
+      "prefix"
+    ],
+    "timeout_seconds": 600,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0"
+    }
+  },
+  "proposal_canonical_sha256": "f37d98a4768d51dab8d6928f97bed7e0495bd1527b13540a10bbaf0f139089d1",
+  "prerequisite_evidence": {
+    "preparation": {
+      "state": "PASS: preparation only",
+      "commands": 8,
+      "logs_verified": 16,
+      "helper_sha256": "cda335c608f3c0b69e2d7d979a8a3bba8e499d2df604ad752b226a788adb7ad2"
+    },
+    "failed-preparation": {
+      "state": "FAIL",
+      "commands": 3,
+      "logs_verified": 6,
+      "helper_sha256": "71b1d80d2d7eca449d152c3c77964c514c8dd44fb48f59822b28981f6da2f279"
+    },
+    "prior_final_review": {
+      "sha256": "d86a8a86a9641b504a870674792b70dd8abeeb7d26cea6ea1fe0fdb1838d206b",
+      "qualification_sha256": "b79bd9b32e4cbb57c4ab96794b80e3bf519508ac2c3aa21993d68dc8c5ce1fe6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "command_exits": [
+        [
+          "positive",
+          0
+        ],
+        [
+          "wrong-lane",
+          1
+        ],
+        [
+          "dirty-flags",
+          1
+        ],
+        [
+          "missing-prefix",
+          1
+        ]
+      ]
+    },
+    "source_declarations_current": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/CompilerRTDarwinUtils.cmake",
+        "sha256": "c4f3c2d0f4123b02c43224d80f00f33e0219450da5feb1706b190978319a6774"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/builtin-config-ix.cmake",
+        "sha256": "1fd5f55dd25c003d5689638d428679461dbc0ed85e1a2cd353e03480383e4b32"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/config-ix.cmake",
+        "sha256": "fa646d5448bba5cf379516aa3ee94a414d51d74901772a06d761ad73d6b5fe7d"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/runtimes/CMakeLists.txt",
+        "sha256": "8151a8c1545d3acf1d048bf28021215419e865cb576d52c34a5a167a1fc0145d"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/cmake/modules/LLVMExternalProjectUtils.cmake",
+        "sha256": "aa3d39ca477cebb56b86c0bd2b125e3a2d367fed781e4d966242349ca294535e"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/CMakeLists.txt",
+        "sha256": "64978700feb788e3efaf67362e63e0647a54d953a78466994278bc8f8f9dbf74"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/cmake/modules/CMakeLists.txt",
+        "sha256": "c17134ffb87d7cda1b92ad218cfd95f21962cc3f7fee4ec62bceaa817367febc"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/tools/clang-shlib/CMakeLists.txt",
+        "sha256": "f3114261aed8cd8199e61f80ec10c35ba74a8ffaca82d0e2fac094e9f50855f7"
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/CMakeLists.txt",
+        "sha256": "da2a3e1fda78cf99c54aea9b1425f9b54d118c93403c107c3f9c03eebeaea762"
+      }
+    ],
+    "cmake_sources": {
+      "commit": "2e0b3aec14fe2e3e555faac4698e281749aae4b5",
+      "tree": "af54d9ea55f8125649d67b2fe39b2a5e3eea98ff",
+      "records_verified": 8,
+      "git_blobs_verified": 5,
+      "corrected_license": "LICENSE.rst",
+      "initial_error_preserved": "KeyError('Copyright.txt')"
+    },
+    "concurrency_source_records_verified": 12,
+    "source_inspection_report_hash": "be5ff5fa444814527a390876bda296e90de43e5db06e67d509c755cebd571d24"
+  },
+  "executed_preparation": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_configure.py",
+      "--run-dir",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run"
+    ],
+    "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "helper_sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+    "started_at": "2026-10-11T05:07:46.175056+00:00",
+    "invocations": 1,
+    "configure_requested": false,
+    "returncode": 0,
+    "elapsed_seconds": 2.438701375038363,
+    "finished_at": "2026-10-11T05:07:48.613939+00:00",
+    "logs": [
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-invocation.stdout",
+        "sha256": "5d52712ee76d9b33d6f9e67c834d4568768d84bc5527a1fd602648c25b82924f"
+      },
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-invocation.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "qualification": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/qualification.json",
+    "sha256": "e7b6317eafd2c518aa18ceebbef776b65191c84fc9b6bc7b6c7d65d118aac879",
+    "state": "PASS: preparation only",
+    "command_exits": [
+      {
+        "case": "source-head",
+        "returncode": 0
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0
+      },
+      {
+        "case": "source-clean",
+        "returncode": 0
+      },
+      {
+        "case": "default-before",
+        "returncode": 0
+      },
+      {
+        "case": "apple-compiler-version",
+        "returncode": 0
+      },
+      {
+        "case": "cmake-version",
+        "returncode": 0
+      },
+      {
+        "case": "ninja-version",
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "returncode": 0
+      }
+    ],
+    "logs_verified": 16,
+    "build_directory_created": false,
+    "prefix_created": false
+  },
+  "focused_guard_controls": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/guard-controls.json",
+    "sha256": "3c56dd95020b047aec28b9d5f6d461083075d0e4c5255362b92482300f0e5c2c",
+    "controls": 23,
+    "result": "PASS",
+    "actual_owned_subprocess_exits": {
+      "intentional_nonzero": 17,
+      "timeout_leader": -15
+    },
+    "scope": "AST-extracted unchanged path, admission, container, lease and error-handling blocks; inert child processes for failure/timeout cleanup. Neither main nor configure was invoked by these controls."
+  },
+  "lease_control": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control.json",
+    "sha256": "3913a631b4b5094435df64779e5937071e6692d9e2a5bfcd6529412df3f42baa",
+    "result": "PASS",
+    "owner_returncode": -9,
+    "descriptor_survives_fresh_native_mise": true,
+    "lock_survives_owner_sigkill": true,
+    "lock_released_after_child_cleanup": true,
+    "canonical_global_lock_used": false
+  },
+  "executed_static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T05:08:42.650196+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T05:08:42.899761+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/acceptance-baseline.stdout",
+          "sha256": "372240b9b0c50810fae7cb92d5f0b192933a693d3398a5ac5d09f49d8c1de2f0"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "claude_baseline_counts": {
+    "baseline": 19,
+    "json": 284,
+    "python": 11,
+    "shell": 6,
+    "toml": 14
+  },
+  "protected_state_unchanged": true,
+  "protected_counts": {
+    "global_files": 9,
+    "homebrew_packages": 8,
+    "glib_files": 2,
+    "file_identities": 26,
+    "global_shims": 835,
+    "global_command_wrappers": 0,
+    "global_install_entries": 2196,
+    "maintained_files": 5
+  },
+  "source_identity_after": {
+    "commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "clean": true
+  },
+  "static_assertions": [
+    "Fresh output directory must be normalized, absolute, new and outside this worktree; mkdir with restrictive umask refuses an existing destination.",
+    "Default mode runs only eight metadata/default-environment commands. The attested Apple compiler invocation is --version only and was explicitly included by the parent.",
+    "Configure requires an exact helper/proposal/run-directory admission plus the hashed passing review, the pinned lock module, canonical shared lock location and no inherited holder/descriptor override. Lock acquisition uses zero wait.",
+    "Configure performs fresh host limits and exact admitted Docker context/container-set checks, requires matching stats IDs and <=100 percent aggregate container CPU, and preserves existing services. These code paths were exercised with mocks, not a live Docker census.",
+    "The descriptor check passes the same native mise route used for configure. The separate scratch control proved FD identity and lease survival after its owner was killed; it never acquired the canonical shared lock.",
+    "The owned-subprocess runner preserves nonzero exits and timeout evidence and sends both TERM and KILL to its process group, including when the leader exits before an ignoring descendant.",
+    "Configure command selects only the outer source/build/cache operation and private prefix. No build or install target is requested. Generated commands and cache contents still require their next review.",
+    "Exact retained CMake source shows NO_BUILD_PARALLEL_LEVEL through TryCompile to Ninja and no explicit -j insertion. Helper/docs correctly leave strict probe concurrency UNVERIFIED."
+  ],
+  "limits": [
+    "No --configure, CMake project configure, compiler compilation/linking, LLVM build/install, or generated-output runtime checks ran.",
+    "Actual outer-configure lease/capacity/admission sequencing remains unexecuted; fresh admission and capacity are still required. No admission file existed during this review.",
+    "Live host/container census was assigned to the separate inspector and was not duplicated. Its retained receipts are prerequisites, not reviewer-executed checks.",
+    "Private lease/control fixtures are test data and do not authorize any global operation.",
+    "No acquisition, network, installer, profile edit, global registration, service/container mutation, model session, or full Claude OCI acceptance ran."
+  ],
+  "shared_or_repository_writes_by_reviewer": false,
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/acceptance-baseline.stdout",
+      "sha256": "372240b9b0c50810fae7cb92d5f0b192933a693d3398a5ac5d09f49d8c1de2f0"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/descendant.pid",
+      "sha256": "3c09b66a19248d6ba9ed73cb021fd480bdfab490b9d9d18585c7ce5b6099071e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/nonzero-exit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/nonzero-exit.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/qualification.json",
+      "sha256": "a8c3d1d4be95e7d20d5fbdb81364e2a2d15f262f301345b8f906ab5764aa6733"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/timeout-descendant.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/timeout-descendant.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/final-helper.py.source",
+      "sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/guard-controls.json",
+      "sha256": "3c56dd95020b047aec28b9d5f6d461083075d0e4c5255362b92482300f0e5c2c"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/guard-fixtures/admission.json",
+      "sha256": "6749833528ac06c04cb21af5f2920f924875407a8bad44950cfd226927df0d74"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/initial-helper.py.source",
+      "sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/child-ready.json",
+      "sha256": "5cfa3d732df490f289851705f246adf175cf084a160c899403e172d115b1a0f1"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/child.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/child.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/lock-dir/heavy-gate.lock",
+      "sha256": "015f2e896356112f2359f5b5b70959e8331a546857c01f5b08527fda66a0fc3a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/owner.json",
+      "sha256": "df727d2f89827b5efb338939fdb5f4e53de433ca6eb42fd2b0516fddd93cb403"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/owner.py",
+      "sha256": "ab8c28c78fa64fcf26f211ad8f0694d6a75b219c103f4c7ffacd5d93ddbfaa2c"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/owner.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/owner.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control.json",
+      "sha256": "3913a631b4b5094435df64779e5937071e6692d9e2a5bfcd6529412df3f42baa"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/parent-evidence-review.json",
+      "sha256": "be2f4ca74b217e16c1e53070d963f26f6aa674e0d3b29926556a755c7d0d89ed"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/post-checks.json",
+      "sha256": "550ec9f58feff374f165f4781d360242a25a00d23f3039e7e91668a45e8ae8f3"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/post-state.json",
+      "sha256": "b081e2b1c7b0da4e3709bc47b2cd104da36beb262790f3c5df196257c20b16d2"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/pre-state.json",
+      "sha256": "b081e2b1c7b0da4e3709bc47b2cd104da36beb262790f3c5df196257c20b16d2"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-invocation.json",
+      "sha256": "846fad7e815c37ae2ad96f5131c179f297cc57d702fbed76d1794ca46dba4dfc"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-invocation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-invocation.stdout",
+      "sha256": "5d52712ee76d9b33d6f9e67c834d4568768d84bc5527a1fd602648c25b82924f"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/preparation-result-checks.json",
+      "sha256": "65564b71560928b78fd851483e5731f3b9843478662296287b12ed736caaa380"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/review-context.json",
+      "sha256": "6c8433847f472a1594e86f18fc5aa22534d175428e4f70719be8a9c8aa713560"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/review_state.py",
+      "sha256": "3edf25f046f58f69bec79fd4e534811b5e6acc21b4f7d217a6fd5b2d8d1791d1"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/apple-compiler-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/apple-compiler-version.stdout",
+      "sha256": "a856ec74c559401131ad608625ef252fb2db6c78bc0c480c1c4c782ee4896db1"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/cmake-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/cmake-version.stdout",
+      "sha256": "4d92ce18ddf9889d463ac875608423312823ad89e7fd5178b02a21ea26a2bd3d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/ninja-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/ninja-version.stdout",
+      "sha256": "810ab97f4b3fccb9adf1db7959945b479635931ccc4a0243c34a41b739eae25a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/qualification.json",
+      "sha256": "e7b6317eafd2c518aa18ceebbef776b65191c84fc9b6bc7b6c7d65d118aac879"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-clean.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-clean.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/run/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/static-checks.json",
+      "sha256": "4799663a1eea0af9c93c5484e3f9cc1938231c41d8a2c1b7a8b0894ce8f68232"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/guard-fixtures/preparation-review.json",
+      "sha256": "2510bb316ef89f8a0373e6c7b7ade1fe8217843eb698b34c7443b72b1b47e91c",
+      "kind": "scratch failure-control fixture only"
+    }
+  ]
+}
