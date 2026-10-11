@@ -496,3 +496,25 @@ requires independent review, fresh capacity and the shared heavy lease.
 - Final independent review passed: both cleanup regressions, eight inert
   subprocess controls, eleven admission controls and one six-command preparation.
   Static/baseline checks passed and protected shared state is unchanged.
+
+Task 07a is committed at `c43021fb998d05f7ca0036bd6da8b6ba8964798a`.
+The post-commit baseline exited 0 and the worktree was clean. Operation 07b is
+admitted by `evidence/p2996-build/admission.json` for the exact reviewed helper
+and existing private tree. Fresh capacity and Docker identity checks passed;
+the helper must acquire the canonical lease and repeat live checks before build.
+Installation and reflection/runtime acceptance are separate later units.
+- The canonical lease and all eleven pre-build commands passed. Native LLVM
+  compilation started at 05:52:35 UTC with four outer jobs and inherited child
+  limits; the first disk monitor passed. Actual final build exit remains pending.
+
+- The first native LLVM build exited 1 after 363.49 seconds at the RDFGraph
+  comparator: the SDK libc++ transparent-comparator adaptation rejects its
+  stateful `std::less<RegisterRef>` specialization. Exact logs, invocation, helper
+  and admission are retained under `evidence/p2996-build/failed-cold-build/`.
+  Shared protected state is unchanged; the incremental build tree is preserved.
+  Independent failure-closure and source-diagnosis lanes are active.
+- Independent failure closure passed: no surviving builder or held lease, all
+  protected files and 19 original Claude files unchanged, default environment
+  byte-identical, and eight generated files plus incremental Ninja state intact.
+  The failed build remains rc 1; this closure does not qualify the compiler.
+- Failure checkpoint static checks and the direct-content secret scan passed.

@@ -43,7 +43,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 11d | Scoped global vcpkg promotion | Fresh ownership/preimages; exact reviewed helper; native global discovery | Complete |
 | 06b | Guarded P2996 outer configure | Fresh shared capacity; exact inputs; generated runtime commands; independent review | Complete |
 | 07a | Guarded cold-build preparation | Nested build limits, durable logs, timeout/reserve controls; independent review | Complete |
-| 07b | Native P2996 cold build | Fresh capacity and lease; actual final exit; child caches and artifact review | Planned |
+| 07b | Native P2996 cold build | Fresh capacity and lease; actual final exit; child caches and artifact review | In progress |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

@@ -126,4 +126,9 @@ Global Python promotion/telemetry and other repositories remain separate streams
 
 Task 07a prepares the guarded cold-build operation with explicit nested build
 limits, durable logs, timeout cleanup and disk reserves. Independent preparation
-review passed after two cleanup repairs; the actual compiler build is next.
+review passed after two cleanup repairs. Task 07b's first native build exited 1
+after 363.49 seconds: the pinned LLVM RDF comparator conflicts with the macOS 27
+libc++ headers. The failed logs and incremental tree are retained; protected
+shared state is unchanged. Independent failure closure passed: the lease is
+free, no build processes remain, and the default environment matches. A bounded
+compatibility repair is next; compiler and runtime acceptance remain incomplete.

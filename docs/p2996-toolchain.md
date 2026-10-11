@@ -107,4 +107,12 @@ outer wrapper ignores child install failures. Reflection and installed-runtime
 witnesses remain separate gates.
 The [independent preparation review](../evidence/p2996-build/preparation-review.json)
 passed after two cleanup repairs: six native preparation commands, eight inert
-subprocess controls and eleven admission controls. Actual compilation is pending.
+subprocess controls and eleven admission controls.
+
+The first [cold build](../evidence/p2996-build/failed-cold-build/qualification.json)
+exited 1 after 363.49 seconds. SDK libc++ rejects the pinned RDF comparator's
+stateful `std::less<RegisterRef>` specialization. The full logs and incremental
+tree are retained. Independent [failure closure](../evidence/p2996-build/failure-closure-review.json)
+confirms a free lease, no surviving build processes, unchanged protected state
+and a byte-identical default environment. A bounded compatibility repair is
+required before the build can resume; installation and acceptance remain pending.
