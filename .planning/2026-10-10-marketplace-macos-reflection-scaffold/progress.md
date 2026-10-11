@@ -400,3 +400,31 @@ dependency builds remain outside this operation.
   triplet names match the pinned source. Both static checks pass, including
   the 19 original acceptance hashes. Protected state is unchanged. No bootstrap
   rerun, global registration or dependency build was performed by the reviewer.
+
+Task 11b is committed at `1b5e33b832286122043f57fbdffe1571c5b6ad12`.
+The post-commit baseline exited 0 and the worktree was clean. The full whitespace
+check flags one trailing space in each of two immutable native debug logs;
+their hashes are retained and the maintained-source whitespace check passes.
+Task 11c prepares namespace-only global registration and the project manifest.
+Its global write requires independent preparation review and immediate fresh
+writer/preimage checks; this planning step admits no global mutation.
+
+- The first preparation run passed source identity, native registration in a
+  private root, manifest formatting and default environment checks, then its
+  writer guard found dotfiles `mise run verify-local`. It stopped with exit 1;
+  protected state remained unchanged. The failed receipt is preserved.
+- Preparation now records concurrent writers without admitting a shared write.
+  Both apply guards still require a clear census. Source Git/tree/clean checks,
+  all package preimages and imported helper hashes are part of the proposal.
+- Independent preparation review found two preservation gaps. The helper now
+  requires destination absence before promotion, checks its exact namespace
+  afterward, records promotion/observed state on failure and verifies copied
+  backups against their recorded hashes. All eight updated preparation commands
+  pass; the reviewer is independently checking the repairs before admission.
+- Split the actual shared promotion into operation 11d so preparation 11c can
+  settle at its independent gate while dotfiles validation still owns capacity.
+  The helper stays unchanged between review and the eventual guarded operation.
+- Final independent preparation review passed with no open findings. The exact
+  helper passed its single native reproduction, all eight commands and nine
+  focused guard controls. Task validation and the 19-file baseline passed;
+  protected shared state is unchanged and the global namespace remains absent.

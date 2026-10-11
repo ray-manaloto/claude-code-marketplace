@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-11T04:30:19.487797+00:00",
+  "commands": [
+    {
+      "case": "tasks",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "evidence/vcpkg-registration/tasks.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "evidence/vcpkg-registration/tasks.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "check",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "evidence/vcpkg-registration/check.stdout",
+          "sha256": "5fcc3e038297fc2b2a70c3295c0c9e7b12a5b896adb298a11b3e45f0045ec2c6"
+        },
+        {
+          "path": "evidence/vcpkg-registration/check.stderr",
+          "sha256": "4ec94851e44f319cfd410f5b4227f5dee784f6b7ae8387ae255fa1b1a4445c6f"
+        }
+      ]
+    },
+    {
+      "case": "baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "evidence/vcpkg-registration/baseline.stdout",
+          "sha256": "7b0f72e82f580978390f8b177ab81ce12cbf9c20c91531891b4eaf0a31140e09"
+        },
+        {
+          "path": "evidence/vcpkg-registration/baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ]
+}

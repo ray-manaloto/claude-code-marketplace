@@ -1,0 +1,428 @@
+{
+  "result": "PASS",
+  "unit": "11c preparation only",
+  "helper_sha256": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "namespace-preservation",
+      "priority": "P2",
+      "path": "dev/toolchains/vcpkg_register.py",
+      "lines": [
+        123,
+        127
+      ],
+      "evidence": "The protected() inventory unconditionally drops asdf-vcpkg; before promotion and during preparation that target must instead remain absent. On later failure the receipt lacks a recorded promotion result or observed target state.",
+      "requested_fix": "Track promotion, assert target absence before mutation or during preparation, verify the exact expected snapshot afterward, and preserve observed promotion/target state on failure.",
+      "verification": "static only; no apply or failure injection",
+      "disposition": "resolved by parent; final helper verified with scratch controls and one native preparation run"
+    },
+    {
+      "id": "backup-preimage",
+      "priority": "P2",
+      "path": "dev/toolchains/vcpkg_register.py",
+      "lines": [
+        76,
+        79
+      ],
+      "evidence": "shutil.copyfile is followed by hashing the live file, but the copied backup is never compared. An intervening concurrent config update can bind a recorded preimage to different backup bytes.",
+      "requested_fix": "Compare each backup hash against the captured live preimage and stop on mismatch.",
+      "verification": "static only; no race injection",
+      "disposition": "resolved by parent; final helper verified with scratch controls and one native preparation run"
+    },
+    {
+      "id": "observation-error-masking",
+      "priority": "P2",
+      "path": "dev/toolchains/vcpkg_register.py",
+      "lines": [
+        222,
+        236
+      ],
+      "finding": "The initial repair observed the destination outside the final save path, allowing observation errors to mask a prior error and bypass save.",
+      "disposition": "resolved by parent; observation now best-effort inside final save; two scratch failure controls preserve original error and saved receipt"
+    }
+  ],
+  "proposal": {
+    "destination": "/Users/rmanaloto/.local/share/mise/installs/asdf-vcpkg",
+    "preimage": "absent",
+    "namespace": {
+      "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+        "sha256": null
+      }
+    },
+    "manifest_sha256": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316",
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0"
+    }
+  },
+  "proposal_identity_sha256": "e20fa8b9fccf2a207251df3a04e8c3d764edb07c199242ec771aeb4fc264ca30",
+  "recorded_at": "2026-10-11T04:41:49.539669+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "1b5e33b832286122043f57fbdffe1571c5b6ad12",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "maintained_files": [
+    {
+      "path": "dev/toolchains/vcpkg_register.py",
+      "sha256": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0"
+    },
+    {
+      "path": "vcpkg.json",
+      "sha256": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316"
+    },
+    {
+      "path": "docs/vcpkg-toolchain.md",
+      "sha256": "0e775713a137884d72bba58818bc89ca419eba90a73e68ba765d7887c08f255a"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "8c1ae679613118f11ef13d6339467733c657205d3c213b36d27c98df86314151"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "56792566ba9a2271b9617153adf37821a2dd86ef4191faa554a03ee6a8104fbd"
+    }
+  ],
+  "actual_checks": {
+    "native_preparation": {
+      "invocation": {
+        "argv": [
+          "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+          "-B",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+          "--run-dir",
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run"
+        ],
+        "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso",
+        "started_at": "2026-10-11T04:39:36.540Z",
+        "finished_at": "2026-10-11T04:39:38.832Z",
+        "returncode": 0,
+        "invocations": 1
+      },
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/qualification.json",
+      "sha256": "5ea0533a5383478014164b04886ff85b29fd576df1c837dfe92e7999f4c50800",
+      "commands": [
+        {
+          "case": "source-head",
+          "returncode": 0
+        },
+        {
+          "case": "source-tree",
+          "returncode": 0
+        },
+        {
+          "case": "source-clean",
+          "returncode": 0
+        },
+        {
+          "case": "native-link",
+          "returncode": 0
+        },
+        {
+          "case": "native-manifest",
+          "returncode": 0
+        },
+        {
+          "case": "default-before",
+          "returncode": 0
+        },
+        {
+          "case": "fresh-version",
+          "returncode": 0
+        },
+        {
+          "case": "default-after",
+          "returncode": 0
+        }
+      ],
+      "exclusive_existing_errno": 17,
+      "exclusive_new_returncode": 0,
+      "default_environment_before_after_equal": true,
+      "promotion_attempted": false,
+      "promoted": false,
+      "destination_observed": {
+        "exists": false,
+        "symlink": false,
+        "namespace": null
+      },
+      "census": {
+        "recorded_at": "2026-10-11T04:39:38.460851+00:00",
+        "processes": [
+          {
+            "pid": 56524,
+            "ppid": 21017,
+            "executable": "mise",
+            "known_task": "mcp:graphify"
+          },
+          {
+            "pid": 56526,
+            "ppid": 21017,
+            "executable": "mise",
+            "known_task": "mcp:cbm"
+          },
+          {
+            "pid": 56528,
+            "ppid": 21017,
+            "executable": "mise",
+            "known_task": "mcp:lab-results"
+          }
+        ],
+        "blockers": []
+      }
+    },
+    "scratch_guard_controls": {
+      "result": "PASS",
+      "helper_sha256": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+      "method": "AST-extracted current protected(), backup-copy/check block and final-save block executed only with private scratch paths and isolated callbacks; main/apply never invoked",
+      "cases": [
+        {
+          "case": "target-absent-before-promotion",
+          "result": "PASS"
+        },
+        {
+          "case": "unexpected-target-during-preparation",
+          "result": "PASS: assertion rejected the private fixture"
+        },
+        {
+          "case": "dangling-target-during-preparation",
+          "result": "PASS: assertion rejected the private fixture"
+        },
+        {
+          "case": "exact-promoted-target",
+          "result": "PASS"
+        },
+        {
+          "case": "changed-promoted-target",
+          "result": "PASS: assertion rejected the private fixture"
+        },
+        {
+          "case": "matching-backup-preimage",
+          "result": "PASS"
+        },
+        {
+          "case": "changed-live-file-after-copy",
+          "result": "PASS: mismatched backup rejected"
+        },
+        {
+          "case": "observation-failure-still-saves",
+          "result": "PASS"
+        },
+        {
+          "case": "observation-does-not-mask-protection-error",
+          "result": "PASS"
+        }
+      ],
+      "global_paths_mutated": []
+    },
+    "static_checks": [
+      {
+        "case": "tasks-validate",
+        "argv": [
+          "./dev/mise",
+          "tasks",
+          "validate"
+        ],
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "started_at": "2026-10-11T04:39:56.144174+00:00",
+        "returncode": 0,
+        "finished_at": "2026-10-11T04:39:56.385528+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/tasks-validate.stdout",
+            "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/tasks-validate.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "acceptance-baseline",
+        "argv": [
+          "./dev/mise",
+          "run",
+          "check:acceptance-baseline"
+        ],
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "started_at": "2026-10-11T04:39:56.386239+00:00",
+        "returncode": 0,
+        "finished_at": "2026-10-11T04:39:57.301909+00:00",
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/acceptance-baseline.stdout",
+            "sha256": "5ded775a1301bc272c1f1eaa78cc62683fbb8c2bc0b3f05ab2ff97bf9ac50136"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/acceptance-baseline.stderr",
+            "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+          }
+        ]
+      }
+    ],
+    "baseline": {
+      "baseline": 19,
+      "json": 254,
+      "python": 10,
+      "shell": 6,
+      "toml": 14
+    },
+    "protected_state": {
+      "global_files_and_new_matching_backups": 9,
+      "packages": 8,
+      "glib_files": 2,
+      "global_install_entries": 2196,
+      "shim_entries": 835,
+      "wrapper_entries": 0,
+      "protected_file_hashes": 20
+    }
+  },
+  "protected_state_unchanged": true,
+  "global_destination_absent": true,
+  "parent_evidence": {
+    "initial_logs_verified": 28,
+    "repaired_logs_verified": 16,
+    "initial_and_repaired_backup_hashes_verified": 27,
+    "source_and_binary_verified": true
+  },
+  "limits": [
+    "No --apply or global namespace promotion was performed",
+    "Apply census/admission/rename sequence and process timeout path were inspected statically; the helper must rerun fresh guards for operation 11d",
+    "Nine specific guard controls used AST-extracted code and private scratch fixtures, not a full apply failure injection",
+    "No binary bootstrap/download, network/provider research, global link/shim/profile edits, dependency build, service, model session or OCI acceptance"
+  ],
+  "receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/acceptance-baseline.stdout",
+      "sha256": "5ded775a1301bc272c1f1eaa78cc62683fbb8c2bc0b3f05ab2ff97bf9ac50136"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/findings-before-repair.json",
+      "sha256": "8ec2752a2eaa90f57372fc6813e9c511001190e13812662d049b2dae840eee79"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/helper-before-repair.py.source",
+      "sha256": "5279103ab3dd1b4f088c6febf00c298fb113ca9fbf53ef2c7c19852fecf17c8d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/invocation.json",
+      "sha256": "d6e25c9d42465ccec3df988801de06bc71353e3118b5a4b770a33fc4762b75ad"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/invocation.stdout",
+      "sha256": "e84f33b4e6a424624e83a4b800393f17451720aee79c3c3a1c3807ae9e5e016b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/parent-repaired-evidence.json",
+      "sha256": "30afa0bb74bae8b2c72cf6a17b19e95e53233fd2eaf581995e136f6de578740a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/post-checks.json",
+      "sha256": "004d1288d0c702a8277b8b194dd90addd2923e56bc58043603f35e16e4f4e1e3"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/pre-repair-parent-evidence.json",
+      "sha256": "a8be4f17db22bebef39c441d68414ea163e30c88e67383f35e747b0336be6fc7"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/pre-state.json",
+      "sha256": "ef807385e76906b35fcb5f783c24504b5957234874c116343cf366561ef52b4f"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/rename-source-review.json",
+      "sha256": "c298265ca555e5bb72cd2e34014a5a5127c250b361249aa154c0b32f5de7273a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/repair-guard-controls.json",
+      "sha256": "45166785b9882cf3f98a3f1d02a3c3c96ce5cdb6dbf0b40fe649622f09b4c522"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/fresh-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/fresh-version.stdout",
+      "sha256": "355a6ff9edf32011b688404f6fe22343d586f32329eed525262285d42660b0d0"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/native-link.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/native-link.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/native-manifest.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/native-manifest.stdout",
+      "sha256": "588f9d60a862b123239f7762366c76d23e9b5e364bc9f9a8b44d73b246e2b2a8"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/qualification.json",
+      "sha256": "5ea0533a5383478014164b04886ff85b29fd576df1c837dfe92e7999f4c50800"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-clean.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-clean.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-head.stdout",
+      "sha256": "4aafa6331cae9e9c7b7c2c83f548d76e9b5e0ef6c4f781ea44208e88a3128d2d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/run/source-tree.stdout",
+      "sha256": "93a42215001c50dbefeefab30de07cb3aae02d41a83d4cf5941d41211a74a57d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/static-checks.json",
+      "sha256": "415949b16687c397d9d81ed90dc037e7bddecb4c6977cb5daaa167e03f3f07b3"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-registration-review-kisr4cso/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    }
+  ]
+}

@@ -78,3 +78,26 @@ The [independent review](../evidence/vcpkg-bootstrap/bootstrap-review.json) pass
 fresh ARM64 version and triplet-help commands exited 0, all 104 triplet names
 matched the pinned tree, and static/19-file baseline checks passed. The bootstrap
 was not rerun. No dependency build or global registration ran.
+
+## Scoped registration preparation
+
+Task 11c adds the project manifest with the separately pinned registry baseline
+and `fmt` dependency. The [registration helper](../dev/toolchains/vcpkg_register.py)
+prepares native mise registration entirely in a new private root, verifies the
+source/binary and native manifest formatting, and checks exclusive promotion.
+Its proposed shared write is only the absent `installs/asdf-vcpkg` namespace;
+it does not call global `mise link` or modify default profiles or shims.
+The existing compiler environment and all protected shared preimages are checked.
+
+Without `--apply`, concurrent mise processes are recorded while every write stays
+private. Application requires a passing independent preparation review, matching
+helper/proposal hashes, a fresh writer census and immediate preimage checks.
+Native macOS `renamex_np` uses `RENAME_EXCL | RENAME_NOFOLLOW_ANY` to refuse an
+existing destination. A fresh process then selects the explicit
+`asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc` tool without changing defaults.
+Dependency builds and compiler triplets remain separate qualification units.
+The reviewed preparation is task 11c; the shared write is the separate task 11d
+operation after the concurrent writer census clears.
+The [independent preparation review](../evidence/vcpkg-registration/preparation-review.json)
+passed: eight native commands, nine focused guard controls and the 19-file
+acceptance baseline. Shared promotion has not yet run.
