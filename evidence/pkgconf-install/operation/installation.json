@@ -1,0 +1,1135 @@
+{
+  "state": "PASS: pkgconf installed and native lookup qualified",
+  "helper_sha256": "8b8e8a3c1d3e7acd0face144ab47c8ac9ef4421c28a2fb53544b5433e603a685",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T20:19:21.423954+00:00",
+      "pid": 14689,
+      "returncode": 0,
+      "elapsed_seconds": 0.013475666986778378,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/project-head.stdout",
+          "sha256": "3c9ff52dcb62d033578bc0ccb32960603df79f53bc782a7f62bf4d640e59c793"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T20:19:21.438477+00:00",
+      "pid": 14691,
+      "returncode": 0,
+      "elapsed_seconds": 0.09414400008972734,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/default-before.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T20:19:21.973435+00:00",
+      "pid": 14722,
+      "returncode": 0,
+      "elapsed_seconds": 0.06002533307764679,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/capacity-processes.stdout",
+          "sha256": "73b1e1fa737dcb80f567b4b6730c63b1c55039563a63edc270425b5983dd84db"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-11T20:19:22.037717+00:00",
+      "pid": 14723,
+      "returncode": 0,
+      "elapsed_seconds": 0.03025900002103299,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-11T20:19:22.068797+00:00",
+      "pid": 14724,
+      "returncode": 0,
+      "elapsed_seconds": 0.034389124950394034,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-11T20:19:22.104205+00:00",
+      "pid": 14725,
+      "returncode": 0,
+      "elapsed_seconds": 1.043769915937446,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-stats.stdout",
+          "sha256": "a24b0dc45024407435d46f9900c385286d9bafbd534034be35e0131ec20aa9b5"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/cwd",
+        "version"
+      ],
+      "started_at": "2026-10-11T20:19:23.242759+00:00",
+      "pid": 14741,
+      "returncode": 0,
+      "elapsed_seconds": 0.24551649997010827,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/version.stdout",
+          "sha256": "aafc9ea40926d1caedd237951384706dbdbe597b3904890d65c79846459bea0e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "captured-plan",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "started_at": "2026-10-11T20:19:23.489182+00:00",
+      "pid": 14742,
+      "returncode": 0,
+      "elapsed_seconds": 0.028482207912020385,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/captured-plan.stdout",
+          "sha256": "331ed219aa21e4da4ae02d26ac3b5850eaa61a7b06a1a63c2d032fbc3115495d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/captured-plan.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-apply",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew"
+      ],
+      "started_at": "2026-10-11T20:19:26.044962+00:00",
+      "pid": 14753,
+      "returncode": 0,
+      "elapsed_seconds": 0.13884458306711167,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/native-apply.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/native-apply.stderr",
+          "sha256": "ac78d5b293aa781dc5a8a9851f866b7ca31e9817d78deb23395712a4b199ce66"
+        }
+      ]
+    },
+    {
+      "case": "bomtool-arch",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/bomtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.238957+00:00",
+      "pid": 14764,
+      "returncode": 0,
+      "elapsed_seconds": 0.08923504210542887,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-arch.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-arch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "bomtool-signature",
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/bomtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.329236+00:00",
+      "pid": 14766,
+      "returncode": 0,
+      "elapsed_seconds": 0.012738707941025496,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-signature.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-signature.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "bomtool-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/bomtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.342823+00:00",
+      "pid": 14767,
+      "returncode": 0,
+      "elapsed_seconds": 0.026778917061164975,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-libraries.stdout",
+          "sha256": "fe54f8d3aa280e69d0727d34c08cee8a34fc4ddced0e3f1b178682b025f366a0"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/bomtool-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pccritic-arch",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pccritic"
+      ],
+      "started_at": "2026-10-11T20:19:26.370934+00:00",
+      "pid": 14772,
+      "returncode": 0,
+      "elapsed_seconds": 0.014932167017832398,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-arch.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-arch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pccritic-signature",
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pccritic"
+      ],
+      "started_at": "2026-10-11T20:19:26.386855+00:00",
+      "pid": 14774,
+      "returncode": 0,
+      "elapsed_seconds": 0.011104166973382235,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-signature.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-signature.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pccritic-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pccritic"
+      ],
+      "started_at": "2026-10-11T20:19:26.398823+00:00",
+      "pid": 14775,
+      "returncode": 0,
+      "elapsed_seconds": 0.013940125005319715,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-libraries.stdout",
+          "sha256": "84bc57551f9bc3945934a341294cc3be3b5134563b500720ccbd7bbe6bb939a1"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pccritic-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pkgconf-arch",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf"
+      ],
+      "started_at": "2026-10-11T20:19:26.413805+00:00",
+      "pid": 14777,
+      "returncode": 0,
+      "elapsed_seconds": 0.012523333076387644,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-arch.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-arch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pkgconf-signature",
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf"
+      ],
+      "started_at": "2026-10-11T20:19:26.427555+00:00",
+      "pid": 14779,
+      "returncode": 0,
+      "elapsed_seconds": 0.010359666077420115,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-signature.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-signature.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pkgconf-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf"
+      ],
+      "started_at": "2026-10-11T20:19:26.438819+00:00",
+      "pid": 14781,
+      "returncode": 0,
+      "elapsed_seconds": 0.012647249968722463,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-libraries.stdout",
+          "sha256": "e8f71153519f8a41914303a963e812ab52c1654b718b365906a6f32dd6b4f7c7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkgconf-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "spdxtool-arch",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/spdxtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.452596+00:00",
+      "pid": 14783,
+      "returncode": 0,
+      "elapsed_seconds": 0.013082124991342425,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-arch.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-arch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "spdxtool-signature",
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/spdxtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.466808+00:00",
+      "pid": 14785,
+      "returncode": 0,
+      "elapsed_seconds": 0.010331832920201123,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-signature.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-signature.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "spdxtool-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/spdxtool"
+      ],
+      "started_at": "2026-10-11T20:19:26.478227+00:00",
+      "pid": 14787,
+      "returncode": 0,
+      "elapsed_seconds": 0.012052000034600496,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-libraries.stdout",
+          "sha256": "404657c85eeeb1ee8ddd9cf683b4909dd815737886f5df4aec2c0c510600e125"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/spdxtool-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libpkgconf.8.dylib-arch",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib"
+      ],
+      "started_at": "2026-10-11T20:19:26.491476+00:00",
+      "pid": 14789,
+      "returncode": 0,
+      "elapsed_seconds": 0.012751707923598588,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-arch.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-arch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libpkgconf.8.dylib-signature",
+      "argv": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib"
+      ],
+      "started_at": "2026-10-11T20:19:26.505447+00:00",
+      "pid": 14790,
+      "returncode": 0,
+      "elapsed_seconds": 0.011128374957479537,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-signature.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-signature.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libpkgconf.8.dylib-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib"
+      ],
+      "started_at": "2026-10-11T20:19:26.517499+00:00",
+      "pid": 14791,
+      "returncode": 0,
+      "elapsed_seconds": 0.012124915956519544,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-libraries.stdout",
+          "sha256": "b684315e849dfa00d18aa92826acfd9535a752220b308401e936257dda75c25a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/libpkgconf.8.dylib-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "pkg-config-version",
+      "argv": [
+        "/opt/homebrew/bin/pkg-config",
+        "--version"
+      ],
+      "started_at": "2026-10-11T20:19:26.530594+00:00",
+      "pid": 14793,
+      "returncode": 0,
+      "elapsed_seconds": 0.1818595000077039,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkg-config-version.stdout",
+          "sha256": "2a612f3f9494fa52305039d3474f9448e4eadcdbca3517a767df080009a393e9"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/pkg-config-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "fixture-version",
+      "argv": [
+        "/opt/homebrew/bin/pkg-config",
+        "--modversion",
+        "witness"
+      ],
+      "started_at": "2026-10-11T20:19:26.713753+00:00",
+      "pid": 14804,
+      "returncode": 0,
+      "elapsed_seconds": 0.0040764580480754375,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/fixture-version.stdout",
+          "sha256": "d82f34ae9aa41bc4a0cb529a1ac0898fed09d6b479fb1cc44cb66c34f15ee84d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/fixture-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "fixture-libs",
+      "argv": [
+        "/opt/homebrew/bin/pkg-config",
+        "--libs",
+        "witness"
+      ],
+      "started_at": "2026-10-11T20:19:26.718674+00:00",
+      "pid": 14807,
+      "returncode": 0,
+      "elapsed_seconds": 0.003403040929697454,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/fixture-libs.stdout",
+          "sha256": "a4c074a9621b49f55403bf30d64ac1acdaa9dc90cd20386fd171d9dbcc71fb51"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/fixture-libs.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T20:19:26.722992+00:00",
+      "pid": 14808,
+      "returncode": 0,
+      "elapsed_seconds": 0.08397654199507087,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/default-after.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-install-20261011T201917Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/formula/pkgconf.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/pkgconf.json",
+      "status": 200
+    }
+  ],
+  "admission_sha256": "5301d9f6fda3c22bb7f065a881252a8147fbc9111a99705d22a2f32d12f52439",
+  "writer_census_before": {
+    "at": "2026-10-11T20:19:21.969101+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "capacity": {
+    "active": [],
+    "load": [
+      15.15234375,
+      12.5595703125,
+      9.1474609375
+    ],
+    "cpus": 12,
+    "free_bytes": 52773535744,
+    "total_cpu_percent": 246.1,
+    "container_cpu_percent": 3.63
+  },
+  "writer_census_immediate": {
+    "at": "2026-10-11T20:19:26.044885+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "keg_inventory": {
+    ".brew": {
+      "path": ".brew",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    ".brew/pkgconf.rb": {
+      "path": ".brew/pkgconf.rb",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "efe802d06f23356f99a7e3be6459d2c0e5e00287c2e5e59a3b998ade46e14514",
+      "bytes": 4757
+    },
+    "AUTHORS": {
+      "path": "AUTHORS",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "8b3dbc024558bb120b3db6b6d37bf23e38603165a810013ca3539bc7fbdadcd9",
+      "bytes": 3607
+    },
+    "COPYING": {
+      "path": "COPYING",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "055a265b839672a62f590869b0a1f8e4f5147e8f073c9ba77b17b8d7ad653966",
+      "bytes": 468
+    },
+    "INSTALL_RECEIPT.json": {
+      "path": "INSTALL_RECEIPT.json",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "40421a1fbf1dcfcc0eb1c899a78c0ec01ca9936cb268a072656a4f6531871b87",
+      "bytes": 633
+    },
+    "NEWS": {
+      "path": "NEWS",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "bfe51151c4b62e3a09ac8c31abf6f1a2f2fff2dd707a7abfa3be62995ba37fee",
+      "bytes": 50782
+    },
+    "README.md": {
+      "path": "README.md",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "9feaeee0de7e1256b86dfff1717ee9f011b3b7e216a35cf08c73a52f2f45f998",
+      "bytes": 6841
+    },
+    "bin": {
+      "path": "bin",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "bin/bomtool": {
+      "path": "bin/bomtool",
+      "mode": "0o555",
+      "kind": "file",
+      "sha256": "e8fb145649fdb23ff8ab5aa03a284ca081ccf42ec0ea202bae78ac4e37f510d8",
+      "bytes": 53728
+    },
+    "bin/pccritic": {
+      "path": "bin/pccritic",
+      "mode": "0o555",
+      "kind": "file",
+      "sha256": "370b1b24135f5ce48c563cbd3241096638cd3a771af9dee35d5e1bbaf7566057",
+      "bytes": 70640
+    },
+    "bin/pkg-config": {
+      "path": "bin/pkg-config",
+      "mode": "0o700",
+      "kind": "symlink",
+      "target": "pkgconf"
+    },
+    "bin/pkgconf": {
+      "path": "bin/pkgconf",
+      "mode": "0o555",
+      "kind": "file",
+      "sha256": "af9c1619839586af4b34bfa7131b678eb535075dfb88079b103743ba8c26d246",
+      "bytes": 74320
+    },
+    "bin/spdxtool": {
+      "path": "bin/spdxtool",
+      "mode": "0o555",
+      "kind": "file",
+      "sha256": "cf726a0da6bb29f4e1ef771a0d915aa1ec29d1bb9d1cb15903c9dbdb5f3d5d5b",
+      "bytes": 75168
+    },
+    "include": {
+      "path": "include",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "include/pkgconf": {
+      "path": "include/pkgconf",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "include/pkgconf/libpkgconf": {
+      "path": "include/pkgconf/libpkgconf",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "include/pkgconf/libpkgconf/bsdstubs.h": {
+      "path": "include/pkgconf/libpkgconf/bsdstubs.h",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "5c8a44f022606484f4c5992cafc81ad84e3fdb83a3a65e0182ebc11ef8e1ba20",
+      "bytes": 1305
+    },
+    "include/pkgconf/libpkgconf/iter.h": {
+      "path": "include/pkgconf/libpkgconf/iter.h",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "f68a51c3fa7ccb2de92d5cfc06be7552a7236471d9662c72b891e27efd2c19a9",
+      "bytes": 2422
+    },
+    "include/pkgconf/libpkgconf/libpkgconf-api.h": {
+      "path": "include/pkgconf/libpkgconf/libpkgconf-api.h",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "6f69f98afaec48407a6964a96791e2dd7728d252f7d50f4a53abdbfb86bc7f17",
+      "bytes": 758
+    },
+    "include/pkgconf/libpkgconf/libpkgconf.h": {
+      "path": "include/pkgconf/libpkgconf/libpkgconf.h",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "01e8859542d333368fdd289438752d4af790313cb84c865ac8dd2ca5b5ca08a9",
+      "bytes": 37574
+    },
+    "include/pkgconf/libpkgconf/stdinc.h": {
+      "path": "include/pkgconf/libpkgconf/stdinc.h",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "4bc8376c4ae0a67ac788835fbdc8bc3a7121192337bdcdbb05ad4ccb015dbbc5",
+      "bytes": 2851
+    },
+    "lib": {
+      "path": "lib",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "lib/libpkgconf.8.dylib": {
+      "path": "lib/libpkgconf.8.dylib",
+      "mode": "0o444",
+      "kind": "file",
+      "sha256": "e29c2e02eb488dc7004e3bd3f0f8b777266314549e9121b810cf306edb2a24a1",
+      "bytes": 116640
+    },
+    "lib/libpkgconf.a": {
+      "path": "lib/libpkgconf.a",
+      "mode": "0o444",
+      "kind": "file",
+      "sha256": "1ecfdd49ac426a873bf49b31cdb331a4125305231f0c557f6f5849862920c8e9",
+      "bytes": 136976
+    },
+    "lib/libpkgconf.dylib": {
+      "path": "lib/libpkgconf.dylib",
+      "mode": "0o700",
+      "kind": "symlink",
+      "target": "libpkgconf.8.dylib"
+    },
+    "lib/pkgconfig": {
+      "path": "lib/pkgconfig",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "lib/pkgconfig/libpkgconf.pc": {
+      "path": "lib/pkgconfig/libpkgconf.pc",
+      "mode": "0o444",
+      "kind": "file",
+      "sha256": "0b215b48ce08cf9e60a5e68cff02db17e31a89fa897f0a5fa5073a6332738787",
+      "bytes": 565
+    },
+    "sbom.spdx.json": {
+      "path": "sbom.spdx.json",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "a47e37e200543ed372132b75338a3e92d72ed3e22fab483efed32fea6b640c5d",
+      "bytes": 1665
+    },
+    "share": {
+      "path": "share",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/aclocal": {
+      "path": "share/aclocal",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/aclocal/pkg.m4": {
+      "path": "share/aclocal/pkg.m4",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "f649256076fa72946d9a844636393128e1c31fd3591389b97aa55705c4df5766",
+      "bytes": 12678
+    },
+    "share/doc": {
+      "path": "share/doc",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/doc/pkgconf": {
+      "path": "share/doc/pkgconf",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/doc/pkgconf/AUTHORS": {
+      "path": "share/doc/pkgconf/AUTHORS",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "8b3dbc024558bb120b3db6b6d37bf23e38603165a810013ca3539bc7fbdadcd9",
+      "bytes": 3607
+    },
+    "share/doc/pkgconf/CONTRIBUTING.md": {
+      "path": "share/doc/pkgconf/CONTRIBUTING.md",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "37305299406a43a87be1d62a9d972dcfcb579b19edba16e85ba7683c21deee73",
+      "bytes": 3468
+    },
+    "share/doc/pkgconf/COPYING": {
+      "path": "share/doc/pkgconf/COPYING",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "055a265b839672a62f590869b0a1f8e4f5147e8f073c9ba77b17b8d7ad653966",
+      "bytes": 468
+    },
+    "share/doc/pkgconf/DCO": {
+      "path": "share/doc/pkgconf/DCO",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "f7ac75b443f4ca16b503241344b41aeff9503b0c30bedc2b119551d83cb0fa90",
+      "bytes": 1366
+    },
+    "share/doc/pkgconf/README.md": {
+      "path": "share/doc/pkgconf/README.md",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "9feaeee0de7e1256b86dfff1717ee9f011b3b7e216a35cf08c73a52f2f45f998",
+      "bytes": 6841
+    },
+    "share/man": {
+      "path": "share/man",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/man/man1": {
+      "path": "share/man/man1",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/man/man1/bomtool.1": {
+      "path": "share/man/man1/bomtool.1",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "7b28e732dc56be868c8bca4943daa33af08427a299bd2eedce715a8853d0c3d0",
+      "bytes": 3632
+    },
+    "share/man/man1/pccritic.1": {
+      "path": "share/man/man1/pccritic.1",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "232d71f1a2c3aa12e13453c59c5b331f3ac60ae2260ecd4a231c176f91b4dfa6",
+      "bytes": 3568
+    },
+    "share/man/man1/pkg-config.1": {
+      "path": "share/man/man1/pkg-config.1",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "a433d0d300b68099b707175638eaec8a49b0ea33230669ff703df163011dc544",
+      "bytes": 22961
+    },
+    "share/man/man1/pkgconf.1": {
+      "path": "share/man/man1/pkgconf.1",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "a433d0d300b68099b707175638eaec8a49b0ea33230669ff703df163011dc544",
+      "bytes": 22961
+    },
+    "share/man/man1/spdxtool.1": {
+      "path": "share/man/man1/spdxtool.1",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "3b55d5465b87945838d5998b576a4164eda95abf0696e6343f3a1730c8c34ba4",
+      "bytes": 4127
+    },
+    "share/man/man5": {
+      "path": "share/man/man5",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/man/man5/pc.5": {
+      "path": "share/man/man5/pc.5",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "976bd258f80c2d8d0436098a1d8f4dff19904f2bd8b5fdd94fc3ea4e2c220ba5",
+      "bytes": 10709
+    },
+    "share/man/man5/pkgconf-personality.5": {
+      "path": "share/man/man5/pkgconf-personality.5",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "b772f57e966c98c1a349aa9e768f0e4a1a78e1bef3aa0f1b0e4eadb56efcc962",
+      "bytes": 3417
+    },
+    "share/man/man7": {
+      "path": "share/man/man7",
+      "mode": "0o755",
+      "kind": "directory"
+    },
+    "share/man/man7/pkg.m4.7": {
+      "path": "share/man/man7/pkg.m4.7",
+      "mode": "0o644",
+      "kind": "file",
+      "sha256": "6324cc3adf3c50b7f6ca91c1da81603a35f85442f0df19236977efeabf108e58",
+      "bytes": 4005
+    }
+  },
+  "new_parents": {
+    "/opt/homebrew/include/pkgconf/libpkgconf": {
+      "kind": "directory",
+      "uid": 501,
+      "mode": "0o700"
+    },
+    "/opt/homebrew/include/pkgconf": {
+      "kind": "directory",
+      "uid": 501,
+      "mode": "0o700"
+    },
+    "/opt/homebrew/share/doc/pkgconf": {
+      "kind": "directory",
+      "uid": 501,
+      "mode": "0o700"
+    },
+    "/opt/homebrew/Cellar/pkgconf": {
+      "kind": "directory",
+      "uid": 501,
+      "mode": "0o700"
+    }
+  },
+  "macho_postimages": {
+    "bin/bomtool": {
+      "linkedit_vmsize": 16384,
+      "linkedit_filesize": 4576,
+      "signature_size": 400,
+      "file_bytes": 53728
+    },
+    "bin/pccritic": {
+      "linkedit_vmsize": 16384,
+      "linkedit_filesize": 5104,
+      "signature_size": 432,
+      "file_bytes": 70640
+    },
+    "bin/pkgconf": {
+      "linkedit_vmsize": 16384,
+      "linkedit_filesize": 8784,
+      "signature_size": 432,
+      "file_bytes": 74320
+    },
+    "bin/spdxtool": {
+      "linkedit_vmsize": 16384,
+      "linkedit_filesize": 9632,
+      "signature_size": 432,
+      "file_bytes": 75168
+    },
+    "lib/libpkgconf.8.dylib": {
+      "linkedit_vmsize": 32768,
+      "linkedit_filesize": 18336,
+      "signature_size": 496,
+      "file_bytes": 116640
+    }
+  },
+  "lease_released": true,
+  "writer_census_after": {
+    "at": "2026-10-11T20:19:27.248062+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "loopback_server_stopped": true,
+  "protected_state_unchanged": true
+}

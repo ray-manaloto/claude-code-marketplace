@@ -115,3 +115,13 @@ controls with no findings. Installation remains a separate phase.
 Native fnox/Python acquired official Homebrew and pinned GitHub sources; native
 mise ran only version/help/dry-run commands. Exa, Firecrawl, Last30Days and
 Context7 were not rerun, and the inherited strict-five gaps remain incomplete.
+
+Task 12c2b prepares the [guarded pkgconf installation](../dev/toolchains/pkgconf_install.py).
+It repeats the captured plan and immediate ownership/preimage checks under the
+shared lease, then verifies the installed keg, public links and native lookup.
+The existing compiler, SDK, mise and default-environment guards remain active.
+Independent preparation review and fresh capacity passed. The native operation
+returned 0 with 28 successful commands, exact keg/link postimages, five valid
+ARM64 signatures/runtime dependencies, native package lookup and preserved
+defaults. Independent artifact review passed with no findings; no dependency
+build ran.

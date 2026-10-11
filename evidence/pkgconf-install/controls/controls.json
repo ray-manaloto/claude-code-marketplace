@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "scope": "Seven isolated prefix guards; no native/shared reads or writes",
+  "helper_sha256": "d77a90200c2c960f2539dd3f72d78bd0e7f35f9e02bb49b3721ea6073fcc66f2",
+  "cases": [
+    {
+      "case": "before_clean",
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "case": "before_collision",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "old_neighbor_change",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_valid",
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "case": "after_extra_sibling",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_wrong_link",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_old_directory_mode_change",
+      "accepted": false,
+      "expected": false
+    }
+  ]
+}

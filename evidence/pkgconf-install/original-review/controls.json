@@ -1,0 +1,92 @@
+{
+  "result": "COMPLETE_WITH_REPRODUCED_FINDING",
+  "helper_sha256": "abb3f000a1e13b9f4377fb7882d242cbf56255d91bb527232f134fbe01b0ef84",
+  "validation_calls": 12,
+  "cases": [
+    {
+      "case": "macho_valid_bound_projection",
+      "required_acceptance": true,
+      "actual_acceptance": true,
+      "matches_required": true,
+      "error": null
+    },
+    {
+      "case": "macho_unmasked_payload_change",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "macho_signature_dataoff_change",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "macho_signature_truncated",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "macho_linkedit_range_change",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "macho_vmsize_too_small",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "keg_valid",
+      "required_acceptance": true,
+      "actual_acceptance": true,
+      "matches_required": true,
+      "error": null
+    },
+    {
+      "case": "keg_root_mode_drift",
+      "required_acceptance": false,
+      "actual_acceptance": true,
+      "matches_required": false,
+      "error": null
+    },
+    {
+      "case": "keg_unchanged_digest_drift",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: kept.txt"
+    },
+    {
+      "case": "keg_wrong_text_postimage",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: relocated.pc"
+    },
+    {
+      "case": "keg_missing_receipt",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    },
+    {
+      "case": "keg_extra_receipt_field",
+      "required_acceptance": false,
+      "actual_acceptance": false,
+      "matches_required": true,
+      "error": "AssertionError: "
+    }
+  ],
+  "limits": "AST-only two validators. Six in-memory Mach-O inputs; six isolated synthetic keg fixtures, inventory rows from explicit paths. No native execution, candidate imports/main/guard, shared inventories or recursive fixture scans."
+}

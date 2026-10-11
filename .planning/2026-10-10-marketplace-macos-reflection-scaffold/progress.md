@@ -1183,3 +1183,20 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   scratch controls and the filesystem audit exited 0. The raw secret-scan rc1
   remains recorded with its verified public-source digest false positive.
   Preparation is complete; installation and native dependency builds are pending.
+- Task 12c2a is committed at `318c671f5c6a781b29af399d7f6005fe8a917bb5`.
+  The post-commit baseline passed with all 19 original files and a clean tree.
+  Task 12c2b now prepares a one-bottle installation with fresh admission, exact
+  prefix checks, native pkg-config lookup and preserved default environment.
+  The relocation postimage contract is still being checked; no installation ran.
+- Exact relocation and lock sources were acquired through native fnox and bound
+  to current Git blobs. The six relocation postimages and unchanged guard scope
+  are resolved; eight final prefix controls passed. Independent installation
+  review now precedes fresh admission and any shared write.
+- Cold review reproduced an unchecked keg-root mode. The helper now validates
+  that mode and delays pkg-config execution until all Mach-O checks pass.
+  The original candidate and finding remain retained; delta review passed.
+- Fresh admission preceded the native installation, which exited 0 with all 28
+  commands successful. Keg/link, signature/runtime and lookup checks passed;
+  defaults/protected state were preserved and the lease released. Artifact
+  review passed all 61 copies, 56 logs, 50 keg entries and 30 links without
+  findings. Task 12c2b is complete; dependency builds remain pending.

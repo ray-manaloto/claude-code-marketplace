@@ -78,6 +78,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c1a | Observed mise update reattestation | Exact metadata changes, preserved compiler guards and existing profile parity | Complete |
 | 12c1b | Private vcpkg qualification retry | Qualified shared state; fresh capacity; copy, confinement and host-tool selection | Complete |
 | 12c2a | pkg-config prerequisite preparation | Exact native profile discovery, provisioning source/ownership contract if required | Complete |
+| 12c2b | Guarded native pkgconf installation | Reviewed write set; fresh capacity; native exit, links, package lookup and preserved defaults | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -206,3 +207,9 @@ private sandbox. Preparation includes one bottle-inventory helper and a private
 captured-metadata dry run with a missing-metadata failure control. Prepare exact
 native mise inputs and preimages for review before installation or global writes.
 Keep fmt package validation enabled; no compiler or dependency build is included.
+
+Task 12c2b prepares one guarded pkgconf installation helper, composition docs
+and these planning files. Review the exact pinned archive, native command and
+postimage allowlist before admission. Installation requires fresh shared capacity,
+canonical lease and immediate prefix/writer checks; preserve all existing guards.
+No compiler/dependency build or global mise configuration change is included.
