@@ -35,7 +35,8 @@ Full Claude/OCI acceptance, MCP connectivity and provider research are unqualifi
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
 Last30Days validation. The minimal GCC native core is now qualified as described
 below. LLVM configuration and global vcpkg registration are qualified; the LLVM
-compiler, dependencies, application matrix and packages remain unqualified.
+reflection compiler and private runtimes are qualified below; dependency,
+application-matrix and package qualification remain pending.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
@@ -206,3 +207,11 @@ the lease is released. Independent installed-artifact review is next.
 Independent installation review passed without findings, including the complete
 prefix, ARM64 metadata, archive tables, patched headers and CMake exports.
 Protected state and original files passed. Compiler/runtime qualification is next.
+
+Installation is committed at `3a55cd040e4cf31da8b1ae82c19b225ce4bb518a`;
+the post-commit baseline passed. Task 07d now prepares a private reflection and
+exception witness using this fork's feature guard, explicit headers and runtimes.
+Parent probes passed, including reflection and exception handling, all three
+private runtime images, and the intended negative control. [Independent runtime review](../evidence/p2996-reflection/reflection-review.json)
+passed with preserved prefix, source/build, protected/default state and all
+original files. Global mise registration is next.

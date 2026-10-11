@@ -730,3 +730,23 @@ compiler/runtime behavior require separate verification.
   ar rejection and successful private ARM64-slice inspection are retained.
   Protected/default state and original files pass; the lease is free and
   operation PIDs are absent. Compiler/runtime qualification is next.
+
+Task 07c2 is committed at `3a55cd040e4cf31da8b1ae82c19b225ce4bb518a`;
+its post-commit baseline passed with a clean worktree. Task 07d prepares a
+fork-specific reflection witness with string, stream and exception handling.
+The new helper selects the existing named environment, reuses the reviewed
+subprocess cleanup, and binds the installed prefix and retained source/build
+inventory. Its scope is sequential private probes under the shared lease, each
+bounded to sixty seconds; source, prefix and global configuration stay fixed.
+Runtime qualification and independent review are pending.
+- Parent qualification passed in thirteen seconds: 22 commands exited 0 and
+  the flag-removal control exited 1 with the intended diagnostic. Reflection
+  compile/link/run and exception handling passed; the loader trace contains all
+  three private C++ runtimes. Full prefix, retained source/build, protected state
+  and default-consumer checks passed. The lease is released; independent review
+  and one private native reproduction are next.
+- Independent review passed with no remaining findings. Its private positive
+  build/run and negative control reproduced the results, with exact runtime
+  origins and unchanged prefix, retained files and protected/default state.
+  The receipt-schema defect was caught and fixed before execution. All 19
+  originals pass; global mise registration remains the next separate phase.

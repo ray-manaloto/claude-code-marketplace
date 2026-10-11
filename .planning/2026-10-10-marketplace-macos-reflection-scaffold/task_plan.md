@@ -55,6 +55,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 07b9 | Native math-adapted LLVM restart | Fresh capacity and lease; final native exit; runtime and artifact review | Complete |
 | 07c1 | Guarded private installation preparation | Reviewed scripts and build bindings; prefix/manifests/aliases; independent guard review | Complete |
 | 07c2 | Native private LLVM installation | Fresh admission; three native exits; complete prefix inventory; independent artifact review | Complete |
+| 07d | Private P2996 reflection and runtime witness | Named environment; exact headers/runtime origins; positive and negative controls; independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
