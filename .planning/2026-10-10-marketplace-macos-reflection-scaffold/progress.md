@@ -683,3 +683,29 @@ Installation, compiler qualification and global registration remain later work.
   Source/protected/default state and all 19 originals pass; the lease is free
   and operation PIDs are absent. Build acceptance is complete; installation and
   compiler/runtime qualification remain separate gates.
+
+Task 07b9 is committed at `628c0921cdbbc9bfdfebb6a5187ed611c9889cb8`;
+the post-commit baseline passed with a clean worktree. Native log whitespace is
+preserved by hash with an explicit disposition; the initially rejected shape
+and premature staged-state baseline check are retained. Task 07c1 prepares
+three serial native installs into the absent private prefix. The static contract
+binds 427 scripts, three manifests and 17 aliases. Prefix-redirection and link
+copy modes are cleared; source/build/protected identities remain strict gates.
+Independent guard review precedes installation; unchecked post-copy subprocesses
+still require installed-artifact verification and later runtime qualification.
+- Parent preparation passed all seven native commands. The exact source state,
+  454 input bindings, retained build inventory and isolated install environment
+  match; the prefix is absent and protected/default state is unchanged.
+  Independent preparation and targeted guard review are next.
+- Resumed at the same committed build and frozen installer hash; the status
+  record now reflects the seven-command parent preparation. Independent review
+  is active. No installation or additional source/build mutation has started.
+- Independent review reproduced one alias-chain defect before installation.
+  The comparison now resolves both sides, preserving exact alias text and
+  containment checks. The original fixture and preparation are retained; the
+  corrected helper passed a new seven-command parent preparation. Review of
+  that frozen helper continues.
+- Independent preparation review passed without remaining findings: seven native
+  commands, all 48 new guard cases, 114 retained records and all original files.
+  The alias repair is verified; earlier cleanup controls match by AST/hash.
+  Installation awaits the preparation commit and fresh scoped admission.

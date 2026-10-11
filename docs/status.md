@@ -190,3 +190,10 @@ runtime sources compiled, both generated headers refreshed, required tool paths
 exist and the lease is released. Independent artifact review passed without
 findings, including the ARM64 tools, runtime inventory, protected/default state
 and all original files. Installation and compiler/runtime qualification follow.
+
+The successful build is committed at `628c0921cdbbc9bfdfebb6a5187ed611c9889cb8`.
+Task 07c1 prepares the private installer against reviewed source/build hashes,
+427 install scripts, three manifests and 17 aliases. Parent preparation passed
+all seven native commands with preserved state. Independent review passed all
+48 new guard cases and verified the repaired alias-chain comparison. Scoped
+preservation and original-file checks passed; the prefix remains absent.

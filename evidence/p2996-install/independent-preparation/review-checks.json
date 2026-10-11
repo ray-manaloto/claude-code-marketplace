@@ -1,0 +1,430 @@
+{
+  "result": "PASS",
+  "helper_sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+  "identity": {
+    "head": "628c0921cdbbc9bfdfebb6a5187ed611c9889cb8",
+    "branch": "codex/marketplace-native-onboarding",
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "status": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n M docs/p2996-toolchain.md\n M docs/status.md\n?? dev/toolchains/p2996_install.py\n?? evidence/p2996-install/\n"
+  },
+  "commands": [
+    {
+      "label": "prior-reviewed-helper",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "show",
+        "c43021fb998d05f7ca0036bd6da8b6ba8964798a:dev/toolchains/p2996_build.py"
+      ],
+      "cwd": "/private/tmp",
+      "returncode": 0,
+      "rc_evidence": "Initial reviewer command asserted this native return code before advancing; later failure occurred at parent-manifest metadata parsing, after all three commands and preservation checks.",
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/prior-reviewed-helper.stdout",
+          "sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+          "bytes": 15312
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/prior-reviewed-helper.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "tasks-validate",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "cwd": "/private/tmp",
+      "returncode": 0,
+      "rc_evidence": "Initial reviewer command asserted this native return code before advancing; later failure occurred at parent-manifest metadata parsing, after all three commands and preservation checks.",
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+          "bytes": 41
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "static-original19",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "cwd": "/private/tmp",
+      "returncode": 0,
+      "rc_evidence": "Initial reviewer command asserted this native return code before advancing; later failure occurred at parent-manifest metadata parsing, after all three commands and preservation checks.",
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/static-original19.stdout",
+          "sha256": "0121e53bcb336c3f9fe57d6508e608ea8a38dbbe586e268e85a20f909fccab71",
+          "bytes": 172
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/static-original19.stderr",
+          "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae",
+          "bytes": 83
+        }
+      ]
+    },
+    {
+      "label": "final-identity",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "--verify",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/final-identity.stdout",
+          "sha256": "30a6bcd7c9deedd57ac55776c0fb64ecc3d83a699a298860e8a271b31dbe6ecf",
+          "bytes": 41
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/final-identity.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "final-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "status",
+        "--porcelain=v1"
+      ],
+      "cwd": "/private/tmp",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/final-status.stdout",
+          "sha256": "30f2f88b6cf83159d2e526f0d974e85adb2f32e9623011aee671d6cc71a1251c",
+          "bytes": 256
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/final-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "static_original19": {
+    "checks": {
+      "baseline": 19,
+      "json": 590,
+      "python": 21,
+      "shell": 6,
+      "toml": 14
+    },
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "status": "pass"
+  },
+  "prior_cleanup_reuse": {
+    "prior_commit": "c43021fb998d05f7ca0036bd6da8b6ba8964798a",
+    "prior_helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+    "current_frozen_helper_sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "run_ast_equal": true,
+    "run_ast_sha256_python315": "11523072396d79f0b88e49a66dd517f831070b39b414d9033a5fe9f4b541ba82",
+    "interrupted_ast_equal": true,
+    "prior_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/preparation-review.json",
+      "sha256": "ae823e2297df60e333e8e9f9d4ae83cb6ac200d6e6cdd5931be337142c5ef2cf"
+    },
+    "cleanup_receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/final-runtime-controls.json",
+      "sha256": "1b484f8cd99f9770621a4ff21d1d66d69135007a28e3620388188756a2eb9603"
+    },
+    "case_count_reused": 8,
+    "prior_controls_rerun": false
+  },
+  "preservation": {
+    "result": "PASS",
+    "direct_comparisons": 1,
+    "retained_record_count": 114,
+    "recorded_mode_fields_checked": 226,
+    "prefix_absent": true,
+    "all_three_manifests_absent": true,
+    "scope": "Reviewed protected files, directory snapshots, managed install listing and 114 scoped build/source/tool records, plus recorded modes and byte counts. Comparison completed once in initial reviewer code before metadata-only parsing error.",
+    "reviewer_code": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/review_checks_initial.py",
+      "sha256": "834375cc6446105dabc648cb0187d56f739dc78cf2272e945cb2859080f81f4e",
+      "completed_through_line": 46
+    }
+  },
+  "parent_copy_records_verified": [
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/default-after.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/default-after.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/default-before.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/default-before.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/install-environment.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/install-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/install-environment.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/install-environment.stdout",
+      "sha256": "4a6256fae49a957a8e55d32c305e9a912f2bf3f27c4ebc54153e1b5875730505",
+      "bytes": 198
+    },
+    {
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/p2996_install.py.source",
+      "sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+      "bytes": 15399
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/qualification.json",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/qualification.json",
+      "sha256": "47c5d5dd84953f49c6352e15b2dc5c734dd51d908549b039626e0adb99929d21",
+      "bytes": 122745
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-diff.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-diff.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-head.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-head.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-status.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-status.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-tree.stderr",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-preparation-20261011T085925Z/source-tree.stdout",
+      "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    }
+  ],
+  "native_log_hashes_verified": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/install-environment.stdout",
+      "sha256": "4a6256fae49a957a8e55d32c305e9a912f2bf3f27c4ebc54153e1b5875730505"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/install-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/install-environment.stdout",
+      "sha256": "4a6256fae49a957a8e55d32c305e9a912f2bf3f27c4ebc54153e1b5875730505"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/install-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/native-preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "proposal_matches_parent": true,
+  "maintained_preimages": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+      "sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+      "bytes": 15399
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+      "sha256": "f018f46f1fa129f3394bdbb5b47931747b03282b2b4e3b100dea315cdff1d9f2",
+      "bytes": 12918
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+      "sha256": "2f37593c3b193ca6b306769cde245bc6c0e67dccad2af1a0ab7d01f7e376e836",
+      "bytes": 15813
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "1e78cd3ba833c315568da99d97d8a76a196874fd2deede127a7e07416673af6c",
+      "bytes": 10470
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "4cbd6b43b88a12b925859da4f47612ac4be3956444e35753f0f641c289126fe2",
+      "bytes": 50899
+    }
+  ],
+  "review_harness_notes": [
+    {
+      "command": "native Python -B -c with exact code saved as review_checks_initial.py",
+      "returncode": 1,
+      "error": "KeyError: source at line 49",
+      "cause": "Corrected parent copy manifest uses source_directory and per-file path instead of the earlier source/copy shape.",
+      "resolution": "Metadata-only continuation verified the actual 16-record schema. Successful native commands and preservation comparison were not repeated."
+    }
+  ],
+  "findings": []
+}

@@ -228,3 +228,16 @@ started, so this run directly observed only the outer `-j 4` limit. Independent
 findings: all operation records, source/postimages, selected ARM64 tools/runtime
 artifacts, free lease, default consumer and original-file checks match. Build
 acceptance is complete. Installation and compiler/runtime acceptance remain.
+
+Task 07c1's [installer](../dev/toolchains/p2996_install.py) defaults to preparation.
+Its [static contract](../evidence/p2996-install/static-contract.json) binds 427
+generated scripts and the three ordered native installs. It clears destination,
+copy-mode and parallel-install environment overrides, requires an absent prefix
+and manifests, and rechecks source/build inputs under the shared lease before
+installation. Success must reconcile every installed leaf with the three
+manifests and 17 explicit aliases. Post-copy tool statuses are not propagated
+upstream, so installed artifact and runtime checks remain separate gates.
+Independent [preparation review](../evidence/p2996-install/preparation-review.json)
+passed one native reproduction, all 48 new guard cases and preservation/static
+checks. The valid chained-alias comparison was repaired before installation;
+the original failure is retained. The private prefix remains absent.

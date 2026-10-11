@@ -53,6 +53,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 07b7 | Guarded math source application | Exact seven-file source state; reverse check; retained build state; independent closure | Complete |
 | 07b8 | Guarded math-adapted restart preparation | Both source adaptations; child build/history bindings; independent drift review | Complete |
 | 07b9 | Native math-adapted LLVM restart | Fresh capacity and lease; final native exit; runtime and artifact review | Complete |
+| 07c1 | Guarded private installation preparation | Reviewed scripts and build bindings; prefix/manifests/aliases; independent guard review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
