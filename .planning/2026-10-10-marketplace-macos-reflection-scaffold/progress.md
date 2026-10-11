@@ -863,3 +863,20 @@ This unit admits source/static review only; native qualification is task 10a2.
   candidate semantics and original acceptance hashes passed. The reviewer's
   private bookkeeping failure and corrected actual exits are retained. Native
   CMake behavior remains unverified and follows as task 10a2.
+
+Task 10a1 is committed at `a99c7900115128108a3a525de687a2a1f137b07c`;
+post-commit baseline passed with a clean worktree. Task 10a2 adds a bounded
+qualification runner with the existing protected-state and shared-lease gates.
+It captures the three Debug probe trees immediately, then checks four native
+build/test/runtime cells and eight fresh isolation failures. Runtime is pending.
+- Pre-run review identified three evidence gaps. The runner now preserves fresh
+  probe binaries privately, rejects ambiguous command forms and requires a
+  distinct compilation-database output for each configuration; delta review is pending.
+- Native configure, three probe checks and all four build/test/runtime cells
+  passed; all eight guard controls rejected their inputs. Fresh probe binaries
+  remain private. Protected state and lease release passed; review is pending.
+- Fixture and handoff documentation now link those native receipts and keep
+  independent review and later library/dependency qualification explicit.
+- Independent reproduction passed all three probes, four native cells and
+  eight controls. Complete preservation, lease release and all 19 acceptance
+  hashes passed without candidate findings; task 10a2 is qualified.

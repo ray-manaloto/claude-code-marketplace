@@ -15,8 +15,11 @@ standard libraries for an ABI probe; C compilation receives no C++ options.
 The source contract records the installed CMake 4.4.4 documentation and source.
 
 [Preparation evidence](../../evidence/p2996-cmake-preparation/source-contract.json)
-binds the proposed files and the qualified reflection witness. Native configure,
-ABI and custom try-compile links, all four build/test cells, runtime loading and
-negative controls remain unverified until the separate bounded qualification.
-No dependency build, global edit, cache launcher or application matrix belongs
-in this fixture. Shared/module runtime qualification follows with the library.
+binds the files and qualified reflection witness. The bounded
+[native qualification](../../evidence/p2996-cmake/operation/qualification.json)
+passed three compiler probes, all four build/test/runtime cells and eight
+isolation controls. Fresh probe artifacts remain private; their hashes and
+immediately captured configure evidence are retained. Independent reproduction
+and [closure review](../../evidence/p2996-cmake/cmake-review.json) passed.
+Shared/module runtime qualification follows with the library; this fixture
+does not qualify dependencies, cache launchers or the application matrix.

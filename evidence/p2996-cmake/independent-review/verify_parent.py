@@ -1,0 +1,82 @@
+from pathlib import Path
+import difflib, json
+from evidence_checks import digest, record, read, check_probe_logs, flags
+
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+D=Path(__file__).resolve().parent
+E=ROOT/'evidence/p2996-cmake'
+Q=E/'operation/qualification.json'
+assert digest(Q)=='02125c09e603b3b780b769aa99eb7c8686645effd0144a59d40ac83a55532bc8'
+q=read(Q);manifest=read(E/'operation-manifest.json');admission=read(E/'admission.json')
+assert manifest['qualification_sha256']==digest(Q)
+files=[]
+for r in manifest['files']:
+    for p in [Path(r['source']),ROOT/r['path']]:
+        assert digest(p)==r['sha256'] and p.stat().st_size==r['bytes'],str(p)
+        p.read_text()
+    files.append(r)
+assert len(files)==179 and len({r['path'] for r in files})==179
+binaries=[]
+for r in manifest['private_binary_artifacts_not_to_copy']:
+    p=Path(r.get('private_copy',r.get('binary',r.get('path',r.get('source')))))
+    assert p.is_relative_to(Path(manifest['source_directory'])) and digest(p)==r['sha256']
+    if 'bytes' in r:assert p.stat().st_size==r['bytes']
+    binaries.append(record(p))
+assert len(binaries)==12
+assert digest(ROOT/'dev/toolchains/p2996_cmake.py')==q['helper_sha256']==admission['helper_sha256']=='b2b0a4b2fdff733dfc149b90773940ba64cc7654e83f34f6dac82119a0086ade'
+for key,name in [('pre_run_review_sha256','pre-run-review.json'),('preflight_sha256','preflight.json')]:assert digest(E/name)==admission[key]
+assert digest(E/'admission.json')==q['admission_sha256']
+initial=read(E/'initial-pre-run-review.json');final=read(E/'pre-run-review.json')
+assert initial['helper_sha256']==digest(E/'initial-helper.py.source')
+assert len(initial['findings'])==3 and not final['findings'] and final['helper_sha256']==q['helper_sha256']
+(D/'pre-run-corrections.diff').write_text(''.join(difflib.unified_diff((E/'initial-helper.py.source').read_text().splitlines(True),(ROOT/'dev/toolchains/p2996_cmake.py').read_text().splitlines(True),fromfile='initial-helper.py',tofile='final-helper.py')))
+contract=ROOT/'evidence/p2996-cmake-preparation/source-contract.json'
+assert digest(contract)==admission['source_contract_sha256']==q['source_contract_sha256']=='fc2f97efb1e768e98ede0ef76f3c1ced54ddfef081fc8532cd531fda4e19fb5c'
+refs=read(contract)['source_references']
+assert len(refs)==23
+for r in refs:assert digest(Path(r['path']))==r['sha256']
+for rel,sha in admission['fixture_inputs'].items():assert digest(ROOT/rel)==sha==q['fixture_inputs'][str(ROOT/rel)]
+for p,sha in admission['tool_hashes'].items():assert digest(Path(p))==sha==q['tool_hashes'][p]
+inv=read(E/'operation/invocation.json');assert inv['returncode']==0 and inv['helper_sha256']==q['helper_sha256'] and inv['admission_sha256']==q['admission_sha256']
+assert q['state'].startswith('PASS') and q['lease_released'] and q['protected_state_unchanged']
+commands={r['case']:r for r in q['commands']}
+assert len(commands)==51
+neg={r['case'] for r in q['negative_controls']}
+assert len(neg)==8
+for r in commands.values():
+    assert r['returncode']==(1 if r['case'] in neg else 0) and r['elapsed_seconds']<60
+    for log in r['logs']:assert digest(Path(log['path']))==log['sha256']
+for r in q['configured_evidence']:assert digest(Path(r['path']))==r['sha256'] and Path(r['path']).stat().st_size==r['bytes']
+prefix=Path(read(ROOT/'evidence/p2996-registration/registration-review.json')['proposal']['prefix'])
+sdk='/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk'
+probes={name:{'directory':p['directory'],'lines':(E/('operation/probe-'+name+'.stdout')).read_text().splitlines()} for name,p in q['probes'].items()}
+executed=check_probe_logs(E/'operation/configured-evidence/CMakeFiles/CMakeConfigureLog.yaml',probes,prefix,sdk)
+for name,p in q['probes'].items():
+    assert executed[name]['commands']==p['generated_commands']
+    arts=p['fresh_artifacts'];assert set(arts)==({'object','executable'} if name=='private_runtime.cpp' else {'object','executable','abi-copy'})
+    for kind,r in arts.items():assert digest(Path(r['private_copy']))==r['sha256'] and Path(r['private_copy']).stat().st_size==r['bytes']
+    if 'abi-copy' in arts:assert arts['abi-copy']['sha256']==arts['executable']['sha256']
+import shlex
+assert len(q['compile_commands'])==4
+outs={}
+for r in q['compile_commands']:
+    a=flags(shlex.split(r['command']),prefix,sdk,True,reflection=True,standard=True)
+    conf=next(a.split('=',1)[1].strip('"') for a in a if a.startswith('-DCMAKE_INTDIR='))
+    assert conf not in outs and Path(r['file']).resolve()==(ROOT/'dev/toolchains/p2996_reflection.cpp').resolve()
+    out=(Path(r['directory'])/a[a.index('-o')+1]).resolve()
+    assert str(out)==q['compile_database_outputs'][conf] and conf in out.parts
+    assert Path(r['output']).resolve()==out
+    outs[conf]=str(out)
+assert set(outs)=={'Debug','Release','RelWithDebInfo','MinSizeRel'} and len(set(outs.values()))==4
+for conf,row in q['configurations'].items():
+    assert digest(Path(row['binary']))==row['sha256']
+    assert (E/('operation/runtime-'+conf+'.stdout')).read_text()=='reflection value=43 exception=ok\n'
+    for lib in ['libc++.dylib','libc++abi.dylib','libunwind.dylib']:
+        assert any(Path(p).resolve()==(prefix/'lib'/lib).resolve() for p in row['loaded_private_images'])
+    assert '100% tests passed' in (E/('operation/test-'+conf+'.stdout')).read_text()
+for r in q['negative_controls']:
+    assert r['diagnostic'] in (E/('operation/'+r['case']+'.stderr')).read_text()
+    assert not (Path(manifest['source_directory'])/r['case']/'build.ninja').exists()
+result={'result':'PASS parent evidence verification; independent native reproduction pending','qualification':record(Q),'manifest':record(E/'operation-manifest.json'),'initial_and_final_reviews':[record(E/n) for n in ['initial-pre-run-review.json','pre-run-review.json']],'all_original_and_copied_text_records_verified':files,'private_binary_records_verified_not_to_copy':binaries,'native_command_count':51,'actual_wrapper_returncode':inv['returncode'],'intended_nonzero_controls':sorted(neg),'source_references_verified':[{'path':r['path'],'sha256':r['sha256']} for r in refs],'actual_probe_commands':executed,'four_compile_database_outputs':outs,'limitations':['Preservation and lease assertions in parent receipt are reviewed claims until own reproduction; all recorded artifact hashes were independently checked.','No parent scratch probe is rerun.']}
+(D/'parent-evidence-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'result':result['result'],'text_records':len(files),'binary_records':len(binaries),'probe_commands_verified':6,'directory':str(D)}))

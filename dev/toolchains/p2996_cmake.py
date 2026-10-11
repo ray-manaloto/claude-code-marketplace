@@ -1,0 +1,310 @@
+"""Qualify the native P2996 CMake fixture, probes and four configurations."""
+
+import argparse
+import ast
+from datetime import datetime, timezone
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shlex
+import shutil
+import signal
+import subprocess
+import time
+
+from gcc_install import ROOT, digest, preserved, read
+from mise_link_probe import isolated, snapshot
+from p2996_configure import LOCK_MODULE, LOCK_SHA
+from p2996_install import prefix_inventory
+from vcpkg_register import install_entries
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    directory = parser.parse_args().run_dir
+    load = lambda p: json.loads(p.read_text())
+    evidence = ROOT / "evidence/p2996-cmake"
+    registered = ROOT / "evidence/p2996-registration"
+    installed = ROOT / "evidence/p2996-install"
+    reflected = ROOT / "evidence/p2996-reflection"
+    review = load(registered / "registration-review.json")
+    registration = load(registered / "operation/qualification.json")
+    runtime = load(reflected / "operation/qualification.json")
+    inventory = load(installed / "independent-installation/post-install-inventory.json")
+    baseline = load(registered / "independent-registration/post-state.json")
+    configuration = load(ROOT / "evidence/p2996-math-resume/operation/qualification.json")["proposal"]["configuration"]
+    prefix, workspace, source = map(Path, (inventory["prefix"], inventory["workspace"], configuration["source"]))
+    forbidden = (ROOT, workspace, source, Path.home() / ".config", Path.home() / ".local/share/mise")
+    if (not directory.is_absolute() or directory != directory.resolve() or "%" in str(directory)
+            or any(directory.is_relative_to(p) for p in forbidden)):
+        parser.error("use a new normalized private directory outside protected project, source, build and mise roots")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    (directory / "cwd").mkdir()
+    witness = Path(__file__).with_name("p2996_reflection.cpp")
+    report = {"state": "running", "commands": [], "helper_sha256": digest(Path(__file__)),
+              "witness_sha256": digest(witness), "registration_review_sha256": digest(registered / "registration-review.json")}
+    normal_argv = read("install-preimages.json")["normal_environment"]["argv"]
+    env = load(Path(normal_argv[-1]).parent / "context.json")["environment"] | {
+        "MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0", "MISE_EXEC_AUTO_INSTALL": "0", "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null", "GIT_TERMINAL_PROMPT": "0"}
+
+    def save():
+        temporary = directory / "qualification.json.tmp"
+        temporary.write_text(json.dumps(report, indent=2) + "\n")
+        temporary.replace(directory / "qualification.json")
+
+    def function(path, name, sha, scope):
+        assert digest(path) == sha
+        node = next(n for n in ast.walk(ast.parse(path.read_text())) if isinstance(n, ast.FunctionDef) and n.name == name)
+        exec(compile(ast.Module(body=[node], type_ignores=[]), str(path), "exec"), scope)
+        return scope[name]
+
+    run_scope = globals() | {"directory": directory, "report": report, "env": env, "save": save}
+    native = function(ROOT / "evidence/p2996-math-resume/operation/p2996_build.py.source", "run",
+                      "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f", run_scope)
+    protected = function(Path(__file__).with_name("p2996_reflection.py"), "protected", runtime["helper_sha256"],
+                         globals() | {"baseline": baseline, "inventory": inventory, "prefix": prefix,
+                                      "evidence": installed, "load": load})
+
+    def run(label, argv, timeout=45, descriptor=None, environment=None, expected=0):
+        run_scope["env"] = env if environment is None else environment
+        try:
+            result = native(label, argv, timeout=timeout, descriptor=descriptor)
+        except AssertionError:
+            assert expected != 0 and report["commands"][-1]["case"] == label
+            assert report["commands"][-1]["returncode"] == expected
+            return (directory / (label + ".stdout")).read_text()
+        assert expected == 0, "negative control unexpectedly passed"
+        return result
+
+    def interrupted(signum, frame):
+        raise KeyboardInterrupt("received signal " + str(signum))
+
+    for signum in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(signum, interrupted)
+    try:
+        admission = load(evidence / "admission.json")
+        assert admission["helper_sha256"] == report["helper_sha256"] and admission["witness_sha256"] == report["witness_sha256"]
+        assert admission["run_directory"] == str(directory) and admission["registration_review_sha256"] == report["registration_review_sha256"]
+        assert report["registration_review_sha256"] == "9b8e92ac14d9304d7055fa00a3348612251e8bd27247db0ead946179bc835437"
+        assert review["result"].startswith("PASS") and not review["findings"] and review["all_protected_state_unchanged"]
+        assert digest(registered / "operation/qualification.json") == review["operation_sha256"]
+        assert registration["state"].startswith("PASS") and registration["promoted"] and registration["protected_state_unchanged"]
+        assert digest(registered / "independent-registration/post-state.json") == review["post_state"]["sha256"]
+        assert digest(installed / "independent-installation/post-install-inventory.json") == review["retained_source_build_inventory"]["inventory_sha256"]
+        assert digest(installed / "operation/prefix-inventory.json") == review["prefix_inventory"]["inventory_sha256"]
+        assert all(digest(Path(p)) == sha for p, sha in registration["proposal"]["bindings"].items())
+        assert all(digest(Path(__file__).with_name(n)) == sha for n, sha in registration["proposal"]["helpers"].items())
+        assert digest(Path(__file__).with_name("p2996_register.py")) == review["helper_sha256"]
+        assert report["witness_sha256"] == runtime["witness_sha256"] and prefix == Path(review["proposal"]["prefix"])
+        report["admission_sha256"] = digest(evidence / "admission.json")
+        prepared = ROOT / "evidence/p2996-cmake-preparation"
+        contract = prepared / "source-contract.json"
+        assert digest(contract) == admission["source_contract_sha256"] == "fc2f97efb1e768e98ede0ef76f3c1ced54ddfef081fc8532cd531fda4e19fb5c"
+        assert all(digest(Path(row["path"])) == row["sha256"] for row in load(contract)["source_references"])
+        prerequisite = prepared / "preparation-review.json"
+        assert digest(prerequisite) == "57c68380aa7fa80514c243a9ffdc2158b72ee86e66c0332bef817807026a82cf"
+        assert load(prerequisite)["result"].startswith("PASS") and not load(prerequisite)["findings"]
+        inputs = {ROOT / "cmake/toolchains/p2996-macos-arm64.cmake": load(prerequisite)["toolchain_sha256"],
+                  ROOT / "scratch/p2996-toolchain/CMakeLists.txt": load(prerequisite)["fixture_sha256"],
+                  witness: runtime["witness_sha256"]}
+        assert {str(path.relative_to(ROOT)): sha for path, sha in inputs.items()} == admission["fixture_inputs"]
+        assert all(digest(path) == sha for path, sha in inputs.items())
+        report["fixture_inputs"] = {str(path): sha for path, sha in inputs.items()}
+        report["source_contract_sha256"] = digest(contract)
+        protected()
+        git = ["/usr/bin/git", "-c", "core.fsmonitor=false", "-C", source]
+
+        def source_state(stage):
+            for label, arguments in (("head", ["rev-parse", "HEAD"]), ("tree", ["rev-parse", "HEAD^{tree}"]),
+                                     ("status", ["status", "--porcelain", "--untracked-files=all"]),
+                                     ("diff", ["diff", "--no-ext-diff", "--binary"])):
+                run(stage + "-" + label, git + arguments)
+                assert (directory / (stage + "-" + label + ".stdout")).read_bytes() == (registered / ("operation/source-after-" + label + ".stdout")).read_bytes()
+
+        source_state("source-before")
+        normal = run("default-before", normal_argv)
+        assert normal == (registered / "operation/default-after.stdout").read_text()
+        mise = configuration["mise"]
+        assert digest(Path(mise["path"])) == mise["sha256"]
+        stage = isolated(directory / "discovery") | {"MISE_INSTALLS_DIR": str(Path.home() / ".local/share/mise/installs")}
+        located = run("native-where", [mise["path"], "--no-config", "--no-hooks", "--no-env", "-C", stage["MISE_CEILING_PATHS"],
+                                      "where", review["proposal"]["tool"]], environment=stage).strip()
+        assert Path(located).resolve() == prefix
+        env["MARKETPLACE_P2996_PREFIX"] = str(prefix)
+        base = [mise["path"], "--no-hooks", "-C", directory / "cwd", "-E", "p2996", "exec", "--fresh-env", "--no-deps", "--"]
+        selected = json.loads(run("named-profile", base + normal_argv[-2:]))
+        assert selected == runtime["selected_environment"]
+        assert digest(Path(configuration["sdk"]["path"]) / "SDKSettings.json") == configuration["sdk"]["settings_sha256"]
+        assert digest(LOCK_MODULE) == LOCK_SHA
+        spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+        lease = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(lease)
+        assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / ".local/state/dotfiles/heavy-gate.lock"
+        assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE)) and not os.environ.get(lease.LOCK_FD_ENV)
+        with lease.held(lease.HEAVY_GATE, "marketplace-p2996-cmake", wait_s=0, out=io.StringIO()) as fd:
+            assert fd is not None
+            processes = run("capacity-processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="])
+            assert not any(re.fullmatch(r"(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|ld|clangd|clang-tidy",
+                                       Path(line.split(maxsplit=2)[-1]).name) for line in processes.splitlines())
+            assert shutil.disk_usage(directory).free >= 8 * 1024**3
+            host = load(ROOT / "evidence/tool-foundation/host-qualification.json")["binaries"]
+            cmake, ninja = (host[name]["resolved_path"] for name in ("cmake", "ninja"))
+            assert all(digest(Path(host[name]["resolved_path"])) == host[name]["sha256"] for name in ("cmake", "ninja"))
+            ctest = str(Path(cmake).with_name("ctest"))
+            report["tool_hashes"] = {path: digest(Path(path)) for path in (cmake, ninja, ctest)}
+            assert report["tool_hashes"] == admission["tool_hashes"]
+            assert run("ctest-version", base + [ctest, "--version"], descriptor=fd).startswith("ctest version 4.4.4")
+            fixture, build = ROOT / "scratch/p2996-toolchain", directory / "build"
+            toolchain = ROOT / "cmake/toolchains/p2996-macos-arm64.cmake"
+            configurations = ("Debug", "Release", "RelWithDebInfo", "MinSizeRel")
+            libraries = [prefix / "lib" / name for name in ("libc++.dylib", "libc++abi.dylib", "libunwind.dylib")]
+            options = ["-G", "Ninja Multi-Config", "-DCMAKE_MAKE_PROGRAM=" + ninja,
+                       "-DCMAKE_TOOLCHAIN_FILE=" + str(toolchain), "-DCMAKE_TRY_COMPILE_CONFIGURATION=Debug"]
+            run("configure", base + [cmake, "--debug-trycompile", "-S", fixture, "-B", build, *options], timeout=60, descriptor=fd)
+
+            def flags(arguments, cxx, linking=False, reflection=False, standard=False):
+                if arguments[:2] == [":", "&&"] and arguments[-2:] == ["&&", ":"]:
+                    arguments = arguments[2:-2]
+                assert arguments[0] == str(prefix / "bin" / ("clang++" if cxx else "clang"))
+                assert not any(arg.startswith("@") or arg == ":" or any(char in arg for char in ";&|<>`$") for arg in arguments)
+                for name, value in (("-arch", "arm64"), ("-isysroot", configuration["sdk"]["path"]),
+                                    ("-resource-dir", str(prefix / "lib/clang/21"))):
+                    assert arguments.count(name) == 1 and arguments[arguments.index(name) + 1] == value
+                assert all(flag in arguments for flag in ("--no-default-config", "-fno-blocks", "-mmacosx-version-min=27.0"))
+                assert ("-freflection" in arguments) == reflection
+                if standard:
+                    assert "-std=c++26" in arguments and not any(arg.startswith("-std=gnu") for arg in arguments)
+                if cxx:
+                    assert "-stdlib=libc++" in arguments and "-nostdinc++" in arguments
+                    assert arguments[arguments.index("-isystem") + 1] == str(prefix / "include/c++/v1")
+                    if linking:
+                        assert all(flag in arguments for flag in ["-nostdlib++", *map(str, libraries), "-Wl,-rpath," + str(prefix / "lib")])
+                else:
+                    assert not any(flag in arguments for flag in ["-stdlib=libc++", "-nostdinc++", "-nostdlib++", "-std=c++26", str(prefix / "include/c++/v1"), *map(str, libraries)])
+                return arguments
+
+            probes = {}
+            for child in sorted((build / "CMakeFiles/CMakeScratch").glob("TryCompile-*")):
+                contents = (child / "CMakeLists.txt").read_text()
+                matches = [name for name in ("CMakeCCompilerABI.c", "CMakeCXXCompilerABI.cpp", "private_runtime.cpp") if name in contents]
+                assert len(matches) == 1 and matches[0] not in probes
+                name = matches[0]
+                output = run("probe-" + name, base + [ninja, "-C", child, "-f", "build-Debug.ninja", "-t", "commands"], descriptor=fd)
+                commands = [shlex.split(line) for line in output.splitlines() if line.strip()]
+                assert len(commands) == 2 and sum("-c" in args for args in commands) == 1
+                cxx = name != "CMakeCCompilerABI.c"
+                outputs = {}
+                for arguments in commands:
+                    arguments = flags(arguments, cxx, linking="-c" not in arguments, standard=name == "private_runtime.cpp" and "-c" in arguments)
+                    assert arguments.count("-o") == 1
+                    output = (child / arguments[arguments.index("-o") + 1]).resolve()
+                    assert output.is_relative_to(child)
+                    outputs["object" if "-c" in arguments else "executable"] = output
+                if name != "private_runtime.cpp":
+                    outputs["abi-copy"] = build / ("CMakeFiles/4.4.4/CMakeDetermineCompilerABI_" + ("CXX" if cxx else "C") + ".bin")
+                    assert digest(outputs["abi-copy"]) == digest(outputs["executable"])
+                artifacts = {}
+                for kind, output in outputs.items():
+                    assert output.is_file() and output.stat().st_size > 0
+                    copy = directory / "probe-artifacts" / name / (kind + ".bin")
+                    copy.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(output, copy)
+                    artifacts[kind] = {"source": str(output), "private_copy": str(copy), "sha256": digest(copy), "bytes": copy.stat().st_size}
+                probes[name] = {"directory": str(child), "generated_commands": commands, "fresh_artifacts": artifacts}
+            assert len(probes) == 3
+            report["probes"] = probes
+            # Capture before another CMake execution can clean the scratch trees.
+            captures = []
+            for path in sorted(build.rglob("*")):
+                if path.is_file() and path.suffix in (".txt", ".cmake", ".ninja", ".json", ".yaml", ".cpp", ".c", ".cxx", ".log"):
+                    path.read_text()
+                    copy = directory / "configured-evidence" / path.relative_to(build)
+                    copy.parent.mkdir(parents=True, exist_ok=True)
+                    copy.write_bytes(path.read_bytes())
+                    captures.append({"path": str(copy), "sha256": digest(copy), "bytes": copy.stat().st_size})
+            report["configured_evidence"] = captures
+            for language in ("C", "CXX"):
+                compiler = (build / ("CMakeFiles/4.4.4/CMake" + language + "Compiler.cmake")).read_text()
+                assert "set(CMAKE_" + language + "_COMPILER_WORKS TRUE)" in compiler
+                assert "set(CMAKE_" + language + "_ABI_COMPILED TRUE)" in compiler
+            commands = load(build / "compile_commands.json")
+            assert len(commands) == 4
+            compiled = {}
+            for command in commands:
+                arguments = flags(shlex.split(command["command"]), True, reflection=True, standard=True)
+                assert Path(command["file"]).resolve() == witness.resolve()
+                configs = [arg.split("=", 1)[1].strip('"') for arg in arguments if arg.startswith("-DCMAKE_INTDIR=")]
+                assert len(configs) == 1 and configs[0] in configurations and configs[0] not in compiled and arguments.count("-o") == 1
+                output = (Path(command["directory"]) / arguments[arguments.index("-o") + 1]).resolve()
+                assert output.is_relative_to(build) and configs[0] in output.parts
+                compiled[configs[0]] = str(output)
+            assert set(compiled) == set(configurations) and len(set(compiled.values())) == 4
+            report["compile_commands"] = commands
+            report["compile_database_outputs"] = compiled
+            report["configurations"] = {}
+            for config in configurations:
+                output = run("build-" + config, base + [cmake, "--build", build, "--config", config, "--parallel", "1", "--verbose"], timeout=60, descriptor=fd)
+                links = [shlex.split(line.split("] ", 1)[-1]) for line in output.splitlines() if str(prefix / "bin/clang++") in line and " -c " not in line]
+                assert len(links) == 1
+                flags(links[0], True, linking=True)
+                test = run("test-" + config, base + [ctest, "--test-dir", build, "-C", config, "--output-on-failure", "--no-tests=error"], descriptor=fd)
+                assert "100% tests passed" in test and "out of 1" in test
+                binary = build / config / "reflection"
+                assert "Mach-O 64-bit executable arm64" in run("architecture-" + config, ["/usr/bin/file", "-b", binary], descriptor=fd)
+                metadata = run("libraries-" + config, ["/usr/bin/otool", "-L", binary], descriptor=fd)
+                assert all(name in metadata for name in ("libc++.", "libc++abi.", "libunwind.")) and "libstdc++" not in metadata and "/usr/lib/libc++" not in metadata
+                rpaths = run("rpaths-" + config, ["/usr/bin/otool", "-l", binary], descriptor=fd)
+                assert "path " + str(prefix / "lib") + " (offset " in rpaths
+                output = run("runtime-" + config, base + ["/usr/bin/env", "DYLD_PRINT_LIBRARIES=1", binary], descriptor=fd)
+                assert output == "reflection value=43 exception=ok\n"
+                diagnostic = (directory / ("runtime-" + config + ".stderr")).read_text().splitlines()
+                assert diagnostic and all(line.startswith("dyld[") for line in diagnostic)
+                loaded = [line[line.find(str(prefix)):].strip() for line in diagnostic if str(prefix) in line]
+                assert all(any(Path(path).resolve() == lib.resolve() for path in loaded) for lib in libraries)
+                summary = dict(line.split("=", 1) for line in (build / ("qualified-" + config + ".txt")).read_text().splitlines())
+                assert summary == {"compiler": str(prefix / "bin/clang++"), "version": "21.0.0", "sdk": configuration["sdk"]["path"], "architecture": "arm64", "configuration": config, "binary": str(binary)}
+                report["configurations"][config] = {"binary": str(binary), "sha256": digest(binary), "summary": summary, "loaded_private_images": loaded}
+            dependencies = run("dependencies", base + [ninja, "-C", build, "-t", "deps"], descriptor=fd)
+            assert all(str(prefix / path) in dependencies for path in ("include/c++/v1/meta", "lib/clang/21/include/stddef.h"))
+            controls = [("wrong-lane", ["MARKETPLACE_CPP_LANE=wrong"], [], "Select the task-07d qualified"),
+                        ("dirty-flags", ["CXXFLAGS=-DUNADMITTED"], [], "Unexpected CXXFLAGS"),
+                        ("wrong-compiler", [], ["-DCMAKE_CXX_COMPILER=/usr/bin/clang++"], "Conflicting CXX compiler"),
+                        ("wrong-architecture", [], ["-DCMAKE_OSX_ARCHITECTURES=x86_64"], "SDK, deployment target and architecture"),
+                        ("launcher", [], ["-DCMAKE_CXX_COMPILER_LAUNCHER=/usr/bin/false"], "Compiler and linker launchers"),
+                        ("extra-libraries", [], ["-DCMAKE_CXX_STANDARD_LIBRARIES=-lc++"], "Unexpected extra C++ standard libraries"),
+                        ("forced-compiler", [], ["-DCMAKE_CXX_COMPILER_FORCED=ON"], "Compiler and try_compile link checks"),
+                        ("static-probe", [], ["-DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY"], "Compiler and try_compile link checks")]
+            report["negative_controls"] = []
+            for label, overrides, arguments, message in controls:
+                control = directory / label
+                run(label, base + ["/usr/bin/env", *overrides, cmake, "-S", fixture, "-B", control, *options, *arguments], descriptor=fd, expected=1)
+                assert message in (directory / (label + ".stderr")).read_text() and not (control / "build.ninja").exists()
+                report["negative_controls"].append({"case": label, "returncode": 1, "diagnostic": message})
+            assert all(digest(path) == sha for path, sha in inputs.items())
+        report["lease_released"] = True
+        env.pop("MARKETPLACE_P2996_PREFIX")
+        assert run("default-after", normal_argv) == normal
+        source_state("source-after")
+        report["state"] = "PASS: native P2996 CMake probes and four configuration cells"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            protected()
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}))
+
+
+if __name__ == "__main__":
+    main()

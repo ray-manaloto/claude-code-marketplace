@@ -48,6 +48,11 @@ Task 08c's source-based coverage fixture passed independent reproduction with
 fresh raw/merged profiles, exact branch counts and a failing missing-data control.
 The later application coverage cross-product remains pending.
 
+Task 10a's [P2996 CMake fixture](../scratch/p2996-toolchain/README.md) passed
+native ABI/custom probes, four build/test/runtime cells and eight isolation
+controls with independent reproduction. Private libc++ origins and protected
+state match. Library/dependency linkage qualification follows separately.
+
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
 reviews and passing static/baseline checks. Native CMake preset listing now passes;
