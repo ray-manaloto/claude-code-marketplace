@@ -52,8 +52,10 @@ Task 09's pinned [IWYU source and private build](iwyu-toolchain.md) passed nativ
 installation and independent artifact verification. The shared mise executable
 changed afterward to 2026.10.8; all other protected records match. Task 09b1
 passed twelve read-only probes and independent review, reattesting the exact
-replacement with unchanged profiles/defaults. Reflection analysis, relocation
-and advice/rebuild follow separately; replacement provenance remains unknown.
+replacement with unchanged profiles/defaults; replacement provenance remains unknown.
+Task 09c1's exact reflected-type advice, restricted fixer, rebuild/run and clean
+analysis passed all 32 native checks and independent artifact review. Resource
+relocation follows separately; full reflection visitor coverage is unqualified.
 
 Task 10a's [P2996 CMake fixture](../scratch/p2996-toolchain/README.md) passed
 native ABI/custom probes, four build/test/runtime cells and eight isolation

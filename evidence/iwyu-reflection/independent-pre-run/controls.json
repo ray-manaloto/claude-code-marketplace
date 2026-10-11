@@ -1,0 +1,456 @@
+{
+  "result": "PASS: parser and mocked-wrapper controls",
+  "parser_cases": [
+    {
+      "case": "canonical",
+      "expected_accept": true,
+      "observed_accept": true,
+      "result": "PASS"
+    },
+    {
+      "case": "without_comments",
+      "expected_accept": true,
+      "observed_accept": true,
+      "result": "PASS"
+    },
+    {
+      "case": "frontend_error",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "frontend_fatal",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "missing_warning",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "wrong_source",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "duplicate_record",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "extra_add",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "extra_remove",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "missing_meta",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "extra_final_include",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "duplicate_final_include",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "missing_remove_section",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "missing_separator",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    },
+    {
+      "case": "wrong_direct_header",
+      "expected_accept": false,
+      "observed_accept": false,
+      "result": "PASS"
+    }
+  ],
+  "wrapper_cases": [
+    {
+      "case": "success_default",
+      "simulated_child_returncode": 0,
+      "expected_returncode": 0,
+      "accepted": true,
+      "failure": null,
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-success_default",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "success_stdin_cwd",
+      "simulated_child_returncode": 0,
+      "expected_returncode": 0,
+      "accepted": true,
+      "failure": null,
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-success_stdin_cwd/fixtures/reflection",
+          "stdin_hex": "73796e74686574696320616e616c79736973207374646572720d0a00627974652d707265736572766174696f6e0a",
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "expected_advice",
+      "simulated_child_returncode": 23,
+      "expected_returncode": 23,
+      "accepted": true,
+      "failure": null,
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-expected_advice",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "expected_negative",
+      "simulated_child_returncode": 1,
+      "expected_returncode": 1,
+      "accepted": true,
+      "failure": null,
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-expected_negative",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "unexpected_failure",
+      "simulated_child_returncode": 1,
+      "expected_returncode": 0,
+      "accepted": false,
+      "failure": {
+        "type": "AssertionError",
+        "text": ""
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-unexpected_failure",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "unexpected_success",
+      "simulated_child_returncode": 0,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "AssertionError",
+        "text": "expected nonzero result unexpectedly passed"
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-unexpected_success",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "wrong_nonzero",
+      "simulated_child_returncode": 1,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "AssertionError",
+        "text": ""
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-wrong_nonzero",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "signal_exit",
+      "simulated_child_returncode": -15,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "AssertionError",
+        "text": ""
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-signal_exit",
+          "stdin_hex": null,
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "popen_oserror",
+      "simulated_child_returncode": 23,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "OSError",
+        "text": "mock spawn failure"
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-popen_oserror",
+          "stdin_hex": "73796e74686574696320616e616c79736973207374646572720d0a00627974652d707265736572766174696f6e0a",
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "popen_timeout",
+      "simulated_child_returncode": 23,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "TimeoutExpired",
+        "text": "Command '['/mock/tool']' timed out after 17 seconds"
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-popen_timeout",
+          "stdin_hex": "73796e74686574696320616e616c79736973207374646572720d0a00627974652d707265736572766174696f6e0a",
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "popen_interrupt",
+      "simulated_child_returncode": 23,
+      "expected_returncode": 23,
+      "accepted": false,
+      "failure": {
+        "type": "KeyboardInterrupt",
+        "text": "mock interrupt"
+      },
+      "calls": [
+        {
+          "command": [
+            "/mock/tool",
+            "argument with spaces"
+          ],
+          "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/mock-popen_interrupt",
+          "stdin_hex": "73796e74686574696320616e616c79736973207374646572720d0a00627974652d707265736572766174696f6e0a",
+          "pass_fds": [
+            91
+          ],
+          "start_new_session": true,
+          "environment": {
+            "SAFE_MOCK": "1"
+          }
+        }
+      ],
+      "result": "PASS",
+      "actual_children_created": 0
+    },
+    {
+      "case": "duplicate_label",
+      "simulated_child_returncode": 0,
+      "expected_returncode": 0,
+      "accepted": false,
+      "failure": {
+        "type": "AssertionError",
+        "text": ""
+      },
+      "calls": [],
+      "result": "PASS",
+      "actual_children_created": 0
+    }
+  ],
+  "cwd_discrepancy": {
+    "result": "FINDING REPRODUCED BY ARGV DERIVATION",
+    "argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/cwd",
+      "-E",
+      "cpp-build",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/fix_includes.py",
+      "--noblank_lines",
+      "--nocomments",
+      "--basedir",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/fixtures/reflection",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/fixtures/reflection/main.cc"
+    ],
+    "requested_Popen_cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/fixtures/reflection",
+    "mise_C_operand": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/cwd",
+    "recipe_cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof/fixtures/reflection",
+    "native_execution": false,
+    "source": {
+      "candidate_lines": [
+        123,
+        171,
+        172
+      ],
+      "mise_help": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation/exec-help.stdout",
+      "mise_help_line": 70
+    },
+    "confinement": "Absolute --basedir and file allowlist still identify only main.cc."
+  },
+  "native_Popen_calls": 0,
+  "helper_main_calls": 0,
+  "protected_calls": 0
+}

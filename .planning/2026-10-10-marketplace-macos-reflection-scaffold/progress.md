@@ -1003,3 +1003,26 @@ in memory, and reject any further drift. No installation or compiler run is admi
   native receipts, profile/isolation parity and one fresh protection check.
   LIVE-01 is reattested for this exact observed runtime; installer attribution
   and release-download provenance remain unknown. Historical receipts are unchanged.
+
+Task 09b1 is committed at `1ddd107bffe56226ae2a5c115fcb4e2ae6b7b6b9`;
+the post-commit baseline passed and the worktree was clean. Task 09c1 prepares
+one private reflected-type fixture, exact IWYU advice, the upstream restricted
+fixer, native rebuild/run and clean reanalysis. Task 09c2 retains resource
+relocation separately. No 09c native result is claimed before reviewed execution.
+- Implemented the small 09c1 helper with frozen runtime/source guards, bounded
+  native execution, exact advice/fixer checks and one negative flag control.
+  Static checks passed with all 19 original files unchanged. Independent
+  pre-run review and fresh capacity admission remain pending.
+- Independent pre-run review passed 27 parser/runner controls and found one
+  working-directory mismatch: mise's `-C` overrode the fixer's recorded cwd.
+  The helper now selects the fixture in both places. The original revision and
+  finding are retained; narrow disposition review precedes native execution.
+- The narrow disposition passed. Native execution then matched all 32 expected
+  command exits, including advice 23, fixer/build/run/clean analysis 0, and the
+  missing-reflection control 1. Only the intended include changed. Both source
+  checks, protected state, restored defaults and lease release passed. Final
+  independent artifact review is pending.
+- Independent artifact review passed all 71 source/copy pairs, 64 native logs,
+  32 expected exits, exact fixer edit/input and both ARM64 binaries. Current
+  protected state, the 27-entry IWYU installation, 23-entry final fixture and
+  all 19 original files match. No findings remain; relocation follows separately.

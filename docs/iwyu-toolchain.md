@@ -7,8 +7,9 @@ Task 09a prepares the accepted [IWYU commit](https://github.com/include-what-you
 all ten Git commands, verified 854 working-tree files against their Git blobs,
 and matched both earlier pinned CMake/license fragments. No source was patched.
 Native configure/build/install and independent artifact verification passed.
-The later runtime replacement was reattested separately below; analysis,
-resource relocation and advice/rebuild remain unverified.
+The later runtime replacement was reattested separately below. Bounded
+reflection advice, fixing and rebuilding passed native checks and independent
+artifact review; resource relocation remains pending.
 
 The retained [upstream license](../evidence/iwyu-source/upstream/LICENSE.TXT.source)
 is University of Illinois/NCSA. Both `iwyu_getopt` files carry that license
@@ -81,3 +82,20 @@ passed. [Independent review](../evidence/mise-runtime/runtime-review.json)
 passed 21 focused controls, exact receipt comparisons and the current protection
 check. New operations use this current binding; historical helpers retain their
 original fingerprints. The earlier live-drift finding remains in its original receipt.
+
+Task 09c1 prepares one private reflected-type program with a transitive include.
+The [bounded helper](../dev/toolchains/iwyu_reflection.py) requires the exact
+direct-header recommendation, feeds only saved analysis stderr to the upstream
+fixer with one absolute file allowlisted, and verifies the complete resulting
+bytes. It then rebuilds/runs and requires clean analysis; omission of the
+reflection flag must fail. The source recipe binds the fixed compiler, SDK,
+libc++ and analyzer. Separate admission, a fresh capacity check and the canonical
+host lease precede native work. The [native operation](../evidence/iwyu-reflection/operation/qualification.json)
+matched all 32 expected exits: exact advice returned 23, the fixer/build/run and
+clean analysis returned 0, and the missing-flag control returned 1. The fix only
+replaces the indirect include with `value.h`; `<meta>` and program bytes remain.
+Source, installation, defaults and lease checks passed. [Independent artifact
+review](../evidence/iwyu-reflection/artifact-review.json) verified all 71 receipt
+copies, 32 native exits, exact fixer input/edit, both ARM64 binaries and current
+protected state without findings. Copied-resource relocation follows separately,
+and full reflection visitor coverage is unqualified.

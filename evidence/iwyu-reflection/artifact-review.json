@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "unit": "09c1 final artifact review",
+  "result": "PASS: exact type-reflection advice, restricted fixer, rebuild/run and clean reanalysis; current preservation matched",
+  "findings": [],
+  "created_at": "2026-10-11T16:01:51.141990+00:00",
+  "workspace": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "1ddd107bffe56226ae2a5c115fcb4e2ae6b7b6b9",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "ff2b0e9d5bec3c2845ca798fe01c086f1f49a5b4dcd5544916b61934ece03aee",
+  "contract_sha256": "2e528d666e90db8f80cee6d046d06ea6304564a05a913098237d144c62dd7de4",
+  "operation_sha256": "1dcea2edb30326c7304bcf42b4cff20f89acc65fc04bf56b01d61528ae7112cd",
+  "pre_run_review_sha256": "7265275cb8c443ded0c88b88452ec94cb2854b47418e6e8e7c3aa823bf4a0fae",
+  "native_receipts": {
+    "wrapper_returncode": 0,
+    "wrapper_elapsed_seconds": 16.450067292083986,
+    "commands": 32,
+    "returncodes": {
+      "advice": 23,
+      "fixer": 0,
+      "baseline-build": 0,
+      "baseline-run": 0,
+      "fixed-build": 0,
+      "fixed-run": 0,
+      "clean-analysis": 0,
+      "missing-reflection": 1,
+      "remaining_24_commands": 0
+    },
+    "source_copy_pairs_verified": 71,
+    "command_log_hashes_verified": 64,
+    "fixer_stdin_sha256": "96c34fd2e150e9e2d7ce6a59f4427529db8b7b74de2cb3cc354357cf66fffdf7",
+    "fixer_cwd": "Both mise -C and recorded Popen cwd equal the fixture and --basedir. Only absolute main.cc is allowlisted.",
+    "edit": "Only main.cc changes: indirect.h becomes value.h; meta, reflected-type expression and program body remain exact.",
+    "artifacts": "Two distinct fresh ARM64 Mach-O binaries; verbose compiler/link commands match fork, C++26 reflection, SDK27 and private libc++/libc++abi/libunwind. Both run with rc0 and empty stdout/stderr.",
+    "negative": "Removing only -freflection returns 1 with five errors on the reflected expression line; corrected source reanalysis returns 0 with exact clean summary.",
+    "lease": "Frozen helper exited its lease context; qualification records lease_released=true and wrapper completed rc0. No reviewer lease invocation."
+  },
+  "reviewer_executed_checks": {
+    "artifact_data_audit": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/audit-invocation.json",
+      "sha256": "86e6db62b8211e7796fce832fed22b52c7186f48101c438d311a97747ebb6b74",
+      "bytes": 897
+    },
+    "artifact_audit_returncode": 0,
+    "current_protection": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/current-invocation.json",
+      "sha256": "e8ed235329ba0c6836e037d34fe152b537f0d654e46cee263d342555baaf749d",
+      "bytes": 896
+    },
+    "current_protection_returncode": 0,
+    "protected_invocations": 1,
+    "current_install_inventory_entries": 27,
+    "current_fixture_inventory_entries": 23,
+    "original_Claude_files_verified": 19,
+    "scoped_maintained_files_unchanged": 5,
+    "prior_parser_mock_controls_reused_without_rerun": 27,
+    "prior_cwd_disposition_reused": "09C1-01 fixed, prior PASS retained",
+    "reviewer_reader_correction": {
+      "initial_returncode": 1,
+      "cause": "Private expected dSYM path derivation omitted the inner DWARF/YAML basename change. Corrected only the reviewer reader; retained the initial attempt. No candidate finding or native retry.",
+      "retention": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/initial-retention.json",
+        "sha256": "d65eb76bbe9facd81f9b01b5796c1a288efdca7317115a1469b46c40deacf17e",
+        "bytes": 1938
+      }
+    }
+  },
+  "preservation": {
+    "source_receipts": "Before/after IWYU and LLVM head/tree/status/diff equal their committed baselines.",
+    "defaults": "Default-before/default-after and cpp-build profile byte-match committed runtime receipts.",
+    "current_guard": "The committed mise_runtime.protected() passed once; exact current mise binding retained.",
+    "install_and_fixture": "Current 27-entry IWYU install and 23-entry fixture inventories match recorded bytes/modes/types.",
+    "Claude_acceptance": "All 19 original files match; retained post-operation task validation and baseline rc0."
+  },
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/contract.json",
+      "sha256": "2e528d666e90db8f80cee6d046d06ea6304564a05a913098237d144c62dd7de4",
+      "bytes": 1783
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/source-recipe.json",
+      "sha256": "50eaea5396fe0ea7b5b8a5cb30bc0de2a514b612446d49c2b3710bae41f2473a",
+      "bytes": 23130
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/pre-run-review.json",
+      "sha256": "7265275cb8c443ded0c88b88452ec94cb2854b47418e6e8e7c3aa823bf4a0fae",
+      "bytes": 5812
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/admission.json",
+      "sha256": "01f4737fa0f7c6a17a8c93aacccecd13f917c40bcc93b01014ae38f05605207f",
+      "bytes": 1174
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/capacity-preflight.json",
+      "sha256": "5129e6398dba044f0b65d11c42dbd1a6d95ee43fdb635ecca13fb8cc133ebb3b",
+      "bytes": 107339
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/operation-copy-manifest.json",
+      "sha256": "f5ce10b824ca32ae738a6b7edfba5c4aa03d5ede6fe28781644a84003b141c7e",
+      "bytes": 22846
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/operation/qualification.json",
+      "sha256": "1dcea2edb30326c7304bcf42b4cff20f89acc65fc04bf56b01d61528ae7112cd",
+      "bytes": 52150
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/invocation/invocation.json",
+      "sha256": "7842c0a1924ad56044b16a8fff0d92e0ed7f6c16c962bf4287052bfe047b2831",
+      "bytes": 1157
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/post-operation-static.json",
+      "sha256": "edb94e8a1de668ab75b339f58fcbc1eb7407560a4321b4fff28f86ca6439b42b",
+      "bytes": 623
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-pre-run-review.json",
+      "sha256": "c2b2312ae74c5b52dd34e38802a55475a4562678b6c951213ba15375384e487f",
+      "bytes": 9646
+    }
+  ],
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/artifact-audit.json",
+      "sha256": "d5125f3151f766a333cab330bfb5095f9ce4b7c820bd4dabc11868625dda0517",
+      "bytes": 5472
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/current-preservation.json",
+      "sha256": "ef6238214dbe8da1c3630bb7ef69f96e32e90d89fb02a53005e928865ce98435",
+      "bytes": 1294
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-artifact-review-09ayhhdd/supporting-manifest.json",
+      "sha256": "9729a5889f1f06fe126999db9b8e70323bf3d5e9af63f9f54a513fb3b4707120",
+      "bytes": 5252
+    }
+  ],
+  "limitations": [
+    "Only this exact reflected-type/include-edit fixture is qualified. Full P2996 visitor coverage remains unqualified; the eleven upstream EnumeratorSpec warnings remain recorded.",
+    "Copied-resource relocation is outside 09c1 and remains pending.",
+    "No native compiler/IWYU/fixer/profile/Docker or lease reproduction was run by the reviewer.",
+    "No fresh Claude session, provider or full OCI acceptance was run."
+  ],
+  "ownership": "Parent sole maintained-file writer; reviewer wrote only this private receipt directory."
+}
