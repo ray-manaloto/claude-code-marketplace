@@ -1026,3 +1026,23 @@ relocation separately. No 09c native result is claimed before reviewed execution
   32 expected exits, exact fixer edit/input and both ARM64 binaries. Current
   protected state, the 27-entry IWYU installation, 23-entry final fixture and
   all 19 original files match. No findings remain; relocation follows separately.
+
+Task 09c1 is committed at `374beaa6239b9e2e4ecf2f998285ff64139f8d21`;
+the post-commit baseline passed with a clean worktree. Task 09c2 prepares a moved
+IWYU/resource copy, explicit resource queries, actual header trace, empty-resource
+failure and clean reflection analysis. Original LLVM remains fixed. The helper
+is implemented; independent preparation review and native admission remain pending.
+- Independent preparation review passed twelve header-trace controls and twelve
+  mocked result/failure controls without findings. All bound inputs and original
+  files match. Fresh capacity checks passed; native relocation remains pending
+  its exact review/admission binding and execution.
+- The admitted native operation passed all 31 expected results in 13.8 seconds.
+  Moved IWYU loaded the fixed LLVM libraries, actual header traces used copied
+  resources, the empty-resource control failed, and reflection analysis was
+  clean. Copies, original state, defaults and lease closure passed. Final
+  independent artifact review is pending.
+- Independent artifact review passed all 70 copy pairs, 62 command logs,
+  31 expected exits and nine moved-header hashes without findings. Both reviewer
+  checks exited 0. Current moved/resource/fixture/original-IWYU inventories and
+  protected state match; staging is absent and all 19 original files are intact.
+  Task 09 is qualified for this fixture and explicit copied-resource selection.

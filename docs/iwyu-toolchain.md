@@ -99,3 +99,19 @@ review](../evidence/iwyu-reflection/artifact-review.json) verified all 71 receip
 copies, 32 native exits, exact fixer input/edit, both ARM64 binaries and current
 protected state without findings. Copied-resource relocation follows separately,
 and full reflection visitor coverage is unqualified.
+
+Task 09c2's [relocation helper](../dev/toolchains/iwyu_relocation.py) copies the
+qualified IWYU install and Clang builtin resources, verifies their inventories,
+then renames only that copy. Explicit resource selection must read the moved
+headers in an actual trace; an empty resource directory must fail. The corrected
+reflection fixture must remain clean, and moved IWYU must load the fixed LLVM
+libraries. Original installations, sources and defaults remain guarded. Native
+execution requires independent preparation review and fresh capacity admission;
+automatic resource discovery and LLVM relocation are outside this contract.
+Preparation review and the [native operation](../evidence/iwyu-relocation/operation/qualification.json)
+passed all 24 focused controls and 31 expected native results, respectively.
+Copied headers were traced, the empty-resource control failed as intended, and
+moved reflection analysis remained clean. [Final artifact review](../evidence/iwyu-relocation/artifact-review.json)
+passed all 70 receipt copies, 62 command logs, nine moved-header hashes and the
+current preservation/inventory checks without findings. Task 09 is qualified for
+this bounded reflection fixture and explicit copied-resource contract.

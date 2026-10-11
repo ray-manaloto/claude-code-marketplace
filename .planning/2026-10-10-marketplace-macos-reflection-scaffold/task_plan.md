@@ -70,7 +70,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 09b | Guarded private IWYU build and installation | Fresh shared capacity, exact compiler/link commands, native exits, dependencies and independent review | Complete; runtime drift reattested in 09b1 |
 | 09b1 | Reattest replaced mise runtime | Exact single-path change, existing profile parity, protected-state checks and independent review | Complete |
 | 09c1 | IWYU reflection advice and fixer | Exact include recommendations, restricted fixer, native rebuild/run and clean reanalysis | Complete |
-| 09c2 | IWYU copied-resource relocation | Moved-copy identity, explicit resource override, actual header trace and negative control | Pending |
+| 09c2 | IWYU copied-resource relocation | Moved-copy identity, explicit resource override, actual header trace and negative control | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
