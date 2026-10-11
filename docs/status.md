@@ -44,7 +44,9 @@ The formatted reflection source compiled and ran through a native archive with
 the three private runtimes. Task 08b's tidy and static-analysis controls also pass
 with independent reproduction, source preservation and unchanged defaults.
 Both initial analyzer failures are retained with source-backed corrections;
-coverage remains pending.
+Task 08c's source-based coverage fixture passed independent reproduction with
+fresh raw/merged profiles, exact branch counts and a failing missing-data control.
+The later application coverage cross-product remains pending.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent

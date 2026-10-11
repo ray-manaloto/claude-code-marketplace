@@ -834,3 +834,21 @@ unverified; the shared lease and full preservation gates are reused.
 - Independent reproduction passed all six controls with no findings; complete
   prefix, retained build/source, global/default and original acceptance checks
   passed. Task 08b is qualified; native coverage follows as a separate unit.
+
+Task 08b is committed at `7baee2b880265c5d444e17aeeaf66eb3011f2684`;
+its post-commit baseline passed with a clean worktree. Task 08c prepares the
+source-backed coverage fixture: exact private reflection copy, both branch
+outcomes, fresh raw/merged data, structured counts and an absent-data failure.
+The existing named environment, bounded runner, shared lease and preservation
+gates are reused. Native coverage support remains unverified.
+- The first fixture compiled and ran with a fresh raw profile, then stopped
+  because the loader diagnostic was empty. All protected state remains intact.
+  The failed attempt is retained; loader/profile variables now use the previously
+  qualified child-scoped `env` invocation after named-profile selection.
+- The corrected fixture passed compile/run/merge/export and the intended
+  missing-profile failure. Counts are reflection=1, branch=2 and true/false=1/1;
+  all three private runtimes loaded. Full preservation and lease release pass.
+  The 42 text records are retained; independent reproduction is in progress.
+- Independent reproduction matched all counts and runtime origins, including
+  the intended absent-data exit. Complete preservation and all 19 original
+  acceptance hashes passed without findings; task 08c is qualified.

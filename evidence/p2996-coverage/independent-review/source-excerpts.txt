@@ -1,0 +1,839 @@
+compiler-rt/lib/profile/CMakeLists.txt
+64:   InstrProfiling.c
+65:   InstrProfilingInternal.c
+66:   InstrProfilingValue.c
+67:   InstrProfilingBuffer.c
+68:   InstrProfilingFile.c
+69:   InstrProfilingMerge.c
+70:   InstrProfilingMergeFile.c
+71:   InstrProfilingNameVar.c
+72:   InstrProfilingVersionVar.c
+73:   InstrProfilingWriter.c
+74:   InstrProfilingPlatformAIX.c
+75:   InstrProfilingPlatformDarwin.c
+76:   InstrProfilingPlatformFuchsia.c
+77:   InstrProfilingPlatformLinux.c
+78:   InstrProfilingPlatformOther.c
+79:   InstrProfilingPlatformWindows.c
+80:   InstrProfilingRuntime.cpp
+81:   InstrProfilingUtil.c
+82:   )
+83: 
+
+compiler-rt/lib/profile/CMakeLists.txt
+157: if(APPLE)
+158:   add_compiler_rt_runtime(clang_rt.profile
+159:     STATIC
+160:     OS ${PROFILE_SUPPORTED_OS}
+161:     ARCHS ${PROFILE_SUPPORTED_ARCH}
+162:     CFLAGS ${EXTRA_FLAGS}
+163:     SOURCES ${PROFILE_SOURCES}
+164:     ADDITIONAL_HEADERS ${PROFILE_HEADERS}
+165:     PARENT_TARGET profile
+166:     EXTENSIONS ON)
+
+compiler-rt/cmake/Modules/AddCompilerRT.cmake
+215:   if(APPLE)
+216:     foreach(os ${LIB_OS})
+217:       # Strip out -msse3 if this isn't macOS.
+218:       list(LENGTH LIB_CFLAGS HAS_EXTRA_CFLAGS)
+219:       if(HAS_EXTRA_CFLAGS AND NOT "${os}" MATCHES "^(osx)$")
+220:         list(REMOVE_ITEM LIB_CFLAGS "-msse3")
+221:       endif()
+222:       if(type STREQUAL "STATIC")
+223:         set(libname "${name}_${os}")
+224:       else()
+225:         set(libname "${name}_${os}_dynamic")
+226:         set(extra_link_flags_${libname} ${DARWIN_${os}_LINK_FLAGS} ${LIB_LINK_FLAGS})
+227:       endif()
+228:       list_intersect(LIB_ARCHS_${libname} DARWIN_${os}_ARCHS LIB_ARCHS)
+229:       if(LIB_ARCHS_${libname})
+230:         list(APPEND libnames ${libname})
+231:         set(extra_cflags_${libname} ${DARWIN_${os}_CFLAGS} ${NO_LTO_FLAGS} ${NO_PGO_FLAGS} ${LIB_CFLAGS})
+232:         set(output_name_${libname} ${libname}${COMPILER_RT_OS_SUFFIX})
+233:         set(sources_${libname} ${LIB_SOURCES})
+234:         format_object_libs(sources_${libname} ${os} ${LIB_OBJECT_LIBS})
+235:         get_compiler_rt_output_dir(${COMPILER_RT_DEFAULT_TARGET_ARCH} output_dir_${libname})
+236:         get_compiler_rt_install_dir(${COMPILER_RT_DEFAULT_TARGET_ARCH} install_dir_${libname})
+
+compiler-rt/cmake/Modules/AddCompilerRT.cmake
+358:       add_library(${libname} ${type} ${sources_${libname}})
+359:       set_target_compile_flags(${libname} ${extra_cflags_${libname}})
+360:       set_target_link_flags(${libname} ${extra_link_flags_${libname}})
+361:       set_property(TARGET ${libname} APPEND PROPERTY
+362:                    COMPILE_DEFINITIONS ${LIB_DEFS})
+363:       set_target_output_directories(${libname} ${output_dir_${libname}})
+364:       install(TARGETS ${libname}
+365:         ARCHIVE DESTINATION ${install_dir_${libname}}
+366:                 ${COMPONENT_OPTION}
+367:         LIBRARY DESTINATION ${install_dir_${libname}}
+368:                 ${COMPONENT_OPTION}
+369:         RUNTIME DESTINATION ${install_dir_${libname}}
+370:                 ${COMPONENT_OPTION})
+371:     endif()
+372:     if(LIB_DEPS)
+373:       add_dependencies(${libname} ${LIB_DEPS})
+374:     endif()
+375:     set_target_properties(${libname} PROPERTIES
+376:         OUTPUT_NAME ${output_name_${libname}}
+
+clang/lib/Driver/ToolChain.cpp
+1027: bool ToolChain::needsProfileRT(const ArgList &Args) {
+1028:   if (Args.hasArg(options::OPT_noprofilelib))
+1029:     return false;
+1030: 
+1031:   return Args.hasArg(options::OPT_fprofile_generate) ||
+1032:          Args.hasArg(options::OPT_fprofile_generate_EQ) ||
+1033:          Args.hasArg(options::OPT_fcs_profile_generate) ||
+1034:          Args.hasArg(options::OPT_fcs_profile_generate_EQ) ||
+1035:          Args.hasArg(options::OPT_fprofile_instr_generate) ||
+1036:          Args.hasArg(options::OPT_fprofile_instr_generate_EQ) ||
+1037:          Args.hasArg(options::OPT_fcreate_profile) ||
+1038:          Args.hasArg(options::OPT_fprofile_generate_cold_function_coverage) ||
+1039:          Args.hasArg(options::OPT_fprofile_generate_cold_function_coverage_EQ);
+
+clang/lib/Driver/ToolChains/Darwin.cpp
+733:   getMachOToolChain().addProfileRTLibs(Args, CmdArgs);
+
+clang/lib/Driver/ToolChains/Darwin.cpp
+1314: void MachO::AddLinkRuntimeLib(const ArgList &Args, ArgStringList &CmdArgs,
+1315:                               StringRef Component, RuntimeLinkOptions Opts,
+1316:                               bool IsShared) const {
+1317:   std::string P = getCompilerRT(
+1318:       Args, Component, IsShared ? ToolChain::FT_Shared : ToolChain::FT_Static);
+1319: 
+1320:   // For now, allow missing resource libraries to support developers who may
+1321:   // not have compiler-rt checked out or integrated into their build (unless
+1322:   // we explicitly force linking with this library).
+1323:   if ((Opts & RLO_AlwaysLink) || getVFS().exists(P)) {
+1324:     const char *LibArg = Args.MakeArgString(P);
+1325:     CmdArgs.push_back(LibArg);
+1326:   }
+
+clang/lib/Driver/ToolChains/Darwin.cpp
+1366: std::string Darwin::getCompilerRT(const ArgList &, StringRef Component,
+1367:                                   FileType Type, bool IsFortran) const {
+1368:   assert(Type != ToolChain::FT_Object &&
+1369:          "it doesn't make sense to ask for the compiler-rt library name as an "
+1370:          "object file");
+1371:   SmallString<64> DarwinLibName = StringRef("libclang_rt.");
+1372:   // On Darwin, the builtins component is not in the library name
+1373:   if (Component != "builtins") {
+1374:     DarwinLibName += Component;
+1375:     DarwinLibName += '_';
+1376:   }
+1377:   DarwinLibName += getOSLibraryNameSuffix();
+1378:   DarwinLibName += Type == ToolChain::FT_Shared ? "_dynamic.dylib" : ".a";
+1379: 
+1380:   SmallString<128> FullPath(getDriver().ResourceDir);
+1381:   llvm::sys::path::append(FullPath, "lib", "darwin", DarwinLibName);
+1382:   return std::string(FullPath);
+
+clang/lib/Driver/ToolChains/Darwin.cpp
+1417: StringRef Darwin::getOSLibraryNameSuffix(bool IgnoreSim) const {
+1418:   switch (TargetPlatform) {
+1419:   case DarwinPlatformKind::MacOS:
+1420:     return "osx";
+1421:   case DarwinPlatformKind::IPhoneOS:
+1422:     if (TargetEnvironment == MacCatalyst)
+1423:       return "osx";
+
+clang/lib/Driver/ToolChains/Darwin.cpp
+1475: void Darwin::addProfileRTLibs(const ArgList &Args,
+1476:                               ArgStringList &CmdArgs) const {
+1477:   if (!needsProfileRT(Args) && !needsGCovInstrumentation(Args))
+1478:     return;
+1479: 
+1480:   AddLinkRuntimeLib(Args, CmdArgs, "profile",
+1481:                     RuntimeLinkOptions(RLO_AlwaysLink));
+
+compiler-rt/lib/profile/InstrProfilingFile.c
+1038: /* Returns the pointer to the environment variable
+1039:  * string. Returns null if the env var is not set. */
+1040: static const char *getFilenamePatFromEnv(void) {
+1041:   const char *Filename = getenv("LLVM_PROFILE_FILE");
+1042:   if (!Filename || !Filename[0])
+1043:     return 0;
+1044:   return Filename;
+1045: }
+
+compiler-rt/lib/profile/InstrProfilingFile.c
+1104: void __llvm_profile_initialize_file(void) {
+1105:   const char *EnvFilenamePat;
+1106:   const char *SelectedPat = NULL;
+1107:   ProfileNameSpecifier PNS = PNS_unknown;
+1108:   int hasCommandLineOverrider = (INSTR_PROF_PROFILE_NAME_VAR[0] != 0);
+1109: 
+1110:   EnvFilenamePat = getFilenamePatFromEnv();
+1111:   if (EnvFilenamePat) {
+1112:     /* Pass CopyFilenamePat = 1, to ensure that the filename would be valid
+1113:        at the  moment when __llvm_profile_write_file() gets executed. */
+1114:     parseAndSetFilename(EnvFilenamePat, PNS_environment, 1);
+1115:     return;
+1116:   } else if (hasCommandLineOverrider) {
+1117:     SelectedPat = INSTR_PROF_PROFILE_NAME_VAR;
+1118:     PNS = PNS_command_line;
+1119:   } else {
+1120:     SelectedPat = NULL;
+1121:     PNS = PNS_default;
+1122:   }
+1123: 
+1124:   parseAndSetFilename(SelectedPat, PNS, 0);
+1125: }
+1126: 
+1127: /* This method is invoked by the runtime initialization hook
+1128:  * InstrProfilingRuntime.o if it is linked in.
+1129:  */
+1130: COMPILER_RT_VISIBILITY
+1131: void __llvm_profile_initialize(void) {
+1132:   __llvm_profile_initialize_file();
+1133:   if (!__llvm_profile_is_continuous_mode_enabled())
+1134:     __llvm_profile_register_write_file_atexit();
+1135: }
+
+compiler-rt/lib/profile/InstrProfilingFile.c
+1172:   /* Check the filename. */
+1173:   if (!Filename) {
+1174:     PROF_ERR("Failed to write file : %s\n", "Filename not set");
+1175:     if (PDeathSig == 1)
+1176:       lprofRestoreSigKill();
+1177:     return -1;
+1178:   }
+1179: 
+1180:   /* Check if there is llvm/runtime version mismatch.  */
+1181:   if (GET_VERSION(__llvm_profile_get_version()) != INSTR_PROF_RAW_VERSION) {
+1182:     PROF_ERR("Runtime and instrumentation version mismatch : "
+1183:              "expected %d, but get %d\n",
+1184:              INSTR_PROF_RAW_VERSION,
+1185:              (int)GET_VERSION(__llvm_profile_get_version()));
+1186:     if (PDeathSig == 1)
+1187:       lprofRestoreSigKill();
+1188:     return -1;
+1189:   }
+1190: 
+1191:   /* Write profile data to the file. */
+1192:   rc = writeFile(Filename);
+1193:   if (rc)
+1194:     PROF_ERR("Failed to write file \"%s\": %s\n", Filename, strerror(errno));
+
+compiler-rt/lib/profile/InstrProfilingFile.c
+1215: static void writeFileWithoutReturn(void) { __llvm_profile_write_file(); }
+1216: 
+1217: COMPILER_RT_VISIBILITY
+1218: int __llvm_profile_register_write_file_atexit(void) {
+1219:   static int HasBeenRegistered = 0;
+1220: 
+1221:   if (HasBeenRegistered)
+1222:     return 0;
+1223: 
+1224:   lprofSetupValueProfiler();
+1225: 
+1226:   HasBeenRegistered = 1;
+1227:   return lprofAtExit(writeFileWithoutReturn);
+
+clang/docs/SourceBasedCodeCoverage.rst
+53: Compiling with coverage enabled
+54: ===============================
+55: 
+56: To compile code with coverage enabled, pass ``-fprofile-instr-generate
+57: -fcoverage-mapping`` to the compiler:
+58: 
+59: .. code-block:: console
+60: 
+61:     # Step 1: Compile with coverage enabled.
+62:     % clang++ -fprofile-instr-generate -fcoverage-mapping foo.cc -o foo
+63: 
+64: Note that linking together code with and without coverage instrumentation is
+65: supported. Uninstrumented code simply won't be accounted for in reports.
+66: 
+67: To compile code with Modified Condition/Decision Coverage (MC/DC) enabled,
+68: pass ``-fcoverage-mcdc`` in addition to the clang options specified above.
+69: MC/DC is an advanced form of code coverage most applicable in the embedded
+70: space.
+71: 
+72: Running the instrumented program
+73: ================================
+74: 
+75: The next step is to run the instrumented program. When the program exits it
+76: will write a **raw profile** to the path specified by the ``LLVM_PROFILE_FILE``
+77: environment variable. If that variable does not exist, the profile is written
+78: to ``default.profraw`` in the current directory of the program. If
+79: ``LLVM_PROFILE_FILE`` contains a path to a non-existent directory, the missing
+
+clang/docs/SourceBasedCodeCoverage.rst
+150: =========================
+151: 
+152: Raw profiles have to be **indexed** before they can be used to generate
+153: coverage reports. This is done using the "merge" tool in ``llvm-profdata``
+154: (which can combine multiple raw profiles and index them at the same time):
+155: 
+156: .. code-block:: console
+157: 
+158:     # Step 3(a): Index the raw profile.
+159:     % llvm-profdata merge -sparse foo.profraw -o foo.profdata
+
+clang/docs/SourceBasedCodeCoverage.rst
+297: * Branch coverage is the percentage of "true" and "false" branches that have
+298:   been taken at least once. Each branch is tied to individual conditions in the
+299:   source code that may each evaluate to either "true" or "false".  These
+300:   conditions may comprise larger boolean expressions linked by boolean logical
+301:   operators. For example, "x = (y == 2) || (z < 10)" is a boolean expression
+302:   that is comprised of two individual conditions, each of which evaluates to
+303:   either true or false, producing four total branch outcomes.
+
+clang/lib/CodeGen/CoverageMappingGen.cpp
+1140:   /// and add it to the function's SourceRegions.  A branch region tracks a
+1141:   /// "True" counter and a "False" counter for boolean expressions that
+1142:   /// result in the generation of a branch.
+1143:   void createBranchRegion(const Expr *C, Counter TrueCnt, Counter FalseCnt,
+1144:                           const mcdc::ConditionIDs &Conds = {}) {
+
+clang/lib/CodeGen/CoverageMappingGen.cpp
+1153:     // With !SystemHeadersCoverage, binary logical ops in system headers may be
+1154:     // treated as instrumentable conditions.
+1155:     if (CodeGenFunction::isInstrumentedCondition(C) ||
+1156:         LeafExprSet.count(CodeGenFunction::stripCond(C))) {
+1157:       mcdc::Parameters BranchParams;
+1158:       mcdc::ConditionID ID = MCDCBuilder.getCondID(C);
+1159:       if (ID >= 0)
+1160:         BranchParams = mcdc::BranchParameters{ID, Conds};
+1161: 
+1162:       // If a condition can fold to true or false, the corresponding branch
+1163:       // will be removed.  Create a region with both counters hard-coded to
+1164:       // zero. This allows us to visualize them in a special way.
+1165:       // Alternatively, we can prevent any optimization done via
+1166:       // constant-folding by ensuring that ConstantFoldsToSimpleInteger() in
+1167:       // CodeGenFunction.c always returns false, but that is very heavy-handed.
+1168:       Expr::EvalResult Result;
+1169:       if (C->EvaluateAsInt(Result, CVM.getCodeGenModule().getContext())) {
+1170:         if (Result.Val.getInt().getBoolValue())
+1171:           FalseCnt = Counter::getZero();
+1172:         else
+1173:           TrueCnt = Counter::getZero();
+1174:       }
+1175:       popRegions(
+1176:           pushRegion(TrueCnt, getStart(C), getEnd(C), FalseCnt, BranchParams));
+
+clang/lib/CodeGen/CoverageMappingGen.cpp
+2049:   void VisitIfStmt(const IfStmt *S) {
+2050:     // "if constexpr" and "if consteval" are not normal conditional statements,
+2051:     // their discarded statement should be skipped
+2052:     if (S->isConsteval())
+2053:       return coverIfConsteval(S);
+2054:     else if (S->isConstexpr())
+2055:       return coverIfConstexpr(S);
+
+clang/lib/CodeGen/CoverageMappingGen.cpp
+2113:     if (!llvm::EnableSingleByteCoverage)
+2114:       // Create Branch Region around condition.
+2115:       createBranchRegion(S->getCond(), ThenCount, ElseCount);
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+96: cl::opt<std::string> OutputFilename("output", cl::value_desc("output"),
+97:                                     cl::init("-"), cl::desc("Output file"),
+98:                                     cl::sub(ShowSubcommand),
+99:                                     cl::sub(OrderSubcommand),
+100:                                     cl::sub(OverlapSubcommand),
+101:                                     cl::sub(MergeSubcommand));
+102: // NOTE: cl::alias must not have cl::sub(), since aliased option's cl::sub()
+103: // will be used. llvm::cl::alias::done() method asserts this condition.
+104: static cl::alias OutputFilenameA("o", cl::desc("Alias for --output"),
+105:                                  cl::aliasopt(OutputFilename));
+106: 
+107: // Options common to at least two commands.
+108: static cl::opt<ProfileKinds> ProfileKind(
+109:     cl::desc("Profile kind:"), cl::sub(MergeSubcommand),
+110:     cl::sub(OverlapSubcommand), cl::init(instr),
+111:     cl::values(clEnumVal(instr, "Instrumentation profile (default)"),
+112:                clEnumVal(sample, "Sample profile")));
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+282: static cl::opt<FailureMode>
+283:     FailMode("failure-mode", cl::init(failIfAnyAreInvalid),
+284:              cl::desc("Failure mode:"), cl::sub(MergeSubcommand),
+285:              cl::values(clEnumValN(warnOnly, "warn",
+286:                                    "Do not fail and just print warnings."),
+287:                         clEnumValN(failIfAnyAreInvalid, "any",
+288:                                    "Fail if any profile is invalid."),
+289:                         clEnumValN(failIfAllAreInvalid, "all",
+290:                                    "Fail only if all profiles are invalid.")));
+291: 
+292: static cl::opt<bool> OutputSparse(
+293:     "sparse", cl::init(false), cl::sub(MergeSubcommand),
+294:     cl::desc("Generate a sparse profile (only meaningful for -instr)"));
+295: static cl::opt<unsigned> NumThreads(
+296:     "num-threads", cl::init(0), cl::sub(MergeSubcommand),
+297:     cl::desc("Number of merge threads to use (default: autodetect)"));
+298: static cl::alias NumThreadsA("j", cl::desc("Alias for --num-threads"),
+299:                              cl::aliasopt(NumThreads));
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+517: static void exitWithError(Twine Message, StringRef Whence = "",
+518:                           StringRef Hint = "") {
+519:   WithColor::error();
+520:   if (!Whence.empty())
+521:     errs() << Whence << ": ";
+522:   errs() << Message << "\n";
+523:   if (!Hint.empty())
+524:     WithColor::note() << Hint << "\n";
+525:   ::exit(1);
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+944: static void writeInstrProfile(StringRef OutputFilename,
+945:                               ProfileFormat OutputFormat,
+946:                               InstrProfWriter &Writer) {
+947:   std::error_code EC;
+948:   raw_fd_ostream Output(OutputFilename.data(), EC,
+949:                         OutputFormat == PF_Text ? sys::fs::OF_TextWithCRLF
+950:                                                 : sys::fs::OF_None);
+951:   if (EC)
+952:     exitWithErrorCode(EC, OutputFilename);
+953: 
+954:   if (OutputFormat == PF_Text) {
+955:     if (Error E = Writer.writeText(Output))
+956:       warn(std::move(E));
+957:   } else {
+958:     if (Output.is_displayed())
+959:       exitWithError("cannot write a non-text format profile to the terminal");
+960:     if (Error E = Writer.write(Output))
+961:       warn(std::move(E));
+962:   }
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+1077:   // Handle deferred errors encountered during merging. If the number of errors
+1078:   // is equal to the number of inputs the merge failed.
+1079:   unsigned NumErrors = 0;
+1080:   for (std::unique_ptr<WriterContext> &WC : Contexts) {
+1081:     for (auto &ErrorPair : WC->Errors) {
+1082:       ++NumErrors;
+1083:       warn(toString(std::move(ErrorPair.first)), ErrorPair.second);
+1084:     }
+1085:   }
+1086:   if ((NumErrors == Inputs.size() && FailMode == failIfAllAreInvalid) ||
+1087:       (NumErrors > 0 && FailMode == failIfAnyAreInvalid))
+1088:     exitWithError("no profile can be merged");
+1089: 
+1090:   filterFunctions(Contexts[0]->Writer.getProfileData());
+1091: 
+1092:   writeInstrProfile(OutputFilename, OutputFormat, Contexts[0]->Writer);
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+1718:   // If it's STDIN just pass it on.
+1719:   if (Filename == "-") {
+1720:     WNI.push_back({std::string(Filename), Weight});
+1721:     return;
+1722:   }
+1723: 
+1724:   llvm::sys::fs::file_status Status;
+1725:   llvm::sys::fs::status(Filename, Status);
+1726:   if (!llvm::sys::fs::exists(Status))
+1727:     exitWithErrorCode(make_error_code(errc::no_such_file_or_directory),
+1728:                       Filename);
+1729:   // If it's a source file, collect it.
+1730:   if (llvm::sys::fs::is_regular_file(Status)) {
+1731:     WNI.push_back({std::string(Filename), Weight});
+1732:     return;
+
+llvm/tools/llvm-profdata/llvm-profdata.cpp
+1780: 
+1781:   if (WeightedInputs.empty())
+1782:     exitWithError("no input files specified. See " + ProgName + " merge -help");
+1783: 
+1784:   if (DumpInputFileList) {
+1785:     for (auto &WF : WeightedInputs)
+1786:       outs() << WF.Weight << "," << WF.Filename << "\n";
+1787:     return 0;
+1788:   }
+1789: 
+1790:   std::unique_ptr<SymbolRemapper> Remapper;
+1791:   if (!RemappingFile.empty())
+1792:     Remapper = SymbolRemapper::create(RemappingFile);
+1793: 
+1794:   if (!SupplInstrWithSample.empty()) {
+1795:     if (ProfileKind != instr)
+1796:       exitWithError(
+1797:           "-supplement-instr-with-sample can only work with -instr. ");
+1798: 
+1799:     supplementInstrProfile(WeightedInputs, SupplInstrWithSample, OutputSparse,
+1800:                            SupplMinSizeThreshold, ZeroCounterThreshold,
+1801:                            InstrProfColdThreshold);
+1802:     return 0;
+1803:   }
+1804: 
+1805:   if (ProfileKind == instr)
+1806:     mergeInstrProfile(WeightedInputs, Remapper.get(), MaxDbgCorrelationWarnings,
+1807:                       ProfiledBinary);
+1808:   else
+1809:     mergeSampleProfile(WeightedInputs, Remapper.get(), ProfileSymbolListFile,
+1810:                        OutputSizeLimit);
+1811:   return 0;
+
+llvm/tools/llvm-cov/CodeCoverage.cpp
+457: std::unique_ptr<CoverageMapping> CodeCoverageTool::load() {
+458:   if (PGOFilename) {
+459:     for (StringRef ObjectFilename : ObjectFilenames)
+460:       if (modifiedTimeGT(ObjectFilename, PGOFilename.value()))
+461:         warning("profile data may be out of date - object is newer",
+462:                 ObjectFilename);
+463:   }
+464:   auto FS = vfs::getRealFileSystem();
+465:   auto CoverageOrErr = CoverageMapping::load(
+466:       ObjectFilenames, PGOFilename, *FS, CoverageArches,
+467:       ViewOpts.CompilationDirectory, BIDFetcher.get(), CheckBinaryIDs);
+468:   if (Error E = CoverageOrErr.takeError()) {
+469:     error("failed to load coverage: " + toString(std::move(E)));
+470:     return nullptr;
+471:   }
+472:   auto Coverage = std::move(CoverageOrErr.get());
+473:   unsigned Mismatched = Coverage->getMismatchedCount();
+474:   if (Mismatched) {
+475:     warning(Twine(Mismatched) + " functions have mismatched data");
+476: 
+477:     if (ViewOpts.Debug) {
+478:       for (const auto &HashMismatch : Coverage->getHashMismatches())
+479:         errs() << "hash-mismatch: "
+480:                << "No profile record found for '" << HashMismatch.first << "'"
+481:                << " with hash = 0x" << Twine::utohexstr(HashMismatch.second)
+482:                << '\n';
+483:     }
+484:   }
+485: 
+486:   remapPathNames(*Coverage);
+487: 
+488:   if (!SourceFiles.empty())
+489:     removeUnmappedInputs(*Coverage);
+490: 
+491:   demangleSymbols(*Coverage);
+492: 
+493:   return Coverage;
+
+llvm/tools/llvm-cov/CodeCoverage.cpp
+673:   cl::opt<std::string> PGOFilename(
+674:       "instr-profile", cl::Optional,
+675:       cl::desc(
+676:           "File with the profile data obtained after an instrumented run"));
+677: 
+678:   cl::opt<bool> EmptyProfile(
+679:       "empty-profile", cl::Optional,
+680:       cl::desc("Use a synthetic profile with no data to generate "
+681:                "baseline coverage"));
+682: 
+683:   cl::list<std::string> Arches(
+684:       "arch", cl::desc("architectures of the coverage mapping binaries"));
+685: 
+686:   cl::opt<bool> DebugDump("dump", cl::Optional,
+687:                           cl::desc("Show internal debug dump"));
+688: 
+689:   cl::list<std::string> DebugFileDirectory(
+690:       "debug-file-directory",
+691:       cl::desc("Directories to search for object files by build ID"));
+692:   cl::opt<bool> Debuginfod(
+693:       "debuginfod", cl::ZeroOrMore,
+694:       cl::desc("Use debuginfod to look up object files from profile"),
+695:       cl::init(canUseDebuginfod()));
+696: 
+697:   cl::opt<CoverageViewOptions::OutputFormat> Format(
+698:       "format", cl::desc("Output format for line-based coverage reports"),
+699:       cl::values(clEnumValN(CoverageViewOptions::OutputFormat::Text, "text",
+700:                             "Text output"),
+701:                  clEnumValN(CoverageViewOptions::OutputFormat::HTML, "html",
+702:                             "HTML output"),
+703:                  clEnumValN(CoverageViewOptions::OutputFormat::Lcov, "lcov",
+704:                             "lcov tracefile output")),
+705:       cl::init(CoverageViewOptions::OutputFormat::Text));
+
+llvm/tools/llvm-cov/CodeCoverage.cpp
+786:   cl::opt<bool> SummaryOnly(
+787:       "summary-only", cl::Optional,
+788:       cl::desc("Export only summary information for each source file"));
+789: 
+790:   cl::opt<unsigned> NumThreads(
+791:       "num-threads", cl::init(0),
+792:       cl::desc("Number of merge threads to use (default: autodetect)"));
+793:   cl::alias NumThreadsA("j", cl::desc("Alias for --num-threads"),
+794:                         cl::aliasopt(NumThreads));
+
+llvm/tools/llvm-cov/CodeCoverage.cpp
+804:   auto commandLineParser = [&, this](int argc, const char **argv) -> int {
+805:     cl::ParseCommandLineOptions(argc, argv, "LLVM code coverage tool\n");
+806:     ViewOpts.Debug = DebugDump;
+807:     if (Debuginfod) {
+808:       HTTPClient::initialize();
+809:       BIDFetcher = std::make_unique<DebuginfodFetcher>(DebugFileDirectory);
+810:     } else {
+811:       BIDFetcher = std::make_unique<object::BuildIDFetcher>(DebugFileDirectory);
+812:     }
+813:     this->CheckBinaryIDs = CheckBinaryIDs;
+814: 
+815:     if (!PGOFilename.empty() == EmptyProfile) {
+816:       error(
+817:           "exactly one of -instr-profile and -empty-profile must be specified");
+818:       return 1;
+819:     }
+820:     if (!PGOFilename.empty()) {
+821:       this->PGOFilename = std::make_optional(PGOFilename.getValue());
+822:     }
+
+llvm/tools/llvm-cov/CodeCoverage.cpp
+1289: int CodeCoverageTool::doExport(int argc, const char **argv,
+1290:                                CommandLineParserType commandLineParser) {
+1291: 
+1292:   cl::OptionCategory ExportCategory("Exporting options");
+1293: 
+1294:   cl::opt<bool> SkipExpansions("skip-expansions", cl::Optional,
+1295:                                cl::desc("Don't export expanded source regions"),
+1296:                                cl::cat(ExportCategory));
+1297: 
+1298:   cl::opt<bool> SkipFunctions("skip-functions", cl::Optional,
+1299:                               cl::desc("Don't export per-function data"),
+1300:                               cl::cat(ExportCategory));
+1301: 
+1302:   cl::opt<bool> SkipBranches("skip-branches", cl::Optional,
+1303:                               cl::desc("Don't export branch data (LCOV)"),
+1304:                               cl::cat(ExportCategory));
+1305: 
+1306:   cl::opt<bool> UnifyInstantiations("unify-instantiations", cl::Optional,
+1307:                                     cl::desc("Unify function instantiations"),
+1308:                                     cl::init(true), cl::cat(ExportCategory));
+1309: 
+1310:   auto Err = commandLineParser(argc, argv);
+1311:   if (Err)
+1312:     return Err;
+1313: 
+1314:   ViewOpts.SkipExpansions = SkipExpansions;
+1315:   ViewOpts.SkipFunctions = SkipFunctions;
+1316:   ViewOpts.SkipBranches = SkipBranches;
+1317:   ViewOpts.UnifyFunctionInstantiations = UnifyInstantiations;
+1318: 
+1319:   if (ViewOpts.Format != CoverageViewOptions::OutputFormat::Text &&
+1320:       ViewOpts.Format != CoverageViewOptions::OutputFormat::Lcov) {
+1321:     error("coverage data can only be exported as textual JSON or an "
+1322:           "lcov tracefile.");
+1323:     return 1;
+1324:   }
+1325: 
+1326:   if (PGOFilename) {
+1327:     sys::fs::file_status Status;
+1328:     if (std::error_code EC = sys::fs::status(PGOFilename.value(), Status)) {
+1329:       error("could not read profile data!" + EC.message(), PGOFilename.value());
+1330:       return 1;
+1331:     }
+1332:   }
+1333: 
+1334:   auto Coverage = load();
+1335:   if (!Coverage) {
+1336:     error("could not load coverage information");
+1337:     return 1;
+1338:   }
+1339: 
+1340:   std::unique_ptr<CoverageExporter> Exporter;
+1341: 
+1342:   switch (ViewOpts.Format) {
+1343:   case CoverageViewOptions::OutputFormat::Text:
+1344:     Exporter =
+1345:         std::make_unique<CoverageExporterJson>(*Coverage, ViewOpts, outs());
+1346:     break;
+1347:   case CoverageViewOptions::OutputFormat::HTML:
+1348:     // Unreachable because we should have gracefully terminated with an error
+1349:     // above.
+1350:     llvm_unreachable("Export in HTML is not supported!");
+1351:   case CoverageViewOptions::OutputFormat::Lcov:
+1352:     Exporter =
+1353:         std::make_unique<CoverageExporterLcov>(*Coverage, ViewOpts, outs());
+1354:     break;
+1355:   }
+1356: 
+1357:   if (SourceFiles.empty())
+1358:     Exporter->renderRoot(IgnoreFilenameFilters);
+1359:   else
+1360:     Exporter->renderRoot(SourceFiles);
+1361: 
+1362:   return 0;
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+64: /// The semantic version combined as a string.
+65: #define LLVM_COVERAGE_EXPORT_JSON_STR "3.0.0"
+66: 
+67: /// Unique type identifier for JSON coverage export.
+68: #define LLVM_COVERAGE_EXPORT_JSON_TYPE_STR "llvm.coverage.json.export"
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+96: json::Array renderBranch(const coverage::CountedRegion &Region) {
+97:   return json::Array(
+98:       {Region.LineStart, Region.ColumnStart, Region.LineEnd, Region.ColumnEnd,
+99:        clamp_uint64_to_int64(Region.ExecutionCount),
+100:        clamp_uint64_to_int64(Region.FalseExecutionCount), Region.FileID,
+101:        Region.ExpandedFileID, int64_t(Region.Kind)});
+102: }
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+127: json::Array renderBranchRegions(ArrayRef<coverage::CountedRegion> Regions) {
+128:   json::Array RegionArray;
+129:   for (const auto &Region : Regions)
+130:     if (!Region.TrueFolded || !Region.FalseFolded)
+131:       RegionArray.push_back(renderBranch(Region));
+132:   return RegionArray;
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+178: json::Object renderSummary(const FileCoverageSummary &Summary) {
+179:   return json::Object(
+180:       {{"lines",
+181:         json::Object({{"count", int64_t(Summary.LineCoverage.getNumLines())},
+182:                       {"covered", int64_t(Summary.LineCoverage.getCovered())},
+183:                       {"percent", Summary.LineCoverage.getPercentCovered()}})},
+184:        {"functions",
+185:         json::Object(
+186:             {{"count", int64_t(Summary.FunctionCoverage.getNumFunctions())},
+187:              {"covered", int64_t(Summary.FunctionCoverage.getExecuted())},
+188:              {"percent", Summary.FunctionCoverage.getPercentCovered()}})},
+189:        {"instantiations",
+190:         json::Object(
+191:             {{"count",
+192:               int64_t(Summary.InstantiationCoverage.getNumFunctions())},
+193:              {"covered", int64_t(Summary.InstantiationCoverage.getExecuted())},
+194:              {"percent", Summary.InstantiationCoverage.getPercentCovered()}})},
+195:        {"regions",
+196:         json::Object(
+197:             {{"count", int64_t(Summary.RegionCoverage.getNumRegions())},
+198:              {"covered", int64_t(Summary.RegionCoverage.getCovered())},
+199:              {"notcovered", int64_t(Summary.RegionCoverage.getNumRegions() -
+200:                                     Summary.RegionCoverage.getCovered())},
+201:              {"percent", Summary.RegionCoverage.getPercentCovered()}})},
+202:        {"branches",
+203:         json::Object(
+204:             {{"count", int64_t(Summary.BranchCoverage.getNumBranches())},
+205:              {"covered", int64_t(Summary.BranchCoverage.getCovered())},
+206:              {"notcovered", int64_t(Summary.BranchCoverage.getNumBranches() -
+207:                                     Summary.BranchCoverage.getCovered())},
+208:              {"percent", Summary.BranchCoverage.getPercentCovered()}})},
+209:        {"mcdc",
+210:         json::Object(
+211:             {{"count", int64_t(Summary.MCDCCoverage.getNumPairs())},
+212:              {"covered", int64_t(Summary.MCDCCoverage.getCoveredPairs())},
+213:              {"notcovered", int64_t(Summary.MCDCCoverage.getNumPairs() -
+214:                                     Summary.MCDCCoverage.getCoveredPairs())},
+215:              {"percent", Summary.MCDCCoverage.getPercentCovered()}})}});
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+251: json::Object renderFile(const coverage::CoverageMapping &Coverage,
+252:                         const std::string &Filename,
+253:                         const FileCoverageSummary &FileReport,
+254:                         const CoverageViewOptions &Options) {
+255:   json::Object File({{"filename", Filename}});
+256:   if (!Options.ExportSummaryOnly) {
+257:     // Calculate and render detailed coverage information for given file.
+258:     auto FileCoverage = Coverage.getCoverageForFile(Filename);
+259:     File["segments"] = renderFileSegments(FileCoverage, FileReport);
+260:     File["branches"] = renderFileBranches(FileCoverage, FileReport);
+261:     File["mcdc_records"] = renderFileMCDC(FileCoverage, FileReport);
+262:     if (!Options.SkipExpansions) {
+263:       File["expansions"] =
+264:           renderFileExpansions(Coverage, FileCoverage, FileReport);
+265:     }
+266:   }
+267:   File["summary"] = renderSummary(FileReport);
+268:   return File;
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+301: json::Array renderFunctions(
+302:     const iterator_range<coverage::FunctionRecordIterator> &Functions) {
+303:   json::Array FunctionArray;
+304:   for (const auto &F : Functions)
+305:     FunctionArray.push_back(
+306:         json::Object({{"name", F.Name},
+307:                       {"count", clamp_uint64_to_int64(F.ExecutionCount)},
+308:                       {"regions", renderRegions(F.CountedRegions)},
+309:                       {"branches", renderBranchRegions(F.CountedBranchRegions)},
+310:                       {"mcdc_records", renderMCDCRecords(F.MCDCRecords)},
+311:                       {"filenames", json::Array(F.Filenames)}}));
+
+llvm/tools/llvm-cov/CoverageExporterJson.cpp
+326: void CoverageExporterJson::renderRoot(ArrayRef<std::string> SourceFiles) {
+327:   FileCoverageSummary Totals = FileCoverageSummary("Totals");
+328:   auto FileReports = CoverageReport::prepareFileReports(Coverage, Totals,
+329:                                                         SourceFiles, Options);
+330:   auto Files = renderFiles(Coverage, SourceFiles, FileReports, Options);
+331:   // Sort files in order of their names.
+332:   llvm::sort(Files, [](const json::Value &A, const json::Value &B) {
+333:     const json::Object *ObjA = A.getAsObject();
+334:     const json::Object *ObjB = B.getAsObject();
+335:     assert(ObjA != nullptr && "Value A was not an Object");
+336:     assert(ObjB != nullptr && "Value B was not an Object");
+337:     const StringRef FilenameA = *ObjA->getString("filename");
+338:     const StringRef FilenameB = *ObjB->getString("filename");
+339:     return FilenameA.compare(FilenameB) < 0;
+340:   });
+341:   auto Export = json::Object(
+342:       {{"files", std::move(Files)}, {"totals", renderSummary(Totals)}});
+343:   // Skip functions-level information  if necessary.
+344:   if (!Options.ExportSummaryOnly && !Options.SkipFunctions)
+345:     Export["functions"] = renderFunctions(Coverage.getCoveredFunctions());
+346: 
+347:   auto ExportArray = json::Array({std::move(Export)});
+348: 
+349:   OS << json::Object({{"version", LLVM_COVERAGE_EXPORT_JSON_STR},
+350:                       {"type", LLVM_COVERAGE_EXPORT_JSON_TYPE_STR},
+351:                       {"data", std::move(ExportArray)}});
+
+llvm/lib/ProfileData/Coverage/CoverageMapping.cpp
+841:   if (ProfileReader) {
+842:     if (Error E = ProfileReader.value().get().getFunctionCounts(
+843:             Record.FunctionName, Record.FunctionHash, Counts)) {
+844:       instrprof_error IPE = std::get<0>(InstrProfError::take(std::move(E)));
+845:       if (IPE == instrprof_error::hash_mismatch) {
+846:         FuncHashMismatches.emplace_back(std::string(Record.FunctionName),
+847:                                         Record.FunctionHash);
+848:         return Error::success();
+849:       }
+850:       if (IPE != instrprof_error::unknown_function)
+851:         return make_error<InstrProfError>(IPE);
+852:       Counts.assign(getMaxCounterID(Ctx, Record) + 1, 0);
+853:     }
+854:   } else {
+855:     Counts.assign(getMaxCounterID(Ctx, Record) + 1, 0);
+
+llvm/lib/ProfileData/Coverage/CoverageMapping.cpp
+1051: Expected<std::unique_ptr<CoverageMapping>> CoverageMapping::load(
+1052:     ArrayRef<StringRef> ObjectFilenames,
+1053:     std::optional<StringRef> ProfileFilename, vfs::FileSystem &FS,
+1054:     ArrayRef<StringRef> Arches, StringRef CompilationDir,
+1055:     const object::BuildIDFetcher *BIDFetcher, bool CheckBinaryIDs) {
+1056:   std::unique_ptr<IndexedInstrProfReader> ProfileReader;
+1057:   if (ProfileFilename) {
+1058:     auto ProfileReaderOrErr =
+1059:         IndexedInstrProfReader::create(ProfileFilename.value(), FS);
+1060:     if (Error E = ProfileReaderOrErr.takeError())
+1061:       return createFileError(ProfileFilename.value(), std::move(E));
+1062:     ProfileReader = std::move(ProfileReaderOrErr.get());
+
+llvm/test/tools/llvm-cov/branch-export-json.test
+2: // RUN: llvm-profdata merge %S/Inputs/branch-showBranchPercentage.proftext -o %t.profdata
+3: // RUN: llvm-cov export --format=text %S/Inputs/branch-showBranchPercentage.o32l -instr-profile %t.profdata | FileCheck %s
+4: 
+5: // CHECK: "branches":
+6: // CHECK: 14,7,14,15,1,5,0,0,4
+7: // CHECK: 27,8,27,14,1,4,0,0,4
+8: // CHECK: 27,18,27,24,0,1,0,0,4
+9: // CHECK: 27,29,27,36,0,5,0,0,4
+10: // CHECK: 27,40,27,46,2,3,0,0,4
+11: // CHECK: 30,8,30,14,4,1,0,0,4
+12: // CHECK: 30,18,30,24,0,1,0,0,4
+13: // CHECK: 32,8,32,14,4,1,0,0,4
+14: // CHECK: 32,18,32,24,1,3,0,0,4
+15: // CHECK: 34,15,34,20,1,5,0,0,4
+16: // CHECK: 41,5,41,11,1,4,0,0,4
+17: // CHECK: 43,5,43,11,1,4,0,0,4
+18: // CHECK: 45,5,45,11,0,5,0,0,4
+19: // CHECK: 47,5,47,12,3,2,0,0,4
+20: // CHECK: 53,12,53,20,50,5,0,0,4
+21: // CHECK: {"count":30,"covered":26,"notcovered":4,"percent":86.666666666666671}
+
+llvm/test/tools/llvm-cov/export_functions.test
+1: # Test that llvm-cov export produces function data by default and that it can be
+2: # turned off with a flag.
+3: 
+4: RUN: llvm-cov export %S/Inputs/report.covmapping -instr-profile %S/Inputs/report.profdata 2>&1 | FileCheck %s
+5: RUN: llvm-cov export %S/Inputs/report.covmapping -instr-profile %S/Inputs/report.profdata -skip-functions 2>&1 | FileCheck -check-prefix=SKIP-FUNCTIONS %s
+6: 
+7: CHECK: "functions":[
+8: SKIP-FUNCTIONS-NOT: "functions":[

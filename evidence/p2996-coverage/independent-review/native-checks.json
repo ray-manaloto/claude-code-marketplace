@@ -1,0 +1,995 @@
+{
+  "state": "PASS: independent bounded LLVM coverage controls",
+  "started_at": "2026-10-11T11:31:02.153779+00:00",
+  "commands": [
+    {
+      "case": "named-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T11:31:04.415560+00:00",
+      "pid": 21643,
+      "returncode": 0,
+      "elapsed_seconds": 0.1430788750294596,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/named-profile.stdout",
+          "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/named-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T11:31:04.561139+00:00",
+      "pid": 21646,
+      "returncode": 0,
+      "elapsed_seconds": 0.04821212496608496,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/capacity-processes.stdout",
+          "sha256": "1e51c6cec9c7c16f130c56e516b4c02a3c81ab8daa5031aeb21d813958d98617"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "coverage-compile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-O0",
+        "-fprofile-instr-generate",
+        "-fcoverage-mapping",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage"
+      ],
+      "started_at": "2026-10-11T11:31:04.615107+00:00",
+      "pid": 21647,
+      "returncode": 0,
+      "elapsed_seconds": 0.8987783750053495,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-compile.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-compile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "coverage-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "LLVM_PROFILE_FILE=/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage"
+      ],
+      "started_at": "2026-10-11T11:31:05.515004+00:00",
+      "pid": 21652,
+      "returncode": 0,
+      "elapsed_seconds": 0.25761695904657245,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-run.stdout",
+          "sha256": "4e602f7fb8fc648dc9907a2e6157d4b037e149c5849fb307d076602bb838f00c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-run.stderr",
+          "sha256": "9c46425ea0a2e2e1cf9b4f0bec286a4ad9ba770aa8d0ba72278208c1e3a1eb51"
+        }
+      ]
+    },
+    {
+      "case": "coverage-merge",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-profdata",
+        "merge",
+        "-sparse",
+        "--num-threads=1",
+        "--failure-mode=any",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata"
+      ],
+      "started_at": "2026-10-11T11:31:05.775095+00:00",
+      "pid": 21653,
+      "returncode": 0,
+      "elapsed_seconds": 0.14595170796383172,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-merge.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-merge.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "coverage-export",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-cov",
+        "export",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+        "--format=text",
+        "--num-threads=1",
+        "--debuginfod=false",
+        "--instr-profile=/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp"
+      ],
+      "started_at": "2026-10-11T11:31:05.922388+00:00",
+      "pid": 21654,
+      "returncode": 0,
+      "elapsed_seconds": 0.0906351669691503,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-export.stdout",
+          "sha256": "fc7bb9e3179cc0f52274f4d0b8d308cbf0298e7a0b318eb943ae6cdbf4d4e69c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-export.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "coverage-absent-data",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-cov",
+        "export",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+        "--format=text",
+        "--num-threads=1",
+        "--debuginfod=false",
+        "--instr-profile=/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/absent.profdata",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp"
+      ],
+      "started_at": "2026-10-11T11:31:06.015063+00:00",
+      "pid": 21655,
+      "returncode": 1,
+      "elapsed_seconds": 0.09013412497006357,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-absent-data.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage-absent-data.stderr",
+          "sha256": "91bc18ad70447a86763dcfba0b7c373eeeb910ccceaad4ea19d277589589533d"
+        }
+      ]
+    },
+    {
+      "case": "default-consumer",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T11:31:06.107901+00:00",
+      "pid": 21658,
+      "returncode": 0,
+      "elapsed_seconds": 0.0911132909823209,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/default-consumer.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/default-consumer.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T11:31:06.200927+00:00",
+      "pid": 21659,
+      "returncode": 0,
+      "elapsed_seconds": 0.022591416956856847,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T11:31:06.224742+00:00",
+      "pid": 21660,
+      "returncode": 0,
+      "elapsed_seconds": 0.02381979103665799,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T11:31:06.249840+00:00",
+      "pid": 21661,
+      "returncode": 0,
+      "elapsed_seconds": 0.9502171669155359,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-diff",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T11:31:07.201286+00:00",
+      "pid": 21670,
+      "returncode": 0,
+      "elapsed_seconds": 0.29721541691105813,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T11:31:07.500062+00:00",
+      "pid": 21672,
+      "returncode": 0,
+      "elapsed_seconds": 0.04790129198227078,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T11:31:07.549213+00:00",
+      "pid": 21676,
+      "returncode": 0,
+      "elapsed_seconds": 0.7760609589749947,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/acceptance-baseline.stdout",
+          "sha256": "758833363b89fe98fec91e0fc86ddcd922284d45cf8c182870a5fd7be69871ed"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/acceptance-baseline.stderr",
+          "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae"
+        }
+      ]
+    },
+    {
+      "case": "root-identity",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "--show-toplevel",
+        "--git-common-dir",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T11:31:08.326843+00:00",
+      "pid": 21690,
+      "returncode": 0,
+      "elapsed_seconds": 0.025279166060499847,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-identity.stdout",
+          "sha256": "0c314ee6fee01692106aa46fa877dd1a1d490fc9d670b3fe4fd48a864d0a3487"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-identity.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "root-branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T11:31:08.353313+00:00",
+      "pid": 21691,
+      "returncode": 0,
+      "elapsed_seconds": 0.02526904095429927,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-branch.stdout",
+          "sha256": "e346c1210f8462790b30c81725108cdb31dfc81c0a04d9d151bdefdd66ddb81c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-branch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "root-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "status",
+        "--porcelain",
+        "--untracked-files=normal"
+      ],
+      "started_at": "2026-10-11T11:31:08.379605+00:00",
+      "pid": 21692,
+      "returncode": 0,
+      "elapsed_seconds": 0.04401249997317791,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-status.stdout",
+          "sha256": "0e68f027ed8fca0daed35ad3aabbb1c4e7a82efe26a3d555edbe6d87175065fc"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/root-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "helper_sha256": "50f4b2f512bb15dd3727cb7551c7aa26b58bd44a395763a9351f7f54d9cd69d9",
+  "operation_sha256": "3d1334b2a06ec3d502600c23c380092a7b5b9c0fb91427be9610d3302a9a1882",
+  "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+  "preservation_before_passed": true,
+  "selected_environment": {
+    "selected": {
+      "CC": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+      "CXX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "CFLAGS": null,
+      "CXXFLAGS": null,
+      "CPPFLAGS": null,
+      "LDFLAGS": null,
+      "AR": null,
+      "RANLIB": null,
+      "LD": null,
+      "AS": null,
+      "CPATH": null,
+      "C_INCLUDE_PATH": null,
+      "CPLUS_INCLUDE_PATH": null,
+      "OBJC_INCLUDE_PATH": null,
+      "LIBRARY_PATH": null,
+      "COMPILER_PATH": null,
+      "PKG_CONFIG_PATH": null,
+      "PKG_CONFIG_LIBDIR": null,
+      "CMAKE_PREFIX_PATH": null,
+      "CMAKE_TOOLCHAIN_FILE": null,
+      "CMAKE_GENERATOR": null,
+      "CMAKE_C_COMPILER_LAUNCHER": null,
+      "CMAKE_CXX_COMPILER_LAUNCHER": null,
+      "SDKROOT": null,
+      "MACOSX_DEPLOYMENT_TARGET": null,
+      "DYLD_LIBRARY_PATH": null,
+      "DYLD_FALLBACK_LIBRARY_PATH": null,
+      "MARKETPLACE_CPP_LANE": "p2996",
+      "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+      "MARKETPLACE_GCC16_PREFIX": null,
+      "MAKEFLAGS": "-j2",
+      "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+    },
+    "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+    "homebrew_llvm_on_path": true
+  },
+  "tool_hashes": {
+    "clang++": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219",
+    "llvm-profdata": "f519159620c2e507aba686149ef1ea8ffbafaececec10b1e266aabb9384490e0",
+    "llvm-cov": "9e589e1bfaa5d485b73f2d949c6266113fa542106983a273a6c093ceeb8ece17"
+  },
+  "profile_runtime": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.profile_osx.a",
+    "sha256": "48dd00286225897919bf6fb6a6630245d9489ac8a6544acb55b9350486f3d31b",
+    "bytes": 113832
+  },
+  "fresh_sources_before": {
+    "p2996_reflection.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "bytes": 991
+    },
+    "coverage.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+      "sha256": "1b0a991f9b9c5677d5fb3f82eb6c891856bda81d2095427590171546db9d44e7",
+      "bytes": 281
+    }
+  },
+  "loaded_private_images": [
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+  ],
+  "coverage": {
+    "functions": {
+      "_Z24coverage_reflection_mainv": {
+        "branches": [
+          [
+            26,
+            13,
+            26,
+            49,
+            0,
+            1,
+            0,
+            0,
+            4
+          ],
+          [
+            29,
+            12,
+            29,
+            30,
+            1,
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "count": 1,
+        "filenames": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp"
+        ],
+        "mcdc_records": [],
+        "name": "_Z24coverage_reflection_mainv",
+        "regions": [
+          [
+            18,
+            12,
+            30,
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            23,
+            9,
+            25,
+            6,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            25,
+            43,
+            28,
+            6,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            13,
+            26,
+            49,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            50,
+            26,
+            51,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            26,
+            51,
+            26,
+            59,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            60,
+            27,
+            9,
+            1,
+            0,
+            0,
+            3
+          ],
+          [
+            27,
+            9,
+            28,
+            6,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            6,
+            29,
+            5,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            29,
+            5,
+            29,
+            38,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            29,
+            12,
+            29,
+            30,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            29,
+            32,
+            29,
+            33,
+            1,
+            0,
+            0,
+            3
+          ],
+          [
+            29,
+            33,
+            29,
+            34,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            29,
+            37,
+            29,
+            38,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "coverage_branch": {
+        "branches": [
+          [
+            6,
+            7,
+            6,
+            11,
+            1,
+            1,
+            0,
+            0,
+            4
+          ]
+        ],
+        "count": 2,
+        "filenames": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp"
+        ],
+        "mcdc_records": [],
+        "name": "coverage_branch",
+        "regions": [
+          [
+            5,
+            43,
+            9,
+            2,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            7,
+            6,
+            11,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            12,
+            7,
+            5,
+            1,
+            0,
+            0,
+            3
+          ],
+          [
+            7,
+            5,
+            7,
+            13,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            14,
+            8,
+            3,
+            1,
+            0,
+            0,
+            3
+          ],
+          [
+            8,
+            3,
+            8,
+            11,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "main": {
+        "branches": [],
+        "count": 1,
+        "filenames": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp"
+        ],
+        "mcdc_records": [],
+        "name": "main",
+        "regions": [
+          [
+            11,
+            12,
+            14,
+            2,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "wrapper_branches": {
+      "count": 2,
+      "covered": 2,
+      "notcovered": 0,
+      "percent": 100
+    },
+    "totals": {
+      "branches": {
+        "count": 6,
+        "covered": 4,
+        "notcovered": 2,
+        "percent": 66.66666666666666
+      },
+      "functions": {
+        "count": 3,
+        "covered": 3,
+        "percent": 100
+      },
+      "instantiations": {
+        "count": 3,
+        "covered": 3,
+        "percent": 100
+      },
+      "lines": {
+        "count": 22,
+        "covered": 22,
+        "percent": 100
+      },
+      "mcdc": {
+        "count": 0,
+        "covered": 0,
+        "notcovered": 0,
+        "percent": 0
+      },
+      "regions": {
+        "count": 15,
+        "covered": 13,
+        "notcovered": 2,
+        "percent": 86.66666666666667
+      }
+    },
+    "export_schema": {
+      "type": "llvm.coverage.json.export",
+      "version": "3.0.0",
+      "data_length": 1
+    }
+  },
+  "negative_control": {
+    "native_returncode": 1,
+    "stdout_empty": true,
+    "absent_file_remains_absent": true,
+    "intended_profile_read_error": true,
+    "all_positive_artifacts_and_sources_unchanged": true
+  },
+  "artifacts": {
+    "p2996_reflection.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "bytes": 991
+    },
+    "coverage.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+      "sha256": "1b0a991f9b9c5677d5fb3f82eb6c891856bda81d2095427590171546db9d44e7",
+      "bytes": 281
+    },
+    "coverage": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+      "sha256": "68c075b3db38d3920bd255e89ce8d32d0cd3ad0ae753c39f3b9b1e6444930261",
+      "bytes": 149736
+    },
+    "coverage.profraw": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+      "sha256": "373337fa92f087f081ae079aa4b9cba1024bbad5af1fde84c25f5c03474a9a88",
+      "bytes": 440
+    },
+    "coverage.profdata": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata",
+      "sha256": "4b5532d9ec4a2dee318f65f47f8210eeb267aceaaff82c7f5eb0f82642618e92",
+      "bytes": 904
+    }
+  },
+  "binary_artifacts_kept_private": [
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata"
+  ],
+  "static_counts": {
+    "baseline": 19,
+    "json": 763,
+    "python": 34,
+    "shell": 6,
+    "toml": 14
+  },
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "7baee2b880265c5d444e17aeeaf66eb3011f2684",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "maintained_file_hashes": {
+    "dev/toolchains/p2996_coverage.py": "50f4b2f512bb15dd3727cb7551c7aa26b58bd44a395763a9351f7f54d9cd69d9",
+    "docs/llvm-tools.md": "36e3097d66cb4a3d842b802026e6b5c54d123904590a346d8c08ff531c24daa8",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "c97eac6fe7f9e6c617858d7f33af9e118749eb466f49244f32cbc8be3d6cd5d6",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "7f15bfa21e69eab6969c1492954f35c6e381eda1a589ddaa1ff85135f742687f"
+  },
+  "control_file_hashes": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/admission.json": "6ce2a293ab3aaa8d742bb2b255d50e2e03b7e66748834440643f88d5ade55050",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/operation-manifest.json": "32aefd2321816c854d23201aa428161255e6333d438f5aabcf5a4bb8db8ac0a7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/source-contract.json": "eaf03d7420cb0075ebfc526554500d1a66cd510d3a9e8ebece446b6c27578c14",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/environment-correction.json": "8a85fc21053ce0260d99d38f0517708757fd26d89784e58d5105e43b0b7ba66c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/pre-run-review.json": "39eae293af0fddbe207df34cce1b4287d380722f70715b7608dff7d45c85d746",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/preflight.json": "ef7a352bd8bfb0ac21bf2e9725311af093f64ed3769b1d96e52476176996e637",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+  },
+  "all_protected_state_unchanged": true,
+  "finished_at": "2026-10-11T11:31:10.728185+00:00"
+}

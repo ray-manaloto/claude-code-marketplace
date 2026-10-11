@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-11T11:24:16.490807+00:00",
+  "result": "Correction prepared; fresh runtime pending",
+  "original_source_contract_sha256": "eaf03d7420cb0075ebfc526554500d1a66cd510d3a9e8ebece446b6c27578c14",
+  "initial_helper_sha256": "4ef0464cbe713dc891de34d88fa77b20c3f8916e08a630efe2ac1802f1b3eb04",
+  "helper_sha256": "50f4b2f512bb15dd3727cb7551c7aa26b58bd44a395763a9351f7f54d9cd69d9",
+  "failed_qualification_sha256": "4dcb3a00fba59aa76cdc925514fe4b18055eea0a2bf46f803159d7fb0675446a",
+  "observed": "Compiler and program both exited0 and a nonempty raw profile exists, but coverage-run stderr was empty, so the required loader-origin assertion rejected the attempt.",
+  "cause_limit": "No instrumented launcher environment trace was performed; the exact filtering boundary has not been isolated.",
+  "correction": "Set LLVM_PROFILE_FILE and DYLD_PRINT_LIBRARIES using the already qualified /usr/bin/env child invocation after named-profile selection. Parse and resolve actual private loaded paths using the prior qualified guard. No origin assertion is removed.",
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tools.py",
+      "sha256": "4d2e14df01f09ffaff7f1f0009828c72c56f3aa01dfa94aac4bc057a728d9a6d",
+      "lines": [
+        164,
+        167
+      ],
+      "excerpt": "            output = run(\"archive-run\", base + [\"/usr/bin/env\", \"DYLD_PRINT_LIBRARIES=1\", binary], descriptor=fd)\n            assert output == runtime[\"witness\"][\"output\"]\n            loaded = [line[line.find(str(prefix)):].strip() for line in (directory / \"archive-run.stderr\").read_text().splitlines() if str(prefix) in line]\n            assert all(any(Path(p).resolve() == lib.resolve() for p in loaded) for lib in libraries)"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py",
+      "sha256": "c917deccc2bde9c71cc81a20a56200187f8da18fd610cedbbbf9712274a072de",
+      "lines": [
+        166,
+        170
+      ],
+      "excerpt": "            output = run(\"reflection-run\", base + [\"/usr/bin/env\", \"DYLD_PRINT_LIBRARIES=1\", binary], timeout=60, descriptor=fd)\n            assert output == \"reflection value=43 exception=ok\\n\"\n            dynamic = (directory / \"reflection-run.stderr\").read_text()\n            loaded = [line[line.find(str(prefix)):].strip() for line in dynamic.splitlines() if str(prefix) in line]\n            assert all(any(Path(p).resolve() == lib.resolve() for p in loaded) for lib in libraries), loaded"
+    }
+  ],
+  "qualified_operation_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tools/operation/qualification.json",
+      "sha256": "c13fe337ddca4b0bd4cc99047838c2dda9243e5d004a0d53ba51c4cf76f9d15b"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c"
+    }
+  ]
+}

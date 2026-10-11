@@ -43,3 +43,16 @@ supersedes that spelling in the original proposal and retains the failed attempt
 The [report-lifetime correction](../evidence/p2996-analysis/report-lifetime-correction.json)
 explains why report collection and failing-exit behavior need separate controls.
 Both failed attempts remain recorded. Coverage and IWYU follow separately.
+
+Task 08c's `dev/toolchains/p2996_coverage.py` prepares a private source-based
+coverage fixture from the [pinned source contract](../evidence/p2996-coverage/source-contract.json).
+It compiles an exact copy of the reflection witness with a two-outcome branch,
+requires fresh raw and merged profiles, and checks structured export counts.
+The missing-profile control must fail with the intended diagnostic. Sources,
+installed tools, retained build state and global defaults remain preservation
+gates. The [native operation](../evidence/p2996-coverage/operation/qualification.json)
+and [independent reproduction](../evidence/p2996-coverage/coverage-review.json)
+passed with matching counts and all three private runtimes loaded.
+The [environment correction](../evidence/p2996-coverage/environment-correction.json)
+retains the first stopped run and uses the qualified child-scoped loader setup.
+This qualifies the fixture; instrumentation combinations follow in the later matrix.
