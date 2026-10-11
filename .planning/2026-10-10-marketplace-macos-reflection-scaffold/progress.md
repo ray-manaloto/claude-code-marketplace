@@ -457,3 +457,21 @@ requires fresh capacity and the shared heavy lease; no build target is admitted.
   artifacts match; optional linker fallback and policy diagnostics are resolved.
   Preserved native/upstream whitespace triggers the full staged whitespace check;
   maintained-source whitespace passes. Task 07 must also bound nested builds.
+
+Task 06b is committed at `3c007c27341050c6ec1e7888d7d4ac12264f58e7`.
+Its post-commit baseline exited 0 and the worktree was clean. Operation 11d
+now takes the scoped global vcpkg namespace ownership phase. The fresh native
+writer census shows only the three recognized MCP runners and no blocker;
+the relevant shared-tool and delivery chats are idle. The reviewed helper and
+manifest remain unchanged. Exact preimages and census are rechecked on apply.
+- The guarded promotion completed: eight commands exited 0; both immediate
+  censuses were clear. The exact reviewed namespace exists and fresh native
+  discovery passes. Private preimage backups and protected shared state match;
+  independent installed-state review is pending. No dependency build ran.
+- Independent installed-state review passed without findings: the exact namespace,
+  all eight operation exits, sixteen retained log pairs and nine backups match.
+  One fresh isolated ARM64 consumer passed root/version discovery. Static checks
+  and the 19-file Claude baseline passed; protected shared state is unchanged.
+- The full staged whitespace check reported one trailing space in immutable
+  native consumer debug output. Its original bytes/hash are preserved; the
+  maintained-source whitespace check passes. The disposition is retained.

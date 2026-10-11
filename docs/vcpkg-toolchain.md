@@ -100,4 +100,12 @@ The reviewed preparation is task 11c; the shared write is the separate task 11d
 operation after the concurrent writer census clears.
 The [independent preparation review](../evidence/vcpkg-registration/preparation-review.json)
 passed: eight native commands, nine focused guard controls and the 19-file
-acceptance baseline. Shared promotion has not yet run.
+acceptance baseline.
+
+Task 11d subsequently [promoted the exact namespace](../evidence/vcpkg-registration/promotion/qualification.json)
+after fresh ownership, private backups and two clear writer censuses. All eight
+commands exited 0, including fresh global discovery. Only the reviewed namespace
+was added; protected shared state and default compiler behavior are unchanged.
+The [independent installed-state review](../evidence/vcpkg-registration/promotion-review.json)
+passed, including one fresh ARM64 consumer and all nine private backup checks.
+Dependency builds remain separate.

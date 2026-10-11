@@ -1,6 +1,6 @@
 # Project handoff
 
-Updated 2026-10-10. PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`.
+Updated 2026-10-11. PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`.
 The parent Codex chat is the sole project writer; monitor
 `01a122d7-dfe6-72c3-ab32-823fadb96690` is read-only. Native inspection/review workers
 own no files. See the [team contract](agents/codex-task-orchestration.md).
@@ -34,8 +34,8 @@ the read-only research-guard limitation are preserved.
 Full Claude/OCI acceptance, MCP connectivity and provider research are unqualified.
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
 Last30Days validation. The minimal GCC native core is now qualified as described
-below. LLVM source preparation is complete; the LLVM compiler, global vcpkg registration,
-dependencies, application matrix and packages remain unqualified.
+below. LLVM configuration and global vcpkg registration are qualified; the LLVM
+compiler, dependencies, application matrix and packages remain unqualified.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
@@ -107,8 +107,10 @@ no global registration. Task 11b's private native bootstrap subsequently passed
 checksum, ARM64 execution and root-discovery checks with independent review.
 Task 11c's project manifest and guarded registration preparation are committed
 at `ad73b79b05c669574649af3c05e282ec417646e1`, with independent review and all
-eight native preparation commands passing. Operation 11d will promote only the
-reviewed vcpkg namespace after a fresh writer census; it has not run.
+eight native preparation commands passing. Operation 11d has promoted the exact
+reviewed vcpkg namespace after fresh writer/preimage checks. All eight commands
+passed with protected state unchanged. Independent installed-state review passed,
+including a fresh ARM64 consumer and all nine private backup checks.
 
 Reproduce from this checkout using an existing Python 3.11+ interpreter and
 `python3 -B dev/toolchains/gcc_reflection.py --run-dir <new-private-directory>`.

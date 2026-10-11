@@ -1,0 +1,339 @@
+{
+  "state": "PASS: global namespace promotion",
+  "apply_requested": true,
+  "helper_sha256": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+  "commands": [
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T05:22:42.478040+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-head.stdout",
+          "sha256": "4aafa6331cae9e9c7b7c2c83f548d76e9b5e0ef6c4f781ea44208e88a3128d2d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T05:22:42.500624+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-tree.stdout",
+          "sha256": "93a42215001c50dbefeefab30de07cb3aae02d41a83d4cf5941d41211a74a57d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T05:22:42.527368+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-clean.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/source-clean.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-link",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/stage/cwd",
+        "link",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix"
+      ],
+      "started_at": "2026-10-11T05:22:42.843158+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/native-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/native-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-manifest",
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg",
+        "format-manifest",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/vcpkg.json",
+        "--disable-metrics"
+      ],
+      "started_at": "2026-10-11T05:22:42.868800+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/native-manifest.stdout",
+          "sha256": "588f9d60a862b123239f7762366c76d23e9b5e364bc9f9a8b44d73b246e2b2a8"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/native-manifest.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T05:22:42.917441+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "fresh-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/stage/cwd",
+        "exec",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "--no-deps",
+        "--",
+        "vcpkg",
+        "version",
+        "--disable-metrics"
+      ],
+      "started_at": "2026-10-11T05:22:43.245051+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/fresh-version.stdout",
+          "sha256": "355a6ff9edf32011b688404f6fe22343d586f32329eed525262285d42660b0d0"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/fresh-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T05:22:43.271871+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "promotion_attempted": true,
+  "promoted": true,
+  "global_preimages": {
+    "config.toml": {
+      "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/config.toml"
+    },
+    "mise.lock": {
+      "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/mise.lock"
+    },
+    "config.cpp-build.toml": {
+      "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/config.cpp-build.toml"
+    },
+    "config.gcc16.toml": {
+      "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/config.gcc16.toml"
+    },
+    "config.p2996.toml": {
+      "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/config.p2996.toml"
+    },
+    "cpp-foundation/common.toml": {
+      "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/cpp-foundation/common.toml"
+    },
+    "mise.cpp-build.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/mise.cpp-build.lock"
+    },
+    "mise.gcc16.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/mise.gcc16.lock"
+    },
+    "mise.p2996.lock": {
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "mode": "0o600",
+      "backup": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/backups/mise.p2996.lock"
+    }
+  },
+  "exclusive_existing_errno": 17,
+  "exclusive_new_returncode": 0,
+  "census": {
+    "recorded_at": "2026-10-11T05:22:43.067985+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "blockers": []
+  },
+  "proposal": {
+    "destination": "/Users/rmanaloto/.local/share/mise/installs/asdf-vcpkg",
+    "preimage": "absent",
+    "namespace": {
+      "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+        "sha256": null
+      }
+    },
+    "manifest_sha256": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316",
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0"
+    }
+  },
+  "census_immediate": {
+    "recorded_at": "2026-10-11T05:22:43.186087+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "blockers": []
+  },
+  "protected_state_unchanged": true,
+  "destination_observed": {
+    "exists": true,
+    "symlink": false,
+    "namespace": {
+      "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+        "sha256": null
+      }
+    }
+  }
+}
