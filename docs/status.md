@@ -134,5 +134,8 @@ free, no build processes remain, and the default environment matches. A bounded
 compatibility repair is prepared in scratch: the original failure reproduces,
 and all three repaired translation units pass syntax checks. Independent patch
 and application-helper review passed, including reproduction and guard controls.
-The source remains unmodified pending operation 07b2. Compiler and runtime
-acceptance remain incomplete.
+Operation 07b2 applied the exact five-file patch: all eleven native commands
+passed, source postimages match, reverse applicability passes, protected state
+is unchanged and the lease is released. Independent application closure passed,
+including all 1347 recorded build outputs, eight generated files and both Ninja
+state files. Compiler restart and runtime acceptance remain incomplete.

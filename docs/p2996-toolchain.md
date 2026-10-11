@@ -133,4 +133,9 @@ postimages and reverse applicability, while preserving protected shared state.
 The [independent preparation review](../evidence/p2996-sdk-compatibility/preparation-review.json)
 passed after adding the canonical lock-path guard: one syntax reproduction,
 six preparation commands, 22 guard controls and four subprocess controls.
-The source remains unmodified; application is the separate 07b2 operation.
+Operation 07b2 applied the exact patch with all eleven commands exiting 0.
+The [application receipt](../evidence/p2996-sdk-compatibility/operation/qualification.json)
+records the five postimages, native reverse check and source diff hash.
+Independent closure confirms those identities, unchanged build/Ninja state,
+preserved protected files and a free canonical lease. The compiler now has a
+pinned base plus a separately hashed adaptation; build acceptance is pending.

@@ -535,3 +535,18 @@ and one reproduction are in progress before any source application.
   native preparation commands, 22 guard controls and four subprocess controls.
   The canonical-path finding is resolved; all protected state and 19 original
   files match. Source application is the separate 07b2 operation.
+
+Task 07b1 is committed at `99e95a3f9ca49b3c25bd3fecf7d76b9e82d05450`;
+its post-commit baseline passed and the worktree was clean. The separately
+recorded 07b2 admission binds the exact reviewed helper, proposal and private
+operation directory. Source application must pass immediate checks under the
+canonical lease. Compiler restart remains a later reviewed operation.
+- Operation 07b2 exited 0: all eleven native commands passed; exact five source
+  postimages and reverse applicability match. Protected state is unchanged and
+  the canonical lease is released. Independent application closure is active.
+- Development task validation and the baseline check exited 0 after application;
+  all 19 original acceptance files match. Command outputs are retained.
+- Independent application closure passed: exact source status/postimages and
+  diff hash, all 1347 recorded outputs, eight generated files, both Ninja state
+  files, protected shared state and original files match; the lease is free.
+  Compilation remains incomplete. Incremental restart requires its own review.
