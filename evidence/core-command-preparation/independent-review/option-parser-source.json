@@ -1,0 +1,11 @@
+{
+  "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Option/Option.cpp",
+  "sha256": "7a97fe6682110a3748e0470615cbcdbfb077ce5c4af774bb26f849b5c59d6493",
+  "bytes": 9857,
+  "line_range": [
+    182,
+    196
+  ],
+  "excerpt": "182:   case JoinedOrSeparateClass: {\n183:     // If this is not an exact match, it is a joined arg.\n184:     if (SpellingSize != ArgStringSize) {\n185:       const char *Value = Args.getArgString(Index) + SpellingSize;\n186:       return std::make_unique<Arg>(*this, Spelling, Index++, Value);\n187:     }\n188: \n189:     // Otherwise it must be separate.\n190:     Index += 2;\n191:     if (Index > Args.getNumInputArgStrings() ||\n192:         Args.getArgString(Index - 1) == nullptr)\n193:       return nullptr;\n194: \n195:     return std::make_unique<Arg>(*this, Spelling, Index - 2,\n196:                                  Args.getArgString(Index - 1));",
+  "assessment": "Exact JoinedOrSeparate spelling consumes the following argv element unconditionally as its value. Thus a repeated -isystem can consume -Werror; this was not established by invoking Clang."
+}

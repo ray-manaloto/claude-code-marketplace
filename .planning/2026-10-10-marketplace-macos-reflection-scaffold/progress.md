@@ -894,3 +894,25 @@ and failure controls follow separately in task 03b2.
 - Independent source/static review passed without findings; all 19 references,
   24 read bindings and original acceptance hashes match. The changed core's
   native compile/link/runtime behavior remains unverified until task 03b2.
+
+Task 03b1 is committed at `fd7c9cdf54ddf702c0e48348302d73cc6853346b`;
+the post-commit baseline passed with a clean worktree. Task 03b2 is split
+into command-rule preparation (03b2a) and the guarded native operation (03b2b).
+The new read-only validator checks all eight target/configuration entries,
+finite GNU scan/archive actions, private P2996 flags and actual/generated
+command equality. The prior qualified helpers remain hash-bound inputs.
+Recorded-command replay and independent review are pending; no new native
+core build has run.
+- Recorded replay passed all eight prior GNU cells, four P2996 fixture flag
+  sets and four synthetic install-name parser cases; all 22 mutations rejected.
+  An initial private driver indexing error and its exit 1 are retained.
+  Independent command-rule review remains pending.
+- Independent review reproduced a duplicate `-isystem` operand consuming
+  `-Werror` while the token-membership check still passed. The validator now
+  requires exactly one private-header operand pair; replay and reviewer
+  disposition are being rerun against the corrected candidate.
+- Independent review passed the corrected rule set and reproduced the final
+  replay byte-for-byte. Its eight synthetic P2996 archive forms passed; all
+  four unrelated-touch-output mutations rejected. Both lightweight gates
+  and all 19 original hashes passed; the single parser finding is resolved.
+  Native core builds and runtimes remain unverified until task 03b2b.

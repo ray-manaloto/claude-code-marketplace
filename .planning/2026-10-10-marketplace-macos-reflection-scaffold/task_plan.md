@@ -64,7 +64,8 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 10a1 | P2996 CMake toolchain preparation | Exact compiler/runtime contract, native CMake link propagation and independent source review | Complete |
 | 10a2 | Native P2996 CMake fixture | Actual ABI/custom probes, four build/test/runtime cells, isolation controls and independent review | Complete |
 | 03b1 | Native core P2996 compatibility preparation | Compiler-specific guards, private flags, honest CTest exits and independent source review | Complete |
-| 03b2 | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Pending |
+| 03b2a | Native core command acceptance rules | Recorded native command replay, rejection controls and independent review | Complete |
+| 03b2b | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Pending |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
