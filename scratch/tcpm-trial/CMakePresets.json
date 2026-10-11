@@ -1,0 +1,522 @@
+{
+    "version": 12,
+    "$comment": "TCPM qualification only. Shape expressions adapted from TCPM tryme at f532db0b25843aaad0dd6c481923c6840425485b; Copyright Amazon.com Inc. or its affiliates; MIT. Full notice: ../../evidence/tcpm/source/LICENSE.rst.source.",
+    "cmakeMinimumRequired": {
+        "major": 4,
+        "minor": 4,
+        "patch": 4
+    },
+    "configurePresets": [
+        {
+            "name": "trial-common",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+                "CMAKE_CXX_STANDARD": "26",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_CXX_EXTENSIONS": "OFF"
+            }
+        },
+        {
+            "name": "configure-compiler-p2996",
+            "hidden": true,
+            "cacheVariables": {
+                "MARKETPLACE_TRIAL_COMPILER": "p2996"
+            }
+        },
+        {
+            "name": "configure-compiler-gcc16",
+            "hidden": true,
+            "cacheVariables": {
+                "MARKETPLACE_TRIAL_COMPILER": "gcc16"
+            }
+        },
+        {
+            "name": "configure-instrumentation-none",
+            "hidden": true,
+            "cacheVariables": {
+                "MARKETPLACE_TRIAL_INSTRUMENTATION": "none"
+            }
+        },
+        {
+            "name": "configure-instrumentation-tsan",
+            "hidden": true,
+            "cacheVariables": {
+                "MARKETPLACE_TRIAL_INSTRUMENTATION": "tsan"
+            }
+        },
+        {
+            "name": "configure-p2996-none",
+            "inherits": [
+                "trial-common",
+                "configure-compiler-p2996",
+                "configure-instrumentation-none"
+            ]
+        },
+        {
+            "name": "configure-p2996-tsan",
+            "inherits": [
+                "trial-common",
+                "configure-compiler-p2996",
+                "configure-instrumentation-tsan"
+            ]
+        },
+        {
+            "name": "configure-gcc16-none",
+            "inherits": [
+                "trial-common",
+                "configure-compiler-gcc16",
+                "configure-instrumentation-none"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build-Debug-p2996-none",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-none"
+        },
+        {
+            "name": "build-Debug-p2996-tsan",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-tsan"
+        },
+        {
+            "name": "build-Debug-gcc16-none",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-none"
+        },
+        {
+            "name": "build-Release-p2996-none",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-none"
+        },
+        {
+            "name": "build-Release-p2996-tsan",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-tsan"
+        },
+        {
+            "name": "build-Release-gcc16-none",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-none"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-none",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-none"
+        },
+        {
+            "name": "build-RelWithDebInfo-p2996-tsan",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-tsan"
+        },
+        {
+            "name": "build-RelWithDebInfo-gcc16-none",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-none"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-none",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-none"
+        },
+        {
+            "name": "build-MinSizeRel-p2996-tsan",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-tsan"
+        },
+        {
+            "name": "build-MinSizeRel-gcc16-none",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-none"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-Debug-p2996-none",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-Debug-p2996-tsan",
+            "configuration": "Debug",
+            "configurePreset": "configure-p2996-tsan",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-Debug-gcc16-none",
+            "configuration": "Debug",
+            "configurePreset": "configure-gcc16-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-Release-p2996-none",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-Release-p2996-tsan",
+            "configuration": "Release",
+            "configurePreset": "configure-p2996-tsan",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-Release-gcc16-none",
+            "configuration": "Release",
+            "configurePreset": "configure-gcc16-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-none",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-p2996-tsan",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-p2996-tsan",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-RelWithDebInfo-gcc16-none",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "configure-gcc16-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-none",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-MinSizeRel-p2996-tsan",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-p2996-tsan",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "test-MinSizeRel-gcc16-none",
+            "configuration": "MinSizeRel",
+            "configurePreset": "configure-gcc16-none",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "workflow-p2996-none",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-none"
+                }
+            ]
+        },
+        {
+            "name": "workflow-p2996-tsan",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-p2996-tsan"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-p2996-tsan"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-p2996-tsan"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-p2996-tsan"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-p2996-tsan"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-p2996-tsan"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-p2996-tsan"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-p2996-tsan"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-p2996-tsan"
+                }
+            ]
+        },
+        {
+            "name": "workflow-gcc16-none",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure-gcc16-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Debug-gcc16-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Debug-gcc16-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-Release-gcc16-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Release-gcc16-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-RelWithDebInfo-gcc16-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-RelWithDebInfo-gcc16-none"
+                },
+                {
+                    "type": "build",
+                    "name": "build-MinSizeRel-gcc16-none"
+                },
+                {
+                    "type": "test",
+                    "name": "test-MinSizeRel-gcc16-none"
+                }
+            ]
+        }
+    ],
+    "vendor": {
+        "tcpm": {
+            "version": 1,
+            "word-separator": "-",
+            "preset-groups": {
+                "configure": {
+                    "prefix": "configure",
+                    "common": [
+                        "trial-common"
+                    ],
+                    "parameters": {
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "instrumentation": [
+                            "none",
+                            "tsan"
+                        ]
+                    },
+                    "exclude": [
+                        {
+                            "compiler": "gcc16",
+                            "instrumentation": "tsan"
+                        }
+                    ],
+                    "shape": {
+                        "compiler": {
+                            "cacheVariables": {
+                                "MARKETPLACE_TRIAL_COMPILER": "{parameter}"
+                            }
+                        },
+                        "instrumentation": {
+                            "cacheVariables": {
+                                "MARKETPLACE_TRIAL_INSTRUMENTATION": "{parameter}"
+                            }
+                        }
+                    }
+                },
+                "build": {
+                    "prefix": "build",
+                    "parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ],
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "instrumentation": [
+                            "none",
+                            "tsan"
+                        ]
+                    },
+                    "exclude": [
+                        {
+                            "compiler": "gcc16",
+                            "instrumentation": "tsan"
+                        }
+                    ],
+                    "shape": {
+                        "configuration": {
+                            "configuration": "{parameter}",
+                            "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')"
+                        },
+                        "compiler": {},
+                        "instrumentation": {}
+                    }
+                },
+                "test": {
+                    "prefix": "test",
+                    "parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ],
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "instrumentation": [
+                            "none",
+                            "tsan"
+                        ]
+                    },
+                    "exclude": [
+                        {
+                            "compiler": "gcc16",
+                            "instrumentation": "tsan"
+                        }
+                    ],
+                    "shape": {
+                        "configuration": {
+                            "configuration": "{parameter}",
+                            "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')",
+                            "output": {
+                                "outputOnFailure": true
+                            }
+                        },
+                        "compiler": {},
+                        "instrumentation": {}
+                    }
+                },
+                "workflow": {
+                    "prefix": "workflow",
+                    "parameters": {
+                        "compiler": [
+                            "p2996",
+                            "gcc16"
+                        ],
+                        "instrumentation": [
+                            "none",
+                            "tsan"
+                        ]
+                    },
+                    "exclude": [
+                        {
+                            "compiler": "gcc16",
+                            "instrumentation": "tsan"
+                        }
+                    ],
+                    "shape-parameters": {
+                        "configuration": [
+                            "Debug",
+                            "Release",
+                            "RelWithDebInfo",
+                            "MinSizeRel"
+                        ]
+                    },
+                    "shape": {
+                        "compiler": {
+                            "steps": [
+                                {
+                                    "type": "configure",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'configure')"
+                                }
+                            ]
+                        },
+                        "configuration": {
+                            "steps": [
+                                {
+                                    "type": "build",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'build-{parameter}')"
+                                },
+                                {
+                                    "type": "test",
+                                    "name": "{pq}(this).literal('{name}').replace('{prefix}', 'test-{parameter}')"
+                                }
+                            ]
+                        },
+                        "instrumentation": {}
+                    }
+                }
+            }
+        }
+    }
+}

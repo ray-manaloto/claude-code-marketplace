@@ -1,0 +1,179 @@
+{
+  "state": "PASS",
+  "commands": [
+    {
+      "case": "cmake-version",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "4d92ce18ddf9889d463ac875608423312823ad89e7fd5178b02a21ea26a2bd3d",
+      "stderr": "",
+      "stdout": "cmake version 4.4.4\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n"
+    },
+    {
+      "case": "tcpm-version",
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/bin/tcpm",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "a0dc8325e2fbe558e09bf7d61260ca378151b0a3f875dd8b46ecd3693e34c10b",
+      "stderr": "",
+      "stdout": "0.3.3\n"
+    },
+    {
+      "case": "generate-1",
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/bin/tcpm",
+        "--non-interactive",
+        "--no-schema-validation",
+        "--presets-version",
+        "12",
+        "--template-file",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/CMakePresetsVendorTemplate.json",
+        "--presets-file",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-1/CMakePresets.json",
+        "--stdout"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e463f4424508522c4c39a272f202c5fb131b637471a911ba730d5a7a43caaaef",
+      "stderr": "",
+      "stdout": null
+    },
+    {
+      "case": "generate-2",
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/bin/tcpm",
+        "--non-interactive",
+        "--no-schema-validation",
+        "--presets-version",
+        "12",
+        "--template-file",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial/CMakePresetsVendorTemplate.json",
+        "--presets-file",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-2/CMakePresets.json",
+        "--stdout"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e463f4424508522c4c39a272f202c5fb131b637471a911ba730d5a7a43caaaef",
+      "stderr": "",
+      "stdout": null
+    },
+    {
+      "case": "native-configure",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-1",
+        "--list-presets=configure"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "3d8bb1cbbc87ec269132398f3e76b9578981cfef17ef8b8de5e8353c36152122",
+      "stderr": "",
+      "stdout": "Available configure presets:\n\n  \"configure-p2996-none\"\n  \"configure-p2996-tsan\"\n  \"configure-gcc16-none\"\n"
+    },
+    {
+      "case": "native-build",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-1",
+        "--list-presets=build"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "5172b188533f79bb70355f3ec1faf3d278ca7315cfe0d990ae7a33e4b0308b04",
+      "stderr": "",
+      "stdout": "Available build presets:\n\n  \"build-Debug-p2996-none\"\n  \"build-Debug-p2996-tsan\"\n  \"build-Debug-gcc16-none\"\n  \"build-Release-p2996-none\"\n  \"build-Release-p2996-tsan\"\n  \"build-Release-gcc16-none\"\n  \"build-RelWithDebInfo-p2996-none\"\n  \"build-RelWithDebInfo-p2996-tsan\"\n  \"build-RelWithDebInfo-gcc16-none\"\n  \"build-MinSizeRel-p2996-none\"\n  \"build-MinSizeRel-p2996-tsan\"\n  \"build-MinSizeRel-gcc16-none\"\n"
+    },
+    {
+      "case": "native-test",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-1",
+        "--list-presets=test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "639d10e51dce62695a7c6c74ab47bd0fda91bc5603aadee6f6c65337fe10fe52",
+      "stderr": "",
+      "stdout": "Available test presets:\n\n  \"test-Debug-p2996-none\"\n  \"test-Debug-p2996-tsan\"\n  \"test-Debug-gcc16-none\"\n  \"test-Release-p2996-none\"\n  \"test-Release-p2996-tsan\"\n  \"test-Release-gcc16-none\"\n  \"test-RelWithDebInfo-p2996-none\"\n  \"test-RelWithDebInfo-p2996-tsan\"\n  \"test-RelWithDebInfo-gcc16-none\"\n  \"test-MinSizeRel-p2996-none\"\n  \"test-MinSizeRel-p2996-tsan\"\n  \"test-MinSizeRel-gcc16-none\"\n"
+    },
+    {
+      "case": "native-workflow",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/generation-1",
+        "--list-presets=workflow"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "13ad6230b12876030e93797ed15581eba7f17a8f9e14b2c8d42df4a7c0ff2b99",
+      "stderr": "",
+      "stdout": "Available workflow presets:\n\n  \"workflow-p2996-none\"\n  \"workflow-p2996-tsan\"\n  \"workflow-gcc16-none\"\n"
+    },
+    {
+      "case": "workflow-inherits",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/workflow-inherits",
+        "--list-presets=all"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "CMake Error: Could not read presets from /Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/workflow-inherits:\nCMakePresets.json:1: Invalid extra field \"inherits\" in Preset\n{\"version\": 12, \"$comment\": \"TCPM qualification only. Shape expressions adapted from TCPM tryme at f532db0b25843aaad0dd6c481923c6840425485b; Copyright Amazon.com Inc. or its affiliates; MIT. Full notice: ../../evidence/tcpm/source/LICENSE.rst.source.\", \"cmakeMinimumRequired\": {\"major\": 4, \"minor\": 4, \"patch\": 4}, \"configurePresets\": [{\"name\": \"trial-common\", \"hidden\": true, \"generator\": \"Ninja Multi-Config\", \"binaryDir\": \"${sourceDir}/build/${presetName}\", \"installDir\": \"${sourceDir}/install/${presetName}\", \"cacheVariables\": {\"CMAKE_CONFIGURATION_TYPES\": \"Debug;Release;RelWithDebInfo;MinSizeRel\", \"CMAKE_CXX_STANDARD\": \"26\", \"CMAKE_CXX_STANDARD_REQUIRED\": \"ON\", \"CMAKE_CXX_EXTENSIONS\": \"OFF\"}}, {\"name\": \"configure-compiler-p2996\", \"hidden\": true, \"cacheVariables\": {\"MARKETPLACE_TRIAL_COMPILER\": \"p2996\"}}, {\"name\": \"configure-compiler-gcc16\", \"hidden\": true, \"cacheVariables\": {\"MARKETPLACE_TRIAL_COMPILER\": \"gcc16\"}}, {\"name\": \"configure-instrumentation-none\", \"hidden\": true, \"cacheVariables\": {\"MARKETPLACE_TRIAL_INSTRUMENTATION\": \"none\"}}, {\"name\": \"configure-instrumentation-tsan\", \"hidden\": true, \"cacheVariables\": {\"MARKETPLACE_TRIAL_INSTRUMENTATION\": \"tsan\"}}, {\"name\": \"configure-p2996-none\", \"inherits\": [\"trial-common\", \"configure-compiler-p2996\", \"configure-instrumentation-none\"]}, {\"name\": \"configure-p2996-tsan\", \"inherits\": [\"trial-common\", \"configure-compiler-p2996\", \"configure-instrumentation-tsan\"]}, {\"name\": \"configure-gcc16-none\", \"inherits\": [\"trial-common\", \"configure-compiler-gcc16\", \"configure-instrumentation-none\"]}], \"buildPresets\": [{\"name\": \"build-Debug-p2996-none\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-p2996-none\"}, {\"name\": \"build-Debug-p2996-tsan\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-p2996-tsan\"}, {\"name\": \"build-Debug-gcc16-none\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-gcc16-none\"}, {\"name\": \"build-Release-p2996-none\", \"configuration\": \"Release\", \"configurePreset\": \"configure-p2996-none\"}, {\"name\": \"build-Release-p2996-tsan\", \"configuration\": \"Release\", \"configurePreset\": \"configure-p2996-tsan\"}, {\"name\": \"build-Release-gcc16-none\", \"configuration\": \"Release\", \"configurePreset\": \"configure-gcc16-none\"}, {\"name\": \"build-RelWithDebInfo-p2996-none\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-p2996-none\"}, {\"name\": \"build-RelWithDebInfo-p2996-tsan\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-p2996-tsan\"}, {\"name\": \"build-RelWithDebInfo-gcc16-none\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-gcc16-none\"}, {\"name\": \"build-MinSizeRel-p2996-none\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-p2996-none\"}, {\"name\": \"build-MinSizeRel-p2996-tsan\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-p2996-tsan\"}, {\"name\": \"build-MinSizeRel-gcc16-none\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-gcc16-none\"}], \"testPresets\": [{\"name\": \"test-Debug-p2996-none\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-p2996-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-Debug-p2996-tsan\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-p2996-tsan\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-Debug-gcc16-none\", \"configuration\": \"Debug\", \"configurePreset\": \"configure-gcc16-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-Release-p2996-none\", \"configuration\": \"Release\", \"configurePreset\": \"configure-p2996-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-Release-p2996-tsan\", \"configuration\": \"Release\", \"configurePreset\": \"configure-p2996-tsan\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-Release-gcc16-none\", \"configuration\": \"Release\", \"configurePreset\": \"configure-gcc16-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-RelWithDebInfo-p2996-none\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-p2996-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-RelWithDebInfo-p2996-tsan\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-p2996-tsan\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-RelWithDebInfo-gcc16-none\", \"configuration\": \"RelWithDebInfo\", \"configurePreset\": \"configure-gcc16-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-MinSizeRel-p2996-none\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-p2996-none\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-MinSizeRel-p2996-tsan\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-p2996-tsan\", \"output\": {\"outputOnFailure\": true}}, {\"name\": \"test-MinSizeRel-gcc16-none\", \"configuration\": \"MinSizeRel\", \"configurePreset\": \"configure-gcc16-none\", \"output\": {\"outputOnFailure\": true}}], \"workflowPresets\": [{\"name\": \"workflow-p2996-none\", \"steps\": [{\"type\": \"configure\", \"name\": \"configure-p2996-none\"}, {\"type\": \"build\", \"name\": \"build-Debug-p2996-none\"}, {\"type\": \"test\", \"name\": \"test-Debug-p2996-none\"}, {\"type\": \"build\", \"name\": \"build-Release-p2996-none\"}, {\"type\": \"test\", \"name\": \"test-Release-p2996-none\"}, {\"type\": \"build\", \"name\": \"build-RelWithDebInfo-p2996-none\"}, {\"type\": \"test\", \"name\": \"test-RelWithDebInfo-p2996-none\"}, {\"type\": \"build\", \"name\": \"build-MinSizeRel-p2996-none\"}, {\"type\": \"test\", \"name\": \"test-MinSizeRel-p2996-none\"}], \"inherits\": \"workflow-gcc16-none\"}, {\"name\": \"workflow-p2996-tsan\", \"steps\": [{\"type\": \"configure\", \"name\": \"configure-p2996-tsan\"}, {\"type\": \"build\", \"name\": \"build-Debug-p2996-tsan\"}, {\"type\": \"test\", \"name\": \"test-Debug-p2996-tsan\"}, {\"type\": \"build\", \"name\": \"build-Release-p2996-tsan\"}, {\"type\": \"test\", \"name\": \"test-Release-p2996-tsan\"}, {\"type\": \"build\", \"name\": \"build-RelWithDebInfo-p2996-tsan\"}, {\"type\": \"test\", \"name\": \"test-RelWithDebInfo-p2996-tsan\"}, {\"type\": \"build\", \"name\": \"build-MinSizeRel-p2996-tsan\"}, {\"type\": \"test\", \"name\": \"test-MinSizeRel-p2996-tsan\"}]}, {\"name\": \"workflow-gcc16-none\", \"steps\": [{\"type\": \"configure\", \"name\": \"configure-gcc16-none\"}, {\"type\": \"build\", \"name\": \"build-Debug-gcc16-none\"}, {\"type\": \"test\", \"name\": \"test-Debug-gcc16-none\"}, {\"type\": \"build\", \"name\": \"build-Release-gcc16-none\"}, {\"type\": \"test\", \"name\": \"test-Release-gcc16-none\"}, {\"type\": \"build\", \"name\": \"build-RelWithDebInfo-gcc16-none\"}, {\"type\": \"test\", \"name\": \"test-RelWithDebInfo-gcc16-none\"}, {\"type\": \"build\", \"name\": \"build-MinSizeRel-gcc16-none\"}, {\"type\": \"test\", \"name\": \"test-MinSizeRel-gcc16-none\"}]}], \"vendor\": {\"tcpm\": {\"version\": 1, \"word-separator\": \"-\", \"preset-groups\": {\"configure\": {\"prefix\": \"configure\", \"common\": [\"trial-common\"], \"parameters\": {\"compiler\": [\"p2996\", \"gcc16\"], \"instrumentation\": [\"none\", \"tsan\"]}, \"exclude\": [{\"compiler\": \"gcc16\", \"instrumentation\": \"tsan\"}], \"shape\": {\"compiler\": {\"cacheVariables\": {\"MARKETPLACE_TRIAL_COMPILER\": \"{parameter}\"}}, \"instrumentation\": {\"cacheVariables\": {\"MARKETPLACE_TRIAL_INSTRUMENTATION\": \"{parameter}\"}}}}, \"build\": {\"prefix\": \"build\", \"parameters\": {\"configuration\": [\"Debug\", \"Release\", \"RelWithDebInfo\", \"MinSizeRel\"], \"compiler\": [\"p2996\", \"gcc16\"], \"instrumentation\": [\"none\", \"tsan\"]}, \"exclude\": [{\"compiler\": \"gcc16\", \"instrumentation\": \"tsan\"}], \"shape\": {\"configuration\": {\"configuration\": \"{parameter}\", \"configurePreset\": \"{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')\"}, \"compiler\": {}, \"instrumentation\": {}}}, \"test\": {\"prefix\": \"test\", \"parameters\": {\"configuration\": [\"Debug\", \"Release\", \"RelWithDebInfo\", \"MinSizeRel\"], \"compiler\": [\"p2996\", \"gcc16\"], \"instrumentation\": [\"none\", \"tsan\"]}, \"exclude\": [{\"compiler\": \"gcc16\", \"instrumentation\": \"tsan\"}], \"shape\": {\"configuration\": {\"configuration\": \"{parameter}\", \"configurePreset\": \"{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')\", \"output\": {\"outputOnFailure\": true}}, \"compiler\": {}, \"instrumentation\": {}}}, \"workflow\": {\"prefix\": \"workflow\", \"parameters\": {\"compiler\": [\"p2996\", \"gcc16\"], \"instrumentation\": [\"none\", \"tsan\"]}, \"exclude\": [{\"compiler\": \"gcc16\", \"instrumentation\": \"tsan\"}], \"shape-parameters\": {\"configuration\": [\"Debug\", \"Release\", \"RelWithDebInfo\", \"MinSizeRel\"]}, \"shape\": {\"compiler\": {\"steps\": [{\"type\": \"configure\", \"name\": \"{pq}(this).literal('{name}').replace('{prefix}', 'configure')\"}]}, \"configuration\": {\"steps\": [{\"type\": \"build\", \"name\": \"{pq}(this).literal('{name}').replace('{prefix}', 'build-{parameter}')\"}, {\"type\": \"test\", \"name\": \"{pq}(this).literal('{name}').replace('{prefix}', 'test-{parameter}')\"}]}, \"instrumentation\": {}}}}}}}\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^\n",
+      "stdout": ""
+    },
+    {
+      "case": "workflow-crosses-tree",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/workflow-crosses-tree",
+        "--list-presets=all"
+      ],
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "CMake Error: Could not read presets from /Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z/workflow-crosses-tree:\nInvalid workflow step \"configure-p2996-none\"\n",
+      "stdout": ""
+    }
+  ],
+  "run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/matrix-20261011T002106Z",
+  "excluded_tuple_control_rejected": true,
+  "template_sha256": "aefab55ced7a1392955bfce303f028126501ef8e4926286e6100a5f8471d5723",
+  "generated_sha256": "e463f4424508522c4c39a272f202c5fb131b637471a911ba730d5a7a43caaaef",
+  "script_sha256": "8764d86d0f48918dfc35ee0a69e156a8a8cac80095aac43943677f0686dab3aa",
+  "source_commit": "f532db0b25843aaad0dd6c481923c6840425485b",
+  "two_generations_identical": true,
+  "configure_tuples": [
+    [
+      "p2996",
+      "none"
+    ],
+    [
+      "p2996",
+      "tsan"
+    ],
+    [
+      "gcc16",
+      "none"
+    ]
+  ],
+  "configurations": [
+    "Debug",
+    "Release",
+    "RelWithDebInfo",
+    "MinSizeRel"
+  ],
+  "build_test_cells": 12,
+  "native_kinds": [
+    "configure",
+    "build",
+    "test",
+    "workflow"
+  ],
+  "compiler_or_configure_or_build_executed": false,
+  "updated_project_output": true
+}

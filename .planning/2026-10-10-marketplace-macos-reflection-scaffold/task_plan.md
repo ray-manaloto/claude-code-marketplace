@@ -29,7 +29,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 04a | Global tool ownership inventory and prepared patch | Concurrent-writer census; exact preimages; independent review | Complete |
 | 04b | Managed build tools and named environments | Ownership admitted; native configuration and environment checks | Complete |
 | 02a | Pinned TCPM source and local development environment | Blob/source identity, locked dependencies, CLI smoke | Complete |
-| 02b | Representative native preset matrix | Deterministic regeneration, exclusions, four native preset kinds | Pending |
+| 02b | Representative native preset matrix | Deterministic regeneration, exclusions, four native preset kinds | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

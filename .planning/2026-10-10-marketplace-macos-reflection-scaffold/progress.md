@@ -160,3 +160,21 @@ change, compiler installation, configure/build, service or OCI execution is incl
   The reviewer rechecked all 19 blobs, 13 installed files, direct Git identity,
   lock/runtime dependencies and all five exact command logs. Parent baseline
   exited 0 with 19 originals; direct-input secret scan passed.
+
+- The first 02b generation exited 1 on Python 3.14.8 before rendering:
+  TCPM accesses an instance `__annotations__` attribute that is absent there.
+  The exact failed receipt is retained. Its declared classifiers stop at 3.13;
+  an already installed Python 3.13.12 passed a version probe. A separate private
+  environment is being prepared for that supported interpreter, retaining the
+  original 3.14 environment and evidence and leaving global Python unchanged.
+
+- The separate Python 3.13.12 environment passed all five setup/provenance probes;
+  all thirteen installed generator files still match the accepted source commit.
+  Two generations were byte-identical. Native CMake 4.4.4 lists configure, build,
+  test and workflow presets and rejects the two deliberately invalid workflows.
+  The twelve cells span three trees and all four configurations; the excluded
+  GCC/TSan tuple is absent and its structural negative control is rejected.
+  No configure/build or compiler ran. Independent 02b review passed with no
+  findings, including a no-update rerun and source/runtime/log re-attestation.
+  Parent baseline and direct-input secret scan both exited 0. Task 02 is
+  qualified locally; Python 3.14's generation failure remains recorded.

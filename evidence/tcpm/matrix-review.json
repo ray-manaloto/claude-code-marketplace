@@ -1,0 +1,78 @@
+{
+  "recorded_at": "2026-10-11T00:28:03.541759+00:00",
+  "reviewer": "/root/cold_reviewer",
+  "result": "PASS",
+  "findings": [],
+  "reviewed_head": "8c7f971f4a229f3d74476651217a5c7eb4693cac",
+  "rerun_receipt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/cold-review-qualification.json",
+  "rerun_receipt_sha256": "138222562f0aa4d73627d5a75891dc01fa8c409254a8f62dca58018b20475101",
+  "generated_sha256": "e463f4424508522c4c39a272f202c5fb131b637471a911ba730d5a7a43caaaef",
+  "commands": [
+    {
+      "case": "cmake-version",
+      "returncode": 0
+    },
+    {
+      "case": "tcpm-version",
+      "returncode": 0
+    },
+    {
+      "case": "generate-1",
+      "returncode": 0
+    },
+    {
+      "case": "generate-2",
+      "returncode": 0
+    },
+    {
+      "case": "native-configure",
+      "returncode": 0
+    },
+    {
+      "case": "native-build",
+      "returncode": 0
+    },
+    {
+      "case": "native-test",
+      "returncode": 0
+    },
+    {
+      "case": "native-workflow",
+      "returncode": 0
+    },
+    {
+      "case": "workflow-inherits",
+      "returncode": 1
+    },
+    {
+      "case": "workflow-crosses-tree",
+      "returncode": 1
+    }
+  ],
+  "verified": [
+    "Independent no-update qualification and checked-in JSON drift gate",
+    "19 source blob identities; both environments 13 installed source files",
+    "Python3.14 failure retained and Python3.13.12 success reproduced",
+    "Setup logs, dependencies, harnesses and receipts",
+    "MIT attribution, upstream tryme and honest generation-only scope",
+    "git diff --check"
+  ],
+  "parent_baseline": {
+    "returncode": 0,
+    "original_files": 19,
+    "json": 74,
+    "python": 2,
+    "shell": 5,
+    "toml": 14
+  },
+  "routes_run": [
+    "native uv 0.13.0 with existing Python3.13.12",
+    "pinned TCPM 0.3.3",
+    "native CMake4.4.4 parser/listing",
+    "gitleaks stdin",
+    "native Codex read-only collaboration"
+  ],
+  "new_skill_applied": "astral:uv",
+  "writes_by_reviewer": false,
+  "compiler_or_configure_or_build_executed": false
+}

@@ -1,0 +1,82 @@
+{
+  "version": 12,
+  "$comment": "TCPM qualification only. Shape expressions adapted from TCPM tryme at f532db0b25843aaad0dd6c481923c6840425485b; Copyright Amazon.com Inc. or its affiliates; MIT. Full notice: ../../evidence/tcpm/source/LICENSE.rst.source.",
+  "cmakeMinimumRequired": {"major": 4, "minor": 4, "patch": 4},
+  "configurePresets": [
+    {
+      "name": "trial-common", "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_CXX_EXTENSIONS": "OFF"
+      }
+    }
+  ],
+  "vendor": {
+    "tcpm": {
+      "version": 1,
+      "word-separator": "-",
+      "preset-groups": {
+        "configure": {
+          "prefix": "configure", "common": ["trial-common"],
+          "parameters": {"compiler": ["p2996", "gcc16"], "instrumentation": ["none", "tsan"]},
+          "exclude": [{"compiler": "gcc16", "instrumentation": "tsan"}],
+          "shape": {
+            "compiler": {"cacheVariables": {"MARKETPLACE_TRIAL_COMPILER": "{parameter}"}},
+            "instrumentation": {"cacheVariables": {"MARKETPLACE_TRIAL_INSTRUMENTATION": "{parameter}"}}
+          }
+        },
+        "build": {
+          "prefix": "build",
+          "parameters": {
+            "configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
+            "compiler": ["p2996", "gcc16"], "instrumentation": ["none", "tsan"]
+          },
+          "exclude": [{"compiler": "gcc16", "instrumentation": "tsan"}],
+          "shape": {
+            "configuration": {
+              "configuration": "{parameter}",
+              "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')"
+            }
+          }
+        },
+        "test": {
+          "prefix": "test",
+          "parameters": {
+            "configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
+            "compiler": ["p2996", "gcc16"], "instrumentation": ["none", "tsan"]
+          },
+          "exclude": [{"compiler": "gcc16", "instrumentation": "tsan"}],
+          "shape": {
+            "configuration": {
+              "configuration": "{parameter}",
+              "configurePreset": "{pq}(this).literal('{name}').replace('{prefix}{sep}{parameter}', 'configure')",
+              "output": {"outputOnFailure": true}
+            }
+          }
+        },
+        "workflow": {
+          "prefix": "workflow",
+          "parameters": {"compiler": ["p2996", "gcc16"], "instrumentation": ["none", "tsan"]},
+          "exclude": [{"compiler": "gcc16", "instrumentation": "tsan"}],
+          "shape-parameters": {"configuration": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"]},
+          "shape": {
+            "compiler": {
+              "steps": [{"type": "configure", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'configure')"}]
+            },
+            "configuration": {
+              "steps": [
+                {"type": "build", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'build-{parameter}')"},
+                {"type": "test", "name": "{pq}(this).literal('{name}').replace('{prefix}', 'test-{parameter}')"}
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
