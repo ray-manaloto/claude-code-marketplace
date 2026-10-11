@@ -1,0 +1,587 @@
+{
+  "schema_version": 1,
+  "result": "PASS: source-lifetime correction and bounded helper delta review; native retry UNVERIFIED",
+  "task": "08b plist lifetime when analyzer warnings become errors",
+  "reviewer": "/root/config_inspector",
+  "started_at": "2026-10-11T10:55:05.712Z",
+  "recorded_at": "2026-10-11T10:59:41.149Z",
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "source_pin_supplied_by_parent": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "observed_failure": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/qualification.json",
+    "sha256": "4e55a0f5767d7965bdf3faabfb328055713eca3dbef15d9f3ee041f3bb756e2d",
+    "state": "FAIL",
+    "error": "AssertionError()",
+    "helper_sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c",
+    "protected_state_unchanged": true,
+    "native_analyzer_returncode": 1,
+    "stderr_sha256": "00f36de80413c6c5f5bd7d5e204723f9369d467906e38a2c16e991f3a3f6e142",
+    "stderr_diagnostic": "analyzer-bad.cpp:3:6: error: Dereference of null pointer (loaded from variable 'p') [core.NullDereference]",
+    "stderr_trailer": "1 error generated.",
+    "observed_output_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-corrected-20261011T105333Z/analyzer-bad.plist",
+    "observed_output_absent": true,
+    "retained_directory_contains_plist": false,
+    "retained_copy_bindings": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/p2996_analysis.py.source",
+        "sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c",
+        "bytes": 14760
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/analyzer-bad.stderr",
+        "sha256": "00f36de80413c6c5f5bd7d5e204723f9369d467906e38a2c16e991f3a3f6e142",
+        "bytes": 259
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/analyzer-bad.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ],
+    "observation_limit": "Only retained process output and post-run file absence were observed. No filesystem tracing established the transient creation/deletion timing."
+  },
+  "source_supported_lifetime": [
+    {
+      "step": 1,
+      "behavior": "Plist output creates two consumers in order: PlistDiagnostics first, then a minimal text consumer.",
+      "references": [
+        "PlistDiagnostics.cpp:531-545"
+      ]
+    },
+    {
+      "step": 2,
+      "behavior": "AnalysisConsumer resets AnalysisManager at translation-unit scope exit, including when disable-free is used. AnalysisManager flushes PathConsumers in sequence.",
+      "references": [
+        "AnalysisConsumer.cpp:612-621",
+        "AnalysisManager.cpp:47-55"
+      ]
+    },
+    {
+      "step": 3,
+      "behavior": "PlistDiagnostics opens OutputFile directly with raw_fd_ostream and writes the plist. It does not test analyzer-werror or suppress its write merely because the diagnostic is promoted to an error. File-open failure instead prints a warning and returns.",
+      "references": [
+        "PlistDiagnostics.cpp:657-675"
+      ]
+    },
+    {
+      "step": 4,
+      "behavior": "The subsequent minimal text consumer selects DiagnosticsEngine::Error under ShouldDisplayWarningsAsErrors; otherwise it selects Warning.",
+      "references": [
+        "TextDiagnostics.cpp:55-70",
+        "TextDiagnostics.cpp:141-148"
+      ]
+    },
+    {
+      "step": 5,
+      "behavior": "FrontendAction asks CompilerInstance to erase registered output files when diagnostics report an error. CompilerInstance removes its registered OutputFiles. The plist is directly opened by its own consumer, so this general frontend cleanup is not the required explanation for this plist.",
+      "references": [
+        "FrontendActions.cpp:15-18",
+        "FrontendAction.cpp:1283-1285",
+        "FrontendAction.cpp:1308-1309",
+        "CompilerInstance.cpp:767-797"
+      ]
+    },
+    {
+      "step": 6,
+      "behavior": "Separately, the driver registers an explicit top-level -o path as a result file. When a job fails and save-temps is not enabled, it calls CleanupFileMap for that job. CleanupFile removes writable regular result files. The observed invocation has an explicit -o plist and no save-temps flag.",
+      "references": [
+        "Driver.cpp:6237-6240",
+        "Driver.cpp:2246-2266",
+        "Compilation.cpp:108-135",
+        "Compilation.cpp:146-155"
+      ]
+    }
+  ],
+  "conclusion": "On the normal successful-write path, the plist is emitted during diagnostic flushing and then removed by the driver after -analyzer-werror makes the job fail. The recorded rc1, intended error and absent plist match this source path. This is a source-derived causal explanation, not a live trace of the transient file.",
+  "minimal_correction": {
+    "principle": "Separate structured-report validation from the explicit failing-exit diagnostic control. A deliberately diagnostic warning-mode case can correctly have native rc0; do not classify it as a clean analyzer result.",
+    "common_argv": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "--analyze",
+      "--analyzer-no-default-checks",
+      "-Xclang",
+      "-analyzer-checker=core.NullDereference",
+      "--analyzer-output",
+      "plist"
+    ],
+    "controls": [
+      {
+        "label": "analyzer-bad-report",
+        "fixture": "The existing private null-store bad source, unchanged.",
+        "extra_argv": [
+          "{W}/analyzer-bad.cpp",
+          "-o",
+          "{W}/analyzer-bad-report.plist"
+        ],
+        "analyzer_werror": false,
+        "expected_native_exit": 0,
+        "required_stderr": "Exactly the intended core.NullDereference warning at the private bad source line 3; no compiler/fatal errors.",
+        "required_output": "Fresh absent-before, nonempty regular valid plist; diagnostics length exactly 1; check_name core.NullDereference; type Dereference of null pointer; exact bad-source file and line 3."
+      },
+      {
+        "label": "analyzer-bad-werror",
+        "fixture": "The same private bad source, unchanged.",
+        "extra_argv": [
+          "-Xclang",
+          "-analyzer-werror",
+          "{W}/analyzer-bad.cpp",
+          "-o",
+          "{W}/analyzer-bad-werror.plist"
+        ],
+        "analyzer_werror": true,
+        "expected_native_exit": 1,
+        "required_stderr": "Exactly one error at the expected private source line 3, containing Dereference of null pointer and [core.NullDereference]; reject unrelated error/fatal diagnostics.",
+        "required_output": "Unique output path absent before invocation and absent afterward, matching driver failure cleanup. No plist-content claim is made for this one control."
+      },
+      {
+        "label": "analyzer-clean",
+        "fixture": "Existing non-null corrected private source, unchanged.",
+        "extra_argv": [
+          "-Xclang",
+          "-analyzer-werror",
+          "{W}/analyzer-clean.cpp",
+          "-o",
+          "{W}/analyzer-clean.plist"
+        ],
+        "analyzer_werror": true,
+        "expected_native_exit": 0,
+        "required_output": "Fresh nonempty regular valid plist with diagnostics exactly []; no compiler/fatal errors. Missing output remains a qualification failure."
+      },
+      {
+        "label": "analyzer-reflection",
+        "fixture": "Existing braced clean full reflection witness, unchanged.",
+        "extra_argv": [
+          "-Xclang",
+          "-analyzer-werror",
+          "{W}/tidy-clean.cpp",
+          "-o",
+          "{W}/analyzer-reflection.plist"
+        ],
+        "analyzer_werror": true,
+        "expected_native_exit": 0,
+        "required_output": "Fresh nonempty regular valid plist with diagnostics exactly []; no compiler/fatal errors. Missing output remains a qualification failure."
+      }
+    ],
+    "invariants": [
+      "Keep the corrected two-token --analyzer-output plist spelling.",
+      "Keep tidy controls unchanged, including all explicit no-fix options.",
+      "Use a fresh admitted run directory and four distinct analyzer output paths; preserve all earlier failed evidence.",
+      "Retain native actual argv/returncode/stdout/stderr and per-call before/after source hashes. Require source bytes unchanged.",
+      "Do not globally allow missing plists. Only the separately labelled expected-error/cleanup case accepts absent output.",
+      "Do not enable save-temps merely to retain this error-mode output; the warning-mode report control supplies the structured evidence."
+    ]
+  },
+  "preserved_prior_evidence": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json",
+      "sha256": "5bbbb5d65eac1296bfe55bbde80de576d6c10dbfb04919c9bfdcc06b7042183b",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analyzer-output-correction-20261011T105223098Z.json",
+      "sha256": "bbbf6a3f7d1ecd2068a2331bfa83f8cbcb44a1f8368ee989347e8a34b915237d",
+      "unchanged": true
+    }
+  ],
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/PlistDiagnostics.cpp",
+      "sha256": "fafe1d23c87bfae3197f3f533914f1813ffb2b04ae72dc427dfa8cef7b33f460",
+      "bytes": 28714,
+      "line_ranges": [
+        [
+          531,
+          545
+        ],
+        [
+          657,
+          675
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/AnalysisConsumer.cpp",
+      "sha256": "b821774cab7b20ada83e7d4d6896005dcb2e3a63a6cc22f9abd3a4b1eb881648",
+      "bytes": 29688,
+      "line_ranges": [
+        [
+          602,
+          621
+        ],
+        [
+          791,
+          802
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/AnalysisManager.cpp",
+      "sha256": "a3721ec0a7711ab8153e38eb8666427f7471b1abdec4e427e022966cf8fabb39",
+      "bytes": 2438,
+      "line_ranges": [
+        [
+          47,
+          55
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/TextDiagnostics.cpp",
+      "sha256": "1332a8a786c0e959a59371086de2758ed7da73ff307f777663782a9efb95db27",
+      "bytes": 5865,
+      "line_ranges": [
+        [
+          55,
+          70
+        ],
+        [
+          141,
+          148
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/FrontendActions.cpp",
+      "sha256": "6f2b3b9bc478eba0c602213d74e2562bfeefc7e078db6bddb3b9f860607ac539",
+      "bytes": 1041,
+      "line_ranges": [
+        [
+          15,
+          18
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/FrontendAction.cpp",
+      "sha256": "00a7e8873a4939d114b9ac496839b9d8ad2b9e66dcf8eb04162c69b1cdc6bee1",
+      "bytes": 55423,
+      "line_ranges": [
+        [
+          1254,
+          1268
+        ],
+        [
+          1283,
+          1285
+        ],
+        [
+          1308,
+          1309
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/CompilerInstance.cpp",
+      "sha256": "57c84daa7a0181cf58cb0e5b975c3fdc64769d19c08574986be7d570ac407a21",
+      "bytes": 94071,
+      "line_ranges": [
+        [
+          767,
+          797
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Driver.cpp",
+      "sha256": "60df002fc310c0716e2c8e8a636990ceb95e9698891cf676061e3802b962d009",
+      "bytes": 290031,
+      "line_ranges": [
+        [
+          2246,
+          2266
+        ],
+        [
+          6237,
+          6240
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Compilation.cpp",
+      "sha256": "3e26e169180cd3349e8fb22619cb9657cb1d8c27201a48af619ab7d5ee292fd4",
+      "bytes": 10448,
+      "line_ranges": [
+        [
+          108,
+          135
+        ],
+        [
+          146,
+          155
+        ]
+      ]
+    }
+  ],
+  "actual_tools": {
+    "filesystem": "mcp__node_repl__js using node:fs/promises readFile/readdir/lstat",
+    "hashing": "node:crypto SHA-256",
+    "native_invocations": 0,
+    "fixture_runs": 0,
+    "network_calls": 0,
+    "shared_or_global_writes": 0,
+    "private_receipt_writes": 2,
+    "private_receipt_files": 1
+  },
+  "actual_read_routes": [
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Compilation.cpp",
+      "result": "read",
+      "bytes": 10448,
+      "sha256": "3e26e169180cd3349e8fb22619cb9657cb1d8c27201a48af619ab7d5ee292fd4"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/PlistDiagnostics.cpp",
+      "result": "read",
+      "bytes": 28714,
+      "sha256": "fafe1d23c87bfae3197f3f533914f1813ffb2b04ae72dc427dfa8cef7b33f460"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/CompilerInstance.cpp",
+      "result": "read",
+      "bytes": 94071,
+      "sha256": "57c84daa7a0181cf58cb0e5b975c3fdc64769d19c08574986be7d570ac407a21"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/FrontendAction.cpp",
+      "result": "read",
+      "bytes": 55423,
+      "sha256": "00a7e8873a4939d114b9ac496839b9d8ad2b9e66dcf8eb04162c69b1cdc6bee1"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/AnalysisConsumer.cpp",
+      "result": "read",
+      "bytes": 29688,
+      "sha256": "b821774cab7b20ada83e7d4d6896005dcb2e3a63a6cc22f9abd3a4b1eb881648"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Driver.cpp",
+      "result": "read",
+      "bytes": 290031,
+      "sha256": "60df002fc310c0716e2c8e8a636990ceb95e9698891cf676061e3802b962d009"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/qualification.json",
+      "result": "read",
+      "bytes": 16052,
+      "sha256": "4e55a0f5767d7965bdf3faabfb328055713eca3dbef15d9f3ee041f3bb756e2d"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/FrontendActions.cpp",
+      "result": "read",
+      "bytes": 1041,
+      "sha256": "6f2b3b9bc478eba0c602213d74e2562bfeefc7e078db6bddb3b9f860607ac539"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/AnalysisManager.cpp",
+      "result": "read",
+      "bytes": 2438,
+      "sha256": "a3721ec0a7711ab8153e38eb8666427f7471b1abdec4e427e022966cf8fabb39"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/TextDiagnostics.cpp",
+      "result": "read",
+      "bytes": 5865,
+      "sha256": "1332a8a786c0e959a59371086de2758ed7da73ff307f777663782a9efb95db27"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-corrected-20261011T105333Z/analyzer-bad.stdout",
+      "result": "read",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-corrected-20261011T105333Z/analyzer-bad.stderr",
+      "result": "read",
+      "bytes": 259,
+      "sha256": "00f36de80413c6c5f5bd7d5e204723f9369d467906e38a2c16e991f3a3f6e142"
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure",
+      "result": "read",
+      "entries": 30
+    },
+    {
+      "route": "node:fs/promises.lstat",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-corrected-20261011T105333Z/analyzer-bad.plist",
+      "result": "absent",
+      "code": "ENOENT"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analyzer-output-correction-20261011T105223098Z.json",
+      "result": "read",
+      "bytes": 19129,
+      "sha256": "bbbf6a3f7d1ecd2068a2331bfa83f8cbcb44a1f8368ee989347e8a34b915237d"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json",
+      "result": "read",
+      "bytes": 15610,
+      "sha256": "5bbbb5d65eac1296bfe55bbde80de576d6c10dbfb04919c9bfdcc06b7042183b"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/p2996_analysis.py.source",
+      "result": "read",
+      "bytes": 14760,
+      "sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/PlistDiagnostics.cpp",
+      "result": "read",
+      "bytes": 28714,
+      "sha256": "fafe1d23c87bfae3197f3f533914f1813ffb2b04ae72dc427dfa8cef7b33f460"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/AnalysisConsumer.cpp",
+      "result": "read",
+      "bytes": 29688,
+      "sha256": "b821774cab7b20ada83e7d4d6896005dcb2e3a63a6cc22f9abd3a4b1eb881648"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/AnalysisManager.cpp",
+      "result": "read",
+      "bytes": 2438,
+      "sha256": "a3721ec0a7711ab8153e38eb8666427f7471b1abdec4e427e022966cf8fabb39"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/TextDiagnostics.cpp",
+      "result": "read",
+      "bytes": 5865,
+      "sha256": "1332a8a786c0e959a59371086de2758ed7da73ff307f777663782a9efb95db27"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/FrontendActions.cpp",
+      "result": "read",
+      "bytes": 1041,
+      "sha256": "6f2b3b9bc478eba0c602213d74e2562bfeefc7e078db6bddb3b9f860607ac539"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/FrontendAction.cpp",
+      "result": "read",
+      "bytes": 55423,
+      "sha256": "00a7e8873a4939d114b9ac496839b9d8ad2b9e66dcf8eb04162c69b1cdc6bee1"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/CompilerInstance.cpp",
+      "result": "read",
+      "bytes": 94071,
+      "sha256": "57c84daa7a0181cf58cb0e5b975c3fdc64769d19c08574986be7d570ac407a21"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Driver.cpp",
+      "result": "read",
+      "bytes": 290031,
+      "sha256": "60df002fc310c0716e2c8e8a636990ceb95e9698891cf676061e3802b962d009"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Compilation.cpp",
+      "result": "read",
+      "bytes": 10448,
+      "sha256": "3e26e169180cd3349e8fb22619cb9657cb1d8c27201a48af619ab7d5ee292fd4"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/p2996_analysis.py.source",
+      "result": "read",
+      "bytes": 14760,
+      "sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/analyzer-bad.stderr",
+      "result": "read",
+      "bytes": 259,
+      "sha256": "00f36de80413c6c5f5bd7d5e204723f9369d467906e38a2c16e991f3a3f6e142"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/analyzer-bad.stdout",
+      "result": "read",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+      "result": "read",
+      "bytes": 15752,
+      "sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+      "result": "read",
+      "bytes": 15752,
+      "sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2"
+    }
+  ],
+  "limits": [
+    "No corrected split fixture has run in this review. Warning-mode report retention, clean/reflection analysis and all proposed assertions remain runtime UNVERIFIED.",
+    "No old guard suite, broad test search, provider research, installation or shared-file edit."
+  ],
+  "private_draft_augmented": {
+    "prior_draft_sha256": "23c3e9999c34452c1f114894be5e71caca487e511e345c61869ac737f254b967",
+    "reason": "Parent requested binding the newly written split-control helper after the source-only diagnosis draft was saved."
+  },
+  "helper_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+    "previous_sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c",
+    "sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+    "lines": 233,
+    "changed_region": [
+      178,
+      209
+    ],
+    "only_analyzer_block_changed": true,
+    "findings": [],
+    "disposition": "PASS: bounded static delta review",
+    "checks": [
+      "The common driver argv retains the corrected two-token --analyzer-output plist spelling.",
+      "analyzer-bad uses warning mode, expects native rc0 through the unchanged run wrapper, and requires a fresh nonempty valid one-diagnostic plist with the exact checker/type/file/line and warning text.",
+      "analyzer-clean and analyzer-reflection retain -analyzer-werror, require rc0 and fresh nonempty valid plists with diagnostics == [], and reject compiler errors.",
+      "The distinct analyzer-error-exit uses the same bad source and a unique output path, requires rc1 and exactly one line-3:6 core.NullDereference error, then requires absent output and the unchanged source hash.",
+      "All bytes before and after the analyzer block match the preceding helper. Tidy controls and shared guards are unchanged."
+    ],
+    "observation_limit": "report_removed_by_driver is the source-supported interpretation of the observed post-run absence; no filesystem trace is claimed.",
+    "native_probes": 0
+  }
+}

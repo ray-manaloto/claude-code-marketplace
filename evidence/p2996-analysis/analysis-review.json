@@ -1,0 +1,468 @@
+{
+  "result": "PASS: Task 08b independent cold review; no findings",
+  "findings": [],
+  "reviewed_at": "2026-10-11T11:13:28.527892+00:00",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "c9160b8e9c794aea3b76579dac026fac9e28dd4b",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "reviewer": "/root/cold_bottle_review",
+  "parent_return_channel": "native collaboration to /root",
+  "ownership": "Parent is sole implementation writer; reviewer changed only this new private scratch and exercised the admitted canonical host lease.",
+  "scope": [
+    "dev/toolchains/p2996_analysis.py",
+    "docs/llvm-tools.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "helper_sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+  "operation_sha256": "67b4b238eb27d38c35585481ef9817d7690a75f067eaba7ae9eb6c12481de5dd",
+  "admission_sha256": "71972ec91f7ee4db8acb19a841d72eca2a9b7dd32b3b8eac13154493d0cde476",
+  "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+  "parent_evidence": {
+    "verification_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/parent-evidence-verification.json",
+      "sha256": "6e46487d170d7d5dc0ecb4f05a8c7d41d6cfb30c5a5682cd3d8151908599336f",
+      "bytes": 14493
+    },
+    "final_records_original_and_copy_verified": 49,
+    "final_native_logs_verified": 38,
+    "final_private_artifacts_verified": 7,
+    "retained_failed_attempt_records_verified": 60,
+    "retained_failed_attempt_logs_verified": 44,
+    "unique_pinned_source_references_verified": 25,
+    "reference_excerpts_matched_source_bytes": true,
+    "stages": [
+      {
+        "stage": "initial-failure",
+        "qualification_sha256": "4d60a0953fe07a098d5b5f762438677538f1ca75d385954f2c89f3b05482cc92",
+        "helper_sha256": "37ae98474245d1104f87a48cd5bb3643aecf5720b95471bd31b3e81a83583391",
+        "manifest_sha256": "61b0ee5131090cd7fda77b3592380da84e9b61a816d6b67a2582956fb1ae4eb4",
+        "records": 30,
+        "logs": 22,
+        "native_exits": {
+          "source-before-head": 0,
+          "source-before-tree": 0,
+          "source-before-status": 0,
+          "source-before-diff": 0,
+          "default-before": 0,
+          "native-where": 0,
+          "named-profile": 0,
+          "capacity-processes": 0,
+          "tidy-bad": 1,
+          "tidy-clean": 0,
+          "analyzer-bad": 1
+        },
+        "wrapper_returncode": 1,
+        "state": "FAIL",
+        "error": "AssertionError()",
+        "preservation_receipt": true,
+        "originals_and_copies_match": true
+      },
+      {
+        "stage": "corrected-driver-failure",
+        "qualification_sha256": "4e55a0f5767d7965bdf3faabfb328055713eca3dbef15d9f3ee041f3bb756e2d",
+        "helper_sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c",
+        "manifest_sha256": "f49e4b552f68c094e5cc7affde05b74e8e802f3a5fb8825b02fd2a58a63d9ae4",
+        "records": 30,
+        "logs": 22,
+        "native_exits": {
+          "source-before-head": 0,
+          "source-before-tree": 0,
+          "source-before-status": 0,
+          "source-before-diff": 0,
+          "default-before": 0,
+          "native-where": 0,
+          "named-profile": 0,
+          "capacity-processes": 0,
+          "tidy-bad": 1,
+          "tidy-clean": 0,
+          "analyzer-bad": 1
+        },
+        "wrapper_returncode": 1,
+        "state": "FAIL",
+        "error": "AssertionError()",
+        "preservation_receipt": true,
+        "originals_and_copies_match": true
+      },
+      {
+        "stage": "operation",
+        "qualification_sha256": "67b4b238eb27d38c35585481ef9817d7690a75f067eaba7ae9eb6c12481de5dd",
+        "helper_sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+        "manifest_sha256": "479f4aa9a613ce1a24d4607e4563684affdc1dc1f23379e87831d95803134745",
+        "records": 49,
+        "logs": 38,
+        "native_exits": {
+          "source-before-head": 0,
+          "source-before-tree": 0,
+          "source-before-status": 0,
+          "source-before-diff": 0,
+          "default-before": 0,
+          "native-where": 0,
+          "named-profile": 0,
+          "capacity-processes": 0,
+          "tidy-bad": 1,
+          "tidy-clean": 0,
+          "analyzer-bad": 0,
+          "analyzer-clean": 0,
+          "analyzer-reflection": 0,
+          "analyzer-error-exit": 1,
+          "default-after": 0,
+          "source-after-head": 0,
+          "source-after-tree": 0,
+          "source-after-status": 0,
+          "source-after-diff": 0
+        },
+        "wrapper_returncode": 0,
+        "state": "PASS: clang-tidy and static analyzer reflection controls",
+        "error": null,
+        "preservation_receipt": true,
+        "originals_and_copies_match": true
+      }
+    ],
+    "corrected_contracts": {
+      "source-contract.json": "5bbbb5d65eac1296bfe55bbde80de576d6c10dbfb04919c9bfdcc06b7042183b",
+      "source-contract-correction.json": "bbbf6a3f7d1ecd2068a2331bfa83f8cbcb44a1f8368ee989347e8a34b915237d",
+      "report-lifetime-correction.json": "603b7154d1575838b2b7bf60883beac411022ff77382d40d19f36ce7c7efecde"
+    },
+    "final_parent_wrapper_returncode": 0
+  },
+  "static_review": {
+    "status": "No findings",
+    "files_read": [
+      "AGENTS.md",
+      "docs/onboarding.md",
+      "docs/accepted-decisions.md",
+      "docs/llvm-tools.md",
+      "dev/toolchains/p2996_analysis.py",
+      "docs/llvm-tools.md",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "Relevant operation/admission/source-contract and preserved prerequisite receipt contents"
+    ],
+    "scope_and_admission": "Final helper, witness, checkout identity, run directory, registration review and corrected source contracts are bound to the inspected immutable receipts. Four maintained files are within the admitted unit. Reviewer did not run the complete operation helper or alter admission.",
+    "failure_propagation": "The exact frozen runner records raw native rc/log hashes and uses process-group timeout cleanup. Its expected-returncode adapter accepts a failing control only for the expected case and rc; separate diagnostic and source/output assertions then gate success. Initial wrong-driver-spelling and corrected-driver missing-report operations retained their FAIL state and wrapper rc1. Timeout/interrupt cleanup is source-reviewed and reused; not fault-injected again in this unit.",
+    "driver_spelling": "The inspected pinned Options.td/driver forwarding uses two tokens --analyzer-output plist; the original --analyzer-output=plist supplied the literal invalid value =plist. The corrected spelling is present in all fresh analyzer calls.",
+    "report_lifetime": "Pinned source registers the -o plist as a driver result and removes writable results after a failed job. Fresh runtime observed absent output after the exact analyzer error; the intermediate write and cleanup sequence is source-derived, not independently filesystem-traced.",
+    "fresh_run_contract": "Each native analysis control launches a fresh process through the named p2996 profile with --fresh-env and --no-deps, absolute private tool paths and frozen C++26/reflection/SDK/resource/header flags. clang-tidy receives explicit non-inheriting inline config and all fix flags false; analyzer default checkers are disabled and only core.NullDereference is selected. No interactive Codex/Claude session was started.",
+    "format_of_claim": "Qualification applies to these explicit controls and the pinned toolchain; it does not assert that all included headers or all reflection programs are warning-free."
+  },
+  "independent_runtime": {
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/invocation.json",
+      "sha256": "f6b4d1132bd43a2e20d9166d490f75148431c5e8ee5129eb77653a1f96230be1",
+      "bytes": 934
+    },
+    "native_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/native-checks.json",
+      "sha256": "7603fe72fa84093646ad9cdd9ea999da7e6c8e1e4e24aa121773e9c874eebf20",
+      "bytes": 36055
+    },
+    "single_execution": true,
+    "native_command_count": 18,
+    "native_exits": {
+      "named-profile": 0,
+      "capacity-processes": 0,
+      "tidy-bad": 1,
+      "tidy-clean": 0,
+      "analyzer-bad": 0,
+      "analyzer-clean": 0,
+      "analyzer-reflection": 0,
+      "analyzer-error-exit": 1,
+      "default-consumer": 0,
+      "source-head": 0,
+      "source-tree": 0,
+      "source-status": 0,
+      "source-diff": 0,
+      "tasks-validate": 0,
+      "acceptance-baseline": 0,
+      "root-identity": 0,
+      "root-branch": 0,
+      "root-status": 0
+    },
+    "controls": {
+      "tidy-bad": {
+        "native_returncode": 1,
+        "errors": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/tidy-bad.cpp:26:50: error: statement should be inside braces [readability-braces-around-statements,-warnings-as-errors]"
+        ],
+        "source_unchanged": true,
+        "source_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+      },
+      "tidy-clean": {
+        "native_returncode": 0,
+        "errors": [],
+        "source_unchanged": true,
+        "source_sha256": "0b011f395420966fb0f75d7836a20a050c03724bb21337d5ac98438fd28ca5ac"
+      },
+      "analyzer-bad": {
+        "native_returncode": 0,
+        "diagnostic_count": 1,
+        "checks": [
+          "core.NullDereference"
+        ],
+        "locations": [
+          {
+            "line": 3,
+            "col": 6,
+            "file": 0
+          }
+        ],
+        "files": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-bad.cpp"
+        ],
+        "source_unchanged": true,
+        "source_sha256": "a1c15b8780db415bb5ba75baab65ac16b93a68104c30893c51f242c048014f8f",
+        "fresh_nonempty_parseable_plist": true,
+        "plist": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-bad.plist",
+          "sha256": "2fb3e6d3f95699019525836bbba4e942f7127c063f9ad468472caf7355f5570f",
+          "bytes": 5304
+        }
+      },
+      "analyzer-clean": {
+        "native_returncode": 0,
+        "diagnostic_count": 0,
+        "checks": [],
+        "locations": [],
+        "files": [],
+        "source_unchanged": true,
+        "source_sha256": "0b57f67e707f7fe62cec89b8c6e4938a6a675cc5a9b0c1d9c6852b0ae15e8823",
+        "fresh_nonempty_parseable_plist": true,
+        "plist": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-clean.plist",
+          "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+          "bytes": 432
+        }
+      },
+      "analyzer-reflection": {
+        "native_returncode": 0,
+        "diagnostic_count": 0,
+        "checks": [],
+        "locations": [],
+        "files": [],
+        "source_unchanged": true,
+        "source_sha256": "0b011f395420966fb0f75d7836a20a050c03724bb21337d5ac98438fd28ca5ac",
+        "fresh_nonempty_parseable_plist": true,
+        "plist": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-reflection.plist",
+          "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+          "bytes": 432
+        }
+      },
+      "analyzer-error-exit": {
+        "native_returncode": 1,
+        "errors": [
+          "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-bad.cpp:3:6: error: Dereference of null pointer (loaded from variable 'p') [core.NullDereference]"
+        ],
+        "plist_absent_after_return": true,
+        "source_unchanged": true,
+        "source_sha256": "a1c15b8780db415bb5ba75baab65ac16b93a68104c30893c51f242c048014f8f",
+        "cleanup_causal_explanation": "Source-derived driver cleanup contract; no transient filesystem tracing performed."
+      }
+    },
+    "control_elapsed_seconds": {
+      "tidy-bad": 0.7239137080032378,
+      "tidy-clean": 0.6557764169992879,
+      "analyzer-bad": 0.14032487501390278,
+      "analyzer-clean": 0.13982512499205768,
+      "analyzer-reflection": 0.6650455408962443,
+      "analyzer-error-exit": 0.14812183403410017
+    },
+    "all_commands_less_than_60_seconds": true,
+    "sequential_controls": true,
+    "profile_selection": {
+      "selected": {
+        "CC": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+        "CXX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "AR": null,
+        "RANLIB": null,
+        "LD": null,
+        "AS": null,
+        "CPATH": null,
+        "C_INCLUDE_PATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "OBJC_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "PKG_CONFIG_PATH": null,
+        "PKG_CONFIG_LIBDIR": null,
+        "CMAKE_PREFIX_PATH": null,
+        "CMAKE_TOOLCHAIN_FILE": null,
+        "CMAKE_GENERATOR": null,
+        "CMAKE_C_COMPILER_LAUNCHER": null,
+        "CMAKE_CXX_COMPILER_LAUNCHER": null,
+        "SDKROOT": null,
+        "MACOSX_DEPLOYMENT_TARGET": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "MARKETPLACE_CPP_LANE": "p2996",
+        "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "MARKETPLACE_GCC16_PREFIX": null,
+        "MAKEFLAGS": "-j2",
+        "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+      },
+      "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+      "homebrew_llvm_on_path": true
+    },
+    "argv_equivalence": "All six argv lists were independently constructed then checked equal to the final parent commands with only original scratch paths replaced by this fresh private directory.",
+    "fixtures": "Four newly created source files; corrected reflection witness differs only in the one expected braces edit. Before/after digests match; all four source hashes match the parent fixture recipes.",
+    "report_assertions": "Fresh warning-mode bad plist has exactly one core.NullDereference diagnostic at line3 col6 in the actual bad input. Clean and full reflection error-mode plists are fresh, nonempty, valid and empty of diagnostics. Separate error-mode bad control returns1 with one matching error and absent output.",
+    "tidy_limit": "1178 warnings from non-user code are suppressed in both tidy invocations. Qualification asserts the selected user-code diagnostic and absence of clang-diagnostic errors; it does not assert globally warning-free included headers.",
+    "artifacts": {
+      "tidy-bad.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/tidy-bad.cpp",
+        "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+        "bytes": 991
+      },
+      "tidy-clean.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/tidy-clean.cpp",
+        "sha256": "0b011f395420966fb0f75d7836a20a050c03724bb21337d5ac98438fd28ca5ac",
+        "bytes": 995
+      },
+      "analyzer-bad.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-bad.cpp",
+        "sha256": "a1c15b8780db415bb5ba75baab65ac16b93a68104c30893c51f242c048014f8f",
+        "bytes": 57
+      },
+      "analyzer-clean.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-clean.cpp",
+        "sha256": "0b57f67e707f7fe62cec89b8c6e4938a6a675cc5a9b0c1d9c6852b0ae15e8823",
+        "bytes": 73
+      },
+      "analyzer-bad.plist": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-bad.plist",
+        "sha256": "2fb3e6d3f95699019525836bbba4e942f7127c063f9ad468472caf7355f5570f",
+        "bytes": 5304
+      },
+      "analyzer-clean.plist": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-clean.plist",
+        "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+        "bytes": 432
+      },
+      "analyzer-reflection.plist": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/analyzer-reflection.plist",
+        "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+        "bytes": 432
+      }
+    },
+    "lease": {
+      "module": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+      "module_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+      "wait_seconds": 0,
+      "acquired": true,
+      "released": true,
+      "acquired_at": "2026-10-11T11:11:06.549306+00:00",
+      "descriptor": 3,
+      "holder": "66551\tmarketplace-p2996-analysis-cold-review\t2026-10-11T11:11:06Z",
+      "released_at": "2026-10-11T11:11:09.100009+00:00",
+      "free_after_release": true
+    },
+    "capacity": {
+      "observed_at": "2026-10-11T11:11:06.601854+00:00",
+      "blockers": [],
+      "free_disk_bytes": 56276832256,
+      "required_free_disk_bytes": 8589934592,
+      "native_process_check_returncode": 0
+    }
+  },
+  "preservation": {
+    "before_check_passed": true,
+    "after_check_passed": true,
+    "method": "Executed the hash-bound p2996_reflection protected function AST twice with its actual dependencies and registered post-state baseline, including complete prefix inventory equality and all159 retained file digests. No old guard suite was rerun.",
+    "prefix_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211
+    },
+    "prefix_entries": 6411,
+    "prefix_unchanged": true,
+    "retained_source_build_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "f0847874e3b48e2ce1752237c8053f36a2e28530a091df4d0b3a9e343a439af4",
+      "bytes": 103593
+    },
+    "retained_records": 159,
+    "retained_records_unchanged": true,
+    "registration_post_state": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+      "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+      "bytes": 296002
+    },
+    "protected_counts": {
+      "global_files": 9,
+      "packages": 8,
+      "glib_files": 2
+    },
+    "directory_entry_counts": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "install_entry_count": 2200,
+    "registered_global_state_unchanged": true,
+    "default_consumer": {
+      "returncode": 0,
+      "stdout_sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "byte_equal_final_parent_and_registration_default": true
+    },
+    "source_identity": {
+      "head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "status_sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "unchanged_status_line_count": 7,
+      "optional_locks_disabled": true,
+      "byte_equal_parent_before_and_after": true
+    },
+    "maintained_files_unchanged": {
+      "dev/toolchains/p2996_analysis.py": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+      "docs/llvm-tools.md": "457a402d69139c37697d45d862b18aaa6c35e5266f94766019c14d8747e09105",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "b158c15634af685b5df8b7ef45d71cab6768c50e184f5f8dac461db86622ee40",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "c5ee20bf85d68afae6baffc10ecb95b8af99f74088c83dcce1cd1fd83e8f2cab"
+    },
+    "control_files_unchanged": {
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/admission.json": "71972ec91f7ee4db8acb19a841d72eca2a9b7dd32b3b8eac13154493d0cde476",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/operation-manifest.json": "479f4aa9a613ce1a24d4607e4563684affdc1dc1f23379e87831d95803134745",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json": "5bbbb5d65eac1296bfe55bbde80de576d6c10dbfb04919c9bfdcc06b7042183b",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract-correction.json": "bbbf6a3f7d1ecd2068a2331bfa83f8cbcb44a1f8368ee989347e8a34b915237d",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/report-lifetime-correction.json": "603b7154d1575838b2b7bf60883beac411022ff77382d40d19f36ce7c7efecde",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/pre-run-review.json": "a2abebbca823bdf30a964e8dfc15e1f29c3b1763f7d9e2368c94f79bc6878751",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/preflight.json": "b70991a85c204c512ddbe32072a172f008b455db868d829632f887551d715881",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    "mise_binary_and_sdk_settings_hashes_unchanged": true,
+    "root_status_matches_unit_allowlist": true
+  },
+  "claude_acceptance_preservation": {
+    "tasks_validate_returncode": 0,
+    "check_acceptance_baseline_returncode": 0,
+    "static_counts": {
+      "baseline": 19,
+      "json": 733,
+      "python": 32,
+      "shell": 6,
+      "toml": 14
+    },
+    "all19_original_files_preserved": true,
+    "full_oci_acceptance_run": false
+  },
+  "checks_not_run": [
+    "Historical guard/timeout/failure-injection batteries",
+    "Additional compiler object builds, archive/link/runtime controls, formatter or clangd checks",
+    "All-reflection or all-checker suites; IWYU, sanitizer, coverage, PGO/LTO and full matrix validation",
+    "Installer, registration/promotion, toolchain rebuild, daemon, container, model session or network/research actions",
+    "Full Claude/OCI/provider/hook-runtime acceptance"
+  ],
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-analysis-review-gc51lp6o/supporting-manifest.json",
+    "sha256": "5ac9b90477d9de553ea7261d8d9bd78ed720940f89cdec5d5cceb79e7d5778c3",
+    "bytes": 13066
+  }
+}

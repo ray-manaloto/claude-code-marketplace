@@ -1,7 +1,7 @@
 # Qualified LLVM tool fixtures
 
 Task 08a uses the registered P2996 prefix from [task 07](p2996-toolchain.md).
-Run `dev/toolchains/p2996_tools.py --run-dir /absolute/new/private/directory`
+Run `python3 -B dev/toolchains/p2996_tools.py --run-dir /absolute/new/private/directory`
 only with a matching admission receipt and fresh shared-capacity check.
 The helper preserves the prefix, source/build inventory and global/default state,
 and uses the existing named profile and shared lease for sequential bounded work.
@@ -25,5 +25,21 @@ The [native operation](../evidence/p2996-tools/operation/qualification.json)
 passed, including the expected failing format control and complete preservation
 checks. [Independent review](../evidence/p2996-tools/tools-review.json) passed
 without findings and reproduced the same formatted source, object, archive and
-executable hashes. All 19 original acceptance files remain unchanged. Tidy,
-static analysis, coverage and IWYU are separate later units.
+executable hashes. All 19 original acceptance files remain unchanged.
+
+Task 08b's `dev/toolchains/p2996_analysis.py` prepares bounded tidy and analyzer
+controls from the [pinned source contract](../evidence/p2996-analysis/source-contract.json).
+Tidy selects one check with explicit configuration and all fixes disabled. The
+private reflection witness must produce the intended error, then pass after one
+braces correction. The analyzer records the null warning in a fresh plist, then
+separately checks its error-exit mode, which removes the output. Clean and full
+reflection cases retain error mode and require fresh plists with no diagnostics.
+All calls preserve source bytes. The [native operation](../evidence/p2996-analysis/operation/qualification.json)
+and [independent reproduction](../evidence/p2996-analysis/analysis-review.json)
+passed all six controls and preservation checks without findings.
+The driver takes `--analyzer-output plist` as two arguments. The
+[correction receipt](../evidence/p2996-analysis/source-contract-correction.json)
+supersedes that spelling in the original proposal and retains the failed attempt.
+The [report-lifetime correction](../evidence/p2996-analysis/report-lifetime-correction.json)
+explains why report collection and failing-exit behavior need separate controls.
+Both failed attempts remain recorded. Coverage and IWYU follow separately.

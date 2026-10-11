@@ -801,3 +801,36 @@ and preservation checks, with the post-registration install inventory.
   source, object, archive and executable hashes. Clangd used the explicit CDB
   with zero errors; runtime origins, protected state and all 19 originals pass.
   Task 08a is qualified; tidy and static-analysis controls follow separately.
+
+Task 08a is committed at `c9160b8e9c794aea3b76579dac026fac9e28dd4b`;
+the post-commit baseline passed with a clean worktree. Task 08b prepares five
+private checks from the pinned source contract: tidy bad/corrected reflection,
+analyzer bad/corrected null stores, and analysis of the corrected full reflection
+witness. Expected failures require the intended diagnostic and exit; clean
+analysis requires a fresh valid empty-diagnostics plist. No fixes are enabled,
+and every source is hashed before and after each call. Native support remains
+unverified; the shared lease and full preservation gates are reused.
+- The first native run passed both tidy controls, then rejected the analyzer
+  invocation: this fork parsed `--analyzer-output=plist` as the invalid value
+  `=plist`. The required-report guard prevented a false diagnostic pass. The
+  complete failed attempt is retained; protected state remains unchanged.
+  Exact driver spelling is being corrected against the pinned source.
+- The reviewed one-line correction passes `--analyzer-output` and `plist` as
+  separate tokens. The original contract and failure are immutable; the source
+  correction explains the distinct driver and cc1 options. Fresh static/capacity
+  checks passed, and the corrected helper is running in a new private directory.
+- The corrected driver reached the intended null diagnostic and exited 1, but
+  still left no plist with analyzer warnings treated as errors. The fixture
+  stopped and retained this second failure with protected state unchanged.
+  Report lifetime is being checked in source before separating diagnostic-report
+  collection from the explicit failing-exit control. Clean-report gates stay strict.
+- Pinned driver source confirms removal of the report after an error. The
+  reviewed six-check helper separates warning-mode report collection from the
+  failing-exit control; both clean cases retain error mode and empty-report gates.
+- The final six-control run exited 0 with the intended diagnostic counts and
+  both expected failing exits. All 49 text records are retained; full protected
+  state and defaults are unchanged, and the shared lease was released.
+  Independent review and one private reproduction are in progress.
+- Independent reproduction passed all six controls with no findings; complete
+  prefix, retained build/source, global/default and original acceptance checks
+  passed. Task 08b is qualified; native coverage follows as a separate unit.

@@ -41,7 +41,10 @@ application-matrix and package qualification remain pending.
 Task 08a passed its [formatting, clangd and archive fixture](llvm-tools.md),
 including an independent reproduction and expected failing format control.
 The formatted reflection source compiled and ran through a native archive with
-the three private runtimes. Tidy, static analysis and coverage remain pending.
+the three private runtimes. Task 08b's tidy and static-analysis controls also pass
+with independent reproduction, source preservation and unchanged defaults.
+Both initial analyzer failures are retained with source-backed corrections;
+coverage remains pending.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent

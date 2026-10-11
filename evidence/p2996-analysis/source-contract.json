@@ -1,0 +1,380 @@
+{
+  "result": "SOURCE-SUPPORTED PROPOSAL; runtime UNVERIFIED",
+  "task": "08b clang-tidy and Clang static analyzer only",
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "source_pin_supplied_by_parent": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "recorded_at": "2026-10-11T10:19:25.927697+00:00",
+  "07d_reuse": {
+    "receipt": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+    "sha256": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c",
+    "case": "reflection-build",
+    "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "frontend_argv_exact_slice": [
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+    ],
+    "slice_rule": "From --no-default-config through the private -isystem path, stopping before link-only -nostdlib++. No replacement compiler/SDK/libc++ selection flags were researched. These analysis commands do not link a runtime."
+  },
+  "clang_tidy": {
+    "argv": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-tidy",
+      "{PRIVATE_FIXTURE.cpp}",
+      "--config={\"InheritParentConfig\":false}",
+      "--checks=-*,readability-braces-around-statements",
+      "--warnings-as-errors=readability-braces-around-statements",
+      "--fix=false",
+      "--fix-errors=false",
+      "--fix-notes=false",
+      "--",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+    ],
+    "cdb_required": false,
+    "cdb_reason": "Explicit arguments after -- create FixedCompilationDatabase before any automatic compilation database search.",
+    "config_reason": "An explicit JSON config with InheritParentConfig=false uses ConfigOptionsProvider without loading parent .clang-tidy files. Checks begin with -* to clear enabled defaults.",
+    "diagnostic_fixture": {
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "recipe": "Private byte-for-byte copy of the 07d reflection witness. Existing line 26 intentionally provides the diagnostic control. Do not edit the repository source.",
+      "line": 26,
+      "text": "        if (std::string(error.what()) != message) return 2;"
+    },
+    "corrected_fixture": {
+      "recipe": "A second private copy changes only line 26 to the following braced form.",
+      "text": "        if (std::string(error.what()) != message) { return 2; }"
+    },
+    "diagnostic_expectation": {
+      "native_exit": 1,
+      "required_message": "statement should be inside braces",
+      "required_check": "readability-braces-around-statements",
+      "required_location": "The private fixture line corresponding to original line 26",
+      "qualification_result": "PASS only when this deliberate diagnostic is observed with the expected failing native exit, no compiler parse errors, and unchanged source hashes."
+    },
+    "clean_expectation": {
+      "native_exit": 0,
+      "required": "No diagnostic from the selected check and no compiler errors; private source hash unchanged."
+    },
+    "fixes": "All three fix options are explicitly false. Main selects FB_NoFix. Do not invoke clang-apply-replacements or add export-fixes/fix flags.",
+    "exit_contract": "Main returns 1 when WErrorCount is nonzero, 1 on compiler errors without fix-errors, and otherwise 0. Ordinary tidy warnings without warnings-as-errors can still return 0."
+  },
+  "clang_analyzer": {
+    "argv": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "--analyze",
+      "--analyzer-no-default-checks",
+      "-Xclang",
+      "-analyzer-checker=core.NullDereference",
+      "-Xclang",
+      "-analyzer-werror",
+      "--analyzer-output=plist",
+      "{PRIVATE_FIXTURE.cpp}",
+      "-o",
+      "{PRIVATE_REPORT.plist}"
+    ],
+    "cdb_required": false,
+    "cdb_reason": "The clang driver accepts the source and compiler flags directly; no compilation database is read by this invocation.",
+    "selection": "--analyzer-no-default-checks skips driver-injected checker packages. -Xclang -analyzer-checker=core.NullDereference explicitly selects the checker and its declared DereferenceModeling dependency. Do not use -analyzer-disable-all-checks: AnalysisConsumer then skips the entire analysis even with selected checkers.",
+    "diagnostic_fixture": "int main() {\n  int *p = nullptr;\n  *p = 7;\n  return 0;\n}\n",
+    "clean_fixture": "int main() {\n  int value = 0;\n  int *p = &value;\n  *p = 7;\n  return 0;\n}\n",
+    "source_basis": "The literal null-store shape is present in the pinned single_null_dereference.c input; nullptr.cpp explicitly expects the null diagnostic for a C++ nullptr store and no warning for a non-null pointer.",
+    "diagnostic_expectation": {
+      "native_exit": "Nonzero with -analyzer-werror (normally 1); runtime remains unverified.",
+      "required_plist": "Exactly one diagnostic with check_name=core.NullDereference, type=Dereference of null pointer, and the private bad-fixture location.",
+      "required_stderr": "Retain the null-dereference diagnostic; do not mistake an unrelated compile failure for success of this control."
+    },
+    "clean_expectation": {
+      "native_exit": 0,
+      "required_plist": "A freshly created valid plist with diagnostics=[]; no analyzer/compiler error in retained stderr."
+    },
+    "error_behavior": "CreateAnalysisConsumer explicitly disables ordinary -Werror. Use -Xclang -analyzer-werror; the pinned override-werror.c test requires the null result to be an error with that option. Without it a diagnostic can accompany native exit 0.",
+    "evidence_gate": "Always retain native argv/exit/stdout/stderr and parse the fresh plist even when native exit is nonzero. Gate failure if native exit is nonzero, plist missing/malformed, or diagnostics is nonempty. A diagnostic with native exit 0 still fails the clean gate. Missing output is not an empty/clean report.",
+    "fixes": "No fix-it application option is enabled; analyzer ShouldApplyFixIts defaults false."
+  },
+  "later_harness_contract": [
+    "Use new private copies and unique absent report paths, under the already-reviewed 07d process environment; no execution is authorized by this source proposal.",
+    "Collect diagnostic files before evaluating an expected failing command. Avoid check=True/early exit that discards expected failure evidence.",
+    "Record diagnostic_count/check names and native rc separately; intentional bad controls pass qualification by matching expected diagnostic plus failure behavior, while clean controls require zero diagnostics.",
+    "Hash fixture contents before and after every eventual tool call to prove no source fixes."
+  ],
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/tool/ClangTidyMain.cpp",
+      "sha256": "436bc59592085169c66b681c140bba62f2e8a92b36a4dd9d185016cb484760d1",
+      "lines": [
+        [
+          121,
+          128
+        ],
+        [
+          177,
+          199
+        ],
+        [
+          231,
+          247
+        ],
+        [
+          409,
+          447
+        ],
+        [
+          712,
+          771
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/ClangTidyOptions.cpp",
+      "sha256": "2b51237ceb1c1930f92bfd3b793321b89ff08ccea12ffe22598405870732ac97",
+      "lines": [
+        [
+          295,
+          312
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Tooling/CommonOptionsParser.cpp",
+      "sha256": "7931e59815252e558b4e83d1db5c827f427e88a1ac46584c12fe3ffed77df625",
+      "lines": [
+        [
+          109,
+          139
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/readability/BracesAroundStatementsCheck.cpp",
+      "sha256": "1f4de6f7da4ac60f8fafb8d929c3baa030c28b4786737734e12962e2fef32f63",
+      "lines": [
+        [
+          50,
+          65
+        ],
+        [
+          144,
+          163
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/readability/ReadabilityTidyModule.cpp",
+      "sha256": "25cb2c1a44e886b5266cee4c881ed037dd079b882c8e2332efaa41129c2be822",
+      "lines": [
+        [
+          82,
+          83
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/test/clang-tidy/checkers/readability/braces-around-statements.cpp",
+      "sha256": "5aba9c5c891757e836588b53382a77a682d1e4c934d0c81555a41254d69f13b8",
+      "lines": [
+        [
+          12,
+          22
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp",
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b",
+      "lines": [
+        [
+          3438,
+          3444
+        ],
+        [
+          3486,
+          3501
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+      "lines": [
+        [
+          6242,
+          6249
+        ],
+        [
+          7446,
+          7470
+        ],
+        [
+          7522,
+          7524
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/StaticAnalyzer/Checkers/Checkers.td",
+      "sha256": "52dc88e41c098cdd49ef9209bcff9288221201329231fa684bbc57f6100aa866",
+      "lines": [
+        [
+          22,
+          24
+        ],
+        [
+          131,
+          131
+        ],
+        [
+          220,
+          223
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Checkers/DereferenceChecker.cpp",
+      "sha256": "2a9e8e56b425122c4c9dfebb301e1cf686583fde1dffae49dc847709959fe907",
+      "lines": [
+        [
+          161,
+          175
+        ],
+        [
+          403,
+          408
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/AnalysisConsumer.cpp",
+      "sha256": "b821774cab7b20ada83e7d4d6896005dcb2e3a63a6cc22f9abd3a4b1eb881648",
+      "lines": [
+        [
+          635,
+          643
+        ],
+        [
+          791,
+          795
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/PlistDiagnostics.cpp",
+      "sha256": "fafe1d23c87bfae3197f3f533914f1813ffb2b04ae72dc427dfa8cef7b33f460",
+      "lines": [
+        [
+          532,
+          545
+        ],
+        [
+          657,
+          693
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/override-werror.c",
+      "sha256": "023e7ebea968b3f4206d8a0651e08e6c49ea77677de9d1f3fbd4b136a3a89ab1",
+      "lines": [
+        [
+          1,
+          16
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/nullptr.cpp",
+      "sha256": "b452ee200711cf7f0e20f620ee74914b519cb6da2deb46aadc05df33d949a4de",
+      "lines": [
+        [
+          5,
+          20
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/scan-build/Inputs/single_null_dereference.c",
+      "sha256": "0f734572df1b8e494d7614e1c9fe8d500954b50a3e90461dcd933b84e130efa1",
+      "lines": [
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Analysis/PathDiagnostic.h",
+      "sha256": "71a635695454c567fe696061a37e3d20c9dd945629f3ae408ecd33be8aac81f9",
+      "lines": [
+        [
+          77,
+          88
+        ]
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.def",
+      "sha256": "86734c087cf6a91e953271e25a72cc5c3295248451decb948f4f536cd183a39d",
+      "lines": [
+        [
+          374,
+          378
+        ]
+      ]
+    }
+  ],
+  "actual_routes": {
+    "executed": [
+      "Bounded rg source searches",
+      "Native Python standard-library source and recorded-argv reads",
+      "One private JSON write/readback"
+    ],
+    "not_executed": [
+      "installed clang-tidy/clang even help or version",
+      "compilation or analyzer/tidy run",
+      "network or research provider",
+      "coverage or IWYU",
+      "repository/global changes"
+    ],
+    "lookup_notes": "Several guessed analyzer source/test filenames did not exist (rg rc2); actual source locations were then found with rg --files/source searches. Successful bounded source reads support all claims; no failed lookup was counted as evidence."
+  }
+}

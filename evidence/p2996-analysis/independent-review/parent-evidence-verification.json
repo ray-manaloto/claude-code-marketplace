@@ -1,0 +1,303 @@
+{
+  "result": "PASS: final and failed operation evidence verified",
+  "helper_sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+  "operation_sha256": "67b4b238eb27d38c35585481ef9817d7690a75f067eaba7ae9eb6c12481de5dd",
+  "admission_sha256": "71972ec91f7ee4db8acb19a841d72eca2a9b7dd32b3b8eac13154493d0cde476",
+  "admission_run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z",
+  "stages": [
+    {
+      "stage": "initial-failure",
+      "qualification_sha256": "4d60a0953fe07a098d5b5f762438677538f1ca75d385954f2c89f3b05482cc92",
+      "helper_sha256": "37ae98474245d1104f87a48cd5bb3643aecf5720b95471bd31b3e81a83583391",
+      "manifest_sha256": "61b0ee5131090cd7fda77b3592380da84e9b61a816d6b67a2582956fb1ae4eb4",
+      "records": 30,
+      "logs": 22,
+      "native_exits": {
+        "source-before-head": 0,
+        "source-before-tree": 0,
+        "source-before-status": 0,
+        "source-before-diff": 0,
+        "default-before": 0,
+        "native-where": 0,
+        "named-profile": 0,
+        "capacity-processes": 0,
+        "tidy-bad": 1,
+        "tidy-clean": 0,
+        "analyzer-bad": 1
+      },
+      "wrapper_returncode": 1,
+      "state": "FAIL",
+      "error": "AssertionError()",
+      "preservation_receipt": true,
+      "originals_and_copies_match": true
+    },
+    {
+      "stage": "corrected-driver-failure",
+      "qualification_sha256": "4e55a0f5767d7965bdf3faabfb328055713eca3dbef15d9f3ee041f3bb756e2d",
+      "helper_sha256": "3d119b22e3963c82bd3b4995241bd9bd20da4e8ef6d6f94a70930933e22dcc0c",
+      "manifest_sha256": "f49e4b552f68c094e5cc7affde05b74e8e802f3a5fb8825b02fd2a58a63d9ae4",
+      "records": 30,
+      "logs": 22,
+      "native_exits": {
+        "source-before-head": 0,
+        "source-before-tree": 0,
+        "source-before-status": 0,
+        "source-before-diff": 0,
+        "default-before": 0,
+        "native-where": 0,
+        "named-profile": 0,
+        "capacity-processes": 0,
+        "tidy-bad": 1,
+        "tidy-clean": 0,
+        "analyzer-bad": 1
+      },
+      "wrapper_returncode": 1,
+      "state": "FAIL",
+      "error": "AssertionError()",
+      "preservation_receipt": true,
+      "originals_and_copies_match": true
+    },
+    {
+      "stage": "operation",
+      "qualification_sha256": "67b4b238eb27d38c35585481ef9817d7690a75f067eaba7ae9eb6c12481de5dd",
+      "helper_sha256": "37da49e4a59bff633c1995ac2ce8b7c195237168fde5af60fcaf101f7c84a3f2",
+      "manifest_sha256": "479f4aa9a613ce1a24d4607e4563684affdc1dc1f23379e87831d95803134745",
+      "records": 49,
+      "logs": 38,
+      "native_exits": {
+        "source-before-head": 0,
+        "source-before-tree": 0,
+        "source-before-status": 0,
+        "source-before-diff": 0,
+        "default-before": 0,
+        "native-where": 0,
+        "named-profile": 0,
+        "capacity-processes": 0,
+        "tidy-bad": 1,
+        "tidy-clean": 0,
+        "analyzer-bad": 0,
+        "analyzer-clean": 0,
+        "analyzer-reflection": 0,
+        "analyzer-error-exit": 1,
+        "default-after": 0,
+        "source-after-head": 0,
+        "source-after-tree": 0,
+        "source-after-status": 0,
+        "source-after-diff": 0
+      },
+      "wrapper_returncode": 0,
+      "state": "PASS: clang-tidy and static analyzer reflection controls",
+      "error": null,
+      "preservation_receipt": true,
+      "originals_and_copies_match": true
+    }
+  ],
+  "source_references": {
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/tool/ClangTidyMain.cpp": {
+      "sha256": "436bc59592085169c66b681c140bba62f2e8a92b36a4dd9d185016cb484760d1",
+      "bytes": 29442
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/ClangTidyOptions.cpp": {
+      "sha256": "2b51237ceb1c1930f92bfd3b793321b89ff08ccea12ffe22598405870732ac97",
+      "bytes": 19210
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Tooling/CommonOptionsParser.cpp": {
+      "sha256": "7931e59815252e558b4e83d1db5c827f427e88a1ac46584c12fe3ffed77df625",
+      "bytes": 7227
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/readability/BracesAroundStatementsCheck.cpp": {
+      "sha256": "1f4de6f7da4ac60f8fafb8d929c3baa030c28b4786737734e12962e2fef32f63",
+      "bytes": 6228
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/clang-tidy/readability/ReadabilityTidyModule.cpp": {
+      "sha256": "25cb2c1a44e886b5266cee4c881ed037dd079b882c8e2332efaa41129c2be822",
+      "bytes": 9057
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang-tools-extra/test/clang-tidy/checkers/readability/braces-around-statements.cpp": {
+      "sha256": "5aba9c5c891757e836588b53382a77a682d1e4c934d0c81555a41254d69f13b8",
+      "bytes": 15059
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp": {
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b",
+      "bytes": 375382
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td": {
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+      "bytes": 546344
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/StaticAnalyzer/Checkers/Checkers.td": {
+      "sha256": "52dc88e41c098cdd49ef9209bcff9288221201329231fa684bbc57f6100aa866",
+      "bytes": 65056
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Checkers/DereferenceChecker.cpp": {
+      "sha256": "2a9e8e56b425122c4c9dfebb301e1cf686583fde1dffae49dc847709959fe907",
+      "bytes": 14870
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/AnalysisConsumer.cpp": {
+      "sha256": "b821774cab7b20ada83e7d4d6896005dcb2e3a63a6cc22f9abd3a4b1eb881648",
+      "bytes": 29688
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/PlistDiagnostics.cpp": {
+      "sha256": "fafe1d23c87bfae3197f3f533914f1813ffb2b04ae72dc427dfa8cef7b33f460",
+      "bytes": 28714
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/override-werror.c": {
+      "sha256": "023e7ebea968b3f4206d8a0651e08e6c49ea77677de9d1f3fbd4b136a3a89ab1",
+      "bytes": 610
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/nullptr.cpp": {
+      "sha256": "b452ee200711cf7f0e20f620ee74914b519cb6da2deb46aadc05df33d949a4de",
+      "bytes": 6156
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/scan-build/Inputs/single_null_dereference.c": {
+      "sha256": "0f734572df1b8e494d7614e1c9fe8d500954b50a3e90461dcd933b84e130efa1",
+      "bytes": 89
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Analysis/PathDiagnostic.h": {
+      "sha256": "71a635695454c567fe696061a37e3d20c9dd945629f3ae408ecd33be8aac81f9",
+      "bytes": 29552
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/StaticAnalyzer/Core/AnalyzerOptions.def": {
+      "sha256": "86734c087cf6a91e953271e25a72cc5c3295248451decb948f4f536cd183a39d",
+      "bytes": 27863
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-output.m": {
+      "sha256": "c56291eb09cea6784cebab0bae7701332afb3cff716aa8fe12d31fc6163806e4",
+      "bytes": 3447
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/AnalysisManager.cpp": {
+      "sha256": "a3721ec0a7711ab8153e38eb8666427f7471b1abdec4e427e022966cf8fabb39",
+      "bytes": 2438
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Core/TextDiagnostics.cpp": {
+      "sha256": "1332a8a786c0e959a59371086de2758ed7da73ff307f777663782a9efb95db27",
+      "bytes": 5865
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/StaticAnalyzer/Frontend/FrontendActions.cpp": {
+      "sha256": "6f2b3b9bc478eba0c602213d74e2562bfeefc7e078db6bddb3b9f860607ac539",
+      "bytes": 1041
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/FrontendAction.cpp": {
+      "sha256": "00a7e8873a4939d114b9ac496839b9d8ad2b9e66dcf8eb04162c69b1cdc6bee1",
+      "bytes": 55423
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/CompilerInstance.cpp": {
+      "sha256": "57c84daa7a0181cf58cb0e5b975c3fdc64769d19c08574986be7d570ac407a21",
+      "bytes": 94071
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Driver.cpp": {
+      "sha256": "60df002fc310c0716e2c8e8a636990ceb95e9698891cf676061e3802b962d009",
+      "bytes": 290031
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Compilation.cpp": {
+      "sha256": "3e26e169180cd3349e8fb22619cb9657cb1d8c27201a48af619ab7d5ee292fd4",
+      "bytes": 10448
+    }
+  },
+  "unique_source_reference_count": 25,
+  "corrected_contracts": {
+    "source-contract.json": "5bbbb5d65eac1296bfe55bbde80de576d6c10dbfb04919c9bfdcc06b7042183b",
+    "source-contract-correction.json": "bbbf6a3f7d1ecd2068a2331bfa83f8cbcb44a1f8368ee989347e8a34b915237d",
+    "report-lifetime-correction.json": "603b7154d1575838b2b7bf60883beac411022ff77382d40d19f36ce7c7efecde"
+  },
+  "final_diagnostics": {
+    "tidy-bad": {
+      "native_returncode": 1,
+      "errors": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/tidy-bad.cpp:26:50: error: statement should be inside braces [readability-braces-around-statements,-warnings-as-errors]"
+      ],
+      "source_unchanged": true
+    },
+    "tidy-clean": {
+      "native_returncode": 0,
+      "errors": [],
+      "source_unchanged": true
+    },
+    "analyzer-bad": {
+      "native_returncode": 0,
+      "diagnostic_count": 1,
+      "checks": [
+        "core.NullDereference"
+      ],
+      "source_unchanged": true
+    },
+    "analyzer-clean": {
+      "native_returncode": 0,
+      "diagnostic_count": 0,
+      "checks": [],
+      "source_unchanged": true
+    },
+    "analyzer-reflection": {
+      "native_returncode": 0,
+      "diagnostic_count": 0,
+      "checks": [],
+      "source_unchanged": true
+    },
+    "analyzer-error-exit": {
+      "native_returncode": 1,
+      "errors": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-bad.cpp:3:6: error: Dereference of null pointer (loaded from variable 'p') [core.NullDereference]"
+      ],
+      "report_removed_by_driver": true,
+      "source_unchanged": true
+    }
+  },
+  "plists": {
+    "analyzer-bad": {
+      "sha256": "d62a25d2670cca2263dfeac1882d98a60c7c61301e457f9716f4b825a4b4a22b",
+      "diagnostic_count": 1,
+      "checks": [
+        "core.NullDereference"
+      ],
+      "files": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-bad.cpp"
+      ]
+    },
+    "analyzer-clean": {
+      "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+      "diagnostic_count": 0,
+      "checks": [],
+      "files": []
+    },
+    "analyzer-reflection": {
+      "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b",
+      "diagnostic_count": 0,
+      "checks": [],
+      "files": []
+    }
+  },
+  "error_mode_output_absent": true,
+  "driver_cleanup_explanation": "Supported by pinned source; no transient filesystem trace claimed.",
+  "tidy_non_user_warnings": "1178 warnings are suppressed in non-user code in both controls; clean qualification applies to the selected user-source check, not every included header.",
+  "parent_default_and_source_before_after_match": true,
+  "parent_artifact_hashes": {
+    "tidy-bad.cpp": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/tidy-bad.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    "tidy-clean.cpp": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/tidy-clean.cpp",
+      "sha256": "0b011f395420966fb0f75d7836a20a050c03724bb21337d5ac98438fd28ca5ac"
+    },
+    "analyzer-bad.cpp": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-bad.cpp",
+      "sha256": "a1c15b8780db415bb5ba75baab65ac16b93a68104c30893c51f242c048014f8f"
+    },
+    "analyzer-clean.cpp": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-clean.cpp",
+      "sha256": "0b57f67e707f7fe62cec89b8c6e4938a6a675cc5a9b0c1d9c6852b0ae15e8823"
+    },
+    "analyzer-bad.plist": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-bad.plist",
+      "sha256": "d62a25d2670cca2263dfeac1882d98a60c7c61301e457f9716f4b825a4b4a22b"
+    },
+    "analyzer-clean.plist": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-clean.plist",
+      "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b"
+    },
+    "analyzer-reflection.plist": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-split-20261011T110106Z/analyzer-reflection.plist",
+      "sha256": "7659598fd0757d07dd8e5b9bb89e58b82003a950d3d48b417b80c400972b679b"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+    "-B",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+    "--run-dir",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z"
+  ],
+  "cwd": "/private/tmp",
+  "started_at": "2026-10-11T10:47:49.653139+00:00",
+  "returncode": 1,
+  "elapsed_seconds": 8.005935583030805,
+  "stdout": "{\"case\": \"source-before-head\", \"returncode\": 0}\n{\"case\": \"source-before-tree\", \"returncode\": 0}\n{\"case\": \"source-before-status\", \"returncode\": 0}\n{\"case\": \"source-before-diff\", \"returncode\": 0}\n{\"case\": \"default-before\", \"returncode\": 0}\n{\"case\": \"native-where\", \"returncode\": 0}\n{\"case\": \"named-profile\", \"returncode\": 0}\n{\"case\": \"capacity-processes\", \"returncode\": 0}\n{\"case\": \"tidy-bad\", \"returncode\": 1}\n{\"case\": \"tidy-clean\", \"returncode\": 0}\n{\"case\": \"analyzer-bad\", \"returncode\": 1}\n{\"state\": \"FAIL\", \"receipt\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/qualification.json\"}\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py\", line 221, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py\", line 185, in main\n    assert digest(path) == original and output.is_file() and output.stat().st_size > 0\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "helper_sha256": "37ae98474245d1104f87a48cd5bb3643aecf5720b95471bd31b3e81a83583391",
+  "admission_sha256": "e3f3c0c2b201c21809dd9e49b5d84ae0d20ac18f23da5bff40ca5d9ca06bbaf3"
+}
