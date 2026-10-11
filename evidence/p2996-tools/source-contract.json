@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "result": "SOURCE_ONLY_NOT_EXECUTED",
+  "task": "08a LLVM formatting/check/archive CLI contract lookup",
+  "observed_at": "2026-10-11T10:05:15.823905+00:00",
+  "project_root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "project_identity": {
+    "head": "5c0de926a7c07c0a5d732543a83068d84370627c",
+    "branch": "codex/marketplace-native-onboarding",
+    "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "native_git_identity_exit": 0
+  },
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "source_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "source_identity_scope": "Previously pinned source supplied by parent; current bounded source files hashed here. No repeated source Git/artifact inventory.",
+  "summary": "Use the admitted prefix P and a fresh private directory W. These are source-supported proposals, not native qualification. Reuse the prior P2996 compiler contract for C++26, -freflection, -fno-blocks, arm64/macOS 27, explicit SDK/resource paths and private libc++ headers; no new compiler flag research is needed.\n\nclang-format: feed the original bytes on stdin with --style=LLVM, --assume-filename=W/formatted.cpp and --fail-on-incomplete-format; capture stdout as the private formatted copy only after exit 0 and nonempty output. Omit -i. Stdin avoids the filename loop's .clang-format-ignore skip, and explicit style avoids ancestor style discovery. Feed that copy to the same stdin/style invocation with --dry-run --Werror. It returns 1 when replacements remain, 0 when none remain; read/style errors also fail. Important: the dry-run branch returns before the incomplete-format test, so put --fail-on-incomplete-format on the producing command. The formatter's LangOptions default Reflection to false and Latest maps to C++20; the fork lexer recognizes ^^ and [: :] as reflection tokens only with Reflection enabled. Thus successful formatting/idempotence is not proof of reflection correctness. No native corruption/failure is asserted here: preserve and compile the actual formatted output in the later fixture.\n\nclangd: use an existing absolute --check=W/formatted.cpp and --compile-commands-dir=W, an exact one-entry compile_commands.json arguments array, and explicit --enable-config=false --background-index=false --clang-tidy=false --check-locations=false --check-completion=false. The check branch returns before LSP server startup. It still builds a memory preamble, AST, local FileIndex, inlay hints and semantic highlighting; this is deliberately narrower than default per-token editor-feature checks. Require exit 0, 'Compile command from CDB', the expected compiler/flags in its log, and 'All checks completed, 0 errors'; reject fallback/inferred commands. Check failures return 3; invalid file/path/options can return other nonzero codes. Warnings are not counted as errors. Leave query-driver globs absent and unset CLANGD_FLAGS, CLANGD_TRACE and CLANGD_METRICS. Empty globs disable compiler include extraction, but CommandMangler::detect still attempts macOS xcrun lookups. A clangd-only PATH pointing to an empty private directory prevents those lookups; keep absolute compiler/SDK/resource/include paths. This PATH control is source-derived and awaits runtime verification; a missing-xcrun log is expected. Do not apply that PATH to later compiler/link commands.\n\nllvm-ar: with an absent private archive, use --format=darwin rcsD W/libreflection.a W/reflection.o, then t W/libreflection.a. r replaces/inserts, c suppresses the creation warning, s emits the index, D selects deterministic mode; omit thin mode. Normal archive members use object basenames and listing skips internal members, so require exactly 'reflection.o\\n' and both exits 0. Read/write/parse/member errors fail with 1. Archive creation/listing does not prove an object is usable or that reflection survived formatting. The later parent fixture should link through this archive using the prior explicit private-runtime inputs, run the resulting witness, and validate its output/origins. That runtime work remains pending after task 07e.",
+  "summary_word_count": 434,
+  "proposed_not_run": {
+    "substitutions": {
+      "P": "Existing admitted absolute P2996 prefix",
+      "W": "New normalized private fixture directory",
+      "SDK": "Previously reviewed absolute macOS SDK"
+    },
+    "format_copy": {
+      "argv": [
+        "{P}/bin/clang-format",
+        "--style=LLVM",
+        "--assume-filename={W}/formatted.cpp",
+        "--fail-on-incomplete-format"
+      ],
+      "stdin": "Exact original p2996_reflection.cpp bytes",
+      "stdout": "{W}/formatted.cpp",
+      "expected_exit": 0
+    },
+    "format_check": {
+      "argv": [
+        "{P}/bin/clang-format",
+        "--style=LLVM",
+        "--assume-filename={W}/formatted.cpp",
+        "--dry-run",
+        "--Werror"
+      ],
+      "stdin": "{W}/formatted.cpp bytes",
+      "expected_exit": 0
+    },
+    "compile_commands_json": [
+      {
+        "directory": "{W}",
+        "file": "{W}/formatted.cpp",
+        "arguments": [
+          "{P}/bin/clang++",
+          "--no-default-config",
+          "-std=c++26",
+          "-freflection",
+          "-fno-blocks",
+          "-arch",
+          "arm64",
+          "-mmacosx-version-min=27.0",
+          "-isysroot",
+          "{SDK}",
+          "-resource-dir",
+          "{P}/lib/clang/21",
+          "-stdlib=libc++",
+          "-nostdinc++",
+          "-isystem",
+          "{P}/include/c++/v1",
+          "-c",
+          "{W}/formatted.cpp",
+          "-o",
+          "{W}/reflection.o"
+        ]
+      }
+    ],
+    "clangd_check": {
+      "argv": [
+        "{P}/bin/clangd",
+        "--check={W}/formatted.cpp",
+        "--compile-commands-dir={W}",
+        "--resource-dir={P}/lib/clang/21",
+        "--enable-config=false",
+        "--background-index=false",
+        "--clang-tidy=false",
+        "--check-locations=false",
+        "--check-completion=false",
+        "--log=verbose"
+      ],
+      "expected_exit": 0,
+      "diagnostics_exit": 3,
+      "query_driver_globs": "Absent",
+      "process_only_environment": {
+        "PATH": "{W}/empty-path",
+        "unset": [
+          "CLANGD_FLAGS",
+          "CLANGD_TRACE",
+          "CLANGD_METRICS"
+        ]
+      },
+      "scope_note": "PATH must name a known empty private directory and applies only to this absolute clangd invocation. Retain the reviewed clean compiler-related environment."
+    },
+    "archive_create": {
+      "argv": [
+        "{P}/bin/llvm-ar",
+        "--format=darwin",
+        "rcsD",
+        "{W}/libreflection.a",
+        "{W}/reflection.o"
+      ],
+      "expected_exit": 0,
+      "precondition": "Archive path absent and object supplied by separately admitted later compilation"
+    },
+    "archive_list": {
+      "argv": [
+        "{P}/bin/llvm-ar",
+        "t",
+        "{W}/libreflection.a"
+      ],
+      "expected_exit": 0,
+      "expected_stdout": "reflection.o\n"
+    }
+  },
+  "references": [
+    {
+      "root": "pinned_source",
+      "file": "clang/tools/clang-format/ClangFormat.cpp",
+      "sha256": "ebe7db1de334b41db86a3151ed095be582225e50bec4114d2a4bd874b82027ef",
+      "lines": [
+        [
+          66,
+          102
+        ],
+        [
+          138,
+          173
+        ],
+        [
+          208,
+          212
+        ],
+        [
+          350,
+          374
+        ],
+        [
+          408,
+          425
+        ],
+        [
+          505,
+          549
+        ],
+        [
+          706,
+          739
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang/lib/Format/Format.cpp",
+      "sha256": "ca64892badf8d3803f4fbe8f9c614b8daf26374885729aa466156fad42e754db",
+      "lines": [
+        [
+          4024,
+          4063
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang/lib/Format/FormatTokenLexer.cpp",
+      "sha256": "e3af37daa7a8c21766dc444c19db2f456dc75958f4d705b47cff45d3c761f2a1",
+      "lines": [
+        [
+          26,
+          40
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang/include/clang/Basic/LangOptions.def",
+      "sha256": "2d0c4d4c2c01e2bbe075b5b59f309ade6b918676b7637d26928e2a5216a166a2",
+      "lines": [
+        [
+          312,
+          318
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang/lib/Lex/Lexer.cpp",
+      "sha256": "c9271823baeb9b0b973d42d0ad53756e759a06f15e51b29c7a373539c3368c3d",
+      "lines": [
+        [
+          4088,
+          4100
+        ],
+        [
+          4388,
+          4400
+        ],
+        [
+          4425,
+          4434
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang-tools-extra/clangd/tool/ClangdMain.cpp",
+      "sha256": "04d2f2cc21055107fae2db56dc05e736fa449d86b6baccc7fccb32abe4e1a1ff",
+      "lines": [
+        [
+          120,
+          145
+        ],
+        [
+          167,
+          194
+        ],
+        [
+          386,
+          394
+        ],
+        [
+          488,
+          500
+        ],
+        [
+          672,
+          692
+        ],
+        [
+          742,
+          779
+        ],
+        [
+          842,
+          862
+        ],
+        [
+          907,
+          936
+        ],
+        [
+          959,
+          1018
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang-tools-extra/clangd/tool/Check.cpp",
+      "sha256": "623ceba269e1b46d77a4051d1966dba6bb8e8e57584b0f9cc44e94d99d10ee93",
+      "lines": [
+        [
+          98,
+          122
+        ],
+        [
+          143,
+          195
+        ],
+        [
+          242,
+          274
+        ],
+        [
+          388,
+          457
+        ],
+        [
+          521,
+          530
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang-tools-extra/clangd/CompileCommands.cpp",
+      "sha256": "396476d618f7111a3e3feda94c316782abc7fef73151239426176d67334cc045",
+      "lines": [
+        [
+          40,
+          75
+        ],
+        [
+          91,
+          130
+        ],
+        [
+          189,
+          194
+        ],
+        [
+          298,
+          341
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang-tools-extra/clangd/SystemIncludeExtractor.cpp",
+      "sha256": "73d2211c3f0b61f17448f4275ebc688e50c918896a69f84b174591aa781ebedb",
+      "lines": [
+        [
+          542,
+          546
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "clang/lib/Tooling/JSONCompilationDatabase.cpp",
+      "sha256": "d375eced75c85e2593ee56cfc26a98d0c88f36720d1f3b6becbc8415a47f1de0",
+      "lines": [
+        [
+          364,
+          409
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "llvm/lib/Support/Unix/Program.inc",
+      "sha256": "68a1f0a425ab14e92c109ec38ef6e61d61ef6f07066a9543c5643bb3a5711135",
+      "lines": [
+        [
+          63,
+          88
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "llvm/tools/llvm-ar/llvm-ar.cpp",
+      "sha256": "5d1d5c54c7ad464a64d6768e3e32fa23993bc25dcaa387d116cf2936234df25d",
+      "lines": [
+        [
+          97,
+          125
+        ],
+        [
+          149,
+          185
+        ],
+        [
+          224,
+          234
+        ],
+        [
+          350,
+          378
+        ],
+        [
+          404,
+          414
+        ],
+        [
+          508,
+          551
+        ],
+        [
+          691,
+          741
+        ],
+        [
+          785,
+          795
+        ],
+        [
+          1063,
+          1080
+        ],
+        [
+          1145,
+          1180
+        ],
+        [
+          1382,
+          1394
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "file": "llvm/include/llvm/Object/Archive.h",
+      "sha256": "16d8d16b7385b9622a02c417ebecd2e5f8bec1fd693cb15a092e8704645e2354",
+      "lines": [
+        [
+          351,
+          355
+        ]
+      ]
+    },
+    {
+      "root": "project",
+      "file": "docs/build-roadmap.md",
+      "sha256": "92825b37601b3f1d8dc18c8d9ddeb5f9ed0f67da7a2fd4d63c91157381f49606",
+      "lines": [
+        [
+          25,
+          45
+        ]
+      ]
+    },
+    {
+      "root": "project",
+      "file": "docs/accepted-decisions.md",
+      "sha256": "c832008771c6d91703cde7a8d58452d230dcfb242589997a8963d5219c8ed910",
+      "lines": [
+        [
+          28,
+          39
+        ]
+      ]
+    },
+    {
+      "root": "project",
+      "file": "dev/toolchains/p2996-bootstrap.cmake",
+      "sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "lines": [
+        [
+          19,
+          55
+        ]
+      ]
+    },
+    {
+      "root": "project",
+      "file": "evidence/p2996-reflection/source-contract.json",
+      "sha256": "871dda00b7d9bc6fd3a24dbc95925653937895923a863105454f7ea5546b7291",
+      "lines": []
+    }
+  ],
+  "route_accounting": {
+    "ran": [
+      "Native Git project identity (exit 0)",
+      "rg source/path searches and bounded sed/nl/pathlib reads",
+      "Python standard-library source hashing and this single private JSON write"
+    ],
+    "failed_routes": [
+      "Initial narrow rg referenced nonexistent docs/cpp-toolchain-roadmap.md and clang-tools-extra/clangd/Check.cpp (exit 2); corrected by filename discovery to docs/build-roadmap.md and clangd/tool/Check.cpp."
+    ],
+    "not_run": [
+      "Installed compiler/LLVM commands including --version/help",
+      "Formatting, clangd checks or servers, object/archive/build/link/runtime commands",
+      "Network or provider research, leases, installs, registration, containers, model sessions, old metadata/inventory suites"
+    ],
+    "shared_writes": false,
+    "private_receipt_files": 1
+  },
+  "limits": [
+    "No runtime success or tool support is claimed. Reflection formatting and clangd parsing remain UNVERIFIED.",
+    "Read-only lookup does not complete task 08 or admit runtime work before task 07e closes.",
+    "No existing Claude acceptance files or shared evidence/planning indexes were modified."
+  ]
+}

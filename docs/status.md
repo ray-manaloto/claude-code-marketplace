@@ -38,6 +38,11 @@ below. LLVM configuration and global vcpkg registration are qualified; the LLVM
 reflection compiler and private runtimes are qualified below; dependency,
 application-matrix and package qualification remain pending.
 
+Task 08a passed its [formatting, clangd and archive fixture](llvm-tools.md),
+including an independent reproduction and expected failing format control.
+The formatted reflection source compiled and ran through a native archive with
+the three private runtimes. Tidy, static analysis and coverage remain pending.
+
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
 reviews and passing static/baseline checks. Native CMake preset listing now passes;

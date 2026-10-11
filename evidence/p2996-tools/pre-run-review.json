@@ -1,0 +1,17 @@
+{
+  "reviewer": "config_inspector",
+  "scope": "Static pre-run review only; no native tools executed.",
+  "result": "PASS after idempotence repair",
+  "helper_sha256": "4d2e14df01f09ffaff7f1f0009828c72c56f3aa01dfa94aac4bc057a728d9a6d",
+  "findings": [],
+  "resolved": [
+    {
+      "severity": "P2",
+      "claim": "Dry-run can silently ignore the formatted filename.",
+      "original_helper_sha256": "dd62e35b18fb3236f78e02ce45d34080dd431d1284e057bdc162b8045374f934",
+      "source": "clang/tools/clang-format/ClangFormat.cpp:724-739 at pinned f17c8d6c",
+      "fix": "A producing pass on formatted.cpp requires nonempty output and exact byte equality before dry-run.",
+      "reviewer_disposition": "Resolved; two inserted lines are the sole helper change."
+    }
+  ]
+}

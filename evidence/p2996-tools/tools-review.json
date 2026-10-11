@@ -1,0 +1,534 @@
+{
+  "result": "PASS: task 08a formatting, reflection archive/run and isolated clangd fixture",
+  "findings": [],
+  "resolved_pre_run_findings": [
+    {
+      "severity": "P2",
+      "claim": "Dry-run can silently ignore the formatted filename.",
+      "original_helper_sha256": "dd62e35b18fb3236f78e02ce45d34080dd431d1284e057bdc162b8045374f934",
+      "source": "clang/tools/clang-format/ClangFormat.cpp:724-739 at pinned f17c8d6c",
+      "fix": "A producing pass on formatted.cpp requires nonempty output and exact byte equality before dry-run.",
+      "reviewer_disposition": "Resolved; two inserted lines are the sole helper change."
+    }
+  ],
+  "reviewer": "/root/cold_bottle_review",
+  "reviewed_at": "2026-10-11T10:41:12.313876+00:00",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "0e023aa0cb70f7980fb2010ad4e2cf861aeb8802",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "helper": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tools.py",
+  "helper_sha256": "4d2e14df01f09ffaff7f1f0009828c72c56f3aa01dfa94aac4bc057a728d9a6d",
+  "operation": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tools/operation/qualification.json",
+  "operation_sha256": "c13fe337ddca4b0bd4cc99047838c2dda9243e5d004a0d53ba51c4cf76f9d15b",
+  "admission_sha256": "d4db3e435bc5c1f1b28323f2dacde147d053f5a190cddbb4fa9264ea15d99e32",
+  "registration_review_sha256": "9b8e92ac14d9304d7055fa00a3348612251e8bd27247db0ead946179bc835437",
+  "source_contract_sha256": "0d24e7362ad7a9077b2263ed36c98ba344d479f81b14ef62c895eddd4ae5437c",
+  "source_contract_references_verified": 17,
+  "parent_evidence": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/parent-evidence-verification.json",
+    "sha256": "b9d765193bfd1ad661f33cb8dd92a190a132ae131127ed8769e238eecddbc9ff",
+    "bytes": 8999
+  },
+  "parent_text_records_verified": 54,
+  "parent_logs_verified": 46,
+  "parent_native_command_exits": {
+    "source-before-head": 0,
+    "source-before-tree": 0,
+    "source-before-status": 0,
+    "source-before-diff": 0,
+    "default-before": 0,
+    "native-where": 0,
+    "named-profile": 0,
+    "capacity-processes": 0,
+    "format-copy": 0,
+    "format-idempotence": 0,
+    "format-check": 0,
+    "format-negative": 1,
+    "compile-formatted": 0,
+    "archive-create": 0,
+    "archive-list": 0,
+    "archive-link": 0,
+    "archive-run": 0,
+    "clangd-check": 0,
+    "default-after": 0,
+    "source-after-head": 0,
+    "source-after-tree": 0,
+    "source-after-status": 0,
+    "source-after-diff": 0
+  },
+  "native_checks": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/native-checks.json",
+    "sha256": "83289b053728c99b0173331a48f31371738186dfce8e4b0e16a190d6f9945822",
+    "bytes": 33507
+  },
+  "independent_fixture_invocations": 1,
+  "native_command_exits": {
+    "named-profile": 0,
+    "capacity-processes": 0,
+    "format-copy": 0,
+    "format-idempotence": 0,
+    "format-check": 0,
+    "format-negative": 1,
+    "compile-formatted": 0,
+    "archive-create": 0,
+    "archive-list": 0,
+    "archive-link": 0,
+    "archive-run": 0,
+    "clangd-check": 0,
+    "default-consumer": 0,
+    "source-head": 0,
+    "source-tree": 0,
+    "source-status": 0,
+    "source-diff": 0,
+    "tasks-validate": 0,
+    "acceptance-baseline": 0,
+    "root-identity": 0,
+    "root-branch": 0,
+    "root-status": 0
+  },
+  "lease": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/lease.json",
+    "sha256": "e979e3b9481880ad8c7bfa59ec4b2854e16da46a9d2f6e5333bba01a6866cba1",
+    "bytes": 558
+  },
+  "capacity": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/capacity.json",
+    "sha256": "e534e7e0954c95979d0732229184248d78c61c85d5d13b3087516915c3997e09",
+    "bytes": 190
+  },
+  "lease_acquired_and_released": true,
+  "formatted_source": {
+    "original_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+    "formatted_sha256": "024001920d57793a45b6e2c8a5fa8b7eab374dbe83ec89ff0bf68618b1a1d386",
+    "bytes": 970,
+    "two_nonempty_producing_passes_identical": true,
+    "dry_run_exit": 0,
+    "diagnostic_control_exit": 1,
+    "actual_formatted_bytes_compiled": true
+  },
+  "archive": {
+    "member_list": "reflection.o\n",
+    "create_and_list_exit": 0,
+    "linked_through_archive": true,
+    "link_and_runtime_exit": 0,
+    "runtime_output": "reflection value=43 exception=ok\n",
+    "loaded_private_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+    ]
+  },
+  "clangd": {
+    "zero_errors": true,
+    "explicit_cdb": true,
+    "fallback_or_inferred": false,
+    "server_started": false,
+    "private_empty_PATH": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/empty-path",
+    "removed_environment_keys": [
+      "CLANGD_FLAGS",
+      "CLANGD_TRACE",
+      "CLANGD_METRICS"
+    ],
+    "expected_missing_xcrun_diagnostic": true
+  },
+  "own_artifacts": {
+    "input.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/input.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "bytes": 991
+    },
+    "formatted.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/formatted.cpp",
+      "sha256": "024001920d57793a45b6e2c8a5fa8b7eab374dbe83ec89ff0bf68618b1a1d386",
+      "bytes": 970
+    },
+    "unformatted.cpp": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/unformatted.cpp",
+      "sha256": "91193433e324b0a1e525cfecac51f43ca0f6bd882e1c34292510c9740115bf5c",
+      "bytes": 22
+    },
+    "reflection.o": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/reflection.o",
+      "sha256": "d7436db1a127a2d74ef894ff9227d7f1282c3f6746c5d19da901ee603e037b70",
+      "bytes": 16808
+    },
+    "libreflection.a": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/libreflection.a",
+      "sha256": "c65c9cfd24458110011257ee0ff487939b13113992df33d3fb166aebb7f3d9a8",
+      "bytes": 22000
+    },
+    "reflection": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/reflection",
+      "sha256": "cb18d3b4eea9db0c10130f7da484d2db2fe87a07eef1ab3da646598bb3e64c32",
+      "bytes": 41992
+    },
+    "compile_commands.json": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/compile_commands.json",
+      "sha256": "19912dd96d556ccba5c9b47725435c15c1ba4b9782b38f909cbd983c27ac603b",
+      "bytes": 1230
+    }
+  },
+  "own_binary_artifact_hashes_equal_parent": true,
+  "preservation": {
+    "before_and_after_passed": true,
+    "prefix_records": 6411,
+    "prefix_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211
+    },
+    "retained_source_build_records": 159,
+    "retained_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "f0847874e3b48e2ce1752237c8053f36a2e28530a091df4d0b3a9e343a439af4",
+      "bytes": 103593
+    },
+    "global_baseline": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+      "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+      "bytes": 296002
+    },
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shims": 835,
+    "command_wrappers": 0,
+    "install_entries": 2200,
+    "all_entries_unchanged": true,
+    "default_consumer": {
+      "runs": 1,
+      "returncode": 0,
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "exact_parent_and_registration_output_match": true
+    },
+    "source": {
+      "current_reads": 4,
+      "head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "status_sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "matches_parent_before_after": true
+    },
+    "maintained_file_hashes": {
+      "dev/toolchains/p2996_tools.py": "4d2e14df01f09ffaff7f1f0009828c72c56f3aa01dfa94aac4bc057a728d9a6d",
+      "docs/llvm-tools.md": "f46b85cb8f3ff8598f6350622886b0778bef66d29f4151728a2a0f22bf7e3aa7",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "c2ce86e26262b2e3d895fc21a0170a0a11681704b33b5868f976e6d6b4ec2d7a",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "11c0aa8c5c407957a094488d3682d710faf88950f9ba566d19f01933f8847906"
+    },
+    "sdk_and_native_mise_hashes_preserved": true
+  },
+  "all_protected_state_unchanged": true,
+  "static_counts": {
+    "baseline": 19,
+    "json": 693,
+    "python": 30,
+    "shell": 6,
+    "toml": 14
+  },
+  "static_review": [
+    "Four maintained files stay within the admitted tool-fixture scope and distinguish parent runtime success from independent qualification.",
+    "The helper binds the prior registration, reflection, inventory and helper identities. The shared lease and native census precede sequential compiler and clangd work.",
+    "Both filename-based producing passes reject silent ignore by requiring nonempty bytes; the second pass requires exact equality. Compiling those bytes checks reflection syntax survived formatting.",
+    "The explicit one-entry CDB uses the actual compile command, absolute compiler/SDK/resource/include paths and the same formatted file. Check mode exits before an LSP server starts.",
+    "The expected-failure adapter preserves the native diagnostic exit; other failures propagate. The unchanged process wrapper provides bounded cleanup and final preservation. Timeout and interruption branches were not reinjected."
+  ],
+  "executed_runtime_checks": [
+    "One private native fixture under the canonical lease: format twice, dry-run positive and negative, compile formatted bytes, archive create/list, link/run and clangd check.",
+    "Named-profile selection matched the already qualified environment; fresh census had no builders and 56322084864 bytes of free disk.",
+    "Clangd used the explicit CDB, reported zero errors and the expected missing-xcrun diagnostic from its private empty PATH. No fallback or inferred command was used.",
+    "Read-only preservation logic checked all 6411 prefix entries, 159 retained source/build records and the 2200-entry post-registration global baseline before and after.",
+    "One default consumer, four current source Git reads, task validation and the static baseline all passed; all nineteen original acceptance files matched."
+  ],
+  "limits": [
+    "Qualification covers this small reflection fixture, not all formatting constructs or interactive clangd/LSP behavior.",
+    "Tidy, static analysis, coverage, IWYU, wider project/matrix acceptance and full Claude OCI/provider/hook acceptance were not run.",
+    "No full helper/admission rerun, prior guard suite, installation, global registration, LLVM build, Docker, network or model session was executed.",
+    "Unexpected-error, timeout and interruption cleanup were inspected and reused by source identity; only the format diagnostic failure was executed here.",
+    "Native fixture binary artifacts and any raw environment or backup contents stay private. The canonical lease metadata records the admitted brief hold."
+  ],
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/supporting-manifest.json",
+    "sha256": "048ea61de4c9da95fb60e4c6946686c459383f3ace6a2a911bd45c7181652368",
+    "bytes": 14815
+  },
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/acceptance-baseline.stderr",
+      "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae",
+      "bytes": 83
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/acceptance-baseline.stdout",
+      "sha256": "6b8b304e0316996b25e6b663d3d4077d63f112e8b99e86758b5808890802f5d7",
+      "bytes": 172
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-create.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-create.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-link.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-link.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-list.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-list.stdout",
+      "sha256": "5213dced1f406e1ac74c2937bf2dbb1a147677170af82fff823d44c44153f4c6",
+      "bytes": 13
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-run.stderr",
+      "sha256": "818a3cd3ba38a9282cb55c7277abbb647d0f9bb62495c63076157e188d11e559",
+      "bytes": 7781
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/archive-run.stdout",
+      "sha256": "4e602f7fb8fc648dc9907a2e6157d4b037e149c5849fb307d076602bb838f00c",
+      "bytes": 33
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/capacity-processes.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/capacity-processes.stdout",
+      "sha256": "42e8368bd37e1b04a875baee78bff33eb1f1bd3797f1b07a34c2f8352b7b9d8f",
+      "bytes": 96743
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/capacity.json",
+      "sha256": "e534e7e0954c95979d0732229184248d78c61c85d5d13b3087516915c3997e09",
+      "bytes": 190
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/clangd-check.stderr",
+      "sha256": "918fa3833d31088c104436d330a8e74759a07ad2c1e3a55158c4c3600f14a0d7",
+      "bytes": 10639
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/clangd-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/compile-formatted.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/compile-formatted.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/compile_commands.json",
+      "sha256": "19912dd96d556ccba5c9b47725435c15c1ba4b9782b38f909cbd983c27ac603b",
+      "bytes": 1230
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/default-consumer.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/default-consumer.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-copy.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-copy.stdout",
+      "sha256": "024001920d57793a45b6e2c8a5fa8b7eab374dbe83ec89ff0bf68618b1a1d386",
+      "bytes": 970
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-idempotence.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-idempotence.stdout",
+      "sha256": "024001920d57793a45b6e2c8a5fa8b7eab374dbe83ec89ff0bf68618b1a1d386",
+      "bytes": 970
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-negative.stderr",
+      "sha256": "5c92cb25aef93d30db15c84eb6ab94d4b17e1f9a6534259702fa94bb3b4cf9b8",
+      "bytes": 668
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/format-negative.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/formatted.cpp",
+      "sha256": "024001920d57793a45b6e2c8a5fa8b7eab374dbe83ec89ff0bf68618b1a1d386",
+      "bytes": 970
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/idempotence-fix.diff",
+      "sha256": "2bea85a61adcaa9113e524081a5cb716176c2ac3f0c0a0e08884eb79edeee430",
+      "bytes": 849
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/input.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "bytes": 991
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/lease.json",
+      "sha256": "e979e3b9481880ad8c7bfa59ec4b2854e16da46a9d2f6e5333bba01a6866cba1",
+      "bytes": 558
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/named-profile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/named-profile.stdout",
+      "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+      "bytes": 1197
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/native-checks.json",
+      "sha256": "83289b053728c99b0173331a48f31371738186dfce8e4b0e16a190d6f9945822",
+      "bytes": 33507
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/parent-evidence-verification.json",
+      "sha256": "b9d765193bfd1ad661f33cb8dd92a190a132ae131127ed8769e238eecddbc9ff",
+      "bytes": 8999
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/review-fixture.py",
+      "sha256": "4cc460f65861521e4204ba2bad74af476f17959cf943c2f1359350a53ff7e5dd",
+      "bytes": 14253
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/review-invocation.json",
+      "sha256": "74425ceb577b4548ccc64d5a3cade837f2de6145520230b77de7142c186ee4ab",
+      "bytes": 643
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-branch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-branch.stdout",
+      "sha256": "e346c1210f8462790b30c81725108cdb31dfc81c0a04d9d151bdefdd66ddb81c",
+      "bytes": 36
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-identity.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-identity.stdout",
+      "sha256": "dd9d5a00c1b6ef4376ec06a57c91101ccfeadb962a94cea9acd518354368fe24",
+      "bytes": 174
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/root-status.stdout",
+      "sha256": "a3c1c1b16a44887d38b0b8c051af86ba05db532e3f807df7c443418e59b13431",
+      "bytes": 229
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+      "bytes": 41
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-tools-review-06o_mewp/unformatted.cpp",
+      "sha256": "91193433e324b0a1e525cfecac51f43ca0f6bd882e1c34292510c9740115bf5c",
+      "bytes": 22
+    }
+  ]
+}

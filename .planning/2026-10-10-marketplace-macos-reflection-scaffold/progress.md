@@ -782,3 +782,22 @@ Native completion and independent post-registration review remain pending.
   and pinned link are the only added install entries; prefix, source/build,
   configuration, shims and original files remain preserved. Task 07 is qualified;
   the next small unit exercises formatting, clangd and native archives.
+
+Task 07 is committed through `0e023aa0cb70f7980fb2010ad4e2cf861aeb8802`;
+the post-commit baseline passed with a clean worktree. Task 08a prepares one
+private formatting/clangd/archive fixture using the qualified compiler and
+runtimes. Pinned source defines the CLI and diagnostic contracts; actual tool
+support remains unverified. The new helper reuses the reviewed subprocess cleanup
+and preservation checks, with the post-registration install inventory.
+- Static review caught a silent-ignore gap in the dry-run idempotence check.
+  A second producing pass now requires nonempty, identical bytes before dry-run;
+  the original helper is retained. No native fixture has run yet.
+- The corrected helper exited 0. Formatting preserved compilable reflection;
+  the archive linked and ran with all three private runtimes. Clangd used the
+  explicit database and reported zero errors. The format diagnostic control
+  exited 1 as intended; full preservation and default-consumer checks passed.
+  Independent review and one private reproduction remain pending.
+- Independent reproduction passed without findings, matching the formatted
+  source, object, archive and executable hashes. Clangd used the explicit CDB
+  with zero errors; runtime origins, protected state and all 19 originals pass.
+  Task 08a is qualified; tidy and static-analysis controls follow separately.
