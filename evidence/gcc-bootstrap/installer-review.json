@@ -1,0 +1,179 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T02:11:48.477901+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "dccb55463d33baf0a58856802257d9ed80501cb4",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "result": "PASS for task 05c guarded installer; installation remains unexecuted by reviewer",
+  "findings_remaining": [],
+  "findings_disposition": [
+    {
+      "issue": "Timeout only killed residual descendants when the leader stayed alive",
+      "result": "Fixed; exact nested run() code tested with owned inert descendant ignoring SIGTERM; descendant gone without test cleanup, leader rc -15 and original timeout retained"
+    },
+    {
+      "issue": "Failed apply skipped partial-state inventory",
+      "result": "Fixed; exact outer failure handler tested with synthetic private prefix state and observation failure; original failure/rc preserved and all planned classes observed"
+    },
+    {
+      "issue": "Known task substring allowed an unclassified task alongside a known MCP task",
+      "result": "Fixed; exact single-task invocation required, all three allowed forms pass, :::/extra args/substrings/install/check/exec forms reject"
+    }
+  ],
+  "reviewed_inputs": [
+    {
+      "path": "dev/toolchains/gcc_install.py",
+      "sha256": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a"
+    },
+    {
+      "path": "dev/toolchains/README.md",
+      "sha256": "5124ed0e723db0a11945daca8e961882c2052cec7935041c8c6e70dbb14a33fd"
+    },
+    {
+      "path": "docs/status.md",
+      "sha256": "1f7a649d71aa469fb932ed715aeefcb94dbfec0d411d023f14a7ec22fb27e7e7"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "d32189af5f448cae42bdaecb5239317a43296aab5ab7ba4f97b2ceff7d5ed896"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "8d4a599b8aa1a6b39d620744b249ab0e3a45d464f46e63fd80277076884f6b6e"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottle-review.json",
+      "sha256": "6f6cabd1c99ee983c693c8dec3db2dd10312f8881fca87bf730a610eb084b633"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottles.json",
+      "sha256": "fbb7e13b15aa993b844ca31ee50993dcae3b1621a90b4f249ba385431f8ddeb1"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-proposal.json",
+      "sha256": "5e6f35596b000279fc04a43fca3c909083888ff4ead4a6ac7045c15ace7ca9ec"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/source-acquisition.json",
+      "sha256": "61d88d51fb463c8beb5ad0acfe91095ea8d31902a5b1793fe3f0836235c7d6b9"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/closure-acquisition.json",
+      "sha256": "cfdb3ff9600c370e450b2c95c7bcf23dd8cc5fec79d46acbc3fd5b65e8ce9fe5"
+    }
+  ],
+  "executed_checks": [
+    {
+      "check": "Prior review/proposal hashes and all three retained preparation receipts/logs verified",
+      "returncode": 0
+    },
+    {
+      "check": "Pure preflight negative tests for global/control/public/staging drift and Python optimization rejection",
+      "returncode": 0
+    },
+    {
+      "check": "Exact process-group timeout handler with owned inert processes",
+      "returncode": 0,
+      "child_gone_without_test_cleanup": true,
+      "leader_returncode": -15
+    },
+    {
+      "check": "Exact outer failure handler against synthetic private partial state",
+      "returncode": 0,
+      "original_error_and_rc_preserved": true,
+      "observation_error_isolated": true
+    },
+    {
+      "check": "Three exact allowed census forms and seven rejection cases",
+      "returncode": 0
+    },
+    {
+      "check": "Actual read-only preflight and sanitized census",
+      "returncode": 0,
+      "at": "2026-10-11T02:09:38.362065+00:00",
+      "classified_mise_pids": [
+        56524,
+        56526,
+        56528
+      ],
+      "homebrew_lock_holders": []
+    },
+    {
+      "check": "Retained native plan/default output matches expected; prior loopback ports have no listener",
+      "returncode": 0
+    },
+    {
+      "check": "tasks validate and check:acceptance-baseline",
+      "returncode": 0,
+      "counts": {
+        "baseline": 19,
+        "json": 118,
+        "python": 5,
+        "shell": 5,
+        "toml": 14
+      }
+    },
+    {
+      "check": "git diff --check",
+      "returncode": 0
+    }
+  ],
+  "static_review": [
+    "Prerequisite review binds manifest/proposal/preimages; current source snapshots and copied bottle cache are hash checked before apply",
+    "Private environment strips inherited secrets and selects a private config/state/data/cache, jobs=1 and disabled auto-install/hooks",
+    "Eight captured metadata routes are served locally and unexpected GitHub/GHCR routes are blocked; native dry-run output and requested paths must match",
+    "No-apply default is preserved; native apply follows preimage/default/census gates",
+    "Success path verifies four installed receipts, all public links, both materializations, existing dependencies/GLib/global files and default environment",
+    "Failure paths preserve original errors/exit codes and collect best-effort observed partial state",
+    "Existing Claude inputs remain unchanged and documentation does not claim compiler/OCI qualification"
+  ],
+  "not_executed": [
+    "Installer main, including a fresh full preparation run",
+    "--apply or any real native package installation",
+    "Archive extraction, relocation, codesigning, compiler execution or reflection fixtures",
+    "Native installation fault injection",
+    "Network/provider operations or a new loopback service",
+    "Fresh model session or full Claude OCI acceptance"
+  ],
+  "required_before_apply": "Parent must run the reviewed installer with fresh current preimages, default probe and no-overlap census. This review does not authorize bypassing any guard or constitute runtime installation acceptance.",
+  "private_receipts": [
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/process-group-test.json",
+      "sha256": "8debee687d182aaadfe0edf41865edeb42922e511ae09382cc1b7a05abaca475"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/census-multiple-tasks-test.json",
+      "sha256": "f0dfc015e26b292f19a30f37f891183f577cf5cc6fdc29e0d66cb184fc290927"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/guard-tests.json",
+      "sha256": "82fc930b6d95cfc5b09eb4251a09b6b23e4809ff8bccdc5a438acbfc230ddc91"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/process-group-fixed/test.json",
+      "sha256": "4641e7b48c40c74881bad7c7f4f40bae131bab6b54dffca67b637f3c50e292c1"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/process-group-fixed/command.json",
+      "sha256": "99fd5137ca4532bb8a4ec204a3d72c8f8f7e1abc3fdc588b9b5e57dad6039693"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/partial-state-test.json",
+      "sha256": "1e0bcf1c77dd2f8e8569e96ab996a4be663d97b247eed545e753fde92d5b0ffb"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/final-guard-tests.json",
+      "sha256": "080af8c616a8ab9c6dc90fbe35d41c95f27b1f6d70c2cf45fc920c9e1d5a5a47"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-install-review-zzll3frg/retained-preparation-checks.json",
+      "sha256": "614b4c13168626040468458df586f397cd0b2ff536fd31e58a40078740f3b075"
+    }
+  ],
+  "shared_writes_by_reviewer": false
+}

@@ -232,3 +232,36 @@ inspection and installation-admission unit; no prefix write is admitted yet.
 - The staged whitespace gate returned 2 solely for the immutable upstream GCC
   patch's context spaces/tabs. Its verified bytes are preserved. The same gate
   excluding that one source snapshot returned 0; the disposition is recorded.
+
+Task 05b is committed at `dccb55463d33baf0a58856802257d9ed80501cb4`.
+The post-commit baseline exited 0 with all 19 originals unchanged and a clean
+worktree. Task 05c prepares the native installer and its immediate guards; no
+canonical prefix writes or compiler execution have occurred yet.
+- The first installer preparation reproduced the native plan and default
+  environment, then stopped on a newly observed unclassified mise PID. That
+  process had exited by the follow-up census. The failed receipt is preserved;
+  the guard remains strict and no installation ran.
+- Two subsequent preparations stopped on other newly started mise processes.
+  One was observed running the PDF check task; the other exited before its task
+  could be attributed. Receipts and closed-listener results are retained.
+  Read-only inspection is classifying the check task; no exemption is applied.
+- Installer review reproduced a surviving descendant after leader termination
+  and found missing partial-state capture after a failed apply. The parent
+  repaired both paths before installation; independent rechecks are pending.
+- Review also rejected substring-based MCP task matching: mise can run several
+  tasks with `:::`. The census now accepts only the exact observed single-task
+  `mise run -q mcp:<name>` forms. No check-task exemption is present.
+- All three repairs passed independent failure-path controls. The reviewer also
+  rechecked live preimages/census, prior native logs and closed listener ports.
+  Parent baseline and secret scan pass. The scoped installation admission is
+  recorded; every guard must pass again in the actual apply invocation.
+- Actual apply passed the fresh guards and native mise exited 0. All four
+  installed receipt identities and 1,791 links match; both directory conversions
+  preserve GLib. Existing dependencies, nine global files and the normal compiler
+  environment/PATH remain unchanged. The loopback endpoint closed. Receipts and
+  all ten command logs are retained; independent installed-state review follows.
+- Independent installed-state review passed: four packages, all 1,791 links,
+  106 parents, 25 control paths, both GLib files and all nine global preimages
+  match. A fresh default probe and development gates exited 0; no listener or
+  lock holder remains. The exact review and ten private receipts are retained.
+  Compiler/reflection execution is the next focused unit.

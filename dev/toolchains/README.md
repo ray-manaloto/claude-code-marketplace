@@ -1,6 +1,6 @@
-# Compiler preparation
+# Compiler preparation and installation
 
-Task 05a prepares GCC installation; it does not install or qualify a compiler.
+Tasks 05a/b prepare GCC installation; task 05c performs the guarded native pours.
 The parent remains the sole writer. P2996 source/configure work is a later unit.
 
 ## Native GCC bootstrap contract
@@ -81,7 +81,7 @@ digest, so installation must compare against that fresh baseline. The external
 writer was not attributed; the proposed installer uses private configuration
 and has no global config/lock write scope.
 
-## Installation admission still required
+## Guarded installation
 
 Before installation, recheck concurrent package writers and the four absent kegs,
 retain current receipts/links and normal compiler environment, inspect the
@@ -91,6 +91,21 @@ upgrade. Preserve the ordinary LLVM selection. Then verify installed compiler,
 libstdc++, SDK, dynamic dependencies and reflection compile/link/run before setting
 `MARKETPLACE_GCC16_PREFIX` from the qualified receipt. Cold LLVM and OCI operations
 still require a fresh shared-capacity admission.
+
+`gcc_install.py --run-dir <new-private-directory>` performs preparation only.
+It verifies reviewed evidence, all preimages and bottle hashes, replays the
+captured native plan, checks the normal environment, and checks package writers
+and open Homebrew locks. A missing or changed input stops before installation.
+`--apply` performs only the reviewed native pours after those immediate guards.
+The per-run receipt records the parent's scoped admission, command exit codes,
+durable logs, all public links, preserved GLib contents and unchanged defaults.
+The loopback endpoint closes on success or failure; a ten-minute bound terminates
+the owned native process group. No compiler is executed by this operation.
+The [installation receipt](../../evidence/gcc-bootstrap/installation.json) records
+native rc=0, the four installed packages, preserved globals/default environment
+and a closed endpoint. Independent installed-state review reproduced the file,
+default-environment and static-preservation checks. Compiler/runtime qualification
+remains a separate unit.
 
 Routes run: native fnox research profile, uv/existing Python, GitHub API/raw,
 Homebrew API, native mise inspection/dry runs and read-only Codex workers.

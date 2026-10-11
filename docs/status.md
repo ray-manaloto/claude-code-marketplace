@@ -62,14 +62,21 @@ uses the same generator source and leaves global Python unchanged.
 Task 05a passed: exact GCC package/source inventory and the
 [native snapshot plan](../dev/toolchains/README.md) have independent review.
 Both native runs resolve eight captured formulae to four missing bottles and
-reject missing GCC metadata. No compiler is installed or qualified yet.
+reject missing GCC metadata. These preparation checks do not qualify a compiler.
 
 Task 05b has verified four downloaded archives and enumerated their prefix
 writes. Two shared debugger directories require native expansion while
 preserving GLib. External global tool updates triggered a preimage stop; fresh
 private baselines preserve those updates. Independent preparation review passed
-after parent/control preimages were completed. GCC is still uninstalled; the next
-operation requires fresh package-writer, exact-preimage and native-plan checks.
+after parent/control preimages were completed. The later installation operation
+requires fresh package-writer, exact-preimage and native-plan checks.
+
+Task 05c installed GCC 16.2.0, ISL 0.28, MPFR 4.2.2 and libmpc 1.4.1 through
+native mise after those checks. All command exit codes are 0; planned links,
+GLib preservation and unchanged global/default environment checks pass.
+Independent [installed-state review](../evidence/gcc-bootstrap/postinstall-review.json)
+passed. No compiler has executed yet;
+reflection and runtime qualification are the next focused unit.
 
 The earlier Docker census found no running containers, but high host
 load and concurrent shipping leave heavy builds unadmitted. Global Python

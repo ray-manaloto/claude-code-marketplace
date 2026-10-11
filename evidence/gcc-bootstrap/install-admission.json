@@ -1,0 +1,103 @@
+{
+  "recorded_at": "2026-10-11T02:11:23.980302+00:00",
+  "owner_agent": "/root",
+  "owner_thread": "01a127db-2e65-70d1-8855-9bf2bc7bb46e",
+  "authority": "Accepted later global toolchain phase; scoped installation after inventory, private preimages and review. No broad global exclusivity claimed.",
+  "state": "Admitted only after the installer immediately rechecks preimages, census and native plan; not yet applied",
+  "operation": "Native mise 2026.10.7 bootstrap packages apply --manager brew with one job and captured inputs",
+  "script_sha256": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+  "proposal_sha256": "5e6f35596b000279fc04a43fca3c909083888ff4ead4a6ac7045c15ace7ca9ec",
+  "preparation_commit": "dccb55463d33baf0a58856802257d9ed80501cb4",
+  "scope": {
+    "new_formula_racks": [
+      "isl",
+      "mpfr",
+      "libmpc",
+      "gcc"
+    ],
+    "exact_public_links": "bottles.json prefix_writes",
+    "parent_creation": "bottles.json parent_preimages marked absent",
+    "directory_materializations": {
+      "/opt/homebrew/share/gdb": {
+        "source_directory": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb",
+        "before": {
+          "kind": "symlink",
+          "target": "../Cellar/glib/2.90.1/share/gdb"
+        },
+        "staging": "/opt/homebrew/share/.mise-materialize-gdb",
+        "staging_preimage": {
+          "kind": "absent"
+        },
+        "preserved_children": {
+          "auto-load": {
+            "source": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load",
+            "state": {
+              "kind": "directory",
+              "uid": 501,
+              "mode": "0o755"
+            }
+          }
+        }
+      },
+      "/opt/homebrew/share/gdb/auto-load": {
+        "source_directory": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load",
+        "before": {
+          "kind": "directory",
+          "uid": 501,
+          "mode": "0o755"
+        },
+        "staging": "/opt/homebrew/share/gdb/.mise-materialize-auto-load",
+        "staging_preimage": {
+          "kind": "absent"
+        },
+        "preserved_children": {
+          "opt": {
+            "source": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt",
+            "state": {
+              "kind": "directory",
+              "uid": 501,
+              "mode": "0o755"
+            }
+          }
+        }
+      }
+    },
+    "native_additional_writes": [
+      "/opt/homebrew/Cellar/<four-formulae>/.mise-staging.lock",
+      "/opt/homebrew/Cellar/<four-formulae>/.mise-extract-<version>-<random>/",
+      "/opt/homebrew/Cellar/<four-formulae>/<version>/",
+      "/opt/homebrew/var/homebrew/locks/mise-bootstrap.lock",
+      "Missing parent directories for the listed prefix links",
+      "Private native mise state/cache/data directories"
+    ],
+    "native_control_paths": "bottles.json control_preimages: canonical prefix, all bootstrap directories, commit lock and four rack staging locks"
+  },
+  "reviewer": "/root/cold_bottle_review",
+  "review_disposition": "All three installer repairs independently reverified; no open findings",
+  "guards": [
+    "Native version and binary hash unchanged",
+    "Recheck all nine global file hashes against fresh protected preimages",
+    "Four target racks and all 1791 public leaves still absent; all parent, control, materialization and staging preimages unchanged",
+    "Four existing dependency receipts/links and both GLib file hashes unchanged",
+    "Fresh sanitized package-writer census: no brew/ruby updater or native mise install/use/upgrade/lock process; existing MCP processes only",
+    "Native captured-metadata dry run reproduces exactly the four planned pours with no build, mkdir or chown",
+    "One installer job; no source fallback, existing-package upgrade, sudo or chown"
+  ],
+  "postconditions": [
+    "Actual native exit code and retained logs",
+    "All four package receipts and exact opt/linked/public destinations match captured plan",
+    "Both materialized directories preserve GLib opt subtree and original files",
+    "Existing dependencies and all nine global files unchanged",
+    "Fresh default allowlisted compiler environment and PATH match install-preimages.json",
+    "No temporary loopback server remains"
+  ],
+  "partial_failure_policy": "Record successful kegs and materialized directories; stop expansion, inspect the actual state, preserve preimages. Do not claim atomic rollback or delete unrelated content.",
+  "excluded": [
+    "Global config/lock writes",
+    "Default compiler changes",
+    "Source compiler build",
+    "GCC reflection acceptance until a later focused fixture",
+    "Containers, cold LLVM, full matrix, daemons, publication"
+  ],
+  "heavy_capacity": "Prebuilt four-bottle operation only; no source compiler build, container, daemon or compiler execution admitted"
+}
