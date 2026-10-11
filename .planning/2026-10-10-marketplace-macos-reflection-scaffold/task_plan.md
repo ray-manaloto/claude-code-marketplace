@@ -72,6 +72,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 09c1 | IWYU reflection advice and fixer | Exact include recommendations, restricted fixer, native rebuild/run and clean reanalysis | Complete |
 | 09c2 | IWYU copied-resource relocation | Moved-copy identity, explicit resource override, actual header trace and negative control | Complete |
 | 12a1 | Shared vcpkg chainloader preparation | Pinned source boundaries, policy/flag composition and bounded CMake controls | Complete |
+| 12a2 | P2996 overlay triplet preparation | Explicit ABI inputs, environment tracking, dual configurations and script controls | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -160,6 +161,13 @@ Task 12a1 admits the P2996 composition correction, shared vcpkg chainloader,
 and bounded CMake script-mode controls are allowed; no compiler detection,
 dependency build, installation, shared-source mutation or cache service is
 included. Native task 12 operations receive separate capacity admission.
+
+Task 12a2 admits two P2996 triplets, their common macOS inputs and these two
+planning files. Exact-source prerequisite copies and CMake script controls may
+be retained. The common file may prepare the existing GCC lane, but no GCC
+triplet, native compiler detection, dependency build or tool execution is
+qualified by this unit. Keep dependency Debug and Release enabled and record
+nested toolchain, runtime, SDK and managed build-tool ABI inputs explicitly.
 
 See `findings.md`, `progress.md`, and `docs/agents/codex-task-orchestration.md`.
 Historical handoff sources stay immutable in the source checkout and original

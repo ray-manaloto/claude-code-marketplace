@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "kind": "independent-task12a2-initial-findings",
+  "recorded_at": "2026-10-11T17:06:10.544Z",
+  "disposition": "CHANGES_REQUIRED_PARTIAL_REVIEW",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "21efe5cff0e027da99fd11d6dcb4efc1e2407558",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace"
+  },
+  "candidate": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-p2996-triplets/candidate.json",
+    "sha256": "27f6f296d574070928333294b1c266a0f99352a0d425c28bc4f43253b485b6d9",
+    "head": "21efe5cff0e027da99fd11d6dcb4efc1e2407558",
+    "files": {
+      "triplets/arm64-osx-p2996-static.cmake": "b71ea0c73d2db81bf2013f090a550721b702e0505678be82923ab719a1a6a376",
+      "triplets/arm64-osx-p2996-dynamic.cmake": "a5aa70f0d08717334be8038a2f19d3abc5d51be0409071df34497473b72ce645",
+      "triplets/common/macos-arm64.cmake": "3109cb22b42534f58bb3c3fc6a457856ce26e76f8db77c429a84ffb8d791a97d",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "28bbdb540a86a2e3836c0b1d8ac38fd0bcdee22174ea8ae71730f8ae682c3f97",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "36a795539b541a59d62882c9a99a6d6f77179ff7971ecfe1b2eec09155379826",
+      "cmake/toolchains/vcpkg-macos-arm64.cmake": "12646f84d82707b9ae4fa6d7db8455e116c758309bcf28467faf348c899fd05c"
+    }
+  },
+  "frozen_initial_sources": [
+    {
+      "key": "candidate",
+      "original_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-p2996-triplets/candidate.json",
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/initial-candidate.json",
+      "sha256": "27f6f296d574070928333294b1c266a0f99352a0d425c28bc4f43253b485b6d9",
+      "bytes": 845
+    },
+    {
+      "key": "common",
+      "original_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/initial-common.cmake",
+      "sha256": "3109cb22b42534f58bb3c3fc6a457856ce26e76f8db77c429a84ffb8d791a97d",
+      "bytes": 3660
+    },
+    {
+      "key": "static_triplet",
+      "original_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/arm64-osx-p2996-static.cmake",
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/initial-static_triplet.cmake",
+      "sha256": "b71ea0c73d2db81bf2013f090a550721b702e0505678be82923ab719a1a6a376",
+      "bytes": 133
+    },
+    {
+      "key": "dynamic_triplet",
+      "original_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/arm64-osx-p2996-dynamic.cmake",
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/initial-dynamic_triplet.cmake",
+      "sha256": "a5aa70f0d08717334be8038a2f19d3abc5d51be0409071df34497473b72ce645",
+      "bytes": 134
+    }
+  ],
+  "findings": [
+    {
+      "id": "R12A2-1",
+      "priority": 1,
+      "status": "confirmed_by_focused_script",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+      "start": 2,
+      "end": 5,
+      "title": "Initialize host processor inside the triplet common file",
+      "description": "The common guard requires CMAKE_HOST_SYSTEM_PROCESSOR=arm64, but the actual extraction prelude does not initialize it. On this native Darwin host the unseeded CMake -P probe reports the variable undefined and exits 1 at common line 5 before accepting the triplet. The retained parent controls all inject OS_PLATFORM into the public host variable, so their successes do not cover the native extraction entry state.",
+      "source_refs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/cmakevars.cpp",
+          "sha256": "3f5ad515cf14b940b454630b5b0c7727c9c60d4cd1314a926a5a44922feaeca1",
+          "lines": [
+            94,
+            109
+          ],
+          "fact": "Emits minimum 3.5 and triplet macro/current-list substitution; no host query."
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/cmakevars.cpp",
+          "sha256": "3f5ad515cf14b940b454630b5b0c7727c9c60d4cd1314a926a5a44922feaeca1",
+          "lines": [
+            260,
+            280
+          ],
+          "fact": "Calls make_cmake_cmd with empty extra variable list and rejects nonzero extraction exits."
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/buildenvironment.cpp",
+          "sha256": "12641562fb37d4df2cd064eac8d5360baeb15bb250b63e4b345f785573d1573c",
+          "lines": [
+            10,
+            21
+          ],
+          "fact": "Adds root/packages/buildtrees/installed/downloads and manifest-off inputs, without a host-processor value."
+        }
+      ],
+      "recommendation": "Use a private processor variable. Reuse a nonempty existing processor; otherwise query OS_PLATFORM inside the common file. Retain rejection of a conflicting nonempty processor."
+    },
+    {
+      "id": "R12A2-2",
+      "priority": 2,
+      "status": "source_concern_no_additional_execution",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+      "start": 30,
+      "end": 33,
+      "title": "Reject defined-empty VCPKG_BUILD_TYPE",
+      "description": "The guard rejects a defined nonempty VCPKG_BUILD_TYPE but accepts a defined empty string without unsetting it. The pinned real-port helper selects Debug and Release only when the variable is undefined or equals the respective configuration; a retained defined-empty value satisfies neither branch. Thus the accepted input does not establish the required both-configuration contract.",
+      "source_refs": [
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake",
+          "sha256": "3109cb22b42534f58bb3c3fc6a457856ce26e76f8db77c429a84ffb8d791a97d",
+          "lines": [
+            30,
+            33
+          ],
+          "fact": "Explicit empty-string exception in the build-type rejection."
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+          "sha256": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+          "lines": [
+            258,
+            263
+          ],
+          "fact": "Parallel configure selects Release/Debug only for undefined or exact matching build type; reused bound prerequisite source."
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+          "sha256": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+          "lines": [
+            287,
+            313
+          ],
+          "fact": "Sequential helper route has the same undefined-or-matching conditions; reused bound prerequisite source."
+        }
+      ],
+      "recommendation": "Reject any defined VCPKG_BUILD_TYPE so both Debug and Release remain selected.",
+      "limit": "No second CMake control or actual configure/build was run for this concern before parent directed a repair."
+    }
+  ],
+  "focused_probe": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "-P",
+      "/private/tmp/marketplace-task12a2-review-EWDSiC/unseeded-host.cmake"
+    ],
+    "cwd": "/private/tmp/marketplace-task12a2-review-EWDSiC",
+    "timeout_ms": 20000,
+    "returncode": 1,
+    "signal": null,
+    "killed": false,
+    "duration_ms": 15,
+    "script": {
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/unseeded-host.cmake",
+      "sha256": "1a63157ac31f1df4c8c20eac0cd59706e107c77df46c5da1fb7506fda609f673"
+    },
+    "stdout": {
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/unseeded-host.stdout",
+      "sha256": "f8f289ecf19c7c3a51ca33385841d794fbd5dd67f97950d86b0d3f098b78c92f",
+      "text": "-- BEFORE_HOST_NAME=Darwin;BEFORE_HOST_PROCESSOR=\n-- BEFORE_HOST_PROCESSOR_DEFINED=FALSE\n"
+    },
+    "stderr": {
+      "path": "/private/tmp/marketplace-task12a2-review-EWDSiC/unseeded-host.stderr",
+      "sha256": "150aa9a3c221d97a30d90833b8c667c8978df12f0b138923fb16c2d74ead6a74",
+      "text": "CMake Warning (deprecated) at unseeded-host.cmake:1 (cmake_minimum_required):\n  Compatibility with CMake < 3.10 will be removed from a future version of\n  CMake.\n\n  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax\n  to tell CMake that the project requires at least <min> but has been updated\n  to work with policies introduced by <max> or earlier.\nThis warning is for project developers.  Use -Wno-author or -Wno-deprecated\nto suppress it.\n\nCMake Error at /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/common/macos-arm64.cmake:5 (message):\n  Use CMake 4.4+ on native macOS ARM64.\nCall Stack (most recent call first):\n  /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/arm64-osx-p2996-static.cmake:3 (include)\n  unseeded-host.cmake:8 (include)\n\n\n"
+    },
+    "failure_is_guard_not_deprecation_warning": true,
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    "environment": {
+      "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+      "TMPDIR": "/private/tmp/marketplace-task12a2-review-EWDSiC",
+      "LC_ALL": "C",
+      "LANG": "C",
+      "MARKETPLACE_CPP_LANE": "p2996",
+      "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+    }
+  },
+  "completed_read_checks": {
+    "candidate_bindings": 6,
+    "control_copy_pairs_verified": 53,
+    "source_copy_pairs_verified": 10,
+    "control_manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-p2996-triplets/controls-copy-manifest.json",
+      "sha256": "a55b1b34b25765fbd01531efd092899f1f6f1e8bf5e693dd8dbceff85fcd9429"
+    },
+    "source_manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-p2996-triplets/source-copy-manifest.json",
+      "sha256": "eab34a85cb6fce4bd05f1fa272607f7da2ce619906f7db948e0e845f228b59f6"
+    },
+    "retained_controls_replayed": 0
+  },
+  "pending_checks": [
+    "Complete intended-outcome diagnostic audit for all 17 retained cases.",
+    "Verify all 13 selected ABI input hashes; only the managed CMake executable was independently hashed so far.",
+    "Finish successor source/macro/reentry review after the parent supplies repaired frozen hashes and focused controls."
+  ],
+  "scope": {
+    "native_commands": 1,
+    "command_kinds": [
+      "CMake -P"
+    ],
+    "project_configures": 0,
+    "compiler_commands": 0,
+    "vcpkg_commands": 0,
+    "builds": 0,
+    "installs": 0,
+    "network_calls": 0,
+    "profiles": 0,
+    "protected_or_whole_prefix_scans": 0,
+    "maintained_or_global_writes": 0,
+    "private_output_only": true
+  },
+  "parent_disposition": "Parent acknowledged both concerns and will repair only the common file, preserve initial evidence, and supply a successor and focused corrected controls. Candidate review is held; no native task12 acceptance is claimed.",
+  "artifact_manifest": "/private/tmp/marketplace-task12a2-review-EWDSiC/initial-artifact-manifest.json"
+}

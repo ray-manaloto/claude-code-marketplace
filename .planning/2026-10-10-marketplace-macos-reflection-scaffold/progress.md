@@ -1058,3 +1058,16 @@ controls and independent review remain. No native dependency work is admitted.
   Six additional script runs proved standalone P2996 equivalence and nested
   native-vcpkg policy behavior for both lanes. No findings remain; compiler,
   dependency and application qualification still require native operations.
+
+Task 12a1 is committed at `21efe5cff0e027da99fd11d6dcb4efc1e2407558`;
+the post-commit baseline passed and the worktree was clean. The final scanner
+returned 1 for one verified receipt-hash false positive; all original bytes
+and that disposition are retained. Task 12a2 now prepares P2996 static/dynamic
+triplets with explicit nested inputs. The source prerequisite identifies forced
+system-tool version reporting and private-root boundaries; actual native tool
+selection, compiler parity, dependency linkage and confinement remain pending.
+- Independent review resolved the unseeded host-processor and defined-empty
+  build-type findings. All 37 retained parent outcomes and five fresh reviewer
+  controls match their intended results; all 13 current nested ABI inputs match.
+  Preparation is qualified without remaining findings. Native tool selection,
+  compiler/dependency parity and dependency linkage remain separate gates.
