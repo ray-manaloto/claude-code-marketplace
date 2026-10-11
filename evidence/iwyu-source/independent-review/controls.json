@@ -1,0 +1,337 @@
+{
+  "state": "PASS",
+  "started_at": "2026-10-11T14:22:54.998112+00:00",
+  "commands": [
+    {
+      "case": "positive",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/cache-witness.cmake"
+      ],
+      "expected_returncode": 0,
+      "expected_diagnostic": "IWYU cache values verified",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:56.895543+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/positive.stdout",
+          "sha256": "501ea30ae2a6a3be461b34b7f392b3daae13b5c42130c3a7402ae9773d106b89",
+          "bytes": 56
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/positive.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.920084+00:00"
+    },
+    {
+      "case": "wrong-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "Select the isolated cpp-build",
+      "environment_overrides": {
+        "MARKETPLACE_CPP_LANE": "p2996"
+      },
+      "started_at": "2026-10-11T14:22:56.920490+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/wrong-lane.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/wrong-lane.stderr",
+          "sha256": "361317da1edf2073e80d1488fdcbbcc3eda4fb44940e13297e1a2f4add257ff2",
+          "bytes": 183
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.932101+00:00"
+    },
+    {
+      "case": "dirty-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "Inherited CXXFLAGS",
+      "environment_overrides": {
+        "CXXFLAGS": "-freflection"
+      },
+      "started_at": "2026-10-11T14:22:56.932387+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/dirty-flags.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/dirty-flags.stderr",
+          "sha256": "58af957cb3df3e293191457f79343f41480103839789a4e894c24b9b881a11d4",
+          "bytes": 189
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.942639+00:00"
+    },
+    {
+      "case": "missing-tool",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "input does not exist: NINJA",
+      "environment_overrides": {
+        "MARKETPLACE_IWYU_NINJA": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/absent-ninja"
+      },
+      "started_at": "2026-10-11T14:22:56.942955+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/missing-tool.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/missing-tool.stderr",
+          "sha256": "5c9810220b5a38b39c16021b4ca26ecb1e27be1f4475633db0ea55b1c9b4e243",
+          "bytes": 165
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.955842+00:00"
+    },
+    {
+      "case": "existing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "new separate private install prefix",
+      "environment_overrides": {
+        "MARKETPLACE_IWYU_PREFIX": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/existing-prefix"
+      },
+      "started_at": "2026-10-11T14:22:56.956399+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/existing-prefix.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/existing-prefix.stderr",
+          "sha256": "fe68e096a2501fa2a6dfb2556b910dfb2aa83e6626d984db56237f29ee5176ee",
+          "bytes": 182
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.968944+00:00"
+    },
+    {
+      "case": "nested-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "new separate private install prefix",
+      "environment_overrides": {
+        "MARKETPLACE_IWYU_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/uncreated-iwyu-review"
+      },
+      "started_at": "2026-10-11T14:22:56.969261+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/nested-prefix.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/nested-prefix.stderr",
+          "sha256": "fe68e096a2501fa2a6dfb2556b910dfb2aa83e6626d984db56237f29ee5176ee",
+          "bytes": 182
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.980566+00:00"
+    },
+    {
+      "case": "rpath-override",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_INSTALL_RPATH=/unrelated",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "unset CMAKE_INSTALL_RPATH",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:56.980918+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/rpath-override.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/rpath-override.stderr",
+          "sha256": "3edc66653edd203ce3f015fa18d9c63c290af972861ba7a99477fb7788f62bea",
+          "bytes": 186
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:56.993620+00:00"
+    },
+    {
+      "case": "toolchain-override",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_TOOLCHAIN_FILE=/unrelated",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "expected_returncode": 1,
+      "expected_diagnostic": "unset CMAKE_TOOLCHAIN_FILE",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:56.993942+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/toolchain-override.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/toolchain-override.stderr",
+          "sha256": "4be0f6a30054937f2ba196c6414733f28d08531ad5581808d40e079ce3fbaf41",
+          "bytes": 187
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:57.006333+00:00"
+    },
+    {
+      "case": "help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--help"
+      ],
+      "expected_returncode": 0,
+      "expected_diagnostic": "--directory DIRECTORY",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:57.006659+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/help.stdout",
+          "sha256": "bc5c2e7c982e957c3ab3cd4c5d2dc871ce9de5c9ba9af9c0d05e9e21d14f7e60",
+          "bytes": 274
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/help.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:57.093526+00:00"
+    },
+    {
+      "case": "relative-source",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--directory",
+        "relative"
+      ],
+      "expected_returncode": 2,
+      "expected_diagnostic": "absolute normalized path",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:57.094044+00:00",
+      "returncode": 2,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/relative-source.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/relative-source.stderr",
+          "sha256": "215dde625addc5884bdf99a922ef4aab1ad263d7f13a2ab5b5720ba917a3d4cc",
+          "bytes": 118
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:57.172380+00:00"
+    },
+    {
+      "case": "project-source",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--directory",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/iwyu-private-probe"
+      ],
+      "expected_returncode": 2,
+      "expected_diagnostic": "outside the marketplace worktree",
+      "environment_overrides": {},
+      "started_at": "2026-10-11T14:22:57.173150+00:00",
+      "returncode": 2,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/project-source.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-preparation-review-ojqvvubg/project-source.stderr",
+          "sha256": "9dd68efa4efdade81ca7ba6f475f130e5a5b58bf57f883edc51c4a20a25d250a",
+          "bytes": 132
+        }
+      ],
+      "completed_at": "2026-10-11T14:22:57.250732+00:00"
+    }
+  ],
+  "preservation_before": {
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "directories": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "install_entries": 2200,
+    "source_build_records": 159,
+    "prefix_entries": 6411
+  },
+  "install_prefix_absent": true,
+  "project_configure_compiler_build_install_count": 0,
+  "preservation_after": {
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "directories": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "install_entries": 2200,
+    "source_build_records": 159,
+    "prefix_entries": 6411
+  },
+  "source_and_existing_state_unchanged": true,
+  "completed_at": "2026-10-11T14:22:58.902033+00:00"
+}

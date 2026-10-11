@@ -66,6 +66,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 03b1 | Native core P2996 compatibility preparation | Compiler-specific guards, private flags, honest CTest exits and independent source review | Complete |
 | 03b2a | Native core command acceptance rules | Recorded native command replay, rejection controls and independent review | Complete |
 | 03b2b | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Complete |
+| 09a | Pinned IWYU source and matching-fork build preparation | Exact source/license identity, native LLVM package contract and independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -126,6 +127,14 @@ is one confined preparation helper, two documentation files and these planning
 records, with generated source/experiment receipts. No bootstrap, dependency
 build, global link, configuration change or shim mutation is admitted here.
 No native goal was requested. Monitor chat owns no marketplace files.
+
+Task 09a admits exact pinned IWYU source acquisition and source-only build
+preparation. Its maintained files are the acquisition helper, initial cache,
+IWYU documentation and these planning records. Build the tool against the
+qualified fork's headers/libraries using its admitted Apple bootstrap runtime;
+qualifying reflection analysis and relocation requires a later native operation.
+Script-mode CMake guard checks are admitted; they configure no project and run
+no compiler. Installation, global registration and shared-prefix writes are excluded.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;
 then a separately admitted global tool foundation and TCPM trial; compiler,

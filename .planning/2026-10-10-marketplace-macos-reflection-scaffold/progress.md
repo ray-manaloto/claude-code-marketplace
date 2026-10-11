@@ -943,3 +943,18 @@ identity and the new core matrix remain unverified.
 - Independent final review passed all artifact, command, control and current
   preservation checks without findings. Its single canonical lease check passed;
   all 19 original acceptance files match. Task 03b2b is qualified.
+
+Task 03b2b is committed at `6594abea8a5acd239c1cf9286c75e6274d1b449d`;
+the post-commit baseline passed with a clean worktree. Task 09a acquires the
+accepted IWYU commit and prepares its matching-fork build in five maintained
+files. Source inspection uses the admitted Apple bootstrap compiler/runtime;
+the product's private-libc++ toolchain is a separate contract. Native IWYU
+build, analysis, relocation and installation remain unverified.
+- Exact source acquisition passed all ten Git commands and 854 blob checks;
+  the full license and getopt notices are retained. All eleven bounded
+  source-helper/script-mode checks and both lightweight gates passed.
+  The cache preserves the admitted Apple bootstrap and native AddLLVM rpaths;
+  independent preparation review is pending.
+- Independent review passed the source tree reconstruction, all eleven new
+  controls and before/after preservation without findings. All 19 original
+  files match; native IWYU execution remains a separate unqualified operation.

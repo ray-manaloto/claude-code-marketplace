@@ -1,0 +1,540 @@
+{
+  "schema_version": 1,
+  "task": "09 IWYU source-only build and separate-prefix relocation prerequisites",
+  "created_at": "2026-10-11T14:04:14.669Z",
+  "reviewer": "/root/config_inspector",
+  "result": "SOURCE PREREQUISITE READY; implementation and native acceptance UNVERIFIED",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "read_head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "closing_observed_head": "6594abea8a5acd239c1cf9286c75e6274d1b449d",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "method": "Read Git administrative files. Preserve original read identity plus exact inspected hashes if parent HEAD advances; no cleanliness inference."
+  },
+  "scope": {
+    "writer": "Parent sole implementation writer; this reviewer owns no maintained files.",
+    "prerequisite": "No implementation until 03b2b settles. Parent will acquire and admit full exact IWYU source later.",
+    "iwyu_pin": "791e69ea4662cb3e74e8128fd5fd69bd7f4ea6b3",
+    "llvm_pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "qualified_llvm_prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "relocation_contract": "Only the separate IWYU install tree moves. The existing qualified LLVM/Clang prefix stays fixed. No requirement to relocate or rewrite the LLVM installation.",
+    "full_source_inventory": "Inherited docs_reviewer inventory, not repeated: only pinned CMakeLists.txt and LICENSE.TXT receipts exist; full checkout/tree and getopt license are absent.",
+    "parent_reported_03b2b_settlement": {
+      "head": "6594abea8a5acd239c1cf9286c75e6274d1b449d",
+      "post_commit_baseline_exit": 0,
+      "clean_worktree": true,
+      "verification": "HEAD independently observed through the existing Git ref; baseline and cleanliness are parent-reported, not rerun here."
+    },
+    "next_stage": "Parent has begun task 09a exact-source acquisition and bootstrap preparation; any native configure/build/install still requires its separately reviewed operation."
+  },
+  "confirmed": {
+    "entrypoint": "Pinned IWYU standalone CMake first enables its project, then loads LLVM and Clang CONFIG packages, AddLLVM and HandleLLVMOptions; compiler/SDK/package paths must therefore be supplied before initial configure.",
+    "matching_packages": "Explicit LLVM_DIR and Clang_DIR select only this prefix. LLVMConfig derives its prefix from its own real path. ClangConfig requires exact LLVM 21.0.0 and exports clang-cpp; CLANG_LINK_CLANG_DYLIB is ON. LLVM_LINK_LLVM_DYLIB is also ON.",
+    "build_compiler": "The admitted original LLVM configure cache is byte-identical to its recorded SHA256 and selects direct Apple CLT clang/clang++, ARM64, SDK/deployment 27.0, Release, empty C/C++ and linker overrides, LLVM_ENABLE_LIBCXX=OFF and LLVM_STATIC_LINK_CXX_STDLIB=OFF.",
+    "stdlib_semantics": "HandleLLVMStdlib appends -stdlib=libc++ only when LLVM_ENABLE_LIBCXX is true and supported; OFF preserves the selected compiler default. DetermineGCCCompatible recognizes AppleClang through the Clang match. Retain the admitted Apple-bootstrap default library contract; no product-private libc++ header or link flags are introduced.",
+    "iwyu_language": "IWYU target explicitly requires C++17 with extensions OFF. Building IWYU itself does not require -freflection or C++26. Later analysis of P2996 inputs is a separate parser/fixture qualification.",
+    "llvm_compile_policy": "Installed package exports assertions ON, exceptions OFF and RTTI OFF. AddLLVM applies matching -fno-exceptions/-fno-rtti for compatible compilers; HandleLLVMOptions preserves assertion-related definitions. Use exported definitions and installed generated headers; do not independently change these ABI settings.",
+    "link_policy": "IWYU_LINK_CLANG_DYLIB=ON links clang-cpp. add_llvm_executable follows imported LLVM_LINK_LLVM_DYLIB=ON through USE_SHARED. The intended runtime uses the exact fork LLVM/Clang dylibs plus the admitted Apple compiler standard-library contract.",
+    "resource_policy": "Default clang-relative mode compiles IWYU_RESOURCE_BINARY_PATH from the imported clang target. Empty IWYU_RESOURCE_DIR falls back to CLANG_RESOURCE_DIR, documented as empty for standalone builds. Keeping the qualified LLVM prefix fixed preserves that anchor when IWYU alone moves; actual runtime implementation is not present yet.",
+    "install_policy": "CMake installs the executable, fix_includes.py and iwyu_tool.py to CMAKE_INSTALL_BINDIR; .imp mappings to share/include-what-you-use through GNUInstallDirs and the manual to the man directory. The pinned file does not copy Clang builtin headers into the IWYU prefix."
+  },
+  "bootstrap": {
+    "configuration_receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/operation/qualification.json",
+      "sha256": "626a74017aef23779705e2b57c1a2fda354e52615bda5502f704dab9327290ab",
+      "bytes": 26040
+    },
+    "matches_accepted_build_configuration_binding": true,
+    "build_receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/qualification.json",
+      "sha256": "27286946174f8ac22d5702b9b8cd25aa29203de73af16d5f15462bc34ecee65b",
+      "bytes": 55939
+    },
+    "cache": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt",
+      "sha256": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+      "bytes": 85173,
+      "equals_original_receipt": true
+    },
+    "tools": {
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "cc": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "cxx": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "ninja": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      }
+    },
+    "sdk": {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+    },
+    "selected_cache_rows": [
+      {
+        "line": 130,
+        "text": "CLANG_LINK_CLANG_DYLIB:BOOL=ON"
+      },
+      {
+        "line": 295,
+        "text": "CMAKE_BUILD_TYPE:STRING=Release"
+      },
+      {
+        "line": 298,
+        "text": "CMAKE_CXX_COMPILER:STRING=/Library/Developer/CommandLineTools/usr/bin/clang++"
+      },
+      {
+        "line": 301,
+        "text": "CMAKE_CXX_FLAGS:STRING="
+      },
+      {
+        "line": 319,
+        "text": "CMAKE_C_COMPILER:STRING=/Library/Developer/CommandLineTools/usr/bin/clang"
+      },
+      {
+        "line": 322,
+        "text": "CMAKE_C_FLAGS:STRING="
+      },
+      {
+        "line": 340,
+        "text": "CMAKE_EXE_LINKER_FLAGS:STRING="
+      },
+      {
+        "line": 408,
+        "text": "CMAKE_INSTALL_PREFIX:PATH=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+      },
+      {
+        "line": 432,
+        "text": "CMAKE_MAKE_PROGRAM:FILEPATH=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja"
+      },
+      {
+        "line": 510,
+        "text": "CMAKE_SHARED_LINKER_FLAGS:STRING="
+      },
+      {
+        "line": 840,
+        "text": "LLVM_ENABLE_ASSERTIONS:BOOL=ON"
+      },
+      {
+        "line": 872,
+        "text": "LLVM_ENABLE_EH:BOOL=OFF"
+      },
+      {
+        "line": 909,
+        "text": "LLVM_ENABLE_LIBCXX:BOOL=OFF"
+      },
+      {
+        "line": 932,
+        "text": "LLVM_ENABLE_LTO:STRING=OFF"
+      },
+      {
+        "line": 967,
+        "text": "LLVM_ENABLE_RTTI:BOOL=OFF"
+      },
+      {
+        "line": 1184,
+        "text": "LLVM_LINK_LLVM_DYLIB:BOOL=ON"
+      },
+      {
+        "line": 1236,
+        "text": "LLVM_STATIC_LINK_CXX_STDLIB:BOOL=OFF"
+      }
+    ],
+    "compiler_runtime_limit": "No compiler or library was executed in this brief. Final installed IWYU and its fork-library load commands must be inspected to confirm actual system/private dependency origins."
+  },
+  "minimum_recipe": {
+    "status": "Proposed native argv only; no directory, build, configure or install was performed.",
+    "variables": {
+      "S": "Future complete, verified exact IWYU source tree",
+      "B": "New private build directory outside project, source and qualified LLVM prefix",
+      "I": "New separate private IWYU installation directory, distinct from B and qualified LLVM prefix"
+    },
+    "generator": "Ninja",
+    "cache_settings": {
+      "CMAKE_MAKE_PROGRAM": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "CMAKE_C_COMPILER": "/Library/Developer/CommandLineTools/usr/bin/clang",
+      "CMAKE_CXX_COMPILER": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_OSX_ARCHITECTURES": "arm64",
+      "CMAKE_OSX_SYSROOT": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "CMAKE_OSX_DEPLOYMENT_TARGET": "27.0",
+      "CMAKE_INSTALL_PREFIX": "<I>",
+      "LLVM_DIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm",
+      "Clang_DIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/clang",
+      "IWYU_LINK_CLANG_DYLIB": "ON",
+      "IWYU_RESOURCE_RELATIVE_TO": "clang",
+      "LLVM_ENABLE_LIBCXX": "OFF",
+      "LLVM_STATIC_LINK_CXX_STDLIB": "OFF"
+    },
+    "configure_argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "-S",
+      "<S>",
+      "-B",
+      "<B>",
+      "-G",
+      "Ninja",
+      "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "-DCMAKE_C_COMPILER=/Library/Developer/CommandLineTools/usr/bin/clang",
+      "-DCMAKE_CXX_COMPILER=/Library/Developer/CommandLineTools/usr/bin/clang++",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_OSX_ARCHITECTURES=arm64",
+      "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+      "-DCMAKE_INSTALL_PREFIX=<I>",
+      "-DLLVM_DIR=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm",
+      "-DClang_DIR=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/clang",
+      "-DIWYU_LINK_CLANG_DYLIB=ON",
+      "-DIWYU_RESOURCE_RELATIVE_TO=clang",
+      "-DLLVM_ENABLE_LIBCXX=OFF",
+      "-DLLVM_STATIC_LINK_CXX_STDLIB=OFF"
+    ],
+    "build_argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "--build",
+      "<B>",
+      "--target",
+      "include-what-you-use",
+      "--parallel",
+      "1"
+    ],
+    "install_argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "--install",
+      "<B>",
+      "--prefix",
+      "<I>"
+    ],
+    "environment": "Use the admitted isolated cpp-build route and bounded runner with existing offline/no-auto-install controls and host ownership. Require empty inherited compiler/header/library/linker/SDK/loader overrides and exact tool hashes. Compiler and SDK choice comes from the original Apple bootstrap receipt.",
+    "unset_or_empty": [
+      "CMAKE_TOOLCHAIN_FILE, including the product P2996 toolchain",
+      "CMAKE_INSTALL_RPATH",
+      "CMAKE_BUILD_RPATH",
+      "IWYU_RESOURCE_DIR and CLANG_RESOURCE_DIR",
+      "Inherited CFLAGS, CXXFLAGS, CPPFLAGS, LDFLAGS and private product-runtime include/link injections"
+    ],
+    "expected_generated_evidence": [
+      "Both project compiler identities match the admitted direct CLT binaries and SDK/ARM64 settings",
+      "C++17 IWYU compile and exact installed fork include directories/definitions; no product -freflection or C++26 flags",
+      "Shared imported clang-cpp and LLVM link targets from the qualified prefix",
+      "Native AddLLVM install rpath includes @loader_path/../lib and the exact qualified LLVM lib directory",
+      "IWYU_RESOURCE_BINARY_PATH remains the imported clang target under the fixed qualified LLVM prefix; actual target basename comes from its imported export",
+      "Install manifest is confined to I and retains required executable/scripts/mappings/manual"
+    ]
+  },
+  "native_rpath_contract": {
+    "source": "Installed AddLLVM.cmake function llvm_setup_rpath, lines 2529-2580.",
+    "separate_prefix_condition": "LLVM_INSTALL_PREFIX differs from CMAKE_INSTALL_PREFIX, so extra_libdir becomes LLVM_LIBRARY_DIR.",
+    "darwin_install_rpath": [
+      "@loader_path/../lib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib"
+    ],
+    "build_behavior": "With CMAKE_BUILD_RPATH empty on Darwin, BUILD_WITH_INSTALL_RPATH is enabled.",
+    "critical_setting": "Do not set CMAKE_INSTALL_RPATH: its nonempty value causes an early return before this native setup. No custom rpath replacement is needed for the scoped separate-prefix move.",
+    "scope": "After moving I to another private I2, the executable can still use the fixed P/library and imported-clang resource anchors. This is source-supported intended behavior; fresh native relocation remains UNVERIFIED."
+  },
+  "configure_side_effects_to_admit_later": [
+    "The pinned CMake file may run Git rev-parse to record its source revision if .git exists.",
+    "Optional Python3 discovery runs run_iwyu_tests.py --list-test-files during configure and registers tests. Python is not required to build the native target, but this configure-time source execution must be included in later admission. No unreviewed partial source tree should be configured."
+  ],
+  "missing_contracts": [
+    "Complete exact IWYU checkout/tree, all target source files and the getopt license identified by the inherited inventory; parent will acquire them.",
+    "Actual resource-resolution implementation, particularly iwyu_driver.cc/iwyu_globals.cc or whichever full-source files implement the CMake macros. Current evidence proves macro construction and documented intent, not actual runtime path resolution.",
+    "Full IWYU source compatibility with this qualified LLVM fork API/AST and successful C++17 compile/link against its installed exports.",
+    "Actual relocated IWYU load commands, canonical private LLVM/Clang library origins, admitted Apple/system C++ runtime origin and Clang builtin-header/resource lookup.",
+    "Fresh reflection input parsing and stable diagnostics/exit behavior under the exact fork; successful C++17 tool compilation alone would not prove it."
+  ],
+  "future_minimum_acceptance": [
+    "Acquire exact source and hash its CMakeLists against this pinned receipt; record clean/patched source state and the required licenses.",
+    "Configure/build/install only after parent admits the operation and 03b2b settles; retain real argv/exit/logs and generated command/cache evidence.",
+    "Inspect installed native architecture, dependencies and rpaths; require intended fixed private LLVM/Clang origins and the admitted standard-library origin without DYLD search overrides.",
+    "Copy only the IWYU install tree to a new private path and run the same bounded version, builtin-header and functional/reflection fixture checks from that copy, with the original IWYU path unavailable to the test. Exact CLI fixtures depend on the full-source contract.",
+    "Preserve the qualified LLVM prefix, its global registration, other repositories and all maintained inputs before/after; do not treat source review as native acceptance."
+  ],
+  "primary_sources": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/inputs/iwyu/CMakeLists.txt.source",
+      "sha256": "0358ba451c7d302df73346b5a305bd87c7737f76b7d113a0b799ca21d19c24d2",
+      "bytes": 8785,
+      "line_ranges": [
+        [
+          11,
+          30
+        ],
+        [
+          44,
+          99
+        ],
+        [
+          119,
+          169
+        ],
+        [
+          189,
+          214
+        ],
+        [
+          223,
+          280
+        ]
+      ],
+      "supports": "Standalone packages, shared clang selection, resource macros, C++17, installed files and configure-time test discovery."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/LLVMConfig.cmake",
+      "sha256": "92e812b4913d2b068505a8ffa5a4fd1b4df00a25a40828c5fff74a0a8bb0164e",
+      "bytes": 13178,
+      "line_ranges": [
+        [
+          4,
+          17
+        ],
+        [
+          28,
+          36
+        ],
+        [
+          149,
+          211
+        ],
+        [
+          227,
+          258
+        ]
+      ],
+      "supports": "Installed prefix/version, shared LLVM, ABI/compiler policy and include/library/export paths."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/clang/ClangConfig.cmake",
+      "sha256": "701a483ee191e48bfdedf363c8f15703b6b7533a9bf6021bc2ccef55dccc887f",
+      "bytes": 3427,
+      "line_ranges": [
+        [
+          4,
+          20
+        ]
+      ],
+      "supports": "Exact matching LLVM package, clang-cpp export, include path and shared clang default."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/AddLLVM.cmake",
+      "sha256": "6e3657adff401f5f39438c773b68e5cc1b42f5dfd2aaf50490fc24898f9c8abb",
+      "bytes": 104119,
+      "line_ranges": [
+        [
+          22,
+          69
+        ],
+        [
+          1052,
+          1131
+        ],
+        [
+          2529,
+          2580
+        ]
+      ],
+      "supports": "Applied EH/RTTI flags, shared LLVM linking and native separate-prefix Darwin rpath."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/HandleLLVMOptions.cmake",
+      "sha256": "1f6cced3ad60b8201f682efed3352b0b843c149c86450bf116981c8a5b155394",
+      "bytes": 64713,
+      "line_ranges": [
+        [
+          9,
+          18
+        ],
+        [
+          113,
+          145
+        ],
+        [
+          1155,
+          1158
+        ]
+      ],
+      "supports": "Stdlib delegation and assertion/EH/RTTI consistency."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/HandleLLVMStdlib.cmake",
+      "sha256": "73350b936b833b271eb8c0d60a25e7d41786d6af293f6184f836927e2d3c31c6",
+      "bytes": 1892,
+      "line_ranges": [
+        [
+          4,
+          32
+        ],
+        [
+          35,
+          53
+        ]
+      ],
+      "supports": "Conditional libc++ or static stdlib flag injection; OFF leaves compiler default selection."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/DetermineGCCCompatible.cmake",
+      "sha256": "a163d7c75bcd9694feb57367c962b88a7023cc120a0338383ffc6b2f57cabf38",
+      "bytes": 470,
+      "line_ranges": [
+        [
+          3,
+          12
+        ]
+      ],
+      "supports": "AppleClang enters the GCC-compatible option branch."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt",
+      "sha256": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+      "bytes": 85173,
+      "line_ranges": [
+        [
+          295,
+          322
+        ],
+        [
+          340,
+          340
+        ],
+        [
+          408,
+          408
+        ],
+        [
+          464,
+          470
+        ],
+        [
+          840,
+          840
+        ],
+        [
+          872,
+          872
+        ],
+        [
+          909,
+          909
+        ],
+        [
+          967,
+          967
+        ],
+        [
+          1184,
+          1184
+        ],
+        [
+          1236,
+          1236
+        ]
+      ],
+      "supports": "Hash-matched admitted Apple bootstrap, SDK and stdlib/link settings."
+    }
+  ],
+  "read_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.git",
+      "sha256": "c14070ba93d40162e5c6ebe6db6e6ca5d3e028587ba6a164806a8a7ab00bb034",
+      "bytes": 112
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/HEAD",
+      "sha256": "6295a329d994bad0131b3f9feee3c9f0e299552ffaf9e637ed8f5bb25831d6a2",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/commondir",
+      "sha256": "340ddcb67a6204f742cd1e28e5b462622dde7daaa8ee36001897196aacdc6d47",
+      "bytes": 6
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/refs/heads/codex/marketplace-native-onboarding",
+      "sha256": "672ef9350bc3b96064ba6c9e5e9649553968c316d9caa7d2376ae8381ccb66bf",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/inputs/iwyu/CMakeLists.txt.source",
+      "sha256": "0358ba451c7d302df73346b5a305bd87c7737f76b7d113a0b799ca21d19c24d2",
+      "bytes": 8785
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+      "sha256": "491c115da3aa2c2d0793cd03b5dd176c6745fe007c609061eca00930b9aee3e3",
+      "bytes": 18415
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/qualification.json",
+      "sha256": "27286946174f8ac22d5702b9b8cd25aa29203de73af16d5f15462bc34ecee65b",
+      "bytes": 55939
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/LLVMConfig.cmake",
+      "sha256": "92e812b4913d2b068505a8ffa5a4fd1b4df00a25a40828c5fff74a0a8bb0164e",
+      "bytes": 13178
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/clang/ClangConfig.cmake",
+      "sha256": "701a483ee191e48bfdedf363c8f15703b6b7533a9bf6021bc2ccef55dccc887f",
+      "bytes": 3427
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/HandleLLVMOptions.cmake",
+      "sha256": "1f6cced3ad60b8201f682efed3352b0b843c149c86450bf116981c8a5b155394",
+      "bytes": 64713
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/AddLLVM.cmake",
+      "sha256": "6e3657adff401f5f39438c773b68e5cc1b42f5dfd2aaf50490fc24898f9c8abb",
+      "bytes": 104119
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/HandleLLVMStdlib.cmake",
+      "sha256": "73350b936b833b271eb8c0d60a25e7d41786d6af293f6184f836927e2d3c31c6",
+      "bytes": 1892
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/operation/qualification.json",
+      "sha256": "626a74017aef23779705e2b57c1a2fda354e52615bda5502f704dab9327290ab",
+      "bytes": 26040
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/cmake/llvm/DetermineGCCCompatible.cmake",
+      "sha256": "a163d7c75bcd9694feb57367c962b88a7023cc120a0338383ffc6b2f57cabf38",
+      "bytes": 470
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt",
+      "sha256": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+      "bytes": 85173
+    }
+  ],
+  "actual_routes": {
+    "tools": [
+      "mcp__node_repl__js: read-only filesystem/Git-administration access and SHA256, followed by one private JSON write/readback"
+    ],
+    "native_commands": 0,
+    "configure_compiler_profile_build_install_calls": 0,
+    "network_calls": 0,
+    "project_global_source_writes": 0,
+    "private_json_files": 1,
+    "failed_routes": [],
+    "status_probe_answered": true,
+    "readiness_reported_before_final": true
+  }
+}
