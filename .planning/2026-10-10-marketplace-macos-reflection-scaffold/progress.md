@@ -339,3 +339,25 @@ lines are preserved with a scoped whitespace disposition.
   native logs/caches and diagnostic snapshots. Exact bytes are preserved with
   hashes and a scoped maintained-source whitespace pass. The pre-staging
   independent baseline passed; the complete baseline is repeated after commit.
+
+Task 03a is committed at `28c4e5293fecc9296c36ded73f44d0a5fa8c7b8b`.
+The post-commit baseline exited 0 and the worktree was clean. Task 06a now
+qualifies the accepted LLVM fork source and a bounded bootstrap recipe. Primary
+GitHub inputs were acquired through native fnox; existing strict-five research
+gaps remain unchanged. No compiler configuration or cold build has started.
+- Source acquisition passed all nine native Git commands. The clean detached
+  checkout matches the accepted commit and primary tree; retained LLVM input
+  bytes match. The cache passed one script-mode control and rejected wrong-lane,
+  inherited-flag and absent-prefix controls. These execute no compiler. Exact
+  logs are retained in evidence/p2996-source; independent review follows.
+- Independent source review found that compiler-rt rediscovers the SDK unless
+  its actual `DARWIN_macosx_CACHED_SYSROOT` override is set. The cache now sets
+  that supported input. It also leaves builtin staging to LLVM's native
+  runtimes route, avoiding a global override that would build builtins twice.
+  Independent review passed after both fixes. Its one unchanged cache-harness
+  run reproduced exits 0, 1, 1, 1; both static checks passed and all 19 originals
+  plus protected global/package state were preserved. Configure, runtime command
+  inspection, actual SDK selection, compilation and installation remain pending.
+- The staged whitespace check flags only nine immutable upstream/log files.
+  Their exact hashes and the passing maintained-source check are recorded in
+  evidence/p2996-source/whitespace-disposition.json; source bytes are preserved.

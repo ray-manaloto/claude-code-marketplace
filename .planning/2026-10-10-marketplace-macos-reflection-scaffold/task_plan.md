@@ -36,6 +36,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 05d | GCC16 environment and reflection witness | Exact compiler/stdlib/SDK identity, positive compile/link/run and negative flag control | Complete |
 | 10b | GCC16 CMake toolchain fixture | Intended compiler/SDK/libstdc++, four Multi-Config build/test cells and isolation controls | Complete |
 | 03a | Minimal native library, POD facade and smoke executable | Qualified GCC static/shared builds; private reflection flags; original acceptance hashes | Complete |
+| 06a | Pinned LLVM source and bounded bootstrap recipe | Exact commit/tree and license; matching runtimes; source-only acquisition and independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -85,6 +86,11 @@ and this plan. Qualify static/shared libraries in all four configurations using
 sequential one-job, sixty-second-bounded builds in new private directories.
 No dependencies, installers, cache server, adapter replacement or OCI run is
 included. The smoke executable is a foundation witness, not the plugin CLI.
+Task 06a permits exact-source acquisition into a new private checkout and a
+reviewable native bootstrap recipe. Its maintained files are the source helper,
+CMake initial cache, documentation and these two planning records. No compiler
+build, installation, global registration or configure probe is included;
+configuration and the cold build receive separate bounded operations.
 No native goal was requested. Monitor chat owns no marketplace files.
 
 After N4, continue the source matrix's small tasks: template reuse qualification;

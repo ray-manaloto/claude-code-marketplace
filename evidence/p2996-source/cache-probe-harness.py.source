@@ -1,0 +1,43 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import hashlib,json,os,subprocess,sys
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+sys.path.insert(0,str(ROOT/'dev/toolchains'))
+from gcc_install import read,preserved,digest
+os.umask(0o077)
+directory=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+directory.mkdir();(directory/'cwd').mkdir()
+before=read('install-preimages.json')
+context=json.loads((Path(before['normal_environment']['argv'][-1]).parent/'context.json').read_text())
+env=context['environment']|{'MISE_OFFLINE':'1'}
+host=json.loads((ROOT/'evidence/tool-foundation/host-qualification.json').read_text())
+cmake=host['binaries']['cmake']['resolved_path'];ninja=host['binaries']['ninja']['resolved_path']
+sdk=json.loads((ROOT/'evidence/gcc-runtime/qualification.json').read_text())['sdk']['path']
+values={'CC':'/Library/Developer/CommandLineTools/usr/bin/clang','CXX':'/Library/Developer/CommandLineTools/usr/bin/clang++','SDK':sdk,'NINJA':ninja,'PYTHON':sys.executable,'PREFIX':str(directory/'unused-prefix')}
+for key,value in values.items(): env['MARKETPLACE_BOOTSTRAP_'+key]=value
+mise=read('install-proposal.json')['native_mise']['path']
+base=[mise,'--no-hooks','-C',str(directory/'cwd'),'-E','cpp-build','exec','--fresh-env','--no-deps','--',cmake]
+report={'state':'running','started_at':datetime.now(timezone.utc).isoformat(),'commands':[],'cache_sha256':digest(ROOT/'dev/toolchains/p2996-bootstrap.cmake'),'values':values}
+try:
+    preserved(before,installed=True)
+    for label,prefix,expected in [('positive','',0),('wrong-lane','set(ENV{MARKETPLACE_CPP_LANE} gcc16)',1),('dirty-flags','set(ENV{CXXFLAGS} -stdlib=libc++)',1),('missing-prefix','unset(ENV{MARKETPLACE_BOOTSTRAP_PREFIX})',1)]:
+        script=directory/(label+'.cmake')
+        script.write_text(prefix+'\ninclude("'+str(ROOT/'dev/toolchains/p2996-bootstrap.cmake')+'")\nmessage(STATUS "projects=${LLVM_ENABLE_PROJECTS}; runtimes=${LLVM_ENABLE_RUNTIMES}; target=${LLVM_TARGETS_TO_BUILD}; compile=${LLVM_PARALLEL_COMPILE_JOBS}; link=${LLVM_PARALLEL_LINK_JOBS}")\n')
+        argv=base+['-P',str(script)]
+        p=subprocess.run(argv,env=env,cwd=directory,capture_output=True,timeout=30)
+        logs=[]
+        for suffix,data in [('.stdout',p.stdout),('.stderr',p.stderr)]:
+            path=directory/(label+suffix);path.write_bytes(data);logs.append({'path':str(path),'sha256':digest(path)})
+        report['commands'].append({'case':label,'argv':argv,'returncode':p.returncode,'logs':logs})
+        assert p.returncode==expected,(label,p.stderr.decode())
+        if expected==0: assert b'runtimes=libunwind;libcxxabi;libcxx;compiler-rt' in p.stdout
+        else: assert b'CMake Error' in p.stderr
+    assert not (directory/'unused-prefix').exists()
+    report['state']='PASS: CMake script-mode cache controls only; no configure or compiler execution'
+except BaseException as e:
+    report.update(state='FAIL',error=repr(e));raise
+finally:
+    try: preserved(before,installed=True);report['protected_state_unchanged']=True
+    finally:
+        (directory/'qualification.json').write_text(json.dumps(report,indent=2)+'\n')
+        print(json.dumps({'state':report['state'],'receipt':str(directory/'qualification.json')}))
