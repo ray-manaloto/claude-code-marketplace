@@ -2,7 +2,7 @@
 
 Task 12a1 prepares [one shared chainloader](../cmake/toolchains/vcpkg-macos-arm64.cmake)
 for the qualified P2996 and GCC16 macOS ARM64 lanes. vcpkg remains the primary
-`CMAKE_TOOLCHAIN_FILE`; both applications and later overlay triplets select this
+`CMAKE_TOOLCHAIN_FILE`; both applications and overlay triplets select this
 adapter through `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`. The selected environment,
 compiler prefix, SDK and target-triplet lane must agree.
 
@@ -16,7 +16,7 @@ detector, port and application commands must select CMP0210 NEW.
 Preparation permits bounded CMake script-mode controls only. Real compiler
 detection, fmt Debug/Release builds, four-configuration consumers, ABI/cache
 controls and private-root confinement remain pending their native operations.
-The eventual four target triplets are `arm64-osx-{p2996,gcc16}-{static,dynamic}`;
+The four target triplets are `arm64-osx-{p2996,gcc16}-{static,dynamic}`;
 host helpers use the explicit native `arm64-osx` host triplet. Project linkage
 remains independent of dependency linkage.
 
@@ -45,3 +45,18 @@ verified all 218 control artifacts and all intended diagnostics, then passed
 six focused script runs: standalone P2996 before/after equivalence and both
 lanes nested in the actual vcpkg policy scope. No findings remain. This closes
 preparation only; actual language initialization and dependency builds follow.
+
+Task 12a2 prepared the P2996 pair and shared macOS inputs. Its
+[independent review](../evidence/vcpkg-p2996-triplets/final-review/review.json)
+resolved two findings: the native extraction script leaves the public host
+processor unset, and a defined-empty build type would suppress both dependency
+configurations. The common file queries a private host value only when empty
+and rejects every defined `VCPKG_BUILD_TYPE`. It tracks the selected environment
+and binds nested compiler/toolchain, SDK and managed CMake/Ninja files.
+
+Task 12b1 adds the GCC16 pair using that unchanged common file. GCC inputs
+include both drivers, both language frontends, libstdc++ and libgcc; the SDK,
+managed tools and included toolchains bring the additional-file count to 12.
+The GCC preparation controls check native-style unseeded extraction, repeated
+inclusion, compiler selection and conflicting environments. These are script
+controls; they do not establish native compiler detection or built fmt linkage.

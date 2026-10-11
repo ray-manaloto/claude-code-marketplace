@@ -1071,3 +1071,13 @@ selection, compiler parity, dependency linkage and confinement remain pending.
   controls match their intended results; all 13 current nested ABI inputs match.
   Preparation is qualified without remaining findings. Native tool selection,
   compiler/dependency parity and dependency linkage remain separate gates.
+
+Task 12a2 is committed at `c88b5bba9ac3d6f7131f544f642724b857ed9b8d`;
+the post-commit baseline passed and the worktree was clean. Task 12b1 prepares
+the two GCC16 triplets using the unchanged common file. Its five maintained
+files cover the pair, composition documentation and these planning records.
+Focused script controls and independent review precede native qualification.
+- All eight parent script controls passed. Independent review verified 26
+  copy pairs and all 12 ABI inputs, then recorded four explicit environment
+  rejection probes. No findings remain; the shared foundation is unchanged.
+  This closes preparation only; native compiler/dependency qualification follows.
