@@ -33,13 +33,14 @@ the read-only research-guard limitation are preserved.
 
 Full Claude/OCI acceptance, MCP connectivity and provider research are unqualified.
 Existing research gaps are Context7 quota, Firecrawl 402/provisional fallback and
-Last30Days validation. No native core, P2996 LLVM, vcpkg or application build
-matrix exists yet. GCC runtime qualification is described below.
+Last30Days validation. The minimal GCC native core is now qualified as described
+below. LLVM source preparation is complete; the LLVM compiler, vcpkg runtime,
+dependencies, application matrix and packages remain unqualified.
 
 Task 01 passed: pinned source/license acquisition and the four-file
 [scratch adaptation](../scratch/template-reuse/README.md) have independent
 reviews and passing static/baseline checks. Native CMake preset listing now passes;
-compiler configuration and builds remain pending.
+the later GCC fixture and core gates are recorded below.
 
 Task 04a passed: the [prepared profiles](../dev/global-mise/README.md) and native
 named locks have 35 bounded controls and a passing independent cold review.
@@ -84,8 +85,26 @@ dyld resolves it to the installed prefix. macOS system libc++ images also load,
 so their mere presence is not treated as compiler contamination.
 Defaults and all nine global files remain unchanged. Independent
 [runtime review](../evidence/gcc-runtime/runtime-review.json) passed after one
-complete rerun and verification of all receipts and protected files. The CMake
-toolchain fixture follows separately.
+complete rerun and verification of all receipts and protected files.
+
+Task 10b is committed at `637dbe8b0d059be519f1c4b743555ac4c75aaf24`:
+the [GCC CMake fixture](../evidence/gcc-cmake/qualification.json) passes all four
+configurations and isolation controls. Task 03a is committed at
+`28c4e5293fecc9296c36ded73f44d0a5fa8c7b8b`: the
+[native core](../evidence/core-skeleton/qualification.json) passes eight cells,
+static/shared across all four configurations, with independent reproduction.
+Reflection flags remain private to the implementation. A reproduced GCC Darwin
+C++26 MinSizeRel duplicate-symbol defect is avoided with the target-scoped
+`-fno-declone-ctor-dtor` control; the optimization and negative controls are
+retained. Both post-commit baseline checks passed.
+
+Task 06a is committed at `fe108bce6f5226005c5082bc85fba7ae31d2aeb6`:
+[pinned LLVM source and the initial cache](p2996-toolchain.md) passed independent
+review and script-mode controls. No LLVM configuration or build has run.
+Task 11a's [vcpkg preparation](vcpkg-toolchain.md) passed independent source review
+and reproduction of all thirteen private native registration cases. This admits
+no global registration or actual vcpkg execution. The shared heavy lease remains
+occupied; the next independent operation is the private native vcpkg bootstrap.
 
 Reproduce from this checkout using an existing Python 3.11+ interpreter and
 `python3 -B dev/toolchains/gcc_reflection.py --run-dir <new-private-directory>`.
@@ -93,6 +112,7 @@ The script selects `MARKETPLACE_GCC16_PREFIX=/opt/homebrew/Cellar/gcc/16.2.0`
 only in its child environment and uses an empty cwd to avoid the root OCI setup.
 It writes bounded command logs and does not install tools or edit global profiles.
 
-The earlier Docker census found no running containers, but high host
-load and concurrent shipping leave heavy builds unadmitted. Global Python
-promotion/telemetry and other repositories remain separate streams.
+The shared heavy lease is held by the delivery operation as of the latest
+2026-10-11 UTC observation. A fresh census and acquired lease are required before
+LLVM configuration/build. Global Python promotion/telemetry and other repositories
+remain separate streams.

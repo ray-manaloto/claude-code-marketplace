@@ -361,3 +361,25 @@ gaps remain unchanged. No compiler configuration or cold build has started.
 - The staged whitespace check flags only nine immutable upstream/log files.
   Their exact hashes and the passing maintained-source check are recorded in
   evidence/p2996-source/whitespace-disposition.json; source bytes are preserved.
+
+Task 06a is committed at `fe108bce6f5226005c5082bc85fba7ae31d2aeb6`.
+The post-commit baseline exited 0 and the worktree was clean. The shared heavy
+lease remains held by the delivery operation. Task 11a now prepares the accepted
+vcpkg source and native registration contract in isolation; LLVM configuration
+and its cold build remain pending. No global registration is admitted here.
+- The pinned vcpkg checkout passed nine Git identity/connectivity checks.
+  Its executable release and registry baseline are recorded separately.
+  Source inspection found unconditional alias/shim/wrapper reconciliation in
+  native mise link, so registration was tested in two private data roots.
+- The first probe stopped before any mise command after detecting external
+  fzf/opencode config and lock updates. Its failure and helper bytes are retained.
+  A fresh current-state snapshot preserved those updates; all thirteen native
+  link cases passed, including fresh-process discovery after selective private
+  promotion and rejection controls. Protected global/package/shim state matches.
+  Actual vcpkg bootstrap, global registration and independent review are pending.
+- Independent review passed without findings. It verified exact source/tree,
+  nine vcpkg inputs, 32 acquired records, 20 mise blobs and 44 retained command
+  logs, then reproduced all thirteen private link cases once. Both static
+  checks passed, including all 19 original acceptance hashes. Current globals,
+  package/GLib state and shims were unchanged. Bootstrap and global registration
+  remain pending; the heavy lease still belongs to the delivery operation.

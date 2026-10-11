@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-10-11T04:07:49.859579+00:00",
+  "observation": "The live reviewer status disabled global Git configuration and therefore showed an existing cache file hidden by the ordinary global ignore. This is not a new changed-file finding.",
+  "git_review_environment": {
+    "GIT_CONFIG_GLOBAL": "/dev/null",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_TERMINAL_PROMPT": "0",
+    "other_inherited_GIT_variables": "removed"
+  },
+  "native_check_ignore": {
+    "argv": [
+      "/usr/bin/git",
+      "--no-optional-locks",
+      "check-ignore",
+      "-v",
+      "dev/toolchains/__pycache__/gcc_bottles.cpython-314.pyc"
+    ],
+    "returncode": 0,
+    "stdout": "/Users/rmanaloto/.gitignore_global:18:__pycache__/\tdev/toolchains/__pycache__/gcc_bottles.cpython-314.pyc\n"
+  },
+  "file_mtime_utc": "2026-10-11T01:58:03.061654+00:00",
+  "preserved": true,
+  "reviewer_python": "All invocations used -B"
+}
