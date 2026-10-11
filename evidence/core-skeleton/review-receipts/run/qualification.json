@@ -1,0 +1,1810 @@
+{
+  "state": "PASS: native skeleton, GCC16 static/shared, four configurations",
+  "started_at": "2026-10-11T03:12:31.720890+00:00",
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T03:12:31.866503+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "ctest-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--version"
+      ],
+      "started_at": "2026-10-11T03:12:32.424974+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/ctest-version.stdout",
+          "sha256": "21710b282175af2534f38143fae98bb3de9762a1ffcce63fda137c2a1a177ece"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/ctest-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-red",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-Os",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-first.cpp",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-second.cpp",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-red"
+      ],
+      "started_at": "2026-10-11T03:12:32.612525+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-red.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-red.stderr",
+          "sha256": "b622570854da1320e161af6d7c6bd35b9b7942f7a08370a806f02659ccb1f503"
+        }
+      ]
+    },
+    {
+      "case": "declone-fixed",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-Os",
+        "-fno-declone-ctor-dtor",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-first.cpp",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-second.cpp",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed"
+      ],
+      "started_at": "2026-10-11T03:12:33.273537+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-fixed-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed"
+      ],
+      "started_at": "2026-10-11T03:12:33.878102+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed-run.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed-run.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-reverse",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-O2",
+        "-fdeclone-ctor-dtor",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-first.cpp",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-second.cpp",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-reverse"
+      ],
+      "started_at": "2026-10-11T03:12:34.056294+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-reverse.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-reverse.stderr",
+          "sha256": "b88c0e481569e2bbc61e37c1d367ba33811aaca5ddcbb72a5e2e7238eb6a4c05"
+        }
+      ]
+    },
+    {
+      "case": "configure-static",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DBUILD_SHARED_LIBS=OFF"
+      ],
+      "started_at": "2026-10-11T03:12:35.159569+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-static.stdout",
+          "sha256": "2cef472e56331649795218dcae2d3cd1801bc4ce31c47a92ae3e389d4bddd9c0"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-static.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "--config",
+        "Debug",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:37.211263+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Debug.stdout",
+          "sha256": "21c4dc880b314a4fbba62dd0bf505824c4de4c2707914c74856b490508ee5ca6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:39.491287+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Debug.stdout",
+          "sha256": "340a9358f08e5230373c4419e11488033403119cab7263d0727b668be445fe92"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-Debug",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:39.785822+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Debug.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-Debug",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:12:39.794093+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Debug.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:39.834805+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Debug.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Debug.stderr",
+          "sha256": "fb50cbaa2628aa871ee176e3e0c72dc8b4a5e9a22142e92dee9aacffc798036e"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-Debug",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:40.019060+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Debug.stdout",
+          "sha256": "6613b3d680357caf282a56c6840e70ae77849f600930fae1df14e070b8e98406"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "--config",
+        "Release",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:40.062460+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Release.stdout",
+          "sha256": "6e31a46588eef82711b4f0d9db4701662ea45e079d4d7d68ecf32e61f5865d33"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "-C",
+        "Release",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:42.132321+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Release.stdout",
+          "sha256": "d1aacce547ccc5f1818d805bfd6560f5215340dbf1a5bc657209f1b59a9eb082"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-Release",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:42.480057+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Release.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-Release",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:12:42.491845+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Release.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:42.536938+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Release.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Release.stderr",
+          "sha256": "4e56dc9a0613c85a3ca5285577eb82b3d8e32fad0b3f84684246e13939d31d11"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-Release",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:42.727623+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Release.stdout",
+          "sha256": "a0273a4f73be57b6ea5663ba364c4141b8c2126d00cace17593eba99d31372a2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:42.747651+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-RelWithDebInfo.stdout",
+          "sha256": "e5544a111099375c1de12f403b91b5cea37907d36d8a02b6464b1c586a303888"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "-C",
+        "RelWithDebInfo",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:45.473635+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-RelWithDebInfo.stdout",
+          "sha256": "f2dbb0b64d87f8f05d2b1bf565caa93aa04a2f3facc9361056be6698b2336a5b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:45.878507+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-RelWithDebInfo.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:12:45.890142+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-RelWithDebInfo.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:45.931768+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-RelWithDebInfo.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-RelWithDebInfo.stderr",
+          "sha256": "088db64a56f9e4f2fe5bbe3582bc36a2850ae94548f463dac8cb47ebcd913abf"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:46.120030+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-RelWithDebInfo.stdout",
+          "sha256": "1418fe7a60c61cb17203a75846e4624a43c63f3108ffeb1988a13de4c5cc343a"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "--config",
+        "MinSizeRel",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:46.164810+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-MinSizeRel.stdout",
+          "sha256": "46deba34fc4588da959384277d523629d9f10bb8c57f0401875c45c6f3f8cb47"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+        "-C",
+        "MinSizeRel",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:48.120744+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-MinSizeRel.stdout",
+          "sha256": "2124f3e2b8cd0c3dc299ddb683915f268822398866208d3628b1a54a2e315e07"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:48.300636+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-MinSizeRel.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:12:48.307436+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-MinSizeRel.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:48.328241+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-MinSizeRel.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-MinSizeRel.stderr",
+          "sha256": "6bc6ace790aa6fb0128c8e6979d15d3caa1317618e48fd77eb177e1b61a8ece9"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:48.459744+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-MinSizeRel.stdout",
+          "sha256": "f934c31c506220fe22dbde48c83701be1cad9bca791d59a7c319a336973d5445"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "configure-shared",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DBUILD_SHARED_LIBS=ON"
+      ],
+      "started_at": "2026-10-11T03:12:48.480774+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-shared.stdout",
+          "sha256": "9e6db181d92b810e0cb85352c3897290aba76349935c1f0b20550ea8682be0f0"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-shared.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "--config",
+        "Debug",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:49.420838+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Debug.stdout",
+          "sha256": "f5759ccd1189c47a2ce53b0d697b1e2c6311ab2a20f54e4770090b63d489c549"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:51.858826+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Debug.stdout",
+          "sha256": "c83a5361d97fe573c5f6c9219a194d5b0df17034d0b87816830bcdd513204048"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-Debug",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:52.153124+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Debug.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-Debug",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:12:52.162244+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Debug.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:52.203762+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Debug.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Debug.stderr",
+          "sha256": "1b6f536c73449dd80c96fc9e1b3461743ef2a09c25cd08b825906ec397421bad"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-Debug",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:52.385770+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Debug.stdout",
+          "sha256": "743eaf33dd22944125e3361019736c8f7fe306072350b9103f559545fdc65755"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "--config",
+        "Release",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:52.411664+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Release.stdout",
+          "sha256": "b63539370bf33cdfe1fb624f6d0289137151cf3a55099cbd677e687515db462f"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "-C",
+        "Release",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:53.880371+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Release.stdout",
+          "sha256": "58972869668d12147e7ab0b7437e19eeef230773c854be0606319f32f7262fb6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-Release",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:54.115390+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Release.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-Release",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:12:54.122390+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Release.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:54.143653+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Release.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Release.stderr",
+          "sha256": "e407caefa9fa8c7877e64204ecce50865843ce8a1c957cbb24afeb2b1db667af"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-Release",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:54.270650+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Release.stdout",
+          "sha256": "ffe881d207d737fec834cef552e451d6edb15d1a593e6b2d905646ef9a49519e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:54.295026+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-RelWithDebInfo.stdout",
+          "sha256": "94249b0cb486f5ff65b8a79e65964c5f1c18a207ca12c58034024612601b5b6e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "-C",
+        "RelWithDebInfo",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:57.104040+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-RelWithDebInfo.stdout",
+          "sha256": "784770fc3036d56a1b481bb28f8fd1c19a3cd78ffe82bfac0eb599095922abbf"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:57.449810+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-RelWithDebInfo.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:12:57.459648+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-RelWithDebInfo.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:57.503141+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-RelWithDebInfo.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-RelWithDebInfo.stderr",
+          "sha256": "251aa43d7e0a2963e6e6ff16b37b81a74e1430b27d6b1ab241d4f5fdf120eb2d"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:57.639336+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-RelWithDebInfo.stdout",
+          "sha256": "e4beb3151e9b7f5a1835e58ac828b9917e06b9d16977964178444617f320bda6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "--config",
+        "MinSizeRel",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:12:57.659591+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-MinSizeRel.stdout",
+          "sha256": "4bd3adc1853ae3a00d7fc46408f22a20ac07aaef38b1375923febff39425502c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+        "-C",
+        "MinSizeRel",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:12:59.080974+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-MinSizeRel.stdout",
+          "sha256": "f3d5457a5ba069728f281f0c2c665dd694a2f49ffb1afa6dbb9c909e80cef657"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:59.378136+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-MinSizeRel.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:12:59.393632+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-MinSizeRel.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:59.436417+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-MinSizeRel.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-MinSizeRel.stderr",
+          "sha256": "14e6aa13757f7c9986ff528e2513013e72e4e7c08af359de526164020b5ef94b"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:12:59.622661+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-MinSizeRel.stdout",
+          "sha256": "b1701503b30f09aa272bcf4619e6b651905a4f416094adec58ddb5e6c7f910f3"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T03:12:59.667445+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-after.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "harness_sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+  "inputs": {
+    "CMakeLists.txt": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+    "include/aggregated_research/core.hpp": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+    "src/core.cpp": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+    "src/smoke.cpp": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+    "cmake/toolchains/gcc16-macos-arm64.cmake": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+    "evidence/gcc-runtime/qualification.json": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+  },
+  "admission": {
+    "at": "2026-10-11T03:12:31.866460+00:00",
+    "scope": "Tiny native skeleton; static/shared, four configurations, sequential single-job builds only",
+    "census_returncode": 0,
+    "active_builds": [],
+    "load_average": [
+      31.298828125,
+      27.8828125,
+      21.81005859375
+    ]
+  },
+  "tools": {
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    "ninja": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+    },
+    "ctest": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+      "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+    }
+  },
+  "cells": {
+    "static-Debug": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/research_core_smoke",
+      "binary_sha256": "46582e570facc355bf4c65e5ef4ff8f00386e5fa29fc9df520d6814ef23d3b47",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/libresearch_core.a",
+      "library_sha256": "43ba36798ccda5d9f7883cf4e7289dc73267e3284bb9701a1ba3b71c1e8d2a08",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/libresearch_core.a",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Debug/research_core_smoke",
+        "configuration": "Debug",
+        "shared": "OFF"
+      }
+    },
+    "static-Release": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/research_core_smoke",
+      "binary_sha256": "d6f863e044a742cd162941788525eff68789538d6d59ae5b891d3972db6949e1",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/libresearch_core.a",
+      "library_sha256": "94903af02a88100f0f212b1af34e6195bfe6ec2ecc330ea0cfac61df3938c1df",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/libresearch_core.a",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/Release/research_core_smoke",
+        "configuration": "Release",
+        "shared": "OFF"
+      }
+    },
+    "static-RelWithDebInfo": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/research_core_smoke",
+      "binary_sha256": "6c91b0a3245fc225f35caa4deaa3f6a88584b0d7bc43ab91398be6dd34bb4c63",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/libresearch_core.a",
+      "library_sha256": "21267f80f428de1ab0f5553c753880ea33171777d4cda6ccc581a8b49c4283b8",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/libresearch_core.a",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/RelWithDebInfo/research_core_smoke",
+        "configuration": "RelWithDebInfo",
+        "shared": "OFF"
+      }
+    },
+    "static-MinSizeRel": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/research_core_smoke",
+      "binary_sha256": "6b1bf5452a51a4f406f9ed30238688fa663de908e7e410df83af370a6b7001b9",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/libresearch_core.a",
+      "library_sha256": "575883364beb0e39a47629c170ed7bcb0e632a8153d0c777161a4c5022adfec6",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/libresearch_core.a",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/MinSizeRel/research_core_smoke",
+        "configuration": "MinSizeRel",
+        "shared": "OFF"
+      }
+    },
+    "shared-Debug": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/research_core_smoke",
+      "binary_sha256": "d4a71466cc3eb0cf64b47f4cc11817b69fc7c23014037f1c154b0ee9b3118a99",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/libresearch_core.dylib",
+      "library_sha256": "1df49cb669e23cef9d2ab166af64f685c8f156380193f3dad20098e8a3240bc7",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/libresearch_core.dylib",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Debug/research_core_smoke",
+        "configuration": "Debug",
+        "shared": "ON"
+      }
+    },
+    "shared-Release": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/research_core_smoke",
+      "binary_sha256": "e31871419f1970ece38dde5e339660b9936df86432eb72ecb64c0ab5debec1b5",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/libresearch_core.dylib",
+      "library_sha256": "7528f4d584cfd922e436f42cf95d1bbd578f689d9901128bb07b9d65ddc1579d",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/libresearch_core.dylib",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/Release/research_core_smoke",
+        "configuration": "Release",
+        "shared": "ON"
+      }
+    },
+    "shared-RelWithDebInfo": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/research_core_smoke",
+      "binary_sha256": "11e46467182e07f72c795258b33b2a5f45a9c59a8c1357db9a2f95a3d2e6205d",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/libresearch_core.dylib",
+      "library_sha256": "00ee41989dd250a3d49a2e02bf85d7df39aea3a6131c73edc4e7d140d813f505",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/libresearch_core.dylib",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/RelWithDebInfo/research_core_smoke",
+        "configuration": "RelWithDebInfo",
+        "shared": "ON"
+      }
+    },
+    "shared-MinSizeRel": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/research_core_smoke",
+      "binary_sha256": "9e9765eeb3c125f0b409fa2a5bc809549173c94b5ebac94c33b98c548b78d29d",
+      "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/libresearch_core.dylib",
+      "library_sha256": "233beeedccdf5468913b5a25b944ad443194172d22532bdb2a55ae19f8f1bc47",
+      "summary": {
+        "library": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/libresearch_core.dylib",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/MinSizeRel/research_core_smoke",
+        "configuration": "MinSizeRel",
+        "shared": "ON"
+      }
+    }
+  },
+  "static_compile_commands": [
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Debug/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Debug/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core.dir/Debug/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Release/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Release/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core.dir/Release/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o"
+    }
+  ],
+  "shared_compile_commands": [
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Debug/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Debug/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core.dir/Debug/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Release/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Release/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core.dir/Release/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o"
+    }
+  ],
+  "protected_state_unchanged": true
+}

@@ -307,3 +307,35 @@ worktree. Task 10b opens the small GCC CMake fixture, following the accepted
   reproduced all 28 expected outcomes; its 56 command logs and exact review
   are retained. Protected state and all 19 original acceptance hashes remain
   unchanged. Task 10b is complete for the four-cell GCC compiler fixture.
+
+Task 10b is committed at `637dbe8b0d059be519f1c4b743555ac4c75aaf24`; the
+post-commit baseline exited 0 with a clean worktree. Native CMake log EOF blank
+lines are preserved with a scoped whitespace disposition.
+- Task 03a adds a minimal compiled library, strict POD facade and smoke executable.
+  Reflection flags remain private to the library. Four implementation files plus
+  the two required planning records keep the unit small; runtime acceptance and
+  independent review are pending. Static/shared qualification uses the existing
+  GCC lane without dependency installation or changes to the plugin CLI.
+- The initial build rejected C++26's deprecated is_trivial trait; replaced it
+  with trivially default constructible/copyable plus standard-layout checks.
+- A second run passed three static configurations, then exposed duplicate
+  exception vtable/typeinfo symbols at MinSizeRel. The two-file regression
+  isolated GCC's -fdeclone-ctor-dtor: -Os fails, disabling decloning passes,
+  and enabling it at -O2 reproduces the failure. Module mode was ruled out.
+  Both targets now disable only this optimization in MinSizeRel; complete
+  rerun and independent review remain pending. All failed receipts are retained.
+- The corrected skeleton passed all eight static/shared build/test cells. Both
+  artifacts are ARM64, shared loading is observed only for shared cells, and the
+  qualified libstdc++ loads in every case. The integrated regression reproduces
+  both decloning failures and the passing fix. All 57 command outcomes and 114
+  exact logs are retained; independent review follows. Default state is unchanged.
+- Independent task-03a review passed with no findings. Its single unchanged
+  harness rerun reproduced all 57 outcomes and eight cells; both static checks
+  passed. All 19 original acceptance hashes, nine globals, eight packages and
+  1,791 public links were preserved. Review receipts are in evidence/core-skeleton.
+  Timeout/interruption handling received static review only. LLVM, dependencies,
+  packaging, instrumentation and full OCI acceptance remain later gates.
+- The staged baseline check rejects whitespace in immutable upstream sources,
+  native logs/caches and diagnostic snapshots. Exact bytes are preserved with
+  hashes and a scoped maintained-source whitespace pass. The pre-staging
+  independent baseline passed; the complete baseline is repeated after commit.

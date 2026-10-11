@@ -1,0 +1,816 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T03:15:55.764731+00:00",
+  "result": "PASS for task 03a minimal native GCC16 skeleton",
+  "findings_remaining": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "637dbe8b0d059be519f1c4b743555ac4c75aaf24",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": [
+    "CMakeLists.txt",
+    "include/aggregated_research/core.hpp",
+    "src/core.cpp",
+    "src/smoke.cpp",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+    "evidence/core-skeleton/"
+  ],
+  "reviewed_maintained_inputs": [
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0"
+    },
+    {
+      "path": "include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a"
+    },
+    {
+      "path": "src/core.cpp",
+      "sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840"
+    },
+    {
+      "path": "src/smoke.cpp",
+      "sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "90cb7ecd34da554953cf23f17a4fa303e852353d9a378afcb3b8cc39b2589a2c"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "7f4650656d60a6d5718436a8a3bd3f9b194036a3c39d39f19426587388871ef6"
+    }
+  ],
+  "reviewed_harness": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/harnesses/qualify-core-skeleton.py",
+    "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+    "retained_copy": "evidence/core-skeleton/qualification-harness.py.source",
+    "unchanged_during_review": true
+  },
+  "parent_evidence": {
+    "qualification": "evidence/core-skeleton/qualification.json",
+    "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159",
+    "commands": 57,
+    "exact_log_hashes_verified": 114,
+    "cells": 8,
+    "failed_attempt_receipts_verified": 2,
+    "diagnostic_runs_verified": 5,
+    "gcc_source_commit": "78d4ac73dd391005b895a6148cd9831e28e1208b",
+    "source_acquisition_records_verified": 8,
+    "documentation_license_verified": true,
+    "details": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/parent-evidence-review.json"
+  },
+  "executed_runtime_check": {
+    "invocation": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/harnesses/qualify-core-skeleton.py",
+        "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run"
+      ],
+      "cwd": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw",
+      "started_at": "2026-10-11T03:12:29.337Z",
+      "observed_finished_at": "2026-10-11T03:13:09.123Z",
+      "returncode": 0,
+      "invocations": 1,
+      "output_sha256": "f8becb644995c5b2728c9c1e93a107594bc28d9cb61c5f5f6a0efd1cc1dcf17f"
+    },
+    "qualification": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/qualification.json",
+    "qualification_sha256": "497eb1805a22ae005861aca1829b22a7139081bca17aff89a951f5547631a77f",
+    "expected_command_outcomes": 57,
+    "positive_rc0_outcomes": 55,
+    "expected_negative_rc1_outcomes": 2,
+    "exact_log_hashes_verified": 114,
+    "cells": [
+      {
+        "cell": "static-Debug",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": false,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "static-Release",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": false,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "static-RelWithDebInfo",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": false,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "static-MinSizeRel",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": false,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "shared-Debug",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": true,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "shared-Release",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": true,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "shared-RelWithDebInfo",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": true,
+        "witness": "reflection value=43, members=1"
+      },
+      {
+        "cell": "shared-MinSizeRel",
+        "build_rc": 0,
+        "ctest_rc": 0,
+        "runtime_rc": 0,
+        "arm64_binary_and_library": true,
+        "expected_libstdcxx_loaded": true,
+        "shared_core_loaded": true,
+        "witness": "reflection value=43, members=1"
+      }
+    ],
+    "compile_commands_reviewed": 16,
+    "independent_analysis": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/runtime-analysis.json",
+    "fresh_directory_and_native_fresh_environment": true,
+    "default_environment_matches_original_preimage": true
+  },
+  "executed_static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "started_at": "2026-10-11T03:13:40.590305+00:00",
+      "returncode": 0,
+      "finished_at": "2026-10-11T03:13:41.101794+00:00",
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "started_at": "2026-10-11T03:13:41.103015+00:00",
+      "returncode": 0,
+      "finished_at": "2026-10-11T03:13:42.263292+00:00",
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/acceptance-baseline.stdout",
+          "sha256": "496a94e11752608e33247267376c4a6419e716b19ec04fb4205a7c33d3fe4515"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "claude_baseline_counts": {
+    "baseline": 19,
+    "json": 173,
+    "python": 6,
+    "shell": 5,
+    "toml": 14
+  },
+  "git_diff_check_returncode": 0,
+  "independent_preservation_checks": {
+    "recorded_at": "2026-10-11T03:14:57.406831+00:00",
+    "result": "PASS: protected state and all reviewed inputs unchanged",
+    "protected_counts": {
+      "globals": 9,
+      "packages": 8,
+      "glib_files": 2,
+      "public_links": 1791,
+      "runtime_identities": 6,
+      "build_tools": 3,
+      "sdk_settings": 1
+    },
+    "files_rehashed": 42,
+    "maintained_sources_rehashed": 6,
+    "packages_rechecked": 8,
+    "links_rechecked": 1791
+  },
+  "static_review": [
+    "Only four implementation files plus two short required planning records; all source and prerequisite hashes unchanged during review.",
+    "Reflection introspection and member splicing are confined to core.cpp. The public facade contains only fixed-width integers and has trivial-default, trivial-copy and standard-layout assertions.",
+    "The smoke consumer links the actual library and compiles without -freflection; its preprocessor guard rejects leakage. Every generated compile command confirmed target-private reflection.",
+    "CMake requires the qualified GCC16 toolchain and Ninja Multi-Config, C++26 without extensions, strict diagnostics, ARM64 and explicit SDK through the qualified toolchain.",
+    "The MinSizeRel workaround only disables constructor/destructor decloning on the two targets. Language mode, exceptions and RTTI remain enabled. Pinned GCC manual and real red/fix/reverse controls support this scope.",
+    "The harness records actual command return codes/log hashes, fails on an unexpected result, kills its owned process group on timeout/interruption, and checks protected state in finally. Timeout and interruption paths were reviewed statically only."
+  ],
+  "not_executed": [
+    "No extra harness rerun or expanded configuration matrix",
+    "No artificial timeout/interruption or process-failure injection",
+    "No dependency install, global edit, network route, model session, cache server, daemon, container or OCI acceptance",
+    "No P2996 LLVM lane, vcpkg dependency graph, sanitizer/coverage matrix, installed or relocated consumer, native module, plugin adapter or provider behavior qualification"
+  ],
+  "shared_writes_by_reviewer": false,
+  "private_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Debug.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-MinSizeRel.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-RelWithDebInfo.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-shared-Release.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Debug.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-MinSizeRel.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-RelWithDebInfo.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/architecture-static-Release.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Debug.stdout",
+      "sha256": "f5759ccd1189c47a2ce53b0d697b1e2c6311ab2a20f54e4770090b63d489c549"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-MinSizeRel.stdout",
+      "sha256": "4bd3adc1853ae3a00d7fc46408f22a20ac07aaef38b1375923febff39425502c"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-RelWithDebInfo.stdout",
+      "sha256": "94249b0cb486f5ff65b8a79e65964c5f1c18a207ca12c58034024612601b5b6e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-shared-Release.stdout",
+      "sha256": "b63539370bf33cdfe1fb624f6d0289137151cf3a55099cbd677e687515db462f"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Debug.stdout",
+      "sha256": "21c4dc880b314a4fbba62dd0bf505824c4de4c2707914c74856b490508ee5ca6"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-MinSizeRel.stdout",
+      "sha256": "46deba34fc4588da959384277d523629d9f10bb8c57f0401875c45c6f3f8cb47"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-RelWithDebInfo.stdout",
+      "sha256": "e5544a111099375c1de12f403b91b5cea37907d36d8a02b6464b1c586a303888"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/build-static-Release.stdout",
+      "sha256": "6e31a46588eef82711b4f0d9db4701662ea45e079d4d7d68ecf32e61f5865d33"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-shared.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-shared.stdout",
+      "sha256": "9e6db181d92b810e0cb85352c3897290aba76349935c1f0b20550ea8682be0f0"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-static.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/configure-static.stdout",
+      "sha256": "2cef472e56331649795218dcae2d3cd1801bc4ce31c47a92ae3e389d4bddd9c0"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/ctest-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/ctest-version.stdout",
+      "sha256": "21710b282175af2534f38143fae98bb3de9762a1ffcce63fda137c2a1a177ece"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed-run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed-run.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-fixed.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-red.stderr",
+      "sha256": "b622570854da1320e161af6d7c6bd35b9b7942f7a08370a806f02659ccb1f503"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-red.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-reverse.stderr",
+      "sha256": "b88c0e481569e2bbc61e37c1d367ba33811aaca5ddcbb72a5e2e7238eb6a4c05"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/declone-reverse.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-after.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/default-before.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Debug.stdout",
+      "sha256": "743eaf33dd22944125e3361019736c8f7fe306072350b9103f559545fdc65755"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-MinSizeRel.stdout",
+      "sha256": "b1701503b30f09aa272bcf4619e6b651905a4f416094adec58ddb5e6c7f910f3"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-RelWithDebInfo.stdout",
+      "sha256": "e4beb3151e9b7f5a1835e58ac828b9917e06b9d16977964178444617f320bda6"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-shared-Release.stdout",
+      "sha256": "ffe881d207d737fec834cef552e451d6edb15d1a593e6b2d905646ef9a49519e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Debug.stdout",
+      "sha256": "6613b3d680357caf282a56c6840e70ae77849f600930fae1df14e070b8e98406"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-MinSizeRel.stdout",
+      "sha256": "f934c31c506220fe22dbde48c83701be1cad9bca791d59a7c319a336973d5445"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-RelWithDebInfo.stdout",
+      "sha256": "1418fe7a60c61cb17203a75846e4624a43c63f3108ffeb1988a13de4c5cc343a"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/libraries-static-Release.stdout",
+      "sha256": "a0273a4f73be57b6ea5663ba364c4141b8c2126d00cace17593eba99d31372a2"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Debug.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-MinSizeRel.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-RelWithDebInfo.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-shared-Release.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Debug.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-MinSizeRel.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-RelWithDebInfo.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/library-architecture-static-Release.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Debug.stderr",
+      "sha256": "1b6f536c73449dd80c96fc9e1b3461743ef2a09c25cd08b825906ec397421bad"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Debug.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-MinSizeRel.stderr",
+      "sha256": "14e6aa13757f7c9986ff528e2513013e72e4e7c08af359de526164020b5ef94b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-MinSizeRel.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-RelWithDebInfo.stderr",
+      "sha256": "251aa43d7e0a2963e6e6ff16b37b81a74e1430b27d6b1ab241d4f5fdf120eb2d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-RelWithDebInfo.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Release.stderr",
+      "sha256": "e407caefa9fa8c7877e64204ecce50865843ce8a1c957cbb24afeb2b1db667af"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-shared-Release.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Debug.stderr",
+      "sha256": "fb50cbaa2628aa871ee176e3e0c72dc8b4a5e9a22142e92dee9aacffc798036e"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Debug.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-MinSizeRel.stderr",
+      "sha256": "6bc6ace790aa6fb0128c8e6979d15d3caa1317618e48fd77eb177e1b61a8ece9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-MinSizeRel.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-RelWithDebInfo.stderr",
+      "sha256": "088db64a56f9e4f2fe5bbe3582bc36a2850ae94548f463dac8cb47ebcd913abf"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-RelWithDebInfo.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Release.stderr",
+      "sha256": "4e56dc9a0613c85a3ca5285577eb82b3d8e32fad0b3f84684246e13939d31d11"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/runtime-static-Release.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Debug.stdout",
+      "sha256": "c83a5361d97fe573c5f6c9219a194d5b0df17034d0b87816830bcdd513204048"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-MinSizeRel.stdout",
+      "sha256": "f3d5457a5ba069728f281f0c2c665dd694a2f49ffb1afa6dbb9c909e80cef657"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-RelWithDebInfo.stdout",
+      "sha256": "784770fc3036d56a1b481bb28f8fd1c19a3cd78ffe82bfac0eb599095922abbf"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-shared-Release.stdout",
+      "sha256": "58972869668d12147e7ab0b7437e19eeef230773c854be0606319f32f7262fb6"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Debug.stdout",
+      "sha256": "340a9358f08e5230373c4419e11488033403119cab7263d0727b668be445fe92"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-MinSizeRel.stdout",
+      "sha256": "2124f3e2b8cd0c3dc299ddb683915f268822398866208d3628b1a54a2e315e07"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-RelWithDebInfo.stdout",
+      "sha256": "f2dbb0b64d87f8f05d2b1bf565caa93aa04a2f3facc9361056be6698b2336a5b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/test-static-Release.stdout",
+      "sha256": "d1aacce547ccc5f1818d805bfd6560f5215340dbf1a5bc657209f1b59a9eb082"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/acceptance-baseline.stdout",
+      "sha256": "496a94e11752608e33247267376c4a6419e716b19ec04fb4205a7c33d3fe4515"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/git-final.json",
+      "sha256": "58214193559b071507e90641750fc2a34743c7d9f8334ba16bcc0c108ce0fbc8"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/harness-invocation.json",
+      "sha256": "122fc34b6f28584c0124a5b5bb4ca8d4e7b060c870a59a8894b8f86f22bb8d09"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/harness-invocation.stdout",
+      "sha256": "f8becb644995c5b2728c9c1e93a107594bc28d9cb61c5f5f6a0efd1cc1dcf17f"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/parent-evidence-review.json",
+      "sha256": "e8bbcf1f7dffc7fea098881306d1961f950f4b2c661b4413961f0dce1d1719df"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/post-state.json",
+      "sha256": "7ca135f928899fa44e15ef7891ec49741f174bb394a5b1e3493f81a8fc47e5c8"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/pre-state.json",
+      "sha256": "070f519c5ae249af1e614edafaf0baf3a55d708566eb0042242bbddcffb51e8c"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/qualification.json",
+      "sha256": "497eb1805a22ae005861aca1829b22a7139081bca17aff89a951f5547631a77f"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/CMakeCache.txt",
+      "sha256": "14d678a16003dc5104cb169e08c2cb2b1cd591f527fd248d33aef2b232fddccc"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/compile_commands.json",
+      "sha256": "dc39a72abb643767d6aee774afb250e4fda0e1f6496ada14547f5fe19ecb5e30"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/core-Debug.txt",
+      "sha256": "2878ccab4b3cff57159b9b9f861fbe1c47894f9ed66f37ba32a0df380f2bd3cb"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/core-MinSizeRel.txt",
+      "sha256": "49128cd9b945b1e8b34517ec99bbe95b6dd1d9a09c5362bc0679eb5c5cc124ec"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/core-RelWithDebInfo.txt",
+      "sha256": "fd0a6a51b502b9c2f4de4d8dbb2a72966bedaeb761d17fb1984ed4d14aa72d57"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/shared/core-Release.txt",
+      "sha256": "30dbe2dc44d0d053fb3d8e2f0ea3e028dbaa78b96fb69e474341a1a76a855625"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/CMakeCache.txt",
+      "sha256": "57724d2e51d236248a30b87ea117011c9fe808c0b0ae1d801de5830c75c51278"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/compile_commands.json",
+      "sha256": "2e0829e54f1eda015442109780d1673920a317d08a799d0dba0240f4a8958271"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/core-Debug.txt",
+      "sha256": "4fe3113b29cb348ec00202c990e652675429235814264ef44f2af986f145c93b"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/core-MinSizeRel.txt",
+      "sha256": "0335d586cf659113de411300eafa087270a9780c3c2be6dbc0d88b6588972c6e"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/core-RelWithDebInfo.txt",
+      "sha256": "bf10914c5c011ce4f914f208facddb1eafee56b8ed37a72a554b8587041fc92e"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/run/static/core-Release.txt",
+      "sha256": "c7047d98549497d2c5453b654d9a92ce0464bae9fab0eebd0ca0be048b444784"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/runtime-analysis.json",
+      "sha256": "49d3c620fb0329bf9ce21a1a09a07bf83c44686d6affd49ecf907f40f6e01bbc"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/static-checks.json",
+      "sha256": "9b8db09afdb5a1e7debd86f7641fad26a04922ba8b7fd3dc22b9ecd10422a989"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    }
+  ]
+}

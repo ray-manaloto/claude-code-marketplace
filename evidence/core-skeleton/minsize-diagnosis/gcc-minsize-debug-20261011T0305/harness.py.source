@@ -1,0 +1,67 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib, json, os, re, signal, subprocess, sys
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+sys.path.insert(0, str(ROOT / 'dev/toolchains'))
+from gcc_install import digest, preserved, read, package_state
+
+directory = Path(sys.argv[1]).resolve()
+os.umask(0o077)
+directory.mkdir(parents=True, exist_ok=False)
+(directory / 'cwd').mkdir()
+before = read('install-preimages.json')
+context = json.loads((Path(before['normal_environment']['argv'][-1]).parent / 'context.json').read_text())
+environment = context['environment'] | {'MISE_OFFLINE':'1'}
+runtime = json.loads((ROOT / 'evidence/gcc-runtime/qualification.json').read_text())
+report = {'state':'running', 'started_at':datetime.now(timezone.utc).isoformat(), 'commands':[],
+          'harness_sha256':digest(Path(__file__)), 'inputs':{str(p.relative_to(ROOT)):digest(p) for p in
+          [ROOT/x for x in ('CMakeLists.txt','include/aggregated_research/core.hpp','src/core.cpp','src/smoke.cpp',
+           'cmake/toolchains/gcc16-macos-arm64.cmake','evidence/gcc-runtime/qualification.json')]}}
+def save():
+    (directory/'qualification.json').write_text(json.dumps(report,indent=2)+'\n')
+def run(label, argv, expected=0, env=None):
+    row={'case':label,'argv':argv,'started_at':datetime.now(timezone.utc).isoformat()}
+    report['commands'].append(row); save()
+    paths=[directory/(label+suffix) for suffix in ('.stdout','.stderr')]
+    with paths[0].open('wb') as out, paths[1].open('wb') as err:
+        p=subprocess.Popen(argv,env=environment if env is None else env,cwd=directory,
+                           stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+        try:
+            p.wait(timeout=60)
+        except (subprocess.TimeoutExpired, KeyboardInterrupt):
+            row['interrupted']=True
+            for sig in (signal.SIGTERM,signal.SIGKILL):
+                try: os.killpg(p.pid,sig)
+                except ProcessLookupError: pass
+                if sig==signal.SIGTERM:
+                    try: p.wait(timeout=5)
+                    except subprocess.TimeoutExpired: pass
+            p.wait(); raise
+        finally:
+            row.update({'returncode':p.returncode,'logs':[{'path':str(f),'sha256':digest(f)} for f in paths]})
+            save()
+    print(json.dumps({'case':label,'returncode':p.returncode}),flush=True)
+    assert p.returncode==expected,label
+    return paths[0].read_text(),paths[1].read_text()
+try:
+    preserved(before,installed=True)
+    mise=read('install-proposal.json')['native_mise']['path']
+    environment['MARKETPLACE_GCC16_PREFIX']='/opt/homebrew/Cellar/gcc/16.2.0'
+    prefix=[mise,'--no-hooks','-C',str(directory/'cwd'),'-E','gcc16','exec','--fresh-env','--no-deps','--']
+    cxx=runtime['identities']['cxx']['path'];sdk=runtime['sdk']['path']
+    (directory/'first.cpp').write_text('#include <stdexcept>\nint probe() { return 42; }\n')
+    (directory/'second.cpp').write_text('#include <stdexcept>\nint probe(); int main() { return probe() == 42 ? 0 : 1; }\n')
+    flags=['-std=c++26','-Os','-fmodules-ts','-isysroot',sdk,'-mmacosx-version-min=27.0']
+    _,err=run('minimal-red',prefix+[cxx,*flags,str(directory/'first.cpp'),str(directory/'second.cpp'),'-o',str(directory/'witness')],expected=1)
+    assert 'duplicate symbol' in err
+    for label, selected in [('without-modules',[x for x in flags if x!='-fmodules-ts']),
+                            ('with-O2',['-O2' if x=='-Os' else x for x in flags])]:
+        output=directory/label
+        run(label,prefix+[cxx,*selected,str(directory/'first.cpp'),str(directory/'second.cpp'),'-o',str(output)])
+        run(label+'-run',prefix+[str(output)])
+    (directory/'second-one-header.cpp').write_text('int probe(); int main() { return probe() == 42 ? 0 : 1;}\n')
+    run('one-header',prefix+[cxx,*flags,str(directory/'first.cpp'),str(directory/'second-one-header.cpp'),'-o',str(directory/'one-header')])
+    run('one-header-run',prefix+[str(directory/'one-header')])
+    report['state']='PASS: duplicate-symbol failure isolated to -Os plus -fmodules-ts across two stdexcept includes' 
+finally:
+    preserved(before,installed=True);report['protected_state_unchanged']=True;save()
