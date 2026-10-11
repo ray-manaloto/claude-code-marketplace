@@ -67,8 +67,8 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 03b2a | Native core command acceptance rules | Recorded native command replay, rejection controls and independent review | Complete |
 | 03b2b | Native core two-compiler qualification | Static/shared four-configuration cells, runtime origins, failure controls and independent review | Complete |
 | 09a | Pinned IWYU source and matching-fork build preparation | Exact source/license identity, native LLVM package contract and independent review | Complete |
-| 09b | Guarded private IWYU build and installation | Fresh shared capacity, exact compiler/link commands, native exits, dependencies and independent review | Historical pass; current runtime drift |
-| 09b1 | Reattest replaced mise runtime | Exact single-path change, existing profile parity, protected-state checks and independent review | Pending |
+| 09b | Guarded private IWYU build and installation | Fresh shared capacity, exact compiler/link commands, native exits, dependencies and independent review | Complete; runtime drift reattested in 09b1 |
+| 09b1 | Reattest replaced mise runtime | Exact single-path change, existing profile parity, protected-state checks and independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

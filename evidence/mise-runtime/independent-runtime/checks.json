@@ -1,0 +1,629 @@
+{
+  "state": "PASS",
+  "started_at": "2026-10-11T15:28:43.652007+00:00",
+  "controls": [
+    {
+      "case": "unique_exact_record_only_two_fields_changed",
+      "result": "PASS",
+      "expected_rejection": false,
+      "exception": null,
+      "inputs_unmodified": true
+    },
+    {
+      "case": "record_order_independent_deep_copy",
+      "result": "PASS",
+      "expected_rejection": false,
+      "exception": null,
+      "inputs_unmodified": true
+    },
+    {
+      "case": "missing_record",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "duplicate_record",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_sha256",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_bytes",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_mode",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_lstat_mode",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_resolved_path",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_path",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_exists",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_lexists",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "historical_record_changed_symlink_target",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "previous_hash_mismatch",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "current_path_mismatch",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "only_hash_changed",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "only_size_changed",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "neither_identity_field_changed",
+      "result": "PASS",
+      "expected_rejection": true,
+      "exception": "AssertionError",
+      "inputs_unmodified": true
+    },
+    {
+      "case": "hash_bound_contract_acceptance",
+      "result": "PASS",
+      "expected_rejection": false,
+      "inputs_unmodified": true
+    },
+    {
+      "case": "contract_hash_rejection",
+      "result": "PASS",
+      "expected_rejection": true,
+      "inputs_unmodified": true
+    },
+    {
+      "case": "referenced_input_hash_rejection",
+      "result": "PASS",
+      "expected_rejection": true,
+      "inputs_unmodified": true
+    }
+  ],
+  "native_subprocesses": 0,
+  "git_identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "eb92a7478186334d31dbfc0c6e0e1da0c6b5abe5",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "maintained_file_hashes": {
+    "dev/toolchains/mise_runtime.py": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+    "docs/iwyu-toolchain.md": "ea096c5b6d59a2350c14bf074f4b06867608270773ec2ba85e87be3a556dfcfb",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "0ff5f91e248f254afa5ea096538f9e1beb8a26687c5cc7e35e067b636b55582d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "958f736f82add975695cce1a0fb1b15104fffd294e084aaa3abcff29c7bb833f"
+  },
+  "helper": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_runtime.py",
+    "sha256": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+    "bytes": 7299
+  },
+  "contract": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/contract.json",
+    "sha256": "2a9f8646ae2cc3bd76ddd424eae64c91e0efb4ba6f1eadaeef6c90dbf367b752",
+    "bytes": 3622
+  },
+  "operation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation/qualification.json",
+    "sha256": "3f0742db1ce2e6c2b8994cc0c28eab3a2ae0aa3acfd20ec31564cce6745761c8",
+    "bytes": 15958
+  },
+  "admission": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/admission.json",
+    "sha256": "0955660ea7c1d2d80c4f5253837fd37aaf6b96c548195428c63e63469aa30859",
+    "bytes": 815
+  },
+  "original_copy_pairs": 70,
+  "final_operation_copy_pairs": 28,
+  "original_native_log_hashes_verified": 54,
+  "retained_attempts": [
+    {
+      "attempt": "attempt1",
+      "qualification": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt1/qualification.json",
+        "sha256": "99931b74259fe9b134b33bda4c2703893bdf2e85a3c3284ba8b7230c1ddeffe4",
+        "bytes": 610
+      },
+      "manifest": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt1-manifest.json",
+        "sha256": "62952c689714a1c5b0e716033d443b5a45e3dd8deb0f2f622925cee3bc00da4b",
+        "bytes": 1284
+      },
+      "helper": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/initial-helper.py.source",
+        "sha256": "b31a6faec9698467f276e030148f7e5512ef189b271a63671b9b16c40a36ed68",
+        "bytes": 6771
+      },
+      "wrapper_returncode": 1,
+      "native_returncodes": [],
+      "protected_state_unchanged": true
+    },
+    {
+      "attempt": "attempt2",
+      "qualification": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt2/qualification.json",
+        "sha256": "0a49a1102b7315833e6d68cd4b7d1e78ec2409cce3e892bab2aef78b4972a6ac",
+        "bytes": 6075
+      },
+      "manifest": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt2-manifest.json",
+        "sha256": "857c5b602f8cdbeba6054ae14456b64a3e62af0190c2caad1941568cfe1333aa",
+        "bytes": 4661
+      },
+      "helper": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/initial-helper.py.source",
+        "sha256": "b31a6faec9698467f276e030148f7e5512ef189b271a63671b9b16c40a36ed68",
+        "bytes": 6771
+      },
+      "wrapper_returncode": 1,
+      "native_returncodes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "protected_state_unchanged": true
+    },
+    {
+      "attempt": "attempt3",
+      "qualification": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt3/qualification.json",
+        "sha256": "9e52f66d813ec0bd0dba723ce7b661c92a5c85ed82969352ed4d30f0aa775172",
+        "bytes": 12712
+      },
+      "manifest": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt3-manifest.json",
+        "sha256": "11234d14bfe65be866de20aadfe009ee17a4b1f9e9c930790b57d86008c1e24c",
+        "bytes": 7737
+      },
+      "helper": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/attempt3-helper.py.source",
+        "sha256": "e67b847fb5d87f977d1cd97adc9d092f6cc25228448800a1bbcf0f30e4bf0817",
+        "bytes": 6985
+      },
+      "wrapper_returncode": 1,
+      "native_returncodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "protected_state_unchanged": true
+    },
+    {
+      "attempt": "operation",
+      "qualification": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation/qualification.json",
+        "sha256": "3f0742db1ce2e6c2b8994cc0c28eab3a2ae0aa3acfd20ec31564cce6745761c8",
+        "bytes": 15958
+      },
+      "manifest": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation-manifest.json",
+        "sha256": "f8b0b4c9af8591ac85569e57a14dcc0db3b3a585efce33120b9c12fae0b7f5e8",
+        "bytes": 8807
+      },
+      "helper": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_runtime.py",
+        "sha256": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+        "bytes": 7299
+      },
+      "wrapper_returncode": 0,
+      "native_returncodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "protected_state_unchanged": true
+    }
+  ],
+  "profiles": {
+    "default": {
+      "stdout": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T152051Z/default-profile.stdout",
+        "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+        "bytes": 1145
+      },
+      "reference": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/default-after.stdout",
+        "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+        "bytes": 1145
+      },
+      "profile": {
+        "selected": {
+          "CC": "/opt/homebrew/opt/llvm/bin/clang",
+          "CXX": "/opt/homebrew/opt/llvm/bin/clang++",
+          "CFLAGS": null,
+          "CXXFLAGS": null,
+          "CPPFLAGS": "-I/opt/homebrew/opt/llvm/include -D_LIBCPP_DISABLE_AVAILABILITY",
+          "LDFLAGS": "-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++",
+          "AR": null,
+          "RANLIB": null,
+          "LD": null,
+          "AS": null,
+          "CPATH": null,
+          "C_INCLUDE_PATH": null,
+          "CPLUS_INCLUDE_PATH": null,
+          "OBJC_INCLUDE_PATH": null,
+          "LIBRARY_PATH": null,
+          "COMPILER_PATH": null,
+          "PKG_CONFIG_PATH": "/opt/homebrew/opt/llvm/lib/pkgconfig",
+          "PKG_CONFIG_LIBDIR": null,
+          "CMAKE_PREFIX_PATH": null,
+          "CMAKE_TOOLCHAIN_FILE": null,
+          "CMAKE_GENERATOR": null,
+          "CMAKE_C_COMPILER_LAUNCHER": null,
+          "CMAKE_CXX_COMPILER_LAUNCHER": null,
+          "SDKROOT": null,
+          "MACOSX_DEPLOYMENT_TARGET": null,
+          "DYLD_LIBRARY_PATH": null,
+          "DYLD_FALLBACK_LIBRARY_PATH": null,
+          "MARKETPLACE_CPP_LANE": null,
+          "MARKETPLACE_P2996_PREFIX": null,
+          "MARKETPLACE_GCC16_PREFIX": null,
+          "MAKEFLAGS": "-j2",
+          "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+        },
+        "path_sha256": "c35608cc0f5dad8111fedb413b35c2ed5559e8b57dfc2cc6c2fbb32aacde08b4",
+        "homebrew_llvm_on_path": true
+      },
+      "isolation": {
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": "-I/opt/homebrew/opt/llvm/include -D_LIBCPP_DISABLE_AVAILABILITY",
+        "LDFLAGS": "-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++",
+        "CPATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "SDKROOT": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "DYLD_INSERT_LIBRARIES": null
+      }
+    },
+    "cpp-build": {
+      "stdout": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T152051Z/cpp-build-profile.stdout",
+        "sha256": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473",
+        "bytes": 895
+      },
+      "reference": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/named-profile.stdout",
+        "sha256": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473",
+        "bytes": 895
+      },
+      "profile": {
+        "selected": {
+          "CC": null,
+          "CXX": null,
+          "CFLAGS": null,
+          "CXXFLAGS": null,
+          "CPPFLAGS": null,
+          "LDFLAGS": null,
+          "AR": null,
+          "RANLIB": null,
+          "LD": null,
+          "AS": null,
+          "CPATH": null,
+          "C_INCLUDE_PATH": null,
+          "CPLUS_INCLUDE_PATH": null,
+          "OBJC_INCLUDE_PATH": null,
+          "LIBRARY_PATH": null,
+          "COMPILER_PATH": null,
+          "PKG_CONFIG_PATH": null,
+          "PKG_CONFIG_LIBDIR": null,
+          "CMAKE_PREFIX_PATH": null,
+          "CMAKE_TOOLCHAIN_FILE": null,
+          "CMAKE_GENERATOR": null,
+          "CMAKE_C_COMPILER_LAUNCHER": null,
+          "CMAKE_CXX_COMPILER_LAUNCHER": null,
+          "SDKROOT": null,
+          "MACOSX_DEPLOYMENT_TARGET": null,
+          "DYLD_LIBRARY_PATH": null,
+          "DYLD_FALLBACK_LIBRARY_PATH": null,
+          "MARKETPLACE_CPP_LANE": "tools-only",
+          "MARKETPLACE_P2996_PREFIX": null,
+          "MARKETPLACE_GCC16_PREFIX": null,
+          "MAKEFLAGS": "-j2",
+          "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+        },
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      },
+      "isolation": {
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "CPATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "SDKROOT": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "DYLD_INSERT_LIBRARIES": null
+      }
+    },
+    "p2996": {
+      "stdout": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T152051Z/p2996-profile.stdout",
+        "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+        "bytes": 1197
+      },
+      "reference": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/operation/p2996-profile.stdout",
+        "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+        "bytes": 1197
+      },
+      "profile": {
+        "selected": {
+          "CC": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+          "CXX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+          "CFLAGS": null,
+          "CXXFLAGS": null,
+          "CPPFLAGS": null,
+          "LDFLAGS": null,
+          "AR": null,
+          "RANLIB": null,
+          "LD": null,
+          "AS": null,
+          "CPATH": null,
+          "C_INCLUDE_PATH": null,
+          "CPLUS_INCLUDE_PATH": null,
+          "OBJC_INCLUDE_PATH": null,
+          "LIBRARY_PATH": null,
+          "COMPILER_PATH": null,
+          "PKG_CONFIG_PATH": null,
+          "PKG_CONFIG_LIBDIR": null,
+          "CMAKE_PREFIX_PATH": null,
+          "CMAKE_TOOLCHAIN_FILE": null,
+          "CMAKE_GENERATOR": null,
+          "CMAKE_C_COMPILER_LAUNCHER": null,
+          "CMAKE_CXX_COMPILER_LAUNCHER": null,
+          "SDKROOT": null,
+          "MACOSX_DEPLOYMENT_TARGET": null,
+          "DYLD_LIBRARY_PATH": null,
+          "DYLD_FALLBACK_LIBRARY_PATH": null,
+          "MARKETPLACE_CPP_LANE": "p2996",
+          "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+          "MARKETPLACE_GCC16_PREFIX": null,
+          "MAKEFLAGS": "-j2",
+          "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+        },
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      },
+      "isolation": {
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "CPATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "SDKROOT": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "DYLD_INSERT_LIBRARIES": null
+      }
+    },
+    "gcc16": {
+      "stdout": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T152051Z/gcc16-profile.stdout",
+        "sha256": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+        "bytes": 999
+      },
+      "reference": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/operation/gcc16-profile.stdout",
+        "sha256": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+        "bytes": 999
+      },
+      "profile": {
+        "selected": {
+          "CC": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+          "CXX": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+          "CFLAGS": null,
+          "CXXFLAGS": null,
+          "CPPFLAGS": null,
+          "LDFLAGS": null,
+          "AR": null,
+          "RANLIB": null,
+          "LD": null,
+          "AS": null,
+          "CPATH": null,
+          "C_INCLUDE_PATH": null,
+          "CPLUS_INCLUDE_PATH": null,
+          "OBJC_INCLUDE_PATH": null,
+          "LIBRARY_PATH": null,
+          "COMPILER_PATH": null,
+          "PKG_CONFIG_PATH": null,
+          "PKG_CONFIG_LIBDIR": null,
+          "CMAKE_PREFIX_PATH": null,
+          "CMAKE_TOOLCHAIN_FILE": null,
+          "CMAKE_GENERATOR": null,
+          "CMAKE_C_COMPILER_LAUNCHER": null,
+          "CMAKE_CXX_COMPILER_LAUNCHER": null,
+          "SDKROOT": null,
+          "MACOSX_DEPLOYMENT_TARGET": null,
+          "DYLD_LIBRARY_PATH": null,
+          "DYLD_FALLBACK_LIBRARY_PATH": null,
+          "MARKETPLACE_CPP_LANE": "gcc16",
+          "MARKETPLACE_P2996_PREFIX": null,
+          "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0",
+          "MAKEFLAGS": "-j2",
+          "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+        },
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      },
+      "isolation": {
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "CPATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "SDKROOT": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "DYLD_INSERT_LIBRARIES": null
+      }
+    }
+  },
+  "writer_censuses": [
+    {
+      "at": "2026-10-11T15:20:54.844982+00:00",
+      "processes": [
+        {
+          "pid": 56524,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:graphify"
+        },
+        {
+          "pid": 56526,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:cbm"
+        },
+        {
+          "pid": 56528,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:lab-results"
+        }
+      ],
+      "lock_holder_check_rc": 1,
+      "lock_holders": []
+    },
+    {
+      "at": "2026-10-11T15:20:56.014372+00:00",
+      "processes": [
+        {
+          "pid": 56524,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:graphify"
+        },
+        {
+          "pid": 56526,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:cbm"
+        },
+        {
+          "pid": 56528,
+          "ppid": 21017,
+          "executable": "mise",
+          "known_task": "mcp:lab-results"
+        }
+      ],
+      "lock_holder_check_rc": 1,
+      "lock_holders": []
+    }
+  ],
+  "contract_input_count": 15,
+  "old_proposal_input_count": 52,
+  "old_proposal_tool_count": 11,
+  "inspector_recipe": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/inspector-recipe.json",
+    "sha256": "d0215a0ac5f85dcd319da154f9e10077d617b0cf30301221970c29b4aff6d816",
+    "bytes": 20223
+  },
+  "retained_static_gate_returncodes": [
+    0,
+    0
+  ],
+  "original_Claude_files": 19,
+  "findings": [],
+  "runtime_scope": "Observed parent native operation; no native profile invocation by reviewer",
+  "protected_invocations": 0,
+  "completed_at": "2026-10-11T15:28:43.707344+00:00"
+}

@@ -1,0 +1,178 @@
+{
+  "state": "FAIL",
+  "helper_sha256": "b31a6faec9698467f276e030148f7e5512ef189b271a63671b9b16c40a36ed68",
+  "contract_sha256": "2a9f8646ae2cc3bd76ddd424eae64c91e0efb4ba6f1eadaeef6c90dbf367b752",
+  "commands": [
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--version"
+      ],
+      "started_at": "2026-10-11T15:18:45.962125+00:00",
+      "pid": 55490,
+      "returncode": 0,
+      "elapsed_seconds": 0.015957833034917712,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/version.stdout",
+          "sha256": "aafc9ea40926d1caedd237951384706dbdbe597b3904890d65c79846459bea0e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/bin/mise"
+      ],
+      "started_at": "2026-10-11T15:18:45.979178+00:00",
+      "pid": 55491,
+      "returncode": 0,
+      "elapsed_seconds": 0.08052399998996407,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/architecture.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/architecture.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "exec-help",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "exec",
+        "--help"
+      ],
+      "started_at": "2026-10-11T15:18:46.060688+00:00",
+      "pid": 55492,
+      "returncode": 0,
+      "elapsed_seconds": 0.010937917046248913,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/exec-help.stdout",
+          "sha256": "5454ac3948ed0a12dfe62fef8ca6ce76534349dffdba70f94c06eb8310d5bf3a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/exec-help.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T15:18:46.072518+00:00",
+      "pid": 55493,
+      "returncode": 0,
+      "elapsed_seconds": 0.09550637495703995,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/default-profile.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/default-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-isolation",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import json,os,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "CPATH",
+        "CPLUS_INCLUDE_PATH",
+        "LIBRARY_PATH",
+        "COMPILER_PATH",
+        "SDKROOT",
+        "DYLD_LIBRARY_PATH",
+        "DYLD_FALLBACK_LIBRARY_PATH",
+        "DYLD_INSERT_LIBRARIES"
+      ],
+      "started_at": "2026-10-11T15:18:46.168965+00:00",
+      "pid": 55494,
+      "returncode": 0,
+      "elapsed_seconds": 0.07475820800755173,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/default-isolation.stdout",
+          "sha256": "46985ed969dec04fd43926f9c6ec7fc0d48deff2539790a2c3d857b60679ddcf"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-runtime-20261011T151843Z/default-isolation.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "current_mise": {
+    "path": "/Users/rmanaloto/.local/bin/mise",
+    "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+    "bytes": 127303648,
+    "version": "2026.10.8 macos-arm64 (2026-10-11)"
+  },
+  "writer_census_before": {
+    "at": "2026-10-11T15:18:45.961825+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "error": "AssertionError('default')",
+  "protected_state_unchanged": true
+}

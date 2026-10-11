@@ -1,0 +1,204 @@
+{
+  "result": "PASS: task 09b1 observed mise runtime reattestation",
+  "findings": [],
+  "created_at": "2026-10-11T15:31:55.226247+00:00",
+  "git_identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "eb92a7478186334d31dbfc0c6e0e1da0c6b5abe5",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "ownership": "Parent sole implementation writer; reviewer owns no maintained files and preserved shared edits.",
+  "helper_sha256": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+  "contract_sha256": "2a9f8646ae2cc3bd76ddd424eae64c91e0efb4ba6f1eadaeef6c90dbf367b752",
+  "operation_sha256": "3f0742db1ce2e6c2b8994cc0c28eab3a2ae0aa3acfd20ec31564cce6745761c8",
+  "final_maintained_file_hashes": {
+    "dev/toolchains/mise_runtime.py": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f",
+    "docs/iwyu-toolchain.md": "250ac2241d3fc3838644ad21c3d1fac11315efb3d3879a3f364d4b4868865ab0",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "d06c0967ad2d1f1e3b42cc5d169fbc0b74853a0d5934e73df1c5655d8eab77c2",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "38add0e4948e7c8871169d277e5431c3ae0ad0297e0885430b779b44790fac64",
+    "docs/status.md": "5814c975a64e4dae3171fe51b7b30d4bbbc4970279cfbb2e9f3a1bf484cc82d7"
+  },
+  "documentation_closure": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-runtime-review-k_27cc42/documentation-closure.json",
+    "sha256": "e277b4f5addefaf6517b623120f492c4fc5b57f210de7ade380b053753205a64",
+    "bytes": 1571
+  },
+  "admission": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/admission.json",
+    "sha256": "0955660ea7c1d2d80c4f5253837fd37aaf6b96c548195428c63e63469aa30859",
+    "bytes": 815
+  },
+  "operation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation/qualification.json",
+    "sha256": "3f0742db1ce2e6c2b8994cc0c28eab3a2ae0aa3acfd20ec31564cce6745761c8",
+    "bytes": 15958
+  },
+  "inspector_recipe": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/inspector-recipe.json",
+    "sha256": "d0215a0ac5f85dcd319da154f9e10077d617b0cf30301221970c29b4aff6d816",
+    "bytes": 20223
+  },
+  "current_mise": {
+    "path": "/Users/rmanaloto/.local/bin/mise",
+    "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+    "bytes": 127303648,
+    "version": "2026.10.8 macos-arm64 (2026-10-11)"
+  },
+  "executed_by_reviewer": {
+    "pure_data_controls": 21,
+    "checks": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-runtime-review-k_27cc42/checks.json",
+      "sha256": "709daaf632dacdd1f4b835dcdd306c511ba4c6bab982b137a6d9ee40228aa364",
+      "bytes": 21478
+    },
+    "audit_command": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-runtime-review-k_27cc42/audit-command.json",
+      "sha256": "f31cba7509ec2763b33044e922ad21741f330ec3a51066df6f7994901a8c5e06",
+      "bytes": 877
+    },
+    "protected_invocations": 1,
+    "protected_result": "PASS",
+    "protection_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-runtime-review-k_27cc42/protected-invocation.json",
+      "sha256": "0bebb37452bd2126e1285ecef2897181c0eb37287fb2b1d035da01534fa2fe30",
+      "bytes": 1665
+    },
+    "protection_command": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-runtime-review-k_27cc42/protection-command.json",
+      "sha256": "d81d0d9a84b897b84c80613776db9466d66164906bba4eb46cd0a26c20548dc0",
+      "bytes": 892
+    },
+    "command_returncodes": [
+      0,
+      0
+    ],
+    "native_profile_compiler_build_install_network_service_lease_invocations": 0
+  },
+  "control_coverage": [
+    "Unique exactly matched historical record; record-order independence",
+    "Deep copy; caller data unmodified; only SHA and bytes replaced",
+    "Missing/duplicate and altered hash, size, modes, path, existence or symlink fields rejected",
+    "Mismatched prior hash/current path and incomplete/no replacement rejected",
+    "Contract and referenced-input hash mismatches rejected"
+  ],
+  "observed_native_receipts": {
+    "final_wrapper_returncode": 0,
+    "commands": [
+      {
+        "case": "version",
+        "returncode": 0
+      },
+      {
+        "case": "architecture",
+        "returncode": 0
+      },
+      {
+        "case": "exec-help",
+        "returncode": 0
+      },
+      {
+        "case": "default-profile",
+        "returncode": 0
+      },
+      {
+        "case": "default-isolation",
+        "returncode": 0
+      },
+      {
+        "case": "cpp-build-profile",
+        "returncode": 0
+      },
+      {
+        "case": "cpp-build-isolation",
+        "returncode": 0
+      },
+      {
+        "case": "p2996-profile",
+        "returncode": 0
+      },
+      {
+        "case": "p2996-isolation",
+        "returncode": 0
+      },
+      {
+        "case": "gcc16-profile",
+        "returncode": 0
+      },
+      {
+        "case": "gcc16-isolation",
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "returncode": 0
+      }
+    ],
+    "final_original_copy_pairs": 28,
+    "all_attempt_original_copy_pairs": 70,
+    "all_attempt_native_log_hashes_checked": 54,
+    "profiles": "default, cpp-build, p2996 and gcc16 match complete historical stdout bytes and decoded JSON; all stderr empty.",
+    "isolation": "Default retains its accepted CPPFLAGS/LDFLAGS. All twelve isolation values are null in the three named profiles; each compiler lane receives only its exact qualified prefix.",
+    "fresh_environment": "Recorded argv use --no-hooks, --fresh-env, --no-deps and a new unrelated private cwd; final default output equals the same accepted baseline.",
+    "writer_censuses": "Before/after recorded censuses contain only the same three allowed MCP mise tasks; no Homebrew lock holders.",
+    "historical_final_protection": true
+  },
+  "failure_propagation": {
+    "static": "Inspected exact frozen runner SHA7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f: 35-second default, process-group TERM/KILL, repeated-signal shielding, actual exit/log receipts and nonzero propagation. Final helper also rethrows preservation failures.",
+    "runtime_controls": "No old failure battery repeated. Retained attempts verify census stop before profile execution, default-assertion failure and GCC missing-prefix rc1; all wrapper exits1 and preservation checks retained.",
+    "resolved_attempts": [
+      "Unknown transient PID51754 exited before later ps inspection; attribution not inferred.",
+      "Default assertion repaired to preserve accepted non-null flags.",
+      "Explicit previously qualified GCC prefix supplied; profiles unchanged."
+    ],
+    "overlay_contract_and_protected_definitions_identical_across_retained_helper_revisions": true
+  },
+  "current_protection": {
+    "globals": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "directory_entries": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "mise_install_entries": 2200,
+    "source_build_records": 159,
+    "llvm_prefix_entries": 6411,
+    "old_proposal_inputs": 52,
+    "old_proposal_tools": 11,
+    "result": "PASS",
+    "old_inventory_and_original_fingerprints_unchanged": true,
+    "in_memory_overlay_only": true,
+    "original_Claude_files": 19
+  },
+  "retained_static_checks": {
+    "returncodes": [
+      0,
+      0
+    ],
+    "original_Claude_baseline": 19,
+    "reviewer_reran": false
+  },
+  "LIVE-01_disposition": {
+    "status": "Current observed runtime and profile parity reattested for this exact executable; original replacement event remains in historical evidence.",
+    "previous_sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014",
+    "current_sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+    "current_bytes": 127303648,
+    "installer_attribution": "Unknown",
+    "release_download_provenance": "Unknown",
+    "historical_09b_receipts": "Unchanged; original runtime identities and historical PASS preserved.",
+    "boundary": "Supports separately admitted use of the exact observed runtime with the tested profiles. Does not qualify new compiler/IWYU semantics or establish download provenance."
+  },
+  "not_run": [
+    "Native profile/version/help repeats",
+    "Compiler/IWYU/configure/build/install",
+    "Docker or services",
+    "Network/downloads",
+    "Lease probe",
+    "Old failure batteries",
+    "Global edits or rollback",
+    "Full Claude OCI acceptance",
+    "IWYU reflection analysis, relocation, advice/fixer or rebuild"
+  ],
+  "review_limit": "NO FINDINGS in the assigned unit. Native command results were inspected from retained original receipts; reviewer executed 21 data controls and one read-only protected() call."
+}

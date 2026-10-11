@@ -1,0 +1,8 @@
+mise ERROR failed to parse template: '{% set prefix = env.MARKETPLACE_GCC16_PREFIX | default(value='') %}{% set clean = prefix | trim %}{% if prefix != clean or not (prefix is starting_with(pat='/')) or prefix == '/' %}{{ throw(message='Set MARKETPLACE_GCC16_PREFIX to the qualified absolute managed prefix from task 05.') }}{% endif %}{% for part in prefix | split(pat='/') %}{% if not loop.first and (part == '' or part == '.' or part == '..') %}{{ throw(message='Use a normalized managed prefix without empty or dot path components.') }}{% endif %}{% endfor %}{{ prefix }}/bin/gcc-16'
+mise ERROR error: Set MARKETPLACE_GCC16_PREFIX to the qualified absolute managed prefix from task 05.
+ --> __tera_one_off:1:185
+  |
+1 | {% set prefix = env.MARKETPLACE_GCC16_PREFIX | default(value='') %}{% set clean = prefix | trim %}{% if prefix != clean or not (prefix is starting_with(pat='/')) or prefix == '/' %}{{ throw(message='Set MARKETPLACE_GCC16_PREFIX to the qualified absolute managed prefix from task 05.') }}{% endif %}{% for part in prefix | split(pat='/') %}{% if not loop.first and (part == '' or part == '.' or part == '..') %}{{ throw(message='Use a normalized managed prefix without empty or dot path components.') }}{% endif %}{% endfor %}{{ prefix }}/bin/gcc-16
+  |                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mise ERROR Version: 2026.10.8 macos-arm64 (2026-10-11)
+mise ERROR Run with --verbose or MISE_VERBOSE=1 for more information

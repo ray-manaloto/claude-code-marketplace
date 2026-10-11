@@ -975,6 +975,31 @@ Native execution and its independent preparation review remain pending.
   preservation and lease release passed. Independent final artifact review is pending.
 - Independent artifact verification passed all forty native receipts. Current
   inspection found the shared mise binary replaced after the successful run;
-  all other 10,588 checked records match. Attribution is unestablished. Retain
+  10,586 of 10,588 records match; two refer to mise. Attribution is unestablished. Retain
   this historical pass and the live drift finding; task 09b1 must reattest the
   replacement and existing profiles before continuing to IWYU semantics.
+
+Task 09b is committed at `eb92a7478186334d31dbfc0c6e0e1da0c6b5abe5`;
+the post-commit baseline passed with a clean worktree. Task 09b1 admits only
+read-only runtime/profile reattestation and a new project helper. Preserve all
+historical receipts and global files; overlay only the observed mise hash/size
+in memory, and reject any further drift. No installation or compiler run is admitted.
+- The new helper binds historical inputs and the exact observed replacement,
+  reuses frozen protection logic, and compares complete profile outputs. Its
+  read-only native operation and independent review remain pending.
+- Initial census stopped on a transient unknown mise process; it exited before
+  inspection, and protected state matched. The next attempt matched the complete
+  default profile but exposed an overly strict helper assertion: accepted global
+  CPPFLAGS/LDFLAGS must be preserved. Retain both attempts and require empty
+  isolation variables only in the three named environments.
+- GCC then correctly rejected an omitted prefix input. The inspector's source
+  recipe confirms both named compiler prefixes must be supplied explicitly;
+  the helper now uses each exact previously qualified prefix and retains the failure.
+- The final read-only operation passed all twelve native commands: ARM64/version,
+  native exec options, four exact profile outputs, isolation and restored defaults.
+  Both writer censuses and before/after protected checks passed; static gates
+  passed with all 19 originals unchanged. Independent review is pending.
+- Independent review passed 21 focused controls, 70 exact copy pairs, all twelve
+  native receipts, profile/isolation parity and one fresh protection check.
+  LIVE-01 is reattested for this exact observed runtime; installer attribution
+  and release-download provenance remain unknown. Historical receipts are unchanged.

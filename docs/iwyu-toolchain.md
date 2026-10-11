@@ -7,8 +7,8 @@ Task 09a prepares the accepted [IWYU commit](https://github.com/include-what-you
 all ten Git commands, verified 854 working-tree files against their Git blobs,
 and matched both earlier pinned CMake/license fragments. No source was patched.
 Native configure/build/install and independent artifact verification passed.
-Current runtime drift is recorded below; analysis, resource relocation and
-advice/rebuild remain unverified.
+The later runtime replacement was reattested separately below; analysis,
+resource relocation and advice/rebuild remain unverified.
 
 The retained [upstream license](../evidence/iwyu-source/upstream/LICENSE.TXT.source)
 is University of Illinois/NCSA. Both `iwyu_getopt` files carry that license
@@ -66,5 +66,18 @@ The [artifact review](../evidence/iwyu-build/installation-review.json) verifies
 all forty exits, sixteen executed commands and installed dependencies. Its
 10,588 current-state checks found only the shared mise executable replaced after
 the operation, from 2026.10.7 to 2026.10.8. Attribution is unestablished. Preserve
-both runtime identities and the successful historical operation; task 09b1 must
-reattest the new runtime and existing profiles before semantic qualification.
+both runtime identities and the successful historical operation. Task 09b1
+reattested the new runtime and existing profiles before semantic qualification.
+
+Task 09b1's [runtime helper](../dev/toolchains/mise_runtime.py) binds the observed
+replacement and historical inputs in a separate contract. Its in-memory overlay
+changes only the unique mise record's SHA-256 and size; all other protection
+checks remain active. Read-only version, ARM64, profile and isolation probes
+must preserve complete default/build/P2996/GCC16 outputs and shared state.
+The replacement's installer attribution and release-download provenance remain
+unknown; this unit qualifies the observed executable for these local commands.
+All twelve [native probes](../evidence/mise-runtime/operation/qualification.json)
+passed. [Independent review](../evidence/mise-runtime/runtime-review.json)
+passed 21 focused controls, exact receipt comparisons and the current protection
+check. New operations use this current binding; historical helpers retain their
+original fingerprints. The earlier live-drift finding remains in its original receipt.
