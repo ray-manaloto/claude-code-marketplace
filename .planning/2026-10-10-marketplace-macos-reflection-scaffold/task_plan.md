@@ -77,6 +77,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c1 | Private vcpkg execution preparation | Reviewed source binding and native fail-closed receipt | Prepared; native held by shared drift |
 | 12c1a | Observed mise update reattestation | Exact metadata changes, preserved compiler guards and existing profile parity | Complete |
 | 12c1b | Private vcpkg qualification retry | Qualified shared state; fresh capacity; copy, confinement and host-tool selection | Complete |
+| 12c2a | pkg-config prerequisite preparation | Exact native profile discovery, provisioning source/ownership contract if required | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -198,3 +199,10 @@ Only the helper, composition docs and these planning files are maintained.
 No dependency build, compiler detection, global write or cache provider is included.
 Historical handoff sources stay immutable in the source checkout and original
 research directories. New receipts belong only to this worktree.
+
+Task 12c2a resolves the pkg-config prerequisite before dependency execution.
+Bounded read-only profile discovery uses the qualified shared-state guard and
+private sandbox. Preparation includes one bottle-inventory helper and a private
+captured-metadata dry run with a missing-metadata failure control. Prepare exact
+native mise inputs and preimages for review before installation or global writes.
+Keep fmt package validation enabled; no compiler or dependency build is included.

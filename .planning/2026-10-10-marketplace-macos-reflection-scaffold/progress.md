@@ -1161,3 +1161,25 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   24 exact command outcomes and preserved original inputs were verified. The
   lightweight baseline also passed. Private execution qualification is complete;
   native compiler detection and dependency builds remain the next phase.
+- Task 12c1b is committed at `41f91b31912d1fc50ba06aacc159b56315072a03`.
+  The post-commit baseline passed with all 19 original files and a clean tree.
+  Task 12c2a resolves the source-identified pkg-config prerequisite. Fixed paths
+  and the current chat PATH have no candidate; controlled profile discovery
+  precedes any separately reviewed provisioning operation.
+- Both controlled compiler profiles found no pkg-config/pkgconf and no override;
+  all six discovery commands exited 0 with preserved shared state. Native fnox
+  acquired official pkgconf 3.0.8 metadata and its checksum-matched ARM64 bottle.
+  Current mise source comparison preserves the native Homebrew contract; the
+  HTTP rewrite path was separately inspected at the exact 2026.10.8 commit.
+  A bounded preparation helper now inventories prefix writes and captures a
+  metadata-only native dry run. No installation has run.
+- The native preparation exited 0: version/help/captured-plan returned 0 and
+  missing metadata returned the expected 1. Fifty archive members and thirty
+  absent prefix destinations were inventoried; no materialization is required.
+  Before/after prefix and shared-state checks passed and the local metadata
+  server stopped. Independent review precedes closure and native installation.
+- Task 12c2a independent review passed without findings: 69 inputs, 57 copies,
+  16 current-source bindings and all archive/write entries were verified. Six
+  scratch controls and the filesystem audit exited 0. The raw secret-scan rc1
+  remains recorded with its verified public-source digest false positive.
+  Preparation is complete; installation and native dependency builds are pending.

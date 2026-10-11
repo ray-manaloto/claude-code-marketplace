@@ -99,3 +99,19 @@ expected denials. Both profiles selected the exact managed CMake/Ninja tools;
 source/default protections passed and the lease was released. Independent artifact
 review passed all 52 copied files, 48 logs and 24 command outcomes with no findings.
 This does not qualify compiler detection or built dependencies.
+
+The pinned fmt port runs pkg-config validation for both dependency configurations.
+Task 12c2a checks actual availability in the qualified compiler profiles before
+preparing any required provisioning. Fixed-path absence alone is insufficient.
+The port checks remain enabled, and dependency execution is still pending.
+The guarded profile lookup found no executable or override in either lane.
+The preparation candidate uses native mise Homebrew bootstrap with captured
+pkgconf 3.0.8 metadata and its ARM64 bottle. Its dry run and missing-metadata
+control passed: the plan names one bottle, and missing metadata returns 1.
+The inventory contains 50 archive members and 30 absent prefix destinations,
+with no existing directory materialization. Shared-state and prefix checks
+passed. Independent review passed all source/archive bindings and six scratch
+controls with no findings. Installation remains a separate phase.
+Native fnox/Python acquired official Homebrew and pinned GitHub sources; native
+mise ran only version/help/dry-run commands. Exa, Firecrawl, Last30Days and
+Context7 were not rerun, and the inherited strict-five gaps remain incomplete.

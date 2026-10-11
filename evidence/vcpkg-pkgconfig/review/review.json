@@ -1,0 +1,165 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c2a pkgconf preparation only",
+  "reviewer": "/root/cold_bottle_review",
+  "created_at": "2026-10-11T19:40:58.668721+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "41f91b31912d1fc50ba06aacc159b56315072a03",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "754a800bfbe7ed96fefe3baa630e2052575a65a70dd1c5b05443444f9f65b0db",
+  "contract_sha256": "cfaebae853596cd3dcc82b788c79db2271b363ad3e7c11fc6872bc766fa39ea3",
+  "candidate_sha256": "bdb3e216a009ee372a265aa764315ea4d60f7b6f77363fb0c8ddda3fa56c5373",
+  "preparation_sha256": "3aa474a1a3a42e153303683d5cba2ef0a625e5499b192cc13fbef2da21b25ea0",
+  "native_execution_sha256": "64e00b5649f91221ce69719226f2bfd0dca5a9c0f4e53f1638ee2cf6d6e3f35c",
+  "bottle_sha256": "cfcd403c852da8f88324056c0881ce69880fcb675181b20345ff7ffc99d4f586",
+  "source_report_sha256": "ac5f711449984a9c04951aa37036e678cef9a7fdeb74e3f10a5b779b6bfdea77",
+  "source_manifest_sha256": "e954275055d537adc0f8ee214be1258e4f45d7a37adb9633550df354123eb88c",
+  "scope": "Independent preparation review only: exact helper, pinned bottle/source, retained native discovery/dry-run and bounded archive inspection. Parent remains sole implementation writer.",
+  "disposition": "No findings for this exact pkgconf 3.0.8 preparation candidate. This is not installation admission or native pkgconf, compiler/dependency, network-confinement or Claude/OCI qualification.",
+  "static_review": {
+    "guards": "Startup and final guard bind the contract, 69 inputs, current mise/Python bytes and helper; qualified shared-state protected() remains active. Formula identity/version/revision/dependencies/keg policy and selected bottle digest are checked before inspection.",
+    "archive_write_set": "All 50 actual archive members, regular-file hashes and two internal symlinks match the retained manifest. Independent derivation matches 28 archive-derived public leaves plus opt and linked-keg records, all 30 absent. All 24 necessary parent paths and 23 bootstrap/rack/lock controls match; recorded parents require no directory materialization. The stated rack/staging/keg paths cover additional native install work, which remains unexecuted.",
+    "native_source_contract": "Read actual pinned brew dry-run, prefix/bootstrap, pour/link/materialization and current HTTP rewrite code. Native dry-run returns before pour/extract work; bootstrap(true) only reports required prefix work. All 16 selected current source contents match retained SHA256 and Git blobs in the current non-truncated Git tree.",
+    "isolation": "The helper creates private config/system/state/data/cache/cwd paths, constructs a minimal child environment, disables hooks/autoinstall/auto-env, and rewrites the relevant metadata/GitHub/GHCR origins to its loopback fixture. Actual requests record one successful formula response followed by two expected metadata failures. URL rewriting and source review do not prove general network confinement.",
+    "failure_propagation": "Command return codes are checked against explicit expectations; command timeout/error handling signals and waits for the subprocess group. Main failures retain FAIL, final protected-state failures propagate, and cleanup stops the local server. Actual receipt records all controls and server shutdown completed.",
+    "fresh_session": "Private cwd/config and explicit environment prevent dependence on active named-profile state in this dry-run. Profile availability is supported by the separately retained six-command native discovery, not an assumption from this reviewer PATH.",
+    "documentation": "docs/vcpkg-toolchains.md:103-116 and task_plan.md:203 limit completion to discovery/preparation, retain fmt validation, identify actual fnox/mise routes and preserve incomplete strict-five research status. Native installation remains separate."
+  },
+  "executed_reviewer_checks": {
+    "filesystem_audit": {
+      "exit_code": 0,
+      "elapsed_seconds": 0.1535397080006078,
+      "timeout_seconds": 30,
+      "script_sha256": "b0e7e573278e2fd1da05866f15d7ce517cdb07be95e0769d7d8d26f20268148a",
+      "contract_inputs": 69,
+      "candidate_files": 4,
+      "artifact_source_copy_pairs": 57,
+      "current_source_sha256_and_git_blob_bindings": 16,
+      "prerequisite_source_pairs": 4,
+      "native_preparation_logs": 8,
+      "native_discovery_logs": 12,
+      "original_Claude_file_hashes_and_sizes": 19,
+      "frozen_files_stable_through_packaging": 164
+    },
+    "scratch_controls": {
+      "exit_code": 0,
+      "elapsed_seconds": 0.05099183309357613,
+      "timeout_seconds": 30,
+      "script_sha256": "605e4c8d4d73cf533171743ecb9e673129c9c0caa11993ff1deec859961132e9",
+      "inspect_calls": 6,
+      "cases": [
+        {
+          "case": "valid",
+          "outcome": "accepted",
+          "expected": "accepted",
+          "candidate_preimage_reads": 76,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        },
+        {
+          "case": "absolute_path",
+          "outcome": "rejected",
+          "expected": "rejected",
+          "candidate_preimage_reads": 1,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        },
+        {
+          "case": "dotdot_path",
+          "outcome": "rejected",
+          "expected": "rejected",
+          "candidate_preimage_reads": 1,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        },
+        {
+          "case": "escaping_symlink",
+          "outcome": "rejected",
+          "expected": "rejected",
+          "candidate_preimage_reads": 1,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        },
+        {
+          "case": "duplicate_member",
+          "outcome": "rejected",
+          "expected": "rejected",
+          "candidate_preimage_reads": 1,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        },
+        {
+          "case": "existing_destination",
+          "outcome": "rejected",
+          "expected": "rejected",
+          "candidate_preimage_reads": 3,
+          "all_preimage_reads_scratch_confined": true,
+          "fixture_unchanged": true
+        }
+      ],
+      "scope": "AST-only inspect/digest/preimage functions with scratch PREFIX and fixtures. No candidate module imports, live-prefix reads or archive extraction."
+    },
+    "license_text": "ISC COPYING member independently read from the pinned archive and compared byte-for-byte with the 468-byte retained selected text."
+  },
+  "retained_executions_inspected_not_replayed": {
+    "source_and_bottle_acquisition": "Native fnox codex_research/Python receipts both return 0, with verified official metadata/archive and pinned source bindings. No new research ran in this review.",
+    "profile_discovery_wrapper_rc": 0,
+    "profile_discovery_child_count": 6,
+    "profile_discovery_child_rcs": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "both_profiles_pkg_config_and_pkgconf_absent": true,
+    "both_profiles_override_absent": true,
+    "default_restoration_verified": true,
+    "preparation_wrapper_rc": 0,
+    "preparation_child_rcs": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "negative_control_expected_rc": 1,
+    "plan": "pour pkgconf/3.0.8 (requested)",
+    "prefix_and_shared_protection_success_recorded": true,
+    "loopback_server_stopped_recorded": true,
+    "archive_extracted_recorded": false,
+    "installation_executed_recorded": false,
+    "parent_static_checks_rcs": [
+      0,
+      0
+    ]
+  },
+  "secret_scan_disposition": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-pkgconfig/pre-review-scan-disposition.json",
+    "sha256": "8934acb0cdc3316ffb1f86151921fd96a31f9847fcedb062fef0e2da1203c304",
+    "raw_scan_returncode": 1,
+    "raw_scan_preserved": true,
+    "false_positive": "The exact flagged contract input value equals the SHA256 of the retained, Git-blob-verified API source. It is a source content digest.",
+    "transformed_scan_recorded_returncode": 0,
+    "substitutions_recorded": 1,
+    "supplemental_comment_wildcard_verified": true,
+    "complete_token_matches_recorded": 0,
+    "file_bytes_unchanged": true,
+    "reviewer_scan_replay": false
+  },
+  "checks_not_run": [
+    "Native main(), protected(), profile, mise/pkgconf/compiler/vcpkg/Docker/sandbox or network commands",
+    "Full shared/source/prefix inventories, fresh ownership/capacity or lease operation",
+    "Archive extraction, package installation, executable version probe or dependency build",
+    "Previous control batteries beyond the six explicitly permitted new scratch cases",
+    "Fresh Codex/Claude model sessions, provider/hook runtime or full OCI acceptance"
+  ],
+  "shared_mutations": 0,
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-pkgconf-review-nf09yteb/supporting-manifest.json",
+    "sha256": "a87f1641b5c18d4b0ec734d89a2d313ac8bba269125524aa5f0b0c402c0156a1",
+    "explicit_files": 12
+  }
+}
