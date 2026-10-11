@@ -1081,3 +1081,29 @@ Focused script controls and independent review precede native qualification.
   copy pairs and all 12 ABI inputs, then recorded four explicit environment
   rejection probes. No findings remain; the shared foundation is unchanged.
   This closes preparation only; native compiler/dependency qualification follows.
+
+Task 12b1 is committed at `e525b7abe6d792580b1b7d6808d9bb9e8100cddf`;
+the post-commit baseline passed and the worktree was clean. Task 12c1 prepares
+private vcpkg source/cache/download roots and native tool-selection/confinement
+probes. Exact fmt archive and patch acquisition passed through native fnox;
+their pinned SHA512 values match. Source-only metrics and Apple sandbox
+interfaces are retained. Native confinement and all dependency builds remain pending.
+- The helper now binds exact inputs, full private source copies, disabled metrics
+  and caches, the shared lease, restored defaults and four confinement controls.
+  Both named profiles must resolve and report the exact managed CMake/Ninja tools.
+  Preparation checks and independent review precede its native execution.
+
+- Independent pre-run review found 12C1-01: Git commit/tree identity did not
+  reject modified source bytes, modes or extra files. The rejected candidate
+  and FAIL receipt are retained. The helper now compares a bound complete
+  inventory before copying; all 14,337 tracked blobs and executable modes were
+  checked against the pinned tree, with exactly two qualified bootstrap outputs.
+  Focused repair controls and independent disposition precede native execution.
+- The repaired preparation passed independent review: all 17,644 inventory
+  records and the pinned Git tree were verified, and seven focused controls
+  passed. Native execution then exited 1 at the first protected-state guard,
+  before any copy, child command or lease acquisition. Only global Renovate
+  config/lock entries changed (44.149.3 to 44.150.1); seven profile files match.
+  The external updater's mise phase exited 0, but its overall update-all exited 2.
+  Retain that distinction. A separate read-only shared-state reattestation will
+  precede another native attempt. No global files were changed here.

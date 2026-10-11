@@ -1,0 +1,131 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c1 narrow source-identity disposition",
+  "created_at": "2026-10-11T17:56:18.667023+00:00",
+  "reviewer": "independent cold reviewer /root/cold_bottle_review",
+  "parent_return_channel": "native collaboration /root",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+  "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "85930dd84d8cec27a63445b3f46756214cdfb136765476d1e53248c2af53b6b5",
+  "contract_sha256": "f0b710d15389ae7091fb2af0aa35207712989a1312510996a6f467c116c02c8d",
+  "candidate_sha256": "dd547655db53610d57292822e261c13e74d52a4b7c8a984e4f35920733f5469a",
+  "resolved_findings": [
+    {
+      "id": "12C1-01",
+      "disposition": "FIXED",
+      "path": "dev/toolchains/vcpkg_private.py",
+      "line": 49,
+      "reason": "The complete source inventory is hash-bound by the contract and compared with the current source before copy. It covers source bytes and modes, Git metadata, and all admitted bootstrap outputs. The actual new assertion rejected all six focused drift cases before any destination copy began.",
+      "initial_review_sha256": "83b9eb021857edf865563566315868fc5a97306e8a7d4feeb9e4b3b42ad7ce00",
+      "initial_candidate_and_review_retention": "Verified all 3 initial candidate copies and 12 initial-review copies against exact original hashes and private reviewer originals."
+    }
+  ],
+  "independently_executed": {
+    "source_derivation": {
+      "inventory_records": 17644,
+      "inventory_files": 14348,
+      "tracked_blobs_and_executable_modes": 14337,
+      "reconstructed_git_tree": "6b25d118fef8953f62969191719e0197d646d36d",
+      "qualified_extra_files": [
+        "vcpkg",
+        "vcpkg.disable-metrics"
+      ],
+      "current_full_source_matches_bound_inventory": true,
+      "original_source_git_commands": 0,
+      "original_source_mutations": 0,
+      "tracked_owner_executable_bit_checked": true,
+      "tracked_mode_counts": {
+        "0o600": 14285,
+        "0o700": 52
+      },
+      "method": "Executed only the hash-bound pure prefix_inventory function against the real source; matched all bytes/modes/kinds. Calculated Git blob SHA1 values from actual file bytes, reconstructed every Git tree from the retained NUL-delimited ls-tree entries using Git ordering and raw tree encodings, and matched the pinned root tree hash. No Git command was run against the source."
+    },
+    "focused_source_controls": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-source-disposition-_55p76i8/control-results.json",
+      "case_count": 7,
+      "clean_accepted": 1,
+      "drift_rejected_before_copy": 6,
+      "source_unchanged_all_cases": true,
+      "drift_cases": [
+        "tracked bytes",
+        "tracked executable mode",
+        "unexpected file",
+        "Git metadata",
+        "bootstrap binary",
+        "metrics marker"
+      ]
+    },
+    "command": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-source-disposition-_55p76i8/controls-run.json",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-source-disposition-_55p76i8/controls.py"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.58781237504445,
+      "timeout_seconds": 55
+    },
+    "input_audit": {
+      "result": "PASS",
+      "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+      "candidate_sha256": "dd547655db53610d57292822e261c13e74d52a4b7c8a984e4f35920733f5469a",
+      "helper_sha256": "85930dd84d8cec27a63445b3f46756214cdfb136765476d1e53248c2af53b6b5",
+      "contract_sha256": "f0b710d15389ae7091fb2af0aa35207712989a1312510996a6f467c116c02c8d",
+      "contract_input_hashes": 33,
+      "new_source_copy_pairs": 6,
+      "initial_review_copy_pairs": 12,
+      "initial_candidate_retained_files": 3,
+      "parent_repair_controls": 11,
+      "parent_static_exitcodes": [
+        0,
+        0
+      ],
+      "parent_scan_exitcode": 0,
+      "scan_bound_files": 64,
+      "original_Claude_files": 19,
+      "initial_read_note": "First diff lookup used helper.py (absent, rc2); corrected to manifest path vcpkg_private.py.source (expected diff rc1). First --abbrev-ref identity query did not print SHA; a separate rev-parse HEAD returned the expected SHA with rc0."
+    },
+    "preservation": {
+      "frozen_unit_files_unchanged": 14,
+      "original_Claude_files_matched": 19,
+      "reviewer_shared_or_source_writes": 0
+    }
+  },
+  "static_delta_review": [
+    "Compared the exact rejected helper with the repair: only CONTRACT_SHA and one pre-copy inventory equality assertion changed. Existing symlink/alternates/common-dir rejection, copy comparison and final preservation paths remain in place.",
+    "Compared both contracts: all original fields, tool pins and 30 input bindings are unchanged; only the three source-identity input hashes and source_inventory path were added.",
+    "Reviewed actual documentation and progress changes; preparation/native execution remain correctly separated.",
+    "Reused the initial review for unchanged command construction, HOME/tool selection, confinement sequencing, failure propagation and runner/lease contracts. No earlier wrapper or triplet battery was repeated."
+  ],
+  "retained_parent_checks": {
+    "repair_controls_cases": 11,
+    "repair_controls_exitcode": 0,
+    "static_exitcodes": [
+      0,
+      0
+    ],
+    "scan_exitcode": 0,
+    "scan_bound_files": 64,
+    "independently_reexecuted": false
+  },
+  "not_run": [
+    "native vcpkg or sandbox commands",
+    "mise/profile probes",
+    "dependency or compiler operations",
+    "full protected() or global inventory",
+    "capacity/census/lease operations",
+    "network/source acquisition",
+    "earlier wrapper/triplet batteries",
+    "fresh Claude/model session",
+    "full OCI acceptance"
+  ],
+  "limitations": [
+    "PASS covers preparation and disposition of 12C1-01. Native confinement and host-tool selection remain UNVERIFIED.",
+    "All source provenance and preservation checks here are read-only data checks; no claim of full Claude or container runtime acceptance is made."
+  ],
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-source-disposition-_55p76i8/supporting-manifest.json"
+}

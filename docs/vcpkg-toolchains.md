@@ -60,3 +60,21 @@ managed tools and included toolchains bring the additional-file count to 12.
 The GCC preparation controls check native-style unseeded extraction, repeated
 inclusion, compiler selection and conflicting environments. These are script
 controls; they do not establish native compiler detection or built fmt linkage.
+
+Task 12c1 prepares the [private execution probe](../dev/toolchains/vcpkg_private.py).
+It copies the pinned vcpkg checkout, including its Git objects, and the two
+verified fmt downloads into an operation-owned directory. Downloads, buildtrees,
+packages, installed metadata, registry cache and temporary files use private
+roots. Metrics and binary caching are disabled; the real HOME value is retained.
+The Apple sandbox profile denies descendant file writes outside that directory
+and network access, subject to declared inherited log/lease descriptors. Local
+positive-write, outside-write, symlink-escape and loopback-denial controls must
+pass before vcpkg runs. Existing compiler profiles, tool paths/versions, source
+bytes, defaults and the shared lease are checked. Independent preparation review
+passed, but the admitted run exited 1 at its first protection guard: an external
+Renovate update changed the global config and lockfile. No copies or child
+commands started. Native qualification awaits a separate shared-state
+reattestation; dependency builds require a subsequent unit.
+The copy is bound to a complete reviewed source inventory. Every tracked blob
+and executable mode matches the pinned Git tree; the only extra source files
+are the exact bootstrapped binary and empty metrics-disable marker.

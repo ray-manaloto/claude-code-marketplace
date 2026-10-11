@@ -74,6 +74,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12a1 | Shared vcpkg chainloader preparation | Pinned source boundaries, policy/flag composition and bounded CMake controls | Complete |
 | 12a2 | P2996 overlay triplet preparation | Explicit ABI inputs, environment tracking, dual configurations and script controls | Complete |
 | 12b1 | GCC16 overlay triplet preparation | Shared-input reuse, GCC ABI entries and focused script controls | Complete |
+| 12c1 | Private vcpkg execution preparation | Reviewed source binding and native fail-closed receipt | Prepared; native held by shared drift |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -174,6 +175,13 @@ Task 12b1 admits two GCC16 triplets, `docs/vcpkg-toolchains.md` and these two
 planning files. Reuse the committed common inputs without changes. Bounded
 CMake script controls may inspect GCC files and the chainloader; native compiler
 detection, dependency builds and cache/confinement qualification remain separate.
+
+Task 12c1 admits one private vcpkg preparation/probe helper, composition docs
+and these planning files. After independent review and fresh shared capacity,
+it may copy the exact vcpkg checkout and fmt inputs, select the existing named
+profiles, verify managed host tools and exercise local write/network restrictions.
+Keep real HOME unchanged. No dependency/compiler build, patch application,
+global registration, cache provider or integration command is included.
 
 See `findings.md`, `progress.md`, and `docs/agents/codex-task-orchestration.md`.
 Historical handoff sources stay immutable in the source checkout and original

@@ -1,0 +1,144 @@
+{
+  "recorded_at": "2026-10-11T17:55:56.905271+00:00",
+  "state": "PASS: fresh read-only capacity; operation repeats checks under canonical lease",
+  "writer_census": {
+    "at": "2026-10-11T17:55:57.337100+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "commands": [
+    {
+      "case": "head",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/head.stdout",
+          "sha256": "07b7103504d8f2bd0f93e0ac1ed407e6328ee381a859744030e942d3ee5cd98e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/processes.stdout",
+          "sha256": "b6cf121b71f178c4f41f900e4b8442408ab1785eaa5d5cc8cab8e63b2106b5ba"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-stats.stdout",
+          "sha256": "3cf162adbb257644441147f0dc780e15324e4ff03850adc3e69c750c2953bb83"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-private-admission-capacity-q0_oeh_b/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+  "active": [],
+  "cpus": 12,
+  "load": [
+    9.669921875,
+    9.2451171875,
+    8.87158203125
+  ],
+  "free_bytes": 53353635840,
+  "total_cpu_percent": 256.7,
+  "docker_context": "desktop-linux",
+  "containers": [
+    "53064d00e38a\tvsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86"
+  ],
+  "container_cpu_percent": 3.34
+}

@@ -1,0 +1,106 @@
+{
+  "result": "PASS: focused controls established the source-identity gap",
+  "created_at": "2026-10-11T17:46:57.091212+00:00",
+  "helper_sha256": "3f491edb90cfd422775a21c6ff4cd532f2c180e1e81ff37e3e848c37271d2f22",
+  "contract_sha256": "026b2ad51f37b4be1a1094cc09624fc1c6351090db3a4bf3465c31c49e800964",
+  "source_controls": [
+    {
+      "case": "clean",
+      "accepted": true,
+      "git_commit": "bafe3a2faf7b43519ea16b31bc045c23da832352",
+      "git_tree": "9e77676a12faa31cc2905c3eac20c9fbeecdcdbb",
+      "tracked_blob_matches": true,
+      "tracked_mode_matches": true,
+      "unexpected_file_copied": false,
+      "bootstrap_binary_unchanged": true,
+      "source_unchanged": true
+    },
+    {
+      "case": "modified-tracked-bytes",
+      "accepted": true,
+      "git_commit": "bafe3a2faf7b43519ea16b31bc045c23da832352",
+      "git_tree": "9e77676a12faa31cc2905c3eac20c9fbeecdcdbb",
+      "tracked_blob_matches": false,
+      "tracked_mode_matches": true,
+      "unexpected_file_copied": false,
+      "bootstrap_binary_unchanged": true,
+      "source_unchanged": true
+    },
+    {
+      "case": "modified-tracked-mode",
+      "accepted": true,
+      "git_commit": "bafe3a2faf7b43519ea16b31bc045c23da832352",
+      "git_tree": "9e77676a12faa31cc2905c3eac20c9fbeecdcdbb",
+      "tracked_blob_matches": true,
+      "tracked_mode_matches": false,
+      "unexpected_file_copied": false,
+      "bootstrap_binary_unchanged": true,
+      "source_unchanged": true
+    },
+    {
+      "case": "unexpected-untracked",
+      "accepted": true,
+      "git_commit": "bafe3a2faf7b43519ea16b31bc045c23da832352",
+      "git_tree": "9e77676a12faa31cc2905c3eac20c9fbeecdcdbb",
+      "tracked_blob_matches": true,
+      "tracked_mode_matches": true,
+      "unexpected_file_copied": true,
+      "bootstrap_binary_unchanged": true,
+      "source_unchanged": true
+    }
+  ],
+  "wrapper_controls": [
+    {
+      "case": "success-zero",
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "propagated": null
+    },
+    {
+      "case": "expected-denial",
+      "expected_acceptance": true,
+      "observed_acceptance": true,
+      "propagated": null
+    },
+    {
+      "case": "unexpected-success",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "AssertionError"
+    },
+    {
+      "case": "wrong-denial-code",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "AssertionError"
+    },
+    {
+      "case": "unexpected-nonzero",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "AssertionError"
+    },
+    {
+      "case": "oserror",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "OSError"
+    },
+    {
+      "case": "timeout",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "TimeoutExpired"
+    },
+    {
+      "case": "interrupt",
+      "expected_acceptance": false,
+      "observed_acceptance": false,
+      "propagated": "KeyboardInterrupt"
+    }
+  ],
+  "frozen_files_unchanged": 10,
+  "native_subprocesses": 0,
+  "main_or_protected_invocations": 0,
+  "method": "Executed the actual AST-extracted prepare, prefix_inventory and run functions with private synthetic files and a mocked native callback; Git objects constructed and decoded with hashlib/zlib, with no Git subprocess."
+}
