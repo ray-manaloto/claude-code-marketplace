@@ -1,0 +1,249 @@
+{
+  "result": "PASS: 03b2b pre-run profile comparison delta; native retry remains UNVERIFIED",
+  "findings": [],
+  "helper_sha256": "417041b6eb21161b0023a48be9962812c16bf2ddb6851ea19319bb837b70a319",
+  "proposal_sha256": "93d541a04a69d29b9341d7c4f51a870a9667c1274f75c38d08f2cb3e8f728973",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "scope": "Exact four-line replacement of the profile equality guard; source and recorded-data replay only",
+  "delta": {
+    "old_helper_sha256": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1",
+    "new_helper_lines": 325,
+    "other_helper_bytes_identical": true,
+    "changed_expected_field": "path_sha256",
+    "immutable_expected_source": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c",
+      "bytes": 32143
+    },
+    "all_32_GCC_selected_fields_and_llvm_boolean_retained": true,
+    "full_dictionary_equality_retained": true,
+    "fresh_mise_invocation_unchanged": true,
+    "lease_capacity_timeout_build_source_compiler_SDK_protected_state_guards_unchanged": true
+  },
+  "proposal": {
+    "verified_inputs": 72,
+    "verified_tool_hashes": 18,
+    "existing_inputs_changed": [
+      "dev/toolchains/core_matrix.py"
+    ],
+    "two_added_inputs": [
+      "evidence/core-p2996/profile-path-diagnosis.json",
+      "evidence/core-p2996/profile-correction-replay.json"
+    ],
+    "before_after_hashes_match": true
+  },
+  "shared_profile_sources": [
+    {
+      "path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+      "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+      "bytes": 1308
+    },
+    {
+      "path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+      "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+      "bytes": 1308
+    },
+    {
+      "path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+      "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+      "bytes": 944
+    }
+  ],
+  "diagnosis": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/profile-path-diagnosis.json",
+      "sha256": "b472bb24aaa58f0a925b2e68b8c50bd007c08f6aeb142ca3394df0aeec920248",
+      "bytes": 17230
+    },
+    "read_bindings_verified": 22,
+    "historical_evolving_helper_checked_at_retained_old_source": true,
+    "new_PATH_precedes_P2996_registration": true,
+    "earlier_PATH_transition_cause": "UNPROVEN; no vcpkg causal inference",
+    "read_bindings": [
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.git",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.git",
+        "sha256": "c14070ba93d40162e5c6ebe6db6e6ca5d3e028587ba6a164806a8a7ab00bb034"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/HEAD",
+        "verified_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/HEAD",
+        "sha256": "6295a329d994bad0131b3f9feee3c9f0e299552ffaf9e637ed8f5bb25831d6a2"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/commondir",
+        "verified_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/commondir",
+        "sha256": "340ddcb67a6204f742cd1e28e5b462622dde7daaa8ee36001897196aacdc6d47"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/refs/heads/codex/marketplace-native-onboarding",
+        "verified_path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/refs/heads/codex/marketplace-native-onboarding",
+        "sha256": "672ef9350bc3b96064ba6c9e5e9649553968c316d9caa7d2376ae8381ccb66bf"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source",
+        "sha256": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/qualification.json",
+        "verified_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/qualification.json",
+        "sha256": "bd27207192fe6690f2719415b6cea3158ccc9f300b3a00a10c0bf51db6cd7d80"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/gcc16-profile.stdout",
+        "verified_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/gcc16-profile.stdout",
+        "sha256": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+        "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+        "sha256": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/registration-review.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/registration-review.json",
+        "sha256": "9b8e92ac14d9304d7055fa00a3348612251e8bd27247db0ead946179bc835437"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/operation/qualification.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/operation/qualification.json",
+        "sha256": "e3f893bcbe6893c29c5256210fec83bb7b7844bef559af3b7729a927523b509e"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+        "verified_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+        "sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_bottles.py",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_bottles.py",
+        "sha256": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-bootstrap/install-preimages.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-bootstrap/install-preimages.json",
+        "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+        "verified_path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+        "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+        "verified_path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+        "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+        "verified_path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+        "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-review.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-review.json",
+        "sha256": "bfe1c7ba1f76776471e4068451ce3824e78569271f6b6e123352a5b937d3c19d"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+        "sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+        "sha256": "c23067bbea313cc1c52e741dfb989d749af1e6a01a14d2e4ee7995c11e03948c"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-profile.stdout",
+        "verified_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-profile.stdout",
+        "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb"
+      },
+      {
+        "recorded_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source",
+        "verified_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source",
+        "sha256": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1"
+      }
+    ]
+  },
+  "replay": {
+    "result": "PASS exact candidate comparison AST replay",
+    "native_subprocesses": 0,
+    "positive_recorded_profiles": [
+      "gcc16",
+      "p2996"
+    ],
+    "six_field_mutations_rejected": {
+      "CC": true,
+      "CXX": true,
+      "MARKETPLACE_CPP_LANE": true,
+      "MARKETPLACE_GCC16_PREFIX": true,
+      "path_sha256": true,
+      "homebrew_llvm_on_path": true
+    },
+    "historical_GCC_PATH_rejected": true,
+    "input_receipt_dictionaries_unchanged": true,
+    "extracted_helper_lines": [
+      165,
+      167
+    ]
+  },
+  "parent_replay": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/profile-correction-replay.json",
+    "sha256": "deb449838543505467697de44778cb4666e7ee9f45bfa7bb26f59440d87e6ba6",
+    "bytes": 1008
+  },
+  "retained_static_checks": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/profile-correction-static-checks.json",
+      "sha256": "6658f985d2e079b2cdbc2e65fe0fb00f105d3dbbb743bfb0c75f4eb6e80dca00",
+      "bytes": 1237
+    },
+    "help_exit": 0,
+    "tasks_validate_exit": 0,
+    "acceptance_baseline_exit": 0,
+    "original_files": 19,
+    "rerun_by_reviewer": false
+  },
+  "independent_Claude_original_hashes_verified": 19,
+  "prior_reviews": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/pre-run-review.json",
+      "sha256": "574b7ae3e5ea0e764270bff2f89989a42099520ad07832b773d7adce0748a29a",
+      "bytes": 10313
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/failure-review.json",
+      "sha256": "faa0b91c911fe938277f700aa8e5fc9f1a3227c398c5c3e7f0eac4da144025ac",
+      "bytes": 5311
+    }
+  ],
+  "executed_reviewer_checks": [
+    "Python -B read-only file/hash verification and exact comparison AST replay"
+  ],
+  "native_compiler_build_profile_lease_operations": 0,
+  "checks_not_run": [
+    "native retry and sixteen-cell matrix",
+    "compiler/profile/CMake/Ninja/CTest invocations",
+    "fresh capacity or host lease",
+    "old guard batteries or broad preserved-state inventories"
+  ],
+  "completed_at": "2026-10-11T13:42:52.179767+00:00",
+  "reviewer_process_exit": 0,
+  "replay_receipt": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-profile-delta-review-omqao5it/comparison-replay.json",
+    "sha256": "802bf4d7335567128c19d49f4148c48b621443f03aaaadbb094d87ee5d697dfa",
+    "bytes": 498
+  }
+}

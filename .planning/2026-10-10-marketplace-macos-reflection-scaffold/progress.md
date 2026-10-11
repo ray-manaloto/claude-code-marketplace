@@ -916,3 +916,30 @@ core build has run.
   four unrelated-touch-output mutations rejected. Both lightweight gates
   and all 19 original hashes passed; the single parser finding is resolved.
   Native core builds and runtimes remain unverified until task 03b2b.
+
+Task 03b2a is committed at `4247f308ed6cc0ad77b1bd61bbb849f317628661`;
+the post-commit baseline passed with a clean worktree. Task 03b2b now
+prepares the guarded private runner for four fresh trees and sixteen cells.
+The direct CLT symbol tools and explicit Mach-O demangling are qualified
+by four bounded read-only commands, all exit 0. Built-library export
+identity and the new core matrix remain unverified.
+- Implemented the private runner with hash-bound source/command reviews,
+  exact named profiles, one-job lease-protected builds, retained ABI artifacts,
+  generated/executed command matching, exports/runtime checks and seven
+  private controls. Every native command is bounded to 60 seconds.
+  Preparation review and fresh host admission remain pending.
+- Independent preparation review passed; the admitted first run completed all
+  eight P2996 cells and four controls, then exited 1 at the GCC profile check.
+  Only its PATH fingerprint differs from the old receipt; protected state
+  passed. The exact failed run is retained while that difference is diagnosed.
+- The current PATH matches the accepted P2996 shared-profile fingerprint.
+  The correction keeps full GCC environment equality and that exact newer
+  fingerprint. Recorded replay and six mutation controls pass; delta review
+  is pending. The historical PATH change's cause remains unproven.
+- Delta review passed; the fresh admitted retry exited 0 with four ABI probes,
+  all sixteen native cells and seven controls passing. Protected/default state
+  and lease release passed. The 603 text records and 77 private artifact
+  references are retained; independent final artifact review is pending.
+- Independent final review passed all artifact, command, control and current
+  preservation checks without findings. Its single canonical lease check passed;
+  all 19 original acceptance files match. Task 03b2b is qualified.

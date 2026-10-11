@@ -1,0 +1,132 @@
+{
+  "result": "PASS: bounded failure closure and retained P2996 partial evidence; full native matrix remains FAIL",
+  "findings": [],
+  "reviewer": "/root/cold_bottle_review",
+  "return_channel": "native collaboration to /root",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "scope": "Read-only failure closure of the first 03b2b native attempt; parent sole writer; no repository files owned",
+  "operation_qualification": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/qualification.json",
+    "sha256": "bd27207192fe6690f2719415b6cea3158ccc9f300b3a00a10c0bf51db6cd7d80",
+    "bytes": 285497
+  },
+  "helper": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+    "sha256": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1",
+    "bytes": 25137
+  },
+  "parent_native_result": {
+    "wrapper_exit": 1,
+    "native_command_count": 106,
+    "native_exits": {
+      "0": 103,
+      "1_expected": 3
+    },
+    "completed_cells": [
+      "p2996-static-Debug",
+      "p2996-static-Release",
+      "p2996-static-RelWithDebInfo",
+      "p2996-static-MinSizeRel",
+      "p2996-shared-Debug",
+      "p2996-shared-Release",
+      "p2996-shared-RelWithDebInfo",
+      "p2996-shared-MinSizeRel"
+    ],
+    "completed_macro_controls": [
+      {
+        "case": "p2996-original-core-guard-on-p2996",
+        "returncode": 1,
+        "object_exists": false,
+        "expected_diagnostic_verified": true
+      },
+      {
+        "case": "p2996-updated-core-without-reflection",
+        "returncode": 1,
+        "object_exists": false,
+        "expected_diagnostic_verified": true
+      },
+      {
+        "case": "p2996-original-smoke-leak-comparison",
+        "returncode": 0,
+        "object_exists": true,
+        "expected_diagnostic_verified": false
+      },
+      {
+        "case": "p2996-updated-smoke-rejects-reflection",
+        "returncode": 1,
+        "object_exists": false,
+        "expected_diagnostic_verified": true
+      }
+    ],
+    "failure": {
+      "wrapper_returncode": 1,
+      "last_native_command": "gcc16-profile",
+      "last_native_returncode": 0,
+      "location": "dev/toolchains/core_matrix.py:164",
+      "error": "AssertionError()",
+      "comparison_difference": {
+        "path_sha256": {
+          "expected": "6899194f726297bb709c28c349e12340b341c8549e2dd5ce2b1d3767e8c3bf43",
+          "actual": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b"
+        }
+      },
+      "profile_diagnosis": "owned by configuration inspector; no diagnosis or retry here"
+    }
+  },
+  "receipt_and_artifact_verification": {
+    "audit": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-failure-review-c09h27oh/receipt-audit.json",
+      "sha256": "9b223f595fb026491c6e4dc3b5605bf1a80b4002b9f3c191e9d655075cfe1718",
+      "bytes": 8712
+    },
+    "retained_copy_pairs": 306,
+    "command_logs": 212,
+    "referenced_artifacts": 335,
+    "configured_text_captures": 80,
+    "tree_count": 2,
+    "all_passed": true
+  },
+  "executed_reviewer_checks": {
+    "receipt_audit_python_exit": 0,
+    "canonical_lease_probe_python_exit": 0,
+    "canonical_lease_probe": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-failure-review-c09h27oh/lease-check.json",
+      "sha256": "eb4f9315db5b9f1bcbf3cfa70258f93d1b138190885d977d02f61b0d751a41d7",
+      "bytes": 805
+    },
+    "lease_probe_count": 1,
+    "acquired_and_released": true,
+    "owner_record_unchanged": true,
+    "native_compiler_or_build_invocations": 0,
+    "fresh_profile_invocations": 0
+  },
+  "preservation": {
+    "operation_finally_recorded_success": true,
+    "no_recorded_preservation_error": true,
+    "independently_verified_project_inputs": 70,
+    "independently_verified_tool_hashes": 18,
+    "independently_verified_original_Claude_files": 19,
+    "full_protected_inventory_not_repeated": true
+  },
+  "static_failure_propagation_review": "The equality assertion at core_matrix.py:164 exits the held-lease context. The outer exception records FAIL; finally reruns protected-state, admitted-input/tool, GCC identity and SDK guards. The actual receipt records protected_state_unchanged true without preservation_error. The canonical nonblocking lock operation independently confirmed release. No post-success-only lease_released/default-after/source-after assertion is inferred.",
+  "checks_not_run": [
+    "eight GCC matrix cells",
+    "GCC macro control",
+    "CTest exit-contract controls",
+    "default-after and source-after native probes",
+    "new compilation or reproduction",
+    "old test or mutation batteries",
+    "full protected-state inventory",
+    "static gates (prior admitted pre-run receipts retained)"
+  ],
+  "reviewer_harness_note": {
+    "exit_code": 1,
+    "error": "KeyError: name; actual command-row field is case; inspection only, no native probe ran"
+  },
+  "completed_at": "2026-10-11T13:36:50.109725+00:00"
+}

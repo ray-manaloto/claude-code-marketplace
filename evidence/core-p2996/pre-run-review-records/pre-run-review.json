@@ -1,0 +1,181 @@
+{
+  "result": "PASS: 03b2b pre-run source review and lightweight checks; native matrix UNVERIFIED",
+  "findings": [],
+  "helper_sha256": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1",
+  "proposal_sha256": "75aea62a696937751a6c4ac03b95e5751985bfcbc33197ebd449d7b2da520f2d",
+  "reviewer": "/root/cold_bottle_review",
+  "reviewed_at": "2026-10-11T13:26:46.327367+00:00",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "scope": [
+    "dev/toolchains/core_matrix.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "maintained_hashes": {
+    "dev/toolchains/core_matrix.py": "8def0803981d2bbc8c75b36591224b41ba105164f5d287ff71862a0ca864bea1",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "a1ea7e161fb24a4feb65bf6df124102397c73fd50c6172fafef68ee1d8f9e5ad",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "ad88f5e62bf0bf8b6930c0995dbe820c63951c77aa77a783615bfb4b6985c7a7"
+  },
+  "bindings": {
+    "project_inputs": 70,
+    "explicit_tool_hashes": 18,
+    "original_acceptance_inputs": 19,
+    "all_verified_before_and_after": true,
+    "records": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/static-checks.json",
+      "sha256": "dd083bc44c3dcbdd333fb63d7465fb69db917e9498a0e2a6ae8cbd8694e335d3",
+      "bytes": 47395
+    },
+    "settled_validator_sha256": "9c1cdf78f5102a1256a71e965fd3bf9f2b2461f1d6e509fb723301e4b92565d6",
+    "settled_command_review_sha256": "2d6e63dc37ba271ff4174f14731ac5f9208104e3c7a20f3be8454a7166ee8e00",
+    "settled_source_review_sha256": "831a2a6e93d3e45b7a9b520483dd37ffc9970f04ff5f2364b1721cc8fee95f73",
+    "harness_contract_sha256": "feb0f9700b7ed6828334fb39c6e6d631c87b9be74f4fb9334cdd063b92ecfec8",
+    "symbol_tool_prerequisite_sha256": "4ddad861aefcded3253434211167379b99fcfb277d0d1ca43395dc46bdeee7d4",
+    "symbol_tool_native_receipts": "Four previously executed commands each record rc0, no signal/timeout and empty stderr; the direct tool aliases, resolved binary hashes and two local manual excerpts were independently verified. No nm/demangler process was rerun.",
+    "prior_help_scope": "preparation-checks.json help ran earlier 319-line e1873100 candidate; own --help below runs the current 322-line helper."
+  },
+  "checks": {
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/invocation.json",
+      "sha256": "bd7ba88cdf63cd6ff191341a16e7f3a93daebcdc2554dc69f9c0aac1bdc35250",
+      "bytes": 911
+    },
+    "command_exit_codes": {
+      "identity": 0,
+      "branch": 0,
+      "changed-files": 0,
+      "planning-diff": 0,
+      "helper-help": 0,
+      "tasks-validate": 0,
+      "acceptance-baseline": 0,
+      "status": 0
+    },
+    "static_counts": {
+      "baseline": 19,
+      "json": 873,
+      "python": 48,
+      "shell": 6,
+      "toml": 14
+    },
+    "retained_abi_replay": "Three retained task10a2 events/six commands match the exact CMake backslash encoding; parsed YAML independently confirms binary-directory identity, uncached status, successful recorded exits and the same command text. This is recorded-data replay, not a new ABI probe.",
+    "old_runtime_logs": [
+      {
+        "case": "runtime-Debug",
+        "receipt": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/runtime-Debug.stderr",
+          "sha256": "df1dd9d1570f2f974db7e24f3f6244cf7df79d6549f4308740052c4367b2cf75",
+          "bytes": 7783
+        },
+        "allowed_os_cpp_images_observed": [
+          "/usr/lib/libc++.1.dylib",
+          "/usr/lib/libc++abi.dylib",
+          "/usr/lib/system/libunwind.dylib"
+        ]
+      },
+      {
+        "case": "runtime-shared-Debug",
+        "receipt": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stderr",
+          "sha256": "3756e27377f552b5653ecfb9b9d1f34c76e608a9e65aaf0880167b8f1f8402bf",
+          "bytes": 7842
+        },
+        "allowed_os_cpp_images_observed": [
+          "/usr/lib/libc++.1.dylib",
+          "/usr/lib/libc++abi.dylib",
+          "/usr/lib/system/libunwind.dylib"
+        ]
+      }
+    ],
+    "fresh_process_behavior": "The exact current helper ran only with --help in a new Python process with -B and a private unrelated working directory. ArgumentParser exits before native-operation setup. Native Codex/Claude sessions were not started."
+  },
+  "source_assessments": [
+    {
+      "lines": [
+        33,
+        66
+      ],
+      "assessment": "Uses one fresh normalized private directory outside the protected roots. The qualified execution and protected-state functions are extracted from pinned sources with explicit required bindings. No qualified helper is edited."
+    },
+    {
+      "lines": [
+        68,
+        86
+      ],
+      "assessment": "All operation command calls pass through the 60-second wrapper. Expected nonzero controls require the exact command label and exit; unexpected success or a different error remains a failure. The frozen runner records logs/exits and performs process-group cleanup. This is source inspection; timeout/cancellation was not re-exercised."
+    },
+    {
+      "lines": [
+        88,
+        141
+      ],
+      "assessment": "Binds admission run directory, helper, pre-run review, exact proposal, current HEAD, 70 project inputs and explicit tool hashes before compiler/build execution. Includes the original 19 acceptance files, source/command reviews, stable compiler/runtime sources, SDK settings and current resolved symbol-tool identities."
+    },
+    {
+      "lines": [
+        143,
+        174
+      ],
+      "assessment": "Uses the canonical nonblocking host lease, rejects inherited lease ownership, performs a fresh compiler/build process census and enforces free disk space before the matrix. Each lane selects its explicit fresh named environment; four distinct build trees and one-job builds are defined."
+    },
+    {
+      "lines": [
+        175,
+        216
+      ],
+      "assessment": "Each fresh root project must produce exactly one uncached successful CXX ABI event. The actual logged commands must match Ninja output with documented CMake escaping; confined object/executable copies and the matching ABI binary hash are retained before later CMake calls. A new four-tree ABI result remains unverified."
+    },
+    {
+      "lines": [
+        217,
+        262
+      ],
+      "assessment": "Every cell validates generated actions against the settled rule set and the actual executed argv multiset, requires CTest success and exact direct stdout, checks the binary/library ARM64 identities, retains full defined-global symbol output and verifies the public function. Shared cells additionally require install name, consumer binding, build rpath and the exact canonical loaded core dylib. Lane-specific direct dependencies and required canonical C++ runtime images are checked; only the explicitly recorded OS C++ images are additionally allowed."
+    },
+    {
+      "lines": [
+        263,
+        290
+      ],
+      "assessment": "Five private compiler controls are selected from exact original/patched source-contract bytes. Intended failures require expected exit, specific diagnostic and no object; the positive original-smoke comparison requires an object. Two independent CTest controls compare old regex and corrected exit semantics, with the shared child command first checked at exit 1. Completion requires exactly four trees, sixteen cells and seven controls."
+    },
+    {
+      "lines": [
+        291,
+        318
+      ],
+      "assessment": "Success requires restored default environment, matching source snapshots and final input/tool/runtime hashes. The finally path rechecks the complete existing protected-state inventory plus project/tool/GCC/SDK bindings and saves a failure if preservation fails. The lexical lease context releases on exceptions. This review did not run the protected inventory or acquire the host lease."
+    }
+  ],
+  "parent_capacity_receipt": {
+    "record": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/preflight.json",
+      "sha256": "c7895be503394c21d85806091c257ebcb68cbb72ff6e8cf1d2c00435b79707b9",
+      "bytes": 101094
+    },
+    "recorded_at": "2026-10-11T13:19:09.040665+00:00",
+    "recorded_commands": 5,
+    "recorded_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "active_build_processes": [],
+    "free_bytes": 56146579456,
+    "qualification": "Read as a historical parent receipt only. Parent owns refreshing it and binding its hash in the final admission; the runner also performs a fresh census under its lease."
+  },
+  "limitations": [
+    "PRE-RUN only: no admission file was created or executed by this reviewer.",
+    "No new configure, ABI, compiler, archive, link, CTest, export, loader, sixteen-cell matrix or seven-control native outcomes were observed.",
+    "No old guard batteries, live full protected-prefix inventory, timeout/cancellation tests, model sessions or full OCI/Claude/provider/hook acceptance were rerun.",
+    "No network, installers, services, containers, global configuration changes or source/project writes; reviewer writes only private receipts.",
+    "The named-profile selection, lease release and preservation logic are statically reviewed requirements until the admitted native operation records real outcomes."
+  ],
+  "delivery_notes": "Parent may copy this exact report and text manifest, refresh capacity if needed, and create admission by adding fresh owner/time/run_directory/preflight and pre-run-review hashes while retaining the exact proposal fields. docs/core-qualification.md and docs/status.md remain reserved for later native closure. No native success or final commit is implied."
+}

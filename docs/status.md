@@ -114,6 +114,13 @@ C++26 MinSizeRel duplicate-symbol defect is avoided with the target-scoped
 `-fno-declone-ctor-dtor` control; the optimization and negative controls are
 retained. Both post-commit baseline checks passed.
 
+Task 03b's [two-compiler core qualification](core-qualification.md) now passes
+all sixteen static/shared configuration cells, four ABI probes and seven
+controls. Exports, private reflection, runtime origins and protected/default
+state pass; the runner exited 0 and released the lease. Independent artifact
+review passed without findings. The earlier failed PATH comparison and its correction are
+retained separately; dependency and package qualification follow later.
+
 Task 06a is committed at `fe108bce6f5226005c5082bc85fba7ae31d2aeb6`:
 [pinned LLVM source and the initial cache](p2996-toolchain.md) passed independent
 review and script-mode controls. That milestone ran no LLVM configuration or build.
