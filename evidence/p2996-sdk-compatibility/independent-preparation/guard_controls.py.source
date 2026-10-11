@@ -1,0 +1,104 @@
+import ast, copy, hashlib, json, os, types
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+PRIVATE=Path(__file__).parent
+HELPER=ROOT/'dev/toolchains/p2996_sdk_compat.py'
+LOCK=Path('/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py')
+LOCK_SHA='b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20'
+digest=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+assert digest(HELPER)=='3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294'
+assert digest(LOCK)==LOCK_SHA
+module=ast.parse(HELPER.read_text());main=next(n for n in module.body if isinstance(n,ast.FunctionDef) and n.name=='main')
+body=next(n for n in main.body if isinstance(n,ast.Try))
+apply=next(n for n in body.body if isinstance(n,ast.If))
+lock_index=next(i for i,n in enumerate(apply.body) if isinstance(n,ast.With))
+compile_nodes=lambda nodes:compile(ast.fix_missing_locations(ast.Module(body=copy.deepcopy(nodes),type_ignores=[])),str(HELPER),'exec')
+admission_code=compile_nodes(apply.body[:lock_index])
+lock_tree=ast.parse(LOCK.read_text())
+lock_funcs=[n for n in lock_tree.body if isinstance(n,ast.FunctionDef) and n.name in ('lock_dir','lock_path','holder_env_name')]
+results=[]
+
+def fixture():
+    environment={}
+    lease_ns={'os':types.SimpleNamespace(environ=environment),'Path':Path,'LOCK_DIR_ENV':'DOTFILES_LOCK_DIR'}
+    exec(compile_nodes(lock_funcs),lease_ns)
+    lease=types.SimpleNamespace(HEAVY_GATE='heavy-gate',LOCK_FD_ENV='DOTFILES_HEAVY_GATE_FD',**{name:lease_ns[name] for name in ('lock_dir','lock_path','holder_env_name')})
+    actual=types.SimpleNamespace(util=types.SimpleNamespace(spec_from_file_location=lambda *a:types.SimpleNamespace(loader=types.SimpleNamespace(exec_module=lambda m:None)),module_from_spec=lambda s:lease))
+    evidence=PRIVATE/'fake-evidence';directory=PRIVATE/'fake-operation';review=evidence/'preparation-review.json'
+    reviewed={'result':'PASS: bounded preparation'}
+    proposal=json.loads((ROOT/'evidence/p2996-sdk-compatibility/initial-preparation/qualification.json').read_text())['proposal']
+    admission={'helper_sha256':digest(HELPER),'proposal':proposal,'run_directory':str(directory),'review_sha256':'review-hash'}
+    loads={evidence/'admission.json':admission,review:reviewed}
+    def hashes(p):return 'review-hash' if p==review else digest(p)
+    ns={'Path':Path,'evidence':evidence,'directory':directory,'load':lambda p:loads[p],
+        'digest':hashes,'__file__':str(HELPER),'report':{'proposal':proposal},'LOCK_MODULE':LOCK,
+        'LOCK_SHA':LOCK_SHA,'importlib':actual,'os':types.SimpleNamespace(environ=environment)}
+    return ns,admission,reviewed,environment
+
+cases=[('valid-admission',None,False),
+ ('helper-mismatch',lambda n,a,r,e:a.update(helper_sha256='wrong'),True),
+ ('proposal-mismatch',lambda n,a,r,e:a.update(proposal={}),True),
+ ('run-directory-mismatch',lambda n,a,r,e:a.update(run_directory='/wrong'),True),
+ ('review-digest-mismatch',lambda n,a,r,e:a.update(review_sha256='wrong'),True),
+ ('review-fails',lambda n,a,r,e:r.update(result='FAIL'),True),
+ ('lock-digest-mismatch',lambda n,a,r,e:n.update(LOCK_SHA='wrong'),True),
+ ('alternate-lock-directory',lambda n,a,r,e:e.update(DOTFILES_LOCK_DIR=str(PRIVATE/'alternate')),True),
+ ('alternate-state-home',lambda n,a,r,e:e.update(XDG_STATE_HOME=str(PRIVATE/'alternate-state')),True),
+ ('inherited-holder',lambda n,a,r,e:e.update(DOTFILES_LOCK_HOLDER_HEAVY_GATE='42'),True),
+ ('inherited-descriptor',lambda n,a,r,e:e.update(DOTFILES_HEAVY_GATE_FD='42'),True)]
+for name,mutate,reject in cases:
+    ns,a,r,e=fixture()
+    if mutate:mutate(ns,a,r,e)
+    rejected=False
+    try:exec(admission_code,ns)
+    except AssertionError:rejected=True
+    assert rejected==reject,name
+    results.append({'case':name,'result':'PASS','assertion_rejected':rejected,'lease_acquired':False})
+
+proposal=json.loads((ROOT/'evidence/p2996-sdk-compatibility/scratch/proposal.json').read_text())
+configuration=json.loads((ROOT/'evidence/p2996-configure/operation/qualification.json').read_text())['proposal']
+probe=json.loads((ROOT/'evidence/p2996-sdk-compatibility/scratch/qualification.json').read_text())
+files_node=next(n for n in module.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FILES' for t in n.targets))
+files=ast.literal_eval(files_node.value)
+git_index=next(i for i,n in enumerate(body.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='git' for t in n.targets))
+initial_code=compile_nodes(body.body[:git_index])
+for name,mutate in [('valid-source-metadata',None),('wrong-base',lambda n:n['proposal'].update(base_commit='wrong')),
+ ('wrong-allowlist',lambda n:n['proposal']['files'][0].update(path='llvm/extra.h')),
+ ('wrong-patch-hash',lambda n:n['proposal'].update(patch_sha256='wrong')),
+ ('probe-not-passed',lambda n:n['probe'].update(state='FAIL')),
+ ('probe-source-changed',lambda n:n['probe'].update(source_and_protected_state_unchanged=False)),
+ ('unexpected-positive-exit',lambda n:n['probe']['commands'][2].update(returncode=1))]:
+    p=copy.deepcopy(proposal);probe_copy=copy.deepcopy(probe);c=copy.deepcopy(configuration)
+    ns={'ROOT':ROOT,'evidence':ROOT/'evidence/p2996-sdk-compatibility','Path':Path,'proposal':p,'source':Path(p['source']),
+        'patch':ROOT/'evidence/p2996-sdk-compatibility/scratch/rdf-comparator.patch','digest':digest,'FILES':files,'probe':probe_copy}
+    ns['load']=lambda path: {'proposal':c} if path.name=='qualification.json' and 'p2996-configure' in str(path) else probe_copy
+    if mutate:mutate(ns)
+    rejected=False
+    try:exec(initial_code,ns)
+    except AssertionError:rejected=True
+    assert rejected==(mutate is not None),name
+    results.append({'case':name,'result':'PASS','assertion_rejected':rejected})
+
+source_node=next(n for n in main.body if isinstance(n,ast.FunctionDef) and n.name=='source_files')
+source_code=compile_nodes([source_node])
+for name,source,p,patched,reject in [('valid-five-preimages',PRIVATE/'pristine',proposal,False,False),
+    ('valid-five-postimages',PRIVATE/'reproduction/tree',proposal,True,False),
+    ('wrong-postimages',PRIVATE/'pristine',proposal,True,True)]:
+    ns={'source':source,'proposal':p,'digest':digest};exec(source_code,ns)
+    rejected=False
+    try:ns['source_files'](patched)
+    except AssertionError:rejected=True
+    assert rejected==reject,name
+    results.append({'case':name,'result':'PASS','assertion_rejected':rejected})
+
+# Execute the actual finalization AST with synthetic protected-state failure.
+ns={'report':{'state':'PASS: preparation only'},'directory':PRIVATE/'fake-operation','json':json,'save':lambda:None,
+    'protected':lambda:(_ for _ in ()).throw(AssertionError('injected protected drift')),'print':lambda *a,**k:None}
+try:exec(compile_nodes(body.finalbody),ns)
+except AssertionError:pass
+else:raise AssertionError('preservation failure swallowed')
+assert ns['report']['state']=='FAIL' and 'preservation_error' in ns['report']
+results.append({'case':'preservation-failure-propagates-and-labels-FAIL','result':'PASS'})
+report={'result':'PASS','helper_sha256':digest(HELPER),'scope':'Exact AST guards with mock admissions/environment; no lease acquisition, native apply, or compiler execution','controls':results}
+(PRIVATE/'application-guard-controls.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'result':report['result'],'count':len(results),'cases':results},indent=2))

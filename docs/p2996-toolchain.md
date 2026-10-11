@@ -116,3 +116,21 @@ tree are retained. Independent [failure closure](../evidence/p2996-build/failure
 confirms a free lease, no surviving build processes, unchanged protected state
 and a byte-identical default environment. A bounded compatibility repair is
 required before the build can resume; installation and acceptance remain pending.
+
+## SDK comparator adaptation
+
+Task 07b1 keeps the pinned base commit and qualifies a separate five-file patch.
+A named `llvm::rdf::RegisterRefLess` retains the existing pointer-backed ordering
+function, avoiding SDK libc++'s substitution of exact `std::less<T>` types.
+The related aliases, maps and sort callers use that explicit type.
+
+The [scratch controls](../evidence/p2996-sdk-compatibility/scratch/qualification.json)
+reproduce the original failure and pass all three patched translation units.
+The [application helper](../dev/toolchains/p2996_sdk_compat.py) defaults to
+preparation. `--apply` requires exact source preimages, reviewed patch/helper
+receipts, a matching admission and the canonical lease. It checks the five
+postimages and reverse applicability, while preserving protected shared state.
+The [independent preparation review](../evidence/p2996-sdk-compatibility/preparation-review.json)
+passed after adding the canonical lock-path guard: one syntax reproduction,
+six preparation commands, 22 guard controls and four subprocess controls.
+The source remains unmodified; application is the separate 07b2 operation.

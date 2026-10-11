@@ -518,3 +518,20 @@ Installation and reflection/runtime acceptance are separate later units.
   byte-identical, and eight generated files plus incremental Ninja state intact.
   The failed build remains rc 1; this closure does not qualify the compiler.
 - Failure checkpoint static checks and the direct-content secret scan passed.
+
+The first build failure is committed at `e91a6e98888b8e52c394d358c5e24a3f465240d3`;
+its post-commit baseline passed and the worktree was clean. Task 07b1 prepares
+a five-file named-comparator adaptation in scratch copies. The original failing
+translation unit exits 1 again; all three patched translation units pass syntax
+checks. The source and protected files are unchanged. Independent patch review
+and one reproduction are in progress before any source application.
+- The guarded application helper passed six native preparation commands. A
+  failure-receipt correction is preserved separately; final-helper reproduction
+  belongs to the independent review before application. No source was patched.
+- Review found a missing canonical lock-path check in the application helper.
+  The exact path assertion now rejects inherited alternate lock roots before
+  any source mutation; the earlier helper is retained for the control receipt.
+- Final preparation review passed: one matching syntax reproduction, six
+  native preparation commands, 22 guard controls and four subprocess controls.
+  The canonical-path finding is resolved; all protected state and 19 original
+  files match. Source application is the separate 07b2 operation.
