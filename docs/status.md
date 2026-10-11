@@ -165,3 +165,8 @@ Native VFS overlays leave actual source, generated headers and protected state
 unchanged. Independent review reproduced all sixteen outcomes and passed
 preservation/static checks. Normal incremental rules reach both header copies;
 guarded source application is next.
+
+Task 07b6 prepares that application with exact scratch evidence, source and
+retained build bindings. Independent review passed: seven native commands,
+34 private guard controls, preservation and static checks all passed. Source
+application is ready for its separate admission; no math patch has been applied.

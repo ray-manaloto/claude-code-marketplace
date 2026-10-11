@@ -49,6 +49,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 07b3 | Guarded incremental restart preparation | Applied-source and history binding; drift controls; independent review | Complete |
 | 07b4 | Native incremental LLVM restart | Fresh admission; final native exit; runtime and artifact review | Failed; closure verified |
 | 07b5 | SDK math compatibility scratch controls | Reproduced macro failure; smallest source repair; boundary test; independent review | Complete |
+| 07b6 | Guarded math source application preparation | Exact two-header patch; prior source/build preservation; independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

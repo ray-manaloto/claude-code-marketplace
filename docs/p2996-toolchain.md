@@ -186,3 +186,13 @@ missing-libLTO warning is retained; full compiler/runtime acceptance is pending.
 confirms normal incremental copies from both source headers. No manual stamp
 deletion or reconfiguration is needed; automatic child configuration may recur.
 Guarded source application and another restart are separate operations.
+
+Task 07b6's [application helper](../dev/toolchains/p2996_math_apply.py) defaults
+to read-only preparation. It binds the exact scratch patch/review, verifies the
+prior five source edits and retained build inventory, and checks native patch
+applicability. Applying requires an independent preparation review, matching
+admission and immediate rechecks under the canonical lease. Only the two source
+headers may change; generated headers wait for the separately admitted restart.
+The [preparation review](../evidence/p2996-math-application/preparation-review.json)
+passed one native reproduction, 34 private guard controls and static/baseline
+checks without findings. No real source application ran during preparation.

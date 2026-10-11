@@ -617,3 +617,19 @@ generated header, SDK, configured build or global tool mutation is admitted.
   scoped source/build/protected state, and passed static/baseline checks.
   The existing tiny-link missing-libLTO warning is retained. Graph inspection
   confirms normal incremental copy rules for both headers; no build ran.
+
+Task 07b5 is committed at `8db6ec4721867af87eacd78ca5e8c6caa630f14d`;
+its post-commit baseline passed and the worktree was clean. Task 07b6 prepares
+the two-header source application with exact scratch/review bindings, the prior
+five-file adaptation, retained build inventory and protected shared state.
+The helper defaults to preparation; application requires separate admission
+and immediate rechecks under the canonical lease. No source apply or build
+is admitted by this preparation unit.
+- Parent preparation exited 0 with all seven native commands passing. The
+  patch applies cleanly to the existing five-file adaptation, and the default
+  environment and retained build/protected state match. Independent review
+  covers the new guard logic and one preparation-only reproduction.
+- Independent preparation review passed without findings: seven native commands,
+  34 private guard controls and both static checks passed. Scoped source/build,
+  protected state and all original files match. Real application remains a
+  separate admitted operation.
