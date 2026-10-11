@@ -663,3 +663,23 @@ independent drift controls precede separate build admission.
   seven successful commands, 44 new guard controls, exact proposal matching and
   unchanged prior control logic. Scoped inventories, static checks and all 19
   original Claude files passed. Build admission remains a separate operation.
+
+Task 07b8 is committed at `db9c16cb860eedb6f1f472773f488b365413d839`;
+its post-commit baseline passed with a clean worktree. Operation 07b9 admits only
+the reviewed math-adapted incremental build. Fresh preflight found no builders,
+75% free memory, 55.6 GiB disk available and the same Docker workload. The helper
+must acquire the canonical lease and repeat all live checks before compiling.
+Four jobs per native build, six-hour deadline and disk reserve remain enforced.
+Installation, compiler qualification and global registration remain later work.
+- The native incremental build exited 0; all 22 operation commands passed.
+  Both generated math headers match the source postimages and all eight required
+  tool paths exist. Source/protected/default state checks passed, the prefix is
+  absent and the lease is released. Exact logs and operation inputs are retained.
+  The late process observer captured outer `-j 4` only; nested child limits were
+  not observed during this short restart. Independent artifact closure is next.
+- Independent build closure passed without findings: all 48 records and 44 logs
+  match, the eight tools have ARM64 metadata, both child completion markers and
+  selected runtime libraries exist, and the bounded inventory is retained.
+  Source/protected/default state and all 19 originals pass; the lease is free
+  and operation PIDs are absent. Build acceptance is complete; installation and
+  compiler/runtime qualification remain separate gates.

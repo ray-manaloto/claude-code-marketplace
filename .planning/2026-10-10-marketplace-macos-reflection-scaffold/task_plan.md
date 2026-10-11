@@ -43,7 +43,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 11d | Scoped global vcpkg promotion | Fresh ownership/preimages; exact reviewed helper; native global discovery | Complete |
 | 06b | Guarded P2996 outer configure | Fresh shared capacity; exact inputs; generated runtime commands; independent review | Complete |
 | 07a | Guarded cold-build preparation | Nested build limits, durable logs, timeout/reserve controls; independent review | Complete |
-| 07b | Native P2996 cold build | Fresh capacity and lease; actual final exit; child caches and artifact review | In progress |
+| 07b | Native P2996 cold build | Fresh capacity and lease; actual final exit; child caches and artifact review | Complete |
 | 07b1 | SDK comparator repair preparation | Exact five-file patch; negative and positive syntax controls; independent review | Complete |
 | 07b2 | Guarded SDK source adaptation | Exact source postimages; native apply/reverse checks; independent review | Complete |
 | 07b3 | Guarded incremental restart preparation | Applied-source and history binding; drift controls; independent review | Complete |
@@ -52,6 +52,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 07b6 | Guarded math source application preparation | Exact two-header patch; prior source/build preservation; independent review | Complete |
 | 07b7 | Guarded math source application | Exact seven-file source state; reverse check; retained build state; independent closure | Complete |
 | 07b8 | Guarded math-adapted restart preparation | Both source adaptations; child build/history bindings; independent drift review | Complete |
+| 07b9 | Native math-adapted LLVM restart | Fresh capacity and lease; final native exit; runtime and artifact review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

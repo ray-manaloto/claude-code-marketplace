@@ -180,3 +180,13 @@ source diff and retained child build state. Native preparation and independent
 review passed, including all 44 new guard controls and preserved inventories.
 The fresh read-only capacity snapshot reports no observed blocker; actual build
 admission must repeat checks under the lease.
+
+Task 07b8 is committed at `db9c16cb860eedb6f1f472773f488b365413d839`.
+Operation 07b9 has a separate scoped admission after fresh process, memory and
+Docker checks. The bounded incremental build must produce its native final exit
+and independently reviewed artifacts before installation or runtime acceptance.
+The native build has now exited 0 and all 22 commands passed. The repaired
+runtime sources compiled, both generated headers refreshed, required tool paths
+exist and the lease is released. Independent artifact review passed without
+findings, including the ARM64 tools, runtime inventory, protected/default state
+and all original files. Installation and compiler/runtime qualification follow.

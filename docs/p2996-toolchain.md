@@ -217,3 +217,14 @@ Independent [preparation review](../evidence/p2996-math-resume/preparation-revie
 passed: seven native commands, 44 new guard controls, preserved scoped inventory
 and all original acceptance files. Old control tests were verified by hash and
 unchanged AST; compilation awaits separate live admission.
+
+Operation 07b9's [native build](../evidence/p2996-math-resume/operation/qualification.json)
+exited 0 after 84.93 seconds; all 22 commands passed. Both generated math headers
+match their source postimages. The eight required tools and both child caches
+are recorded, source/protected/default state checks pass, and the lease is
+released. The short restart finished its nested builds before the observer
+started, so this run directly observed only the outer `-j 4` limit. Independent
+[artifact closure](../evidence/p2996-math-resume/build-review.json) passed without
+findings: all operation records, source/postimages, selected ARM64 tools/runtime
+artifacts, free lease, default consumer and original-file checks match. Build
+acceptance is complete. Installation and compiler/runtime acceptance remain.
