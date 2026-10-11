@@ -1,0 +1,69 @@
+{
+  "unit": "Task 13b independent preparation review",
+  "reviewer": "/root/cold_bottle_review",
+  "reviewed_at": "2026-10-11T22:44:46.587816+00:00",
+  "result": "PASS",
+  "findings": [],
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "1696238f7df32b75834f5738da0cdd7025c98b4d",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "a5fa5ca1e8d7227593be55a024262d0b27e69bea8cf98c25b06127c816d535ae",
+  "contract_sha256": "b2e318aca3828b36d23c2496190b74764acff97789c39973cb7331f30195971b",
+  "candidate_sha256": "9a20d04cca740f23d7611a94e5607b05f39cd1ec957aa538b60da01ab6f4dcc7",
+  "scope": "Five frozen maintained files and new evidence/baseline-build artifacts; the consumer runner/contract were inspected for delta context. Closed 13a and 12c3c qualifications were trusted prerequisites.",
+  "static_assertions": [
+    "The root CMake delta only adds actual target type and fmt target-file metadata; removing those additions reconstructs the reviewed 13a root bytes. Opt-in fmt behavior and private reflection flags remain unchanged.",
+    "Preset dispatch uses a sandboxed Python exec wrapper that changes cwd to ROOT. MARKETPLACE_BUILD_ROOT places eight configure trees under the fresh normalized private run directory. Selected configure/build/test names match the committed preset matrix; build/test jobs remain one.",
+    "Four configurations per tree yield 32 sequential cells. Actual fmt target paths and hashes must select Debug for Debug and Release for the other three configurations; core/fmt target types are checked independently.",
+    "Each cell requires the expected successful CTest JUnit case and exact smoke output, two ARM64 artifact checks, a second direct runtime/output witness, the selected runtime paths, and exact presence/absence of shared core and fmt libraries.",
+    "Bounded native command execution, interruption handling, guards and failure/final preservation handlers remain unchanged from the consumer predecessor. Nonzero commands or failed assertions prevent PASS; preserved dependency/source inventories are checked at closure.",
+    "Fresh admission must bind this helper, contract, PASS review and exact run directory. Existing capacity, canonical lease, default-profile and protected-state gates remain. The parent plans the bound interpreter with -E -B; no native launcher has run."
+  ],
+  "executed_reviewer_checks": {
+    "kind": "One bounded filesystem/JSON/AST comparison; no candidate code executed",
+    "returncode": 0,
+    "seconds": 0.05232254206202924,
+    "maintained_bindings": 5,
+    "frozen_snapshot_byte_pairs": 7,
+    "new_scan_file_bindings": 10,
+    "prior_guard_and_failure_ast_equal": true,
+    "project_or_shared_writes": 0
+  },
+  "inspected_parent_receipts": {
+    "static_returncodes": [
+      0,
+      0
+    ],
+    "original_baseline_hashes": 19,
+    "trusted_presets_postcommit_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scan_raw_returncode": 1,
+    "verified_content_digest_dispositions": 2,
+    "scan_transformed_returncode": 0,
+    "supplemental_complete_token_files": []
+  },
+  "native_acceptance": "UNVERIFIED; fresh admission and the full native matrix remain pending.",
+  "checks_not_run": [
+    "Native configure/build/CTest/runtime, generation or preset listing",
+    "Static checks or scanners",
+    "Old controls, full prerequisite source graph, binary/tool rehashes, inventories or capacity/lease checks",
+    "Fresh model sessions, Claude/container acceptance, provider or hook-runtime checks",
+    "Network access, installs, services, global changes or further agents"
+  ],
+  "acceptance_preservation": "Current changes do not alter Claude acceptance files. The retained static receipt reports all 19 baseline hashes; this is not full Claude/OCI acceptance.",
+  "support_allowlist": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

@@ -1298,3 +1298,25 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   all inheritance and tuple mappings passed. The reviewer corrected an inert
   TCPM metadata assumption and retained both rc1/rc0 audit receipts. Exact
   candidate texts are retained. Native 32-cell acceptance is the next unit.
+- Task 13a committed as `1696238f7df32b75834f5738da0cdd7025c98b4d`;
+  the worktree was clean and final-HEAD baseline passed. Task 13b prepares the
+  native eight-tree, 32-cell baseline using committed presets, existing fmt
+  installations, independent linkage, CTest and per-cell loader evidence.
+- Prepared the confined baseline runner and actual core/fmt target metadata.
+  Native preset configure/build/CTest calls run from the project root while
+  all outputs stay private. The gate requires 32 CTest records, 64 ARM64
+  artifact checks and per-cell runtime/linkage witnesses; execution is pending.
+- The first baseline launch returned 1 in the ownership census: an unrecognized
+  mise process appeared after the fresh capacity check. It ran zero native
+  commands and acquired no lease; preservation checks passed. The process has
+  exited, the canonical lease is free, and the unchanged reviewed runner may
+  retry only after another fresh capacity check. Original receipts are retained.
+- Fresh capacity admitted the unchanged runner; its retry exited 0 in 83.35 seconds.
+  All 175 commands passed, including 32 build/CTest/runtime cells and 64 ARM64
+  artifact checks. Defaults, source and installed dependencies were preserved.
+  Parent closure found all recorded children absent and the canonical lease free;
+  579 exact text artifacts are retained. Independent artifact review is pending.
+- Independent Task 13b review passed without findings: all 175 outcomes, 32 cells,
+  seven preparation snapshots, 579 text pairs and 64 new artifact hashes matched.
+  The reviewer corrected its JSON-lines parser and retained both rc1/rc0 receipts.
+  Native baseline acceptance is complete; sanitizer families follow separately.

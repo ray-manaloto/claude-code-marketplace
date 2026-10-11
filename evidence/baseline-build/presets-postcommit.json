@@ -1,0 +1,93 @@
+{
+  "base_head": "e81ba5db9621c36334d10a1c6e4ce5cad63ba79c",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "e81ba5db9621c36334d10a1c6e4ce5cad63ba79c\n",
+      "stderr": "",
+      "elapsed_seconds": 0.19003845797851682
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "CMakeLists.txt",
+        "src/smoke.cpp",
+        "CMakePresetsVendorTemplate.json",
+        "CMakePresets.json",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "evidence/baseline-presets"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.21376504190266132
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.3029294579755515
+    },
+    {
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "Generate the independent-linkage native baseline presets"
+      ],
+      "returncode": 0,
+      "stdout": "[codex/marketplace-native-onboarding 1696238] Generate the independent-linkage native baseline presets\n 26 files changed, 2837 insertions(+)\n create mode 100644 CMakePresets.json\n create mode 100644 CMakePresetsVendorTemplate.json\n create mode 100644 evidence/baseline-presets/candidate-inputs.json\n create mode 100644 evidence/baseline-presets/candidate.json\n create mode 100644 evidence/baseline-presets/closure-secret-scan.json\n create mode 100644 evidence/baseline-presets/closure-static.json\n create mode 100644 evidence/baseline-presets/consumer-postcommit.json\n create mode 100644 evidence/baseline-presets/generation-check.py.source\n create mode 100644 evidence/baseline-presets/generation-launch.json\n create mode 100644 evidence/baseline-presets/generation.json\n create mode 100644 evidence/baseline-presets/pre-review-secret-scan.json\n create mode 100644 evidence/baseline-presets/pre-review-static.json\n create mode 100644 evidence/baseline-presets/review-copy-manifest.json\n create mode 100644 evidence/baseline-presets/review.json\n create mode 100644 evidence/baseline-presets/review/compare.first.py.source\n create mode 100644 evidence/baseline-presets/review/compare.py\n create mode 100644 evidence/baseline-presets/review/comparison.json\n create mode 100644 evidence/baseline-presets/review/execution-first.json\n create mode 100644 evidence/baseline-presets/review/execution.json\n create mode 100644 evidence/baseline-presets/review/review.json\n create mode 100644 evidence/baseline-presets/review/supporting-manifest.json\n create mode 100644 evidence/baseline-presets/tcpm-prerequisite.json\n",
+      "stderr": "",
+      "elapsed_seconds": 0.7406199579127133
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "1696238f7df32b75834f5738da0cdd7025c98b4d\n",
+      "stderr": "",
+      "elapsed_seconds": 0.2830243338830769
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.5259038328658789
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1711, \"python\": 125, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.5256300000473857
+    }
+  ],
+  "head": "1696238f7df32b75834f5738da0cdd7025c98b4d",
+  "state": "PASS: committed; clean worktree and final-HEAD baseline"
+}

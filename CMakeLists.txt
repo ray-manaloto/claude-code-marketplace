@@ -72,7 +72,14 @@ add_test(NAME research_core_smoke COMMAND research_core_smoke)
 set_tests_properties(research_core_smoke PROPERTIES TIMEOUT 10)
 file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt" CONTENT
 "library=$<TARGET_FILE:research_core>
+kind=$<TARGET_PROPERTY:research_core,TYPE>
 binary=$<TARGET_FILE:research_core_smoke>
 configuration=$<CONFIG>
 shared=${BUILD_SHARED_LIBS}
 ")
+if(RESEARCH_CORE_WITH_FMT)
+  file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/fmt-$<CONFIG>.txt" CONTENT
+"library=$<TARGET_FILE:fmt::fmt>
+kind=$<TARGET_PROPERTY:fmt::fmt,TYPE>
+")
+endif()

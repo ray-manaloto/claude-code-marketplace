@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+    "-E",
+    "-B",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-baseline-artifact-review-ec_a_oz5/compare.py"
+  ],
+  "script_sha256": "d6872eb4bd9a6478243254b3eac37ea7ec82bf068a2fc82981952b1183707417",
+  "started_at": "2026-10-11T22:58:43.442411+00:00",
+  "finished_at": "2026-10-11T22:58:43.641323+00:00",
+  "elapsed_seconds": 0.19877479108981788,
+  "timeout_seconds": 30,
+  "returncode": 0,
+  "stdout": "{\"result\": \"PASS\", \"candidate_sha256\": \"7e52f16d75f7352543d5716594917e2219b2d50afa38e88facb80869b61ac26b\", \"helper_sha256\": \"a5fa5ca1e8d7227593be55a024262d0b27e69bea8cf98c25b06127c816d535ae\", \"contract_sha256\": \"b2e318aca3828b36d23c2496190b74764acff97789c39973cb7331f30195971b\", \"qualification_sha256\": \"5c0acea8fb316a4873cc1f924b05a4d27b380a126d1c976ba9bb6458c345aa9c\", \"operation_directory\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/baseline-retry-20261011T224818Z\", \"first_attempt\": {\"returncode\": 1, \"commands\": 0, \"cells\": 0, \"failure\": \"unknown mise process 30352 in writer census before lease\", \"later_process_absence_recorded\": true}, \"retry\": {\"returncode\": 0, \"elapsed_seconds\": 83.34908466599882, \"command_outcomes\": 175, \"configure_trees\": 8, \"build_test_runtime_cells\": 32, \"arm64_artifacts\": 64}, \"exact_retry_text_source_pairs\": 579, \"text_pair_index_sha256\": \"393c28db1fd871a8f988021a78cac6b6a16faa97d6f217aba7a2ca4e2bb46454\", \"exact_first_launch_source_pairs\": 4, \"original_frozen_snapshots\": 7, \"new_binary_file_reads_and_hashes\": 64, \"parent_closure_pid_absences\": 175, \"source_and_install_preservation\": \"attested by reviewed runner; inventories not repeated\", \"parent_static_returncodes\": [0, 0], \"parent_baseline_original_hashes\": 19, \"parent_scan_raw_returncode\": 1, \"parent_scan_verified_digest_dispositions\": 5, \"parent_scan_transformed_returncode\": 0, \"parent_scan_current_review_bindings_checked\": 27, \"reviewer_native_execution\": false}\n",
+  "stderr": "",
+  "reviewer_correction": "Parse the observed 175 command-result JSON lines plus the final summary, rather than treating native launch stdout as one JSON object. Initial failure occurred before new artifact bytes were read."
+}

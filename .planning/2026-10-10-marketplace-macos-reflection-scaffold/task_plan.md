@@ -83,6 +83,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c3b | Private native fmt builds | Reviewed build/configure limits; fresh capacity; native exits, detector and ABI receipts | Complete |
 | 12c3c | Application and fmt consumer parity | Public vcpkg composition; eight build/run cells; actual loader paths and preserved dependency roots | Complete |
 | 13a | Native baseline preset preparation | Deterministic TCPM generation; eight trees, 32 cells, independent linkage and four preset kinds | Complete |
+| 13b | Native baseline matrix | Eight isolated preset trees; 32 build/test/runtime cells; independent linkage and exact dependency mapping | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -247,3 +248,11 @@ use the four retained fmt installations with installation disabled. Generation
 and native preset listing may run without configuring a project or invoking a
 compiler. The full 32-cell native operation follows separate review and fresh
 capacity admission. No dependency rebuild, cache or instrumentation is included.
+
+Task 13b admits one private baseline runner, root target metadata, baseline docs
+and these planning files. Execute the committed native presets in eight fresh
+private trees with one job, all four configurations and independent core/fmt
+linkage. Reuse retained dependencies read-only with installation disabled.
+Native operations require independent preparation review, fresh capacity and
+the canonical lease. No dependency build, instrumentation, cache provider,
+shared installation or global write is included.
