@@ -150,4 +150,16 @@ use `evidence/p2996-resume/`; the first failed build remains immutable.
 The existing subprocess cleanup, capacity limits and disk monitoring remain in
 force. Independent restart preparation review passed: all seven native
 preparation commands and 24 drift controls passed. Prior cleanup and capacity
-controls were retained after AST and receipt verification. No restart has run.
+controls were retained after AST and receipt verification.
+
+The [incremental restart](../evidence/p2996-resume/failed-incremental-build/qualification.json)
+exited 1 after 1365.16 seconds. The prior RDF repair compiled; the new failure is
+libc++ `__random/clamp_to_integral.h` using an unavailable `INFINITY` macro while
+building `random_shuffle.cpp`. Exact logs and the incremental tree are retained.
+The bounded process observer captured both builtin and runtime Ninja children
+with `-j 4`; two configure-probe Ninja invocations had no visible job limit.
+Independent [failure closure](../evidence/p2996-resume/failure-closure-review.json)
+passed: cleanup, protected/default state, original files and partial inventory
+are verified. Three required tool names exist and five are absent; the prefix
+and runtime completion stamp are absent. A small header repair still needs
+scratch controls and independent review. No compiler or runtime is qualified.

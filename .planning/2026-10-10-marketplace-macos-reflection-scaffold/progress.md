@@ -567,3 +567,27 @@ and independent drift-control review are pending; no restart has run.
   24 source/receipt/history drift controls passed. Unchanged subprocess and
   capacity logic retains its previous controls after AST/receipt comparison.
   Source, retained build state, protected files and all original files match.
+
+Task 07b3 is committed at `4497c63d338385807a9538a4730401ce5d0ed58c`;
+its post-commit baseline passed and the worktree was clean. The 07b4 admission
+binds the reviewed helper, exact source/history proposal and a new private
+operation directory. Fresh Docker identity/load checks passed; the helper must
+repeat live capacity and source checks under the canonical lease before build.
+- The admitted restart passed all sixteen pre-build commands under the
+  canonical lease. Native incremental compilation is running with the same
+  bounded jobs and disk monitor; final exit and runtime acceptance are pending.
+- The restart exited 1 after 1365.16 seconds. Repaired RDF files compiled, then
+  libc++ random_shuffle.cpp failed on an unavailable INFINITY macro. Exact
+  logs, admission, invocation and helper bytes are retained in
+  evidence/p2996-resume/failed-incremental-build; the partial tree is preserved.
+  Independent failure closure and source-only diagnosis are active.
+- The observer captured actual builtin and runtime Ninja children with -j 4.
+  Two runtime configure probes had no visible job limit and remain unqualified
+  for an aggregate concurrency claim. No installation or promotion has run.
+- Independent failure closure passed without findings. All 40 retained records,
+  34 logs, five source postimages, protected state and 19 original files match.
+  The default environment is byte-identical, the lease is free and no builders
+  survive. Partial inventory records child configurations and six Ninja states;
+  three required tools exist and five are absent. The prefix remains absent.
+- Source-only diagnosis recommends numeric_limits<float>::infinity() to retain
+  the original argument type. Candidate behavior is not yet compiled or tested.

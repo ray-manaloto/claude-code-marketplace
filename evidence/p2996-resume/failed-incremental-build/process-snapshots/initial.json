@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-11T06:52:32.473763+00:00",
+  "root_pid": 42081,
+  "descendants": [
+    {
+      "pid": 42081,
+      "ppid": 42011,
+      "executable": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake"
+    },
+    {
+      "pid": 42082,
+      "ppid": 42081,
+      "executable": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja"
+    },
+    {
+      "pid": 43856,
+      "ppid": 42082,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang++"
+    },
+    {
+      "pid": 43857,
+      "ppid": 43856,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang"
+    },
+    {
+      "pid": 43902,
+      "ppid": 42082,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang++"
+    },
+    {
+      "pid": 43907,
+      "ppid": 43902,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang"
+    },
+    {
+      "pid": 44543,
+      "ppid": 42082,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang++"
+    },
+    {
+      "pid": 44546,
+      "ppid": 44543,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang"
+    },
+    {
+      "pid": 44547,
+      "ppid": 42082,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang++"
+    },
+    {
+      "pid": 44548,
+      "ppid": 44547,
+      "executable": "/Library/Developer/CommandLineTools/usr/bin/clang"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,ppid=,comm="
+      ],
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/bin/ps",
+        "-p",
+        "42082",
+        "-o",
+        "pid=,ppid=,command="
+      ],
+      "returncode": 0,
+      "stdout": "42082 42081 /Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja -j 4\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -145,3 +145,14 @@ receipt hashes are bound to a new proposal and rechecked immediately under the
 shared lease before compilation. Independent review passed with seven native
 preparation commands and 24 drift controls. Fresh capacity has no observed
 blocker; the separately admitted restart must repeat live checks under its lease.
+Task 07b4's incremental build exited 1 after 1365.16 seconds. The repaired RDF
+files compiled, but libc++ `random_shuffle.cpp` failed because the SDK no longer
+provides the `INFINITY` macro through this include chain. Exact failed logs and
+the partial tree are retained in
+[the failure checkpoint](../evidence/p2996-resume/failed-incremental-build/qualification.json).
+Independent failure closure passed: the lease is free, builders are absent,
+protected state and the default environment match, and all 19 original files
+are preserved. The bounded partial inventory records both child configurations
+and six Ninja state hashes. Source inspection recommends a float-preserving
+standard infinity value; scratch controls precede any application. The compiler
+remains unqualified; no installation has run.
