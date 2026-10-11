@@ -17,6 +17,7 @@ import time
 from gcc_install import ROOT, digest, package_state, preserved, read
 from mise_link_probe import snapshot
 from p2996_configure import LOCK_MODULE, LOCK_SHA
+from p2996_math_apply import FILES as MATH_FILES
 from p2996_sdk_compat import FILES as SDK_FILES
 from vcpkg_register import install_entries
 
@@ -27,9 +28,12 @@ def main():
     parser.add_argument("--build", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--sdk-compatibility", action="store_true")
+    parser.add_argument("--math-compatibility", action="store_true")
     args = parser.parse_args()
     if args.sdk_compatibility and not args.resume:
         parser.error("--sdk-compatibility requires --resume")
+    if args.math_compatibility and not args.sdk_compatibility:
+        parser.error("--math-compatibility requires --sdk-compatibility and --resume")
     directory = args.run_dir
     if not directory.is_absolute() or directory != directory.resolve() or directory.is_relative_to(ROOT):
         parser.error("use a new normalized absolute private directory outside this worktree")
@@ -40,6 +44,8 @@ def main():
               "helper_sha256": digest(Path(__file__)), "commands": []}
     load = lambda path: json.loads(path.read_text())
     evidence = ROOT / ("evidence/p2996-resume" if args.sdk_compatibility else "evidence/p2996-build")
+    if args.math_compatibility:
+        evidence = ROOT / "evidence/p2996-math-resume"
     historical = read("install-preimages.json")
     before = {name: historical[name] for name in ("global_files", "packages", "glib_files")}
     normal_argv = historical["normal_environment"]["argv"]
@@ -164,6 +170,40 @@ def main():
                                        ("operation/qualification.json", "application-review.json",
                                         "scratch/proposal.json", "scratch/rdf-comparator.patch")}}
         history = {str(build / name): digest(build / name) for name in (".ninja_log", ".ninja_deps")} if args.resume else {}
+        math_adaptation = None
+        math = ROOT / "evidence/p2996-math-application"
+        if args.math_compatibility:
+            applied = load(math / "operation/qualification.json")
+            reviewed = load(math / "application-review.json")
+            patch = applied["proposal"]["adaptation"]
+            assert applied["state"] == "PASS: exact math adaptation applied" and applied["applied"]
+            assert applied["lease_released"] and applied["build_and_protected_state_unchanged"]
+            assert len(applied["commands"]) == 18 and all(row["returncode"] == 0 for row in applied["commands"])
+            assert reviewed["result"].startswith("PASS") and not reviewed["findings"]
+            assert reviewed["operation_sha256"] == digest(math / "operation/qualification.json")
+            assert reviewed["helper_sha256"] == applied["helper_sha256"] == digest(Path(__file__).with_name("p2996_math_apply.py"))
+            scratch = ROOT / "evidence/p2996-math-compatibility"
+            assert reviewed["patch_sha256"] == patch["patch_sha256"] == digest(scratch / "scratch/sdk-math.patch")
+            assert reviewed["diff_sha256"] == applied["diff_sha256"]
+            assert patch == load(scratch / "scratch/proposal.json")
+            assert patch["prior_source_diff_sha256"] == adaptation["diff_sha256"]
+            assert patch["base_commit"] == configuration["pin"] and Path(patch["source"]) == source
+            assert tuple(row["path"] for row in patch["files"]) == MATH_FILES
+            retained = scratch / "independent-scratch/retained-preimages.json"
+            closure = ROOT / "evidence/p2996-resume/failure-closure-review.json"
+            assert digest(closure) == patch["failure_closure_sha256"]
+            assert digest(retained) == applied["proposal"]["receipts"][str(retained.relative_to(ROOT))]
+            history = {row["path"]: row["sha256"] for row in load(retained)["inventory_records"]
+                       if "sha256" in row and Path(row["path"]).is_relative_to(build)}
+            ninja_state = load(closure)["incremental_state"]
+            assert len(ninja_state) == 6 and all(history[path] == sha for path, sha in ninja_state.items())
+            assert all(str(build / "runtimes" / child / "CMakeCache.txt") in history
+                       for child in ("builtins-bins", "runtimes-bins"))
+            assert all(digest(Path(path)) == sha for path, sha in history.items())
+            receipts = [math / "operation/qualification.json", math / "application-review.json",
+                        scratch / "scratch/proposal.json", scratch / "scratch/sdk-math.patch", retained, closure]
+            math_adaptation = {"patch": patch, "diff_sha256": applied["diff_sha256"],
+                               "receipts": {str(p.relative_to(ROOT)): digest(p) for p in receipts}}
 
         def source_state(stage):
             assert run(stage + "-head", git + ["rev-parse", "HEAD"]).strip() == configuration["pin"]
@@ -172,15 +212,22 @@ def main():
             if adaptation is None:
                 assert status == ""
                 return
-            assert status.splitlines() == sorted(" M " + name for name in SDK_FILES)
+            source_files = (*SDK_FILES, *(MATH_FILES if math_adaptation else ()))
+            assert status.splitlines() == sorted(" M " + name for name in source_files)
             for name, sha in adaptation["receipts"].items():
                 assert digest(compat / name) == sha
-            for row in adaptation["patch"]["files"]:
+            patches = adaptation["patch"]["files"]
+            if math_adaptation:
+                for name, sha in math_adaptation["receipts"].items():
+                    assert digest(ROOT / name) == sha
+                patches = patches + math_adaptation["patch"]["files"]
+            for row in patches:
                 p = source / row["path"]
                 assert p == p.resolve() and p.is_relative_to(source)
                 assert digest(p) == row["after_sha256"], row["path"]
             run(stage + "-diff", git + ["diff", "--no-ext-diff", "--binary"])
-            assert digest(directory / (stage + "-diff.stdout")) == adaptation["diff_sha256"]
+            expected_diff = (math_adaptation or adaptation)["diff_sha256"]
+            assert digest(directory / (stage + "-diff.stdout")) == expected_diff
 
         source_state("source")
         inputs = configuration["inputs"] | {"CMAKE": configuration["cmake"], "MISE": configuration["mise"]}
@@ -204,14 +251,14 @@ def main():
         assert observed == dict.fromkeys(keys[:6], "") | {
             "MARKETPLACE_CPP_LANE": "tools-only", "MAKEFLAGS": "-j4", "CMAKE_BUILD_PARALLEL_LEVEL": "4"}
         proposal = {"configuration": configuration, "workspace": str(workspace), "resume": args.resume,
-                    "sdk_adaptation": adaptation, "incremental_state": history,
+                    "sdk_adaptation": adaptation, "math_adaptation": math_adaptation, "incremental_state": history,
                     "jobs_per_build": 4, "capacity_job_allowance": 8, "timeout_seconds": 21600,
                     "minimum_start_free_bytes": 32 * 1024**3, "disk_reserve_bytes": 8 * 1024**3,
                     "host_lock_sha256": LOCK_SHA, "inputs": inputs,
                     "receipts": {name: digest(configured / name) for name in
                                  ("admission.json", "operation/qualification.json", "operation-review.json", "generated-review.json")},
                     "helpers": {name: digest(Path(__file__).with_name(name)) for name in
-                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py", "p2996_configure.py", "p2996_sdk_compat.py")}}
+                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py", "p2996_configure.py", "p2996_sdk_compat.py", "p2996_math_apply.py")}}
         report.update(proposal=proposal, build_argv=list(map(str, command)), observed_environment=observed)
         protected()
         if args.build:
@@ -264,6 +311,10 @@ def main():
                 report["lease"] = {"path": str(lease.lock_path(lease.HEAVY_GATE)), "held": True}
                 run("llvm-build", command, timeout=proposal["timeout_seconds"], descriptor=fd, monitor=True)
                 source_state("source-after")
+                if math_adaptation:
+                    copied = (build / "lib/clang/21/include/float.h", build / "include/c++/v1/float.h")
+                    assert all(digest(p) == row["after_sha256"] for p, row in zip(copied, math_adaptation["patch"]["files"], strict=True))
+                    report["refreshed_math_headers"] = [{"path": str(p), "sha256": digest(p)} for p in copied]
                 assert not os.path.lexists(prefix)
                 required = [build / "bin" / name for name in ("clang", "clang++", "llvm-config", "clangd", "clang-format", "clang-tidy", "llvm-cov", "llvm-profdata")]
                 required += [build / "runtimes" / child / "CMakeCache.txt" for child in ("builtins-bins", "runtimes-bins")]

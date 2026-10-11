@@ -205,3 +205,15 @@ released lease. Independent [application closure](../evidence/p2996-math-applica
 passed: exact operation/source identities, unchanged retained inventories,
 free lease, default consumer and original files all match. Restart preparation
 must now bind both adaptations and the retained child build state.
+
+Task 07b8 adds `--math-compatibility` alongside `--resume --sdk-compatibility`.
+The build helper binds both applied/reviewed patches and the exact seven-file
+source diff. Expected retained build hashes include all six Ninja states and
+both child configurations; preparation and immediate lease checks reject drift.
+After successful compilation, both generated math headers must match their source
+postimages. New receipts use `evidence/p2996-math-resume/`; earlier failures stay
+immutable. Subprocess cleanup, capacity checks and job/disk limits are unchanged.
+Independent [preparation review](../evidence/p2996-math-resume/preparation-review.json)
+passed: seven native commands, 44 new guard controls, preserved scoped inventory
+and all original acceptance files. Old control tests were verified by hash and
+unchanged AST; compilation awaits separate live admission.

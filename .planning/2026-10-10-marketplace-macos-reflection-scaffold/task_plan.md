@@ -51,6 +51,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 07b5 | SDK math compatibility scratch controls | Reproduced macro failure; smallest source repair; boundary test; independent review | Complete |
 | 07b6 | Guarded math source application preparation | Exact two-header patch; prior source/build preservation; independent review | Complete |
 | 07b7 | Guarded math source application | Exact seven-file source state; reverse check; retained build state; independent closure | Complete |
+| 07b8 | Guarded math-adapted restart preparation | Both source adaptations; child build/history bindings; independent drift review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

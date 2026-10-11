@@ -648,3 +648,18 @@ state, SDK and global tooling remain protected; compilation is a later operation
   records, 36 logs and the seven-file source state match. Generated/build and
   protected inventories are preserved; the lease is free and no builders remain.
   A fresh default consumer and static/baseline checks passed.
+
+Task 07b7 is committed at `158df52615e493ba3bdc6704b7ce5c5579e829b0`;
+its post-commit baseline passed with a clean worktree. Task 07b8 adds an explicit
+math-adapted restart route, binding both applied/reviewed patches, the cumulative
+source diff, six Ninja states and retained child configurations/artifacts.
+Successful compilation must also refresh both generated math headers. The
+subprocess, capacity and cleanup routines remain unchanged. Preparation and
+independent drift controls precede separate build admission.
+- Parent preparation exited 0 with all seven native commands passing. Both
+  applied-source bindings and the retained build hashes match; default and
+  selected build environments remain isolated. Independent drift review is next.
+- Independent preparation review passed without findings: one native run with
+  seven successful commands, 44 new guard controls, exact proposal matching and
+  unchanged prior control logic. Scoped inventories, static checks and all 19
+  original Claude files passed. Build admission remains a separate operation.

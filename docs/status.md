@@ -174,3 +174,9 @@ and the two source headers now have their reviewed postimages. Generated/build
 and protected state are unchanged. Independent closure verified all operation
 records, source postimages, free lease and default consumer; static/baseline
 checks passed. Preparing the seven-file incremental restart is next.
+
+Task 07b8 prepares that restart with both adaptation receipts, the cumulative
+source diff and retained child build state. Native preparation and independent
+review passed, including all 44 new guard controls and preserved inventories.
+The fresh read-only capacity snapshot reports no observed blocker; actual build
+admission must repeat checks under the lease.

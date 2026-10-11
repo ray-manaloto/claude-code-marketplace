@@ -1,0 +1,695 @@
+{
+  "result": "PASS: task 07b8 math-adapted restart preparation only",
+  "reviewer": "independent cold reviewer /root/cold_bottle_review",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "HEAD": "158df52615e493ba3bdc6704b7ce5c5579e829b0",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "private_directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h",
+  "helper_sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+  "helper": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+    "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "bytes": 22556
+  },
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": true,
+    "sdk_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+        "files": [
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+            "before_sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888",
+            "after_sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e"
+          },
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+            "before_sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d",
+            "after_sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb"
+          },
+          {
+            "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+            "before_sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269",
+            "after_sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+            "before_sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308",
+            "after_sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+            "before_sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a",
+            "after_sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857"
+          }
+        ],
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "receipts": {
+        "operation/qualification.json": "a1104ebc41b728b4ad9a92aa0722c1f8fd59a15d82d2841f275269e49e24c7be",
+        "application-review.json": "01271521dec750567bd748f25af2282cd424fc0d346c485bd55688eac17f876a",
+        "scratch/proposal.json": "62dbb270e2171c40c90ab400ae49cf37ccd1f868cb1ddece869168c7922c8f79",
+        "scratch/rdf-comparator.patch": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e"
+      }
+    },
+    "math_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+        "files": [
+          {
+            "path": "clang/lib/Headers/float.h",
+            "before_sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+            "after_sha256": "daf8cad2e875f21ca4ce40acc7c88afc38a6362c6adcccfd2896416cd9ac749c"
+          },
+          {
+            "path": "libcxx/include/float.h",
+            "before_sha256": "f40e5d57ecd44f9d55fdf3d2566828997144f4ef88db4a83edcb4fe7b47c0f93",
+            "after_sha256": "9010672848d9cc99ea8f78eadada13e126fa9d6a78b22bbb832f381ccc4dd051"
+          }
+        ],
+        "prior_source_diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+        "failure_closure_sha256": "9914648e54e74df34d5774b19cc5b6cf70642820d1634f4a39618650678a3038",
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "receipts": {
+        "evidence/p2996-math-application/operation/qualification.json": "c9d4c717018dc611106995333ce0c7851d45f2476dcc37ec5bcb68ce3ab0d6bb",
+        "evidence/p2996-math-application/application-review.json": "546adc2d1b30b0cc340df530465bd5fed0207fd298e6768972d20131f81c2519",
+        "evidence/p2996-math-compatibility/scratch/proposal.json": "d5aa4c9fc577c89928422b0e0775a475fcfd9bf52def4fa876495c68df16f851",
+        "evidence/p2996-math-compatibility/scratch/sdk-math.patch": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+        "evidence/p2996-math-compatibility/independent-scratch/retained-preimages.json": "c6be1e4317ad78d98fce08b8215388c245eafc481ba75e4bae1d1c199a75dc2e",
+        "evidence/p2996-resume/failure-closure-review.json": "9914648e54e74df34d5774b19cc5b6cf70642820d1634f4a39618650678a3038"
+      }
+    },
+    "incremental_state": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/CMakeConfigureLog.yaml": "7e538a524787ef11e1187d3826460d041dd0d41a55530eb3d1fee94fdad7be4b",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/rules.ninja": "560454d66f343db594b6a5ceca5081cb751a01c7794ccf4e77e3719a25022b4e",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja": "d989f17ccf96634b5c81fb0981a32d080049e14cc660453c712d9c0db21a3edf",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cache-Release.cmake": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cfgcmd.txt": "dafc86ce415193fbdb641317b5cdf615027d12f2d1c37bbe7a1bf040cfc7ac64",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cache-Release.cmake": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cfgcmd.txt": "a22c02e8c6c8d94f71bc724b62b0ca34299c4ed4fc249f81c2dd0dd2a4e34d37",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeCache.txt": "b29bcacba2419dc9858dd2602d9c8dbe1a83a9770a7404d70a81a5902237c960",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/build.ninja": "f6d2564bf062cbd371deae6543d667fcf18cd24cf8604ea14f3152bf1d14efc3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/rules.ninja": "f50f8c90b18fd605048a7f4022794cbca402a2920b55520cff19e47ea95b08ae",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/CMakeConfigureLog.yaml": "2fc070ab927ba0e95c5688f6dfae39e6962b9f430930aabfcb5e688c9b61aa69",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/cmake_install.cmake": "1b4ab0e6ab4e5d7fa1efe46f0642801d4695a96feb7698942c843e9b75cd4cb2",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/4.4.4/CMakeASMCompiler.cmake": "831ca807b2249ecfb5ba131669d04826b22864d4f35f6bc1ecd8c9fa417178c3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/4.4.4/CMakeCCompiler.cmake": "50e0783efe93ec753898ccbe649e6f018a6bcfba83e74bf7e6c0bd94e7b18adf",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeCache.txt": "a36ec0a70a606e80f241075b27cd2c5ed62840ba2e55619e62f6d990440bebb8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja": "3a24513a4a6e7ac11bacd59b426145f9c66be7e2c31582524da1b8c12da2308e",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/rules.ninja": "d0c61804a15f8fe1df19cb3c54e0d66c4d7c3898e4e745cbbe41289896670579",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/CMakeConfigureLog.yaml": "4a5ff8a191bb3b3b4a63c8667c9aeffdf014d7ecb181f7a322f5e962877daacc",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/cmake_install.cmake": "aa65f91abd0a08b189b92c2a7fd36dbebf1e48583aafbf4a8c6dd9b7f7acfad8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeASMCompiler.cmake": "831ca807b2249ecfb5ba131669d04826b22864d4f35f6bc1ecd8c9fa417178c3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeCCompiler.cmake": "95bc5b378f408b6b85456042d51d50251f6776497f012c398c42a28a1b6ac00c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake": "4edd9d5a0000934c571f79fb9990fcee348321d5a7dacee915403ac32f9ca7c6",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log": "79abe4c3694f75572cefb25dc849d67ece14dda65bb512420299ea1f05528271",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps": "1a64ef4e6ae15c994c72809512b0ce898ceaab11deb54e590b3d4a68cba24488",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/.ninja_log": "392fd22243830d0a8b3706d3a867eac569b4d53aa9a61133558342c3f7b7478f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/.ninja_deps": "e254816903836369522aebb03ac401102269d37ea3db93159c5c36d9515db257",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/.ninja_log": "c416a96a0473c7a8a292554cd6b8988d368fffe587e9dd841bb22e1c538e3501",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/.ninja_deps": "8ccc0522c956089437c221cc004312a62be37aeae192c7e8bf35fb9173139e3c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-config": "83a4034dec2aba58b2746e601a14868f54d217c1667dcccb8b98ab87a91559d8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang-21": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-ar": "28b3ba5d2ce769ce744fd81c274baddc22d7c5458fc22548d8df98b449d89989",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-ranlib": "28b3ba5d2ce769ce744fd81c274baddc22d7c5458fc22548d8df98b449d89989",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libLLVM.dylib": "d3ece5608a10345451a654e486900b7efeeba4a295e1e59f5284073b22297bb1",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libclang-cpp.dylib": "1ecb4ee45a3edff161806bc92f216cf926f9591a7e9c1dfa9bb27c02870b1e4f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libclang.dylib": "c03ced7e1b00b9e961ee9289ba75e123b7402044d32afa454c581be6823d077c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.1.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.1.0.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.1.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.1.0.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.osx.a": "34b7673c200629e66de59f61d8baf2947d4f623a1d774f41a816441e64c48d80",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.cc_kext.a": "1cc03c5de921522fdb00266cb1b949cd155f9824c3af7b04667119117b31bd26"
+    },
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "cd25f36e88f0652b90d38b13d1e34a20f88c779087affb23c7f8991030c4cd19",
+      "operation/qualification.json": "626a74017aef23779705e2b57c1a2fda354e52615bda5502f704dab9327290ab",
+      "operation-review.json": "eabc16cfab87aee18172ab6ed8acb0cbcf6b65a4b61a4640b5ab8c0fe1adb5e7",
+      "generated-review.json": "d264046e44c7b7fd52d7a3b4ed0bbce5e71ec28b4fd4e9c507495ef4050086a8"
+    },
+    "helpers": {
+      "gcc_install.py": "7573afdf84a2ba5f49fe6693e24719f9357aaa0e9820c2a862d7d584888a780a",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "35573b26328d2768d8df00ee242a0a3abe3fa9d1bd37da489bc90da98ef0fcb0",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+      "p2996_math_apply.py": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2"
+    }
+  },
+  "parent_preparation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/preparation/qualification.json",
+    "sha256": "149d14f2e65b69fe20aeff144308024b23767103b7cc96eade40294725d5dd43",
+    "bytes": 35133
+  },
+  "parent_manifest": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/preparation-copy-manifest.json",
+    "sha256": "bcd4cfcc91e65f445401b78a61cc8633004b3f906dd99e3fc4799966a3058d7d",
+    "bytes": 5403
+  },
+  "parent_invocation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/preparation-invocation.json",
+    "sha256": "d0f8c34bb834a4051d3c4fdeb9327e13c2ef9fe994aea6fcdda0fc0177c584e4",
+    "bytes": 952
+  },
+  "verified_manifest_records": 16,
+  "verified_parent_logs": 14,
+  "unchanged_ast": {
+    "run": true,
+    "save": true,
+    "protected": true,
+    "interrupted": true,
+    "admission_and_canonical_lease_guards": true,
+    "held_capacity_descriptor_history_cleanup_and_artifacts": true,
+    "failure_and_final_preservation": true,
+    "all_admission_and_lease_statements_outside_held_block": true
+  },
+  "reused_coverage": {
+    "pinned_helper": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-resume/failed-incremental-build/helper.py.source",
+      "sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+      "bytes": 18518
+    },
+    "prior_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-resume/preparation-review.json",
+      "sha256": "844fa8c4085a185ae01604e7cb9262768ebd76c6da2c0762bcfbd506f7b1aec4",
+      "bytes": 32163
+    },
+    "prior_runtime_and_guard_receipts": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/final-runtime-controls.json",
+        "sha256": "1b484f8cd99f9770621a4ff21d1d66d69135007a28e3620388188756a2eb9603"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/guard-controls.json",
+        "sha256": "17215316a6514bc77685b375975a9653b64d8bf124da4d0bb2bd33aa68a42ea0"
+      }
+    ],
+    "rerun": false
+  },
+  "native_preparation_invocations": 1,
+  "preservation": {
+    "retained_preimages": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-compatibility/independent-scratch/retained-preimages.json",
+      "sha256": "c6be1e4317ad78d98fce08b8215388c245eafc481ba75e4bae1d1c199a75dc2e",
+      "bytes": 26563
+    },
+    "protected_preimages": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/pre-state.json",
+      "sha256": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "bytes": 295716
+    },
+    "verified_before": true,
+    "expected_math_source_postimages": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Headers/float.h": "daf8cad2e875f21ca4ce40acc7c88afc38a6362c6adcccfd2896416cd9ac749c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/float.h": "9010672848d9cc99ea8f78eadada13e126fa9d6a78b22bbb832f381ccc4dd051"
+    },
+    "inventory_records": 56,
+    "source_generated_records": 7,
+    "ninja_states": 6,
+    "bound_build_hashes": 46,
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shims": 835,
+    "wrappers": 0,
+    "install_entries": 2198,
+    "verified_after": true,
+    "maintained_files_unchanged": true,
+    "claude_original_files_verified": 19
+  },
+  "maintained_preimages": {
+    "dev/toolchains/p2996_build.py": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+      "bytes": 22556
+    },
+    "docs/p2996-toolchain.md": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+      "sha256": "75b7ee7fc2b7d97eceda471709dd18613ad49ce5619896f4b5900f4c39ce5c8c",
+      "bytes": 14075
+    },
+    "docs/status.md": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+      "sha256": "9d5b028d63c825bb29a28a10a161a258d79c5dcdc4f5476ede5f7e9c96997c0b",
+      "bytes": 11813
+    },
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "c222939fa29b09e6d6efb946cf223ed1f39871b75d0aaec29e3c9be6c0088800",
+      "bytes": 10190
+    },
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "8ac60ef25550c43ab72117266576179a0c7b88fb3b111114eec84237b03edf9c",
+      "bytes": 47541
+    }
+  },
+  "review_harness_notes": [
+    "Initial old supporting-receipt display assumed path keys; the prior schema uses relative_path. Corrected read-only inspection; no product check or native preparation was repeated."
+  ],
+  "findings": [],
+  "native_preparation_invocation": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "--run-dir",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run",
+      "--resume",
+      "--sdk-compatibility",
+      "--math-compatibility"
+    ],
+    "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/unrelated-cwd",
+    "started_at": "2026-10-11T08:20:25.866552+00:00",
+    "environment_keys": [
+      "HOME",
+      "LOGNAME",
+      "PATH",
+      "PYTHONDONTWRITEBYTECODE",
+      "USER"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 2.4754815000342205,
+    "finished_at": "2026-10-11T08:20:28.342189+00:00",
+    "logs": [
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/invocation.stdout",
+        "sha256": "abb6d1977d0c372caab34bf803e2474ce5bf49f7eb0a0121f639601f4b1d8da1",
+        "bytes": 470
+      },
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/invocation.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ]
+  },
+  "native_preparation": {
+    "qualification": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/qualification.json",
+      "sha256": "976cd30fe0fcb91daf8ab3526ee5d3bd143f0b096e95ac36144c251e68f179eb",
+      "bytes": 35066
+    },
+    "commands": [
+      {
+        "case": "source-head",
+        "returncode": 0
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0
+      },
+      {
+        "case": "source-status",
+        "returncode": 0
+      },
+      {
+        "case": "source-diff",
+        "returncode": 0
+      },
+      {
+        "case": "default-before",
+        "returncode": 0
+      },
+      {
+        "case": "build-environment",
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "returncode": 0
+      }
+    ],
+    "verified_log_count": 14,
+    "all_stdout_equal_parent": true,
+    "proposal_equal_parent": true,
+    "default_environment_unchanged": true,
+    "build_and_lease_not_requested": true
+  },
+  "new_guard_controls": {
+    "receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls.json",
+      "sha256": "cfbd5f266dbf0964010159696a5daf3474326edae976ce0a712e0dfd692eade3",
+      "bytes": 5965
+    },
+    "source": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard_controls.py",
+      "sha256": "cfda10a14e90f32d61acd3e716122a0452e71a529865cec6eebf073b16018524",
+      "bytes": 14582
+    },
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls-invocation.json",
+      "sha256": "7bf7509fcd610a4ca2d7ae7bd9ae1af4eba180168c5053d9c73eb9bc9d939347",
+      "bytes": 765
+    },
+    "count": 44,
+    "returncode": 0,
+    "static_held_order": {
+      "history_guard": 21,
+      "generated_guard": 26,
+      "source-immediate": 20,
+      "source-after": 25,
+      "llvm-build": 24
+    }
+  },
+  "static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+          "bytes": 41
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/acceptance-baseline.stdout",
+          "sha256": "033642dc9db81a217b766fd96ddaded12c65bac1fd309ddffb492ae940c56c5e",
+          "bytes": 172
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9",
+          "bytes": 87
+        }
+      ]
+    },
+    {
+      "case": "diff-check",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/diff-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/diff-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "static_review": [
+    "Reviewed the math-only helper delta and four documentation/planning edits at the assigned HEAD. Exact helper, parent original/retained manifest, proposal, math application review and prerequisite bindings verified.",
+    "Math route requires SDK compatibility and resume, selects a separate evidence namespace, and binds the successful application, independent closure, current math apply helper, patch, prior RDF diff, source identity, cumulative diff and retained history.",
+    "History contains 46 real retained build hashes, including six Ninja files and both child CMake caches. New fixture controls exercise child state/cache/artifact drift before preparation and immediately before build.",
+    "Seven-file source/postimage/receipt/diff checks run at preparation, immediately under the lease and after build. Both generated float headers must match math postimages following successful compilation.",
+    "Exact AST comparison confirms unchanged subprocess handling, cleanup, signals, protection, failure propagation, admission, canonical lease, capacity, disk/job limits and existing artifact logic. Earlier runtime/control receipt hashes match; old broad controls were not repeated."
+  ],
+  "executed_runtime_checks": [
+    "One native preparation-only helper reproduction from unrelated cwd, outer exit zero and all seven native commands zero. All seven stdout files equal parent preparation; default environment before/after is byte-identical.",
+    "Forty-four new guard controls executed against exact extracted AST and private fixtures only. No lease, native build, real source change or generated header change occurred.",
+    "Current task validation, static acceptance baseline and diff check all exited zero; baseline verified all 19 original Claude files."
+  ],
+  "not_run": [
+    "No --build, canonical lease acquisition, compiler, CMake, Ninja, configure, install, container, service or network operation.",
+    "No real source/generated/SDK/global mutation and no repeated prior broad runtime/guard controls.",
+    "No full compiler/runtime/OCI acceptance or fresh model session."
+  ],
+  "reviewed_at": "2026-10-11T08:24:49.828798+00:00",
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9",
+      "bytes": 87
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/acceptance-baseline.stdout",
+      "sha256": "033642dc9db81a217b766fd96ddaded12c65bac1fd309ddffb492ae940c56c5e",
+      "bytes": 172
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls-invocation.json",
+      "sha256": "7bf7509fcd610a4ca2d7ae7bd9ae1af4eba180168c5053d9c73eb9bc9d939347",
+      "bytes": 765
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls.json",
+      "sha256": "cfbd5f266dbf0964010159696a5daf3474326edae976ce0a712e0dfd692eade3",
+      "bytes": 5965
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard-controls.stdout",
+      "sha256": "b927603dbe29a714367c47531d36bee62f0631ff3f7a14d75f01211ed35429b8",
+      "bytes": 164
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/guard_controls.py",
+      "sha256": "cfda10a14e90f32d61acd3e716122a0452e71a529865cec6eebf073b16018524",
+      "bytes": 14582
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/invocation.json",
+      "sha256": "b87ef14c95ce4c46074d6e1622e189ec7e2c276f8938936315e560a5b4ae1ebd",
+      "bytes": 1310
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/invocation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/invocation.stdout",
+      "sha256": "abb6d1977d0c372caab34bf803e2474ce5bf49f7eb0a0121f639601f4b1d8da1",
+      "bytes": 470
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+      "bytes": 41
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/build-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/build-environment.stdout",
+      "sha256": "42b3516b16c4140bdb9cf660cefaf6966e89a49db7ae547ce4398043c996f6a8",
+      "bytes": 176
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/qualification.json",
+      "sha256": "976cd30fe0fcb91daf8ab3526ee5d3bd143f0b096e95ac36144c251e68f179eb",
+      "bytes": 35066
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-resume-review-h0q7s58h/run/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    }
+  ]
+}
