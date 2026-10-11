@@ -709,3 +709,24 @@ still require installed-artifact verification and later runtime qualification.
   commands, all 48 new guard cases, 114 retained records and all original files.
   The alias repair is verified; earlier cleanup controls match by AST/hash.
   Installation awaits the preparation commit and fresh scoped admission.
+
+Task 07c1 is committed at `2bdb63b359cc3a27f8515324b9bdb1a78494463e`;
+the post-commit baseline passed with a clean worktree. Operation 07c2 admits the
+three reviewed serial installs after fresh process, memory and Docker checks.
+The guarded helper must repeat lease, input and capacity checks before writing
+the private prefix and its three native manifests. Installed artifacts and
+compiler/runtime behavior require separate verification.
+- All three native installs exited 0; all twenty operation commands passed.
+  The helper reconciled the complete prefix inventory and exact aliases with
+  all three native manifests. Source/build/protected/default checks passed and
+  the lease is released. Exact operation logs are retained; independent
+  installed-artifact review is next, before compiler/runtime qualification.
+- The full 6,411-entry inventory and 48 operation records are frozen for review.
+  One outer-install GNUInstallDirs author warning is retained; both child install
+  stderr logs are empty. Artifact review will verify actual destinations.
+- Independent installation closure passed without findings: all records and
+  prefix entries match, ARM64 metadata/RPATHs and seven archive tables pass,
+  and patched headers/CMake exports exist. The fat builtins wrapper's native
+  ar rejection and successful private ARM64-slice inspection are retained.
+  Protected/default state and original files pass; the lease is free and
+  operation PIDs are absent. Compiler/runtime qualification is next.

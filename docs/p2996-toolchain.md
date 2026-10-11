@@ -241,3 +241,13 @@ Independent [preparation review](../evidence/p2996-install/preparation-review.js
 passed one native reproduction, all 48 new guard cases and preservation/static
 checks. The valid chained-alias comparison was repaired before installation;
 the original failure is retained. The private prefix remains absent.
+
+Operation 07c2's [native installs](../evidence/p2996-install/operation/qualification.json)
+all exited 0. All twenty commands passed, and 6,411 prefix entries reconciled
+with the three manifests and explicit aliases. Source/build/protected/default
+checks passed and the lease is released. The outer install retains one
+GNUInstallDirs script-mode author warning; installed paths are checked directly.
+Independent [installation review](../evidence/p2996-install/installation-review.json)
+passed complete inventory, metadata/RPATH, seven archive-table and preservation
+checks. The fat builtins archive was verified through its exact private ARM64
+slice after native ar rejected the wrapper. Compiler/runtime qualification remains.

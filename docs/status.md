@@ -197,3 +197,12 @@ Task 07c1 prepares the private installer against reviewed source/build hashes,
 all seven native commands with preserved state. Independent review passed all
 48 new guard cases and verified the repaired alias-chain comparison. Scoped
 preservation and original-file checks passed; the prefix remains absent.
+Preparation is committed at `2bdb63b359cc3a27f8515324b9bdb1a78494463e`.
+Operation 07c2 has fresh scoped admission for the three private native installs;
+its final native exits and independent installed-artifact review are pending.
+All three installs have now exited 0 and the complete prefix inventory matches
+the manifests and aliases. Source/build/protected/default checks passed and
+the lease is released. Independent installed-artifact review is next.
+Independent installation review passed without findings, including the complete
+prefix, ARM64 metadata, archive tables, patched headers and CMake exports.
+Protected state and original files passed. Compiler/runtime qualification is next.
