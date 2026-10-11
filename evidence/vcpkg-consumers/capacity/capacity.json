@@ -1,0 +1,116 @@
+{
+  "recorded_at": "2026-10-11T22:01:38.234401+00:00",
+  "script_sha256": "ef59527cbadd1d399719229ef167030c2441b794b0fad217a57ca92336b2f1ec",
+  "commands": [
+    {
+      "case": "processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.05780650000087917,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/processes.stdout",
+          "sha256": "c1ae3c14d7a6426a71698504629c71b541e01a0242399f8ac812cc385db9e52f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.36166341695934534,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.03667000005953014,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 1.0540371669922024,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-stats.stdout",
+          "sha256": "95d85b099d2add12e79e2fd5a79887c895579d3b85a4c92fd27fc1c18d3cefd1"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-capacity-20261011T220138Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "held_lease": false,
+  "native_operation_started": false,
+  "writer_census": {
+    "at": "2026-10-11T22:01:38.664645+00:00",
+    "processes": [],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "active_build_processes": [],
+  "cpus": 12,
+  "load": [
+    9.81005859375,
+    9.83984375,
+    8.9033203125
+  ],
+  "free_bytes": 72236519424,
+  "total_cpu_percent": 497.29999999999995,
+  "docker_context": "desktop-linux",
+  "containers": [
+    "53064d00e38a\tvsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86"
+  ],
+  "container_cpu_percent": 3.47,
+  "state": "PASS"
+}

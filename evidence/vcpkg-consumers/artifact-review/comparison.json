@@ -1,0 +1,1160 @@
+{
+  "result": "PASS",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "b3f1adfe6bc634e08b47f1b2912ee94c09f405ba",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "0f1e4d90e806d72790ee5a728a5cc7bebf30dd42ef33d57636eef182bf508bca",
+  "contract_sha256": "950540f9b40fbcd04412b4997bb4b3e68cf72171daa46ac2cb00215b85402493",
+  "candidate_sha256": "25a05981c62c478a45f92c1d5458de6b9963ba81e447e92a0e123dc01fc40193",
+  "qualification_sha256": "36b2f01de586da4d1a045315d53ed321194920d6a9b5f2cf8eceed4637ccd1aa",
+  "native_rc": 0,
+  "native_elapsed_seconds": 43.67532533290796,
+  "command_count": 35,
+  "text_source_pairs": 169,
+  "candidate_snapshots": 7,
+  "consumer_executable_reads": 8,
+  "cells": [
+    {
+      "triplet": "arm64-osx-p2996-static",
+      "configuration": "Debug",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CMAKE_CXX_COMPILER_ID": "Clang",
+        "CMAKE_CXX_COMPILER_VERSION": "21.0.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "STATIC_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-static/installed/arm64-osx-p2996-static/debug/lib/libfmtd.a",
+      "binary_sha256": "ba768d996e2310bffb80f67f7d5ec22828890c724c34373af31496f31b7b2343",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 0.9604579999577254,
+      "selected_runtimes": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": []
+    },
+    {
+      "triplet": "arm64-osx-p2996-static",
+      "configuration": "Release",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CMAKE_CXX_COMPILER_ID": "Clang",
+        "CMAKE_CXX_COMPILER_VERSION": "21.0.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "STATIC_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-static/installed/arm64-osx-p2996-static/lib/libfmt.a",
+      "binary_sha256": "cc442afc3190d5711f8d0841fca151ca8d4152871cce069734cc827f4c0a5fcd",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 0.9253732920624316,
+      "selected_runtimes": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": []
+    },
+    {
+      "triplet": "arm64-osx-p2996-dynamic",
+      "configuration": "Debug",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CMAKE_CXX_COMPILER_ID": "Clang",
+        "CMAKE_CXX_COMPILER_VERSION": "21.0.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "SHARED_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-dynamic/installed/arm64-osx-p2996-dynamic/debug/lib/libfmtd.12.2.0.dylib",
+      "binary_sha256": "3ea9218e0f4305ff1ee819dfcf93a7639af4c85c9f1b285b5535496f397b045b",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 0.9220198330003768,
+      "selected_runtimes": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-dynamic/installed/arm64-osx-p2996-dynamic/debug/lib/libfmtd.12.2.0.dylib"
+      ]
+    },
+    {
+      "triplet": "arm64-osx-p2996-dynamic",
+      "configuration": "Release",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CMAKE_CXX_COMPILER_ID": "Clang",
+        "CMAKE_CXX_COMPILER_VERSION": "21.0.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "SHARED_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-dynamic/installed/arm64-osx-p2996-dynamic/lib/libfmt.12.2.0.dylib",
+      "binary_sha256": "c1263bc467e6b37e562f5a567d34f2f40ae3cdaf4d276c08ef4ff66dbba1b47f",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 0.9123167919460684,
+      "selected_runtimes": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-p2996-dynamic/installed/arm64-osx-p2996-dynamic/lib/libfmt.12.2.0.dylib"
+      ]
+    },
+    {
+      "triplet": "arm64-osx-gcc16-static",
+      "configuration": "Debug",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "CMAKE_CXX_COMPILER_ID": "GNU",
+        "CMAKE_CXX_COMPILER_VERSION": "16.2.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "STATIC_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-static/installed/arm64-osx-gcc16-static/debug/lib/libfmtd.a",
+      "binary_sha256": "3fa3c366421619c42a2744e11da74a33105a80623b76128db4092c6d99c28c13",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 2.7294284170493484,
+      "selected_runtimes": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": []
+    },
+    {
+      "triplet": "arm64-osx-gcc16-static",
+      "configuration": "Release",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "CMAKE_CXX_COMPILER_ID": "GNU",
+        "CMAKE_CXX_COMPILER_VERSION": "16.2.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "STATIC_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-static/installed/arm64-osx-gcc16-static/lib/libfmt.a",
+      "binary_sha256": "4b525fc751b5ddeb6d377dd154fe38fa8ef885da2a1089f174e09f1241c4cba7",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 1.499111041193828,
+      "selected_runtimes": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": []
+    },
+    {
+      "triplet": "arm64-osx-gcc16-dynamic",
+      "configuration": "Debug",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "CMAKE_CXX_COMPILER_ID": "GNU",
+        "CMAKE_CXX_COMPILER_VERSION": "16.2.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "SHARED_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-dynamic/installed/arm64-osx-gcc16-dynamic/debug/lib/libfmtd.12.2.0.dylib",
+      "binary_sha256": "9651f7bd1bc1025bd1bd29a76999eee829066cced574a8a527856ad98af72dc0",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 1.083870125003159,
+      "selected_runtimes": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-dynamic/installed/arm64-osx-gcc16-dynamic/debug/lib/libfmtd.12.2.0.dylib"
+      ]
+    },
+    {
+      "triplet": "arm64-osx-gcc16-dynamic",
+      "configuration": "Release",
+      "compiler": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "CMAKE_CXX_COMPILER_ID": "GNU",
+        "CMAKE_CXX_COMPILER_VERSION": "16.2.0"
+      },
+      "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "kind": "SHARED_LIBRARY",
+      "fmt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-dynamic/installed/arm64-osx-gcc16-dynamic/lib/libfmt.12.2.0.dylib",
+      "binary_sha256": "831ee089381ec3b87459e08fe2385f51301972aad392ab182b95bf7151048ce6",
+      "run_returncode": 0,
+      "build_elapsed_seconds": 0.9765307910274714,
+      "selected_runtimes": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "system_runtimes_also_loaded": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ],
+      "loaded_fmt": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-retry-20261011T213606Z/arm64-osx-gcc16-dynamic/installed/arm64-osx-gcc16-dynamic/lib/libfmt.12.2.0.dylib"
+      ]
+    }
+  ],
+  "executables": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/Debug/fmt_parity",
+      "sha256": "ba768d996e2310bffb80f67f7d5ec22828890c724c34373af31496f31b7b2343",
+      "bytes": 390616,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/Release/fmt_parity",
+      "sha256": "cc442afc3190d5711f8d0841fca151ca8d4152871cce069734cc827f4c0a5fcd",
+      "bytes": 178984,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/Debug/fmt_parity",
+      "sha256": "3ea9218e0f4305ff1ee819dfcf93a7639af4c85c9f1b285b5535496f397b045b",
+      "bytes": 37256,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/Release/fmt_parity",
+      "sha256": "c1263bc467e6b37e562f5a567d34f2f40ae3cdaf4d276c08ef4ff66dbba1b47f",
+      "bytes": 34008,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/Debug/fmt_parity",
+      "sha256": "3fa3c366421619c42a2744e11da74a33105a80623b76128db4092c6d99c28c13",
+      "bytes": 425832,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/Release/fmt_parity",
+      "sha256": "4b525fc751b5ddeb6d377dd154fe38fa8ef885da2a1089f174e09f1241c4cba7",
+      "bytes": 183560,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/Debug/fmt_parity",
+      "sha256": "9651f7bd1bc1025bd1bd29a76999eee829066cced574a8a527856ad98af72dc0",
+      "bytes": 38680,
+      "mode": "0o700"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/Release/fmt_parity",
+      "sha256": "831ee089381ec3b87459e08fe2385f51301972aad392ab182b95bf7151048ce6",
+      "bytes": 34024,
+      "mode": "0o700"
+    }
+  ],
+  "recorded_closure": {
+    "absent_pids": 35,
+    "lease_free_and_unchanged": true,
+    "default_profiles_equal": true,
+    "protected_state_unchanged": true
+  },
+  "parent_baseline_returncode": 0,
+  "parent_baseline_hashes_reported": 19,
+  "parent_scanner_raw_returncode": 1,
+  "parent_scanner_disposition_returncode": 0,
+  "verified_content_digest_findings": 2,
+  "watched_hashes": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/artifact-candidate.json": "25a05981c62c478a45f92c1d5458de6b9963ba81e447e92a0e123dc01fc40193",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/operation/qualification.json": "36b2f01de586da4d1a045315d53ed321194920d6a9b5f2cf8eceed4637ccd1aa",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/native-closure.json": "e1c3accc45b4359eb90b9ad087de479248c458dd56d3e49d9a8f40540afbb2b9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/contract.json": "950540f9b40fbcd04412b4997bb4b3e68cf72171daa46ac2cb00215b85402493",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/pre-run-review.json": "4f400373f2fd426facfc0621a46443872c0196a2d80dc2c20558f11a7540fdbc",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt": "c60bbd195b5338dc608af2d2b9a05f7da404374cf9a4625b3598bdca70b4430e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_consumer.py": "0f1e4d90e806d72790ee5a728a5cc7bebf30dd42ef33d57636eef182bf508bca",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/vcpkg-toolchains.md": "fe844e69bf0464bbc523f7f63de9d92327f4196f125c38a3bea68bc8db7641bd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "8dbfef54fb6ab5dfbff9baada0ea47dae099bbacc0ed06df16cb7b0c3190aa51",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "3cb0df1e3392b9bac77ea1459b3e0627b1705c9fe6cfa455f1a9b5d87a345f15",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/candidate.json": "0e62e3b9b98d36875ef2b19619238a8986c5ba8c45f04bc4d54654107810a2e1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/admission.json": "ec1890bc90d0b4dffb39652299260cce999d500c44c662840aa65b8b9d4ccbb4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/native-execution.json": "3d958feaaf2757f9051d1ade2e80ed38707c3d25d75f901a929b2cabefbb26da",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/native-launch.json": "305cb656a5be07a1b6ecd9bf72ecbb6235a6490bbf270b4a6f7198b80187cdf9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/candidate-inputs.json": "df08e1d25c3157b1c28035e1aee0d7680c32cb0e0c3c1176506f7316cb4090a6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/operation/text-receipts.json": "beadee25e201224ae349a0388e4b55a3821d3821e157d4d06bf861dbc4d181f3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/artifact-static.json": "c192f551a27ab56d69f6ad191c00ffdae8483c8557229c8ee345cbe355b81428",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-consumers/artifact-secret-scan.json": "d91775e895cbab8126c69b5e0f4d1705778d9cbef56020e5785b1d52ff6dc227"
+  },
+  "text_receipts": [
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeCache.txt",
+      "sha256": "d26e515d3d9fa853f0a754fe62da116146ba8f11d389f481e410890a28a66570",
+      "bytes": 19040
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "8c760554ca7b7f7feb14324d11115273ce31ce7720eec93e2929eef1e8bf9c8a",
+      "bytes": 7400
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/CMakeConfigureLog.yaml",
+      "sha256": "825014168687cc79eaf63687202f72fbf1f4d2259ee5c7d74b05864901e62b97",
+      "bytes": 239792
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/common.ninja",
+      "sha256": "6a102affc242a61c1c088de46ea926e2ac9dc198f4df2cb5e4d9a0c16007fed9",
+      "bytes": 38470
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/impl-Debug.ninja",
+      "sha256": "6540670a66f78e22141e594460014c4bedf2335789ef4710835f1d119c436a26",
+      "bytes": 13393
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/impl-MinSizeRel.ninja",
+      "sha256": "db50da566926036f3a7ad6a86502d59d4e78dd663bb07c42783ec9bc8e473e47",
+      "bytes": 14165
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/impl-RelWithDebInfo.ninja",
+      "sha256": "e5a1b67e0d66e444dccf808c726060e799f88f4fe0fb4bc1c1082d70a8aa3522",
+      "bytes": 14593
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/impl-Release.ninja",
+      "sha256": "587b1707f4444deeb39697a64a435ac18dfebfac8b70722e807027104f5cc3fd",
+      "bytes": 13701
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/CMakeFiles/rules.ninja",
+      "sha256": "4ec3ee63bd37aa9c66a3c27a14e966bee66cf733a1e5db62eef8d294c17b59b9",
+      "bytes": 28333
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/build-Debug.ninja",
+      "sha256": "cc54dc3d434d253a354112981b75d8e0a9141be8a1901226a7f4c53f5eeddd04",
+      "bytes": 1417
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/build-MinSizeRel.ninja",
+      "sha256": "268c66d723226b8e14f50a93e29dd00eed578cdc9350c6cb739377f60d23009a",
+      "bytes": 1472
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/build-RelWithDebInfo.ninja",
+      "sha256": "8b4afcbdeab567afaabb24304faf69cb680b751c946fc2a24eb8e3b2a0048256",
+      "bytes": 1516
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/build-Release.ninja",
+      "sha256": "e84559c281d44ac0237e5a101734b42ecac88522a2482aa406a949fe5ed91be5",
+      "bytes": 1439
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/build.ninja",
+      "sha256": "a4aa2cb664d46d902b3f3b2f2fcc7fb97678e898725367afeb065e6029148c8a",
+      "bytes": 1380
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/compile_commands.json",
+      "sha256": "fb6179f0d51dc6db6a114754e3a7219039cd80022ff2eaa4b9b616ee4769936c",
+      "bytes": 12628
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/core-Debug.txt",
+      "sha256": "4ccdc3e96f739ab87ddd7f47667e860c4376cad0f46aa2d3454fc91813c109cb",
+      "bytes": 335
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/core-MinSizeRel.txt",
+      "sha256": "b618df30e04ed74d01d8dfa65a95c44449327d77223f4b5c3eaf949a40fcfbdb",
+      "bytes": 350
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/core-RelWithDebInfo.txt",
+      "sha256": "0b2027ff185551966a0b1e71f2bc7b6dad3e48fe79b0107db7722d110672ada9",
+      "bytes": 362
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/core-Release.txt",
+      "sha256": "c8ea92a277b9f3b4ffddb67279c9ed5c31bf7c82cefaa3754d1d69b24e5b3178",
+      "bytes": 341
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/parity-Debug.txt",
+      "sha256": "de17e8782b05b99d8616eb415cea04aca0f83fe60d11d30f8c509f2eae3a5193",
+      "bytes": 342
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/parity-MinSizeRel.txt",
+      "sha256": "b256766b400a3502897550994e2f0c1e47e8a36d369b917748355e781ef55da6",
+      "bytes": 340
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/parity-RelWithDebInfo.txt",
+      "sha256": "b482c1218812e4d66a2381a2d0b7d0f89a1d27bc1db3eeeede57257130a2c5d8",
+      "bytes": 344
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic/parity-Release.txt",
+      "sha256": "087d299aea653f71abc7742dea998f5726da1c807fa3515875f00ca1bac48796",
+      "bytes": 337
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-build.stdout",
+      "sha256": "184963cd9d53a22ff95de8c57144dfdea93e89572b1c9f20cfd4f9225c53538c",
+      "bytes": 3948
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-run.stderr",
+      "sha256": "2294849880ea39fb88448c395c942dd4c24fed96c1ab3ff475639f797704077d",
+      "bytes": 7912
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Debug-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-build.stdout",
+      "sha256": "a2a23d21134f9693f3e1d76dd6cbc47bfaa2736f9c6642d64856e1371075e640",
+      "bytes": 4029
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-run.stderr",
+      "sha256": "0f3d96ddef17088ca2c135efe9a821259f14141c7455315220a24eeee6d6e9e6",
+      "bytes": 7907
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-Release-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-configure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-dynamic-configure.stdout",
+      "sha256": "0680a03ca998820ff3cfcd3f28c19100978646ea514e4d88235db00261dd8e29",
+      "bytes": 737
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeCache.txt",
+      "sha256": "a2cd5800322e1b2483e523a704e326d6521f0af9ca8ec405a6c80cfde69e8f78",
+      "bytes": 19030
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "8c760554ca7b7f7feb14324d11115273ce31ce7720eec93e2929eef1e8bf9c8a",
+      "bytes": 7400
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/CMakeConfigureLog.yaml",
+      "sha256": "01984ea5aad5e98a8c8ca9d2ee792df63008a68c5ad87ac320698056b2b3a8c4",
+      "bytes": 238179
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/common.ninja",
+      "sha256": "f177b85f353d1152f7a71e317f4bc0efa05ea584c6a06e61be4eb31affcbf646",
+      "bytes": 38438
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/impl-Debug.ninja",
+      "sha256": "54d61ad21dd42dbe4a9f5897da7c5774e2decb9bf77fb48b1164f102f9b2e75e",
+      "bytes": 13175
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/impl-MinSizeRel.ninja",
+      "sha256": "a63009e6965e791d5c96a72367312c87970a531ab3636eee04e5507a3ee460bb",
+      "bytes": 13953
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/impl-RelWithDebInfo.ninja",
+      "sha256": "35c2e51dd0c48311cf36327d581c74e420f28b4a6151ed2efe0967bab2e3fa77",
+      "bytes": 14381
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/impl-Release.ninja",
+      "sha256": "8760e8294c862f1bf8017142df9322cb84129c1d70dbd8464b5019d2cd2754e4",
+      "bytes": 13489
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/CMakeFiles/rules.ninja",
+      "sha256": "ade4c4fa343037f0dff8d5360305ec3e68da3aae3c54ea21435cdad0377c9da8",
+      "bytes": 28332
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/build-Debug.ninja",
+      "sha256": "cfd148fd9d41a4e121c968b30611becef8c92e996dc3a3129e2444d9f3441b0d",
+      "bytes": 1413
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/build-MinSizeRel.ninja",
+      "sha256": "c386b806a79abd7eefb6a98d441be98c14eece9c1234f601e305cc28745b10e3",
+      "bytes": 1468
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/build-RelWithDebInfo.ninja",
+      "sha256": "0f67382e067b526323ce6c4b04ac339971a366fc633da15ba9693062fae1b918",
+      "bytes": 1512
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/build-Release.ninja",
+      "sha256": "e681ebf502635080f6783fb0f425747be0812aac9b0c0fd746d8bafd144e6173",
+      "bytes": 1435
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/build.ninja",
+      "sha256": "5d10a1fe92663d8fe7f0d32c34490d932f074e4df80d33158629a7720a707f19",
+      "bytes": 1376
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/compile_commands.json",
+      "sha256": "ba3302ec488fa19c5732d50ebc35d1df0b4d0b20cc689fc71ddd26cba60ef3c2",
+      "bytes": 12544
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/core-Debug.txt",
+      "sha256": "5d0d73f462b52f023c9d95f9ff79328bdb6296fb5a3a5ff9b9723a5948b604a9",
+      "bytes": 333
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/core-MinSizeRel.txt",
+      "sha256": "ddbfdd3a83e1c7f9c7b7a3f83b717a7f6aeaf3eb0173a3b896bb482f441d6b20",
+      "bytes": 348
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/core-RelWithDebInfo.txt",
+      "sha256": "bb387c3f65bc605d6bc4c5410aff41b06d9bb1812c8be82729516af46270ac99",
+      "bytes": 360
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/core-Release.txt",
+      "sha256": "eb28da906f0750b16364f5e4f4c2967b329f0f042b882bfadc759291acffb116",
+      "bytes": 339
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/parity-Debug.txt",
+      "sha256": "8afe3d41bb28c8b1523a2c45370484db9198ac41f08fccbe0298d32e14c9a79f",
+      "bytes": 328
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/parity-MinSizeRel.txt",
+      "sha256": "54c391ae4b6408e862b3954684889000ae1e228ea56cc3334bdfc134d5a6f562",
+      "bytes": 326
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/parity-RelWithDebInfo.txt",
+      "sha256": "5d5f47c597d0040899e99b5f6b8128072eb4ee92371f158b72204819f7d1d5d2",
+      "bytes": 330
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static/parity-Release.txt",
+      "sha256": "c465e19c4071dda7d7badf9fc84e730662248b083d92e75a972c95c5e5831cff",
+      "bytes": 323
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-build.stdout",
+      "sha256": "bba3b8a9682cd6c7a9b8708b0ab92550aac5301fb45c157229bd76d33965fba8",
+      "bytes": 3748
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-run.stderr",
+      "sha256": "01898ee42f9315e59dab85520c086dc0da62133193b69c107d03c978f908b6c0",
+      "bytes": 7679
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Debug-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-build.stdout",
+      "sha256": "1099ee2fe37cf27fac687ef5f5aa0410d570bea2729b08c7a5c3919dfdcdde5a",
+      "bytes": 3835
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-run.stderr",
+      "sha256": "2d09807412fa685346a95dd21baa2554791d5d416cb1e53ee8af6bdbfda7ff84",
+      "bytes": 7681
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-Release-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-configure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-gcc16-static-configure.stdout",
+      "sha256": "22548e3a29452e77eba3e4d5fc3908f07e0766feb6cafa41f7dbc4493713b430",
+      "bytes": 736
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeCache.txt",
+      "sha256": "9e247ee2bfb9d75c8b4aff59c6d0f4678859d1236a51667d21f5924cd8a3a772",
+      "bytes": 20334
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+      "bytes": 7115
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/CMakeConfigureLog.yaml",
+      "sha256": "78de73beded6f32a381e9513ce06d49761a245e928d595e334010c1287878e13",
+      "bytes": 238060
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/common.ninja",
+      "sha256": "ed4ca798b7a7ad9e550c7c540ace887fe23f8802759407230c14b799d023690b",
+      "bytes": 38786
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/impl-Debug.ninja",
+      "sha256": "02349383d1fee00b6c30a673932e25693f732f6c87e60626a2b7223d00638038",
+      "bytes": 12988
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/impl-MinSizeRel.ninja",
+      "sha256": "d465b931eec300c2fc0f8c0122fdc9dba3731d2758c0981f55ff5b268fb07771",
+      "bytes": 13468
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/impl-RelWithDebInfo.ninja",
+      "sha256": "ea0de9fbddcb6bad320e2bae6d771b57575f372c3af05584dc334284fb5c043b",
+      "bytes": 13838
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/impl-Release.ninja",
+      "sha256": "75224a92c6a09a061097cc2d4b6fcbbf52c56ed553043696243a1cf52d3f6e5f",
+      "bytes": 13204
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/CMakeFiles/rules.ninja",
+      "sha256": "4a15dfd0a45d9f7140c175a60793bb7c54ed3fb39c2570383e0eb8f3f7c587a2",
+      "bytes": 33905
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/build-Debug.ninja",
+      "sha256": "70b7facca30b25b5b3463468f0d8a0a81a46b67dc635e84a13ec99a45a93c791",
+      "bytes": 1417
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/build-MinSizeRel.ninja",
+      "sha256": "e6b69fa7417407c327e870f45a5b11eb0051399116ba8277ce546bc947432103",
+      "bytes": 1472
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/build-RelWithDebInfo.ninja",
+      "sha256": "4978288ed07ec284d2ecbe8db2c845a1b4e3186d33d61d134401944c17a97f55",
+      "bytes": 1516
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/build-Release.ninja",
+      "sha256": "7f37b7eadd353208a54cdda1eafcd542ecbff0e937015784634c535aee83d0ca",
+      "bytes": 1439
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/build.ninja",
+      "sha256": "709bbf26bda9e0ace3e6e67d2010270b07459794f9d65cc79d71fdcee677cf66",
+      "bytes": 1380
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/compile_commands.json",
+      "sha256": "e2ec7fe0e53db808133fa38172fcf1b050ba1ad57c997438c6e889fb1dbbc6ae",
+      "bytes": 16102
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/core-Debug.txt",
+      "sha256": "2cc1a51430d5c3645b34bf0ff219e13ee0c0e06f184ee89334d479691105a951",
+      "bytes": 335
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/core-MinSizeRel.txt",
+      "sha256": "ee0f2e8004fdcc8b0e72e25652e1edfd28e261760a18dcabf0b23b5ffed920a7",
+      "bytes": 350
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/core-RelWithDebInfo.txt",
+      "sha256": "08769df9f71e1b3e8983258083890654629e364c40ae2de9bf6c68261cd648a4",
+      "bytes": 362
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/core-Release.txt",
+      "sha256": "7d5f41e353a2eebe13420bf11ad14acfb2b6032d9d535cb746dac4e71e4aa46f",
+      "bytes": 341
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/parity-Debug.txt",
+      "sha256": "9c4b76d3f743f3208c9640431416693e914c047ce150c5a049f9894b9d600280",
+      "bytes": 342
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/parity-MinSizeRel.txt",
+      "sha256": "6dea26efd0428479ce75a0819bdbd1f2881e153286938af84750a5a7ba5ec82f",
+      "bytes": 340
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/parity-RelWithDebInfo.txt",
+      "sha256": "57005e475f58f30fe319f1ed0a95bf0445f389f0ed8658c1fc97a99a40657aed",
+      "bytes": 344
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic/parity-Release.txt",
+      "sha256": "b0ef0697533e6bcbc74e6ea8cdae8a7155d78cf2f899de7fc773330dd5fbc8da",
+      "bytes": 337
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-build.stdout",
+      "sha256": "200082c816e48532a29b29ed703ce3d4ea40d91733065f03a41c3696281a2fd4",
+      "bytes": 4510
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-run.stderr",
+      "sha256": "35e11a650f0622f1a2aae1d3695c798886908c2d543d261698573e130a3496db",
+      "bytes": 8036
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Debug-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-build.stdout",
+      "sha256": "a9b5f62e4c9979408592193e3fcd168c420dac5430cbcbcf4f7f6ec8f96ceafd",
+      "bytes": 4561
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-run.stderr",
+      "sha256": "2f00da29b06b98e97d71545189d94131434c53d7e25c5ff5c2e5a58552d47e80",
+      "bytes": 8031
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-Release-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-configure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-dynamic-configure.stdout",
+      "sha256": "b2da86e12f5cecce320da09bc2526f249ade8418826a96715bff287b66654e06",
+      "bytes": 562
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeCache.txt",
+      "sha256": "8739cf0941d3251f94dd3cd9e44e9b8c1a757072724304b197e755dcf8287ea0",
+      "bytes": 20324
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+      "bytes": 7115
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/CMakeConfigureLog.yaml",
+      "sha256": "9a31a0efcf118cc732dab88e679356558f9fb615a8c4ae2c51577b8861874138",
+      "bytes": 236491
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/common.ninja",
+      "sha256": "1c00b7932ed72ca5cdaf1a6d6878567656e3ee63ad457dfdbdf97119bb2f15d6",
+      "bytes": 38754
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/impl-Debug.ninja",
+      "sha256": "b73519ec94012821f85469b41f5f4cc8bf9401acfa684e24847fa83d61e6add9",
+      "bytes": 12772
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/impl-MinSizeRel.ninja",
+      "sha256": "faa6a703f07e998f03aaab4767c627cd52394ffe28a80db38f195a63cfda390f",
+      "bytes": 13258
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/impl-RelWithDebInfo.ninja",
+      "sha256": "a458c11962cfc6e671cb764ef9cf690c0a726f3c123e23b9dd742dd851c23382",
+      "bytes": 13628
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/impl-Release.ninja",
+      "sha256": "85d4ca208a2acb817f00cb717c07c96df0422dbaebc70d12ea0c4075a806189c",
+      "bytes": 12994
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/CMakeFiles/rules.ninja",
+      "sha256": "25a463e8607aa726bc14f09426af17a8e3287503e6b5ded3ff0f48b49ca1cb3a",
+      "bytes": 33904
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/build-Debug.ninja",
+      "sha256": "bf58c9fe0fc35122226bb03568b4c6dbcba1250df3eb591aebc81626af07de81",
+      "bytes": 1413
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/build-MinSizeRel.ninja",
+      "sha256": "2cf1c46622627e4523f41360719dcbb44020db8be78569123eac356d88f11dc9",
+      "bytes": 1468
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/build-RelWithDebInfo.ninja",
+      "sha256": "cd245f859c457cf38ad636fd3d166ac6173aba837b8cc4c16bb8c32d96defb24",
+      "bytes": 1512
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/build-Release.ninja",
+      "sha256": "b88596046e9cda79932cd84a208872b26591e4c0f2d7a171ee013a55615429dc",
+      "bytes": 1435
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/build.ninja",
+      "sha256": "d566d1c3fc0eee455493b24ee18640b83b68094c6f6d6a5cc361e18d1649b944",
+      "bytes": 1376
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/compile_commands.json",
+      "sha256": "cf91d59c950f6823062a46b437eeca7061b55d83900a8d63e7dfa215d43ca0f7",
+      "bytes": 16018
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/core-Debug.txt",
+      "sha256": "5dc9e93f2e4b026d6e68aef26e55975687905969e44e4dbc140e57267c787478",
+      "bytes": 333
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/core-MinSizeRel.txt",
+      "sha256": "934da7f5753128da81439570895cb04005e142b38199a036b776be7f8bded646",
+      "bytes": 348
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/core-RelWithDebInfo.txt",
+      "sha256": "e04ceeaf69e97ed0eea2938033234cec5033bb551f3083bbe733fe4b383f4d48",
+      "bytes": 360
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/core-Release.txt",
+      "sha256": "0fdcf9300529bcffa5d8fbf6737512cf445d2b5c922d6462e0a30f7b7ee21e93",
+      "bytes": 339
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/parity-Debug.txt",
+      "sha256": "4d55d5b4a8884a6826e54db463a69acfdfbd7a7ccb5949849382bbb3aedb16b0",
+      "bytes": 328
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/parity-MinSizeRel.txt",
+      "sha256": "5c184feda5cddcdf87e7357ab99f1fb400adf94720dea88d217bfe800b2044e2",
+      "bytes": 326
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/parity-RelWithDebInfo.txt",
+      "sha256": "d6bcbc99b82756d1eaf78d75d5ba7e602e872f54bbb317b72ec6dae383d3bbf0",
+      "bytes": 330
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static/parity-Release.txt",
+      "sha256": "f5eecae35710e960a299ada24b1b74e95f226bf4313bd20a03d34aa19c57d08f",
+      "bytes": 323
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-build.stdout",
+      "sha256": "2107a0f1008971da88e7722f1e199c0691b8d0d6d070e11f96330f2c58488f95",
+      "bytes": 4310
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-run.stderr",
+      "sha256": "7b994825e79b19924023e704be628605efb7ff89e4b5e8da98e1d48e68065361",
+      "bytes": 7803
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Debug-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-arch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-arch.stdout",
+      "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+      "bytes": 6
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-build.stdout",
+      "sha256": "8551113463cd2820a3a4b732561e7d757ae26c3461fd22c9f0af789314ccc92e",
+      "bytes": 4367
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-run.stderr",
+      "sha256": "b694fc72f067436d2d85ddabf996215c09770d696602d9ff5f8a78af2e5d112a",
+      "bytes": 7805
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-Release-run.stdout",
+      "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+      "bytes": 31
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-configure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/arm64-osx-p2996-static-configure.stdout",
+      "sha256": "c29af903437f5eb196e2dbefaab4baa2261e683501a02e04a246158958805382",
+      "bytes": 561
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/capacity-processes.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/capacity-processes.stdout",
+      "sha256": "bb89567286ae4045406d312cfd5800a5754de9cadb459b69f09e7a0dfd04d114",
+      "bytes": 120964
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/default-after.stdout",
+      "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+      "bytes": 1145
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/default-before.stdout",
+      "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+      "bytes": 1145
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-census.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-census.stdout",
+      "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+      "bytes": 91
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-context.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-context.stdout",
+      "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+      "bytes": 14
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-stats.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/docker-stats.stdout",
+      "sha256": "a48c23f29ea9e3e8e8116487661bc724cc3dda9ae9414f9158b0a849d29765bc",
+      "bytes": 291
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/private.sb",
+      "sha256": "2626c236fc25a2c1d0d5dbadddc1f8cf33b7604a87e68539480a636fec4bd67e",
+      "bytes": 207
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/project-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/project-head.stdout",
+      "sha256": "a8cc5df61e74f36803581f8351b2bb55b1b18e3eb336ddaafc40fa33abc23899",
+      "bytes": 41
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/source/CMakeLists.txt",
+      "sha256": "6fee8bbc48ef7a561a0fa95f87eb0e8c94d315c872c0ecb2cbece46e2096a95b",
+      "bytes": 812
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-20261011T220729Z/source/main.cpp",
+      "sha256": "ca25e388100978de93451d53321d9caea69159c56a40b783efaa9db408af4469",
+      "bytes": 366
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-launch-criz13h8/execution.json",
+      "sha256": "3d958feaaf2757f9051d1ade2e80ed38707c3d25d75f901a929b2cabefbb26da",
+      "bytes": 975
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-launch-criz13h8/launch.json",
+      "sha256": "305cb656a5be07a1b6ecd9bf72ecbb6235a6490bbf270b4a6f7198b80187cdf9",
+      "bytes": 689
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-launch-criz13h8/stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-consumer-launch-criz13h8/stdout",
+      "sha256": "2dca487b980dcad03a01a66449bb0b002396ee25d7eeeb125373fb2dd9df73c8",
+      "bytes": 2327
+    }
+  ],
+  "native_checks_executed_by_reviewer": 0,
+  "maintained_writes": 0,
+  "shared_writes": 0
+}

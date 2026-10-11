@@ -153,3 +153,17 @@ and the pinned source, protected shared state and default profile were preserved
 The [native receipts](../evidence/vcpkg-fmt-build/native-closure.json) passed
 independent artifact review with no findings. Application consumer parity and
 dynamic loader execution remain separate gates.
+
+Task 12c3c prepares an application consumer through vcpkg's public CMake
+toolchain and the same compiler chainloader. It will use the retained fmt
+installations with automatic installation disabled, then verify actual
+Debug/Release build, link and runtime behavior for both compiler/linkage lanes.
+The fixture consumes the project research core; the full preset matrix follows.
+The native run returned 0 in 43.68 seconds: all 35 commands and eight ARM64
+consumer cells passed. C++26 consumers and retained fmt agree on compiler, SDK
+and selected standard library; loader traces also record macOS system libraries.
+All dynamic fmt paths match the selected configuration; static consumers load
+no fmt dylib. Source, installed packages and defaults were preserved. Final
+[independent artifact review](../evidence/vcpkg-consumers/artifact-review.json)
+passed. This proves selected runtime presence and witness behavior; it does
+not establish exclusive symbol binding. The 32-cell baseline remains next.

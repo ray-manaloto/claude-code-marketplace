@@ -1254,3 +1254,24 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   metadata files matched. The five maintained files include narrow whitespace
   attributes preserving raw CMake/Ninja/stdout bytes. No native checks were
   repeated for review. Task 12c3b is closed; consumer/runtime execution is next.
+- Task 12c3b committed as `b3f1adfe6bc634e08b47f1b2912ee94c09f405ba`;
+  final-HEAD baseline passed and the worktree was clean. Task 12c3c now prepares
+  a public-vcpkg-toolchain consumer of the real research core and retained fmt
+  packages. Preparation is limited to five maintained files; no consumer or
+  dependency build has started.
+- Prepared the consumer helper and a narrow root CMake composition guard. The
+  fixture links the actual core and compiled fmt target; exact retained package
+  inventories, compiler/SDK parity and per-executable loader traces are checked.
+  Native execution remains pending independent review and fresh admission.
+- Consumer preparation review passed with no findings. Fresh capacity and the
+  under-lease checks admitted the eight-cell operation, which returned 0 in
+  43.68 seconds. All 35 command outcomes passed; both compiler lanes produced
+  ARM64 executables with expected results and selected runtime/fmt loader paths.
+  The dependency/source inventories and defaults remained unchanged; all child
+  PIDs exited and the canonical lease was free. Retained 169 exact UTF-8 text
+  receipts in a lossless JSON container for final independent artifact review.
+- Final independent consumer artifact review passed with no findings: all 169
+  text/source pairs, seven pre-run snapshots, eight executable hashes and 35
+  command records matched. Runtime evidence is limited to selected library
+  presence and observed behavior; system libraries also loaded. Task 12c3c is
+  closed. The full independent-linkage, four-configuration baseline is next.
