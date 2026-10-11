@@ -78,3 +78,14 @@ reattestation; dependency builds require a subsequent unit.
 The copy is bound to a complete reviewed source inventory. Every tracked blob
 and executable mode matches the pinned Git tree; the only extra source files
 are the exact bootstrapped binary and empty metrics-disable marker.
+
+Task 12c1a passed a separate read-only reattestation of the observed mise
+update metadata. It binds exact additions and changed links, preserves the
+prior baselines, and compares all four existing profiles and their isolation
+values. The full compiler, SDK, package and shared-directory guards passed.
+This reattestation writes no shared state and does not qualify vcpkg execution.
+PATH comparison must prove exactly two bound Renovate version components changed;
+all other profile values and the reconstructed historical PATH hash must match.
+Both `bin` and `node_modules/.bin` are bound separately; prefixes are not rewritten.
+All 15 commands exited 0 and the default environment was restored. The two
+earlier failed comparisons remain preserved; independent artifact review passed.

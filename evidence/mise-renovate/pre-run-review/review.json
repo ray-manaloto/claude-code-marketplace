@@ -1,0 +1,118 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c1a pre-run preparation review",
+  "created_at": "2026-10-11T18:29:11.197707+00:00",
+  "reviewer": "independent cold reviewer /root/cold_bottle_review",
+  "parent_return_channel": "native collaboration /root",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "e66a60c3e7fe76be39169986b1eb3aed6bccc2c6",
+  "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "049e99994ca2d21f00ace568f5acc8bd5137df9788840e88cbbbd7c95eb2e91c",
+  "contract_sha256": "14bbec5d7f2f666b480ec68ba47b4ec7380742654fa32fca71a505670c929bca",
+  "candidate_sha256": "8869ec5194f767fbde98f27cd0970cf8d42511f58b6a6a361dfb65ca5eb019ec",
+  "maintained_scope": [
+    "dev/toolchains/mise_renovate.py",
+    "docs/vcpkg-toolchains.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "static_review": {
+    "bindings": "The immutable helper constant binds the contract, and all 19 contract input hashes match actual files, including the exact Python executable. Four candidate file hashes and retained prior closure/failed-attempt bindings match.",
+    "inventory": "The retained complete install metadata differs from its historical baseline by exactly 130 additions and two changed links. The contract equals that derived delta: 127 global aliases, two Renovate version directories, one Renovate version alias and the changed Renovate 44/latest links. No removed or additional entries are admitted.",
+    "global_files": "Only config.toml and mise.lock records are replaced, with exact old hashes and unchanged 0600 modes. Seven profile files, 835 shim records, the empty wrapper tree and accepted mise executable match the retained inventory baseline.",
+    "semantics": "The in-memory TOML check validates exact old/current file hashes, rejects symlink inputs and permits only Renovate version in config plus version/specifier in the lockfile. It prints or persists no configuration contents.",
+    "delegation": "The new protected adapter delegates to the unchanged legacy protected function with only load replaced. That loader overlays only the exact historical baseline Path. Legacy contract(), binary overlay, compiler/SDK/package/prefix guards and other loads remain in place. Native legacy protection was not executed.",
+    "admission": "Before probes, main validates the bound contract, reviewed PASS/no findings, matching helper/contract hashes, exact review-file hash, operation directory and Python path; it then applies protection and the inherited writer census. Git HEAD and mise version are checked before the four profile/isolation comparisons.",
+    "fresh_invocation": "ROOT and the helper-relative legacy path are independent of shell cwd. The new normalized operation directory is exclusive. Profiles use a private unrelated cwd with offline/no-install settings and no hooks; compiler-prefix variables are cleared between lanes and default-after must equal the retained default profile.",
+    "failures": "Contract, semantic and delegated errors propagate. The outer BaseException branch and final protection/self-hash checks preserve FAIL and save the qualification receipt even on error. The frozen native runner retains its existing timeout/exit and cleanup behavior.",
+    "scope": "No shared writes, installation, compiler/vcpkg/sandbox execution or lease acquisition is introduced. Documentation correctly limits the unit to metadata reattestation preparation and leaves actual profiles/native vcpkg unqualified.",
+    "claude_preservation": "All 19 original Claude acceptance files remain byte/hash identical."
+  },
+  "executed_checks": {
+    "read_only_input_audit": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-renovate-prerun-review-1hw69ztl/input-audit.json",
+      "returncode": 0,
+      "contract_inputs": 19,
+      "source_and_control_copy_pairs": 14,
+      "inspector_supporting_artifacts": 7,
+      "original_Claude_files": 19,
+      "scan_bound_files": 23,
+      "metadata": {
+        "baseline_entries": 2200,
+        "current_entries": 2330,
+        "added": 130,
+        "removed": 0,
+        "changed": 2,
+        "global_aliases": 127,
+        "global_file_hash_updates": 2,
+        "unchanged_profile_files": 7,
+        "unchanged_shim_entries": 835,
+        "unchanged_wrapper_entries": 0,
+        "parsed_TOML_field_changes": 3
+      },
+      "corrected_read_attempt": [
+        {
+          "returncode": 1,
+          "reason": "Initial audit incorrectly looked for mode in legacy.current_mise; corrected to unchanged previous_record.mode without modifying candidate or receipts."
+        },
+        {
+          "returncode": 0,
+          "result": "Corrected complete data audit passed."
+        }
+      ]
+    },
+    "focused_synthetic_controls": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-renovate-prerun-review-1hw69ztl/control-results.json",
+      "command_receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-renovate-prerun-review-1hw69ztl/controls-run.json",
+      "returncode": 0,
+      "elapsed_seconds": 0.08617508294992149,
+      "timeout_seconds": 30,
+      "case_count": 11,
+      "coverage": [
+        "exact overlay and mutation isolation",
+        "wrong preimage and missing alias rejection",
+        "private semantic success and three rejection cases",
+        "exact delegated load scope",
+        "contract/semantic/legacy failure propagation"
+      ],
+      "mocked_adapter_calls": 4,
+      "actual_legacy_protected_calls": 0,
+      "main_calls": 0,
+      "native_tool_commands": 0
+    },
+    "preservation": {
+      "frozen_inputs_unchanged": 17,
+      "maintained_global_source_writes": 0
+    }
+  },
+  "retained_parent_receipts": {
+    "control_cases": 13,
+    "control_exitcode": 0,
+    "static_exitcodes": [
+      0,
+      0
+    ],
+    "scan_exitcode": 0,
+    "inventory_exitcode": 0,
+    "independently_reexecuted": false
+  },
+  "not_run": [
+    "main()",
+    "full legacy protected()",
+    "live shared installation/shim/global inventory",
+    "native mise or profile/isolation probes",
+    "compiler/vcpkg/sandbox commands",
+    "writer census, capacity or lease operations",
+    "network/research/acquisition",
+    "earlier triplet or runner batteries",
+    "fresh Claude/model session",
+    "full OCI acceptance"
+  ],
+  "limitations": [
+    "This PASS authorizes no shared mutation and proves only the bounded preparation review. Actual full protection/profile/default parity remain UNVERIFIED.",
+    "Install entry metadata is observed; newly added Renovate directory payload contents and attribution of every alias to one updater run are not accepted here."
+  ],
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-renovate-prerun-review-1hw69ztl/supporting-manifest.json"
+}

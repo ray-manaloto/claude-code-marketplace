@@ -1,0 +1,130 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c1a exact two-component PATH repair pre-run review",
+  "reviewer": "/root/cold_bottle_review",
+  "created_at": "2026-10-11T18:56:07.648325+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "e66a60c3e7fe76be39169986b1eb3aed6bccc2c6",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "df47f68eb8825ef6b444c5f33ddb6144f27771ae42e703fa315de899783bd1aa",
+  "contract_sha256": "45351436cf7ed5d68280efd5925e2e4eab39c9040e0dd71fd9d089a38214b892",
+  "candidate_sha256": "6f944993c67927f10ec204307eac701c6920f02c2a401cc388603ea8c97eb9ae",
+  "scope": "Exact two-component map, child JSON-map wiring, 11 new bindings and retained attempt/diagnostic truthfulness. Parent remains the sole maintained-file writer.",
+  "disposition": "No findings. Preparation review only; native acceptance remains pending.",
+  "static_assertions": [
+    {
+      "path": "dev/toolchains/mise_renovate.py",
+      "lines": [
+        95,
+        103
+      ],
+      "evidence": "Exactly two distinct destination components are required once each, and map keys and values must be disjoint. Reverse lookup replaces whole components only, preserving all other components, ordering and empty fields before hashing the full reconstructed PATH."
+    },
+    {
+      "path": "dev/toolchains/mise_renovate.py",
+      "lines": [
+        106,
+        109
+      ],
+      "evidence": "Proof remains bound to both the observed current hash and historical complete hash, now with exactly two replacements. All other profile fields remain exact."
+    },
+    {
+      "path": "dev/toolchains/mise_renovate.py",
+      "lines": [
+        157,
+        174
+      ],
+      "evidence": "The actual invocation serializes the contract map as one argv element; the child parses that JSON and applies the reviewed function to its PATH. No shell or prefix rewrite is introduced."
+    },
+    {
+      "path": "dev/toolchains/mise_renovate.py",
+      "lines": [
+        188,
+        204
+      ],
+      "evidence": "AST comparison confirms the final-default assertion and exception/finally preservation flow are unchanged. Contract, overlay, semantic-check and protection functions are also unchanged."
+    },
+    {
+      "path": "evidence/mise-renovate/path-diagnosis/probe.py",
+      "lines": [
+        1,
+        1
+      ],
+      "evidence": "The retained diagnostic enumerates every Renovate PATH component and reports exactly node_modules/.bin at index 134 and bin at index 135. Its current hash equals the failed profile, and replacing these two observed components reconstructs the historical full hash. The candidate contract binds precisely those two components; no broader prefix rule is accepted."
+    }
+  ],
+  "executed_reviewer_checks": {
+    "completed_input_audit_rc": 0,
+    "contract_input_hashes": 37,
+    "new_bindings": 11,
+    "prior_bindings_preserved": 26,
+    "candidate_file_hashes": 4,
+    "copy_records_verified": 25,
+    "current_source_byte_pairs": 22,
+    "historical_copies_equal_to_prior_private_review": 3,
+    "scan_bound_file_hashes": 114,
+    "original_Claude_file_hashes_and_sizes": 19,
+    "pure_python_controls_rc": 0,
+    "pure_python_control_cases": 5,
+    "pure_python_control_elapsed_seconds": 0.04587266605813056,
+    "pure_python_control_timeout_seconds": 30,
+    "control_cases": [
+      "JSON-map-insertion-order-does-not-change-reconstruction",
+      "exact-components-do-not-rewrite-prefix-lookalike-neighbors",
+      "swapped-old-identities-rejected-by-full-historical-hash",
+      "three-component-map-rejected",
+      "actual-invocation-serializes-one-map-and-child-decodes-both-components"
+    ],
+    "mock_child_program_calls": 1,
+    "native_commands": 0,
+    "main_calls": 0,
+    "protected_calls": 0,
+    "candidate_module_imports": 0,
+    "watched_files_unchanged_through_packaging": 20
+  },
+  "retained_checks_inspected_not_reexecuted": {
+    "one_component_retry_wrapper_rc": 1,
+    "one_component_retry_child_rcs": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "qualification_state": "FAIL",
+    "qualification_error": "AssertionError()",
+    "protection_before_implied_by_order": true,
+    "protection_after_recorded": true,
+    "current_proof_matches_profile": true,
+    "one_component_reconstruction_fails_historical_hash": true,
+    "diagnostic_rc": 0,
+    "diagnostic_acceptance": false,
+    "diagnostic_components": 2,
+    "diagnostic_full_PATH_component_count": 157,
+    "diagnostic_old_hash_matches_historical_profile": true,
+    "parent_controls": 16,
+    "parent_controls_rc": 0,
+    "parent_actual_child_rc": 0,
+    "parent_native_profile_controls": 0,
+    "parent_static_rcs": [
+      0,
+      0
+    ],
+    "parent_scan_rc": 0
+  },
+  "checks_not_run": [
+    "main(), protected(), native retry, live mise profiles or diagnostic replay",
+    "Earlier wrapper, metadata, semantic or final-default control batteries",
+    "Global census/mutation, capacity, lease, installation, compiler/vcpkg/sandbox commands",
+    "Services, containers, model sessions or network",
+    "Fresh Codex/Claude session, provider/hook runtime or full OCI acceptance"
+  ],
+  "shared_mutations": 0,
+  "reviewer_audit_note": "One reviewer schema assumption about a missing optional scan bytes field was corrected; the failed read and successful completion are retained in input-audit.json. No candidate control failed.",
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-mise-two-path-review-v2r8tbbl/supporting-manifest.json",
+    "sha256": "766df52445def72a6c56244f417d2343967f679bdc506dca5c0673f9241f2072",
+    "explicit_files": 12
+  }
+}

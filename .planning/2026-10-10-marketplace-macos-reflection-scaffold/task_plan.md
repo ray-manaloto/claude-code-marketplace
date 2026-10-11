@@ -75,6 +75,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12a2 | P2996 overlay triplet preparation | Explicit ABI inputs, environment tracking, dual configurations and script controls | Complete |
 | 12b1 | GCC16 overlay triplet preparation | Shared-input reuse, GCC ABI entries and focused script controls | Complete |
 | 12c1 | Private vcpkg execution preparation | Reviewed source binding and native fail-closed receipt | Prepared; native held by shared drift |
+| 12c1a | Observed mise update reattestation | Exact metadata changes, preserved compiler guards and existing profile parity | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -182,6 +183,12 @@ it may copy the exact vcpkg checkout and fmt inputs, select the existing named
 profiles, verify managed host tools and exercise local write/network restrictions.
 Keep real HOME unchanged. No dependency/compiler build, patch application,
 global registration, cache provider or integration command is included.
+
+Task 12c1a prepares an exact overlay of independently inventoried shared-state
+changes. After source review it may run existing read-only profile and isolation
+probes, each bounded to sixty seconds, in a new private directory. Preserve all
+historical receipts and every unrelated protection check. No installation,
+global write, compiler/vcpkg execution or lease acquisition is included.
 
 See `findings.md`, `progress.md`, and `docs/agents/codex-task-orchestration.md`.
 Historical handoff sources stay immutable in the source checkout and original

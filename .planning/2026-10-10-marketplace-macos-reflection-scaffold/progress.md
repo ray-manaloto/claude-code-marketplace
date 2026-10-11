@@ -1107,3 +1107,43 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   The external updater's mise phase exited 0, but its overall update-all exited 2.
   Retain that distinction. A separate read-only shared-state reattestation will
   precede another native attempt. No global files were changed here.
+- Task 12c1 preparation and failure closure are committed at
+  `e66a60c3e7fe76be39169986b1eb3aed6bccc2c6`. Independent closure review passed;
+  the post-commit baseline check exited 0 and the worktree was clean.
+- Task 12c1a is preparing a read-only reattestation. The fresh metadata census
+  found 130 added installation entries and two changed links, beyond the two
+  Renovate config/lock changes. Shims, wrappers, all seven profile files and the
+  accepted mise executable match. The narrow draft rejects unaccounted changes;
+  classification and independent review precede execution. No shared state or
+  native vcpkg qualification has been accepted by this preparation.
+- The independent inventory classified the additions as 127 per-tool global
+  aliases, two Renovate version directories and one Renovate version alias. The
+  two changed links belong to Renovate. Exactly three parsed TOML fields change
+  from 44.149.3 to 44.150.1; all other parsed configuration is identical. The
+  reattestation draft now permits only those bound records. Attribution of every
+  alias to a specific updater run remains unproven.
+- Thirteen focused preparation controls passed: the exact overlay preserves
+  unrelated baseline data, rejects invalid file/entry changes, and delegates to
+  unchanged legacy guards. Synthetic TOML controls reject unrelated changes.
+  Native profile parity and the complete live protection check remain pending
+  independent pre-run review.
+- Independent preparation review passed, including eleven additional focused
+  controls. The native attempt passed full protection checks but exited 1 when
+  the default profile's PATH hash differed; its selected tools and other values
+  matched. All three logged child commands exited 0, and final protection passed.
+  The retained attempt is not runtime acceptance. The repair requires a proof
+  that replacing exactly one bound Renovate PATH component reproduces the old
+  complete PATH hash, while retaining exact comparison of every other value.
+- The one-component retry exited 1 with full protection checks passing. A bounded
+  diagnostic identified two Renovate components: `bin` and `node_modules/.bin`.
+  Replacing both reproduces the historical full PATH hash exactly. The next
+  candidate binds these two exact components; it does not rewrite a prefix or
+  accept unrelated PATH changes. Both failed attempts remain immutable.
+- Independent review passed the two-component repair, including five additional
+  pure controls. The native reattestation then passed all 15 commands: four
+  profiles, exact PATH proofs, isolation and restored defaults. Initial and final
+  protection checks passed. This qualifies the observed metadata change only;
+  final artifact review precedes closure and the private vcpkg retry.
+- Independent artifact review passed without findings: all 30 command logs,
+  four profile/proof/isolation comparisons, restored defaults and both retained
+  failures were verified. Task 12c1a is complete; native vcpkg remains pending.
