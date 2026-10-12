@@ -19,13 +19,14 @@ from control_saved_search import evaluate
 from github_search_one_page import capture
 from search_catalog import ROOT, catalog
 
-LIVE = ROOT / "evidence/github-search-one-page/20261012T193651Z-cc501ef6/raw.json"
+SYNTHETIC = ROOT / "dev/fixtures/github-code-search-synthetic.json"
 
 
 class ControlTests(unittest.TestCase):
     def setUp(self):
         self.row = dict(catalog(ROOT / "dev/saved-searches.toml")[0][0])
-        self.template = json.loads(LIVE.read_bytes())
+        self.template = json.loads(SYNTHETIC.read_bytes())
+        self.assertEqual(self.template["_fixture_kind"], "synthetic-offline-only")
 
     def envelope(self, query, *, page=1, count=5, total=None, status=200,
                  private=False):

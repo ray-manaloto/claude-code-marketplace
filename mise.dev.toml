@@ -132,6 +132,33 @@ description = "Exercise A09 exact-input staging, scan and publication refusals i
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_git_delivery.py -v'
 
+[tasks."test:issue-amend"]
+description = "Exercise A07a single-issue amendment and ambiguous-send controls offline"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_issue_amend.py -v'
+
+[tasks."issue:preview"]
+description = "Record one issue preimage and exact proposed body and labels"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<issue>"; arg "<body_file>"; arg "<labels_file>"; arg "<intent_file>"'
+run = 'uv run --no-sync --offline python -B dev/issue_amend.py preview --issue "${usage_issue?}" --body-file "${usage_body_file?}" --labels-file "${usage_labels_file?}" --intent-file "${usage_intent_file?}"'
+
+[tasks."issue:apply"]
+description = "Attempt one exact issue body/label PATCH from a SHA-bound intent"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<intent_file>"; arg "<sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_amend.py apply --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_sha256?}"'
+
+[tasks."issue:verify"]
+description = "Read back an attempted issue amendment without another write"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<intent_file>"; arg "<sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_amend.py verify --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_sha256?}"'
+
 [tasks."delivery:inspect-hooks"]
 description = "Read the active Git file and config hook digest for an exact A09 intent"
 dir = "{{config_root}}"

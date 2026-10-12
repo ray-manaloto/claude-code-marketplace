@@ -18,14 +18,15 @@ from collect_saved_search import collect, fixture_transport, main
 from github_search_one_page import capture
 from search_catalog import ROOT, catalog
 
-LIVE = ROOT / "evidence/github-search-one-page/20261012T193651Z-cc501ef6/raw.json"
+SYNTHETIC = ROOT / "dev/fixtures/github-code-search-synthetic.json"
 
 
 class CollectTests(unittest.TestCase):
     def setUp(self):
         self.row = dict(catalog(ROOT / "dev/saved-searches.toml")[0][0])
         self.row.update(max_pages=2, max_items=10)
-        self.template = json.loads(LIVE.read_bytes())
+        self.template = json.loads(SYNTHETIC.read_bytes())
+        self.assertEqual(self.template["_fixture_kind"], "synthetic-offline-only")
 
     def envelope(self, page, *, status=200, total=10, duplicate=False,
                  remaining=None, count=None):

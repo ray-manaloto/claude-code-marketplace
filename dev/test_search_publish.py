@@ -18,7 +18,7 @@ from collect_saved_search import main
 from github_search_one_page import capture
 from search_catalog import ROOT, catalog, digest, quarantine, query_lock, record
 
-LIVE = ROOT / "evidence/github-search-one-page/20261012T193651Z-cc501ef6/raw.json"
+SYNTHETIC = ROOT / "dev/fixtures/github-code-search-synthetic.json"
 
 
 class PublishTests(unittest.TestCase):
@@ -28,7 +28,8 @@ class PublishTests(unittest.TestCase):
         self.scratch = Path(self.temp.name)
         self.output = self.scratch / "records"
         self.row = catalog(ROOT / "dev/saved-searches.toml")[0][0]
-        self.template = json.loads(LIVE.read_bytes())
+        self.template = json.loads(SYNTHETIC.read_bytes())
+        self.assertEqual(self.template["_fixture_kind"], "synthetic-offline-only")
 
     def envelope(self, query, count, sha="a" * 40):
         body = json.loads(base64.b64decode(self.template["body_base64"]))
@@ -117,7 +118,7 @@ class PublishTests(unittest.TestCase):
 
     def test_all_and_subset_leave_other_queries_last_good(self):
         source = (ROOT / "dev/saved-searches.toml").read_text()
-        header, first, _ = source.split("[[search]]", 2)
+        header, first, *_ = source.split("[[search]]")
         original = header + "[[search]]" + first
         catalog_path = self.scratch / "catalog.toml"
         second = original.split("[[search]]", 1)[1].replace(

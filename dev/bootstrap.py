@@ -134,7 +134,7 @@ def self_test() -> None:
             raise RuntimeError("unrelated-cwd/isolated-config positive task failed")
         env["MISE_TASK_SKIP_DEPENDS"] = "1"
         review = subprocess.run(
-            [str(ROOT / "dev" / "mise"), "run", "--dry-run", "review:claude"],
+            [str(ROOT / "dev" / "mise"), "run", "--dry-run", "test:one-page"],
             cwd=temporary, env=env, capture_output=True, text=True, check=False,
         )
         if review.returncode or "deps:check" not in review.stdout + review.stderr:

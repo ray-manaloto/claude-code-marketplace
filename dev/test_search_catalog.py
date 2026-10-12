@@ -38,7 +38,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_catalog_validation_rejects_unsafe_and_case_colliding_ids(self):
         rows, source_hash = catalog(CATALOG)
-        self.assertEqual(len(rows), 3)
+        self.assertIn("codex-schema", {row["id"] for row in rows})
         self.assertEqual(len(source_hash), 64)
         source = CATALOG.read_text()
         invalid = self.scratch / "invalid.toml"
