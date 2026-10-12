@@ -1597,3 +1597,179 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   text receipts, eight copy pairs and exactly five binary artifacts. It also
   independently found the 25 PIDs absent and the lease free. The reviewer did
   not rerun native witnesses, rollback or full Claude/OCI acceptance.
+
+### Task 14c: private LSan and LSan+UBSan witnesses
+
+- Task 14b2b committed at `6b31a44455de2da2e204a3d02040b21bb7dc72c1`;
+  post-commit status was clean, the original 19-file baseline passed and the
+  installed TSan preservation guard passed.
+- The pinned P2996 Clang driver accepted both leak-sanitizer flag sets in
+  non-executing `-###` probes and selected its installed LSan dylib. A new
+  public-header witness and confined runner are prepared; the derived contract
+  binds 191 direct inputs, 881 source inputs, 29 tools, the installed LSan
+  identity and the existing ASan/TSan guard. No LSan binary has been built or
+  run yet. Preparation review and fresh native capacity are pending.
+- Independent preparation review passed without findings: 42 frozen text files,
+  five driver copy pairs and the exact installed LSan/TSan identities passed its
+  bounded comparison. The first native launch stopped before its first command
+  because an unknown transient `mise` process failed writer admission. Its
+  closure confirms no build, no installed change, an absent native PID and a
+  free canonical lease. A fresh capacity check passed for a retry.
+- The retry compiled and linked the standalone LSan reflection witness and
+  verified arm64 object/binary output, but the clean run timed out after 20
+  seconds and was terminated. The closure verifies 17 successful commands,
+  all 19 owned PIDs absent, unchanged source and installed runtime guards and
+  a free lease. Thus neither LSan mode nor leak/overflow behavior is qualified.
+- A direct clean run with leak detection disabled exited 0 in 0.035 seconds;
+  with leak detection enabled it timed out after 10 seconds. A one-second
+  process sample located the exit-time LSan worker in dyld's lazy framework
+  callback, waiting for LSan allocator allocation while the main thread waits
+  for the worker. A private witness-level dyld prewarm still timed out; its
+  sample reached a later dyld block-copy allocation under the same stopped-world
+  allocator lock. These are diagnostic observations, not a repaired runtime.
+
+### Full-baseline spec workflow, W0
+
+- The user confirmed one full research-baseline spec, GitHub Issues, the five
+  default triage labels, observable plugin/CLI/native/OCI test seams, and a
+  standby Claude-agent takeover requiring explicit ownership transfer. The
+  accepted boundary includes remaining build work and thin adapters for
+  Claude, Codex, Antigravity and OpenCode; SBE/firmware and the PDF updater
+  remain outside the spec.
+- At branch `codex/marketplace-native-onboarding`, HEAD
+  `6b31a44455de2da2e204a3d02040b21bb7dc72c1`, common Git directory
+  `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git`,
+  the approved setup draft was applied to `CLAUDE.md`, `AGENTS.md` and three
+  `docs/agents/` files. Existing uncommitted Task 14c changes were preserved.
+  Four missing GitHub labels were created; all five canonical labels were
+  verified present. This setup is not yet committed.
+- `git diff --check`, `./dev/mise tasks validate`, `./dev/mise run check`,
+  and `./dev/mise run check:acceptance-baseline` each exited 0. The last check
+  verified all 19 original acceptance file hashes. No full OCI or provider
+  runtime acceptance was run by these checks.
+- A strict-five-v2 workflow research run exited 1: GitHub Discussions was
+  `empty_unverified` because its canary returned zero, and this repository's
+  Discussions feature is disabled. Exa, Context7, Last30Days and the
+  Firecrawl developer route returned items; Firecrawl search used a
+  provisional Serper substitute after primary credits exhaustion. All eight
+  manifest raw-file hashes matched. The receipt is at
+  `/Users/rmanaloto/.codex/research-coverage/01a127db-2e65-70d1-8855-9bf2bc7bb46e/01a13084-77d4-7511-a617-b726c90e54de/manifest.json`.
+- Independent read-only W0 review found one missing target issue number in the
+  documented `gh issue edit` example. It was corrected; the reviewer's final
+  disposition is no remaining findings. Installed `gh 2.98.0` help confirmed
+  the parent/dependency flags and `blockedBy`/`blocking` JSON fields. The
+  reviewer made no repository or GitHub writes and relied on the supplied
+  check and remote-label receipts.
+- The five reviewed W0 files alone were staged and committed at
+  `0a7a2444f34ca98def72f8fefde7f804fc2381d6`; `git diff --cached --check`
+  and `git diff --check` exited 0 before commit. The prior Task 14c working
+  changes and these planning records remain uncommitted. No push occurred.
+
+### Full-baseline spec workflow, W1
+
+- Added an uncommitted single-context domain glossary to define research
+  operation, plan, provider, route, upstream, corpus, artifact, coverage
+  verdict and host adapter consistently with accepted decisions.
+- The W1 spec draft at `/private/tmp/marketplace-full-baseline-spec.md` had
+  SHA-256 `84e925c233fa66e938cb947f51f2ed92f3e185994a8155c7964f81b483b59645`.
+  Independent read-only review found no material issue against accepted
+  decisions, roadmap, glossary and Task 14c status; it did not rerun the
+  underlying native or research receipts.
+- Published the exact draft as GitHub issue
+  `https://github.com/ray-manaloto/claude-code-marketplace/issues/11` with
+  `ready-for-agent`. `gh issue create` exited 0; a fresh `gh issue view`
+  returned the expected title/label and the body SHA-256 equal to the draft.
+  This publishes the spec, not implementation or final acceptance.
+
+### Full-baseline ticket and handover review, W2/W3
+
+- Drafted 34 numbered sub-issues in
+  `/private/tmp/marketplace-full-baseline-ticket-draft.md`, SHA-256
+  `6d6535c11227b3de6c089da7c0f8cf638d13a1447aacfe858ebdf00bb0477551`.
+  The user requested an adversarial Claude Fable team review before approving
+  granularity or publication. No sub-issues have been published.
+- Three read-only Claude Code 2.1.296 calls selected model
+  `claude-fable-5-1` and independently reviewed coverage, graph edges and
+  native/takeover gates. Initial restricted calls each stopped at the CLI
+  budget cap with no findings because startup context was unexpectedly large;
+  their error JSON was retained outside the repository. Retry calls with
+  `--safe-mode --restricted` each exited 0 and returned substantive reviews.
+  Their Markdown outputs and raw JSON remain under
+  `/private/tmp/marketplace-fable-ticket-review/`; hashes of the three review
+  texts were captured. They did not write repository or GitHub state.
+- The Fable reviews and an independent read-only Codex review identified
+  material draft gaps: no native-core distribution path to Claude plugin
+  users; legacy CLI has only `trackers`; missing schema/transport and primary
+  source seams; closure alone cannot prove successful blockers; LSan coverage
+  and final gates were over-serialized; several combined units exceed a fresh
+  context. These are review findings, not implemented fixes. Source inspection
+  confirmed the pinned external knowledge-base CLI, SessionStart install and
+  original `verbs: trackers` acceptance assertion.
+- Prepared uncommitted `docs/agents/claude-takeover.md` as a standby runbook.
+  It requires explicit user activation and sole-writer transfer. After review,
+  its prerequisite rule was tightened to require successful dispositions,
+  independent review and matching input identities; an unsupported scratch
+  repair assertion was removed. Ticket frontier references remain draft-only.
+- `./dev/mise tasks validate`, `./dev/mise run check`,
+  `./dev/mise run check:acceptance-baseline`, and `git diff --check` each exited
+  0 after the initial draft and runbook, with all 19 original hashes preserved.
+  No provider, native, container or fresh-session acceptance ran in W2/W3.
+- Wrote the synthesized adversarial disposition to
+  `docs/agents/full-baseline-ticket-review.md` and revised the unpublished
+  graph to 50 numbered units at
+  `.planning/2026-10-10-marketplace-macos-reflection-scaffold/ticket-graph-draft.md`, SHA-256
+  `c7a7e74f0ca9f712d725b94670419e10043bcca2b9951055e892a5421da9424c`.
+  A mechanical parse found 50 IDs, 118 lower-numbered edges and eligible IDs
+  01, 05, 06, 09, 10, 13, 16. Independent read-only recheck of the revision
+  found no remaining material planning blocker: no missing references or
+  cycles, correct frontier, and final ticket 50 transitively depends on all
+  prior tickets. This recheck did not validate implementation or runtime.
+  User approval of the revised granularity is pending, so no GitHub sub-issues
+  were created. The standby runbook now points to this draft.
+- After writing the report, durable draft and runbook update,
+  `./dev/mise tasks validate`, `./dev/mise run check`,
+  `./dev/mise run check:acceptance-baseline`, and `git diff --check` each
+  exited 0. The baseline check again verified all 19 original hashes.
+- The user approved the revised 50-ticket graph. Published one GitHub
+  sub-issue per unit in dependency order under spec #11: issue #12 through
+  #61. `gh issue create` exited 0 for every creation; each subsequent
+  `gh issue view` verified the exact title/body SHA-256, `ready-for-agent`
+  label, parent #11, native `blockedBy` numbers and open state. A fresh parent
+  query returned 50 sub-issues, #12–#61. The local generated
+  `ticket-publication.json` records all 50 verified mappings and checks;
+  SHA-256 `5c5628fa1c2480d46010a5dbe047f9fc2a9d0f47d147604f809f8a51e44ee5ff`.
+  `ticket-index.md` maps draft IDs to issue URLs and the initial eligible
+  frontier #12, #16, #17, #20, #21, #24, #27. Publication does not close
+  any issue or establish implementation, native, provider or OCI acceptance.
+- Updated the uncommitted standby Claude takeover runbook to reference the
+  live issue frontier, publication manifest and prerequisite success rule.
+  The user has not activated takeover or transferred sole-writer ownership.
+  Independent final W3 read-only review found no material findings. It freshly
+  confirmed parent #11 has 50 open children #12–#61 and that the recorded
+  frontier is #12, #16, #17, #20, #21, #24, #27. The reviewer checked issue
+  bodies, labels and edges against the saved publication manifest, not with
+  50 fresh issue queries. W3 is complete as a standby document, not activation.
+- Began W4 with open unblocked ticket #12, `01: Seal Task 14c failed LSan
+  closure`. Its live issue body asks for a committed, reproducible failed
+  disposition; this does not admit a new heavy run or count as LSan success.
+  Recomputed all 45 failed-native closure file hashes with no mismatch. The
+  recorded native exit was 1 after 17 successful commands and a 20-second
+  `lsan-clean` timeout; the receipt lists 19 owned PIDs absent, unchanged
+  protected/source state and a free lease. Independent read-only closure
+  review passed without material findings. It recomputed 81 retained hashes,
+  seven installed and two built identities, pinned source state, and live PID
+  and lease closure. It did not rerun native acceptance or all 881 source hashes.
+- The exact ticket #12 payload was scanned with Gitleaks 8.30.1. Evidence
+  scanning returned six `generic-api-key` alerts, all previously classified
+  contract hash-value false positives; the three maintained files returned
+  zero alerts. `git diff --cached --check` only flagged whitespace in the
+  immutable captured source diff; excluding that one capture exited 0. The
+  byte-exact evidence, three maintained files and a parent-transcribed review
+  receipt were locally committed at
+  `2cc4c0295d58e6fa857c9f4a1df02dfeebe0630f` (140 files). No push or
+  GitHub issue closure occurred. LSan and LSan+UBSan remain unqualified.
+- The approved 50-ticket graph, verified GitHub publication manifest, index,
+  adversarial review synthesis and research-domain glossary were committed
+  separately at `4c0d2db10a6460bef90409ebed7c7eef68ea5b02`. Its staged
+  whitespace check and file-level Gitleaks scans passed. The graph and
+  publication manifest retained their approved SHA-256 values.
