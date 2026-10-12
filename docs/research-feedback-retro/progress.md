@@ -36,3 +36,50 @@ The peer integration message supplies exact local commits and warns that its
 concurrent `mise.dev.toml` changes need reconciliation. Its draft GitHub library
 can reuse the feedback helper without adopting a second live-search runner.
 No push or merge is planned. Parent plans and private research state are untouched.
+
+# Refresh improvement workflow — 2026-10-12
+
+The user confirmed comparison-failure baseline/history preservation, exact borrowed
+runtime preflight before credential/provider launch, and sanitized shared outcome
+behavior tested at the runner boundary. Three local specs and the RF1/RF2/RF3
+ticket draft are prepared; ticket approval is pending. Glossary records the agreed
+domain distinctions. No implementation or tracker publication occurred in this phase.
+The protected peer's shared plan remains unchanged. A01/A05b overlaps are recorded;
+qualified A07/A08 publication operations remain unavailable. Hook-requested research
+fanout completed with native exit 1: GitHub Discussions canary-empty/unverified,
+Context7 process-failed, and Firecrawl Search substituted by Serper after exhausted
+credits. Exa, Last30Days and the other GitHub routes ran. Research remains incomplete;
+the exact manifest is retained under the hook's request directory.
+
+The user requested a Fable adversarial review before approving the ticket graph.
+Installed Claude Code 2.1.296 advertises the `fable` alias. The claude-agent skill's
+shared dispatcher launched one read-only safe-mode review with Read/Glob/Grep,
+no subagents, no fallback model and a 600-second limit. Review disposition is
+pending. The static baseline check exited 0 with all 19 original hashes intact;
+diff whitespace also passed. No implementation, commit or publication occurred.
+
+Fable completed: observed `claude-fable-5-1`, native/wrapper exit 0, completed
+AgentReport, local schema validation passed. It reported 4 high, 7 medium, 3 low
+and 1 informational findings. Source verification confirms missing transition,
+baseline migration, binding, write-order and ownership details. Its claim that
+stale-manifest failure was observed live is narrowed: the cited old failure was
+native exit 1 with invalid stdout, before the current patch. Its proposed rule
+accepting unverified empties as comparison baselines conflicts with the shared
+coverage contract; that correction is surfaced for the user's decision.
+Specs now draft bounded corrections and verification cases. RF3 split, coverage
+acceptance and preflight pin/cooldown choices remain pending. Changes are not
+implemented or re-reviewed; no review finding is claimed closed by a spec edit.
+
+The user approved all three post-review choices: separate coverage observations
+from comparison eligibility; RF3a/RF3b split; SDK pin enforcement with unchanged
+cooldown before provider launch. Four per-ticket local records now exist. A fresh
+focused Fable re-review is running on the revised contracts. RF1's managed worktree
+and a frozen private scratch copy are prepared; implementation has not started.
+Installed mise help confirms `--no-deps` skips automatic dependency providers.
+
+Focused Fable re-review completed with native exit 0 and schema validation passed:
+no high blockers, four medium and three low clarifications. These now specify
+attempt/comparison statuses, admission evidence, pre-launch cooldown metadata,
+fail-closed migration recovery, latest-observation metadata, policy pin location
+and RF3b serialization. The reviewer explicitly requires no further spec-level
+re-review before implementation; implementation/retro review remains mandatory.
