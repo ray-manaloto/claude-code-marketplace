@@ -86,6 +86,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 13b | Native baseline matrix | Eight isolated preset trees; 32 build/test/runtime cells; independent linkage and exact dependency mapping | Complete |
 | 14a | LLVM ASan/UBSan runtime witnesses | Pinned source contract; clean reflection consumer and deliberate memory/overflow diagnostics | Failed; closure verified |
 | 14a1 | Private ASan startup repair | Exact source patch; original timeout control; seven sanitizer cases; independent review | Complete |
+| 14a2 | Installed ASan guard preparation | Exact single-file overlay; preserved guard chain; confined replacement controls | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -275,3 +276,11 @@ the captured 127-object recipe and one replaced object. Require the original
 startup timeout and all seven existing sanitizer cases before any later runtime
 promotion. Native work requires preparation review and fresh admission; shared
 source/build/prefix changes and instrumentation matrices are separate units.
+
+Task 14a2 admits one guard/replacement module, sanitizer docs and these planning
+files. Prepare exact expectations for the independently qualified ASan candidate
+without changing historical inventory bytes or inherited guard functions. Pure
+overlay controls and private sandboxed replacement/restore controls are allowed.
+No installed write, compiler/runtime execution, capacity lease or promotion is
+included. A separate native operation must bind source/build state, back up the
+original, obtain fresh admission and qualify the installed runtime path.

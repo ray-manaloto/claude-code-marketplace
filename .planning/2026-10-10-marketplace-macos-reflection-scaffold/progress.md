@@ -1405,3 +1405,36 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   reviewer comparisons exited 0; 95 private text pairs, 86 command-log bindings,
   all 12 new artifact hashes and the 28 post-observed SDK hashes matched.
   Task 14a1 qualifies the private repair; installed promotion remains separate.
+
+### Task 14a2: installed ASan guard preparation
+
+- Task 14a1 was committed at `b452c6d64a125b8c4f3766dcb3093220bf70b7ed`.
+  All 14 commit/check commands exited 0; the final baseline passed and the tree
+  was clean. The installed ASan library remains at its original digest.
+- Source inspection identified a composable two-inventory overlay that retains
+  the existing reflection, mise-runtime and mise-metadata guards. It does not
+  independently attest the whole source tree; the future caller must do that.
+- Current inventories contain one matching artifact row and one prefix member,
+  with no prefix symlink aliases to the library. Both source and destination are
+  canonical, single-link regular files. Prepared exact expectations and an atomic
+  replacement primitive; private controls and independent review are pending.
+- The control script exited 0: 32 guard/rejection checks passed. Eleven confined
+  Python calls included successful replacement and restoration plus nine rejected
+  unsafe cases. The outside-path attempt raised PermissionError. A composition
+  control exercised all three real wrapper bodies with the terminal filesystem
+  guard and digest checks explicitly stubbed; it is not a live shared-state audit.
+  Original runtime and historical input hashes remained unchanged. Independent
+  source/control review is pending; no compiler or sanitizer runtime was executed.
+- Independent review found R1: the mode mask discarded special permission bits.
+  Its two private fixtures reproduced acceptance of `04755` against `0755`.
+  Preserve the failed freeze, original controls and reviewer evidence. Replace
+  the mask with `stat.S_IMODE` and require exact target identity at guard entry.
+- Revised controls exited 0: 40 checks and 17 confined calls passed, including
+  all six source/destination setuid, setgid and sticky-bit rejection cases and two
+  guard-entry rejections. Receipt preimages retain full modes and link counts.
+  The qualified private library has mode `0700`; a later caller must stage its
+  bytes with the destination's `0755` mode. R1 disposition review is pending.
+- Independent R1 disposition passed without new findings. Its comparison exited
+  0 and matched the two-line correction, six snapshots, 39 repaired-control
+  pairs and preserved failed receipts. The live shared guard and installed
+  promotion remain separate; this preparation unit is complete.

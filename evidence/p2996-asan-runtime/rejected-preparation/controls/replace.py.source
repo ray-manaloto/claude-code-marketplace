@@ -1,0 +1,6 @@
+import json,sys
+from pathlib import Path
+sys.dont_write_bytecode=True
+sys.path.insert(0,'/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains')
+from p2996_asan_runtime import replace_exact
+replace_exact(Path(sys.argv[1]),Path(sys.argv[2]),json.loads(sys.argv[3]),json.loads(sys.argv[4]))

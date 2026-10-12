@@ -52,3 +52,17 @@ records released ownership and preserved shared state. Independent
 [artifact review](../evidence/p2996-sanitizer-repair/artifact-review.json) passed
 without findings. These are private runtime witnesses. Installed-runtime
 promotion, dependency instrumentation and matrix qualification remain separate.
+
+Task 14a2 prepares the [installed-runtime guard](../dev/toolchains/p2996_asan_runtime.py).
+It updates only the expected digest and size of the single ASan library in two
+in-memory inventories. All original inventory files and existing guard functions
+remain unchanged. Its replacement primitive requires exact regular-file identities,
+one link per file, canonical paths and preserved executable mode. Private
+[controls](../evidence/p2996-asan-runtime/repaired-controls/controls.json) passed.
+Review found that the initial mode check discarded special permission bits; the
+correction preserves those bits and checks exact identity at guard entry. Its
+[disposition review](../evidence/p2996-asan-runtime/preparation-review.json)
+passed without new findings. A later caller must separately stage the candidate
+with the destination's exact `0755` mode,
+verify source/build inputs, preserve a backup, obtain fresh capacity and ownership,
+and qualify the installed path with all seven witnesses.

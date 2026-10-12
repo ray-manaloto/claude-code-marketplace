@@ -1,0 +1,81 @@
+{
+  "result": "PASS: Task 14a2 R1 disposition; bounded guard preparation only",
+  "findings": [],
+  "reviewed_at": "2026-10-12T01:18:07.497067+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": "Parent is sole implementation writer. Review covers the exact two-line R1 correction, four maintained files, new private controls, frozen text bindings and preserved failed receipts. No installed promotion or native admission is implied.",
+  "candidate_sha256": "b4bb62d891a3fefbfa5b4f4cd5a9a1b6341177f95a382eda5f6fa33349482805",
+  "helper_sha256": "ff283bc8542f2faa36e0aa5f7754c983c6735905a12bc16e535741aa2056d7aa",
+  "contract_sha256": "af5c4bab941b296e953b8b9d3a9018efbc3560957de5667c2c4a7f4559ee771d",
+  "controls_sha256": "0a7e459141c708a1ab09e92eb033d2db6091d8a1d92d19040da34b50d1b18364",
+  "rejected_review_sha256": "0f493371a0831d4fa739f18c4a07bbca3d3ee3da7f2708901d8f90aab3a2f933",
+  "r1_disposition": {
+    "status": "RESOLVED",
+    "path": "dev/toolchains/p2996_asan_runtime.py",
+    "lines": [
+      75,
+      87
+    ],
+    "static_assertion": "The actual source equals the rejected helper with exactly the added target identity assertion and stat.S_IMODE substitution. Full permission bits now participate in replacement preconditions and postconditions. protected checks canonical, owned, single-link regular-file identity including the full mode before inherited guard extraction.",
+    "recorded_executed_controls": "All six source/destination setuid 0o4755, setgid 0o2755 and sticky 0o1755 preimages are recorded with their full bits. Each actual sandbox subprocess returned 1 with AssertionError at replace_exact line 95, preserved the staged source and left target bytes unchanged. Existing positive replace/restore each returned 0. Two extracted protected controls rejected wrong hash and special mode before any inherited function call.",
+    "composition_limit": "The real wrapper composition uses terminal filesystem, digest and semantic stubs. The new target identity is explicitly stubbed and disclosed; this is not a live shared-state guard execution."
+  },
+  "independent_executed_checks": {
+    "comparison": "compare.py",
+    "execution": "execution.json",
+    "returncode": 0,
+    "elapsed_seconds": 1.016759917140007,
+    "timeout_seconds": 30,
+    "details": [
+      "Current six snapshots match exact live text bytes and all four maintained-file hashes.",
+      "All 39 repaired-control source/copy pairs match; all 34 command logs bind to the 17 recorded outcomes.",
+      "All 39 archived rejected-preparation files match their hashes from the completed original review. All 14 rejected-review copy pairs preserve the original finding and exact supporting allowlist.",
+      "Current Git checkout, branch, HEAD and common directory match; all four read-only Git subprocesses returned 0.",
+      "103 current scan text bindings and both digest false-positive dispositions match actual text bytes; 32 prior verified text bindings are reused. No scanner rerun."
+    ],
+    "candidate_module_or_functions_executed": false
+  },
+  "parent_recorded_execution_inspected": {
+    "private_controls_outer_returncode": 0,
+    "private_controls_elapsed_seconds": 2.4713200421538204,
+    "control_rows": 40,
+    "sandbox_subprocesses": 17,
+    "positive_returncode_0": 2,
+    "rejections_returncode_1": 15,
+    "static_returncodes": [
+      0,
+      0,
+      0
+    ],
+    "baseline_original_files": 19,
+    "secret_scan": {
+      "text_files": 135,
+      "raw_returncode": 1,
+      "verified_file_digest_false_positive_entries": 2,
+      "transformed_returncode": 0,
+      "complete_token_files": []
+    },
+    "reviewer_reran_these_checks": false
+  },
+  "existing_acceptance": "Four maintained files remain within this preparation unit. The contract and inherited guards are unchanged. The recorded static baseline preserves all 19 original acceptance files. Full OCI, provider, hook-runtime and fresh model-session acceptance were not exercised and are not inferred.",
+  "future_caller_responsibilities": [
+    "Fresh admitted installed mutation and capacity/lease checks remain separate work.",
+    "The private qualified runtime has mode 0o700 and must be explicitly staged to the contracted 0o755 before replace_exact.",
+    "The current promoted-runtime guard remains unexecuted here; subsequent native operation and artifact closure require their own evidence."
+  ],
+  "not_run": [
+    "Candidate module import or helper functions",
+    "Current installed runtime, complete shared guard, or original 19 input rehash",
+    "Previous 14a1 binaries or artifact checks",
+    "Parent controls, scanner, baseline, runtime or compiler replay",
+    "Capacity, leases, service or container operations, model sessions, or network"
+  ],
+  "supporting_files": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}
