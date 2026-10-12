@@ -38,6 +38,9 @@ Use one implementation writer per Git common directory. Read-only subagents
 inspect configuration/harness contracts or independently review bounded changes.
 Give each an explicit brief, file scope, prerequisite receipts and checks.
 See `docs/agents/codex-task-orchestration.md` for the current team and takeover.
+For durable spec/ticket, triage-label and domain-document conventions, read
+`docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, and
+`docs/agents/domain.md` when relevant.
 Keep each unit near five maintained files and 300 handwritten changed lines;
 settle its gate before expanding. Parent owns shared planning files.
 
