@@ -9,3 +9,13 @@ run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py'
 description = "Also verify the 19 original files against the onboarding baseline"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
+
+[tasks."check:research-feedback"]
+description = "Run offline research coverage regression controls"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_research_feedback.py -v'
+
+[tasks."research:replay-feedback"]
+description = "Replay explicit native observations and feedback without provider calls"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/research_feedback.py'
