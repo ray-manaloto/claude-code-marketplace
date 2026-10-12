@@ -1,0 +1,92 @@
+{
+  "result": "FAIL: R1 blocks the revised Task 14a editor admission; correction required before capacity or native execution",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "024cc3a0c6106fc3e0a94e983db284c253e19aea3df231ff8292b6964dc2880b",
+  "helper_sha256": "f9174b0625028b0fd5b5ae4809222a65a4944875878a5c9caa7241a8eebba4f9",
+  "contract_sha256": "4e5e3bc187c0d0f19c71be093c020deb5dd7eb02a12ac93ee198f57cebd249bb",
+  "retry_capacity_source_sha256": "3912859e62ef8d993782095f6faccb6a65154aaa16db2f0c27f74d0043b589a2",
+  "original_pass_sha256": "959a0964dd4fe7099371747994fd383735070da5c6bf72ba512712f3b9c5e1d3",
+  "recorded_at": "2026-10-11T23:34:49.198676+00:00",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "title": "Accept the recorded lsof cwd field format",
+      "path": "dev/toolchains/p2996_sanitizers.py",
+      "line": 51,
+      "related_control_path": "evidence/p2996-sanitizers/editor-controls.py.source",
+      "related_control_line": 15,
+      "evidence_path": "evidence/p2996-sanitizers/editor-services.json",
+      "evidence_command_case": "editor-cwd",
+      "body": "The successful recorded lsof -a -p ... -d cwd -Fpn command emits p<PID>, fcwd, n<cwd> for each PID. The two permitted editors therefore contribute six lines, but the rule requires four and consumes p/n pairs. With either permitted service present, the shared helper rejects valid cwd output in both the prepared retry capacity script and native run. The 24 synthetic controls omit fcwd and therefore do not exercise the observed positive format.",
+      "recommended_fix": "Parse strict p/fcwd/n records, retain duplicate/missing/malformed checks, and derive a positive control from the actual captured cwd blocks.",
+      "evidence_type": "Static source plus inspected executed parent receipt; reviewer did not run lsof or execute the candidate function.",
+      "parent_disposition": "Accepted; parent will preserve this frozen review and request a separate bounded repair review."
+    }
+  ],
+  "completed_scope": [
+    "Verified live checkout, branch, HEAD and common Git directory; read AGENTS.md and the revised relevant plan/doc delta.",
+    "Eight current snapshots match exact bytes. Eleven original preparation copies match the original independent receipt hashes; the original preparation review and its support files remain unchanged.",
+    "Whole-helper AST normalization confirms only the editor function, contract hash and specified active-process admission replacement changed. Sanitizer/negative-outcome handling, aggregate CPU/load/disk/Docker checks, census, lease, save and final preservation remain unchanged.",
+    "Five added contract inputs bind the original review, failed capacity and editor observations; all prior fields remain unchanged except editor policy and two added tool hash entries. Full PID/PPID/start/executable ancestry and 2 percent per service/4 percent total policy match the observation receipts.",
+    "Inspected 24 recorded synthetic controls (three admitted, 21 rejected), exact control source/hash/copy bindings and rc 0 execution. These were not rerun, and R1 identifies the positive-fixture mismatch.",
+    "First capacity receipt and all 11 source/copy pairs are preserved: wrapper rc 1, four read-only children rc 0, two recorded clangd blockers, no held lease and no native operation. Static validation and baseline19 receipts report rc 0; 50 scan bindings and ten public file-digest dispositions match actual file bytes."
+  ],
+  "executed_reviewer_check": {
+    "kind": "One private AST/JSON/file comparison; candidate code never imported or executed",
+    "returncode": 0,
+    "elapsed_seconds": 0.0736223750282079,
+    "timeout_seconds": 30,
+    "script_sha256": "10221ff8bd472ff116d9cd857fcdd7229e17124ef8e7fb3f73230798f997ce76",
+    "explicit_files_read": 68
+  },
+  "inspection_bookkeeping": "A preliminary snapshot-path listing exited 1 with KeyError(path) because the new receipt uses source keys. The schema inspection was corrected; the single full comparison exited 0. This was a reviewer listing error, not a candidate finding.",
+  "parent_receipt_summary": {
+    "snapshots": 8,
+    "archived_preparation_files": 11,
+    "original_preparation_review_unchanged": true,
+    "native_helper_only_editor_admission_delta": true,
+    "new_contract_input_bindings": 5,
+    "new_tool_hashes_metadata_only": 2,
+    "copy_pairs": {
+      "editor-control-copy-manifest.json": 3,
+      "capacity-copy-manifest.json": 11
+    },
+    "controls_recorded": 24,
+    "controls_admitted": 3,
+    "controls_rejected": 21,
+    "first_capacity_returncode": 1,
+    "first_capacity_child_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "first_capacity_lease_and_native_started": false,
+    "static_returncodes": [
+      0,
+      0
+    ],
+    "baseline_hashes_recorded": 19,
+    "scan_file_bindings": 50,
+    "scan_raw_returncode": 1,
+    "scan_transformed_returncode": 0,
+    "digest_false_positive_records": 10,
+    "full_token_findings": 0
+  },
+  "not_run": [
+    "Editor/process/cwd probes or capacity retry",
+    "Candidate function or the 24 synthetic controls",
+    "Lease, compiler/linker/lipo/sanitizer execution",
+    "Scans, old batteries, source inventories or installed binary hashes (the two new tool hashes were read as metadata only)",
+    "Network, services, containers, fresh model sessions or full Claude/OCI acceptance"
+  ],
+  "support_allowlist": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "unit": "Task 14a failure-closure whitespace addendum",
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-12T00:15:49.434190+00:00",
+  "result": "PASS",
+  "findings": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "8d3184ccc8df8c18a16e4faf99bcf9f9480ed604ae71d45515257eb0a8f0783d",
+  "prior_failure_review_sha256": "8d74fcd1c23d55ebb49d180d818138feefbc2a2f77d753650d743ca0ca138ceb",
+  "sample_sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840",
+  "assertions": [
+    "The entire .gitattributes delta from HEAD is one exact-path whitespace=-blank-at-eof line for the raw sample. All existing attributes are byte-preserved.",
+    "The raw sample remains byte-identical with its final blank line. Helper, witness and contract remain unchanged.",
+    "Three prose deltas accurately record closure review PASS and sanitizer runtime qualification FAIL/incomplete, plus the sixth-file exception.",
+    "Scanner source differs only by selecting closure-candidate.json instead of candidate.json; no scanner was executed."
+  ],
+  "executed_by_reviewer": {
+    "comparison_returncode": 0,
+    "comparison_elapsed_seconds": 0.04876866680569947,
+    "execution_sha256": "56153a1fc5f12140ac760d0b02ab50b984f94031ec42ad3e90922f8f70aafbc1",
+    "comparison_sha256": "c225a2ccab9f62f438398209ba974d60f4630715927af75d99ffaad43b1ca008",
+    "identity_command_returncodes": [
+      0,
+      0
+    ],
+    "git_check_attr": {
+      "returncode": 0,
+      "stdout": "evidence/p2996-sanitizers/startup-sample.txt.source: whitespace: -blank-at-eof\ndev/toolchains/p2996_sanitizers.py: whitespace: unspecified\ndocs/sanitizers.md: whitespace: unspecified\n"
+    }
+  },
+  "parent_recorded_checks": {
+    "returncodes": [
+      0,
+      0
+    ],
+    "baseline_original_hashes": 19,
+    "scanner_files": 220,
+    "raw_returncode": 1,
+    "dispositions": 48,
+    "transformed_returncode": 0,
+    "complete_token_files": []
+  },
+  "scan_scope": "11 current file bindings checked; all 48 disposition digests agree with the completed prior review. No historical graph or scan replay.",
+  "staging_observation": "At review .gitattributes was unstaged and progress.md had staged and unstaged changes. This PASS binds current candidate bytes; final staging must include those bytes.",
+  "not_run": [
+    "Full previous comparison",
+    "Native/compiler/runtime/sample/capacity/lease or binary checks",
+    "Scanner or baseline reruns",
+    "Fresh model sessions or full Claude/OCI acceptance"
+  ],
+  "mutations": "Private review outputs only; parent remains sole repository writer."
+}

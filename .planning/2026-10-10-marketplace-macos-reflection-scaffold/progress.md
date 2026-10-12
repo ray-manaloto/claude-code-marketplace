@@ -1320,3 +1320,54 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   seven preparation snapshots, 579 text pairs and 64 new artifact hashes matched.
   The reviewer corrected its JSON-lines parser and retained both rc1/rc0 receipts.
   Native baseline acceptance is complete; sanitizer families follow separately.
+- Task 13b committed as `ad2880bf4fedf9222cdcdff52cc4ec49d412b95e`;
+  clean status and the final-HEAD baseline passed. Task 14a prepares three LLVM
+  sanitizer modes with clean and deliberately failing runtime witnesses. The
+  configuration inspector is checking the retained fork's exact source contract.
+- Prepared the public-header sanitizer fixture and its clean, heap-read and
+  signed-overflow branches. Every branch first verifies the actual core's 43/1
+  reflection result. Runtime flags, guarded execution and review remain pending.
+- Prepared the runner using the accepted baseline admission, capacity, confinement
+  and preservation guards. It records real error exits and checks exact sanitizer
+  images for each run. No compiler or witness has run in Task 14a.
+- The pinned source confirms a volatile-qualified heap read remains ASan-checked
+  while excluding UBSan type/object-size/alignment checks. The clean case now
+  performs valid memory and arithmetic operations before the failing variants.
+- Bound the source prerequisite and existing runtime-library identities into the
+  runner contract. Seven runtime cases require three clean exits and four exact
+  diagnostic exits of 86, with all shared option values consistent. Review follows.
+- Independent preparation review passed. The first capacity probe exited 1 for
+  two idle Zed clangd services; no lease or native operation started. Preserve its
+  receipt and original preparation. A narrow process-identity exception is being
+  prepared for review, with current cwd, ancestry, CPU and repeated identity checks.
+- The shared editor rule passed 24 synthetic controls: three allowed cases and
+  21 rejected unknown, busy, changed, malformed or unavailable observations.
+  Native admission remains pending the revised preparation review.
+- The revised review found R1: lsof emits p/fcwd/n triplets, while the parser and
+  synthetic positives used pairs. Preserve that rejected candidate and review;
+  repair the parser and derive positive cwd controls from the captured records.
+- The three-line parser repair passed 26 controls, including captured-format
+  positives and wrong-descriptor/extra-field rejections. R1 disposition review
+  remains pending; no revised capacity or native sanitizer operation has run.
+- Independent R1 disposition review passed. A fresh native launch stopped at
+  an unrelated transient mise process before running commands; the process exited
+  and that failed attempt is retained. Fresh capacity admitted the unchanged retry.
+- ASan compilation/linking and ARM64 checks passed, but the clean executable
+  timed out before main at 20 seconds. Two unchanged repeats reproduced it.
+  All three runtime failures are retained; owned children ended, preservation
+  checks passed and the canonical lease was free after each operation.
+- The first diagnostic sampler rejected an otherwise matching PID record because
+  its parser retained a trailing newline. Its failed receipt is preserved; the
+  corrected exact-PID check permitted a one-second sample under the same sandbox.
+  That sample returned 0 and captured recursive ASan initialization: shadow-map
+  inspection calls dyld shared-cache enumeration, which allocates and re-enters
+  ASan's already-held initialization lock. Source diagnosis is now in progress;
+  no sanitizer runtime case or expanded matrix is qualified.
+- Independent failure review passed without findings: eight current snapshots,
+  12 preparation copies, 115 private text pairs, 84 command logs, 68 capacity
+  copy pairs and six new artifact hashes matched. The review preserved its
+  initial manifest-field parsing error and corrected rc-0 comparison. Task 14a
+  closes as a verified failure; a private runtime repair is the next unit.
+- The staged whitespace gate caught the raw sample's final blank line. Preserve
+  its exact bytes with one file-specific whitespace attribute; this adds one
+  maintained-file exception to the otherwise five-file unit. No runtime changed.

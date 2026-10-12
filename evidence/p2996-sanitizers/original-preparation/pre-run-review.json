@@ -1,0 +1,67 @@
+{
+  "result": "PASS: Task 14a bounded sanitizer preparation source and receipt review",
+  "findings": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "d8989375c84699a3a8414acea7d97fb5e9cd5f844f464e98146672eeb29fb8a6",
+  "helper_sha256": "67652c4dd7856dd214b0b881f00138d6043a5a8cbddc6f8787d9c935218c0db7",
+  "contract_sha256": "344a72cb7852857b8247d03cc63ce1b8cdb54a007ca54c39e7b7b52320e5d4b4",
+  "source_prerequisite_sha256": "60c417f0658fc600b865fb716f68ade20bc9bcd46d8668c858d1fb36f50d6751",
+  "recorded_at": "2026-10-11T23:20:43.039086+00:00",
+  "scope": "Five maintained files, seven frozen text snapshots, new source-prerequisite and static/scan receipts. Parent is sole implementation writer; reviewer owns no project files.",
+  "static_review": [
+    "Read actual AGENTS.md, onboarding/accepted compiler decisions and the selected Task 14a plan/progress sections; verified actual Git identity before review.",
+    "Inspected the entire 189-line helper and 36-line fixture plus documentation and the source delta from the accepted baseline helper. AST comparison confirms unchanged save/guard/interrupted functions and preserved admission, census, capacity, canonical lease, defaults, failure and final-save structures.",
+    "The removed final inventory condition concerns only retained fmt/vcpkg trees, which this operation does not access. Compiler/linker/runtime children remain confined to the fresh private run directory, with network denied; existing hash guards and protected-state validation remain.",
+    "Inspected the retained native run function. New negative cases leave monitor disabled, match the current command and expected returncode 86, and reject unexpected success. Timeout, launch, signal and mismatched return failures still propagate; later output, diagnostic and loader assertions remain outside the expected-error catch.",
+    "Base compiler/SDK/resource/header flags come from the bound passing P2996 baseline cell. The reflection core receives -freflection separately; the ordinary public-header witness rejects reflection leakage. Instrumentation flags apply to both translation units and the final driver link.",
+    "Three modes specify three clean exits and four intentional diagnostic exits. Fixtures check and flush reflection value 43/member count 1 before either failure, exercise bounded heap access and nonoverflowing addition on clean paths, and use a volatile-qualified pointee for the intended ASan error.",
+    "Source-prerequisite metadata matches the exact sanitizer flags, driver-selected libraries, diagnostics, exit 86 and runtime environment. Focused actual source spans confirm ASan includes UBSan, shared flag parsing order, non-abort exitcode handling, disabled external symbolization and volatile memory instrumentation behavior.",
+    "The runtime launcher sets RLIMIT_CORE to zero, receives ASAN_OPTIONS/UBSAN_OPTIONS through explicit JSON argv, and uses a reconstructed child environment with the three option/symbolizer names cleared. Exact qualified C++ runtime presence and mode-specific compiler-rt image sets are required.",
+    "Documentation accurately leaves native execution and artifact review pending and excludes dependency instrumentation, linkage matrices, coverage, TSan/LSan and symbol-level runtime exclusivity."
+  ],
+  "executed_reviewer_checks": {
+    "kind": "One private filesystem/JSON/AST comparison; no candidate code imports or execution",
+    "returncode": 0,
+    "elapsed_seconds": 0.06394337490200996,
+    "timeout_seconds": 30,
+    "explicit_files_read": 20,
+    "exact_snapshot_pairs": 7,
+    "source_prerequisite_copy_pairs": 1,
+    "parent_scan_file_hashes_checked": 12,
+    "verified_public_digest_dispositions": 3,
+    "retained_contract_tables_preserved": 87,
+    "source_binding_metadata_matches": 32,
+    "runtime_binding_metadata_matches": 2,
+    "script_sha256": "e40774f2d713b1b273a9cfb2148360141cd743a2ff9e8a3c4f0b27c5144d5185"
+  },
+  "parent_receipts_inspected": {
+    "static_returncodes": [
+      0,
+      0
+    ],
+    "baseline_hashes_recorded": 19,
+    "postcommit_head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+    "postcommit_all_zero_and_clean": true,
+    "scan_file_bindings": 12,
+    "scan_raw_returncode": 1,
+    "scan_transformed_returncode": 0,
+    "verified_public_digest_dispositions": 3,
+    "complete_token_findings": 0
+  },
+  "not_run": [
+    "Native sanitizer compilation/linking/runtime witnesses or lipo; all remain UNVERIFIED for Task 14a",
+    "Capacity, census, lease, protected-state or profile commands",
+    "Old controls, prior source inventories, installed binary hashes or scans",
+    "Fresh Codex/model sessions, Claude/provider/hooks/full OCI acceptance",
+    "Network, services, containers, installs or global/project modifications"
+  ],
+  "admission_limit": "Preparation PASS only. Parent must retain Python 3.15.0 -E -B, fresh capacity and the separate admission/lease before execution; this review is not a native sanitizer result.",
+  "support_allowlist": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

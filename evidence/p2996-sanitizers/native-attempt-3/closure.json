@@ -1,0 +1,152 @@
+{
+  "recorded_at": "2026-10-11T23:55:05.990976+00:00",
+  "native_returncode": 1,
+  "native_execution_sha256": "2e10cf4c8457c96249c5aee850b697ea04b73bcc54371b568f460731575c7229",
+  "qualification_sha256": "2bd60110c131cbe03903f6246d657ae66aa1ba53987abae4fefde3c1cb3ae712",
+  "retained_text_files": 38,
+  "text_receipts_sha256": "818f927e27a8cc89d1ccbf4997f7d292007a96d14321b5ddeab3503b9f3e523d",
+  "command_count": 14,
+  "command_outcomes": [
+    {
+      "case": "project-head",
+      "returncode": 0
+    },
+    {
+      "case": "default-before",
+      "returncode": 0
+    },
+    {
+      "case": "capacity-processes",
+      "returncode": 0
+    },
+    {
+      "case": "editor-identities",
+      "returncode": 0
+    },
+    {
+      "case": "editor-cwd",
+      "returncode": 0
+    },
+    {
+      "case": "editor-identities-after",
+      "returncode": 0
+    },
+    {
+      "case": "docker-context",
+      "returncode": 0
+    },
+    {
+      "case": "docker-census",
+      "returncode": 0
+    },
+    {
+      "case": "docker-stats",
+      "returncode": 0
+    },
+    {
+      "case": "asan-core",
+      "returncode": 0
+    },
+    {
+      "case": "asan-link",
+      "returncode": 0
+    },
+    {
+      "case": "asan-arch-object",
+      "returncode": 0
+    },
+    {
+      "case": "asan-arch-binary",
+      "returncode": 0
+    },
+    {
+      "case": "asan-clean",
+      "returncode": -15
+    }
+  ],
+  "processes": [
+    {
+      "case": "native-helper",
+      "pid": 71599,
+      "absent": true
+    },
+    {
+      "case": "project-head",
+      "pid": 72142,
+      "absent": true
+    },
+    {
+      "case": "default-before",
+      "pid": 72144,
+      "absent": true
+    },
+    {
+      "case": "capacity-processes",
+      "pid": 72149,
+      "absent": true
+    },
+    {
+      "case": "editor-identities",
+      "pid": 72151,
+      "absent": true
+    },
+    {
+      "case": "editor-cwd",
+      "pid": 72154,
+      "absent": true
+    },
+    {
+      "case": "editor-identities-after",
+      "pid": 72318,
+      "absent": true
+    },
+    {
+      "case": "docker-context",
+      "pid": 72321,
+      "absent": true
+    },
+    {
+      "case": "docker-census",
+      "pid": 72322,
+      "absent": true
+    },
+    {
+      "case": "docker-stats",
+      "pid": 72325,
+      "absent": true
+    },
+    {
+      "case": "asan-core",
+      "pid": 72793,
+      "absent": true
+    },
+    {
+      "case": "asan-link",
+      "pid": 72794,
+      "absent": true
+    },
+    {
+      "case": "asan-arch-object",
+      "pid": 72798,
+      "absent": true
+    },
+    {
+      "case": "asan-arch-binary",
+      "pid": 72799,
+      "absent": true
+    },
+    {
+      "case": "asan-clean",
+      "pid": 72800,
+      "absent": true
+    }
+  ],
+  "lease_probe": {
+    "free": true,
+    "contents_unchanged": true
+  },
+  "protected_state_unchanged": true,
+  "reflection_stdout_reached": false,
+  "state": "CLOSED FAIL",
+  "error": "TimeoutExpired(['/usr/bin/sandbox-exec', '-f', '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235344Z/private.sb', '/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3', '-E', '-B', '-c', \"import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))\", '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235344Z/asan/witness', 'clean', '{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}'], 20)"
+}

@@ -84,6 +84,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 12c3c | Application and fmt consumer parity | Public vcpkg composition; eight build/run cells; actual loader paths and preserved dependency roots | Complete |
 | 13a | Native baseline preset preparation | Deterministic TCPM generation; eight trees, 32 cells, independent linkage and four preset kinds | Complete |
 | 13b | Native baseline matrix | Eight isolated preset trees; 32 build/test/runtime cells; independent linkage and exact dependency mapping | Complete |
+| 14a | LLVM ASan/UBSan runtime witnesses | Pinned source contract; clean reflection consumer and deliberate memory/overflow diagnostics | Failed; closure verified |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -256,3 +257,12 @@ linkage. Reuse retained dependencies read-only with installation disabled.
 Native operations require independent preparation review, fresh capacity and
 the canonical lease. No dependency build, instrumentation, cache provider,
 shared installation or global write is included.
+
+Task 14a admits one confined sanitizer witness runner, one public-header consumer
+fixture, sanitizer docs and these planning files. Prepare ASan, UBSan and combined
+runtime controls against the qualified P2996 core and runtimes. Native execution
+requires independent preparation review, fresh capacity and the canonical lease.
+No dependency build, preset expansion, shared write, cache or coverage is included.
+Retain the first failed capacity receipt. A separately reviewed rule may admit
+only the observed Zed clangd identities and ancestry, with fresh working-directory
+and identity checks, CPU limits and all other existing admission guards preserved.

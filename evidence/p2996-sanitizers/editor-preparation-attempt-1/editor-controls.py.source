@@ -1,0 +1,76 @@
+import ast, copy, hashlib, json, subprocess
+from pathlib import Path
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+E = ROOT / 'evidence/p2996-sanitizers'
+helper = ROOT / 'dev/toolchains/p2996_sanitizers.py'
+assert hashlib.sha256(helper.read_bytes()).hexdigest() == 'f9174b0625028b0fd5b5ae4809222a65a4944875878a5c9caa7241a8eebba4f9'
+node = next(n for n in ast.parse(helper.read_text()).body if isinstance(n, ast.FunctionDef) and n.name == 'admit_editors')
+scope = {'Path': Path, 'ROOT': ROOT}
+exec(compile(ast.Module(body=[node], type_ignores=[]), str(helper), 'exec'), scope)
+check = scope['admit_editors']
+observed = json.loads((E / 'editor-services-stable.json').read_text())
+active = json.loads((E / 'capacity/capacity.json').read_text())['active_build_processes']
+metadata = observed['commands'][0]['stdout']
+cwd = ''.join('p' + pid + '\nn' + str(ROOT) + '\n' for pid in sorted(observed['policy']['processes']))
+base = {'active': active, 'policy': observed['policy'], 'editor-identities': metadata,
+        'editor-cwd': cwd, 'editor-identities-after': metadata}
+results = []
+
+def attempt(name, mutate, passed=False, expected_pids=None):
+    data = copy.deepcopy(base)
+    mutate(data)
+    calls = []
+    def run(label, argv, timeout):
+        calls.append({'case': label, 'argv': argv, 'timeout': timeout})
+        assert timeout == 15
+        if data.get('timeout') == label:
+            raise subprocess.TimeoutExpired(argv, timeout)
+        return data[label]
+    try:
+        value = check(data['active'], run, data['policy'])
+    except (AssertionError, KeyError, IndexError, ValueError, subprocess.TimeoutExpired) as error:
+        assert not passed, (name, repr(error))
+        results.append({'case': name, 'outcome': 'rejected', 'error_type': type(error).__name__, 'calls': calls})
+    else:
+        assert passed and value == expected_pids, (name, value)
+        results.append({'case': name, 'outcome': 'admitted', 'pids': value, 'calls': calls})
+
+attempt('exact observed services', lambda d: None, True, ['73356', '73398'])
+attempt('no matched services', lambda d: d.update(active=[]), True, [])
+def single(d):
+    d['active'] = [d['active'][0]]
+    for key in ['editor-identities', 'editor-identities-after']:
+        d[key] = ''.join(line + '\n' for line in metadata.splitlines() if line.split()[0] in {'73356', '36012'})
+    d['editor-cwd'] = 'p73356\nn' + str(ROOT) + '\n'
+attempt('one observed service remains', single, True, ['73356'])
+attempt('unknown clangd', lambda d: d['active'].append('99999 0.0 /usr/bin/clangd'))
+attempt('active compiler', lambda d: d['active'].append('99999 0.0 /usr/bin/clang++'))
+attempt('allowed pid with compiler name', lambda d: d.update(active=[d['active'][0].replace('clangd', 'clang++')]))
+attempt('duplicate active pid', lambda d: d['active'].append(d['active'][0]))
+attempt('per service cpu high', lambda d: d.update(active=[d['active'][0].replace('0.0', '2.1')]))
+attempt('cpu NaN', lambda d: d.update(active=[d['active'][0].replace('0.0', 'nan')]))
+attempt('cpu infinity', lambda d: d.update(active=[d['active'][0].replace('0.0', 'inf')]))
+attempt('negative cpu', lambda d: d.update(active=[d['active'][0].replace('0.0', '-0.1')]))
+def combined(d):
+    d['active'] = [row.replace('0.0', '2.0') for row in d['active']]
+    d['policy']['maximum_cpu_percent_total'] = 3.0
+attempt('combined cpu limit', combined)
+attempt('changed start', lambda d: d.update({'editor-identities': metadata.replace('18:11:56', '18:11:55')}))
+attempt('changed ancestor executable', lambda d: d.update({'editor-identities': metadata.replace('/Applications/Zed.app/Contents/MacOS/zed', '/usr/bin/other')}))
+attempt('changed parent', lambda d: d.update({'editor-identities': metadata.replace('73356 36012', '73356 99999')}))
+attempt('missing identity', lambda d: d.update({'editor-identities': '\n'.join(metadata.splitlines()[:-1]) + '\n'}))
+attempt('duplicate identity', lambda d: d.update({'editor-identities': metadata + metadata.splitlines()[0] + '\n'}))
+attempt('malformed identity', lambda d: d.update({'editor-identities': '73356 36012\n'}))
+attempt('wrong cwd', lambda d: d.update({'editor-cwd': cwd.replace(str(ROOT), '/tmp/wrong')}))
+attempt('missing cwd', lambda d: d.update({'editor-cwd': 'p73356\nn' + str(ROOT) + '\n'}))
+attempt('duplicate cwd pid', lambda d: d.update({'editor-cwd': cwd.replace('73398', '73356')}))
+attempt('malformed cwd', lambda d: d.update({'editor-cwd': cwd.replace('n' + str(ROOT), 'x' + str(ROOT))}))
+attempt('identity changed during cwd', lambda d: d.update({'editor-identities-after': metadata.replace('18:11:57', '18:11:58')}))
+attempt('identity probe timeout', lambda d: d.update(timeout='editor-identities'))
+report = {'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+          'helper_sha256': hashlib.sha256(helper.read_bytes()).hexdigest(),
+          'source_operation': 'Only the AST-extracted admit_editors function with synthetic callback outputs; no process probes, lease or native build',
+          'cases': results, 'state': 'PASS'}
+(Path(__file__).parent / 'controls.json').write_text(json.dumps(report, indent=2) + '\n')
+print(json.dumps({'state': report['state'], 'cases': len(results), 'admitted': sum(r['outcome'] == 'admitted' for r in results)}))

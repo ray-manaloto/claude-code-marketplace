@@ -1,0 +1,520 @@
+{
+  "state": "FAIL",
+  "helper_sha256": "15800f647fa9fd39d553a5bc505da63ed41cef55fa53dcfa6569fa1e8f1117e6",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T23:55:26.421584+00:00",
+      "pid": 79807,
+      "returncode": 0,
+      "elapsed_seconds": 0.014048999873921275,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/project-head.stdout",
+          "sha256": "a39557e926809004f5b25ad8bd2118ffbf440c9affc8d4260bca1641e8ef3828"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T23:55:26.437218+00:00",
+      "pid": 79809,
+      "returncode": 0,
+      "elapsed_seconds": 0.09893262502737343,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/default-before.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T23:55:26.541491+00:00",
+      "pid": 79811,
+      "returncode": 0,
+      "elapsed_seconds": 0.06454479205422103,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/capacity-processes.stdout",
+          "sha256": "a1655998a47e03fc5ff7f995e9254f15e947f494315ae09c5cf33662de9c000a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "editor-identities",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-11T23:55:26.611111+00:00",
+      "pid": 79814,
+      "returncode": 0,
+      "elapsed_seconds": 0.03914445801638067,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-identities.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-identities.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-cwd",
+      "argv": [
+        "/usr/sbin/lsof",
+        "-a",
+        "-p",
+        "73356,73398",
+        "-d",
+        "cwd",
+        "-Fpn"
+      ],
+      "started_at": "2026-10-11T23:55:26.652256+00:00",
+      "pid": 79818,
+      "returncode": 0,
+      "elapsed_seconds": 0.05944204097613692,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-cwd.stdout",
+          "sha256": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-cwd.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-identities-after",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-11T23:55:26.713039+00:00",
+      "pid": 79821,
+      "returncode": 0,
+      "elapsed_seconds": 0.041687041986733675,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-identities-after.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/editor-identities-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-11T23:55:26.756396+00:00",
+      "pid": 79823,
+      "returncode": 0,
+      "elapsed_seconds": 0.023289165925234556,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-11T23:55:26.781304+00:00",
+      "pid": 79825,
+      "returncode": 0,
+      "elapsed_seconds": 0.04510237509384751,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-11T23:55:26.828423+00:00",
+      "pid": 79871,
+      "returncode": 0,
+      "elapsed_seconds": 1.1131042500492185,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-stats.stdout",
+          "sha256": "fca4bb816db62685c87af8d982f2a4e8b6a91b417b1e90078a764deb84764ef6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "asan-core",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-fPIC",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "-arch",
+        "arm64",
+        "-std=c++26",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fno-optimize-sibling-calls",
+        "-I",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address",
+        "-freflection",
+        "-c",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/core.o"
+      ],
+      "started_at": "2026-10-11T23:55:30.385890+00:00",
+      "pid": 80221,
+      "returncode": 0,
+      "elapsed_seconds": 0.5038602079730481,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-core.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-core.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "asan-link",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-fPIC",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "-arch",
+        "arm64",
+        "-std=c++26",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fno-optimize-sibling-calls",
+        "-I",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/sanitizer_witness.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/core.o",
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness"
+      ],
+      "started_at": "2026-10-11T23:55:30.892582+00:00",
+      "pid": 80232,
+      "returncode": 0,
+      "elapsed_seconds": 0.17690458381548524,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-link.stderr",
+          "sha256": "6d5ddd40151d0ddf3f01b3fa8ba723f690c9590dacb56f7f98b0f4a8b036a0e2"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "asan-arch-object",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/core.o"
+      ],
+      "started_at": "2026-10-11T23:55:31.071096+00:00",
+      "pid": 80236,
+      "returncode": 0,
+      "elapsed_seconds": 0.020188875030726194,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-arch-object.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-arch-object.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "asan-arch-binary",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness"
+      ],
+      "started_at": "2026-10-11T23:55:31.092476+00:00",
+      "pid": 80237,
+      "returncode": 0,
+      "elapsed_seconds": 0.019658041885122657,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-arch-binary.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-arch-binary.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "asan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness",
+        "clean",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-11T23:55:31.113285+00:00",
+      "pid": 80238,
+      "interrupted": true,
+      "returncode": -15,
+      "elapsed_seconds": 20.002810791833326,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-clean.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan-clean.stderr",
+          "sha256": "02fc1cf34c52d594755477f8c835bebdf98f22919a34557a2485966a818db7d3"
+        }
+      ]
+    }
+  ],
+  "cells": {
+    "asan": {
+      "artifacts": {
+        "object": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/core.o",
+          "sha256": "bb18cf3042e886fd078c2e497c0f6f5eb8662fa2b2311eb8708507dac53ae6a0"
+        },
+        "binary": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness",
+          "sha256": "475fc4bf1d44ba5cc81c9a83070cd5354025bba71c960dedf8a70f2098fbb54d"
+        }
+      },
+      "runs": {}
+    }
+  },
+  "admission_sha256": "debac5bf415a4fb1a623b1f0c667f2b83a1ea4d743a47da06a3a672df960295b",
+  "writer_census_before": {
+    "at": "2026-10-11T23:55:26.421259+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "capacity": {
+    "active": [
+      "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+      "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+    ],
+    "load": [
+      8.98974609375,
+      7.81982421875,
+      6.81982421875
+    ],
+    "cpus": 12,
+    "free_bytes": 71311921152,
+    "total_cpu_percent": 168.9,
+    "admitted_editor_services": [
+      "73356",
+      "73398"
+    ],
+    "container_cpu_percent": 4.18
+  },
+  "confinement": {
+    "profile_sha256": "24c831c9d27c0e79dc62ca44684cf3eb50274004a05fafed7112da77b384e203",
+    "allowed_inherited_fds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "error": "TimeoutExpired(['/usr/bin/sandbox-exec', '-f', '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb', '/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3', '-E', '-B', '-c', \"import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))\", '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness', 'clean', '{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}'], 20)",
+  "protected_state_unchanged": true
+}

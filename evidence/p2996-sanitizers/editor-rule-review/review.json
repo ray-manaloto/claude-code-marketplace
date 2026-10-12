@@ -1,0 +1,75 @@
+{
+  "result": "PASS: Task 14a R1 disposition; revised preparation has no remaining findings",
+  "findings": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "31175bc34f25e5dcd4e84a5f9d6cb4fe4dbd58e4347b97b56243b25b6af6722d",
+  "helper_sha256": "15800f647fa9fd39d553a5bc505da63ed41cef55fa53dcfa6569fa1e8f1117e6",
+  "contract_sha256": "4e5e3bc187c0d0f19c71be093c020deb5dd7eb02a12ac93ee198f57cebd249bb",
+  "capacity_retry_source_sha256": "bd0119ad9741bd7d4d3f75c72839bba70e75edf61aecb0355bedd3e6f8645060",
+  "original_preparation_review_sha256": "959a0964dd4fe7099371747994fd383735070da5c6bf72ba512712f3b9c5e1d3",
+  "rejected_review_sha256": "7f8d7619499e3d375da4efbfa9c2249f5ae9309c59c04f934eb5078cea4428da",
+  "recorded_at": "2026-10-11T23:41:23.622430+00:00",
+  "dispositions": [
+    {
+      "id": "R1",
+      "status": "RESOLVED",
+      "path": "dev/toolchains/p2996_sanitizers.py",
+      "line": 51,
+      "evidence": "The exact three-line repair now requires 3*N fields, iterates p/fcwd/n triples and requires descriptor fcwd. All other helper bytes match the rejected candidate. Controls derive intact cwd blocks from the bound successful lsof receipt, including both-editor and single-editor positives; wrong-descriptor and extra-field cases reject."
+    }
+  ],
+  "review_scope": "R1 parser and control repair only. Carry forward the original preparation PASS and the prior revised review for unchanged logic. Parent remains sole writer; no project files changed by reviewer.",
+  "static_assertions": [
+    "Contract bytes unchanged; retry capacity source only updates its helper digest and continues to extract the shared function without importing native main.",
+    "Eight frozen snapshots match actual bytes. Fifteen rejected-attempt files and six rejected-review copies match prior independent hashes and their private sources.",
+    "Fixture, sanitizer docs and task plan are byte-identical to the rejected candidate. Progress adds only six factual repair/control lines and keeps native admission pending.",
+    "The bounded editor policy, failure propagation, canonical lease/census/capacity/default/protection checks and all sanitizer compile/runtime logic are unchanged."
+  ],
+  "parent_execution_inspected": {
+    "control_returncode": 0,
+    "control_elapsed_seconds": 0.04220466688275337,
+    "cases": 26,
+    "admitted": 3,
+    "rejected": 23,
+    "new_rejections": [
+      "wrong descriptor",
+      "extra cwd field"
+    ],
+    "prior_24_case_receipts_unchanged": true,
+    "candidate_function_only": "Parent AST-extracted admit_editors with captured and synthetic callback outputs; no native process calls",
+    "static_returncodes": [
+      0,
+      0
+    ],
+    "baseline_hashes_recorded": 19,
+    "scan_file_bindings_checked": 73,
+    "scan_raw_returncode": 1,
+    "verified_public_digest_dispositions": 19,
+    "scan_transformed_returncode": 0,
+    "full_token_findings": 0
+  },
+  "reviewer_execution": {
+    "kind": "One private AST/JSON/file comparison, no candidate code imports or execution",
+    "returncode": 0,
+    "elapsed_seconds": 0.04164274991489947,
+    "timeout_seconds": 30,
+    "script_sha256": "1802900dec730a39ff545e01ed055419ce05cafec9f0c719545b3f7d6a78ddf6",
+    "files_read": 85
+  },
+  "not_run": [
+    "Controls, scans or old tests",
+    "Capacity retry, process/cwd probes or lease operations",
+    "Compiler/linker/lipo/sanitizer programs",
+    "Installed binary hashes, source inventories, network/services/containers",
+    "Fresh model sessions or Claude/provider/hooks/full OCI acceptance"
+  ],
+  "admission_limit": "Fresh capacity and separate admission remain required. This is a preparation disposition, not native sanitizer acceptance. CPU observations do not prove continued idleness; the lease does not constrain Zed, and process observations remain non-atomic.",
+  "support_allowlist": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

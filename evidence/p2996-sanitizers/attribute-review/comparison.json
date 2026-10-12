@@ -1,0 +1,56 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "candidate_sha256": "8d3184ccc8df8c18a16e4faf99bcf9f9480ed604ae71d45515257eb0a8f0783d",
+  "maintained_files": 6,
+  "delta": {
+    "attribute_added": "evidence/p2996-sanitizers/startup-sample.txt.source whitespace=-blank-at-eof",
+    "changed_prose_files": [
+      "docs/sanitizers.md",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+    ],
+    "helper_fixture_contract_unchanged": true,
+    "sample_sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840"
+  },
+  "parent_recorded_checks": {
+    "returncodes": [
+      0,
+      0
+    ],
+    "baseline_original_hashes": 19,
+    "scanner_files": 220,
+    "raw_returncode": 1,
+    "dispositions": 48,
+    "transformed_returncode": 0,
+    "complete_token_files": []
+  },
+  "disposition_verification": "All 48 digests match the previously independently verified frozen text hashes; no historical scan graph was replayed.",
+  "current_scan_bindings": 11,
+  "git_base_attributes": {
+    "argv": [
+      "/usr/bin/git",
+      "-c",
+      "core.fsmonitor=false",
+      "show",
+      "HEAD:.gitattributes"
+    ],
+    "returncode": 0,
+    "stdout": "# Retain exact CMake error-log bytes, including its final blank lines.\nevidence/vcpkg-abi-inputs/controls/*.stderr whitespace=-blank-at-eof\n# Preserve exact native receipt bytes; maintained sources retain normal checks.\nevidence/vcpkg-fmt-build/**/CMakeCache.txt whitespace=-blank-at-eof\nevidence/vcpkg-fmt-build/**/*.ninja whitespace=-blank-at-eol,-blank-at-eof\nevidence/vcpkg-fmt-build/**/*.stdout whitespace=-blank-at-eol,-blank-at-eof\n",
+    "stderr": ""
+  },
+  "current_text_sha256": {
+    "dev/toolchains/p2996_sanitizers.py": "15800f647fa9fd39d553a5bc505da63ed41cef55fa53dcfa6569fa1e8f1117e6",
+    "dev/toolchains/sanitizer_witness.cpp": "8918bd5638f2c97a165f1edc946745e94f6ffea8ef9ac960a10f10587e92a0b3",
+    "docs/sanitizers.md": "f8fd89ad35f274dbd1944d8787af66d89ce542676e415b078a1e728e48eb986d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "888e6f0d75fc0ab5600849754de5c07c79587c9fa3240c1b7a78b5d498f3ae9d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "16975cae9c5382a68ebbb36c9e2c09b0dc816eee9674d401bff03a87af262a13",
+    ".gitattributes": "1f521cf3c7e2afc3830ce9c9307a94b06a5dabb25b08048889fc1277d3586880",
+    "evidence/p2996-sanitizers/closure-candidate.json": "8d3184ccc8df8c18a16e4faf99bcf9f9480ed604ae71d45515257eb0a8f0783d",
+    "evidence/p2996-sanitizers/closure-attribute-static.json": "684bc1aabb4f65397353bf1af9a1e0d0ccf2aa9aa1b8f8ac36b8a1df2d45775d",
+    "evidence/p2996-sanitizers/failure-review.json": "8d74fcd1c23d55ebb49d180d818138feefbc2a2f77d753650d743ca0ca138ceb",
+    "evidence/p2996-sanitizers/failure-secret-scan.json": "c4039b3d2339fac340abbd38d563ee2e1558acd5164de62c982288ac0a44528d",
+    "evidence/p2996-sanitizers/startup-sample.txt.source": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840",
+    "evidence/p2996-sanitizers/closure-attribute-secret-scan.json": "f913e8adda79cc954f53b3daf65a02a3226b4d524fb6afb6159f3ba0ed935921"
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "status": "COMPLETE_SOURCE_PREREQUISITE_RUNTIME_UNEXECUTED",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "refs/heads/codex/marketplace-native-onboarding",
+    "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "source_head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "retained_source_tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+  },
+  "scope": {
+    "native_commands": 0,
+    "compiler_invocations": 0,
+    "test_or_runtime_invocations": 0,
+    "network_calls": 0,
+    "binary_content_reads_or_hashes": 0,
+    "repository_or_global_writes": 0,
+    "source_hashes_are_fresh": true,
+    "full_source_cleanliness_replay": false,
+    "installed_library_hashes": "retained inventory values; only current exact-path lstat/size/mode checked"
+  },
+  "compile_link_contract": {
+    "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+    "common_compile_flags": [
+      "-std=c++26",
+      "-O1",
+      "-g",
+      "-fno-omit-frame-pointer"
+    ],
+    "optional_stack_trace_flag": "-fno-optimize-sibling-calls",
+    "preserve": "Retain the already-qualified P2996 SDK, resource-dir, libc++ headers, libc++/libc++abi/libunwind and runtime RPATH flags; these sanitizer additions do not replace that base.",
+    "translation_units": [
+      {
+        "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+        "private_extra_flags": [
+          "-freflection"
+        ],
+        "instrumented": true
+      },
+      {
+        "source": "new private normal consumer of aggregated_research/core.hpp",
+        "private_extra_flags": [],
+        "instrumented": true
+      }
+    ],
+    "final_link": "Use the same prefix clang++ driver with the selected -fsanitize flag and both objects. Let the driver add compiler-rt; do not manually add a second UBSan library in combined mode.",
+    "modes": [
+      {
+        "mode": "asan",
+        "flag": "-fsanitize=address",
+        "expected_sanitizer_library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib"
+      },
+      {
+        "mode": "ubsan",
+        "flag": "-fsanitize=undefined",
+        "expected_sanitizer_library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib"
+      },
+      {
+        "mode": "asan-ubsan",
+        "flag": "-fsanitize=address,undefined",
+        "expected_sanitizer_library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+        "separate_ubsan_library_expected": false
+      }
+    ],
+    "excluded_from_contract": [
+      "-fsanitize-trap",
+      "-fsanitize-minimal-runtime",
+      "-static-libsan",
+      "-fno-sanitize-link-runtime",
+      "sanitizer suppressions or disabling the witness check"
+    ],
+    "recover_policy": "Default UBSan recoverable instrumentation is sufficient with UBSAN_OPTIONS halt_on_error=1. -fno-sanitize-recover=undefined is also documented but not necessary for this environment-driven witness."
+  },
+  "runtime_environment": {
+    "ASAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1",
+    "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1",
+    "unset": [
+      "LSAN_OPTIONS",
+      "ASAN_SYMBOLIZER_PATH",
+      "UBSAN_SYMBOLIZER_PATH"
+    ],
+    "notes": [
+      "ASan parses ASAN_OPTIONS, then LSAN_OPTIONS when enabled, then UBSAN_OPTIONS; later parsers share and can overwrite common flags.",
+      "Keep shared settings identical in both option strings. halt_on_error is a separate tool flag registered by each parser.",
+      "ASan Apple dylib includes RTUbsan; InitAsPlugin avoids standalone UBSan flag reset.",
+      "ASan and UBSan fatal report paths call shared Die(); abort_on_error=0 selects internal__exit(exitcode), so a detected witness error should exit 86 without SIGABRT.",
+      "ASan still prints ABORTING before Die(); this text is not evidence of a signal.",
+      "symbolize=0 returns before choosing any external symbolizer.",
+      "disable_coredump=1 additionally sets RLIMIT_CORE=0 in ASan initialization on Darwin. UBSan standalone initialization has no matching core-dumper call in the inspected source; its deliberate-report no-core claim follows the normal _exit path, not a separately enforced core-limit claim."
+    ]
+  },
+  "witnesses": {
+    "reflection": {
+      "function": "aggregated_research::reflection_probe()",
+      "expected": {
+        "value": 43,
+        "member_count": 1
+      },
+      "source_behavior": "Actual core.cpp reflects one int32_t Record member named value, checks its type and count at compile time, then uses splicing to increment 42 to 43. The public header has no reflection syntax and requires no -freflection in the consumer.",
+      "clean_requirement": "Compile/link actual core.cpp separately with the same sanitizer mode and call this function in each clean run. Require value==43 and member_count==1; no fmt dependency is needed for this API.",
+      "output_flush": "If every negative-run receipt must contain a preceding core=43/1 marker, explicitly flush stdout/the stream before the error because sanitizer Die uses internal__exit and bypasses ordinary buffered-output cleanup."
+    },
+    "memory": {
+      "primary_fixture": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/asan/TestCases/heap-overflow.cpp",
+      "primary_pattern": "malloc(10), memset(...,0,10), read allocation[argc*10], then free; upstream runs O0 through O3.",
+      "deterministic_adaptation": "Preferred parent candidate: initialize auto* allocation = new int[4]{...}; retain allocation for delete[]; assign volatile int* values = allocation; use volatile int index = memory_mode ? 4 : 3; read volatile int result = values[index]; consume/check the clean result and delete[] allocation on the non-error path. Mode/index depend on argv.",
+      "combined_mode_reason": "The volatile qualifier must apply to the pointee (volatile int*), not merely the index or result. CGExpr.cpp 742-745 returns before type/null/object-size/alignment checks for that access; ubsan-volatile.c supplies a primary compiler test of the exclusion. A normal pointer variable has no static array bound in getArrayIndexingBound 991-1029; EmitBoundsCheckImpl 1240-1241 returns when no bound exists. ASan AddressSanitizer.cpp 1477-1481 selects the volatile LoadInst as a normal read, ignoreAccess 1443-1468 has no volatile exemption, and instrumentMop 1790-1804 instruments it. Read instrumentation defaults true at 211-213.",
+      "expected_error_substring": "AddressSanitizer: heap-buffer-overflow",
+      "expected_error_exit": 86,
+      "qualification": "Source-supported minimal candidate, not compiled or executed here; no upstream combined-mode runtime result is claimed. No noinline or no_sanitize(undefined) fallback is needed by the inspected source contract.",
+      "pointer_arithmetic_constraint": "Volatile is not a blanket UBSan exemption: pointer-overflow checks can remain (catch-pointer-overflow-volatile.c). With a valid four-element allocation, the index-4 computation forms a representable one-past pointer; the deliberate failing operation is its load. Do not use a wrapped, null or otherwise invalid base."
+    },
+    "overflow": {
+      "primary_fixture": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/ubsan/TestCases/Integer/add-overflow.cpp",
+      "primary_document": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/docs/UndefinedBehaviorSanitizer.rst",
+      "deterministic_adaptation": "Parent-selected positive/error controls: read volatile signed int value; clean uses INT_MAX - 1 then volatile signed int result = value + 1 and requires INT_MAX; overflow mode uses INT_MAX then value + 1. Use argv to choose mode and consume/check the clean result; keep deliberate memory and overflow failures in distinct runs.",
+      "expected_error_substring": "runtime error: signed integer overflow: 2147483647 + 1 cannot be represented",
+      "expected_error_exit": 86,
+      "qualification": "Signed overflow is part of undefined; do not substitute unsigned overflow, which is excluded from that group. Proposed adaptation not compiled or executed here."
+    },
+    "run_matrix": [
+      {
+        "mode": "asan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "asan",
+        "argv": "memory",
+        "expected_exit": 86
+      },
+      {
+        "mode": "ubsan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "ubsan",
+        "argv": "overflow",
+        "expected_exit": 86
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "memory",
+        "expected_exit": 86
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "overflow",
+        "expected_exit": 86
+      }
+    ],
+    "acceptance_limits": "For each failure require normal exit 86 plus the mode-specific diagnostic, not exit status alone. Do not require byte-identical reports: addresses/PIDs vary. Do not run an unsupported negative mode as a supposed clean control."
+  },
+  "source_spans": {
+    "driver_libraries": "SanitizerArgs.cpp 355-363 and 1008-1011; Darwin.cpp 1319-1343,1366-1382,1514-1519,1560-1601",
+    "asan_includes_ubsan": "compiler-rt/lib/asan/CMakeLists.txt 205-227; asan_rtl.cpp 506-507; ubsan_init.cpp 42-74",
+    "flag_registration_and_order": "asan_flags.cpp 63-141; ubsan_flags.cpp 48-68; sanitizer_flags.inc 22-29,77-82,175-179,248-253; asan_flags.inc 158-160; ubsan_flags.inc 19-22",
+    "report_to_exit": "asan_report.cpp 128-129,219-221; ubsan_diag.cpp 394-402; sanitizer_termination.cpp 50-59",
+    "no_symbolizer_or_core": "sanitizer_symbolizer_posix_libcdep.cpp 478-505; sanitizer_posix_libcdep.cpp 105-128; asan_rtl.cpp 450-452",
+    "docs_and_witness": "AddressSanitizer.rst 40-72; UndefinedBehaviorSanitizer.rst 35-51,68-94,195-202,220-224,254-258; heap-overflow.cpp 1-4,12-23; add-overflow.cpp 13-16; exitcode.cpp 104-111,115-129",
+    "volatile_heap_isolation": "UndefinedBehaviorSanitizer.rst 254-258; clang/lib/CodeGen/CGExpr.cpp 721-745,991-1029,1236-1241; clang/test/CodeGen/ubsan-volatile.c 1-7; clang/test/CodeGen/catch-pointer-overflow-volatile.c; llvm/lib/Transforms/Instrumentation/AddressSanitizer.cpp 211-213,1443-1481,1751-1804"
+  },
+  "installed_runtime_records": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+      "regular": true,
+      "symlink": false,
+      "size": 1073472,
+      "mode": "755",
+      "recordedSha256": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+      "recordedSizeMatches": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+      "regular": true,
+      "symlink": false,
+      "size": 428448,
+      "mode": "755",
+      "recordedSha256": "4f8bf27998453e50cd026810f4e7707e810539e3e03f9da59808041b2080819c",
+      "recordedSizeMatches": true
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/source-review.json",
+      "sha256": "d86a8a86a9641b504a870674792b70dd8abeeb7d26cea6ea1fe0fdb1838d206b",
+      "bytes": 18941
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/static-contract.json",
+      "sha256": "e66c18d1b7b1dcaa049b0f7c7dc8c5e79efd5411e8c12067f3b25e8aee9c29bd",
+      "bytes": 152380
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-source/git/acquisition.json",
+      "sha256": "5de2736f424107af66fdadbe694bf6dbb23f320d69a3cb8b444365d1e25d7ba4",
+      "bytes": 10123
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "f0847874e3b48e2ce1752237c8053f36a2e28530a091df4d0b3a9e343a439af4",
+      "bytes": 103593
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/docs/AddressSanitizer.rst",
+      "sha256": "0b7831a908662ac500b58afc9df6c9eb4deeba0e6335f76b6e81246337290d25",
+      "bytes": 13823
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/docs/UndefinedBehaviorSanitizer.rst",
+      "sha256": "43847747c2d3afac9ef98986d7992a65816b79ea2df1bec8a82cfc61bc119857",
+      "bytes": 21865
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/SanitizerArgs.cpp",
+      "sha256": "f849904441672bcfcd079d65583320a3a96e0a58a7ec52691e35a4678639108a",
+      "bytes": 74316
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/ubsan/ubsan_flags.inc",
+      "sha256": "788ab586b2565a34b4975b394b1dbebf5daa84a9ec702407e24b2a1d410356f0",
+      "bytes": 1280
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589",
+      "bytes": 147884
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/ubsan/ubsan_flags.cpp",
+      "sha256": "86c4c3dff4f6e18084e889437ff5f56f9df6e36569ba7e3a46afddcdc8d73da4",
+      "bytes": 2188
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/asan/asan_flags.cpp",
+      "sha256": "58cc94049ca44445c0ea7102449a49177865f86d1b936d6467688b732a13c635",
+      "bytes": 9982
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/asan/asan_flags.inc",
+      "sha256": "11c8548913e152398fd92719bcae23e57d2c521242516a81ba4c61099e992202",
+      "bytes": 8502
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_termination.cpp",
+      "sha256": "7ed073063b646b64b77beaf8b29200510fefd02a11ec4b9f7d4300d3a6120146",
+      "bytes": 3047
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_flags.inc",
+      "sha256": "694b3494a98237cb8f3029a6f3f572c4a27fdbbddbedafcb42ec44364234127b",
+      "bytes": 14872
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "bytes": 1351
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/asan/asan_rtl.cpp",
+      "sha256": "0c2b6cd45fd6e10f3ea876f3ad21656dc358dfba1241ef397009f732d82de381",
+      "bytes": 23328
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/asan/CMakeLists.txt",
+      "sha256": "b89c0e859827b5c7b6410c240cf47f9590e95a9d70aae103046490022cba2613",
+      "bytes": 12929
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/ubsan/ubsan_init.cpp",
+      "sha256": "a2def2699da4c76ebbaf3b06f4027169860c20bec0abdfaf9aa2d08ecef17407",
+      "bytes": 2157
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/asan/asan_report.cpp",
+      "sha256": "817d0ce95b3a29d3ad818fb736f5f193091f7f4ff7e392e5d0769256b48709d9",
+      "bytes": 23015
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/ubsan/ubsan_diag.cpp",
+      "sha256": "0bcb55daef4d7d423f741e0d28c1e14ea2e78c00677f46e777c9d0dc00eb706b",
+      "bytes": 15313
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/ubsan/ubsan_platform.h",
+      "sha256": "f4f70aa2f0f1742c1019d87344429966cfdb32a1f6464dd01758659ac3417224",
+      "bytes": 992
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_posix_libcdep.cpp",
+      "sha256": "f86ecc10cb46f9450ea2ae9a6ab88d4fc26223fbcd1a5b83fffb0788b38cd8e6",
+      "bytes": 18875
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_symbolizer_posix_libcdep.cpp",
+      "sha256": "5dffac94597f9d56f48d8581d28ab495da9f0e4990b82346b198d7703cf7c44c",
+      "bytes": 18552
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+      "bytes": 333
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/ubsan/TestCases/Integer/add-overflow.cpp",
+      "sha256": "1c2be422abf5e57b55d1a09bcb25289e0ff4fbcd5753ec0ca81909e68a530f1d",
+      "bytes": 1354
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/ubsan/TestCases/Integer/no-recover.cpp",
+      "sha256": "587e91aaec005e3b79019284546edc34d06f7d23551c5a3326d014b5139ebec1",
+      "bytes": 1552
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/asan/TestCases/heap-overflow.cpp",
+      "sha256": "37fce1c623f958f11f25dfb7fad9c1de85e117783f779c47ac898f5a5d81fe85",
+      "bytes": 872
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/test/asan/TestCases/exitcode.cpp",
+      "sha256": "fc41f67f162079416ea11b821619c13961eb330015256baa0140a9f38241d022",
+      "bytes": 3200
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/CodeGen/CGExpr.cpp",
+      "sha256": "67f83322e20c7342aebfef0b81691ca7efbbdf3214a108e4cd6139bf6f2a818e",
+      "bytes": 271813
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Transforms/Instrumentation/AddressSanitizer.cpp",
+      "sha256": "e4bf90e10100261739494af4acab5c3579646cb139865510e1e4ea15c3362291",
+      "bytes": 159900
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/CodeGen/ubsan-volatile.c",
+      "sha256": "4fb0ebc41058cf43858b27907e5de15340ed171fc21426e4b6e3a4299d5143e0",
+      "bytes": 242
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/CodeGen/catch-pointer-overflow-volatile.c",
+      "sha256": "162121cfae83c3c1a190cea5ac5167ea33167a56396e414969d7bdb15c2b0f0f",
+      "bytes": 5761
+    }
+  ],
+  "artifact_allowlist": [
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-prerequisite-YiHPif/prerequisite.json"
+  ],
+  "self_hash_excluded": true
+}

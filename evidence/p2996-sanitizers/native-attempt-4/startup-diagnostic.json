@@ -1,0 +1,51 @@
+{
+  "driver_sha256": "a555ad22528626e1e3c9411855fd8fd0290d982b2727b09969d93cee32409053",
+  "run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z",
+  "admission_sha256": "debac5bf415a4fb1a623b1f0c667f2b83a1ea4d743a47da06a3a672df960295b",
+  "sample_attempted": true,
+  "launch": {
+    "native_pid": 79631,
+    "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z",
+    "launch_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-kuar617i"
+  },
+  "identity": {
+    "argv": [
+      "/bin/ps",
+      "-ww",
+      "-p",
+      "80238",
+      "-o",
+      "pid=,ppid=,pgid=,comm="
+    ],
+    "returncode": 0,
+    "stdout": "80238 79631 80238 /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/asan/witness\n",
+    "stderr": ""
+  },
+  "sample": {
+    "argv": [
+      "/usr/bin/sandbox-exec",
+      "-f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/private.sb",
+      "/usr/bin/sample",
+      "80238",
+      "1",
+      "1",
+      "-mayDie",
+      "-file",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/startup.sample.txt"
+    ],
+    "pid": 80240,
+    "returncode": 0,
+    "timed_out": false,
+    "elapsed_seconds": 3.249026083154604,
+    "tool_sha256": "0527abd95ea1c5a2885489e0d6a76e06c69b66b8a69c7eab4f9276688815791b",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "cd7c5d8166e64116ce540cf91fdccfa0d90a46414ec3e1bdb1cbd3b5e2df60d7",
+    "output": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/startup.sample.txt",
+      "sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840"
+    }
+  },
+  "native_dispatch_returncode": 1,
+  "native_execution_sha256": "c113979ea05f9159a13f23589eab28331f8d25c9938be124ecbd610853d84df0"
+}

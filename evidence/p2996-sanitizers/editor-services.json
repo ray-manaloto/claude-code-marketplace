@@ -1,0 +1,101 @@
+{
+  "recorded_at": "2026-10-11T23:25:28.800463+00:00",
+  "commands": [
+    {
+      "case": "editor-identities",
+      "argv": [
+        "/bin/ps",
+        "-p",
+        "73356,73398,36012,73372",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.03780333301983774,
+      "timeout_seconds": 15,
+      "stdout": "36012     1 Sun Oct 11 15:48:15 2026     /Applications/Zed.app/Contents/MacOS/zed\n73356 36012 Sun Oct 11 18:11:56 2026     /opt/homebrew/opt/llvm/bin/clangd\n73372 36012 Sun Oct 11 18:11:56 2026     /Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp\n73398 73372 Sun Oct 11 18:11:57 2026     /Library/Developer/CommandLineTools/usr/bin/clangd\n",
+      "stderr": ""
+    },
+    {
+      "case": "editor-cwd",
+      "argv": [
+        "/usr/sbin/lsof",
+        "-a",
+        "-p",
+        "73356,73398,73372",
+        "-d",
+        "cwd",
+        "-Fpn"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.05900200014002621,
+      "timeout_seconds": 15,
+      "stdout": "p73356\nfcwd\nn/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\np73372\nfcwd\nn/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\np73398\nfcwd\nn/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n",
+      "stderr": ""
+    },
+    {
+      "case": "editor-cpu",
+      "argv": [
+        "/bin/ps",
+        "-p",
+        "73356,73398",
+        "-o",
+        "pid=,pcpu=,comm="
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.036945209139958024,
+      "timeout_seconds": 15,
+      "stdout": "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd\n73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd\n",
+      "stderr": ""
+    }
+  ],
+  "native_operation_started": false,
+  "lease_held": false,
+  "policy": {
+    "maximum_cpu_percent_per_service": 2.0,
+    "maximum_cpu_percent_total": 4.0,
+    "processes": {
+      "73356": {
+        "identity": {
+          "ppid": "36012",
+          "started_at": "Sun Oct 11 18:11:56 2026",
+          "executable": "/opt/homebrew/opt/llvm/bin/clangd"
+        },
+        "ancestors": {
+          "36012": {
+            "ppid": "1",
+            "started_at": "Sun Oct 11 15:48:15 2026",
+            "executable": "/Applications/Zed.app/Contents/MacOS/zed"
+          }
+        },
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      },
+      "73398": {
+        "identity": {
+          "ppid": "73372",
+          "started_at": "Sun Oct 11 18:11:57 2026",
+          "executable": "/Library/Developer/CommandLineTools/usr/bin/clangd"
+        },
+        "ancestors": {
+          "73372": {
+            "ppid": "36012",
+            "started_at": "Sun Oct 11 18:11:56 2026",
+            "executable": "/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"
+          },
+          "36012": {
+            "ppid": "1",
+            "started_at": "Sun Oct 11 15:48:15 2026",
+            "executable": "/Applications/Zed.app/Contents/MacOS/zed"
+          }
+        },
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      }
+    }
+  },
+  "cwd_observation": {
+    "73356": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "73372": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "73398": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+  },
+  "state": "OBSERVED: exact Zed service identities and checkout working directories; allowance review pending"
+}

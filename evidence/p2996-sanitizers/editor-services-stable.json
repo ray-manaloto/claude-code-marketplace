@@ -1,0 +1,72 @@
+{
+  "recorded_at": "2026-10-11T23:27:58.200155+00:00",
+  "previous_observation_sha256": "47c13afba4e76e58b84291bfdaa45cedd21e04f4393ee812d2ebf4ef81913b0e",
+  "policy": {
+    "maximum_cpu_percent_per_service": 2.0,
+    "maximum_cpu_percent_total": 4.0,
+    "processes": {
+      "73356": {
+        "identity": {
+          "ppid": "36012",
+          "started_at": "Sun Oct 11 18:11:56 2026",
+          "executable": "/opt/homebrew/opt/llvm/bin/clangd"
+        },
+        "ancestors": {
+          "36012": {
+            "ppid": "1",
+            "started_at": "Sun Oct 11 15:48:15 2026",
+            "executable": "/Applications/Zed.app/Contents/MacOS/zed"
+          }
+        },
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      },
+      "73398": {
+        "identity": {
+          "ppid": "73372",
+          "started_at": "Sun Oct 11 18:11:57 2026",
+          "executable": "/Library/Developer/CommandLineTools/usr/bin/clangd"
+        },
+        "ancestors": {
+          "73372": {
+            "ppid": "36012",
+            "started_at": "Sun Oct 11 18:11:56 2026",
+            "executable": "/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"
+          },
+          "36012": {
+            "ppid": "1",
+            "started_at": "Sun Oct 11 15:48:15 2026",
+            "executable": "/Applications/Zed.app/Contents/MacOS/zed"
+          }
+        },
+        "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      }
+    }
+  },
+  "commands": [
+    {
+      "case": "stable-editor-identities",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.047645125072449446,
+      "timeout_seconds": 15,
+      "stdout": "36012     1 Sun Oct 11 15:48:15 2026     /Applications/Zed.app/Contents/MacOS/zed\n73356 36012 Sun Oct 11 18:11:56 2026     /opt/homebrew/opt/llvm/bin/clangd\n73372 36012 Sun Oct 11 18:11:56 2026     /Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp\n73398 73372 Sun Oct 11 18:11:57 2026     /Library/Developer/CommandLineTools/usr/bin/clangd\n",
+      "stderr": ""
+    }
+  ],
+  "state": "OBSERVED; exact editor policy requires independent review and fresh checks",
+  "limits": [
+    "CPU is a snapshot/average, not continued-idleness proof.",
+    "The canonical lease does not constrain Zed.",
+    "Separate process observations are not atomic.",
+    "All other enumerated build-tool processes remain rejected."
+  ]
+}
