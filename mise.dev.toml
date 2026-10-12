@@ -182,3 +182,19 @@ description = "Run reviewed A09 checks and scans, then publish the exact branch 
 dir = "{{config_root}}"
 usage = 'arg "<intent_file>"; arg "<sha256>"'
 run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/git_delivery.py publish --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_sha256?}"'
+[tasks."checkout:plan"]
+description = "Inventory source and old worktree for a dry-run A10 transfer plan"
+dir = "{{config_root}}"
+usage = 'arg "<published_commit>"; arg "<source_head>"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_transfer.py plan --commit "${usage_published_commit?}" --source-head "${usage_source_head?}"'
+
+[tasks."checkout:plan-approved"]
+description = "Replan with reviewed handoff hashes and an explicit source-preparation decision"
+dir = "{{config_root}}"
+usage = 'arg "<published_commit>"; arg "<source_head>"; arg "<approvals_file>"; arg "<preparation_decision>" choices "hold" "admit-source-preparation"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_transfer.py plan --commit "${usage_published_commit?}" --source-head "${usage_source_head?}" --approvals-file "${usage_approvals_file?}" --preparation-decision "${usage_preparation_decision?}"'
+
+[tasks."test:checkout"]
+description = "Exercise A10 dry-run, approval, collision and drift refusals in scratch"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_transfer.py -v'
