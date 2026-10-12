@@ -21,12 +21,18 @@ Actual gates in this worktree:
 Independent read-only review found a replay envelope mismatch that could reset
 nonempty history. Fixed it and added a chained CLI regression; re-review cleared
 the finding. Unit 1 is reviewed and tested, ready for a local commit.
-It is not published. The private runner's earlier live batch
+Committed locally as `7d0c2fd`; it is not published. The private runner's earlier live batch
 preceded its guard patch; these offline tests do not prove scheduled execution.
 
 ## Unit 2: discoverability and CI
 
-Pending: document input/output and integration boundaries, link from onboarding,
-and run the existing check command in a lightweight CI workflow. Keep original
-container acceptance bytes and exact tool pins intact. Notify the protected peer
-only after local commits and final gates are complete. No push or merge is planned.
+Implemented input/output and integration boundaries, a short onboarding pointer,
+and a lightweight CI workflow using the existing check entry point and the
+existing checkout action pin. No installation or provider call is added.
+Final baseline gate exited 0 with all 19 original hashes and 12 tests. Independent
+static documentation/CI review found no findings. Both small units are complete
+locally; Git history identifies their commits. Hosted CI is unverified.
+The peer integration message supplies exact local commits and warns that its
+concurrent `mise.dev.toml` changes need reconciliation. Its draft GitHub library
+can reuse the feedback helper without adopting a second live-search runner.
+No push or merge is planned. Parent plans and private research state are untouched.
