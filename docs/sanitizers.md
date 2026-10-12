@@ -100,7 +100,7 @@ Source/default preservation and ownership closure passed. Independent
 [failure review](../evidence/p2996-tsan/failure-review/review.json) found no issue
 with the recorded failure and cleanup. No TSan mode is qualified. The same
 mapping source used by ASan reaches the observed TSan startup path, but the
-patch still needs a private native A/B test using TSan's own link recipe.
+patch needed a private native A/B test using TSan's own link recipe.
 
 Task 14b1 prepares that comparison with the
 [private TSan runner](../dev/toolchains/p2996_tsan_repair.py). The captured
@@ -120,3 +120,15 @@ passed without findings. Both private link commands retained nonfatal unused
 `-stdlib=libc++` warnings. The cleanup findings are historical collector
 receipts; the reviewer did not repeat the live PID or lease probes. Installed-path
 qualification remains separate.
+
+Task 14b2a prepares the [installed TSan guard](../dev/toolchains/p2996_tsan_runtime.py).
+It composes the accepted ASan overlay with a second exact TSan row in each of
+the two immutable historical inventories. The qualified private TSan library
+has mode `0700`; any installed replacement must be staged at the original
+`0755` mode. [Private controls](../evidence/p2996-tsan-runtime/controls/controls.json)
+passed for overlay precision, replacement, restore and unknown-target refusal.
+The installed library remains the original. [Independent preparation review](../evidence/p2996-tsan-runtime/preparation-review/review.json)
+passed without findings; its bounded comparison exited 0 and verified 27
+contract inputs, six control logs and exactly two runtime binary hashes. The
+reviewer did not rerun the controls. Post-promotion guard execution and native
+installed-path witnesses remain unverified pending separate admission.

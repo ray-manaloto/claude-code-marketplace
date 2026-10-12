@@ -1537,3 +1537,21 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   outcomes. The PID/lease cleanup is collector-reported historical evidence,
   not an independent live reprobe. Both links retained nonfatal unused
   `-stdlib=libc++` warnings. The installed TSan path remains unqualified.
+
+### Task 14b2a: installed TSan guard preparation
+
+- Task 14b1 committed at `847684dc237e669a3d8eaa23795b68ae31625f56`;
+  the worktree was clean. The installed TSan retains its original digest.
+- Derived a 27-input exact TSan overlay contract from immutable installation
+  inventories and the independently reviewed private candidate. The candidate
+  file is mode `0700`; installed promotion would stage it at the original
+  `0755` mode. The existing ASan overlay is composed without changing its
+  source or historical inventories.
+- Private controls exited 0. Both in-memory inventories changed only the ASan
+  and TSan digest/size fields; the current installed ASan guard passed while
+  the proposed TSan guard rejected the original runtime. Three confined child
+  commands verified private replacement, restore and unknown-target refusal.
+  No installed file was changed. Independent review passed without findings.
+  Its bounded comparator exited 0 in 0.124 seconds and verified 27 contract
+  inputs, six control logs and exactly two authorized runtime binary hashes.
+  It did not rerun the controls, installed guard or native witnesses.
