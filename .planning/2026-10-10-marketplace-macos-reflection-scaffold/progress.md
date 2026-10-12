@@ -1789,3 +1789,18 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   document or fixture evidence. The KB graph query exited 3 on a truncated
   pre-#1504 result; no rebuild was run. These are offline compatibility
   fixtures, not live GitHub, fresh Claude SessionStart or OCI acceptance.
+- Ticket #24 was committed locally at
+  `931b536733c668e5bab21b9ebce795f8fccf6051`; the worktree was clean.
+  Its GitHub issue remains open. Ticket #25 (draft 14) then compared the pinned
+  public CLI helper with an in-process Python proxy through a private synthetic
+  `gh` boundary. Five alternating success trials per path returned 0 and
+  matched ticket #24's hit record after normalizing only generated `ran_at`;
+  both failure controls preserved exit 42. Recorded medians were 96.672 ms
+  in-process and 251.506 ms helper. The initial helper bridge was selected
+  for its shipped CLI boundary and reversible wrapper route; compiled C++
+  embedding, native ownership/cancellation and production latency are not
+  established. Independent read-only review passed without actionable
+  findings and replayed the protocol write-free. Its exact bindings, caveat
+  and hashes are in `evidence/python-bridge/ticket25-review.md`. The parent
+  probe returned 0; lightweight task validation, check and 19-file baseline
+  each returned 0. Gitleaks 8.30.1 found no leaks in the three probe files.

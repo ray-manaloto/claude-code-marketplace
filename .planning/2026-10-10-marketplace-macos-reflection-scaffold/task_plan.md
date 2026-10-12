@@ -110,7 +110,7 @@ The one-writer and per-unit gates above remain in force.
 | W1 | Publish full-baseline spec | Accepted scope and test seams, source-backed claims, ready-for-agent issue | Complete; GitHub #11 |
 | W2 | Publish context-sized ticket graph | User-approved granularity and genuine native blocking edges | Complete; 50 sub-issues #12–#61 under #11, all parent/body/label/edge checks verified |
 | W3 | Standby Claude takeover document | Exact live state, issue frontier and explicit sole-writer transfer | Complete; independent final review found no material findings; standby only |
-| W4 | Implement approved ticket graph | One writer and bounded review/check receipts per ticket | In progress; ticket #12 failed closure reviewed and locally committed `2cc4c029`; ticket #24 pinned legacy `trackers` boundary and offline fixtures reviewed; GitHub issues remain open |
+| W4 | Implement approved ticket graph | One writer and bounded review/check receipts per ticket | In progress; ticket #12 closure committed `2cc4c029`, ticket #24 legacy boundary committed `931b536`, and ticket #25 reversible helper selection reviewed; GitHub issues remain open |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
