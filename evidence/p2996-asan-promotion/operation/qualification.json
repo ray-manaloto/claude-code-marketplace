@@ -1,0 +1,1509 @@
+{
+  "state": "PASS: installed ASan promotion and seven sanitizer witnesses",
+  "helper_sha256": "2e8229fa0d0b39552923cd6db80a92da5be56951eac6e3fd696bad97cdf6e01d",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T01:39:13.057320+00:00",
+      "pid": 25912,
+      "returncode": 0,
+      "elapsed_seconds": 0.014139542123302817,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/project-head.stdout",
+          "sha256": "6034dfeb998b6119d6822cbb06e7527c51f92e35a29816879057764ac9012bed"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-12T01:39:13.073379+00:00",
+      "pid": 25919,
+      "returncode": 0,
+      "elapsed_seconds": 0.18205541698262095,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/default-before.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-12T01:39:13.264363+00:00",
+      "pid": 25940,
+      "returncode": 0,
+      "elapsed_seconds": 0.07826545787975192,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/capacity-processes.stdout",
+          "sha256": "da72a2b8663704f1e69e673bab3bf985465259709285d5e7abfc997880843b39"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "editor-identities",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-12T01:39:13.348847+00:00",
+      "pid": 25942,
+      "returncode": 0,
+      "elapsed_seconds": 0.07770754210650921,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-identities.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-identities.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-cwd",
+      "argv": [
+        "/usr/sbin/lsof",
+        "-a",
+        "-p",
+        "73356,73398",
+        "-d",
+        "cwd",
+        "-Fpn"
+      ],
+      "started_at": "2026-10-12T01:39:13.428251+00:00",
+      "pid": 25947,
+      "returncode": 0,
+      "elapsed_seconds": 0.060654417145997286,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-cwd.stdout",
+          "sha256": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-cwd.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-identities-after",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-12T01:39:13.490613+00:00",
+      "pid": 25951,
+      "returncode": 0,
+      "elapsed_seconds": 0.0418684589676559,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-identities-after.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/editor-identities-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-12T01:39:13.533895+00:00",
+      "pid": 25953,
+      "returncode": 0,
+      "elapsed_seconds": 0.0220427920576185,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-12T01:39:13.557248+00:00",
+      "pid": 25954,
+      "returncode": 0,
+      "elapsed_seconds": 0.036310791969299316,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-12T01:39:13.595216+00:00",
+      "pid": 25957,
+      "returncode": 0,
+      "elapsed_seconds": 1.0528669999912381,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-stats.stdout",
+          "sha256": "4cf941ed28f914fc3ff486a04bdfb5ee4e58fca816671f0bee862b7860d71efb"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "source-before-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T01:39:17.274014+00:00",
+      "pid": 26351,
+      "returncode": 0,
+      "elapsed_seconds": 0.013550041941925883,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-12T01:39:17.289094+00:00",
+      "pid": 26352,
+      "returncode": 0,
+      "elapsed_seconds": 0.013941374840214849,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-12T01:39:17.304341+00:00",
+      "pid": 26353,
+      "returncode": 0,
+      "elapsed_seconds": 0.9405024580191821,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-12T01:39:18.246899+00:00",
+      "pid": 26368,
+      "returncode": 0,
+      "elapsed_seconds": 1.2782178751658648,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+        "{\"sha256\": \"66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27\", \"bytes\": 1073472, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464\", \"bytes\": 1072848, \"mode\": \"0o755\"}"
+      ],
+      "started_at": "2026-10-12T01:39:19.532091+00:00",
+      "pid": 26381,
+      "returncode": 0,
+      "elapsed_seconds": 0.13286266708746552,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "asan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+        "clean",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.117248+00:00",
+      "pid": 26428,
+      "returncode": 0,
+      "elapsed_seconds": 0.2795386661309749,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-clean.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-clean.stderr",
+          "sha256": "62d14f8b1a98df7c130d23ca05edd346df98e4ddede0089307ee2c354e7f7f34"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "asan-memory",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+        "memory",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.402228+00:00",
+      "pid": 26450,
+      "returncode": 86,
+      "elapsed_seconds": 0.0982979170512408,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-memory.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-memory.stderr",
+          "sha256": "9b40c7b9c01d6d7cd4cecd6380cc7023448e2c0d165d8ed05fbf1d79825a0009"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "ubsan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+        "clean",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.504582+00:00",
+      "pid": 26451,
+      "returncode": 0,
+      "elapsed_seconds": 0.04591966699808836,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/ubsan-clean.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/ubsan-clean.stderr",
+          "sha256": "950b81ced6fdb6996ca0e867a66a0db65cabf48f87986eb46d021bf7f070713d"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "ubsan-overflow",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+        "overflow",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.554142+00:00",
+      "pid": 26452,
+      "returncode": 86,
+      "elapsed_seconds": 0.038596624974161386,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/ubsan-overflow.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/ubsan-overflow.stderr",
+          "sha256": "1db25ab7fe94b6af7a8438d2d334814f4350da806455951d3448981093fd89f6"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "asan-ubsan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+        "clean",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.596016+00:00",
+      "pid": 26453,
+      "returncode": 0,
+      "elapsed_seconds": 0.09605770790949464,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-clean.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-clean.stderr",
+          "sha256": "ebbda1ae6593199740195fa4d81517d563bec1641380752f31f3a0b241aeb68c"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "asan-ubsan-memory",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+        "memory",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.695839+00:00",
+      "pid": 26454,
+      "returncode": 86,
+      "elapsed_seconds": 0.09565558400936425,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-memory.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-memory.stderr",
+          "sha256": "4c48216fbfd1d51dbc6bd79691132320b73bd650147e9ba0b95e8d5185c14459"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "asan-ubsan-overflow",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+        "overflow",
+        "{\"ASAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1:detect_leaks=0:disable_coredump=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\"}"
+      ],
+      "started_at": "2026-10-12T01:39:23.796107+00:00",
+      "pid": 26455,
+      "returncode": 86,
+      "elapsed_seconds": 0.08939495892263949,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-overflow.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/asan-ubsan-overflow.stderr",
+          "sha256": "6b64199155605677927b92885238854e8e0b92032663ec05156008eb9b8e2a68"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "source-after-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T01:39:23.890137+00:00",
+      "pid": 26456,
+      "returncode": 0,
+      "elapsed_seconds": 0.012913999846205115,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-12T01:39:23.904541+00:00",
+      "pid": 26457,
+      "returncode": 0,
+      "elapsed_seconds": 0.011742749949917197,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-12T01:39:23.917673+00:00",
+      "pid": 26458,
+      "returncode": 0,
+      "elapsed_seconds": 0.6161342500708997,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-12T01:39:24.535950+00:00",
+      "pid": 26460,
+      "returncode": 0,
+      "elapsed_seconds": 1.122987415874377,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/source-after-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-12T01:39:25.660714+00:00",
+      "pid": 26463,
+      "returncode": 0,
+      "elapsed_seconds": 0.09867987502366304,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/default-after.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    }
+  ],
+  "cells": {
+    "asan": {
+      "binary": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+        "sha256": "33f09c56bce168c2174b9cd25d3023c38ccbc0fb9e12f5fe24da51ac8c2c6b0a"
+      },
+      "runs": {
+        "clean": {
+          "expected_returncode": 0,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "memory": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        }
+      }
+    },
+    "ubsan": {
+      "binary": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+        "sha256": "1d2e94d2d3972feb4a71f8f6f6fe50cbaaa16c91d0254c7991543a67f478deee"
+      },
+      "runs": {
+        "clean": {
+          "expected_returncode": 0,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "overflow": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        }
+      }
+    },
+    "asan-ubsan": {
+      "binary": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+        "sha256": "95cad3860c22b19faafe81bb992defad12e7bc2f21421509de5c9f9b016cbaa0"
+      },
+      "runs": {
+        "clean": {
+          "expected_returncode": 0,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "memory": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "overflow": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        }
+      }
+    }
+  },
+  "mutation_started": true,
+  "admission_sha256": "e4cd432143a84df0a618a88d8d98f7e2e349fa790b484177906f41e2e5e3982c",
+  "writer_census_before": {
+    "at": "2026-10-12T01:39:13.057014+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "capacity": {
+    "active": [
+      "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+      "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+    ],
+    "load": [
+      8.6611328125,
+      7.33349609375,
+      6.5126953125
+    ],
+    "cpus": 12,
+    "free_bytes": 71116099584,
+    "total_cpu_percent": 400.5,
+    "admitted_editor_services": [
+      "73356",
+      "73398"
+    ],
+    "container_cpu_percent": 5.7
+  },
+  "confinement": {
+    "private": "2ae3a60a8ea2681247af806550587cbf480261f0983e74381906cb760182fee1",
+    "mutation": "a6a3483e70909c7494cfd7a38e6597f11cb9c28931559b0fa615dfe705fa671d"
+  },
+  "backup": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-native-20261012T013909Z/original.dylib",
+    "sha256": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+    "bytes": 1073472,
+    "mode": "0o755"
+  },
+  "writer_census_after": {
+    "at": "2026-10-12T01:39:26.275498+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:lab-results"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "installed_identity": {
+    "sha256": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464",
+    "bytes": 1072848,
+    "mode": "0o755"
+  },
+  "lease_released": true,
+  "protected_state_matches_expected": true
+}

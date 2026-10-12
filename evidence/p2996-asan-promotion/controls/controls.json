@@ -1,0 +1,494 @@
+{
+  "helper_sha256": "2e8229fa0d0b39552923cd6db80a92da5be56951eac6e3fd696bad97cdf6e01d",
+  "guard_sha256": "ff283bc8542f2faa36e0aa5f7754c983c6735905a12bc16e535741aa2056d7aa",
+  "controls": [
+    {
+      "case": "success",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "qualify-True"
+      ],
+      "error": null,
+      "target": {
+        "sha256": "72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb",
+        "bytes": 26,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        }
+      },
+      "profile_sha256": "54f0d883b5167414b7be76e7f57cb8de3c5e1d45886954edfdc0543ccc76cad7"
+    },
+    {
+      "case": "witness-write-denied",
+      "result": "PASS",
+      "profile_sha256": "b9ecd9d43691dee9e0d9fcf4e3c9312b114a95b832762d8208d5c961001c12ca"
+    },
+    {
+      "case": "qualification-failure",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "qualify-True",
+        "restore",
+        "qualify-False"
+      ],
+      "error": "RuntimeError: injected witness failure",
+      "target": {
+        "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+        "bytes": 25,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery": "original restored"
+      },
+      "profile_sha256": "2332bcf01ecd5a83f94389b416ea235936cbd54230d9a048567daaf9cafaa402"
+    },
+    {
+      "case": "apply-before-failure",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "qualify-False"
+      ],
+      "error": "RuntimeError: injected failure before replace",
+      "target": {
+        "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+        "bytes": 25,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-before-failure/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery": "original already present"
+      },
+      "profile_sha256": "e37f4044c3f2d99482044a244ca7e9eb8a6ea7944db3d7da8737e29c0b45cad9"
+    },
+    {
+      "case": "apply-after-failure",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "restore",
+        "qualify-False"
+      ],
+      "error": "RuntimeError: injected failure after replace",
+      "target": {
+        "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+        "bytes": 25,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery": "original restored"
+      },
+      "profile_sha256": "0d8783dff086f4aa25b5482e5731881854be514cba2029e9b4c7148d2a28215c"
+    },
+    {
+      "case": "unknown-after-failure",
+      "result": "PASS",
+      "events": [
+        "promote"
+      ],
+      "error": "AssertionError: unknown target identity; backup retained, no overwrite",
+      "target": {
+        "sha256": "3ef74916cef8f85a9551f6d6d6b776a2b690f4086fc9ba28a79e985f9ef27934",
+        "bytes": 24,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery_error": "AssertionError('unknown target identity; backup retained, no overwrite')"
+      },
+      "profile_sha256": "dc7415b8c6802afed9902bab7fc6b023f2efb469db847fc68e6fb6211d3d3f92"
+    },
+    {
+      "case": "backup-drift",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "qualify-True"
+      ],
+      "error": "AssertionError: ",
+      "target": {
+        "sha256": "72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb",
+        "bytes": 26,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery_error": "AssertionError()"
+      },
+      "profile_sha256": "feaa3a9fe2ca4cc37e6191ddcc23e210f99b267cc2aecd3b064a4588619963a0"
+    },
+    {
+      "case": "source-mismatch",
+      "result": "PASS",
+      "events": [],
+      "error": "AssertionError: ",
+      "target": {
+        "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+        "bytes": 25,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": false
+      },
+      "profile_sha256": "e137068d6b6efae4a882040466ed148dc4f48286438f5ea6bc0a145533ea2869"
+    },
+    {
+      "case": "destination-mismatch",
+      "result": "PASS",
+      "events": [],
+      "error": "AssertionError: ",
+      "target": {
+        "sha256": "3ef74916cef8f85a9551f6d6d6b776a2b690f4086fc9ba28a79e985f9ef27934",
+        "bytes": 24,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": false
+      },
+      "profile_sha256": "79db3b2d0c0417d4de255468d34916e255c3869e3a21b91b06b3db470db8c559"
+    },
+    {
+      "case": "restore-failure",
+      "result": "PASS",
+      "events": [
+        "promote",
+        "qualify-True",
+        "restore"
+      ],
+      "error": "RuntimeError: injected restore failure",
+      "target": {
+        "sha256": "72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb",
+        "bytes": 26,
+        "mode": "0o755"
+      },
+      "state": {
+        "mutation_started": true,
+        "backup": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/work/original.dylib",
+          "sha256": "7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f",
+          "bytes": 25,
+          "mode": "0o755"
+        },
+        "recovery_error": "RuntimeError('injected restore failure')"
+      },
+      "profile_sha256": "1b16255f3fe38c9299f1c3a20277ec224dbc3851e6c0ad87d014a38dd09212fb"
+    }
+  ],
+  "commands": [
+    {
+      "case": "success-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09794966713525355,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "witness-write-denied",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import sys;from pathlib import Path;Path(sys.argv[1]).write_bytes(b\"forbidden\")",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/target.dylib"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.046265041921287775,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/witness-write-denied.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/success/witness-write-denied.stderr",
+          "sha256": "ad2535514f326a72aa0f027ab395fc7b98ed57abee7776f696eaf54b60d2c87f"
+        }
+      ]
+    },
+    {
+      "case": "qualification-failure-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09605720802210271,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "qualification-failure-restore",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/work/restore.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/target.dylib",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.0979168750345707,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/restore.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/qualification-failure/restore.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "apply-after-failure-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09880612487904727,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "apply-after-failure-restore",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/work/restore.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/target.dylib",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09763904195278883,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/restore.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/apply-after-failure/restore.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "unknown-after-failure-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09500858304090798,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/unknown-after-failure/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "backup-drift-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09784625004976988,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/backup-drift/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "restore-failure-promote",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/mutation.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/work/staged.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/target.dylib",
+        "{\"sha256\": \"7fd7611c4aeaddaf5890ca276c3563ca188c9797906502e87e3b77a6d488422f\", \"bytes\": 25, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"72629b93820234e48fc194d3022e68bf7139983b28ab5359af13122742ddfeeb\", \"bytes\": 26, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09735533315688372,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/promote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-controls-s325aqrv/restore-failure/promote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "shared_guard_executed": false,
+  "native_runtime_executed": false,
+  "state": "PASS: private transaction success, recovery, drift refusal and witness write confinement",
+  "installed_before_after": {
+    "sha256": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+    "bytes": 1073472,
+    "mode": "0o755"
+  }
+}

@@ -1438,3 +1438,35 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   0 and matched the two-line correction, six snapshots, 39 repaired-control
   pairs and preserved failed receipts. The live shared guard and installed
   promotion remain separate; this preparation unit is complete.
+
+### Task 14a3: installed ASan promotion
+
+- Task 14a2 was committed at `5a4062e17089ad2fe2b160fea998dc7954aa5766`.
+  All 14 commit/check commands exited 0; the original acceptance baseline passed
+  and the working tree was clean.
+- Prepared one promotion runner with exact original backup, guarded replacement,
+  seven installed-path witnesses and rollback of only a known replacement.
+  Witnesses have a stricter write sandbox than the replacement child. Source Git
+  provenance and recorded build inputs remain separate preservation checks.
+  Private transaction controls and independent review are pending.
+- Private transaction controls exited 0: ten checks and nine confined child
+  commands verified success, recovery before/after replacement, rejection of
+  unknown target or backup contents, failed-restore reporting and witness write
+  denial. No sanitizer or compiler executed; the installed original is unchanged.
+- The prepared contract retains 432 recorded source/build bindings plus the ASan
+  object and dependency inputs, and requires exact source Git state. Capacity
+  and dispatch scripts are prepared but unexecuted; independent review is next.
+- Independent preparation review passed without findings; its comparison exited
+  0 and verified all eight snapshots, 38 control copies and 841 derived inputs.
+  Fresh capacity passed with the same container and two admitted editor services.
+- Native promotion exited 0 after 26 commands. All three clean runs returned 0
+  and four deliberate diagnostics returned 86 through the exact installed runtime
+  paths. The original backup is retained; no rollback was required. Source Git
+  state, bound inputs, unrelated protected state and default selection matched.
+- Closure collection exited 0: 59 private text receipts and six artifact hashes
+  were captured, all 27 owned processes were absent and the canonical lease was
+  free without changing its contents. Independent artifact review is pending.
+- Independent artifact review passed without findings. Its comparison exited 0
+  and verified eight snapshots, 32 copy pairs, 59 private text sources, all 26
+  command outcomes and seven witness traces. Six exact artifact hashes matched.
+  The installed-runtime promotion is complete; the wider sanitizer matrix remains.

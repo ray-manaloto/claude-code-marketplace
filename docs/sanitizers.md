@@ -10,8 +10,8 @@ The clean branch performs both operations within bounds. A volatile-qualified
 pointee isolates the ASan read from UBSan type/object-size/alignment diagnostics.
 Exact source-backed options make error exits deterministic, suppress external
 symbolization and core dumps, and keep leak detection outside this first unit.
-Native qualification remains incomplete. ASan compilation, linking and ARM64
-checks passed, but three clean executions timed out at 20 seconds before main.
+The initial Task 14a attempt failed at startup. ASan compilation, linking and
+ARM64 checks passed, but three clean executions timed out at 20 seconds before main.
 The [owned-process sample](../evidence/p2996-sanitizers/startup-sample.txt.source)
 captures recursive ASan initialization: shadow mapping inspects dyld images,
 shared-cache enumeration allocates, and ASan waits on its own initialization lock.
@@ -66,3 +66,21 @@ passed without new findings. A later caller must separately stage the candidate
 with the destination's exact `0755` mode,
 verify source/build inputs, preserve a backup, obtain fresh capacity and ownership,
 and qualify the installed path with all seven witnesses.
+
+Task 14a3 uses the [promotion runner](../dev/toolchains/p2996_asan_promote.py).
+It retains an exact original backup and permits one installed-file replacement
+under fresh capacity and the canonical ownership lease. Witnesses use a separate
+read-only installed-prefix sandbox and the normal loader path. A failure while
+ownership is held restores only the known replacement; unknown target content
+stops recovery without overwriting it. Recorded source/build inputs, Git source
+state, all unrelated prefix entries and default selection remain checked.
+Private [transaction controls](../evidence/p2996-asan-promotion/controls/controls.json)
+passed, including rollback and refusal to overwrite unknown content. Independent
+preparation review passed. The native operation exited 0: all three clean runs
+returned 0 and all four deliberate diagnostics returned 86 through the installed
+libraries. The original backup remains retained. Source/default checks passed,
+owned processes ended and the lease was free in the
+[closure receipt](../evidence/p2996-asan-promotion/operation/closure.json).
+Independent [artifact review](../evidence/p2996-asan-promotion/artifact-review.json)
+passed without findings. Installed ASan, UBSan and combined runtime witnesses are
+qualified; dependency instrumentation and configuration/linkage matrices remain separate.

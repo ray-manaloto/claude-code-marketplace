@@ -1,0 +1,175 @@
+{
+  "head": "5a4062e17089ad2fe2b160fea998dc7954aa5766",
+  "base_head": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed",
+  "staged_files": 146,
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed\n",
+      "stderr": "",
+      "elapsed_seconds": 0.010558292036876082
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.010545209050178528
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n",
+      "stderr": "",
+      "elapsed_seconds": 0.1756083748769015
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1986, \"python\": 143, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.1888079999480397
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.02286016708239913
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-scan-d3bzvqe9/scan.py",
+        "closure-secret-scan"
+      ],
+      "returncode": 0,
+      "stdout": "{\"files\": 145, \"raw_rc\": 1, \"verified_file_digests\": 10, \"disposition_rc\": 0, \"complete_token_files\": []}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.9835089580155909
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "add",
+        "--",
+        "dev/toolchains/p2996_asan_runtime.py",
+        "docs/sanitizers.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "evidence/p2996-asan-runtime/"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.06906945793889463
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "stdout": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\ndev/toolchains/p2996_asan_runtime.py\ndocs/sanitizers.md\nevidence/p2996-asan-runtime/candidate-inputs.json\nevidence/p2996-asan-runtime/candidate.json\nevidence/p2996-asan-runtime/closure-secret-scan.json\nevidence/p2996-asan-runtime/closure-static.json\nevidence/p2996-asan-runtime/contract.json\nevidence/p2996-asan-runtime/controls-copy-manifest.json\nevidence/p2996-asan-runtime/controls-execution.json\nevidence/p2996-asan-runtime/controls/controls.json\nevidence/p2996-asan-runtime/controls/controls.py.source\nevidence/p2996-asan-runtime/controls/destination-hardlink.stderr\nevidence/p2996-asan-runtime/controls/destination-hardlink.stdout\nevidence/p2996-asan-runtime/controls/destination-mode.stderr\nevidence/p2996-asan-runtime/controls/destination-mode.stdout\nevidence/p2996-asan-runtime/controls/destination-symlink.stderr\nevidence/p2996-asan-runtime/controls/destination-symlink.stdout\nevidence/p2996-asan-runtime/controls/outside-allowlist.stderr\nevidence/p2996-asan-runtime/controls/outside-allowlist.stdout\nevidence/p2996-asan-runtime/controls/positive-replace.stderr\nevidence/p2996-asan-runtime/controls/positive-replace.stdout\nevidence/p2996-asan-runtime/controls/positive-restore.stderr\nevidence/p2996-asan-runtime/controls/positive-restore.stdout\nevidence/p2996-asan-runtime/controls/private.sb\nevidence/p2996-asan-runtime/controls/replace.py.source\nevidence/p2996-asan-runtime/controls/source-hardlink.stderr\nevidence/p2996-asan-runtime/controls/source-hardlink.stdout\nevidence/p2996-asan-runtime/controls/source-mode.stderr\nevidence/p2996-asan-runtime/controls/source-mode.stdout\nevidence/p2996-asan-runtime/controls/source-symlink.stderr\nevidence/p2996-asan-runtime/controls/source-symlink.stdout\nevidence/p2996-asan-runtime/controls/wrong-destination.stderr\nevidence/p2996-asan-runtime/controls/wrong-destination.stdout\nevidence/p2996-asan-runtime/controls/wrong-source.stderr\nevidence/p2996-asan-runtime/controls/wrong-source.stdout\nevidence/p2996-asan-runtime/disposition-review-copy-manifest.json\nevidence/p2996-asan-runtime/disposition-review/compare.py\nevidence/p2996-asan-runtime/disposition-review/comparison.json\nevidence/p2996-asan-runtime/disposition-review/execution.json\nevidence/p2996-asan-runtime/disposition-review/review.json\nevidence/p2996-asan-runtime/disposition-review/supporting-manifest.json\nevidence/p2996-asan-runtime/final-candidate.json\nevidence/p2996-asan-runtime/pre-review-secret-scan.json\nevidence/p2996-asan-runtime/pre-review-static.json\nevidence/p2996-asan-runtime/preparation-review.json\nevidence/p2996-asan-runtime/rejected-preparation-copy-manifest.json\nevidence/p2996-asan-runtime/rejected-preparation/.planning__2026-10-10-marketplace-macos-reflection-scaffold__progress.md.source\nevidence/p2996-asan-runtime/rejected-preparation/.planning__2026-10-10-marketplace-macos-reflection-scaffold__task_plan.md.source\nevidence/p2996-asan-runtime/rejected-preparation/candidate-inputs.json\nevidence/p2996-asan-runtime/rejected-preparation/candidate.json\nevidence/p2996-asan-runtime/rejected-preparation/contract.json\nevidence/p2996-asan-runtime/rejected-preparation/controls-copy-manifest.json\nevidence/p2996-asan-runtime/rejected-preparation/controls-execution.json\nevidence/p2996-asan-runtime/rejected-preparation/controls/controls.json\nevidence/p2996-asan-runtime/rejected-preparation/controls/controls.py.source\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-hardlink.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-hardlink.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-mode.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-mode.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-symlink.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/destination-symlink.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/outside-allowlist.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/outside-allowlist.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/positive-replace.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/positive-replace.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/positive-restore.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/positive-restore.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/private.sb\nevidence/p2996-asan-runtime/rejected-preparation/controls/replace.py.source\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-hardlink.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-hardlink.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-mode.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-mode.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-symlink.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/source-symlink.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/wrong-destination.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/wrong-destination.stdout\nevidence/p2996-asan-runtime/rejected-preparation/controls/wrong-source.stderr\nevidence/p2996-asan-runtime/rejected-preparation/controls/wrong-source.stdout\nevidence/p2996-asan-runtime/rejected-preparation/dev__toolchains__p2996_asan_runtime.py.source\nevidence/p2996-asan-runtime/rejected-preparation/docs__sanitizers.md.source\nevidence/p2996-asan-runtime/rejected-preparation/pre-review-secret-scan.json\nevidence/p2996-asan-runtime/rejected-preparation/pre-review-static.json\nevidence/p2996-asan-runtime/rejected-preparation/repair-postcommit.json\nevidence/p2996-asan-runtime/rejected-preparation/target-inventory.json\nevidence/p2996-asan-runtime/rejected-review-copy-manifest.json\nevidence/p2996-asan-runtime/rejected-review/compare.py\nevidence/p2996-asan-runtime/rejected-review/comparison.json\nevidence/p2996-asan-runtime/rejected-review/execution.json\nevidence/p2996-asan-runtime/rejected-review/mode-control.json\nevidence/p2996-asan-runtime/rejected-review/mode-control.py\nevidence/p2996-asan-runtime/rejected-review/mode-execution.json\nevidence/p2996-asan-runtime/rejected-review/original-candidate-inputs.json\nevidence/p2996-asan-runtime/rejected-review/original-candidate.json\nevidence/p2996-asan-runtime/rejected-review/original-contract.json\nevidence/p2996-asan-runtime/rejected-review/original-controls-execution.json\nevidence/p2996-asan-runtime/rejected-review/original-pre-review-secret-scan.json\nevidence/p2996-asan-runtime/rejected-review/original-pre-review-static.json\nevidence/p2996-asan-runtime/rejected-review/review.json\nevidence/p2996-asan-runtime/rejected-review/supporting-manifest.json\nevidence/p2996-asan-runtime/repair-postcommit.json\nevidence/p2996-asan-runtime/repair-secret-scan.json\nevidence/p2996-asan-runtime/repair-static.json\nevidence/p2996-asan-runtime/repaired-controls-copy-manifest.json\nevidence/p2996-asan-runtime/repaired-controls/controls.json\nevidence/p2996-asan-runtime/repaired-controls/controls.py.source\nevidence/p2996-asan-runtime/repaired-controls/destination-hardlink.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-hardlink.stdout\nevidence/p2996-asan-runtime/repaired-controls/destination-mode.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-mode.stdout\nevidence/p2996-asan-runtime/repaired-controls/destination-setgid.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-setgid.stdout\nevidence/p2996-asan-runtime/repaired-controls/destination-setuid.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-setuid.stdout\nevidence/p2996-asan-runtime/repaired-controls/destination-sticky.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-sticky.stdout\nevidence/p2996-asan-runtime/repaired-controls/destination-symlink.stderr\nevidence/p2996-asan-runtime/repaired-controls/destination-symlink.stdout\nevidence/p2996-asan-runtime/repaired-controls/execution.json\nevidence/p2996-asan-runtime/repaired-controls/outside-allowlist.stderr\nevidence/p2996-asan-runtime/repaired-controls/outside-allowlist.stdout\nevidence/p2996-asan-runtime/repaired-controls/positive-replace.stderr\nevidence/p2996-asan-runtime/repaired-controls/positive-replace.stdout\nevidence/p2996-asan-runtime/repaired-controls/positive-restore.stderr\nevidence/p2996-asan-runtime/repaired-controls/positive-restore.stdout\nevidence/p2996-asan-runtime/repaired-controls/private.sb\nevidence/p2996-asan-runtime/repaired-controls/replace.py.source\nevidence/p2996-asan-runtime/repaired-controls/source-hardlink.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-hardlink.stdout\nevidence/p2996-asan-runtime/repaired-controls/source-mode.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-mode.stdout\nevidence/p2996-asan-runtime/repaired-controls/source-setgid.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-setgid.stdout\nevidence/p2996-asan-runtime/repaired-controls/source-setuid.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-setuid.stdout\nevidence/p2996-asan-runtime/repaired-controls/source-sticky.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-sticky.stdout\nevidence/p2996-asan-runtime/repaired-controls/source-symlink.stderr\nevidence/p2996-asan-runtime/repaired-controls/source-symlink.stdout\nevidence/p2996-asan-runtime/repaired-controls/wrong-destination.stderr\nevidence/p2996-asan-runtime/repaired-controls/wrong-destination.stdout\nevidence/p2996-asan-runtime/repaired-controls/wrong-source.stderr\nevidence/p2996-asan-runtime/repaired-controls/wrong-source.stdout\nevidence/p2996-asan-runtime/target-inventory.json\n",
+      "stderr": "",
+      "elapsed_seconds": 0.012739165918901563
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.0176942499820143
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "commit",
+        "--quiet",
+        "-m",
+        "Prepare exact installed ASan runtime guard"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.24432854098267853
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "5a4062e17089ad2fe2b160fea998dc7954aa5766\n",
+      "stderr": "",
+      "elapsed_seconds": 0.012251999927684665
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.06749329203739762
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1988, \"python\": 143, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.6615923750214279
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.050524957943707705
+    }
+  ],
+  "clean": true,
+  "review_sha256": "c45bd56f1fd34ebfaefbb89dde2ad0e614a076581591b542b0eb421726c05d1e",
+  "final_candidate_sha256": "791a6deddd1ed9f824afb02b65b56ed9f752f3b5933e1d5c722f2cc7fec3308f"
+}
