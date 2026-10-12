@@ -1773,3 +1773,19 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   separately at `4c0d2db10a6460bef90409ebed7c7eef68ea5b02`. Its staged
   whitespace check and file-level Gitleaks scans passed. The graph and
   publication manifest retained their approved SHA-256 values.
+- Ticket #24 (draft 13) pins the legacy `trackers` interface to knowledge-base
+  commit `a872cb016feb5512994b37330ce6a387c5732253` and installed pipx
+  metadata. The public CLI dispatch and plugin data-root/import boundary are
+  documented without editing the knowledge-base checkout. The offline fixture
+  runner recorded one issue hit and one armed null result; two runs returned 0
+  and retained byte-identical `hit.json`, `null.json` and `capture.json`.
+  Independent read-only review passed with no actionable findings: it matched
+  all four installed modules to the pinned Git blobs and replayed the fixture
+  twice in memory with writes, subprocesses and network forbidden. Review
+  limits and exact hashes are in `evidence/legacy-trackers/ticket24-review.md`.
+  `./dev/mise tasks validate`, `./dev/mise run check`, and
+  `./dev/mise run check:acceptance-baseline` each exited 0, preserving all 19
+  original inputs. Gitleaks 8.30.1 found no leaks in the harness, boundary
+  document or fixture evidence. The KB graph query exited 3 on a truncated
+  pre-#1504 result; no rebuild was run. These are offline compatibility
+  fixtures, not live GitHub, fresh Claude SessionStart or OCI acceptance.
