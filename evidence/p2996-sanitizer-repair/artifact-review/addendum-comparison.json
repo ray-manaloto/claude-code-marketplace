@@ -1,0 +1,137 @@
+{
+  "result": "PASS: exact-path whitespace addendum and current six-file freeze",
+  "recorded_at": "2026-10-12T00:48:47.894616+00:00",
+  "candidate_sha256": "1a63fa8681f428b84db5a8746fa4596aba2ed27772b7f71a0cc03c9bea7921c6",
+  "checks": {
+    "attribute_delta": {
+      "exact_line": "evidence/p2996-sanitizer-repair/object-dependencies.stdout whitespace=-blank-at-eof",
+      "only_new_line": true,
+      "previous_attributes_preserved": true
+    },
+    "progress_delta": {
+      "lines": 3,
+      "exact_append": "- The raw Ninja dependency log retains its final blank line. Its whitespace\n  check returned 3; one exact-path attribute preserves those bytes and adds a\n  sixth maintained file containing only that exception. Native inputs are unchanged.\n"
+    },
+    "raw_dependency_bytes_preserved": true,
+    "native_evidence_unchanged": true,
+    "recorded_static": {
+      "no_index_diff_returncode": 1,
+      "no_index_output_empty": true,
+      "acceptance_baseline_returncode": 0,
+      "original_files": 19,
+      "rerun": false
+    },
+    "recorded_scan": {
+      "files": 92,
+      "raw_returncode": 1,
+      "verified_digest_dispositions": 11,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "binding_checks": {
+        "current_text_hashes": 5,
+        "inherited_base_comparison_hashes": 87
+      },
+      "scanner_only_delta": "candidate.json -> closure-candidate.json",
+      "rerun": false
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.011747791897505522,
+      "stdout": "55a37282b117fca534a86fedcdbd5c8352405e23\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.00987245887517929,
+      "stdout": "codex/marketplace-native-onboarding\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "--show-toplevel"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.010007624980062246,
+      "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.009873959003016353,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "show",
+        "HEAD:.gitattributes"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.010694124968722463,
+      "stdout": "# Retain exact CMake error-log bytes, including its final blank lines.\nevidence/vcpkg-abi-inputs/controls/*.stderr whitespace=-blank-at-eof\n# Preserve exact native receipt bytes; maintained sources retain normal checks.\nevidence/vcpkg-fmt-build/**/CMakeCache.txt whitespace=-blank-at-eof\nevidence/vcpkg-fmt-build/**/*.ninja whitespace=-blank-at-eol,-blank-at-eof\nevidence/vcpkg-fmt-build/**/*.stdout whitespace=-blank-at-eol,-blank-at-eof\nevidence/p2996-sanitizers/startup-sample.txt.source whitespace=-blank-at-eof\n",
+      "stderr": ""
+    }
+  ],
+  "watched_text_sha256": {
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-artifact-review-f5tdu48u/comparison.json": "37d28700de1012f7742e53134771a62fb849a43be73e511659297e7597234e6b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-candidate.json": "1a63fa8681f428b84db5a8746fa4596aba2ed27772b7f71a0cc03c9bea7921c6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-candidate-before-whitespace.json": "07b2dda1dd215cf4f4c79bf634cb859da7f94aac6bc9e94068b93857831dbc52",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-inputs.json": "ecca167d7558987b693a050ca4b79f4624168ded82154aa6312553cb949de610",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-inputs-before-whitespace.json": "b6220cd6de3ae399a8ad8e497af2160b851644ee8d72a006972b926665f70b22",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizer_repair.py": "f6e97415b653749f45a850931dd0992e5525fe34ed866a0cb0a182a79c1974ab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "43265c80572689cca6b95c1ea7c2b8ce0258c4eba1da92924453f49997621a11",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "fb50890b4bdd14dd0a12f753722d0e2c19f1ac30c3e1f635848c0914c0dfe3ec",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "b93023dfe50730c210cada100ef10824c4bcd141f5ceec6401c6f512a1413003",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.gitattributes": "707b03b7fbdf046717b7e68b54aa8cc24869d739059688db0403abea730f3c0e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.stdout": "a08e058575fe154da43943d73cc9767037d24c98a76fc5fd2e65cf59d16c5dda",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/contract.json": "7c497b5073b0ea74d43f11f2b982e5c01138191226c67ff17c55db0650dc56bd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/qualification.json": "946ec44e87aab9a6a7307885467f443db8ac6df10b284be8fc795de412e69834",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/closure.json": "367c6388be405ec26425dc3f611c8f623e02689b927d775be3ef0fb36c8c472c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/artifact-inventory.json": "caf15b87b3029711e90f1f831c4ff8ec34c1aa30015d61f2bffd7267ba25e1b5",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/whitespace-static.json": "7a370fc56b4279055075301737dbe31e365b53c8bc58395eaba1f04e5c538dc2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/whitespace-secret-scan.json": "2514a1dd24833a8e262bd010931aca95ea1ca56099447776e4c73c2b2e44defb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-artifact-secret-scan.json": "962c08ca84b6c55307efadd1901127fbd9bbd7456d008be6c57b17726c50235e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-scan-1ifzr8ml/scan.py": "6174a905f4da37f8daf8b0035536af788976812b442b9af20d7a0ebfe65ece2c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-closure-scan-ox0bcphi/scan.py": "3a3edf6a46066098fbed372ebb9e2e32e457d874035951c9623882f8255db540"
+  },
+  "new_artifacts_rehashed": false,
+  "native_operations_executed": false
+}

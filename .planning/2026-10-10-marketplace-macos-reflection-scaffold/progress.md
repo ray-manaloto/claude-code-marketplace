@@ -1371,3 +1371,37 @@ interfaces are retained. Native confinement and all dependency builds remain pen
 - The staged whitespace gate caught the raw sample's final blank line. Preserve
   its exact bytes with one file-specific whitespace attribute; this adds one
   maintained-file exception to the otherwise five-file unit. No runtime changed.
+
+### Task 14a1: private startup repair preparation
+
+- Task 14a was committed at `55a37282b117fca534a86fedcdbd5c8352405e23`.
+  The final baseline check exited 0 and the working tree was clean.
+- Prepared a source-only macOS 27 task-info repair and a private A/B runner.
+  The runner reuses the earlier preservation/lease guards and exact editor
+  admission policy. Original shared source, build and installed runtime stay bound.
+- Captured recipes bind 127 input objects and the previously qualified build
+  compiler. Build and installed compiler bytes differ; both identities are retained.
+  No compiler, linker, signing operation or sanitizer execution has started.
+- Exact private patch/reverse and rejection controls passed. The source-only
+  reviewer found no blocker; allocation behavior remains pending native A/B
+  validation. The captured object dependency graph binds 195 original inputs.
+- Independent preparation review passed without findings. Fresh capacity passed
+  with the same container and exact two admitted editor services.
+- The confined native operation exited 0 after 43 commands. Both ASan copies
+  compiled, linked, signed and passed ARM64 checks. The original clean startup
+  reproduced a 20-second timeout with actual exit -15 and no main output.
+- With private patched ASan, all three clean cases returned 0 and all four
+  deliberate diagnostics returned 86; exact loader paths and reflection output
+  matched. Standalone UBSan used its original installed runtime. Owned children
+  ended, the canonical lease was free and protected state remained unchanged.
+- Captured 12 new artifact/source hashes and both dependency files. The patched
+  translation unit added 28 SDK dependency paths first observed after compilation;
+  their actual hashes are retained without claiming pre-run bindings for them.
+  Independent artifact review is pending; no installed runtime was changed.
+- The raw Ninja dependency log retains its final blank line. Its whitespace
+  check returned 3; one exact-path attribute preserves those bytes and adds a
+  sixth maintained file containing only that exception. Native inputs are unchanged.
+- Independent artifact and whitespace review passed without findings. Both
+  reviewer comparisons exited 0; 95 private text pairs, 86 command-log bindings,
+  all 12 new artifact hashes and the 28 post-observed SDK hashes matched.
+  Task 14a1 qualifies the private repair; installed promotion remains separate.

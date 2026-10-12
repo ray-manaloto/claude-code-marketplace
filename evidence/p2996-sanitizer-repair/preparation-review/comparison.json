@@ -1,0 +1,945 @@
+{
+  "result": "PASS: preparation only",
+  "findings": [],
+  "candidate_sha256": "d123b25200cdfe26e78bc622d173d7eebe013f9927ad2b4e4bac9cf1a69ee8e4",
+  "helper_sha256": "f6e97415b653749f45a850931dd0992e5525fe34ed866a0cb0a182a79c1974ab",
+  "contract_sha256": "7c497b5073b0ea74d43f11f2b982e5c01138191226c67ff17c55db0650dc56bd",
+  "source_review_sha256": "76ebb9f4bc66ea131b5784da61733a3c2c45fb7102acd7707134c110b501b7bc",
+  "candidate_snapshots": 7,
+  "preparation_copy_pairs": 25,
+  "source_review_copy_pairs": 1,
+  "prepared_launcher_copy_pairs": 2,
+  "patch_control_recorded_returncodes": [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "object_dependency_bindings": 195,
+  "reused_functions_ast_equal": [
+    "save",
+    "run",
+    "interrupted"
+  ],
+  "guard_delta": "only the two statements binding retained recipe object bytes",
+  "projected_private_variants": [
+    {
+      "variant": "original",
+      "compile_argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++",
+        "--target=arm64-apple-darwin27.0.0",
+        "-DHAVE_RPC_XDR_H=1",
+        "-D_DEBUG",
+        "-D_GLIBCXX_ASSERTIONS",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/..",
+        "-fPIC",
+        "-fvisibility-inlines-hidden",
+        "-Werror=date-time",
+        "-Werror=unguarded-availability-new",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Wwrite-strings",
+        "-Wcast-qual",
+        "-Wmissing-field-initializers",
+        "-Wimplicit-fallthrough",
+        "-Wcovered-switch-default",
+        "-Wno-noexcept-type",
+        "-Wnon-virtual-dtor",
+        "-Wdelete-non-virtual-dtor",
+        "-Wsuggest-override",
+        "-Wstring-conversion",
+        "-Wmisleading-indentation",
+        "-Wctad-maybe-unsupported",
+        "-fdiagnostics-color",
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-O3",
+        "-DNDEBUG",
+        "-std=c++17",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-stdlib=libc++",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-fPIC",
+        "-fno-builtin",
+        "-fno-exceptions",
+        "-funwind-tables",
+        "-fno-stack-protector",
+        "-fno-sanitize=safe-stack",
+        "-fvisibility=hidden",
+        "-fno-lto",
+        "-Wthread-safety",
+        "-Wthread-safety-reference",
+        "-Wthread-safety-beta",
+        "-O3",
+        "-g",
+        "-Wno-gnu",
+        "-Wno-variadic-macros",
+        "-Wno-c99-extensions",
+        "-ftrivial-auto-var-init=pattern",
+        "-nostdinc++",
+        "-Wno-format",
+        "-fno-rtti",
+        "-Wframe-larger-than=570",
+        "-Wglobal-constructors",
+        "-MD",
+        "-MT",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/procmaps.o",
+        "-MF",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/procmaps.o.d",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/procmaps.o",
+        "-c",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common"
+      ],
+      "link_object_count": 127,
+      "link_output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/libclang_rt.asan_osx_dynamic.dylib",
+      "codesign_argv": [
+        "/usr/bin/codesign",
+        "--sign",
+        "-",
+        "-o",
+        "linker-signed",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/original/libclang_rt.asan_osx_dynamic.dylib"
+      ]
+    },
+    {
+      "variant": "patched",
+      "compile_argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++",
+        "--target=arm64-apple-darwin27.0.0",
+        "-DHAVE_RPC_XDR_H=1",
+        "-D_DEBUG",
+        "-D_GLIBCXX_ASSERTIONS",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/..",
+        "-fPIC",
+        "-fvisibility-inlines-hidden",
+        "-Werror=date-time",
+        "-Werror=unguarded-availability-new",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Wwrite-strings",
+        "-Wcast-qual",
+        "-Wmissing-field-initializers",
+        "-Wimplicit-fallthrough",
+        "-Wcovered-switch-default",
+        "-Wno-noexcept-type",
+        "-Wnon-virtual-dtor",
+        "-Wdelete-non-virtual-dtor",
+        "-Wsuggest-override",
+        "-Wstring-conversion",
+        "-Wmisleading-indentation",
+        "-Wctad-maybe-unsupported",
+        "-fdiagnostics-color",
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-O3",
+        "-DNDEBUG",
+        "-std=c++17",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-stdlib=libc++",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-fPIC",
+        "-fno-builtin",
+        "-fno-exceptions",
+        "-funwind-tables",
+        "-fno-stack-protector",
+        "-fno-sanitize=safe-stack",
+        "-fvisibility=hidden",
+        "-fno-lto",
+        "-Wthread-safety",
+        "-Wthread-safety-reference",
+        "-Wthread-safety-beta",
+        "-O3",
+        "-g",
+        "-Wno-gnu",
+        "-Wno-variadic-macros",
+        "-Wno-c99-extensions",
+        "-ftrivial-auto-var-init=pattern",
+        "-nostdinc++",
+        "-Wno-format",
+        "-fno-rtti",
+        "-Wframe-larger-than=570",
+        "-Wglobal-constructors",
+        "-MD",
+        "-MT",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/procmaps.o",
+        "-MF",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/procmaps.o.d",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/procmaps.o",
+        "-c",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common"
+      ],
+      "link_object_count": 127,
+      "link_output": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/libclang_rt.asan_osx_dynamic.dylib",
+      "codesign_argv": [
+        "/usr/bin/codesign",
+        "--sign",
+        "-",
+        "-o",
+        "linker-signed",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/not-executed-private-run/patched/libclang_rt.asan_osx_dynamic.dylib"
+      ]
+    }
+  ],
+  "recorded_baseline_original_hashes": 19,
+  "recorded_static_returncodes": [
+    0,
+    0
+  ],
+  "scan_file_bindings_verified": 44,
+  "recorded_scan_dispositions": 5,
+  "native_execution": "UNVERIFIED; preparation and source review only",
+  "object_preimages_hashed_once": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_allocator.cpp.o",
+      "sha256": "481e5124605f6aa6c962472e58e4ea1e207d93030f33820fef63cbeebfe76812",
+      "bytes": 324048
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_activation.cpp.o",
+      "sha256": "26d748725fa6714e1eb5ec7b92d8edbaa01f184dd8dc3b688a33a70933c8777b",
+      "bytes": 45680
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_debugging.cpp.o",
+      "sha256": "eaeb5e342caa254a5e33ac207e8f51f2c13f5d42ef53a71212eb7b365b38356d",
+      "bytes": 34816
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_descriptions.cpp.o",
+      "sha256": "cd21014a5816de8b1143d68d30fc90e22d2c54108228e410e5d52e12330e65da",
+      "bytes": 145440
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_errors.cpp.o",
+      "sha256": "cb1b41e4373674ba51002f4c9d6d9396e680398bbf9e64f16aa6dd561b80d056",
+      "bytes": 152504
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_fake_stack.cpp.o",
+      "sha256": "bf39bb331b8fb3aedb39e35cac8a9b487d8c390b9b9354ef0ee570cdac609f1a",
+      "bytes": 167520
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_flags.cpp.o",
+      "sha256": "66f7042d994fbb52e60006962b23d044f465609be42c6ed733be73dae8fba3de",
+      "bytes": 78136
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_globals.cpp.o",
+      "sha256": "b6b8c5c73e752b4e5695d3145102178eb8d202920dab8e32d852f6ae829e8c28",
+      "bytes": 168216
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_globals_win.cpp.o",
+      "sha256": "f0b270d5cd17461a4bc92a433b6917d329bc0662f680be9aa7dffbeb0cee24a5",
+      "bytes": 3200
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_interceptors.cpp.o",
+      "sha256": "bfdd6a869d0e22daba92ed1eb730aa9d03440ada28bd047b540dcb3888174380",
+      "bytes": 1498632
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_interceptors_memintrinsics.cpp.o",
+      "sha256": "01b29d8edb1d5b16e012f8004dd9c890238654973ae2129a87606334f4c1fcd6",
+      "bytes": 50928
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_linux.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_mac.cpp.o",
+      "sha256": "9142c4df7a6486b1058d5bca05512ef9132fa942e059df5111698a24f01f2d77",
+      "bytes": 116128
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_malloc_linux.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_malloc_mac.cpp.o",
+      "sha256": "d4349e8195db7e365656b0f76e6d3d1a52af353563b5f9f8f239ce1878c87412",
+      "bytes": 111200
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_malloc_win.cpp.o",
+      "sha256": "dbd341d93a4bd9a4377d58fa3d5b84edb447dc0369b496a95d7c1095c31e7870",
+      "bytes": 3080
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_memory_profile.cpp.o",
+      "sha256": "26680f968b72b8d0b380382fa82d1a2150ba6e66bc71020b5ccc426256875ec4",
+      "bytes": 33080
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_poisoning.cpp.o",
+      "sha256": "1498f94519c9d5fafaf17e760f92a844a0af709de1d2073b6ed6e4895def5936",
+      "bytes": 110464
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_posix.cpp.o",
+      "sha256": "2bdd026008f4c571c1075418246a34ba2c8fe8b2c6216828c630ab2c5a7eba6d",
+      "bytes": 59320
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_premap_shadow.cpp.o",
+      "sha256": "98962ceed09213d023a9d46020214f8e7944e261bd40a5ebd52b909fe35f4b35",
+      "bytes": 8000
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_report.cpp.o",
+      "sha256": "a3524b9aeae7ea4d89c3f08fef91d2aef748e2bb9f806713519fedd0a9b338ab",
+      "bytes": 268216
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_rtl.cpp.o",
+      "sha256": "6b0997cc4f4b137676801b66cf540eb7a213610b94888595ed1f7bc7c887132e",
+      "bytes": 136240
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_shadow_setup.cpp.o",
+      "sha256": "22b4b2bdfb96ffb0df2cce9a60ab76acc3a3c9124114621a2bf32c36152df733",
+      "bytes": 19408
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_stack.cpp.o",
+      "sha256": "e88b34b6d6d09505b8085db4e8a5a5373510348d18ca9681da7747aab37ad6cf",
+      "bytes": 56056
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_stats.cpp.o",
+      "sha256": "776af2b4e94daf7d35960ad9aac50fca395e83dedffb2d79796875c8adfc2450",
+      "bytes": 94304
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_suppressions.cpp.o",
+      "sha256": "2d6db4ed1b662ac52f4683e5d508f2cf254ca8453c8f4a3f4664f7c70c6a74b9",
+      "bytes": 51112
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_thread.cpp.o",
+      "sha256": "724283ddfdfd5e31050dea5a22d89fcf6dec894183b2faac4a43849c507db10b",
+      "bytes": 194648
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/asan/CMakeFiles/RTAsan_dynamic.osx.dir/asan_new_delete.cpp.o",
+      "sha256": "7e482b04a2702b0447662cefb6759d24df197770d7d18a4e15b535b42229b318",
+      "bytes": 26432
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_aix.cpp.o",
+      "sha256": "698913e7450b1afe065bcb3675ba14194b8db4cc986ee7b750762383924fc095",
+      "bytes": 2840
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_linux.cpp.o",
+      "sha256": "6ab30736896951feee742d6b2d60dce61f78284999ee587360f681f02f820041",
+      "bytes": 2848
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_mac.cpp.o",
+      "sha256": "a0ab3b6d1f91b2bd9ba2233b72114c48a70ad18e8e2b57a0a1c3ee88e93efc80",
+      "bytes": 2840
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_win.cpp.o",
+      "sha256": "fc36cf069a87cafe8221262bd7809a27a7f57a72ee18beee32f61fa5c762dde2",
+      "bytes": 2840
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_type_test.cpp.o",
+      "sha256": "53c5ccafe5b3ab6af58e3afb5ee4aac26f27cc340f009a63ae34dfe90b87bc50",
+      "bytes": 2856
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_allocator.cpp.o",
+      "sha256": "878973133b08bc28a978b4f3c07e357838d4a9291f34e378b340a2ece2b4d9dc",
+      "bytes": 125384
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_common.cpp.o",
+      "sha256": "057dccf2eeed36d44b720f670968f77d8b4bf2aaeacb6d6f5c15813400e3fc84",
+      "bytes": 79136
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector1.cpp.o",
+      "sha256": "9c209732ffde9161605694de57144bc7d79435b9892c972368525c1f363f1969",
+      "bytes": 121680
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector2.cpp.o",
+      "sha256": "e763a1515f0395974aaa04c80060a04023f24424abb765437f7e30acc054133b",
+      "bytes": 2856
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_errno.cpp.o",
+      "sha256": "5b1895b5dc4d5adc235ec34fe17567ac3fc4c0f2b180e5d8e57b1b9966303e32",
+      "bytes": 3376
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_file.cpp.o",
+      "sha256": "4712cac4bfeba10fd2f5c5f560fd0dfd2f61ef5f2cedf0a9c151c73456c0374f",
+      "bytes": 53704
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flags.cpp.o",
+      "sha256": "5c70a8575c3d156985ac34dd39f61899bfba69602eebc1bad7acc8e976e14dac",
+      "bytes": 97688
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flag_parser.cpp.o",
+      "sha256": "8721d1d81e4d7d05c93bb5c53cedfc67d8f99504740110a90e02e98a08fd550a",
+      "bytes": 28232
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_haiku.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libc.cpp.o",
+      "sha256": "8f1a74f0c7aca6f2e1385bcc3803eb86c78d112b635848fc6a2690a0913d85df",
+      "bytes": 56168
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libignore.cpp.o",
+      "sha256": "dde9ab8aa755a0f6422cf1d42414822aff86380d7c6e2a66c53a40fadc2b1ceb",
+      "bytes": 47896
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux_s390.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mac.cpp.o",
+      "sha256": "3f088cd81185e1707ca14db7aeb269edd52a8f315e0a425d764a82bca5f6ba25",
+      "bytes": 163728
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mutex.cpp.o",
+      "sha256": "b2175c8dd686e6fc9e2b840337495c54732ad56072f5d89e2a1ef4daebaac9d8",
+      "bytes": 10744
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_netbsd.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_freebsd.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_linux.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_netbsd.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_posix.cpp.o",
+      "sha256": "b836d6268cddf4af6c0f6e6e780b23dd88fbe4da4f61967b1e2504309008b89e",
+      "bytes": 21680
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_solaris.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_posix.cpp.o",
+      "sha256": "f48f8524e5f3bb52827c9091f1773bb3328cd4b9f7c63d7de39f5bfd58795ceb",
+      "bytes": 66968
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_printf.cpp.o",
+      "sha256": "81105f04d0f60c5f34fdc15c9c8c1fe37c9b714d297d81d68f8a0a46029104b7",
+      "bytes": 38680
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_common.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_bsd.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_haiku.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_linux.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_mac.cpp.o",
+      "sha256": "973a3022549a50c9b165c65e29b8a18d3e743deb5a77c7a5ad54ead7c78a83ea",
+      "bytes": 62144
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_solaris.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_range.cpp.o",
+      "sha256": "150f700858f182793df59197e232495cfcb7d2112f1b481bea64a8747a87997e",
+      "bytes": 30200
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_solaris.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_mac.cpp.o",
+      "sha256": "baea873283a82e31f9ca2956689e34b105cc510c7b9bf54e76b6bff05c95ee09",
+      "bytes": 36464
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_suppressions.cpp.o",
+      "sha256": "e80be91e0836263e34ad12fa1fe3e4dd2bc1615509cc479de9e12c7dbbf1f525",
+      "bytes": 68200
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_tls_get_addr.cpp.o",
+      "sha256": "9f0d522202de56386bb506e5c1328315d68e6faf527f662005433de6b77b8635",
+      "bytes": 6816
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_arg_retval.cpp.o",
+      "sha256": "f858306f4d8d836c708086cf1ecba86e99c6b1dfb2221fba4d503d0cb38ab325",
+      "bytes": 77936
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_registry.cpp.o",
+      "sha256": "9339a167d4b8c26ff92c11ff27e8f38a7a84ef7de46fc16a0ca72e766f51ee51",
+      "bytes": 150000
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_type_traits.cpp.o",
+      "sha256": "4debdce3150cc3ac693205317c3e8fa461317c2ad0cd82cfce47e2b1913331c0",
+      "bytes": 3688
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win_interception.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_termination.cpp.o",
+      "sha256": "6652d33bb857b00285721b70067950e6d936af0a5f9e60c55cb0edfd78ce8e3b",
+      "bytes": 13024
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_common_libcdep.cpp.o",
+      "sha256": "7f6af282e220162eb16cd9171d6a9d1763ddf2e65201476c6c2b69418ebb0d85",
+      "bytes": 28432
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_allocator_checks.cpp.o",
+      "sha256": "b8db80dda974c84b2285686255ea2baef008d835ddca93b8ff6e1da8085dd838",
+      "bytes": 2888
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_dl.cpp.o",
+      "sha256": "72f786c005738b56cfea381c961491c02b3af903c53b40e4aa72b48ef5630190",
+      "bytes": 2624
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_linux_libcdep.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_mac_libcdep.cpp.o",
+      "sha256": "d058efbb43400cfa4efd5df47e48c2338fd194e06ffae43b337ff14a8385e4c0",
+      "bytes": 5712
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_posix_libcdep.cpp.o",
+      "sha256": "ce43d0e1cb8054697864eef75efeb79a35dc8ee05d75b205117dc751c9c18469",
+      "bytes": 54904
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_linux_libcdep.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_netbsd_libcdep.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sancov_flags.cpp.o",
+      "sha256": "8f386a6cf31a4ad122f4f898e438671a64fe33623972a326a069bb374b820b0e",
+      "bytes": 15472
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_libcdep_new.cpp.o",
+      "sha256": "16e4b93f6877875ecca55836186c4fdefc6d35eef67c2bd4359b0f59deca59c0",
+      "bytes": 63624
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_win_sections.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_allocator_report.cpp.o",
+      "sha256": "f2340e8a092954835c736646cd7cf34f429cd2a72b593b894799083bae913837",
+      "bytes": 25216
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_chained_origin_depot.cpp.o",
+      "sha256": "caf62d5664f8a37e739b6f2a6fbbf1d3f8b7f108037febf9636fb3b180846455",
+      "bytes": 34616
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stack_store.cpp.o",
+      "sha256": "ed48a2426e9dd7ec4e5c7b832c25e1bbb074b12723b99f196db2e4f71c2a91d3",
+      "bytes": 122816
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stackdepot.cpp.o",
+      "sha256": "2df991c9a7d658ff1fbd387eec264a097350e33472e802297ad1351067499476",
+      "bytes": 68088
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace.cpp.o",
+      "sha256": "49e7e021fd172bb64fa541703535e312ebe8582dc302081b06661f51fd212a45",
+      "bytes": 16440
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_libcdep.cpp.o",
+      "sha256": "4c9dc6bef820f32d4b471533143f7b4a65811b33d98679ab19df314d38f0b458",
+      "bytes": 43584
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_printer.cpp.o",
+      "sha256": "37ecd67668ec64a73f5f7779c160281149b422f2b980be79622d5cdff309e3dc",
+      "bytes": 42840
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_sparc.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer.cpp.o",
+      "sha256": "aed0c9ab8da0900248dc74311efa534c8843cc392879ab3ba469354402f8d16d",
+      "bytes": 78296
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libbacktrace.cpp.o",
+      "sha256": "366c2e3db8ddc391a1ea42e3f04abe121f6e1b395cd58474262057efe1458467",
+      "bytes": 17256
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libcdep.cpp.o",
+      "sha256": "1df0e7d15ae0dd9c2d201b3196ff5bc28c936cdc29be5d6115909310e49980fd",
+      "bytes": 144136
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_mac.cpp.o",
+      "sha256": "aee574f2b05613d8968b8b83d1239baeb17989e7db2c666bfbd451bca7595e14",
+      "bytes": 59528
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup.cpp.o",
+      "sha256": "5e0ca1819f73a14a6fca62aa642bd5bc9dfc17bbf758f9a9144a142c67cea8bc",
+      "bytes": 53088
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_posix_libcdep.cpp.o",
+      "sha256": "63940e0ddb0dd23c1099844c06ec8774ad8151e71e4db497ac3d0c9ef1c78a5e",
+      "bytes": 116896
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report.cpp.o",
+      "sha256": "969efc97b2e9b9f691a10bc67628c6a9ed36fec3a14343047eb584d0a571782d",
+      "bytes": 74848
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_thread_history.cpp.o",
+      "sha256": "b170d5957e3deb76527724ba7ba5c5959417c0bf4d87c5c979d4a80aed553d62",
+      "bytes": 56256
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_linux_libcdep.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_fuchsia.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/lsan/CMakeFiles/RTLSanCommon.osx.dir/lsan_common.cpp.o",
+      "sha256": "e93afe544f0190c920809f6601d88b5862166a8b8529f68b63a812c9a13c0b9f",
+      "bytes": 317464
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/lsan/CMakeFiles/RTLSanCommon.osx.dir/lsan_common_fuchsia.cpp.o",
+      "sha256": "47c0347a29d014eb12f0c0dd079e5236ee36e2bb3a747c586ff8eed3ae9c031d",
+      "bytes": 2824
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/lsan/CMakeFiles/RTLSanCommon.osx.dir/lsan_common_linux.cpp.o",
+      "sha256": "5d3bad2b1917f4f2e49b47154c089d179ae5359293429421649560a9394809b2",
+      "bytes": 2816
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/lsan/CMakeFiles/RTLSanCommon.osx.dir/lsan_common_mac.cpp.o",
+      "sha256": "438a788b513bad20852bb93d2ef90c628cec7b315df08adce5db2a3e2ee80ebb",
+      "bytes": 106736
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_diag.cpp.o",
+      "sha256": "6444c2613faa8d780e53021238fb28cdbd0fb0e573b9e27a0bc444072d89bb0f",
+      "bytes": 100112
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_init.cpp.o",
+      "sha256": "b881ca5a9a2bce266e3e165eb5d2193d72fc5489059a20e9458bffb7e8b8601d",
+      "bytes": 13472
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_flags.cpp.o",
+      "sha256": "ad2feb294577f319fd4540b0d23afe65e15ee10fddd880e6dc298ba8828b84ad",
+      "bytes": 26616
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers.cpp.o",
+      "sha256": "d0770af669d977494cf2e0566d3109c9a58f9f6293619e3146e8c39af85727e3",
+      "bytes": 181896
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_monitor.cpp.o",
+      "sha256": "2ada9b7a5c76515d427ff47ce9c5d9cd7c133c2fbc3c13b4bc1d7897094698d3",
+      "bytes": 26864
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_value.cpp.o",
+      "sha256": "192dc8bc6233d7d280c50ffdf089fde9e58cec974b94376c24fabaea32cd27bb",
+      "bytes": 21256
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers_cxx.cpp.o",
+      "sha256": "f9c428882800a9c5e18302a2f44b8e4263b3f8927ba35909ba81215e5782f485",
+      "bytes": 60168
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash.cpp.o",
+      "sha256": "cf931e58e8caf6f66866d9f2ce90e4c8c410977a0e2a8cd1c6a997493d1b4850",
+      "bytes": 5272
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_itanium.cpp.o",
+      "sha256": "5ed60eb82145ec493775ef26be06dbce5371ed35542120a17ae6cfe36e3d8934",
+      "bytes": 15472
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_win.cpp.o",
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    }
+  ],
+  "object_preimage_total_bytes": 7358384,
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/candidate.json": "d123b25200cdfe26e78bc622d173d7eebe013f9927ad2b4e4bac9cf1a69ee8e4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/contract.json": "7c497b5073b0ea74d43f11f2b982e5c01138191226c67ff17c55db0650dc56bd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizer_repair.py": "f6e97415b653749f45a850931dd0992e5525fe34ed866a0cb0a182a79c1974ab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/contract.json": "4e5e3bc187c0d0f19c71be093c020deb5dd7eb02a12ac93ee198f57cebd249bb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "7eba0d12a5dd35f7db67a2f8f81154186f8d72de9edcae249d45f450a8bd7fc3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "7a67652ad0e12ffaf90cddadf39cdef4cf1134f41b2e610e12c4092b288916fc",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "9f6560988a953ad276acb9b63d6a5ed4a353c26415ba6ed1e7d12679a0a9d6bf",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/candidate-inputs.json": "1902660a825cf35e77825c70ad39e28ca60089934a7d59943bb8617de0838fc5",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py": "15800f647fa9fd39d553a5bc505da63ed41cef55fa53dcfa6569fa1e8f1117e6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-inputs.json": "19bcd3577ef5e64886f525992cb862982ff600e81560ae64773f3510a767cc97",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/source-review.json": "76ebb9f4bc66ea131b5784da61733a3c2c45fb7102acd7707134c110b501b7bc",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-copy-manifest.json": "2546187f11b24402052725de1199ac14b130b32ea79758a66540f6bad285d050",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/inventory.json": "029a8fba405a25c4f1e66e450ce986a0b7cc2ac3f7b1412c5203521d96a9c4aa",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/inventory.json": "029a8fba405a25c4f1e66e450ce986a0b7cc2ac3f7b1412c5203521d96a9c4aa",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/recipes.json": "37f79177a1afd808736b0cec56d73bd0695711d8b8b87c4cb17c8049016d7174",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/recipes.json": "37f79177a1afd808736b0cec56d73bd0695711d8b8b87c4cb17c8049016d7174",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/object.stdout": "2aa2aefb001ce2abf1574005acf6d3e36bbf6d6e643a63554f0696a1858a68b9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object.stdout": "2aa2aefb001ce2abf1574005acf6d3e36bbf6d6e643a63554f0696a1858a68b9",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/asan.stdout": "8383016a8eb6a415a26d0afcd004a52f5fc42eadd0f84b38cbf6262a7ca2ef16",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/asan.stdout": "8383016a8eb6a415a26d0afcd004a52f5fc42eadd0f84b38cbf6262a7ca2ef16",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/asan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/asan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/ubsan.stdout": "2052e5e79de16daa78e7b38bcb62e74ec4733366d18fd651ba350737c9a51b8c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/ubsan.stdout": "2052e5e79de16daa78e7b38bcb62e74ec4733366d18fd651ba350737c9a51b8c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/ubsan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/ubsan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/startup-source-parent.json": "ef622cdebcc3b94072c6c8768d2ebb887e9dfe9aac90e159763a0d876c83b5c3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/startup-source-parent.json": "ef622cdebcc3b94072c6c8768d2ebb887e9dfe9aac90e159763a0d876c83b5c3",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/prepare.py": "c078f035d371a4305e78c38dedc0b4ed99556e559a9c9ce57ca1be8c13cfcf1e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/prepare.py": "c078f035d371a4305e78c38dedc0b4ed99556e559a9c9ce57ca1be8c13cfcf1e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls.json": "51e7ee05fd1a02ae8cb6e6f15279b2689779ddff08db5412aa6856f2f69f2d2f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/patch-controls.json": "51e7ee05fd1a02ae8cb6e6f15279b2689779ddff08db5412aa6856f2f69f2d2f",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb": "14674020a476d32c6299b2082d005faac14732d573a7911689d71a93bef33d5f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/private.sb": "14674020a476d32c6299b2082d005faac14732d573a7911689d71a93bef33d5f",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-original.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-original.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-original.stderr": "ebce17df1a381adc1e84d276e76b62a65c2ab8f9d3c94db0a0689138c6c97dde",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-original.stderr": "ebce17df1a381adc1e84d276e76b62a65c2ab8f9d3c94db0a0689138c6c97dde",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-twice.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-twice.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-twice.stderr": "ae323ae337a5c485f15558d318930ad9f7cff3d80c54a45e4a1ff523d45fafff",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-twice.stderr": "ae323ae337a5c485f15558d318930ad9f7cff3d80c54a45e4a1ff523d45fafff",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-commit-final-4kdgab1e/postcommit.json": "02b2460d9294785ce5da77a574a7112602b3dea3e9a1cf628ca69299151f29ab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/failure-postcommit.json": "02b2460d9294785ce5da77a574a7112602b3dea3e9a1cf628ca69299151f29ab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/source-review-copy-manifest.json": "fcba95a03042799e09b93de1c6b35d8fb7608328636dd4575dcafbbff6bfbc53",
+    "/private/tmp/marketplace-task14a1-source-review-a38f3h/source-review.json": "76ebb9f4bc66ea131b5784da61733a3c2c45fb7102acd7707134c110b501b7bc",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/build-compiler-provenance.json": "84f3e038bd6b34b7eb90fd82fca36d762d126660535c7b77a56766a0843c1223",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-source-inputs.json": "12aa418fd469ac4a6dd417681e195f13fe6998109eaf60061aad4cf5f439cb4d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.json": "3bdb09210dea89c80ee686bec889e5c8f8ef981f9904331685685f8ed539ea44",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/object-dependencies.stdout": "a08e058575fe154da43943d73cc9767037d24c98a76fc5fd2e65cf59d16c5dda",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.stdout": "a08e058575fe154da43943d73cc9767037d24c98a76fc5fd2e65cf59d16c5dda",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/object-dependencies.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/prepared-launchers.json": "adcd8df0cab8148766a82d2c3d58f1800605729b9b77abc6b9db57b8e930f515",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/capacity-retry.py.source": "bd0119ad9741bd7d4d3f75c72839bba70e75edf61aecb0355bedd3e6f8645060",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/capacity.py": "08af475e8d798350504d23bf63f8712d77e1cfae1e209fe02541d05c6f03d720",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity.py.source": "08af475e8d798350504d23bf63f8712d77e1cfae1e209fe02541d05c6f03d720",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-editor-repair-gqjr4k4n/dispatch.py": "92be06211b634146c9ab2f9a8253b6a84e5e7440089accceb8ad3ec981eaac73",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/dispatch.py": "39e0268a36fc11cf736da436b3013dea7c80be7a2f5e3a7aa9682dc2f3268e6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/dispatch.py.source": "39e0268a36fc11cf736da436b3013dea7c80be7a2f5e3a7aa9682dc2f3268e6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/frozen-static.json": "be77aee9c706539ef85b5deb3e7ed2ff06be150777a1acd6d21a59bfc478e2dd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-review-secret-scan.json": "1ee8311d0b85c511e71b9fa5622904bce07bcdb4b2a82dbc12930732e9e7a4dd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-review-static.json": "8d997b783f9abc0f8467a37b8bea47f0b6ea067fd556677f2eca7724423fd928",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/appleapiopts.h": "efd9793f56c08917cf1ddf5108b78240ede88a5bbc8977d6fdaf1684b6b01c1c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/closure-secret-scan.json": "278a26ffb89992e4b1470dfa4b304a46ee0c384c69ba0927acea55dd6eca6d65",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-presets/closure-secret-scan.json": "911cd07b2bf0ae1f5a83224db7e75c5fcc839de72565254722a9723646fa2e9e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-abi-inputs/closure-secret-scan.json": "178c30df1e36d49a25c82a75f42330c5cbc0b20e0c919842971878b47da25c0e"
+  }
+}

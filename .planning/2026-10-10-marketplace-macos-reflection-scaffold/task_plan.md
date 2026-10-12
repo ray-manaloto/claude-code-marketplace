@@ -85,6 +85,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 13a | Native baseline preset preparation | Deterministic TCPM generation; eight trees, 32 cells, independent linkage and four preset kinds | Complete |
 | 13b | Native baseline matrix | Eight isolated preset trees; 32 build/test/runtime cells; independent linkage and exact dependency mapping | Complete |
 | 14a | LLVM ASan/UBSan runtime witnesses | Pinned source contract; clean reflection consumer and deliberate memory/overflow diagnostics | Failed; closure verified |
+| 14a1 | Private ASan startup repair | Exact source patch; original timeout control; seven sanitizer cases; independent review | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -266,3 +267,11 @@ No dependency build, preset expansion, shared write, cache or coverage is includ
 Retain the first failed capacity receipt. A separately reviewed rule may admit
 only the observed Zed clangd identities and ancestry, with fresh working-directory
 and identity checks, CPU limits and all other existing admission guards preserved.
+
+Task 14a1 admits one scratch runner, one source patch, sanitizer docs and these
+planning files. Reuse the reviewed confinement, capacity, lease and preservation
+guards. Build only private copies of the original and patched ASan runtime, using
+the captured 127-object recipe and one replaced object. Require the original
+startup timeout and all seven existing sanitizer cases before any later runtime
+promotion. Native work requires preparation review and fresh admission; shared
+source/build/prefix changes and instrumentation matrices are separate units.

@@ -1,0 +1,133 @@
+{
+  "result": "PASS: Task14a1 private sanitizer artifact/closure review with whitespace addendum",
+  "findings": [],
+  "reviewed_at": "2026-10-12T00:49:41.487759+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "55a37282b117fca534a86fedcdbd5c8352405e23",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "role": "Independent cold reviewer; parent sole implementation writer; no maintained-file changes",
+  "scope": "Five maintained implementation/documentation files plus one exact-path whitespace attribute. Private original/patched ASan A/B and seven sanitizer witnesses only.",
+  "helper_sha256": "f6e97415b653749f45a850931dd0992e5525fe34ed866a0cb0a182a79c1974ab",
+  "contract_sha256": "7c497b5073b0ea74d43f11f2b982e5c01138191226c67ff17c55db0650dc56bd",
+  "candidate_sha256": "1a63fa8681f428b84db5a8746fa4596aba2ed27772b7f71a0cc03c9bea7921c6",
+  "base_candidate_sha256": "07b2dda1dd215cf4f4c79bf634cb859da7f94aac6bc9e94068b93857831dbc52",
+  "preparation_review_sha256": "241ba0c9d73cc16d5c070d3e3fc21ea23b97eadd0930443b892743c4cbe6981c",
+  "qualification_sha256": "946ec44e87aab9a6a7307885467f443db8ac6df10b284be8fc795de412e69834",
+  "closure_sha256": "367c6388be405ec26425dc3f611c8f623e02689b927d775be3ef0fb36c8c472c",
+  "artifact_inventory_sha256": "caf15b87b3029711e90f1f831c4ff8ec34c1aa30015d61f2bffd7267ba25e1b5",
+  "reviewer_executed": [
+    {
+      "check": "Read-only base receipt/artifact comparison",
+      "returncode": 0,
+      "elapsed_seconds": 0.0774231250397861,
+      "receipt": "execution.json"
+    },
+    {
+      "check": "Read-only current-freeze/whitespace comparison and Git identity checks",
+      "returncode": 0,
+      "elapsed_seconds": 0.09027249994687736,
+      "receipt": "addendum-execution.json"
+    },
+    {
+      "check": "Git check-attr whitespace for exact dependency log, retained startup log, helper and docs",
+      "returncode": 0,
+      "result": "Only the two exact raw evidence paths have -blank-at-eof; helper/docs unspecified"
+    }
+  ],
+  "verified": {
+    "private_utf8_text_pairs": 95,
+    "private_command_log_bindings": 86,
+    "native_commands": 43,
+    "copy_pairs": {
+      "operation": 4,
+      "capacity": 17,
+      "preparation_review": 6
+    },
+    "new_artifacts_hashed_once": {
+      "count": 12,
+      "bytes": 2588625
+    },
+    "runtime_outcomes": [
+      {
+        "case": "asan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-memory",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "ubsan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "ubsan-overflow",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-memory",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-overflow",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      }
+    ],
+    "original_control": {
+      "returncode": -15,
+      "elapsed_seconds": 20.00372066698037,
+      "stdout_empty": true,
+      "original_runtime_exact": true
+    },
+    "recorded_preservation": "Default before/after bytes match; protected state unchanged; canonical lease free/unchanged; 44 owned PIDs absent in closure record. Reviewer did not repeat live probes.",
+    "dependencies": "195 original and 224 patched dependencies; one additional prebound SDK header and 28 explicitly post-observed SDK headers. Reviewer checked those 28 hashes; prior source inventory and 127 old objects were not rehashed.",
+    "whitespace": "The sole attribute addition names evidence/p2996-sanitizer-repair/object-dependencies.stdout; exact raw bytes are preserved. Seven current snapshots match the six-file candidate.",
+    "static_and_scan": "Inspected recorded baseline rc 0 for all 19 original acceptance files; inspected raw scanner rc 1 with 11 exact file-digest dispositions, transformed rc 0 and empty complete-token list. Current scan has 92 bindings: 87 inherited from completed base comparison and 5 newly hashed text bindings.",
+    "patch_sha256": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769"
+  },
+  "static_review": "Actual helper, patch and retained preparation review remain bound to unchanged inputs. Read the runtime logs, closure source, confinement profile, command arguments, dependency files and documentation deltas. Failure and timeout results remain explicit. Documentation accurately limits qualification to the private witnesses.",
+  "nonfatal_diagnostics": "Runtime relinks retain duplicate -lc++ warnings; ASan witness link retains input verification failed warning while returning 0. Actual seven runtime cases pass; warning-free build is not claimed.",
+  "not_executed": [
+    "Compiler, linker, codesign, lipo, patch or sanitizer runtime replay",
+    "Capacity/census, lock/lease or PID probe replay",
+    "Scanner or acceptance-baseline rerun",
+    "Old compiler/runtime binaries, 127 old objects or broad source inventory hash replay",
+    "Install, service, container, network, global configuration or model-session operation",
+    "Fresh Codex/Claude sessions or full Claude OCI/provider/hook acceptance"
+  ],
+  "unverified": [
+    "Installed-runtime promotion",
+    "Dependent-library instrumentation",
+    "Full sanitizer/configuration/linkage matrix",
+    "Generic no-allocation proof across hosts or OS versions"
+  ],
+  "supporting_files": [
+    "original-closure-candidate.json",
+    "original-closure-inputs.json",
+    "compare.py",
+    "comparison.json",
+    "execution.json",
+    "addendum.py",
+    "addendum-comparison.json",
+    "addendum-execution.json"
+  ]
+}

@@ -32,3 +32,23 @@ one compiler job and fresh capacity. It preserves compiler/source installations,
 global configuration and unrelated defaults. Loader paths establish selected
 runtime presence, not symbol-level exclusivity. These fixtures do not qualify
 dependency instrumentation, linkage matrices, coverage, TSan or LSan.
+
+Task 14a1 tests a private ASan repair for the observed macOS 27 startup path.
+The [source patch](../dev/toolchains/patches/p2996-asan-macos27-dyld.patch) uses
+the current task's public dyld information, checks its format, size, version and
+Mach-O header, and retains all mapping and shadow validation. The native A/B
+comparison supplies bounded startup evidence for the current macOS arm64 host.
+
+The [scratch runner](../dev/toolchains/p2996_sanitizer_repair.py) copies the 127
+retained runtime objects and builds two replacements for one mapping object.
+It links and signs private original and patched ASan libraries with the captured
+build recipe. The unchanged library must reproduce the bounded startup timeout;
+the patched library must pass the existing ASan and combined clean/error cases.
+Standalone UBSan uses the installed original runtime. The native operation
+exited 0: the original library timed out at 20 seconds, all three clean cases
+exited 0, and all four intended diagnostics exited 86. Loader traces selected
+the expected exact libraries. [Closure evidence](../evidence/p2996-sanitizer-repair/operation/closure.json)
+records released ownership and preserved shared state. Independent
+[artifact review](../evidence/p2996-sanitizer-repair/artifact-review.json) passed
+without findings. These are private runtime witnesses. Installed-runtime
+promotion, dependency instrumentation and matrix qualification remain separate.

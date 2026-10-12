@@ -1,0 +1,176 @@
+{
+  "state": "PASS: exact patch/reverse and rejection controls",
+  "commands": [
+    {
+      "case": "reverse-original",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "--reverse",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "elapsed_seconds": 0.020668999990448356,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-original.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-original.stderr",
+          "sha256": "ebce17df1a381adc1e84d276e76b62a65c2ab8f9d3c94db0a0689138c6c97dde"
+        }
+      ]
+    },
+    {
+      "case": "apply-check",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "elapsed_seconds": 0.01955929188989103,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "apply",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "elapsed_seconds": 0.020060041919350624,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "apply-twice",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "elapsed_seconds": 0.020215250086039305,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-twice.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/apply-twice.stderr",
+          "sha256": "ae323ae337a5c485f15558d318930ad9f7cff3d80c54a45e4a1ff523d45fafff"
+        }
+      ]
+    },
+    {
+      "case": "reverse-check",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "--reverse",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "elapsed_seconds": 0.02125737490132451,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "reverse",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/private.sb",
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/patch-controls",
+        "apply",
+        "--unidiff-zero",
+        "--reverse",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "elapsed_seconds": 0.0215960000641644,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/reverse.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "compiler_executed": false,
+  "shared_source_unchanged": true
+}
