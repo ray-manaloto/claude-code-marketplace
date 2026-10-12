@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-12T04:34:00.141938+00:00",
+  "base_head": "6b31a44455de2da2e204a3d02040b21bb7dc72c1",
+  "checks": [
+    {
+      "command": "./dev/mise tasks validate",
+      "returncode": 0,
+      "tasks": 2
+    },
+    {
+      "command": "./dev/mise run check",
+      "returncode": 0,
+      "json": 2209,
+      "python": 161,
+      "shell": 6,
+      "toml": 16
+    },
+    {
+      "command": "./dev/mise run check:acceptance-baseline",
+      "returncode": 0,
+      "original_hashes": 19
+    },
+    {
+      "command": "git diff --check",
+      "returncode": 0
+    },
+    {
+      "command": "read-only contract and installed guard",
+      "returncode": 0,
+      "inputs": 191,
+      "source_inputs": 881,
+      "tools": 29,
+      "abi_groups": 4,
+      "driver_logs": 3
+    }
+  ]
+}

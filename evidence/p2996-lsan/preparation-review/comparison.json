@@ -1,0 +1,777 @@
+{
+  "artifact_bytes_read": 1586464,
+  "artifacts": [
+    {
+      "bytes": 482960,
+      "kind": "installed-lsan",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "1f79e1baa872d675f27ab0a140662f08a9368c6ac0277100d4f8c1c7df9763e6",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "9912E3A9-7CEC-3952-9749-72B257BA6EEF"
+      ]
+    },
+    {
+      "bytes": 1103504,
+      "kind": "installed-tsan",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+      ]
+    }
+  ],
+  "branch": "codex/marketplace-native-onboarding",
+  "candidate_sha256": "3d0dc82922af5f8bd83cabdf8bcf5f1880bb58d2d53016eb30b358a28b6e0364",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "checks": {
+    "contract_derivation": {
+      "all_source_input_entries_unchanged": true,
+      "current_counts": [
+        191,
+        881,
+        29
+      ],
+      "direct_inputs_added": [
+        "dev/toolchains/lsan_witness.cpp"
+      ],
+      "full_inventory_files_rehashed": false,
+      "prior_counts": [
+        190,
+        881,
+        28
+      ],
+      "prior_direct_inputs_unchanged": true,
+      "remaining_fields_match_exact_derivation": true,
+      "tool_digests_changed": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib"
+      ],
+      "tool_paths_added": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+      ]
+    },
+    "driver_probe": {
+      "cases": [
+        {
+          "case": "lsan",
+          "cc1_sanitizers": [
+            "leak"
+          ],
+          "default_probe_triple": "arm64-apple-macosx28.0.0",
+          "dynamic_runtime_paths": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+          ],
+          "reported_returncode": 0
+        },
+        {
+          "case": "lsan-ubsan",
+          "cc1_sanitizers": [
+            "leak",
+            "alignment",
+            "array-bounds",
+            "bool",
+            "builtin",
+            "enum",
+            "float-cast-overflow",
+            "function",
+            "integer-divide-by-zero",
+            "nonnull-attribute",
+            "null",
+            "pointer-overflow",
+            "return",
+            "returns-nonnull-attribute",
+            "shift-base",
+            "shift-exponent",
+            "signed-integer-overflow",
+            "unreachable",
+            "vla-bound"
+          ],
+          "default_probe_triple": "arm64-apple-macosx28.0.0",
+          "dynamic_runtime_paths": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+          ],
+          "reported_returncode": 0
+        }
+      ],
+      "copies": [
+        {
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/summary.json",
+          "sha256": "1f963f5c95980a4ee169601d3e505f32743b4a18851a5a174037ff191e64eb54",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/summary.json"
+        },
+        {
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stderr",
+          "sha256": "d6de28102c9c6ba4e63e358520c2e5e3cae47484928ca5a39d04b2926ab15008",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stderr"
+        },
+        {
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stdout"
+        },
+        {
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stderr",
+          "sha256": "4205a369a2f772b84e22eaa2f67bb1b50de0c4248057bb1e9ccdd8bf8221aba8",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stderr"
+        },
+        {
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stdout"
+        }
+      ],
+      "limit": "Stored -### output and reported rc 0 establish retained driver-selection evidence only; no compile/link/witness execution, timing or PID independently reconstructed.",
+      "reviewer_reexecuted_driver": false
+    },
+    "final_git_identity": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "branch",
+          "--show-current"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "codex/marketplace-native-onboarding"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "6b31a44455de2da2e204a3d02040b21bb7dc72c1"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--git-common-dir"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+      }
+    ],
+    "frozen_texts_stable": true,
+    "parent_static_receipt": {
+      "reported_checks": [
+        {
+          "command": "./dev/mise tasks validate",
+          "returncode": 0,
+          "tasks": 2
+        },
+        {
+          "command": "./dev/mise run check",
+          "json": 2209,
+          "python": 161,
+          "returncode": 0,
+          "shell": 6,
+          "toml": 16
+        },
+        {
+          "command": "./dev/mise run check:acceptance-baseline",
+          "original_hashes": 19,
+          "returncode": 0
+        },
+        {
+          "command": "git diff --check",
+          "returncode": 0
+        },
+        {
+          "abi_groups": 4,
+          "command": "read-only contract and installed guard",
+          "driver_logs": 3,
+          "inputs": 191,
+          "returncode": 0,
+          "source_inputs": 881,
+          "tools": 29
+        }
+      ],
+      "reviewer_reran_checks": false,
+      "sha256": "f50b3464f1c4692faa30ceb8adbf86221fa105468efd18dbaa239240c208a882"
+    },
+    "runner": {
+      "diff": "--- p2996_tsan.py\n+++ p2996_lsan.py\n@@ -1,4 +1,4 @@\n-\"\"\"Qualify P2996 ThreadSanitizer and combined UBSan reflection witnesses.\"\"\"\n+\"\"\"Qualify P2996 LeakSanitizer and combined UBSan reflection witnesses.\"\"\"\n \n import argparse\n from datetime import datetime, timezone\n@@ -17,13 +17,13 @@\n \n from gcc_install import ROOT, census, digest, read\n from mise_runtime import function, load\n-from p2996_asan_runtime import protected\n+from p2996_tsan_runtime import identity, protected\n from p2996_sanitizers import admit_editors\n from p2996_configure import LOCK_MODULE, LOCK_SHA\n from vcpkg_fmt import build_environment\n \n-EVIDENCE = ROOT / \"evidence/p2996-tsan\"\n-CONTRACT_SHA = \"4bb345582c7253694e37b958c77154b5d98ac522e3e89858eac2fb2c2b828ea5\"\n+EVIDENCE = ROOT / \"evidence/p2996-lsan\"\n+CONTRACT_SHA = \"7a354f2fadd869349a9acb04fbdf12ed527312e63eab689bc2c68461362e2c74\"\n \n \n \n@@ -54,7 +54,10 @@\n         data = load(EVIDENCE / \"contract.json\")\n         assert all(digest(ROOT / p) == sha for p, sha in data[\"inputs\"].items())\n         assert all(digest(Path(p)) == sha for p, sha in (data[\"tools\"] | data[\"source_inputs\"]).items())\n+        assert all(digest(EVIDENCE / \"driver-probe\" / name) == sha for name, sha in data[\"driver_probe\"].items())\n         assert all(digest(Path(row[\"path\"])) == row[\"sha256\"] for rows in data[\"abi_inputs\"].values() for row in rows)\n+        runtime = data[\"lsan_runtime\"]\n+        assert identity(Path(runtime[\"path\"])) == {key: runtime[key] for key in (\"sha256\", \"bytes\", \"mode\")}\n         assert sys.executable in data[\"tools\"] and digest(LOCK_MODULE) == LOCK_SHA\n         assert digest(Path(__file__)) == report[\"helper_sha256\"]\n         return data, protected()\n@@ -108,7 +111,7 @@\n         spec.loader.exec_module(lease)\n         assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / \".local/state/dotfiles/heavy-gate.lock\"\n         assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE)) and not os.environ.get(lease.LOCK_FD_ENV)\n-        with lease.held(lease.HEAVY_GATE, \"marketplace-p2996-tsan\", wait_s=0, out=io.StringIO()) as fd:\n+        with lease.held(lease.HEAVY_GATE, \"marketplace-p2996-lsan\", wait_s=0, out=io.StringIO()) as fd:\n             assert fd is not None\n             processes = run(\"capacity-processes\", [\"/bin/ps\", \"-axo\", \"pid=,pcpu=,comm=\"])\n             active = [line for line in processes.splitlines() if re.fullmatch(\n@@ -156,7 +159,7 @@\n                 obj, binary = cell / \"core.o\", cell / \"witness\"\n                 flags = settings[\"flags\"]\n                 run(mode + \"-core\", compiler + flags + [\"-freflection\", \"-c\", ROOT / \"src/core.cpp\", \"-o\", obj], descriptor=fd, monitor=True)\n-                run(mode + \"-link\", compiler + flags + [ROOT / \"dev/toolchains/tsan_witness.cpp\", obj,\n+                run(mode + \"-link\", compiler + flags + [ROOT / \"dev/toolchains/lsan_witness.cpp\", obj,\n                     \"-nostdlib++\", *libraries, \"-Wl,-rpath,\" + str(prefix / \"lib\"), \"-o\", binary], descriptor=fd, monitor=True)\n                 artifacts = {}\n                 for name, path in ((\"object\", obj), (\"binary\", binary)):\n@@ -176,10 +179,10 @@\n                     if expected:\n                         assert all(token in trace for token in settings[\"errors\"][name]), trace\n                     else:\n-                        assert not any(token in trace for token in (\"WARNING: ThreadSanitizer\", \"FATAL: ThreadSanitizer\", \"runtime error:\", \"Sanitizer CHECK failed\")), trace\n+                        assert not any(token in trace for token in (\"ERROR: LeakSanitizer\", \"FATAL: LeakSanitizer\", \"runtime error:\", \"Sanitizer CHECK failed\")), trace\n                     report[\"cells\"][mode][\"runs\"][name] = {\"expected_returncode\": expected, \"loaded\": sorted(loaded)}\n                     save()\n-            assert set(report[\"cells\"]) == {\"tsan\", \"tsan-ubsan\"}\n+            assert set(report[\"cells\"]) == {\"lsan\", \"lsan-ubsan\"}\n             env.clear()\n             env.update(base_env)\n             source_state(\"source-after\")\n@@ -187,7 +190,7 @@\n             report[\"writer_census_after\"] = census()\n             guard()\n         report[\"lease_released\"] = True\n-        report[\"state\"] = \"PASS: P2996 TSan and TSan+UBSan clean/error reflection witnesses\"\n+        report[\"state\"] = \"PASS: P2996 LSan and LSan+UBSan clean/error reflection witnesses\"\n     except BaseException as error:\n         report.update(state=\"FAIL\", error=repr(error))\n         raise\n",
+      "exact_adaptation_replacements": 10,
+      "line_count": 210,
+      "missing_dynamic_function_globals": [],
+      "native_dynamic_function_nonbuiltin_global_names": [
+        "datetime",
+        "digest",
+        "directory",
+        "env",
+        "json",
+        "os",
+        "report",
+        "save",
+        "shutil",
+        "signal",
+        "subprocess",
+        "time",
+        "timezone"
+      ],
+      "native_function_executed": false,
+      "parent_functions_executed": [],
+      "predecessor_helper_sha256": "529c032a98b31963e2ee218dfe81eb2a250924f7ef984376fc026b30f38683d1",
+      "python_syntax_compiled_without_execution": true,
+      "unchanged_nested_functions": [
+        "save",
+        "run",
+        "source_state",
+        "interrupted"
+      ],
+      "witness_line_count": 35
+    },
+    "secret_scan_receipt": {
+      "bound_files": 15,
+      "limit": "Only the supplied receipt and its 15 text-file bindings were verified. Six digest dispositions match inherited contract metadata; SDK/object/source disposition targets were not rehashed. Scanner execution and raw reports were not re-audited.",
+      "raw_or_transformed_report_files_read": false,
+      "reported_complete_token_files": [],
+      "reported_dispositions": [
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o",
+          "sha256": "516d3a62a7119b2ad624a68d55957e4cd4a9013dd281dbc97aeca6ef73d161f6"
+        },
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/appleapiopts.h",
+          "sha256": "efd9793f56c08917cf1ddf5108b78240ede88a5bbc8977d6fdaf1684b6b01c1c"
+        },
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/final-secret-scan.json",
+          "sha256": "c1811b8f1ac98747034c26b695de1a0f100cc2ecd23fb5136027f09eccd0f1b8"
+        },
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/closure-secret-scan.json",
+          "sha256": "278a26ffb89992e4b1470dfa4b304a46ee0c384c69ba0927acea55dd6eca6d65"
+        },
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-presets/closure-secret-scan.json",
+          "sha256": "911cd07b2bf0ae1f5a83224db7e75c5fcc839de72565254722a9723646fa2e9e"
+        },
+        {
+          "disposition_target_read": false,
+          "matches_inherited_contract_entry": true,
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-abi-inputs/closure-secret-scan.json",
+          "sha256": "178c30df1e36d49a25c82a75f42330c5cbc0b20e0c919842971878b47da25c0e"
+        }
+      ],
+      "reported_raw_returncode": 1,
+      "reported_transformed_returncode": 0,
+      "scan_rerun": false,
+      "scanner_script_read": false,
+      "script_sha256_recorded": "48e31ded63bc8e3fe7a3170931424ab6483fac8a56ca2e7c5a973c6f3f6cb50b",
+      "sha256": "a06b610f512c2f70c73855753258d98bf9c0e906c54a5f34628371077f7111f3"
+    },
+    "source_backed_lsan_flags": {
+      "conclusion": "LSAN_OPTIONS registers common flags; enabled at-exit leak check records leaks; Darwin HandleLeaks is empty and _exit interceptor replaces successful exit status with configured exitcode. Runtime behavior remains unexecuted.",
+      "files": [
+        {
+          "bound_in_contract": false,
+          "bytes": 3188,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan.cpp",
+          "sha256": "fa8c94f45fe1211d03974035aacdd82cf6434768e07a31b1affff5847d2c53e9"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 41742,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.cpp",
+          "sha256": "326dd4c044fda36be4083dbb1e2649176b78dc93f42a82161525faef9b7cbd62"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 2545,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_flags.inc",
+          "sha256": "1c12b9dd36a3b6c926456a44e0303cb203172400240a32fe0fa391178b254713"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 6948,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_mac.cpp",
+          "sha256": "83a8932d534e52d1cb0338d93c0e5f344b140e06cca8799d6de0813966f0c4b7"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 8434,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common_mac.cpp",
+          "sha256": "09b086853e9cb29b552c2f0c5b54e465bd46b8e960b0786588cf0509746b0997"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 11993,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.h",
+          "sha256": "d931f7b913a4bd677cc4129955518e236dddd8b359dff56b6203e20eea92dfc9"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 3861,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_posix.cpp",
+          "sha256": "573dfdabc386649c6489f22ecba9763f75e6a65cbcce972e1aeefb4ed1ac052b"
+        },
+        {
+          "bound_in_contract": false,
+          "bytes": 19149,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_interceptors.cpp",
+          "sha256": "98d78365dd32872fe856173b77a98374848df3891a924b73e8c9348dc52293ff"
+        },
+        {
+          "bound_in_contract": true,
+          "bytes": 14872,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_flags.inc",
+          "sha256": "694b3494a98237cb8f3029a6f3f572c4a27fdbbddbedafcb42ec44364234127b"
+        },
+        {
+          "bound_in_contract": true,
+          "bytes": 3047,
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_termination.cpp",
+          "sha256": "7ed073063b646b64b77beaf8b29200510fefd02a11ec4b9f7d4300d3a6120146"
+        }
+      ],
+      "limit": "These are exact scoped source text observations. Files absent from the inherited 881-entry map were independently hashed here but are not newly added to that contract.",
+      "source_git_identity_rechecked": false
+    },
+    "static_argument_plans": {
+      "executed": false,
+      "modes": {
+        "lsan": {
+          "cases": {
+            "clean": 0,
+            "leak": 86
+          },
+          "core_argv": [
+            "/usr/bin/sandbox-exec",
+            "-f",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/private.sb",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-fPIC",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-arch",
+            "arm64",
+            "-std=c++26",
+            "-O1",
+            "-g",
+            "-fno-omit-frame-pointer",
+            "-fno-optimize-sibling-calls",
+            "-I",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+            "-pedantic-errors",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=leak",
+            "-freflection",
+            "-c",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+            "-o",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan/core.o"
+          ],
+          "link_argv": [
+            "/usr/bin/sandbox-exec",
+            "-f",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/private.sb",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-fPIC",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-arch",
+            "arm64",
+            "-std=c++26",
+            "-O1",
+            "-g",
+            "-fno-omit-frame-pointer",
+            "-fno-optimize-sibling-calls",
+            "-I",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+            "-pedantic-errors",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=leak",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/lsan_witness.cpp",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan/core.o",
+            "-nostdlib++",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+            "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+            "-o",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan/witness"
+          ],
+          "runtime_environment": {
+            "LSAN_OPTIONS": "detect_leaks=1:exitcode=86:symbolize=0",
+            "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1"
+          }
+        },
+        "lsan-ubsan": {
+          "cases": {
+            "clean": 0,
+            "leak": 86,
+            "overflow": 86
+          },
+          "core_argv": [
+            "/usr/bin/sandbox-exec",
+            "-f",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/private.sb",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-fPIC",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-arch",
+            "arm64",
+            "-std=c++26",
+            "-O1",
+            "-g",
+            "-fno-omit-frame-pointer",
+            "-fno-optimize-sibling-calls",
+            "-I",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+            "-pedantic-errors",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=leak,undefined",
+            "-freflection",
+            "-c",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+            "-o",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan-ubsan/core.o"
+          ],
+          "link_argv": [
+            "/usr/bin/sandbox-exec",
+            "-f",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/private.sb",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-fPIC",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-arch",
+            "arm64",
+            "-std=c++26",
+            "-O1",
+            "-g",
+            "-fno-omit-frame-pointer",
+            "-fno-optimize-sibling-calls",
+            "-I",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+            "-pedantic-errors",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=leak,undefined",
+            "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/lsan_witness.cpp",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan-ubsan/core.o",
+            "-nostdlib++",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+            "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+            "-o",
+            "/REVIEW_STATIC_PATH_ONLY/task14c/lsan-ubsan/witness"
+          ],
+          "runtime_environment": {
+            "LSAN_OPTIONS": "detect_leaks=1:exitcode=86:symbolize=0",
+            "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1"
+          }
+        }
+      },
+      "virtual_root": "/REVIEW_STATIC_PATH_ONLY/task14c"
+    }
+  },
+  "contract_sha256": "7a354f2fadd869349a9acb04fbdf12ed527312e63eab689bc2c68461362e2c74",
+  "git_common_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "head": "6b31a44455de2da2e204a3d02040b21bb7dc72c1",
+  "helper_sha256": "fc6ddd3c2dd68a8da17e3065c6407fd25f4b746979296f4bdf723b491cc6c5b0",
+  "native_commands_executed": false,
+  "recorded_at": "2026-10-12T04:43:02.421673+00:00",
+  "result": "PASS: bounded Task 14c preparation comparisons",
+  "reviewer_python": "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+  "watched_text_count": 42,
+  "watched_texts": [
+    {
+      "bytes": 1228,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/candidate.json",
+      "sha256": "3d0dc82922af5f8bd83cabdf8bcf5f1880bb58d2d53016eb30b358a28b6e0364"
+    },
+    {
+      "bytes": 3550,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/derive.py.source",
+      "sha256": "e0082997dc069c80bda42a82a9d5427a746a9d1ed97616b623468d84e75e2afa"
+    },
+    {
+      "bytes": 239249,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/contract.json",
+      "sha256": "7a354f2fadd869349a9acb04fbdf12ed527312e63eab689bc2c68461362e2c74"
+    },
+    {
+      "bytes": 791,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/pre-review-static.json",
+      "sha256": "f50b3464f1c4692faa30ceb8adbf86221fa105468efd18dbaa239240c208a882"
+    },
+    {
+      "bytes": 591,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/candidate-inputs.json",
+      "sha256": "d47cdb398750074ab949a58e62c65418c5eae216f09cca3ff0dc3d40ba67fe64"
+    },
+    {
+      "bytes": 1057,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/summary.json",
+      "sha256": "1f963f5c95980a4ee169601d3e505f32743b4a18851a5a174037ff191e64eb54"
+    },
+    {
+      "bytes": 4101,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stderr",
+      "sha256": "d6de28102c9c6ba4e63e358520c2e5e3cae47484928ca5a39d04b2926ab15008"
+    },
+    {
+      "bytes": 4836,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stderr",
+      "sha256": "4205a369a2f772b84e22eaa2f67bb1b50de0c4248057bb1e9ccdd8bf8221aba8"
+    },
+    {
+      "bytes": 13064,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py",
+      "sha256": "fc6ddd3c2dd68a8da17e3065c6407fd25f4b746979296f4bdf723b491cc6c5b0"
+    },
+    {
+      "bytes": 1171,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/lsan_witness.cpp",
+      "sha256": "f6b9432ea5cc84eec9ca2bc4c06e3343c719368401e53d09971cd5699a30a1b7"
+    },
+    {
+      "bytes": 12004,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md",
+      "sha256": "8489ec235046ce4a7350345a0d1b3aa84d3ca7ab0984de091c675da7a358c5ee"
+    },
+    {
+      "bytes": 27656,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "1be8711290074f104bdff61cbeb5ff18ca6159eb0a62637a45a7cd1fd6736eab"
+    },
+    {
+      "bytes": 116410,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "42e493ad3f6eff6cff58659c73f9126390bd1af9b7fa2b3d1787f7c88a34244e"
+    },
+    {
+      "bytes": 239644,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/contract.json",
+      "sha256": "f9188f06abf5735196e08775c5e84285b0e4139831d053e41b5a3a376ab4bf53"
+    },
+    {
+      "bytes": 22776,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/artifact-review/review.json",
+      "sha256": "db51e70d97e127394c1d9f81eaf4321d1893e854861ae4b68bc3db0bc5774377"
+    },
+    {
+      "bytes": 4194,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_runtime.py",
+      "sha256": "59e629bfcca5e16653d58409b6c20a8eec6c5e8108a4499dc6bb530ab4e3252e"
+    },
+    {
+      "bytes": 4606,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_runtime.py",
+      "sha256": "ff283bc8542f2faa36e0aa5f7754c983c6735905a12bc16e535741aa2056d7aa"
+    },
+    {
+      "bytes": 7299,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_runtime.py",
+      "sha256": "8c22ca727824fa10cd2cf6f7a08b8499c33f0e82245c9d93cd871f1ff26d728f"
+    },
+    {
+      "bytes": 16882,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_fmt.py",
+      "sha256": "153d6a12eb9158d5b0a61edbeae2c5c3ead411e3815aedbca53181b7fbc109bc"
+    },
+    {
+      "bytes": 14314,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_private.py",
+      "sha256": "7e1d7cae675be05b70e96c429e38240125be8e9cd88c2ffe007664a10921b60a"
+    },
+    {
+      "bytes": 13685,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py",
+      "sha256": "15800f647fa9fd39d553a5bc505da63ed41cef55fa53dcfa6569fa1e8f1117e6"
+    },
+    {
+      "bytes": 22556,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f"
+    },
+    {
+      "bytes": 530575,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/operation/qualification.json",
+      "sha256": "5c0acea8fb316a4873cc1f924b05a4d27b380a126d1c976ba9bb6458c345aa9c"
+    },
+    {
+      "bytes": 12800,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan.py",
+      "sha256": "529c032a98b31963e2ee218dfe81eb2a250924f7ef984376fc026b30f38683d1"
+    },
+    {
+      "bytes": 3188,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan.cpp",
+      "sha256": "fa8c94f45fe1211d03974035aacdd82cf6434768e07a31b1affff5847d2c53e9"
+    },
+    {
+      "bytes": 41742,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.cpp",
+      "sha256": "326dd4c044fda36be4083dbb1e2649176b78dc93f42a82161525faef9b7cbd62"
+    },
+    {
+      "bytes": 2545,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_flags.inc",
+      "sha256": "1c12b9dd36a3b6c926456a44e0303cb203172400240a32fe0fa391178b254713"
+    },
+    {
+      "bytes": 6948,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_mac.cpp",
+      "sha256": "83a8932d534e52d1cb0338d93c0e5f344b140e06cca8799d6de0813966f0c4b7"
+    },
+    {
+      "bytes": 8434,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common_mac.cpp",
+      "sha256": "09b086853e9cb29b552c2f0c5b54e465bd46b8e960b0786588cf0509746b0997"
+    },
+    {
+      "bytes": 11993,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.h",
+      "sha256": "d931f7b913a4bd677cc4129955518e236dddd8b359dff56b6203e20eea92dfc9"
+    },
+    {
+      "bytes": 3861,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_posix.cpp",
+      "sha256": "573dfdabc386649c6489f22ecba9763f75e6a65cbcce972e1aeefb4ed1ac052b"
+    },
+    {
+      "bytes": 19149,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_interceptors.cpp",
+      "sha256": "98d78365dd32872fe856173b77a98374848df3891a924b73e8c9348dc52293ff"
+    },
+    {
+      "bytes": 14872,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_flags.inc",
+      "sha256": "694b3494a98237cb8f3029a6f3f572c4a27fdbbddbedafcb42ec44364234127b"
+    },
+    {
+      "bytes": 3047,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_termination.cpp",
+      "sha256": "7ed073063b646b64b77beaf8b29200510fefd02a11ec4b9f7d4300d3a6120146"
+    },
+    {
+      "bytes": 1057,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/summary.json",
+      "sha256": "1f963f5c95980a4ee169601d3e505f32743b4a18851a5a174037ff191e64eb54"
+    },
+    {
+      "bytes": 4101,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stderr",
+      "sha256": "d6de28102c9c6ba4e63e358520c2e5e3cae47484928ca5a39d04b2926ab15008"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4836,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stderr",
+      "sha256": "4205a369a2f772b84e22eaa2f67bb1b50de0c4248057bb1e9ccdd8bf8221aba8"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4131,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/pre-review-secret-scan.json",
+      "sha256": "a06b610f512c2f70c73855753258d98bf9c0e906c54a5f34628371077f7111f3"
+    }
+  ]
+}

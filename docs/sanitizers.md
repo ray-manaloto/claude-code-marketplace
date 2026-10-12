@@ -155,3 +155,18 @@ source and default outputs, absent owned processes and a free lease.
 passed without findings: its bounded comparison checked 24 command receipts,
 48 logs, 55 text snapshots, eight copy pairs and five binary artifacts. The
 review did not rerun the native witnesses or full Claude/container acceptance.
+
+Task 14c prepares a private [LSan witness](../dev/toolchains/lsan_witness.cpp)
+and [confined runner](../dev/toolchains/p2996_lsan.py). The pinned compiler's
+`-###` probes accept standalone LSan and LSan+UBSan and select the installed
+LSan runtime; they do not compile or execute a witness. The [contract](../evidence/p2996-lsan/contract.json)
+binds that runtime, both probe logs, the current installed TSan, the prior
+source/build inventory and the leak/overflow expectations. Preparation review
+passed. The first native launch refused an unknown writer before any command;
+the admitted retry compiled and linked the standalone LSan arm64 witness, then
+timed out during the clean exit-time leak scan. Its [closure](../evidence/p2996-lsan/failed-native/closure.json)
+shows no installed change, no remaining owned process and a free lease. The
+[diagnostic sample](../evidence/p2996-lsan/diagnostic/sample-sample.txt) places
+the worker inside dyld's lazy callback while LSan's allocator lock is held.
+LSan and LSan+UBSan runtime behavior remains unqualified pending a separately
+reviewed runtime repair.
