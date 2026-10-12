@@ -8,16 +8,18 @@ if [ "$mise_bin" -ef "$0" ]; then
     echo "dev/mise: set MARKETPLACE_MISE_BIN to the installed mise executable" >&2
     exit 2
 fi
+export MARKETPLACE_MISE_BIN="$mise_bin"
+export MISE_DATA_DIR="$project_root/.mise"
 
 export MISE_OVERRIDE_CONFIG_FILENAMES=mise.dev.toml
-export MISE_CEILING_PATHS="$project_root"
-export MISE_GLOBAL_CONFIG_FILE="$project_root/mise.dev.toml"
-export MISE_SYSTEM_CONFIG_FILE="$project_root/mise.dev.toml"
+export MISE_CEILING_PATHS="$(dirname "$project_root")"
+export MISE_GLOBAL_CONFIG_FILE="$project_root/dev/empty-mise.toml"
+export MISE_SYSTEM_CONFIG_FILE="$project_root/dev/empty-mise.toml"
 export MISE_GLOBAL_CONFIG_ROOT="$project_root"
 export MISE_CONFIG_DIR="$project_root/dev"
 export MISE_SYSTEM_CONFIG_DIR="$project_root/dev"
 export MISE_TRUSTED_CONFIG_PATHS="$project_root/mise.dev.toml"
 export MISE_AUTO_INSTALL=0 MISE_EXEC_AUTO_INSTALL=0 MISE_TASK_RUN_AUTO_INSTALL=0
-unset MISE_ENV MISE_ENV_FILE __MISE_DIFF __MISE_SESSION __MISE_ORIG_PATH
+unset MISE_ENV MISE_ENV_FILE MISE_TASK_SKIP_DEPENDS __MISE_DIFF __MISE_SESSION __MISE_ORIG_PATH
 
 exec "$mise_bin" --no-hooks --cd "$project_root" "$@"

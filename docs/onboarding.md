@@ -35,12 +35,20 @@ Use the explicit development wrapper from this checkout:
 ```
 
 From another cwd, invoke `/absolute/path/to/claude-code-marketplace/dev/mise`.
-The wrapper selects only `mise.dev.toml`, disables hooks and auto-install, and
-sets trust only in its process environment for that reviewed file. It does not
-persist trust or edit global configuration. It needs installed mise, Git, shells
-and Python 3.11+; set `MARKETPLACE_PYTHON` to an existing interpreter if necessary.
-`MARKETPLACE_MISE_BIN` can select an existing mise executable. No tool versions
-are installed or promoted here. See [check receipts](../evidence/onboarding/development-checks.json).
+The wrapper selects only `mise.dev.toml`, disables hooks and auto-install,
+clears inherited dependency-skip state, and uses project `.mise` for managed
+tools. It does not persist trust or edit global configuration. It needs
+installed mise, Git, shells and Python 3.11+ for bootstrap; set
+`MARKETPLACE_PYTHON` to an existing interpreter if necessary.
+`MARKETPLACE_MISE_BIN` can select an existing mise executable. Initial
+onboarding checks installed nothing; see its [receipts](../evidence/onboarding/development-checks.json).
+
+A01 added explicit `tools:prepare` and `deps:sync` tasks for the exact
+`mise.dev.lock` tools and `uv.lock` dependencies. They install into project
+`.mise` and `.venv`, respectively. Run them only when preparing that environment;
+normal `deps:check`, test and research tasks refuse missing or drifted locks and
+never silently sync. `deps:check` also imports `ssl` and the locked SDK with the
+selected interpreter, catching a tool that is installed but cannot run.
 
 `check` parses JSON/TOML, compiles Python syntax without cache writes, checks
 shell syntax and manifest identities/dependency policy, and checks diff whitespace.
