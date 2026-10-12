@@ -1,0 +1,113 @@
+{
+  "result": "PASS: Task 14b independent preparation review; native TSan qualification remains unexecuted",
+  "findings": [],
+  "reviewed_at": "2026-10-12T02:04:13.635104+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "757a72bd22d774d8533b8f831c8ee604ce0109b8",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": "Five maintained files: TSan runner, pthread fixture, sanitizer docs and selected task plan/progress. Parent remains sole implementation writer; reviewer wrote only this private review directory.",
+  "candidate_sha256": "b7df8d3e159caaa181945fab4dae6206e1016ac315412bb72d9e6c4ecf7d38a8",
+  "helper_sha256": "529c032a98b31963e2ee218dfe81eb2a250924f7ef984376fc026b30f38683d1",
+  "contract_sha256": "4bb345582c7253694e37b958c77154b5d98ac522e3e89858eac2fb2c2b828ea5",
+  "fixture_sha256": "fdf915b4bc4242dcb6fe7db025c721fdb1e2a1d797775000b8b88af76f522f7f",
+  "prepared_launchers_sha256": "b4be6794bc6bf6be2ae1954654dfefdcd3ad88c304cff9ed80da64cd101c69a3",
+  "source_prerequisite_sha256": "e780e1e62fe318ede93ac30d4e0ae0234786caf9719aa957218e468a13f987e4",
+  "inherited_artifact_review_sha256": "1b327c1afe3be795009c4b233fa958bec39705806b801e1f0cea91861c265121",
+  "static_review": {
+    "witness_correctness": "The clean branch joins the created worker before its second volatile write, keeping the shared object alive through the join. The deliberate race performs the second write before joining, leaving the two writes unordered, and returns 4 if no sanitizer termination occurs. The overflow branch has no racing worker; volatile INT_MAX + 1 triggers signed overflow while the clean calculation uses INT_MAX - 1 and expects INT_MAX. Reflection output is checked and flushed before all cases.",
+    "public_interface": "The public-header fixture rejects reflection-enabled compilation. The inherited baseline compiler flags contain no reflection flag; only the separate src/core.cpp compilation adds -freflection. Both compile and link commands receive the selected sanitizer flags.",
+    "runtime_verdicts": "Two clean cases require exit 0 and no TSan/UBSan diagnostic. Two race cases and one combined signed-overflow case require exit 86 and exact diagnostic tokens. All five require exact reflection stdout and exact installed TSan runtime identity in the loader trace plus selected prefix libc++, libc++abi and libunwind. Source excerpts establish Darwin arm64 support and embedded UBSan; standalone UBSan is correctly excluded from the expected combined runtime set.",
+    "fresh_environment": "The reviewed environment builder is reused and the runner clears all listed inherited sanitizer options and symbolizer variables. It rejects any inherited DYLD variable before child execution. The confined launcher applies only the bound TSAN_OPTIONS/UBSAN_OPTIONS and DYLD_PRINT_LIBRARIES, with core dumps disabled. No fresh model session or runtime environment probe was executed.",
+    "bounds_and_confinement": "Commands are sequential with one job. Compiler and architecture checks inherit the finite 60-second default; witnesses use 20 seconds. Every compiler, linker, architecture and witness command uses the private-only write sandbox with network denied and the inherited canonical lease descriptor. The private run directory must be new, absolute, normalized and directly below the foundation root.",
+    "ownership_and_preservation": "The runner retains exact admission/review/helper/contract checks, the writer census, canonical zero-wait lease, inherited-holder rejection and the unchanged editor identity policy. It repeats bounded capacity/container checks and full guards under the lease before compilation. Source Git identity, diff and status are checked before/after, defaults are restored, and a final guard runs on success or failure. The full guard now imports the independently qualified installed-ASan preservation function. The census is observational, not an exclusive lock against every other writer.",
+    "failure_propagation": "The unchanged child runner and signal handling retain bounded termination and cleanup. The expected-error wrapper accepts only the exact recorded error exit; unexpected zero, wrong exit, missing diagnostic, wrong loader path or timeout propagates failure. The outer handler records FAIL and rethrows; final preservation errors also rethrow. These paths were inspected and compared statically, not replayed.",
+    "contract_derivation": "All 163 old project inputs and 841 old source/build bindings are retained byte-for-byte in the new contract. Nine project inputs and five small TSan source files are added, producing 172 and 846 respectively. The only tool changes are the accepted ASan digest and original TSan identity. Promotion-only mutation fields are removed; unrelated contract fields are unchanged.",
+    "scope_and_existing_acceptance": "The Markdown diffs describe preparation and explicitly leave macOS 27 TSan startup, runtime results and the wider matrix unqualified. Claude manifests, public CLI/data paths, hooks and OCI acceptance files are outside the maintained changes."
+  },
+  "independent_executed_checks": {
+    "comparison_returncode": 0,
+    "comparison_elapsed_seconds": 0.14373008301481605,
+    "comparison_timeout_seconds": 30,
+    "git_identity_command_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "candidate_snapshots": 9,
+    "prepared_launcher_copy_pairs": 2,
+    "new_project_input_bindings": 9,
+    "added_small_source_hashes": 5,
+    "added_small_source_bytes": 68710,
+    "exact_source_excerpts": 9,
+    "source_excerpt_limit": "The three inherited source files were read only for the requested excerpts and reuse their existing full-file digest bindings. The other five source files were hashed. No full 846-input traversal occurred.",
+    "inherited_function_ast_comparisons": [
+      "save",
+      "guard",
+      "run",
+      "interrupted",
+      "source_state"
+    ],
+    "recorded_tsan_identity_matches_original_install_inventory": true,
+    "installed_binary_hashes": 0,
+    "scan_current_text_bindings": 15,
+    "candidate_functions_imported_or_executed": false
+  },
+  "recorded_parent_checks_inspected": {
+    "previous_promotion_closing_commands": 14,
+    "previous_promotion_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "previous_promotion_recorded_clean": true,
+    "current_static_returncodes": [
+      0,
+      0,
+      0
+    ],
+    "acceptance_baseline_original_hashes": 19,
+    "scan": {
+      "files": 15,
+      "raw_returncode": 1,
+      "recorded_digest_false_positives": 4,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "historical_false_positive_files_rehashed_by_reviewer": false
+    },
+    "native_compilation_or_runtime_executed": false,
+    "capacity_or_dispatch_executed": false
+  },
+  "limits": "Preparation PASS is not native-operation admission or TSan runtime acceptance. Fresh capacity and exact admission remain required. No dependency instrumentation, coverage, preset expansion, full sanitizer matrix, fresh-session hook/provider behavior or full OCI/Claude acceptance is established.",
+  "not_run": [
+    "candidate execution or import",
+    "compiler or sanitizer runtime",
+    "capacity or dispatch execution",
+    "full guards or 846-source traversal",
+    "installed runtime or other binary hashes",
+    "lease acquisition or process/service/container probes",
+    "network or global changes",
+    "source/build/prefix writes",
+    "scanner or baseline replay",
+    "fresh model session",
+    "full OCI/Claude acceptance",
+    "dependency instrumentation, coverage or matrix execution"
+  ],
+  "supporting_files": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

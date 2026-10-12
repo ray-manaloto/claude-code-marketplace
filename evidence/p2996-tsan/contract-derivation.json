@@ -1,0 +1,48 @@
+{
+  "base_contract": "evidence/p2996-asan-promotion/contract.json",
+  "base_sha256": "982b75c01ceb6daaf87242c54880b74da5c2a12bfc380543ce207f266f5d85d8",
+  "input_count": 172,
+  "retained_source_input_count": 841,
+  "source_input_count": 846,
+  "extra_project_inputs": [
+    "dev/toolchains/tsan_witness.cpp",
+    "evidence/p2996-tsan/source-prerequisite.json",
+    "evidence/p2996-tsan/promotion-postcommit.json",
+    "dev/toolchains/p2996_asan_promote.py",
+    "evidence/p2996-asan-promotion/contract.json",
+    "evidence/p2996-asan-promotion/artifact-review.json",
+    "evidence/p2996-asan-promotion/artifact-inventory.json",
+    "evidence/p2996-asan-promotion/operation/qualification.json",
+    "evidence/p2996-asan-promotion/operation/closure.json"
+  ],
+  "source_additions": [
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/SanitizerArgs.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/CMakeLists.txt",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_flags.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_report.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_rtl_report.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp"
+  ],
+  "tool_changes": {
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib": {
+      "before": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+      "after": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464"
+    },
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib": {
+      "added": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb"
+    }
+  },
+  "removed_fields": [
+    "repair",
+    "target",
+    "before",
+    "after",
+    "replacement",
+    "replacement_identity",
+    "witnesses"
+  ],
+  "scope": "Installed ASan expectation follows qualified promotion; all other old bindings retained; TSan identity added"
+}

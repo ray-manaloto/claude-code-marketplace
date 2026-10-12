@@ -1,0 +1,90 @@
+{
+  "source_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "source_tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+  "status": "Source-supported; native TSan and combined qualification pending",
+  "runtime": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+    "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+    "bytes": 1104608,
+    "mode": "0o755"
+  },
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589",
+      "first_line": 1593,
+      "last_line": 1606,
+      "claim": "Driver selects TSan dylib",
+      "text": "    if (Sanitize.needsLsanRt())\n      AddLinkSanitizerLibArgs(Args, CmdArgs, \"lsan\");\n    if (Sanitize.needsUbsanRt()) {\n      assert(Sanitize.needsSharedRt() &&\n             \"Static sanitizer runtimes not supported\");\n      AddLinkSanitizerLibArgs(\n          Args, CmdArgs,\n          Sanitize.requiresMinimalRuntime() ? \"ubsan_minimal\" : \"ubsan\");\n    }\n    if (Sanitize.needsTsanRt()) {\n      assert(Sanitize.needsSharedRt() &&\n             \"Static sanitizer runtimes not supported\");\n      AddLinkSanitizerLibArgs(Args, CmdArgs, \"tsan\");\n    }\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589",
+      "first_line": 3730,
+      "last_line": 3754,
+      "claim": "Darwin arm64 supports thread instrumentation",
+      "text": "SanitizerMask Darwin::getSupportedSanitizers() const {\n  const bool IsX86_64 = getTriple().getArch() == llvm::Triple::x86_64;\n  const bool IsAArch64 = getTriple().getArch() == llvm::Triple::aarch64;\n  SanitizerMask Res = ToolChain::getSupportedSanitizers();\n  Res |= SanitizerKind::Address;\n  Res |= SanitizerKind::PointerCompare;\n  Res |= SanitizerKind::PointerSubtract;\n  Res |= SanitizerKind::Realtime;\n  Res |= SanitizerKind::Leak;\n  Res |= SanitizerKind::Fuzzer;\n  Res |= SanitizerKind::FuzzerNoLink;\n  Res |= SanitizerKind::ObjCCast;\n\n  // Prior to 10.9, macOS shipped a version of the C++ standard library without\n  // C++11 support. The same is true of iOS prior to version 5. These OS'es are\n  // incompatible with -fsanitize=vptr.\n  if (!(isTargetMacOSBased() && isMacosxVersionLT(10, 9)) &&\n      !(isTargetIPhoneOS() && isIPhoneOSVersionLT(5, 0)))\n    Res |= SanitizerKind::Vptr;\n\n  if ((IsX86_64 || IsAArch64) &&\n      (isTargetMacOSBased() || isTargetIOSSimulator() ||\n       isTargetTvOSSimulator() || isTargetWatchOSSimulator())) {\n    Res |= SanitizerKind::Thread;\n  }\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/SanitizerArgs.cpp",
+      "sha256": "f849904441672bcfcd079d65583320a3a96e0a58a7ec52691e35a4678639108a",
+      "first_line": 355,
+      "last_line": 363,
+      "claim": "TSan suppresses standalone UBSan runtime",
+      "text": "bool SanitizerArgs::needsUbsanRt() const {\n  // All of these include ubsan.\n  if (needsAsanRt() || needsMsanRt() || needsNsanRt() || needsHwasanRt() ||\n      needsTsanRt() || needsDfsanRt() || needsLsanRt() ||\n      needsCfiCrossDsoDiagRt() || (needsScudoRt() && !requiresMinimalRuntime()))\n    return false;\n\n  return (Sanitizers.Mask & NeedsUbsanRt & ~TrapSanitizers.Mask) ||\n         CoverageFeatures;\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/CMakeLists.txt",
+      "sha256": "8206ce359c8d094c11e493541a245385e42b809c0a9de9112764c9cd4df06989",
+      "first_line": 132,
+      "last_line": 152,
+      "claim": "TSan embeds RTUbsan and shared mapping code",
+      "text": "  set(TSAN_LINK_LIBS ${SANITIZER_COMMON_LINK_LIBS})\n\n  add_weak_symbols(\"ubsan\" WEAK_SYMBOL_LINK_FLAGS)\n  add_weak_symbols(\"sanitizer_common\" WEAK_SYMBOL_LINK_FLAGS)\n\n  add_compiler_rt_runtime(clang_rt.tsan\n    SHARED\n    OS ${TSAN_SUPPORTED_OS}\n    ARCHS ${TSAN_SUPPORTED_ARCH}\n    SOURCES ${TSAN_SOURCES} ${TSAN_CXX_SOURCES} ${TSAN_ASM_SOURCES}\n    ADDITIONAL_HEADERS ${TSAN_HEADERS}\n    OBJECT_LIBS RTInterception\n                RTSanitizerCommon\n                RTSanitizerCommonLibc\n                RTSanitizerCommonCoverage\n                RTSanitizerCommonSymbolizer\n                RTUbsan\n    CFLAGS ${TSAN_RTL_CFLAGS}\n    LINK_FLAGS ${SANITIZER_COMMON_LINK_FLAGS} ${WEAK_SYMBOL_LINK_FLAGS}\n    LINK_LIBS ${TSAN_LINK_LIBS} objc\n    PARENT_TARGET tsan)\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_flags.cpp",
+      "sha256": "11f877207ca4ceab12e1a6167c213bd653231aee327aa15d6fc25e9e6b7f7ba5",
+      "first_line": 54,
+      "last_line": 111,
+      "claim": "TSan then UBSan common runtime options",
+      "text": "void InitializeFlags(Flags *f, const char *env, const char *env_option_name) {\n  SetCommonFlagsDefaults();\n  {\n    // Override some common flags defaults.\n    CommonFlags cf;\n    cf.CopyFrom(*common_flags());\n    cf.external_symbolizer_path = GetEnv(\"TSAN_SYMBOLIZER_PATH\");\n    cf.allow_addr2line = true;\n    if (SANITIZER_GO) {\n      // Does not work as expected for Go: runtime handles SIGABRT and crashes.\n      cf.abort_on_error = false;\n      // Go does not have mutexes.\n      cf.detect_deadlocks = false;\n    }\n    cf.print_suppressions = false;\n    cf.stack_trace_format = \"    #%n %f %S %M\";\n    cf.exitcode = 66;\n    cf.intercept_tls_get_addr = true;\n    OverrideCommonFlags(cf);\n  }\n\n  f->SetDefaults();\n\n  FlagParser parser;\n  RegisterTsanFlags(&parser, f);\n  RegisterCommonFlags(&parser);\n\n#if TSAN_CONTAINS_UBSAN\n  __ubsan::Flags *uf = __ubsan::flags();\n  uf->SetDefaults();\n\n  FlagParser ubsan_parser;\n  __ubsan::RegisterUbsanFlags(&ubsan_parser, uf);\n  RegisterCommonFlags(&ubsan_parser);\n#endif\n\n  // Let a frontend override.\n  parser.ParseString(__tsan_default_options());\n#if TSAN_CONTAINS_UBSAN\n  const char *ubsan_default_options = __ubsan_default_options();\n  ubsan_parser.ParseString(ubsan_default_options);\n#endif\n  // Override from command line.\n  parser.ParseString(env, env_option_name);\n#if TSAN_CONTAINS_UBSAN\n  ubsan_parser.ParseStringFromEnv(\"UBSAN_OPTIONS\");\n#endif\n\n  // Check flags.\n  if (!f->report_bugs) {\n    f->report_thread_leaks = false;\n    f->report_destroy_locked = false;\n    f->report_signal_unsafe = false;\n  }\n\n  InitializeCommonFlags();\n\n  if (Verbosity()) ReportUnrecognizedFlags();\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_report.cpp",
+      "sha256": "d6470534ca0cca7f158212891bf1bdb59f4de98a496cfed896f8e69b2a8eb10c",
+      "first_line": 282,
+      "last_line": 288,
+      "claim": "Race diagnostic prefix",
+      "text": "void PrintReport(const ReportDesc *rep) {\n  Decorator d;\n  Printf(\"==================\\n\");\n  const char *rep_typ_str = ReportTypeString(rep->typ, rep->tag);\n  Printf(\"%s\", d.Warning());\n  Printf(\"WARNING: ThreadSanitizer: %s (pid=%d)\\n\", rep_typ_str,\n         (int)internal_getpid());\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_rtl_report.cpp",
+      "sha256": "9f790d57d3892ec032214bec478e74571c97b41f759ce6fe2680d3dab03699c1",
+      "first_line": 650,
+      "last_line": 668,
+      "claim": "halt_on_error takes fatal path",
+      "text": "  if (pc_or_addr != 0) {\n    Lock lock(&ctx->fired_suppressions_mtx);\n    FiredSuppression s = {srep.GetReport()->typ, pc_or_addr, supp};\n    ctx->fired_suppressions.push_back(s);\n  }\n  {\n    bool suppressed = OnReport(rep, pc_or_addr != 0);\n    if (suppressed) {\n      thr->current_report = nullptr;\n      return false;\n    }\n  }\n  PrintReport(rep);\n  __tsan_on_report(rep);\n  ctx->nreported++;\n  if (flags()->halt_on_error)\n    Die();\n  thr->current_report = nullptr;\n  return true;\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp",
+      "sha256": "d696667e925cf53c598f99dd53bea38b5c870651ea5ec301859cdac5319c8992",
+      "first_line": 228,
+      "last_line": 246,
+      "claim": "TSan mapping initialization remains unqualified",
+      "text": "  uptr max_vm = GetMaxUserVirtualAddress() + 1;\n  if (max_vm != HiAppMemEnd()) {\n    Printf(\"ThreadSanitizer: unsupported vm address limit %p, expected %p.\\n\",\n           (void *)max_vm, (void *)HiAppMemEnd());\n    Die();\n  }\n#endif\n}\n\nstatic uptr longjmp_xor_key = 0;\n\nvoid InitializePlatform() {\n  DisableCoreDumperIfNecessary();\n#if !SANITIZER_GO\n  if (!CheckAndProtect(true, true, true)) {\n    Printf(\"FATAL: ThreadSanitizer: found incompatible memory layout.\\n\");\n    Die();\n  }\n\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+      "sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+      "first_line": 219,
+      "last_line": 256,
+      "claim": "Separate installed TSan retains original dyld traversal",
+      "text": "const mach_header *get_dyld_hdr() {\n  if (!dyld_hdr) {\n    // On macOS 13+, dyld itself has moved into the shared cache.  Looking it up\n    // via vm_region_recurse_64() causes spins/hangs/crashes.\n    if (GetMacosAlignedVersion() >= MacosVersion(13, 0)) {\n      dyld_hdr = GetDyldImageHeaderViaSharedCache();\n      if (!dyld_hdr) {\n        VReport(1,\n                \"Failed to lookup the dyld image header in the shared cache on \"\n                \"macOS 13+ (or no shared cache in use).  Falling back to \"\n                \"lookup via vm_region_recurse_64().\\n\");\n        dyld_hdr = GetDyldImageHeaderViaVMRegion();\n      }\n    } else {\n      dyld_hdr = GetDyldImageHeaderViaVMRegion();\n    }\n    CHECK(dyld_hdr);\n  }\n\n  return dyld_hdr;\n}\n\n// Next and NextSegmentLoad were inspired by base/sysinfo.cc in\n// Google Perftools, https://github.com/gperftools/gperftools.\n\n// NextSegmentLoad scans the current image for the next segment load command\n// and returns the start and end addresses and file offset of the corresponding\n// segment.\n// Note that the segment addresses are not necessarily sorted.\ntemplate <u32 kLCSegment, typename SegmentCommand>\nstatic bool NextSegmentLoad(MemoryMappedSegment *segment,\n                            MemoryMappedSegmentData *seg_data,\n                            MemoryMappingLayoutData *layout_data) {\n  const char *lc = layout_data->current_load_cmd_addr;\n\n  layout_data->current_load_cmd_addr += ((const load_command *)lc)->cmdsize;\n  layout_data->current_load_cmd_count--;\n  if (((const load_command *)lc)->cmd == kLCSegment) {\n"
+    }
+  ],
+  "runtime_environment": {
+    "TSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1",
+    "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1"
+  },
+  "boundaries": "Pinned local source inspection only; no new multi-provider research or native execution. Existing research coverage gaps remain."
+}

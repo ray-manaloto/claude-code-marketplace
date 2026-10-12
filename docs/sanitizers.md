@@ -84,3 +84,20 @@ owned processes ended and the lease was free in the
 Independent [artifact review](../evidence/p2996-asan-promotion/artifact-review.json)
 passed without findings. Installed ASan, UBSan and combined runtime witnesses are
 qualified; dependency instrumentation and configuration/linkage matrices remain separate.
+
+Task 14b prepares [TSan witnesses](../dev/toolchains/tsan_witness.cpp) with the
+[confined runner](../dev/toolchains/p2996_tsan.py). A joined worker precedes the
+second write in the clean case; the deliberate race leaves the two writes
+unordered. Both modes must diagnose the race, and TSan+UBSan must also diagnose
+signed overflow. Source support and runtime options are bound before execution.
+The installed TSan library is separate from the repaired ASan library; its macOS
+27 startup failed before main with signal 11 after compilation, linking and
+ARM64 checks passed. The combined mode was not reached. The matched own-process
+[crash report](../evidence/p2996-tsan/startup-diagnosis.json) shows shared-cache
+traversal entering a TSan interceptor during initialization. The initial launch
+was blocked by the user's concurrent `update-all` run; both attempts are retained.
+Source/default preservation and ownership closure passed. Independent
+[failure review](../evidence/p2996-tsan/failure-review/review.json) found no issue
+with the recorded failure and cleanup. No TSan mode is qualified. The same
+mapping source used by ASan reaches the observed TSan startup path, but the
+patch still needs a private native A/B test using TSan's own link recipe.

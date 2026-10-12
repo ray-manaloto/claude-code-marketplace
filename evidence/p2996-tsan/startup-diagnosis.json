@@ -1,0 +1,349 @@
+{
+  "source": "/Users/rmanaloto/Library/Logs/DiagnosticReports/witness-2026-10-11-210915.ips",
+  "source_sha256": "eb08a9ec7da207d80dc97d86e0e7df9f06ecba209d614b693009a424bd2ed6f2",
+  "source_bytes": 13723,
+  "pid": 87786,
+  "parent_pid": 86554,
+  "capture_time": "2026-10-11 21:09:14.9416 -0500",
+  "reported_path": "/Users/USER/*/witness",
+  "private_binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+  "binary_sha256": "98bbddbab90890197bebfe79f451d7e5ad6384bd3ad340dc5f47c3b93ad0f018",
+  "binary_uuid": "ace514cb-41b5-37bf-89e7-5bc5272265a7",
+  "process_and_binary_identity_match": true,
+  "exception": {
+    "codes": "0x0000000000000001, 0x0000000000000000",
+    "rawCodes": [
+      1,
+      0
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 87786
+  },
+  "faulting_thread_frames": [
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__sanitizer::atomic_uint64_t::Type __sanitizer::atomic_load<__sanitizer::atomic_uint64_t>(__sanitizer::atomic_uint64_t const volatile*, __sanitizer::memory_order)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 433212,
+      "symbolLocation": 0,
+      "sourceLine": 56,
+      "sourceFile": "sanitizer_atomic_clang.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__sanitizer::atomic_uint64_t::Type __sanitizer::atomic_load_relaxed<__sanitizer::atomic_uint64_t>(__sanitizer::atomic_uint64_t const volatile*)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 433212,
+      "symbolLocation": 0,
+      "sourceLine": 88,
+      "sourceFile": "sanitizer_atomic.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__sanitizer::Mutex::Lock()",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 433212,
+      "symbolLocation": 0,
+      "sourceLine": 169,
+      "sourceFile": "sanitizer_mutex.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 433212,
+      "sourceLine": 367,
+      "sourceFile": "tsan_rtl.cpp",
+      "symbol": "__tsan::SlotLock(__tsan::ThreadState*)",
+      "imageIndex": 4,
+      "symbolLocation": 24
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__tsan::SlotLocker::SlotLocker(__tsan::ThreadState*, bool)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 506708,
+      "symbolLocation": 4,
+      "sourceLine": 644,
+      "sourceFile": "tsan_rtl.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__tsan::SlotLocker::SlotLocker(__tsan::ThreadState*, bool)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 506708,
+      "symbolLocation": 4,
+      "sourceLine": 635,
+      "sourceFile": "tsan_rtl.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 506708,
+      "sourceLine": 467,
+      "sourceFile": "tsan_rtl_mutex.cpp",
+      "symbol": "__tsan::Release(__tsan::ThreadState*, unsigned long, unsigned long)",
+      "imageIndex": 4,
+      "symbolLocation": 44
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 568372,
+      "sourceLine": 299,
+      "sourceFile": "tsan_interceptors_libdispatch.cpp",
+      "symbol": "wrap_dispatch_once",
+      "imageIndex": 4,
+      "symbolLocation": 168
+    },
+    {
+      "image": "libdyld.dylib",
+      "imageOffset": 42840,
+      "symbol": "dyldFrameworkVtable()",
+      "symbolLocation": 44,
+      "imageIndex": 5
+    },
+    {
+      "image": "libdyld.dylib",
+      "imageOffset": 20240,
+      "symbol": "dyld_shared_cache_iterate_text",
+      "symbolLocation": 92,
+      "imageIndex": 5
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__sanitizer::GetDyldImageHeaderViaSharedCache()",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 69500,
+      "symbolLocation": 160,
+      "sourceLine": 206,
+      "sourceFile": "sanitizer_procmaps_mac.cpp"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 69500,
+      "sourceLine": 224,
+      "sourceFile": "sanitizer_procmaps_mac.cpp",
+      "symbol": "__sanitizer::get_dyld_hdr()",
+      "imageIndex": 4,
+      "symbolLocation": 208
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 70420,
+      "sourceLine": 392,
+      "sourceFile": "sanitizer_procmaps_mac.cpp",
+      "symbol": "__sanitizer::MemoryMappingLayout::Next(__sanitizer::MemoryMappedSegment*)",
+      "imageIndex": 4,
+      "symbolLocation": 120
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 562152,
+      "sourceLine": 107,
+      "sourceFile": "tsan_platform_posix.cpp",
+      "symbol": "__tsan::CheckAndProtect(bool, bool, bool)",
+      "imageIndex": 4,
+      "symbolLocation": 176
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 560336,
+      "sourceLine": 242,
+      "sourceFile": "tsan_platform_mac.cpp",
+      "symbol": "__tsan::InitializePlatform()",
+      "imageIndex": 4,
+      "symbolLocation": 36
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 436344,
+      "sourceLine": 731,
+      "sourceFile": "tsan_rtl.cpp",
+      "symbol": "__tsan::Initialize(__tsan::ThreadState*)",
+      "imageIndex": 4,
+      "symbolLocation": 252
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__tsan::LazyInitialize(__tsan::ThreadState*)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 190984,
+      "symbolLocation": 16,
+      "sourceLine": 690,
+      "sourceFile": "tsan_rtl.h"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 190984,
+      "sourceLine": 288,
+      "sourceFile": "tsan_interceptors_posix.cpp",
+      "symbol": "__tsan::ScopedInterceptor::ScopedInterceptor(__tsan::ThreadState*, char const*, unsigned long)",
+      "imageIndex": 4,
+      "symbolLocation": 104
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "symbol": "__tsan::ScopedInterceptor::ScopedInterceptor(__tsan::ThreadState*, char const*, unsigned long)",
+      "inline": true,
+      "imageIndex": 4,
+      "imageOffset": 330832,
+      "symbolLocation": 16,
+      "sourceLine": 287,
+      "sourceFile": "tsan_interceptors_posix.cpp"
+    },
+    {
+      "image": "libclang_rt.tsan_osx_dynamic.dylib",
+      "imageOffset": 330832,
+      "sourceLine": 7616,
+      "sourceFile": "sanitizer_common_interceptors.inc",
+      "symbol": "wrap_strlcpy",
+      "imageIndex": 4,
+      "symbolLocation": 84
+    },
+    {
+      "image": "libsystem_c.dylib",
+      "imageOffset": 129760,
+      "symbol": "__guard_setup",
+      "symbolLocation": 132,
+      "imageIndex": 6
+    },
+    {
+      "image": "libsystem_c.dylib",
+      "imageOffset": 129140,
+      "symbol": "_libc_initializer",
+      "symbolLocation": 72,
+      "imageIndex": 6
+    },
+    {
+      "image": "libSystem.B.dylib",
+      "imageOffset": 4876,
+      "symbol": "libSystem_initializer",
+      "symbolLocation": 168,
+      "imageIndex": 7
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 407384,
+      "symbol": "invocation function for block in dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const::$_0::operator()() const",
+      "symbolLocation": 360,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 618604,
+      "symbol": "invocation function for block in mach_o::Image::forEachInitializer(void (unsigned int) block_pointer) const",
+      "symbolLocation": 84,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 582920,
+      "symbol": "mach_o::Header::SegmentInfo mach_o::Header::parse_segment_command<true>(mach_o::Header::LoadCommandInfo const&, unsigned short, void (mach_o::Header::SegmentInfo const&, mach_o::Header::SectionInfo const&) block_pointer, mach_o::Error*) const",
+      "symbolLocation": 580,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 604532,
+      "symbol": "invocation function for block in mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const",
+      "symbolLocation": 156,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 577540,
+      "symbol": "mach_o::Header::forEachLoadCommand(void (mach_o::Header::LoadCommandInfo const&, bool&) block_pointer, mach_o::Error*) const",
+      "symbolLocation": 228,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 594044,
+      "symbol": "mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const",
+      "symbolLocation": 128,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 618396,
+      "symbol": "mach_o::Image::forEachInitializer(void (unsigned int) block_pointer) const",
+      "symbolLocation": 244,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 386580,
+      "symbol": "dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const",
+      "symbolLocation": 680,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 419240,
+      "symbol": "dyld4::PrebuiltLoader::runInitializers(dyld4::RuntimeState&) const",
+      "symbolLocation": 44,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 159280,
+      "symbol": "dyld4::APIs::runAllInitializersForMain()",
+      "symbolLocation": 100,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 212244,
+      "symbol": "dyld4::prepare(dyld4::APIs&, mach_o::UnsafeHeader const*)",
+      "symbolLocation": 4724,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 207492,
+      "symbol": "dyld4::start(dyld4::KernelArgs*, void*, void*, unsigned long long)::$_1::operator()() const",
+      "symbolLocation": 320,
+      "imageIndex": 8
+    },
+    {
+      "image": "dyld",
+      "imageOffset": 204324,
+      "symbol": "start",
+      "symbolLocation": 6596,
+      "imageIndex": 8
+    }
+  ],
+  "source_excerpts": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp",
+      "sha256": "d696667e925cf53c598f99dd53bea38b5c870651ea5ec301859cdac5319c8992",
+      "first_line": 228,
+      "last_line": 246,
+      "claim": "TSan mapping initialization remains unqualified",
+      "text": "  uptr max_vm = GetMaxUserVirtualAddress() + 1;\n  if (max_vm != HiAppMemEnd()) {\n    Printf(\"ThreadSanitizer: unsupported vm address limit %p, expected %p.\\n\",\n           (void *)max_vm, (void *)HiAppMemEnd());\n    Die();\n  }\n#endif\n}\n\nstatic uptr longjmp_xor_key = 0;\n\nvoid InitializePlatform() {\n  DisableCoreDumperIfNecessary();\n#if !SANITIZER_GO\n  if (!CheckAndProtect(true, true, true)) {\n    Printf(\"FATAL: ThreadSanitizer: found incompatible memory layout.\\n\");\n    Die();\n  }\n\n"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+      "sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+      "first_line": 219,
+      "last_line": 256,
+      "claim": "Separate installed TSan retains original dyld traversal",
+      "text": "const mach_header *get_dyld_hdr() {\n  if (!dyld_hdr) {\n    // On macOS 13+, dyld itself has moved into the shared cache.  Looking it up\n    // via vm_region_recurse_64() causes spins/hangs/crashes.\n    if (GetMacosAlignedVersion() >= MacosVersion(13, 0)) {\n      dyld_hdr = GetDyldImageHeaderViaSharedCache();\n      if (!dyld_hdr) {\n        VReport(1,\n                \"Failed to lookup the dyld image header in the shared cache on \"\n                \"macOS 13+ (or no shared cache in use).  Falling back to \"\n                \"lookup via vm_region_recurse_64().\\n\");\n        dyld_hdr = GetDyldImageHeaderViaVMRegion();\n      }\n    } else {\n      dyld_hdr = GetDyldImageHeaderViaVMRegion();\n    }\n    CHECK(dyld_hdr);\n  }\n\n  return dyld_hdr;\n}\n\n// Next and NextSegmentLoad were inspired by base/sysinfo.cc in\n// Google Perftools, https://github.com/gperftools/gperftools.\n\n// NextSegmentLoad scans the current image for the next segment load command\n// and returns the start and end addresses and file offset of the corresponding\n// segment.\n// Note that the segment addresses are not necessarily sorted.\ntemplate <u32 kLCSegment, typename SegmentCommand>\nstatic bool NextSegmentLoad(MemoryMappedSegment *segment,\n                            MemoryMappedSegmentData *seg_data,\n                            MemoryMappingLayoutData *layout_data) {\n  const char *lc = layout_data->current_load_cmd_addr;\n\n  layout_data->current_load_cmd_addr += ((const load_command *)lc)->cmdsize;\n  layout_data->current_load_cmd_count--;\n  if (((const load_command *)lc)->cmd == kLCSegment) {\n"
+    }
+  ],
+  "inference": "TSan initialization enters dyld shared-cache traversal, whose dispatch_once interception reaches TSan synchronization state before initialization is ready. The already-qualified ASan source patch removes this same shared-cache path; TSan repair effectiveness remains untested.",
+  "privacy": "Only task-owned process identity, faulting stack, exception and bound source excerpts are retained; full OS report is not copied."
+}

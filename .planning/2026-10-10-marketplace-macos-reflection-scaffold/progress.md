@@ -1470,3 +1470,35 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   and verified eight snapshots, 32 copy pairs, 59 private text sources, all 26
   command outcomes and seven witness traces. Six exact artifact hashes matched.
   The installed-runtime promotion is complete; the wider sanitizer matrix remains.
+
+### Task 14b: TSan and TSan+UBSan runtime witnesses
+
+- Task 14a3 was committed at `757a72bd22d774d8533b8f831c8ee604ce0109b8`.
+  All 14 commit/check commands exited 0, the baseline passed and the tree was clean.
+- Prepared one confined runner and a pthread witness that orders writes in the
+  clean case and leaves the error-case writes unordered. The combined mode also
+  requires a signed-overflow diagnostic. Both consume the public core header
+  without reflection flags. No native compilation or sanitizer execution has run.
+- The source contract binds Darwin arm64 support, embedded UBSan, runtime flags
+  and diagnostic paths. The installed TSan hash matches its original inventory.
+  Existing 841 source/build inputs remain bound; five additional source files
+  are included. Capacity and dispatch launchers are prepared but unexecuted.
+- Preparation review passed without findings; its bounded comparison exited 0.
+  Fresh capacity passed. An unrelated mise writer then blocked the first launch
+  before any native command or lease; that failed preflight is retained.
+- After the process ended, fresh admission passed. The retry exited 1 after 18
+  commands: core/link/architecture checks passed, then clean TSan returned -11
+  before main. Remaining cases were not executed. The own-process crash stack
+  identifies dyld shared-cache traversal entering TSan synchronization during init.
+- Closure collection initially used the wrong shell environment for its default
+  probe; that attempt is retained. With the native base context, collection exited
+  0: five post-failure reads matched, 52 text receipts and three artifact hashes
+  were captured, all 19 owned processes were absent and the lease was free.
+  Installed runtimes remain unchanged.
+- The user confirmed their `update-all` run caused the transient mise writer in
+  the first zero-command preflight. The retry had separate fresh admission.
+- Independent failure review passed without findings. Its bounded comparison
+  exited 0: ten snapshots, 68 current copy pairs, three archived bindings,
+  52 text receipts and three artifact hashes matched. This verifies a closed
+  failure, not a TSan qualification. The source-backed patch applies to the
+  observed startup path; its effect on TSan remains untested.

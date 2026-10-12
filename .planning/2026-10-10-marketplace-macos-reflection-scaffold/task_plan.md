@@ -88,6 +88,8 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 14a1 | Private ASan startup repair | Exact source patch; original timeout control; seven sanitizer cases; independent review | Complete |
 | 14a2 | Installed ASan guard preparation | Exact single-file overlay; preserved guard chain; confined replacement controls | Complete |
 | 14a3 | Installed ASan promotion | Exact backup/recovery; fresh ownership; installed-path sanitizer witnesses | Complete |
+| 14b | P2996 TSan and TSan+UBSan witnesses | Ordered clean case; data-race and overflow diagnostics; exact runtimes | Failed; closure independently verified |
+| 14b1 | Private TSan startup repair trial | Exact TSan link recipe; original/patch A/B witnesses; no installed write | Planned |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -294,3 +296,17 @@ preparation review and fresh capacity. Reuse the three qualified witness binarie
 for all seven installed-path cases, without a loader-path override. Preserve
 source Git state, bound build inputs and unrelated protected state. No compiler
 or dependency build, global configuration change or full matrix is included.
+
+Task 14b admits one confined TSan runner, one public-header witness, sanitizer
+docs and these planning files. Reuse the qualified installed-ASan preservation
+guard and require five TSan/combined clean/error cases with exact loader paths.
+Native work requires independent preparation review, fresh capacity and the
+canonical lease. No runtime replacement, dependency build, coverage, preset
+expansion, shared installation or full matrix is included.
+
+Task 14b1 permits a private original/patched TSan runtime comparison using the
+already qualified mapping-object repair and the captured TSan-specific link
+recipe. Keep the installed runtime and shared build tree unchanged. Verify the
+original startup failure, patched clean startup and deliberate race before any
+installed promotion. Require source/object provenance, separate preparation
+review, fresh capacity, canonical lease and closed operation receipts.

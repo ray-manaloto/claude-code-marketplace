@@ -1,0 +1,198 @@
+{
+  "artifact_inventory_sha256": "bf286de739e7dc25f3d225985f7b69bcbe40440a3749ad7a1aea0be81a97208d",
+  "candidate_sha256": "dac6fb8112f2bb5eecf4265eaa82dc4dcf00dff52d13f40c0dfd536444a1e71c",
+  "closure_inputs_sha256": "2ba276799d3594d5432c63b1325940407b0dc8eeea5f5d88fed279fbd8190cd6",
+  "closure_sha256": "f814269e2d1f71641a4bbc1b34010e813c1e9ebdbda7383426c46b38faf42dfe",
+  "contract_sha256": "4bb345582c7253694e37b958c77154b5d98ac522e3e89858eac2fb2c2b828ea5",
+  "copy_permission": "Only review.json, supporting-manifest.json and the three exact supporting filenames listed here. No directory traversal or discovery permission is granted.",
+  "diagnosis_sha256": "375d67716970bc39c9b277f60783686f18b10487a3b8d995ea6b2233ec29df2b",
+  "disposition": "Correctly CLOSED FAILURE; TSan qualification remains incomplete",
+  "executed_by_reviewer": {
+    "artifact_checks": "One read/hash pass over the explicitly allowed TSan object, witness and installed TSan runtime. Canonical regular owned single-link identity and stability checked. Arm64 Mach-O headers and LC_UUID parsed from those already-read bytes without executing native tools.",
+    "comparison": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-failure-review-rgt2tamb/compare.py"
+      ],
+      "comparison_receipt_sha256": "df231c7f57a4b279b7207947b3e1483440b1fa7591e4a127338cf91b09b94a15",
+      "elapsed_seconds": 0.11257841601036489,
+      "execution_receipt_sha256": "42ab530beaa6139c9acef274bdf7d97ec15b05bd4a378f754a7adc38768cee2d",
+      "finished_at": "2026-10-12T02:28:17.577282+00:00",
+      "returncode": 0,
+      "script_sha256": "64102c5c50cb41b987e5aa5d63b3d7933e1ff191ce7063fd7c563706d2375b93",
+      "started_at": "2026-10-12T02:28:17.464587+00:00",
+      "timeout_seconds": 30
+    },
+    "crash_checks": "Only the explicitly owned crash file was read and hashed. PID, parent PID, capture time, signal, redacted path, 36 curated frames and binary/runtime UUIDs were matched. Whole crash content was not copied or printed.",
+    "git_identity": "Four non-mutating identity commands in the comparison returned 0; initial independent identity acknowledgement also completed.",
+    "mechanical_scope": {
+      "archived_entries_bound_to_original_private_records": 3,
+      "artifact_bytes": 1179856,
+      "artifacts_hashed_once": 3,
+      "closure_read_log_pairs": 5,
+      "current_source_destination_pairs": 68,
+      "manifest_rows": 71,
+      "native_command_log_pairs": 18,
+      "owned_crash_frames_compared": 36,
+      "private_text_receipts": 52,
+      "snapshots": 10,
+      "source_inputs_rehashed": 0
+    }
+  },
+  "findings": [],
+  "helper_sha256": "529c032a98b31963e2ee218dfe81eb2a250924f7ef984376fc026b30f38683d1",
+  "identity": {
+    "HEAD": "757a72bd22d774d8533b8f831c8ee604ce0109b8",
+    "branch": "codex/marketplace-native-onboarding",
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "native_execution_sha256": "86ddd35112c9cbb3c354673159a9a3227aa995bc9a042986de6b26f77a8c56c6",
+  "not_run": [
+    "Candidate/helper import or execution; compiler, native build, sanitizer witness, nm or Ninja execution.",
+    "Full 846-input source traversal, complete protected guard, compiler-binary hashes or additional prefix hashes.",
+    "Scanner or acceptance-baseline replay; fresh capacity or writer census; live PID probes or lease acquisition.",
+    "Services, containers, OCI acceptance, network calls, credentials or global changes.",
+    "Fresh model/Claude sessions, sanitizer repair, remaining sanitizer matrix or dependency instrumentation qualification."
+  ],
+  "parent_return_channel": "native collaboration to /root",
+  "parent_runtime_evidence_inspected": {
+    "capacity": [
+      {
+        "admission_binds_capacity_receipt": true,
+        "commands": 7,
+        "elapsed_seconds": 2.4145919589791447,
+        "name": "capacity",
+        "returncode": 0
+      },
+      {
+        "admission_binds_capacity_receipt": true,
+        "commands": 7,
+        "elapsed_seconds": 1.8339874169323593,
+        "name": "capacity-retry",
+        "returncode": 0
+      }
+    ],
+    "closure": {
+      "copied_private_texts": 52,
+      "corrected_collector_only_changes_environment_selection": true,
+      "current_collector_elapsed_seconds": 1.7629994580056518,
+      "current_collector_returncode": 0,
+      "current_pid_or_lease_probes": false,
+      "initial_collector_elapsed_seconds": 1.7076951251365244,
+      "initial_collector_returncode": 1,
+      "initial_default_only_mismatch": true,
+      "lease_recorded_free_unchanged": true,
+      "native_log_bindings": 36,
+      "owned_pids_recorded_absent": 19,
+      "post_failure_commands": 5,
+      "post_failure_log_bindings": 10,
+      "post_failure_returncodes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_and_default_match": true
+    },
+    "initial_dispatch": {
+      "blocking_mise_pid": 76980,
+      "commands": 0,
+      "compiler_or_lease_started": false,
+      "elapsed_seconds": 6.363739917054772,
+      "process_terminated_by_task": false,
+      "recorded_helper_absent": true,
+      "returncode": 1,
+      "user_context": "Parent relayed the user clarification that update-all was running; this is legitimate concurrent work, not hostile or unexplained ownership."
+    },
+    "limits": "These are inspected historical native, capacity, guard and cleanup receipts. The reviewer did not replay the native run, acquire the lease, probe current processes or rerun the protected guard.",
+    "native_failure": {
+      "combined_and_error_cases_unexecuted": true,
+      "command_count": 18,
+      "expected_clean_returncode_from_reviewed_source": 0,
+      "failed_case": "tsan-clean",
+      "failed_elapsed_seconds": 0.32911541685462,
+      "failed_pid": 87786,
+      "failed_returncode": -11,
+      "linker_warning": "warning: input verification failed\nnote: while processing /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tmp/tsan_witness-b810bb.o\n",
+      "loader_trace_installed_tsan": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "no_completed_runtime_cases": true,
+      "outer_elapsed_seconds": 14.334789915941656,
+      "outer_returncode": 1,
+      "protected_finally_receipt": true,
+      "reflection_stdout_empty": true,
+      "successful_commands": 17,
+      "timeout_seconds_from_reviewed_source": 20
+    }
+  },
+  "preparation_review_sha256": "707c1bf8c4bc61f65e099bd510012c245e2e1470e4e3976f21d4ed3a0f7c3ec8",
+  "qualification_sha256": "5e14bf7eab0ba784eaee44c2fd08de93dc4e48ede7c57242273b4aa180f6e1ec",
+  "recorded_at": "2026-10-12T02:31:37.813943+00:00",
+  "result": "PASS",
+  "reviewer": "/root/cold_bottle_review",
+  "schema_version": 1,
+  "scope": {
+    "first_action": "Verified assigned Git identity, acknowledged scope and return channel; inspected current guidance, bounded decisions, candidate files and receipt contents.",
+    "maintained_files": {
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "7e4826cfcaf9f7900257e344b58117eddaa4f3969deefe4a9d8355221743dd12",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "e263d7f971d1ce3132deb236c862017ab38b9415aa3693b8b32fc87bd6b98f62",
+      "dev/toolchains/p2996_tsan.py": "529c032a98b31963e2ee218dfe81eb2a250924f7ef984376fc026b30f38683d1",
+      "dev/toolchains/tsan_witness.cpp": "fdf915b4bc4242dcb6fe7db025c721fdb1e2a1d797775000b8b88af76f522f7f",
+      "docs/sanitizers.md": "b016786c5825f6fd11da58beca4e49be61faa24a62efef70dd3620a2edf8acee"
+    },
+    "parent_status_probe_answered": true,
+    "repository_writes": false,
+    "shared_state_writes": false,
+    "sole_implementation_writer": "parent"
+  },
+  "static_review": {
+    "claude_acceptance": "Current recorded static checks return 0 and report all 19 original acceptance hashes preserved. No fresh Claude/model/provider/hook-runtime or OCI acceptance was executed for this review.",
+    "collector": "Initial failing collector and all receipts are preserved. Corrected collector changes only environment selection to original base context; its five source/default reads return 0 and match original baselines.",
+    "diagnosis": "Verified initialization stack traverses shared-cache dyld code and reenters TSan synchronization before main. This supports the recorded failure diagnosis; effectiveness of a proposed patch remains untested.",
+    "failure_propagation": "First clean case returns SIGSEGV (-11), helper reports FAIL and outer process returns 1. Stdout contains no reflection success. No race, overflow or combined sanitizer case executed; current documentation retains this failure and incomplete matrix.",
+    "fresh_session": "Source-level launch and environment behavior remain covered by unchanged preparation proof; no fresh model session was started.",
+    "linker_warning": "The successful link retained an input verification failed warning. No warning-free claim is made.",
+    "preparation": "Unchanged helper, fixture and contract retain the separately completed preparation review. No full source-input or protected-guard replay.",
+    "static_and_scan_receipts": {
+      "baseline_original_hashes": 19,
+      "complete_token_files": [],
+      "current_text_bindings": 94,
+      "digest_false_positive_occurrences": 6,
+      "historical_digest_sources_rehashed": false,
+      "inherited_preparation_bindings_reused": 7,
+      "raw_returncode": 1,
+      "scan_files": 101,
+      "scanner_and_baseline_replayed": false,
+      "static_returncodes": [
+        0,
+        0,
+        0
+      ],
+      "transformed_returncode": 0
+    }
+  },
+  "supporting_files": [
+    {
+      "bytes": 26696,
+      "filename": "compare.py",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-failure-review-rgt2tamb/compare.py",
+      "sha256": "64102c5c50cb41b987e5aa5d63b3d7933e1ff191ce7063fd7c563706d2375b93"
+    },
+    {
+      "bytes": 51246,
+      "filename": "comparison.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-failure-review-rgt2tamb/comparison.json",
+      "sha256": "df231c7f57a4b279b7207947b3e1483440b1fa7591e4a127338cf91b09b94a15"
+    },
+    {
+      "bytes": 865,
+      "filename": "execution.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-failure-review-rgt2tamb/execution.json",
+      "sha256": "42ab530beaa6139c9acef274bdf7d97ec15b05bd4a378f754a7adc38768cee2d"
+    }
+  ],
+  "unit": "Task 14b independent failure artifact and closure review"
+}
