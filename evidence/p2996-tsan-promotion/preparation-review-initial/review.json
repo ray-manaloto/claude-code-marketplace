@@ -1,0 +1,216 @@
+{
+  "branch": "codex/marketplace-native-onboarding",
+  "candidate_inputs_sha256": "87132190caad6f4dcdab0e4723135d9cb9c23dc5e2fe989fdc1f9a842942f176",
+  "candidate_sha256": "f7f41aaa275ac70f0697e93dcabe7dec614857bb4d13909430f74dda8e0d9874",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "contract_sha256": "f9188f06abf5735196e08775c5e84285b0e4139831d053e41b5a3a376ab4bf53",
+  "executed_review_checks": {
+    "abi_metadata_unchanged": true,
+    "binary_artifact_reads": 0,
+    "bounded_comparator": {
+      "elapsed_seconds": 0.1266491669230163,
+      "finished_at": "2026-10-12T03:44:58.304561+00:00",
+      "returncode": 0,
+      "runs": 1,
+      "script_sha256": "0c2f4ba1be638240c43dfefd34fdeeb8330b1a33ab6005688dd2b0379a6b8793",
+      "started_at": "2026-10-12T03:44:58.177787+00:00",
+      "stderr": "",
+      "timeout_seconds": 30
+    },
+    "candidate_snapshot_count": 11,
+    "comparator_result_explanation": "The comparator returned 0 because its comparisons and explicit regression assertions succeeded. That is not a preparation PASS; this review requires changes.",
+    "direct_input_hashes_checked": 190,
+    "git_identity": {
+      "final_checks": [
+        {
+          "argv": [
+            "/usr/bin/git",
+            "-c",
+            "core.fsmonitor=false",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "returncode": 0,
+          "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n"
+        },
+        {
+          "argv": [
+            "/usr/bin/git",
+            "-c",
+            "core.fsmonitor=false",
+            "symbolic-ref",
+            "--short",
+            "HEAD"
+          ],
+          "returncode": 0,
+          "stdout": "codex/marketplace-native-onboarding\n"
+        },
+        {
+          "argv": [
+            "/usr/bin/git",
+            "-c",
+            "core.fsmonitor=false",
+            "rev-parse",
+            "HEAD"
+          ],
+          "returncode": 0,
+          "stdout": "a3de6bc78da3d5717c5c1367585f396908977e9d\n"
+        },
+        {
+          "argv": [
+            "/usr/bin/git",
+            "-c",
+            "core.fsmonitor=false",
+            "rev-parse",
+            "--path-format=absolute",
+            "--git-common-dir"
+          ],
+          "returncode": 0,
+          "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n"
+        }
+      ],
+      "initial_checks_returncodes": [
+        0,
+        0
+      ]
+    },
+    "inherited_direct_inputs": 181,
+    "inspection_only_errors": [
+      "One exploratory rg command used an incorrect predecessor derive filename and returned 2 after its valid JSON reads.",
+      "One private-result display attempted len() on an integer and returned 1; the corrected display returned 0. Neither executed a candidate runner or changed files."
+    ],
+    "missing_witness_guard_coverage": {
+      "tsan": {
+        "abi_inputs": false,
+        "inputs": false,
+        "source_inputs": false,
+        "tools": false
+      },
+      "tsan-ubsan": {
+        "abi_inputs": false,
+        "inputs": false,
+        "source_inputs": false,
+        "tools": false
+      }
+    },
+    "new_direct_inputs": [
+      "dev/toolchains/p2996_tsan_runtime.py",
+      "evidence/p2996-tsan-repair/artifact-inventory.json",
+      "evidence/p2996-tsan-repair/artifact-review/review.json",
+      "evidence/p2996-tsan-repair/operation/closure.json",
+      "evidence/p2996-tsan-repair/operation/qualification.json",
+      "evidence/p2996-tsan-runtime/contract.json",
+      "evidence/p2996-tsan-runtime/controls/controls.json",
+      "evidence/p2996-tsan-runtime/final-secret-scan.json",
+      "evidence/p2996-tsan-runtime/preparation-review/review.json"
+    ],
+    "predecessor_ASan_witness_source_coverage": true,
+    "source_tool_abi_binary_reads": 0,
+    "stable_watched_text_files": 205,
+    "unchanged_source_input_metadata": 881,
+    "unchanged_tool_metadata": 28
+  },
+  "findings": [
+    {
+      "blocking": true,
+      "evidence": [
+        "qualify() at lines 168-174 executes each contract witness path directly and includes the old contract witness metadata in the qualification result.",
+        "guard() at lines 48-65 does not check either witness hash or size. Both witness paths are absent from inputs, source_inputs, tools and abi_inputs; comparison.json records all eight false coverage values.",
+        "derive.py.source lines 27-30 records the witness digests only when deriving the contract. This does not check the files at promotion or qualification time.",
+        "The predecessor ASan promotion contract includes all three qualification witness paths in source_inputs. That integrity coverage is lost in the new TSan contract."
+      ],
+      "evidence_kind": "Direct static source inspection and executed bounded metadata comparison; no witness mutation or execution",
+      "id": "TSAN-PROMOTION-P1-WITNESS-GUARD",
+      "impact": "If either witness changes after contract derivation, this prepared runner can promote the runtime and execute the changed binary while reporting the previously qualified witness digest. The installed-runtime acceptance receipt would no longer establish that the approved witnesses were used.",
+      "line": 169,
+      "parent_disposition": "Parent acknowledged the finding and plans the guard fix after this frozen review receipt. No fix is included in this reviewed candidate.",
+      "path": "dev/toolchains/p2996_tsan_promote.py",
+      "priority": "P1",
+      "related_lines": [
+        48,
+        65,
+        168,
+        174
+      ],
+      "requested_change": "Check the exact SHA-256 and byte length of both witness files inside guard(), so the existing pre-admission, pre-mutation and post/recovery guard calls all enforce witness identity; then regenerate and refreeze the candidate and receipts for focused review.",
+      "title": "Bind both qualification witness binaries in the promotion guard"
+    }
+  ],
+  "git_common_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "helper_sha256": "2825a15e9a6fe9d5bf43e624deba594581d34caac453236b165977f3af9c4092",
+  "maintained_scope": {
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "37f584eb2986dac5b70d1ecc8633925b6fcbf2f895eecb7551e8921fcef53e1c",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "f9acf91e9e3374b459ace94ad9ba47e63f7d9a5c983682775de7e6d3e835d49c",
+    "dev/toolchains/p2996_tsan_promote.py": "2825a15e9a6fe9d5bf43e624deba594581d34caac453236b165977f3af9c4092",
+    "docs/sanitizers.md": "eeb58e02ee84a7ebe9855d5fb23af217f3cd4ec157b9e69fc869f1d550259773"
+  },
+  "memory_context": "MEMORY.md line 74 used only to route the workspace/history lookup. Current identity, source and outcomes were verified from the assigned files and private check outputs.",
+  "not_run": [
+    "No binary artifacts read; current binary content deliberately unverified because preparation is blocked statically",
+    "No promotion, witness, guard, lease, capacity, process census, scanner, static task, native tool, service, container, network or model session executed",
+    "No recursive source/build/tools/ABI inventory rehash or nested global-state reads",
+    "No installed-original, private-patched or witness artifact content read; exact count zero, as the actionable static blocker sufficed.",
+    "No installed-runtime promotion, restoration test or any of the five installed-path qualification cells. Runtime effectiveness and recovery behavior remain UNVERIFIED.",
+    "No large sanitizer matrix, compiler/linker/native tool execution, source/build/tree scan, installs, services, containers, global changes or agents."
+  ],
+  "ownership": "Parent is the sole implementation writer. No repository, shared source, build, prefix or global files were written by this reviewer; only these private review artifacts were created.",
+  "preparation_approved": false,
+  "recorded_at": "2026-10-12T03:47:50.696457+00:00",
+  "result": "CHANGES REQUIRED",
+  "retained_receipts_checked": {
+    "Claude_acceptance_limit": "The existing receipt reports all 19 original acceptance hashes preserved. This reviewer checked the receipt binding and contents; did not rerun static tasks, Claude hooks, a fresh Claude/Codex model session or full OCI acceptance.",
+    "original_Claude_acceptance_hashes_reported": 19,
+    "secret_scan": {
+      "complete_token_files": [],
+      "dispositions": 6,
+      "files": 9,
+      "inherited_dispositions_reused_without_binary_or_SDK_reads": 5,
+      "new_text_digest_checked": 1,
+      "raw_rc": 1,
+      "transformed_rc": 0
+    },
+    "secret_scan_limit": "Inspected the retained raw/transformed scanner reports, six false-positive dispositions and exact text bindings. Five dispositions were carried forward from already reviewed receipts without SDK/object rehash; the new text digest was checked. No scanner was executed; complete-token coverage is the recorded nine-file payload, not all repository files.",
+    "static_receipt_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "return_channel": "native collaboration to /root",
+  "reviewer": "/root/cold_bottle_review",
+  "schema_version": 1,
+  "static_review": {
+    "additional_findings": "No additional actionable regression identified within this bounded preparation scope.",
+    "capacity_and_lease": "The runner retains the admitted capacity checks and canonical nonblocking lease behavior from the predecessor. These were reviewed as source only and not acquired, probed or run.",
+    "fresh_process_and_environment": "The installed-path qualification uses Python -E -B, an explicit environment with inherited runtime variables cleared and no DYLD_LIBRARY_PATH override, disabled core dumps, reflection output assertions and the expected installed runtime loader check. No fresh process or model session was executed by this review.",
+    "instructions_read": "Actual AGENTS.md and docs/onboarding.md, accepted-decisions.md lines 29-43, selected Task 14b2b plan/progress sections and sanitizer documentation; no broad unrelated decision review.",
+    "loader_assertions": "The plan requires the unique installed libclang_rt runtime and the selected libc++, libc++abi and libunwind paths in the loader output. Correctness of actual future loader output is unverified.",
+    "mode": "The private patched runtime is recorded as 0700 and the transition stages the installed replacement as 0755; actual binary metadata/content were not re-read in this blocked review.",
+    "native_case_plan": {
+      "tsan-clean": 0,
+      "tsan-race": 86,
+      "tsan-ubsan-clean": 0,
+      "tsan-ubsan-overflow": 86,
+      "tsan-ubsan-race": 86
+    },
+    "prerequisites": "Task 14b2a guard preparation PASS, Task 14b1 artifact review and its qualification/closure/artifact inventory, predecessor ASan promotion transition and installed ASan guard were read and hash-bound through the direct input comparison. Their recorded native outcomes were not rerun.",
+    "sandbox": "The preparation composes private operation-root and /dev/null write allowance with network denial. The mutation profile adds only the exact installed TSan runtime path. Static comparison found no other new write destination.",
+    "source_inspected": "Complete 214-line promotion helper, complete 67-line derivation source, diff against predecessor ASan promotion runner, frozen contract/candidate and prerequisite receipt contents.",
+    "transition": "The unchanged imported transition backs up the original, stages the replacement at mode 0755, applies and qualifies inside a transaction, catches BaseException with termination signals masked during recovery, refuses an unknown third target digest, restores a recognized prior image, performs restoration qualification and rethrows the original failure. Static inspection only; recovery was not exercised.",
+    "transition_import_and_hash_unchanged": true,
+    "unchanged_AST_functions": [
+      "save",
+      "run",
+      "source_state",
+      "interrupted"
+    ]
+  },
+  "supporting_files": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ],
+  "unit": "Task 14b2b installed TSan promotion PREPARATION"
+}

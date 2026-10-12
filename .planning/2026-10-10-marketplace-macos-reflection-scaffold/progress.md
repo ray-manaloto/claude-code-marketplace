@@ -1555,3 +1555,45 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   Its bounded comparator exited 0 in 0.124 seconds and verified 27 contract
   inputs, six control logs and exactly two authorized runtime binary hashes.
   It did not rerun the controls, installed guard or native witnesses.
+
+### Task 14b2b: guarded installed TSan promotion
+
+- Task 14b2a committed at `a3de6bc78da3d5717c5c1367585f396908977e9d`;
+  the worktree was clean. Installed TSan still has its original identity.
+- Derived a promotion contract from the qualified private TSan repair and the
+  reviewed ASan/TSan installed guard. It binds 190 direct inputs, 881 source
+  inputs, 28 tools, both witness binaries and exact before/after identities.
+  A runner is prepared to retain the original backup and verify five native
+  installed-path cases under fresh capacity and the canonical lease. No
+  installed write or native witness has run in this phase.
+- Independent review of the first frozen candidate found a P1 gap: the runner
+  recorded the two witness hashes but did not verify them at execution time.
+  The runner now checks exact byte lengths and SHA-256 in its repeated guard.
+  A focused review of the corrected candidate is pending.
+- The focused correction review passed without findings. Fresh capacity
+  admission passed, but the first native dispatch exited 1 before recording
+  any child command or entering the lease. The extracted command wrapper raised
+  `NameError: datetime` because the new runner lacked three imports its copied
+  global scope must supply. The failure-path guard passed, the installed TSan
+  digest and mode stayed original, and the owned dispatch PID ended. An
+  unrelated VM process had the lease file open during the closure probe; an
+  open descriptor alone does not prove an active flock. No installed mutation
+  occurred.
+- Restored `datetime`, `time` and `subprocess` in the runner. A private
+  `/usr/bin/true` command through the extracted wrapper exited 0 with empty
+  logs. Focused retry review passed without findings, reconstructing all four
+  maintained-file deltas and the wrapper's globals. The retained control has
+  no script, so the reviewer checked its receipt and logs but did not rerun it.
+- Fresh capacity passed with the admitted editor services and container, a
+  free lease and sufficient disk reserve. The native retry exited 0 after 24
+  commands. Both clean TSan modes returned 0; two race cases and one signed
+  overflow case returned the intended 86 with exact loader origins. The
+  installed TSan runtime now matches the qualified candidate at mode `0755`;
+  the original `f82eafd6...` runtime remains in the private `original.dylib`.
+  Closure collection exited 0, retained 55 text receipts and five artifact
+  identities, found all 25 owned PIDs absent and the canonical lease free.
+- Independent artifact review passed without findings. Its bounded comparator
+  exited 0 in 0.107 seconds, checked all 24 command outcomes, 48 logs, 55
+  text receipts, eight copy pairs and exactly five binary artifacts. It also
+  independently found the 25 PIDs absent and the lease free. The reviewer did
+  not rerun native witnesses, rollback or full Claude/OCI acceptance.

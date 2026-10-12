@@ -1,0 +1,43 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib, json, os, subprocess, sys, tempfile, time
+
+os.umask(0o077)
+root = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+evidence = root / 'evidence/p2996-tsan-promotion'
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+admission = json.loads((evidence / 'admission.json').read_text())
+review = json.loads((evidence / 'pre-run-review.json').read_text())
+helper = root / 'dev/toolchains/p2996_tsan_promote.py'
+assert admission['helper_sha256'] == review['helper_sha256'] == sha(helper)
+assert admission['contract_sha256'] == review['contract_sha256'] == sha(evidence / 'contract.json')
+assert admission['candidate_sha256'] == review['candidate_sha256'] == sha(evidence / 'candidate.json')
+assert admission['review_sha256'] == sha(evidence / 'pre-run-review.json')
+assert review['result'].startswith('PASS') and not review['findings']
+assert admission['capacity_sha256'] == sha(evidence / 'capacity-retry/capacity.json')
+assert admission['capacity_execution_sha256'] == sha(evidence / 'capacity-execution-retry.json')
+candidate = json.loads((evidence / 'candidate.json').read_text())
+candidate_inputs = json.loads((evidence / 'candidate-inputs.json').read_text())
+assert sha(evidence / 'candidate-inputs.json') == candidate['evidence']['candidate-inputs.json']
+assert all(sha(root / path) == digest for path, digest in candidate_inputs.items())
+assert set(candidate['files']).issubset(candidate_inputs)
+directory = Path(tempfile.mkdtemp(prefix='p2996-tsan-promotion-native-launch-', dir=Path.home() / '.local/state/marketplace-tool-foundation'))
+argv = [sys.executable, '-E', '-B', str(helper), '--run-dir', admission['run_directory'], '--promote']
+launch = {'argv': argv, 'helper_sha256': sha(helper), 'admission_sha256': sha(evidence / 'admission.json'),
+          'started_at': datetime.now(timezone.utc).isoformat(), 'private_launch_directory': str(directory),
+          'dispatch_sha256': sha(Path(__file__))}
+start = time.monotonic()
+for path in [directory / 'launch.json', evidence / 'native-launch.json']:
+    path.write_text(json.dumps(launch, indent=2) + '\n')
+with (directory / 'stdout').open('w') as stdout, (directory / 'stderr').open('w') as stderr:
+    child = subprocess.Popen(argv, cwd=root, stdout=stdout, stderr=stderr)
+    print(json.dumps({'native_pid': child.pid, 'directory': admission['run_directory'], 'launch_directory': str(directory)}), flush=True)
+    returncode = child.wait()
+execution = launch | {'pid': child.pid, 'returncode': returncode, 'elapsed_seconds': time.monotonic() - start,
+                      'finished_at': datetime.now(timezone.utc).isoformat(),
+                      'stdout_sha256': sha(directory / 'stdout'), 'stderr_sha256': sha(directory / 'stderr')}
+for path in [directory / 'execution.json', evidence / 'native-execution.json']:
+    path.write_text(json.dumps(execution, indent=2) + '\n')
+print(json.dumps(execution), flush=True)
+sys.exit(returncode)

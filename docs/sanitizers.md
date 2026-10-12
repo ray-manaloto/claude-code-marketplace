@@ -127,8 +127,31 @@ the two immutable historical inventories. The qualified private TSan library
 has mode `0700`; any installed replacement must be staged at the original
 `0755` mode. [Private controls](../evidence/p2996-tsan-runtime/controls/controls.json)
 passed for overlay precision, replacement, restore and unknown-target refusal.
-The installed library remains the original. [Independent preparation review](../evidence/p2996-tsan-runtime/preparation-review/review.json)
+The installed library was still original at this preparation stage. [Independent preparation review](../evidence/p2996-tsan-runtime/preparation-review/review.json)
 passed without findings; its bounded comparison exited 0 and verified 27
 contract inputs, six control logs and exactly two runtime binary hashes. The
-reviewer did not rerun the controls. Post-promotion guard execution and native
-installed-path witnesses remain unverified pending separate admission.
+reviewer did not rerun the controls. The subsequent installed-path qualification
+is recorded under Task 14b2b.
+
+Task 14b2b prepares the [installed TSan promotion runner](../dev/toolchains/p2996_tsan_promote.py).
+Its contract binds the private candidate and both TSan witness binaries. The
+runner stages the candidate at the original `0755` mode, retains an exact
+backup, and requires fresh ownership and capacity before the one-file change.
+The first admitted dispatch stopped before the lease and before any installed
+write because the runner omitted imports required by its extracted command
+wrapper. [Failure closure](../evidence/p2996-tsan-promotion/initial-failure/closure.json)
+confirms zero child commands, the original installed digest and an ended owned
+process. The imports are restored and the wrapper passed a private harmless
+command control. [Focused retry review](../evidence/p2996-tsan-promotion/preparation-review-retry/review.json)
+passed without findings. Fresh capacity then passed, and the native retry
+exited 0: 24 commands included two clean runs and three deliberate race or
+overflow diagnostics through the installed loader path. The original library
+is retained as `original.dylib` in the private native run directory; the
+installed library now has the qualified candidate digest at mode `0755`.
+[Closure](../evidence/p2996-tsan-promotion/operation/closure.json) records
+the exact installed, backup, candidate and witness identities, unchanged
+source and default outputs, absent owned processes and a free lease.
+[Independent artifact review](../evidence/p2996-tsan-promotion/artifact-review/review.json)
+passed without findings: its bounded comparison checked 24 command receipts,
+48 logs, 55 text snapshots, eight copy pairs and five binary artifacts. The
+review did not rerun the native witnesses or full Claude/container acceptance.

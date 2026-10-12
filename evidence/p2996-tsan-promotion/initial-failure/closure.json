@@ -1,0 +1,48 @@
+{
+  "state": "PASS: failed attempt closed before native commands or mutation",
+  "collected_at": "2026-10-12T04:01:16.176322+00:00",
+  "dispatch_returncode": 1,
+  "qualification_sha256": "ccfd24298245e41b50be9a56c3b4dd2a3811252fbe2276dfc9bc3d5a6f5bef0a",
+  "error": "NameError(\"name 'datetime' is not defined\")",
+  "mutation_started": false,
+  "command_count": 0,
+  "protected_state_matches_expected": true,
+  "installed_tsan_identity": {
+    "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+    "bytes": 1104608,
+    "mode": "0o755"
+  },
+  "native_pid_probe": {
+    "argv": [
+      "/bin/ps",
+      "-p",
+      "45617",
+      "-o",
+      "pid=,comm="
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "lease_observation": {
+    "our_attempt_reached_lease": false,
+    "lsof_argv": [
+      "/usr/sbin/lsof",
+      "-nP",
+      "-t",
+      "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock"
+    ],
+    "lsof_returncode": 0,
+    "open_file_pids": [
+      "96190"
+    ],
+    "note": "Open-file observation is not proof of an active flock; no lease was attempted by this run"
+  },
+  "files": {
+    "qualification.json": "ccfd24298245e41b50be9a56c3b4dd2a3811252fbe2276dfc9bc3d5a6f5bef0a",
+    "dispatch.stdout": "37c8cf693a44a0992617c9ac7f0f64f0e2d951d485d12314c3ab5d7e367278fb",
+    "dispatch.stderr": "dd029cf8a31a5e68e393eac6786b6ef4ffe3877bc200a50e807c220b8301674e",
+    "launch.json": "3b0b5be87239e7fcdb31ee8cd3af6439bc05a9d036dbbe48b6de452485b492c6",
+    "execution.json": "80743561a2a6747f76c71cf4ce515cd39449c0cbb44bcf5a58fdbbc24d6c6f38"
+  }
+}

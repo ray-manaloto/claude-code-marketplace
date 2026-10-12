@@ -91,6 +91,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 14b | P2996 TSan and TSan+UBSan witnesses | Ordered clean case; data-race and overflow diagnostics; exact runtimes | Failed; closure independently verified |
 | 14b1 | Private TSan startup repair trial | Exact TSan link recipe; original/patch A/B witnesses; no installed write | Complete |
 | 14b2a | Installed TSan guard preparation | Composed ASan/TSan inventory overlay and private exact-file controls | Complete |
+| 14b2b | Guarded installed TSan promotion | Exact prior/next identities, fresh admission and five installed-path witnesses | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
@@ -317,3 +318,10 @@ candidate. Compose the existing ASan overlay with a second exact TSan-row overla
 over the two immutable historical inventories; retain the prior guard chain.
 Exercise pure overlays and private confined replacement/restore/refusal controls.
 No installed write, native witness, capacity lease or promotion is included.
+
+Task 14b2b prepares one guarded installed TSan replacement from the reviewed
+private candidate. Require exact source, tool, prefix and witness identities,
+fresh capacity, canonical ownership lease, retained original backup and
+unknown-target refusal. Run clean and deliberate-error TSan/TSan+UBSan cases
+through the installed loader path; preserve ASan, defaults and unrelated prefix
+entries. Collect closure and independent artifact review before completion.
