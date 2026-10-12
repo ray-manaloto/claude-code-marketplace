@@ -1804,3 +1804,9 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   and hashes are in `evidence/python-bridge/ticket25-review.md`. The parent
   probe returned 0; lightweight task validation, check and 19-file baseline
   each returned 0. Gitleaks 8.30.1 found no leaks in the three probe files.
+- Ticket #25 was committed locally at
+  `54d34c8b8d5636614f772f628e705f9eb93c5ac6` with a clean worktree.
+  The standby takeover document was refreshed to include the reviewed #24/#25
+  commits and receipts, the remaining local frontier and the #28 acceptance
+  assertion versus frozen-baseline conflict. Transfer remains inactive and
+  requires an explicit user message that Codex ownership has stopped.
