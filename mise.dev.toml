@@ -198,3 +198,29 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_transfer.py plan --commi
 description = "Exercise A10 dry-run, approval, collision and drift refusals in scratch"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_transfer.py -v'
+[tasks."test:issue-create"]
+description = "Exercise A08a single-POST creation, binding and recovery offline"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_issue_create.py -v'
+
+[tasks."issue:create-preview"]
+description = "Freeze one approved child issue and fresh parent/repository preimages"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<local_id>"; arg "<journal_dir>"'
+run = 'uv run --no-sync --offline python -B dev/issue_create.py preview --manifest-file dev/issue-tickets.json --local-id "${usage_local_id?}" --journal-dir "${usage_journal_dir?}"'
+
+[tasks."issue:create-apply"]
+description = "Attempt one SHA-bound child issue POST; unresolved attempts are verify-only"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<local_id>"; arg "<journal_dir>"; arg "<sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_create.py apply --manifest-file dev/issue-tickets.json --local-id "${usage_local_id?}" --journal-dir "${usage_journal_dir?}" --intent-sha256 "${usage_sha256?}"'
+
+[tasks."issue:create-verify"]
+description = "Resolve an attempted child issue from complete lists without another POST"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<local_id>"; arg "<journal_dir>"; arg "<sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_create.py verify --manifest-file dev/issue-tickets.json --local-id "${usage_local_id?}" --journal-dir "${usage_journal_dir?}" --intent-sha256 "${usage_sha256?}"'
