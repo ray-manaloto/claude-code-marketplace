@@ -1502,3 +1502,38 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   52 text receipts and three artifact hashes matched. This verifies a closed
   failure, not a TSan qualification. The source-backed patch applies to the
   observed startup path; its effect on TSan remains untested.
+
+### Task 14b1: private TSan startup repair trial
+
+- Task 14b committed at `b90a5d5703d538fd146de87d0656132bc820044b`.
+  The postcommit baseline passed all 19 original hashes and the tree was clean.
+  A caller-only incorrect SHA assertion was corrected using the recorded five
+  zero-exit checks; no build or sanitizer command was rerun.
+- Read-only Ninja command extraction returned 0 without building. The captured
+  TSan link uses 128 objects: 93 match the accepted ASan object inventory and
+  35 are TSan-specific. Its compiler and signing recipe stay distinct from ASan.
+  Reuse the successful private ASan comparison's original and patched mapping
+  objects; source-only inspection tied their shared mapping to the TSan crash.
+- A new confined runner and derived contract are prepared. The contract retains
+  846 predecessor source/build bindings and adds 35 TSan object hashes. It
+  requires the original startup failure, patched clean/race witnesses and the
+  combined undefined-behavior cases. No TSan relink or witness has run in this
+  preparation phase.
+- Independent preparation review passed without findings. Its comparison
+  exited 0 and matched eight snapshots, all 128 ordered link inputs, 93 shared
+  object identities, the two private launchers and 38 bounded binary hashes.
+  Fresh capacity admission passed with two identified editor services and the
+  admitted container; the native operation then exited 0 after 36 commands.
+- The private original TSan runtime reproduced the startup SIGSEGV (-11) with
+  empty stdout. The patched runtime passed clean TSan and TSan+UBSan cases;
+  deliberate races and signed overflow returned 86 with expected diagnostics.
+  Its receipt reports protected inputs unchanged and the canonical lease
+  released. Closure collection exited 0: 78 exact text receipts and six artifact
+  hashes were retained, all 37 owned processes were absent and the lease was
+  free without changing its contents.
+- Independent artifact review passed without findings. Its bounded comparison
+  exited 0 and matched 40 frozen files, 78 text bindings, 14 capacity logs and
+  six artifact hashes. It verified the original -11 and five patched 0/86
+  outcomes. The PID/lease cleanup is collector-reported historical evidence,
+  not an independent live reprobe. Both links retained nonfatal unused
+  `-stdlib=libc++` warnings. The installed TSan path remains unqualified.

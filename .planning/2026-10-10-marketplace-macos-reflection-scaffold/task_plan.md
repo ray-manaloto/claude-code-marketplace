@@ -89,7 +89,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
 | 14a2 | Installed ASan guard preparation | Exact single-file overlay; preserved guard chain; confined replacement controls | Complete |
 | 14a3 | Installed ASan promotion | Exact backup/recovery; fresh ownership; installed-path sanitizer witnesses | Complete |
 | 14b | P2996 TSan and TSan+UBSan witnesses | Ordered clean case; data-race and overflow diagnostics; exact runtimes | Failed; closure independently verified |
-| 14b1 | Private TSan startup repair trial | Exact TSan link recipe; original/patch A/B witnesses; no installed write | Planned |
+| 14b1 | Private TSan startup repair trial | Exact TSan link recipe; original/patch A/B witnesses; no installed write | Complete |
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.

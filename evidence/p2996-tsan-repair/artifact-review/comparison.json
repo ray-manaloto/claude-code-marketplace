@@ -1,0 +1,765 @@
+{
+  "candidate_sha256": "25e61bbbb3f26a6ad99dbac451b5935515a1b77c20bfe3944583ac3a9bf6a602",
+  "checks": {
+    "artifacts": {
+      "bytes": 3439056,
+      "count": 6,
+      "each_hashed_once": true,
+      "files": [
+        {
+          "bytes": 1103504,
+          "content_reads": 1,
+          "kind": "original-tsan-runtime",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 6,
+            "uuids": [
+              "66A11B28-0E26-3BE8-A691-4E3C80E0DDDD"
+            ]
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib",
+          "sha256": "92ec49fd308e891d77d9c0ad69ecc8471a0915af8c3784172df6d40fcf124422"
+        },
+        {
+          "bytes": 1103504,
+          "content_reads": 1,
+          "kind": "patched-tsan-runtime",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 6,
+            "uuids": [
+              "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+            ]
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+          "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a"
+        },
+        {
+          "bytes": 35336,
+          "content_reads": 1,
+          "kind": "tsan-binary",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 2,
+            "uuids": [
+              "ACE514CB-41B5-37BF-89E7-5BC5272265A7"
+            ]
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+          "sha256": "98bbddbab90890197bebfe79f451d7e5ad6384bd3ad340dc5f47c3b93ad0f018"
+        },
+        {
+          "bytes": 39952,
+          "content_reads": 1,
+          "kind": "tsan-ubsan-object",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 1,
+            "uuids": []
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/core.o",
+          "sha256": "41ed8e810c5ef60ecca04734198231932798365f18dea97f7fdaf268b762aea3"
+        },
+        {
+          "bytes": 52152,
+          "content_reads": 1,
+          "kind": "tsan-ubsan-binary",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 2,
+            "uuids": [
+              "81AB6210-25B1-302F-A34E-D434E6180D1E"
+            ]
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+          "sha256": "7ddfb29def4c0293f50876a9139429a64bf6ea9d6adcaf02ce62e07c994e3f99"
+        },
+        {
+          "bytes": 1104608,
+          "content_reads": 1,
+          "kind": "installed-tsan-unchanged",
+          "mach_o": {
+            "cpu": "arm64",
+            "filetype": 6,
+            "uuids": [
+              "C87B1C75-0AFA-365D-AAC2-AB401E9E6D94"
+            ]
+          },
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+          "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb"
+        }
+      ]
+    },
+    "capacity_and_ownership_receipts": {
+      "independent_live_reprobe": false,
+      "preflight": {
+        "active_build_processes": [
+          "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+          "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+        ],
+        "admitted_editor_services": [
+          "73356",
+          "73398"
+        ],
+        "commands": [
+          {
+            "argv": [
+              "/bin/ps",
+              "-axo",
+              "pid=,pcpu=,comm="
+            ],
+            "case": "processes",
+            "elapsed_seconds": 0.06215333309955895,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/processes.stdout",
+                "sha256": "4b39e2bb16d90f6ab7cf59ff19f6aa51b8dd96ec273220d44ad401239293a239"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/processes.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          },
+          {
+            "argv": [
+              "/Applications/Docker.app/Contents/Resources/bin/docker",
+              "context",
+              "show"
+            ],
+            "case": "docker-context",
+            "elapsed_seconds": 0.3941058327909559,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-context.stdout",
+                "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-context.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          },
+          {
+            "argv": [
+              "/Applications/Docker.app/Contents/Resources/bin/docker",
+              "ps",
+              "--format",
+              "{{.ID}}\t{{.Image}}"
+            ],
+            "case": "docker-census",
+            "elapsed_seconds": 0.04545324994251132,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-census.stdout",
+                "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-census.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          },
+          {
+            "argv": [
+              "/Applications/Docker.app/Contents/Resources/bin/docker",
+              "stats",
+              "--no-stream",
+              "--format",
+              "{{json .}}"
+            ],
+            "case": "docker-stats",
+            "elapsed_seconds": 1.051025209017098,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-stats.stdout",
+                "sha256": "b277979c1307f0d7eca90046c483462a6674527ea256a545a3d9b41e4ea8a81e"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-stats.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 20
+          },
+          {
+            "argv": [
+              "/usr/bin/env",
+              "LC_ALL=C",
+              "TZ=America/Chicago",
+              "/bin/ps",
+              "-p",
+              "36012,73356,73372,73398",
+              "-o",
+              "pid=,ppid=,lstart=,comm="
+            ],
+            "case": "editor-identities",
+            "elapsed_seconds": 0.06052191602066159,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities.stdout",
+                "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          },
+          {
+            "argv": [
+              "/usr/sbin/lsof",
+              "-a",
+              "-p",
+              "73356,73398",
+              "-d",
+              "cwd",
+              "-Fpn"
+            ],
+            "case": "editor-cwd",
+            "elapsed_seconds": 0.061278624925762415,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-cwd.stdout",
+                "sha256": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-cwd.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          },
+          {
+            "argv": [
+              "/usr/bin/env",
+              "LC_ALL=C",
+              "TZ=America/Chicago",
+              "/bin/ps",
+              "-p",
+              "36012,73356,73372,73398",
+              "-o",
+              "pid=,ppid=,lstart=,comm="
+            ],
+            "case": "editor-identities-after",
+            "elapsed_seconds": 0.03903804090805352,
+            "logs": [
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities-after.stdout",
+                "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+              },
+              {
+                "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities-after.stderr",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "returncode": 0,
+            "timeout_seconds": 15
+          }
+        ],
+        "container_cpu_percent": 4.37,
+        "containers": [
+          "53064d00e38a\tvsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86"
+        ],
+        "cpus": 12,
+        "docker_context": "desktop-linux",
+        "free_bytes": 71006535680,
+        "held_lease": false,
+        "load": [
+          3.03125,
+          5.09228515625,
+          6.25537109375
+        ],
+        "native_operation_started": false,
+        "recorded_at": "2026-10-12T02:53:53.604142+00:00",
+        "script_sha256": "e93ea91c13c50c05dc42a7259139deaeed9ddf02ce448762be23dc16e0a02ca1",
+        "state": "PASS",
+        "total_cpu_percent": 94.2,
+        "writer_census": {
+          "at": "2026-10-12T02:53:54.036860+00:00",
+          "lock_holder_check_rc": 1,
+          "lock_holders": [],
+          "processes": [
+            {
+              "executable": "mise",
+              "known_task": "mcp:lab-results",
+              "pid": 78552,
+              "ppid": 78530
+            },
+            {
+              "executable": "mise",
+              "known_task": "mcp:graphify",
+              "pid": 78554,
+              "ppid": 78530
+            },
+            {
+              "executable": "mise",
+              "known_task": "mcp:cbm",
+              "pid": 78556,
+              "ppid": 78530
+            }
+          ]
+        }
+      },
+      "under_lease": {
+        "active": [
+          "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+          "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+        ],
+        "admitted_editor_services": [
+          "73356",
+          "73398"
+        ],
+        "container_cpu_percent": 5.64,
+        "cpus": 12,
+        "free_bytes": 71033970688,
+        "load": [
+          2.880859375,
+          4.72900390625,
+          6.0576171875
+        ],
+        "total_cpu_percent": 141.2
+      },
+      "writer_census_after": {
+        "at": "2026-10-12T02:54:46.622999+00:00",
+        "lock_holder_check_rc": 1,
+        "lock_holders": [],
+        "processes": [
+          {
+            "executable": "mise",
+            "known_task": "mcp:lab-results",
+            "pid": 78552,
+            "ppid": 78530
+          },
+          {
+            "executable": "mise",
+            "known_task": "mcp:graphify",
+            "pid": 78554,
+            "ppid": 78530
+          },
+          {
+            "executable": "mise",
+            "known_task": "mcp:cbm",
+            "pid": 78556,
+            "ppid": 78530
+          }
+        ]
+      },
+      "writer_census_before": {
+        "at": "2026-10-12T02:54:35.381248+00:00",
+        "lock_holder_check_rc": 1,
+        "lock_holders": [],
+        "processes": [
+          {
+            "executable": "mise",
+            "known_task": "mcp:lab-results",
+            "pid": 78552,
+            "ppid": 78530
+          },
+          {
+            "executable": "mise",
+            "known_task": "mcp:graphify",
+            "pid": 78554,
+            "ppid": 78530
+          },
+          {
+            "executable": "mise",
+            "known_task": "mcp:cbm",
+            "pid": 78556,
+            "ppid": 78530
+          }
+        ]
+      }
+    },
+    "diagnostic_and_loader_proof": {
+      "original-clean": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 709,
+        "returncode": -11,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "5e8d3393fb4ceb1717a898b46f031f5b1b32384fd6f1e2180dd7f32e43f1debb",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tsan-clean": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 86,
+        "returncode": 0,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "92ae4c00c8312a123c58341b9343ccfcfcbd4b7d51e3322b027f9080724ac1e8",
+        "stdout_sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+      },
+      "tsan-race": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 86,
+        "returncode": 86,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "39dcc447f55b0305ab1154e6a3016da43f84b2f86091b90085f2e10078a62992",
+        "stdout_sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+      },
+      "tsan-ubsan-clean": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 86,
+        "returncode": 0,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "be37c8b107d623bfa515b4179e53a25d84d5751c978a0a78361e3aa1cdf7f5ee",
+        "stdout_sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+      },
+      "tsan-ubsan-overflow": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 86,
+        "returncode": 86,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "dfd87ff47322cdc5551db3258711564750775c1226b2d6fe68d00c3773eb24ac",
+        "stdout_sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+      },
+      "tsan-ubsan-race": {
+        "claim_other_system_cpp_absent": false,
+        "dyld_lines": 86,
+        "returncode": 86,
+        "sanitizer_runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "selected_cpp_libraries_present": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "stderr_sha256": "9d9b4f48dfb82932447a989d31272df95a02f0d3591f205b506359984305aa5a",
+        "stdout_sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+      }
+    },
+    "frozen_files": {
+      "candidate_sha256": "25e61bbbb3f26a6ad99dbac451b5935515a1b77c20bfe3944583ac3a9bf6a602",
+      "evidence": 36,
+      "inputs_sha256": "be6d74d879c137a816dba6f0705ac505f5db0425abbb3be3e29184433cc03c07",
+      "maintained": 4
+    },
+    "git_identity": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "elapsed_seconds": 0.011868749978020787,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "elapsed_seconds": 0.010896250139921904,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "codex/marketplace-native-onboarding\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "elapsed_seconds": 0.010073165874928236,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "b90a5d5703d538fd146de87d0656132bc820044b\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "elapsed_seconds": 0.0101476248819381,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n"
+      }
+    ],
+    "historical_closure": {
+      "collection_returncode_recorded": 0,
+      "collector_elapsed_seconds": null,
+      "collector_timing_not_reconstructed": true,
+      "independent_live_reprobe": false,
+      "recorded_at": "2026-10-12T02:56:27.480790+00:00",
+      "recorded_lease_free_and_contents_unchanged": true,
+      "recorded_processes_absent": 37
+    },
+    "native_text_bindings": {
+      "capacity_logs": 14,
+      "command_logs": 72,
+      "commands": 36,
+      "counts": {
+        "-11": 1,
+        "0": 32,
+        "86": 3
+      },
+      "native_elapsed_seconds": 21.532358665950596,
+      "native_returncode": 0,
+      "operation_copy_pairs": 4,
+      "preparation_copy_pairs": 6,
+      "retained_texts": 78
+    },
+    "preparation_reuse": {
+      "rehash_inherited_guards": false,
+      "rehash_link_objects": false,
+      "same_helper_contract_recipe": true,
+      "sha256": "b95e96d31769501bf3152791b21aa87c8f896afaa6365c257efe4313622d2d2c",
+      "six_copy_pairs": true
+    },
+    "private_relink": {
+      "128_object_paths_reused_without_object_rehash": true,
+      "confinement_profile_sha256": "c4a34a9591d3558d8e9df731aebb96b9628029e271c73cf431fe8853cb122c39",
+      "exact_prepared_argv_translation": true,
+      "sole_variant_differences": "prepared output and sanitizer_procmaps object",
+      "variants": [
+        "original",
+        "patched"
+      ]
+    },
+    "retained_nonfatal_warnings": {
+      "original-runtime-link": "clang++: \u001b[0;1;35mwarning: \u001b[0m\u001b[1margument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]\u001b[0m\n",
+      "patched-runtime-link": "clang++: \u001b[0;1;35mwarning: \u001b[0m\u001b[1margument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]\u001b[0m\n"
+    },
+    "secret_scan": {
+      "bound_scanned_files": 37,
+      "complete_token_files": [],
+      "digest_dispositions": 7,
+      "frozen_files_outside_scan": [
+        "evidence/p2996-tsan-repair/operation/collection-execution.json",
+        "evidence/p2996-tsan-repair/post-native-static.json",
+        "evidence/p2996-tsan-repair/pre-artifact-secret-scan.json"
+      ],
+      "new_text_digest_dispositions_checked": 2,
+      "prior_dispositions_reused_without_guard_or_object_rehash": 5,
+      "raw_rc": 1,
+      "scan_reexecuted": false,
+      "transformed_rc": 0
+    },
+    "static_receipts": {
+      "baseline_hashes": 19,
+      "fresh_session_or_OCI": false,
+      "independently_executed_now": false,
+      "result": {
+        "baseline": 19,
+        "json": 2127,
+        "python": 152,
+        "shell": 6,
+        "status": "pass",
+        "toml": 16
+      },
+      "returncodes": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "closure_inputs_sha256": "be6d74d879c137a816dba6f0705ac505f5db0425abbb3be3e29184433cc03c07",
+  "contract_sha256": "0cc9667bbe6072c4f92d69c4c291f69959c691a3e373c643a06a681ef0c7cef7",
+  "helper_sha256": "d8804ea18549fb8668d527c13666f878947524cc10f9e1ba22743e19dbc8900d",
+  "not_run": [
+    "No native build, compiler, linker, codesign, lipo, sanitizer, witness, capacity, process census or lease probe",
+    "No inherited 881-source guard or 128-object rehash, no compiler hash",
+    "No scanner rerun, static task rerun, model session, network, service, container or OCI operation",
+    "No installed runtime promotion, general sanitizer matrix or fresh Claude acceptance"
+  ],
+  "qualification_sha256": "69cba7d1cf57fa17372bb994d817fe9289672a5b17a265e28ec4a1d84ac13b5c",
+  "recipe_sha256": "64944d753fd255e23cd891d68ed44acb6d7dd776289f5e26a5015fad7cd5ac0a",
+  "recorded_at": "2026-10-12T03:11:00.769728+00:00",
+  "result": "PASS",
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "633587a504cd5db213f21de79a534a14c1c66b1462630c877d2f93051f64546e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "6fcce822a8f89cfb33c651087a4c048758142e508374b0cf51c09854e2f85a57",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_repair.py": "d8804ea18549fb8668d527c13666f878947524cc10f9e1ba22743e19dbc8900d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "a405713c9fe42d1b0a7451fab91bb24369c77db3b4fdea2820118a129690ab5a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/admission.json": "186c54b6370802c451443d5abb771cfa68496afbbf9ecca81194460dbd85bc3f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/artifact-inventory.json": "d1d71a0ce5cde856d9dfd8aa3aa01224a4f8806b9bb84fb69ca86c25f131b274",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/candidate-inputs.json": "82064ade34d10a49809ebc7dda688bd939808bb3505b44abfb35675894339fa9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/candidate.json": "08f964a1f85795f5a1e8cdc4adca96d389020731d56da938f1bd66b12f78db3a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/capacity.py.source": "e93ea91c13c50c05dc42a7259139deaeed9ddf02ce448762be23dc16e0a02ca1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/capacity/capacity.json": "c0f51d89528e195624421f499e591d5ceed54dc82f3c72d8075c80ffd32cd88b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/capacity/execution.json": "08879ae56f07da0f30d3e0b7485206c0edef3175ed83884caa18ee59b719c762",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/closure-candidate.json": "25e61bbbb3f26a6ad99dbac451b5935515a1b77c20bfe3944583ac3a9bf6a602",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/closure-inputs.json": "be6d74d879c137a816dba6f0705ac505f5db0425abbb3be3e29184433cc03c07",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/collect.py.source": "63a63ebdcd01eecf22780913a582fc3cb18340da2470bc60a14389b92ea242d5",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/contract-derive.py.source": "216eae2cd8a5c73b97fa06e2cd03719cbc241b0c564a032db436073f4b5f5834",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/contract.json": "0cc9667bbe6072c4f92d69c4c291f69959c691a3e373c643a06a681ef0c7cef7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/dispatch.py.source": "a619c31b6a45c69593da945a933174057458581f0ba16558db323ec67c07488c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/native-execution.json": "7382a80936bc7b86394d8beb2f6581f768c665d1aaf2c4562ba1205b671e6c32",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/native-launch.json": "49f0e861610c0922306ee895f52f7af1279e1e4c34cb39ab58a0835dbd5d3db4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/ninja-commands.receipt.json": "b28697a3ca601a781ba098ad9c60f87ee868d5aa2a8be930173a890986d86dab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/ninja-commands.stdout.source": "04ba6ce3ff01e0a508c59b58b151b860b9976f558d518368a78e19b794d90e60",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/admission.json": "186c54b6370802c451443d5abb771cfa68496afbbf9ecca81194460dbd85bc3f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/closure.json": "6d0cfd551b24973bd4ce0b090841fc3519c8c59eea66708d12197d29d955e832",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/collection-execution.json": "a51f99a1a65c1dcd1d5bf35f36fa6e06b2258751ba6fcaac9e774b3c93cb6615",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/copy-manifest.json": "650542e67133e932dfebf96085278292e5004e6fbaf31f793e3480d625b771b6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/native-execution.json": "7382a80936bc7b86394d8beb2f6581f768c665d1aaf2c4562ba1205b671e6c32",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/native-launch.json": "49f0e861610c0922306ee895f52f7af1279e1e4c34cb39ab58a0835dbd5d3db4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/qualification.json": "69cba7d1cf57fa17372bb994d817fe9289672a5b17a265e28ec4a1d84ac13b5c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/text-receipts.json": "54dd9363c3a4a2eb650c630434b282900cdd5e1a99ddb7e1360b94c06d2a0339",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/post-native-static.json": "6efa8fa48da52ca4897954a195001f3b3032c4393faccaf97fb00779f048f243",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/pre-artifact-secret-scan.json": "e326524d81f08022e5ac0ad6b495cbc6fecafa248281975c5cd8dd5224fbeacb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/pre-review-secret-scan.json": "a973d595e951c557e329d335598553fbd543909fafd31bf411548865b284f0bd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/pre-review-static.json": "fefc3aab28bb84da4a56278dc2e85b90bf631a417cc724eeb7c7d7f7fd15d8ba",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/pre-run-review.json": "b95e96d31769501bf3152791b21aa87c8f896afaa6365c257efe4313622d2d2c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/preparation-review/compare.py": "5e1e1a1ba729634d6346130057d2a04b4019350899f975132bab381c88e7f6bb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/preparation-review/comparison.json": "a6e1d7010b8bbed02529908f3144b2665c72b3ea2273ce717ca8b2fbf04babe2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/preparation-review/execution.json": "b6a6d49dc88f9f01572126db6b6c3c4f18b44ab0ba76bb595c7abf608ad2c373",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/preparation-review/review.json": "b95e96d31769501bf3152791b21aa87c8f896afaa6365c257efe4313622d2d2c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/preparation-review/supporting-manifest.json": "84457b10fd75dabc6a6b30be42fe7f8a24ec215b72eabbc2536d24e4520b2b5f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/prepared-launchers.json": "6369599eb0ca2b282c6b80f762773adcb319cc563095b076964c144690eb20f8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/recipe-capture.py.source": "25df54ccd73c10bae21e518a0c7f79305f23909a2bab98319d38075e54289c4f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/recipes.json": "64944d753fd255e23cd891d68ed44acb6d7dd776289f5e26a5015fad7cd5ac0a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/operation/qualification.json": "5e14bf7eab0ba784eaee44c2fd08de93dc4e48ede7c57242273b4aa180f6e1ec",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/pre-artifact-secret-scan.json": "5055d68327d909135c94a4e4994f34ff905b06d157f728fc96d31cbb515da86e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-artifact-scan-ertgqfln/scan2.py": "43acf8a6a3c7f43388cbc7d12a2bc53f2fe5c8e2ba8a3c8c5d86b5afed0772f6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/capacity.json": "c0f51d89528e195624421f499e591d5ceed54dc82f3c72d8075c80ffd32cd88b",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/docker-stats.stdout": "b277979c1307f0d7eca90046c483462a6674527ea256a545a3d9b41e4ea8a81e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-capacity-20261012T025353Z/processes.stdout": "4b39e2bb16d90f6ab7cf59ff19f6aa51b8dd96ec273220d44ad401239293a239",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/capacity-processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/capacity-processes.stdout": "de12526bd0a6724a9db330ed06a6073ef65145f4848ca6125a34df15a9602a94",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-after.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-before.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-before.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-stats.stdout": "28e0768f55ddbe5fd513ed809af2607e2b0513ad09e2e5b7259728a531e50e8c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-runtime.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-runtime.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-clean.stderr": "5e8d3393fb4ceb1717a898b46f031f5b1b32384fd6f1e2180dd7f32e43f1debb",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-clean.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-link.stderr": "44c26294029169b49cd03296707dff76a53bac01fb26159ede04430357bb8407",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-sign.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-sign.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-runtime.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-runtime.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-link.stderr": "44c26294029169b49cd03296707dff76a53bac01fb26159ede04430357bb8407",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-sign.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-sign.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb": "c4a34a9591d3558d8e9df731aebb96b9628029e271c73cf431fe8853cb122c39",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/project-head.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/project-head.stdout": "3008a86c16b08701c15924ea7a46d4a2066986940205a2e98f1bb11e39a8f4cf",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/qualification.json": "69cba7d1cf57fa17372bb994d817fe9289672a5b17a265e28ec4a1d84ac13b5c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-diff.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-diff.stdout": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-head.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-head.stdout": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-status.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-status.stdout": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-tree.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-tree.stdout": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-diff.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-diff.stdout": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-head.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-head.stdout": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-status.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-status.stdout": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-tree.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-tree.stdout": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-clean.stderr": "92ae4c00c8312a123c58341b9343ccfcfcbd4b7d51e3322b027f9080724ac1e8",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-clean.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-race.stderr": "39dcc447f55b0305ab1154e6a3016da43f84b2f86091b90085f2e10078a62992",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-race.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-binary.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-binary.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-clean.stderr": "be37c8b107d623bfa515b4179e53a25d84d5751c978a0a78361e3aa1cdf7f5ee",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-clean.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-core.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-core.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-link.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-overflow.stderr": "dfd87ff47322cdc5551db3258711564750775c1226b2d6fe68d00c3773eb24ac",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-overflow.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-race.stderr": "9d9b4f48dfb82932447a989d31272df95a02f0d3591f205b506359984305aa5a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-race.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-launch-pztzsuf6/execution.json": "7382a80936bc7b86394d8beb2f6581f768c665d1aaf2c4562ba1205b671e6c32",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-launch-pztzsuf6/launch.json": "49f0e861610c0922306ee895f52f7af1279e1e4c34cb39ab58a0835dbd5d3db4",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-launch-pztzsuf6/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-launch-pztzsuf6/stdout": "b9bf5f517e2d53f3bf3256ccb8799ba00ff41b37176d3fad1fd0776746d06334",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-prepared-mklxyyd7/capacity.py": "e93ea91c13c50c05dc42a7259139deaeed9ddf02ce448762be23dc16e0a02ca1",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-prepared-mklxyyd7/dispatch.py": "a619c31b6a45c69593da945a933174057458581f0ba16558db323ec67c07488c",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/compare.py": "5e1e1a1ba729634d6346130057d2a04b4019350899f975132bab381c88e7f6bb",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/comparison.json": "a6e1d7010b8bbed02529908f3144b2665c72b3ea2273ce717ca8b2fbf04babe2",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/execution.json": "b6a6d49dc88f9f01572126db6b6c3c4f18b44ab0ba76bb595c7abf608ad2c373",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/review.json": "b95e96d31769501bf3152791b21aa87c8f896afaa6365c257efe4313622d2d2c",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/supporting-manifest.json": "84457b10fd75dabc6a6b30be42fe7f8a24ec215b72eabbc2536d24e4520b2b5f"
+  }
+}

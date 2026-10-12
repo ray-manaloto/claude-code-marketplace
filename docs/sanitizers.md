@@ -101,3 +101,22 @@ Source/default preservation and ownership closure passed. Independent
 with the recorded failure and cleanup. No TSan mode is qualified. The same
 mapping source used by ASan reaches the observed TSan startup path, but the
 patch still needs a private native A/B test using TSan's own link recipe.
+
+Task 14b1 prepares that comparison with the
+[private TSan runner](../dev/toolchains/p2996_tsan_repair.py). The captured
+[link recipe](../evidence/p2996-tsan-repair/recipes.json) uses 128 TSan objects;
+93 match the earlier ASan inventory, while the remaining 35 are specific to
+TSan. The runner replaces only the common mapping object in each private
+runtime, using original and patched objects from the successful ASan repair.
+It requires the original pre-main failure, patched clean runs, race reports and
+the combined signed-overflow report. Preparation review passed without findings.
+The native trial exited 0: the original private runtime crashed with signal 11
+before main; the patched private runtime passed both clean runs and emitted the
+required race and overflow diagnostics with exit 86. The installed TSan runtime
+stayed unchanged. [Closure evidence](../evidence/p2996-tsan-repair/operation/closure.json)
+records retained text/artifact hashes, absent owned processes and a free lease.
+[Independent artifact review](../evidence/p2996-tsan-repair/artifact-review/review.json)
+passed without findings. Both private link commands retained nonfatal unused
+`-stdlib=libc++` warnings. The cleanup findings are historical collector
+receipts; the reviewer did not repeat the live PID or lease probes. Installed-path
+qualification remains separate.
