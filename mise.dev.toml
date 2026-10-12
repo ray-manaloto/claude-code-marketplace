@@ -198,6 +198,17 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_transfer.py plan --commi
 description = "Exercise A10 dry-run, approval, collision and drift refusals in scratch"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_transfer.py -v'
+
+[tasks."checkout:apply-prepare"]
+description = "Revalidate one SHA-bound A10 plan and freeze an A11a intent without switching checkouts"
+dir = "{{config_root}}"
+usage = 'arg "<plan_file>"; arg "<sha256>"; arg "<intent_file>"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_apply.py prepare --plan-file "${usage_plan_file?}" --plan-sha256 "${usage_sha256?}" --intent-file "${usage_intent_file?}"'
+
+[tasks."test:checkout-apply"]
+description = "Exercise A11a drift, collision, remote, retention and interruption refusals in scratch"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_apply.py -v'
 [tasks."test:issue-create"]
 description = "Exercise A08a single-POST creation, binding and recovery offline"
 dir = "{{config_root}}"
