@@ -3280,3 +3280,8 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   was the wrong source and is corrected; P2-2 (two sources of truth for the
   retro record shape) and five P3s go back to the doc-writer for one repair
   cycle before integration.
+
+- 2026-10-13 (Claude session, batch publication 2): lane `c1-catalog-promotion`
+  (#94, Opus) allocated with its record committed before the worktree was cut.
+  Publishing the integration branch through the A09 route with the A06u3,
+  codex-session-history and rf-env-scrub integrations; remote preimage `05c3dc9`.
