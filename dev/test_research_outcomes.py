@@ -130,6 +130,18 @@ class OutcomeChecks(unittest.TestCase):
             self.assertEqual(self.settle(receipt), self.previous)
             self.assert_healthy_recovery()
 
+    def test_first_baseline_cannot_invent_a_successful_comparison(self):
+        before = copy.deepcopy(self.previous)
+        receipt = outcomes.evaluate_attempt(self.previous, {**self.observation, "comparison_exit": 0}, self.evidence)
+        self.assertEqual((receipt["attempt_status"], receipt["failed_stage"], receipt["runner_exit"], receipt["comparison_state"]),
+                         ("failed", "comparison", 2, "unresolved"))
+        self.assertEqual(self.settle(receipt), before)
+        self.assertEqual(self.previous, before)
+        healthy = outcomes.evaluate_attempt(before, {**self.observation, "cycle_id": "healthy-first"}, self.evidence)
+        self.assertEqual((healthy["runner_exit"], healthy["comparison_exit"], healthy["comparison_state"]),
+                         (0, None, "baseline_established"))
+        self.assertEqual(self.settle(healthy)["baseline"], self.ref("raw.json"))
+
     def test_terminal_receipt_requires_matching_event_and_final_pointer(self):
         receipt = outcomes.evaluate_attempt(self.previous, self.observation, self.evidence)
         self.assertEqual(receipt["comparison_state"], "baseline_established")

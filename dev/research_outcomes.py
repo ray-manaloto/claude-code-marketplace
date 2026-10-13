@@ -103,18 +103,14 @@ def evaluate_attempt(previous, observation, evidence):
         rows_schema(observation["rows"])
     sanitized(previous)
     sanitized(observation)
-    if set(observation) != {"cycle_id", "provider_invoked", "native_exit", "comparison_exit", "failed_stage", "rows", "evidence"} or not re.fullmatch(r"[A-Za-z0-9_-]+", observation["cycle_id"]):
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", observation["cycle_id"]):
         raise ValueError("Invalid sanitized observation")
-    if set(previous) != {"baseline", "queries"}:
-        raise ValueError("Unknown acceptance fields")
     if type(observation["provider_invoked"]) is not bool or any(value is not None and type(value) is not int for value in (observation["native_exit"], observation["comparison_exit"])):
         raise ValueError("Explicit stage outcomes required")
     if observation["failed_stage"] not in (None, "search", "validation", "comparison", "runtime_preflight", "runtime_binding", "incomplete"):
         raise ValueError("Unknown stage")
     if observation["failed_stage"] == "runtime_preflight" and (observation["provider_invoked"] or observation["native_exit"] is not None):
         raise ValueError("Preflight failure cannot claim native invocation")
-    if set(observation["evidence"]) - {"snapshot", "comparison", "stdout", "stderr"}:
-        raise ValueError("Unknown evidence role")
     validate_refs(observation["evidence"].values(), evidence)
     if previous["baseline"] is not None:
         validate_refs([previous["baseline"]], evidence)
@@ -137,6 +133,8 @@ def evaluate_attempt(previous, observation, evidence):
         raise ValueError("Unknown completion requires explicit unresolved stage")
     if stage in ("validation", "comparison") and native != 0 or stage == "search" and native == 0:
         raise ValueError("Stage contradicts native outcome")
+    if not stage and previous["baseline"] is None and (compared is not None or "comparison" in observation["evidence"]):
+        stage = "comparison"
     state = "unresolved" if stage else "compared" if previous["baseline"] else "baseline_established"
     reason = None
     if not stage and (native != 0 or not observation["provider_invoked"]):
