@@ -3344,3 +3344,19 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   transient `mise ERROR` on a first batch of named checks that passed on rerun
   — the second concurrent-run race today (C1 and gate-hooks were running checks
   in their worktrees). Fable cold review dispatched.
+
+- 2026-10-13 (Claude session, C1 handoff): lane `c1-catalog-promotion` (#94)
+  handed off at `7295463` (lane `52ce420`, +186/−6 with 154 test lines):
+  catalog-only promotion at the runner boundary — affected queries must be
+  complete, nonempty and anchored and bound to the current catalog; unrelated
+  capped/incomplete warnings permit catalog-only promotion with rc 2,
+  `fresh_snapshot_accepted=false`, fixed baseline and suppressed NEW/GONE;
+  interrupted catalog/state writes recover and retry; new receipt fields
+  `catalog_only_promotion` and `promoted_query_drift`. 91 tests rc 0,
+  `check:research` rc 0, baseline rc 0. One design decision is put to the
+  reviewer: an unrelated *empty regression* still blocks promotion (treated as
+  a failure signal per the RF contract and lesson L014, not a warning). Two
+  parent follow-ups at integration: amend `portable-workflow.md`'s
+  "no coverage warnings" sentence and file the lane's retro record. Fable cold
+  review dispatched. A CT-11 ticket (serialize named checks across worktrees
+  with a lock) was added to the spec proposal from today's two race receipts.
