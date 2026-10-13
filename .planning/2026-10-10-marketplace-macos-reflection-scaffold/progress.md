@@ -3171,3 +3171,40 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `tasks validate` 48 tasks rc 0, `check` rc 0, `check:acceptance-baseline`
   19/19 rc 0. No Codex worktree, branch or packet was modified. M0 merge,
   A06 unit3 and the codex-session-history lanes are next.
+
+- 2026-10-13 (Claude session, M0): merged `codex/marketplace-remaining-work`
+  (`01952894`) into the integration branch as `e0667ec` (parent `f38b7fe`).
+  Conflicts resolved per the user's direction (HEAD item 5 in
+  `docs/agents/ticket-retro.md`; union of `mise.dev.toml`). Composed-tree gates
+  with `VIRTUAL_ENV` removed: validate 50 rc 0, check rc 0, baseline 19/19 rc 0,
+  check:research-outcomes 19 tests rc 0, check:research rc 0 (87 refresh tests
+  OK). With the project venv exported, four `research_refresh` tests fail on
+  `Conflicting runtime overrides: VIRTUAL_ENV`; reproduced identically in Codex's
+  clean `marketplace-remaining` worktree, so it is pre-existing. Allocated repair
+  lane `rf-env-scrub` through the retro barrier; C1/C2/C3 held until it lands.
+  Retro: `retros/m0-remaining-work-merge.md`. Fable cold review dispatched;
+  A09 publication follows its disposition. Lane worktrees created from `e0667ec`:
+  `a06-unit3`, `codex-session-history`, `rf-env-scrub`.
+
+- 2026-10-13 (Claude session, M0 review and publication): the independent
+  Fable cold review of merge `e0667ec` returned PASS — conflict fidelity,
+  no content loss (50 branch paths present; only the two directed resolutions
+  and three HEAD-side onboarding lines differ), all 19 baseline hashes intact,
+  nothing unintended committed, and gates rc 0 (validate 50, check, baseline,
+  check:research-outcomes, check:research). Its one P3 (uncommitted planning
+  files during the review) was already settled by `321fbde`. Publication of
+  `codex/marketplace-native-onboarding` through the A09 route follows in the
+  commit that carries this entry; the remote preimage is `848552c`.
+
+- 2026-10-13 (Claude session): A09 publication succeeded — `published=05c3dc9`,
+  `history_scan_rc=0`, remote `codex/marketplace-native-onboarding` verified at
+  `05c3dc9` (preimage `848552c`); intent SHA-256
+  `eabff70bb4c532ff8e1115197000ef5cb76ce0b6ebf85478647a3f080be925ba`, hook tree
+  `a21be5fe…` unchanged. Lane A06u3 handed off: import hashes matched, 24 tests
+  (17 retained + 7 new) rc 0 normal and optimized, named checks rc 0, lane
+  commit `8f783a0` merged with the tip as `93402c0`; cold review dispatched.
+  Lane SKILL handed off: skill plus byte/mode-identical mirror, 25-record fixture,
+  six hermetic tests rc 0, named checks rc 0, lane commit `762b02f` merged as
+  `8b986d3`; retro filed at `retros/codex-session-history.md`; cold review
+  dispatched. The parent owns adding `test:codex-session-history` to
+  `mise.dev.toml` at integration. Lane rf-env-scrub still running.
