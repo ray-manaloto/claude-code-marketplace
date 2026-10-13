@@ -34,9 +34,14 @@ A proposal names a relative candidate catalog, the active catalog's SHA-256 and
 every changed query's reason, inspected source URLs, originating run and measurable
 expectations. Require known relevant URLs plus bounds on count/completeness. Set
 expectations before running. Promotion requires valid search/diff evidence, no
-coverage warnings or unexpected empties, unchanged active catalog bytes and all
-expectations passing. Otherwise preserve the active catalog and failed evidence.
-Do not weaken that guard to promote an unrelated otherwise useful companion.
+coverage warnings or unexpected empties on the changed queries, unchanged active
+catalog bytes and all expectations passing. Unrelated capped or incomplete
+queries permit a catalog-only promotion (#94): the catalog revision lands, the
+accepted full baseline stays fixed, the run keeps rc 2 with
+`fresh_snapshot_accepted=false`, and NEW/GONE claims stay suppressed until an
+ordinary refresh completes. An empty regression anywhere still blocks. Otherwise
+preserve the active catalog and failed evidence. Do not weaken the changed-query
+guard to promote an otherwise useful companion.
 
 Stop at the policy's bounded refinement limit. Keep a deferred candidate with its
 reason and prerequisites. Update the local lessons ledger with symptom, cause,

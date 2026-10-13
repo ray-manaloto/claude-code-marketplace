@@ -3376,3 +3376,46 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   the named task (only `check:research` has dependencies), and root
   `CLAUDE.md` now duplicates root `AGENTS.md` lines; both are fixed at NAV
   integration.
+
+- 2026-10-13 (Claude session, invocation-mode correction): a side agent's
+  review found the activation record claiming the five stages were "invoked
+  natively". Actual modes: the user typed `/grill-with-docs` and its
+  `grilling` and `domain-modeling` skills ran natively through the Skill tool;
+  `to-spec`, `to-tickets`, `implement-spec` and `retro` are user-invoked-only
+  and were applied as file-guided fallbacks from the installed 1.3.1
+  `SKILL.md` files under the round-1 Q3 authorization — the same mode Codex
+  recorded; `writing-for-agents`, `skill-creator` and
+  `agentsview-finding-history` ran natively. Corrected
+  `docs/agents/claude-takeover.md`, the plan's takeover section, the takeover
+  retro (new P2 steering row) and the scratchpad spec draft; added
+  `skill-invocations.md` binding each stage's source path, SHA-256, mode and
+  output pointer, to be extended whenever the user types one of the four
+  user-only verbs.
+
+- 2026-10-13 (merger fork, C1 integration): Fable cold review PASS-with-P3,
+  confirmation re-review PASS. Merged `claude/c1-catalog-promotion`
+  (`52ce420` + `6c09b7f`) into the integration branch: catalog-only
+  promotion at the runner boundary with `catalog_only_promotion` and
+  `promoted_query_drift` receipts; an unrelated empty regression still blocks
+  (reviewer upheld). Composed-tree gates rc 0 (validate 52, check, baseline
+  19/19, 91 refresh tests, diff --check). Retro filed at
+  `retros/c1-catalog-promotion.md`; lane record `retro: passed`; #94 ledger
+  row integrated, closure pending.
+
+- 2026-10-13 (merger fork, NAV integration): focused re-review PASS. Merged
+  `claude/nav-guidance-hierarchy` (`5cadad4` + repairs `6dc421e`): root
+  `AGENTS.md` as a 60-line pointer, directory guidance pairs for `dev/`,
+  `docs/`, `evidence/`, `.planning/`, `.claude/`, and the 66-line reviewer-only
+  `CODING_STANDARDS.md`. Parent follow-ups in the same commit: `.claude/AGENTS.md`
+  names the sanctioned skill exceptions (`gh-stack`; repository-authored skills
+  with their mirror), root `CLAUDE.md` drops the duplicated issue-tracker
+  section. Composed-tree gates rc 0 (validate 52, check, baseline 19/19,
+  diff --check); retro filed at `retros/nav.md` and gated; lane record
+  `retro: passed`.
+
+- NEXT (2026-10-13, after `/clear`): integrate `gate-hooks` (CT-02) once its
+  cold review passes (settings key migration, `hooks:install`, `test:hooks`
+  into `check:research`), publish via A09, then publish the takeover spec and
+  CT-01…CT-11 tickets from `proposals/claude-takeover-spec/` after the user's
+  to-tickets approval. Pending decisions: to-tickets approval; settings.json
+  composition. Everything else is integrated with `retro: passed`.

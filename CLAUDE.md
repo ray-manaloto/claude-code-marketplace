@@ -4,9 +4,7 @@ Codex-specific configuration under `.codex/` is not Claude hook configuration.
 
 ## Agent skills
 
-### Issue tracker
-
-Specs and tickets live in GitHub Issues for `ray-manaloto/claude-code-marketplace`; use native sub-issues and dependency links. See `docs/agents/issue-tracker.md`.
+The issue tracker pointer lives in `AGENTS.md` (`docs/agents/issue-tracker.md`).
 
 ### Triage labels
 
