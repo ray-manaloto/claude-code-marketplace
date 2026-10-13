@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "source": "Accepted local RF1/RF2 implementation after integration and current-cycle retro",
+  "qualification": {
+    "historical_private_offline_tests": 80,
+    "historical_private_exit": 0,
+    "new_portable_validation": {
+      "python": "3.14.8",
+      "shared_tests": 31,
+      "portable_tests": 87,
+      "acceptance_hashes": 19,
+      "check_exit": 0,
+      "baseline_exit": 0,
+      "tasks_exit": 0,
+      "native_provider_or_oci_acceptance": false,
+      "source_bindings": {
+        "dev/check.py": "e9f4088bd9298c30562c3c86ec2adc7c0ee8bfe9a43c57ecd88c3b7e276263c3",
+        "dev/research_refresh/README.md": "f06a5665781d19e4a1d1c17d296a2948e49b75556fc6d651610e573cb26e102b",
+        "dev/research_refresh/configuration.py": "4c0e28b632b0ce1b2f032b1c2c0ee672a9584b5a8db1233355e33be2f3610fbb",
+        "dev/research_refresh/examples/policy.json": "ddd85255b54b5fec532df8977541dbdbdd47246e342a2b2812e2beff5b4218c4",
+        "dev/research_refresh/examples/runtime.example.json": "4ae6f68943d2b95f49e48a191cd7e4cd834521225d66e679a85f84339c54ba4e",
+        "dev/research_refresh/examples/searches.json": "349e2a2aeafc326252a164c8d28299766695ffdb39c6bacbdab113dabc94e54e",
+        "dev/research_refresh/refresh.py": "5c3dfc4684ef383cfb171eb64d21d8a875d4687f64b2756aca0bb7eb2d8c8cae",
+        "dev/research_refresh/runtime_preflight.py": "5fbc8fe589fd665908c1bd212f9cf4a9a1947306ec031834fdb9330381883f82",
+        "dev/research_refresh/test_configuration.py": "e4d167e9d36a084efa9856b470c59e35be38f46d5bb0946eba500e4c72557243",
+        "dev/research_refresh/test_refresh.py": "ce95ad0c117076633f1977355c778311f0365037297555f1342e12a593d102ce",
+        "dev/research_refresh/test_runtime_binding.py": "4cd84df73fc5ed608252796e90abead7fd42f506cba1e2f00d65915498ba0e0a",
+        "dev/research_refresh/test_runtime_preflight.py": "c2313b9147b85e1e6531a1e809904c4536e5d6054387771f36e84d1ce95b14d4",
+        "dev/research_refresh/test_runtime_runner.py": "5f2373a34fed48f672c60dfff87e6c2078ffe7185b68b728f755adef2af75e62",
+        "dev/research_refresh/test_runtime_stages.py": "c1c48d0b27c40507a316888b4c1a8d2bbc3e998361772a545a5ec18c3c8da25c"
+      },
+      "check_log_sha256": "5e90d09822991bac2a15040cb45965c15ba6c12821db3f66b4d9a341acdc3efb",
+      "baseline_log_sha256": "d4340c59c34444a36c0d5d5dee1ddbed2f9f066671dd61fcb9820d0e96bbf425"
+    }
+  },
+  "files": [
+    {
+      "source_name": "refresh.py",
+      "destination": "dev/research_refresh/refresh.py",
+      "source_sha256": "cc668c1376501a4393dd80bde9e5123afbc2895da1c9b672017e49cfc5255861",
+      "source_lines": 1505,
+      "destination_sha256": "5c3dfc4684ef383cfb171eb64d21d8a875d4687f64b2756aca0bb7eb2d8c8cae",
+      "transfer": "bounded configuration or test-fixture adaptation"
+    },
+    {
+      "source_name": "runtime_preflight.py",
+      "destination": "dev/research_refresh/runtime_preflight.py",
+      "source_sha256": "5fbc8fe589fd665908c1bd212f9cf4a9a1947306ec031834fdb9330381883f82",
+      "source_lines": 168,
+      "destination_sha256": "5fbc8fe589fd665908c1bd212f9cf4a9a1947306ec031834fdb9330381883f82",
+      "transfer": "byte-identical"
+    },
+    {
+      "source_name": "test_refresh.py",
+      "destination": "dev/research_refresh/test_refresh.py",
+      "source_sha256": "e2833994fb234b43e2fca82459f365c804d9f2b014d708520af19db80abd02a5",
+      "source_lines": 2086,
+      "destination_sha256": "ce95ad0c117076633f1977355c778311f0365037297555f1342e12a593d102ce",
+      "transfer": "bounded configuration or test-fixture adaptation"
+    },
+    {
+      "source_name": "test_runtime_binding.py",
+      "destination": "dev/research_refresh/test_runtime_binding.py",
+      "source_sha256": "fe5fa50af38ae779960d6662c4006fc2cc263cf19bd44df8e1c811fa30158e18",
+      "source_lines": 135,
+      "destination_sha256": "4cd84df73fc5ed608252796e90abead7fd42f506cba1e2f00d65915498ba0e0a",
+      "transfer": "bounded configuration or test-fixture adaptation"
+    },
+    {
+      "source_name": "test_runtime_preflight.py",
+      "destination": "dev/research_refresh/test_runtime_preflight.py",
+      "source_sha256": "c2313b9147b85e1e6531a1e809904c4536e5d6054387771f36e84d1ce95b14d4",
+      "source_lines": 140,
+      "destination_sha256": "c2313b9147b85e1e6531a1e809904c4536e5d6054387771f36e84d1ce95b14d4",
+      "transfer": "byte-identical"
+    },
+    {
+      "source_name": "test_runtime_runner.py",
+      "destination": "dev/research_refresh/test_runtime_runner.py",
+      "source_sha256": "5f2373a34fed48f672c60dfff87e6c2078ffe7185b68b728f755adef2af75e62",
+      "source_lines": 212,
+      "destination_sha256": "5f2373a34fed48f672c60dfff87e6c2078ffe7185b68b728f755adef2af75e62",
+      "transfer": "byte-identical"
+    },
+    {
+      "source_name": "test_runtime_stages.py",
+      "destination": "dev/research_refresh/test_runtime_stages.py",
+      "source_sha256": "c1c48d0b27c40507a316888b4c1a8d2bbc3e998361772a545a5ec18c3c8da25c",
+      "source_lines": 318,
+      "destination_sha256": "c1c48d0b27c40507a316888b4c1a8d2bbc3e998361772a545a5ec18c3c8da25c",
+      "transfer": "byte-identical"
+    },
+    {
+      "source_name": "policy.json",
+      "destination": "dev/research_refresh/examples/policy.json",
+      "source_sha256": "ddd85255b54b5fec532df8977541dbdbdd47246e342a2b2812e2beff5b4218c4",
+      "source_lines": 38,
+      "destination_sha256": "ddd85255b54b5fec532df8977541dbdbdd47246e342a2b2812e2beff5b4218c4",
+      "transfer": "byte-identical"
+    },
+    {
+      "source_name": "searches.json",
+      "destination": "dev/research_refresh/examples/searches.json",
+      "source_sha256": "349e2a2aeafc326252a164c8d28299766695ffdb39c6bacbdab113dabc94e54e",
+      "source_lines": 239,
+      "destination_sha256": "349e2a2aeafc326252a164c8d28299766695ffdb39c6bacbdab113dabc94e54e",
+      "transfer": "byte-identical"
+    }
+  ],
+  "lessons_source_sha256": "a8eef5237b3aad5a431139120ff48319c592660a73a9a685c68bcfc7f6d4c186",
+  "adaptation_scope": [
+    "Explicit required state/runtime configuration replaces machine paths in refresh.py",
+    "Imported tests use example definitions, synthetic local selections and required CLI arguments; existing assertions are preserved",
+    "New configuration controls validate rejection before side effects and exact uv PATH selection",
+    "Existing development check discovers every imported test module"
+  ],
+  "excluded": [
+    "Live state and event ledgers",
+    "Raw results and diagnostic receipts",
+    "Credential configuration and admission bindings",
+    "Scheduling and activation records"
+  ]
+}

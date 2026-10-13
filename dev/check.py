@@ -65,7 +65,9 @@ def check(baseline=False):
 
     run("git", "diff", "--check")
     run("git", "diff", "--cached", "--check")
-    run(sys.executable, "-B", "-m", "unittest", "discover", "-s", "dev", "-p", "test_research_*.py")
+    for directory, pattern in (("dev", "test_research_*.py"), ("dev/research_refresh", "test_*.py")):
+        result = run(sys.executable, "-B", "-m", "unittest", "discover", "-s", directory, "-p", pattern)
+        print(result.stderr, file=sys.stderr, end="")
     print(json.dumps({"status": "pass", "root": str(ROOT), "checks": counts}, sort_keys=True))
 
 

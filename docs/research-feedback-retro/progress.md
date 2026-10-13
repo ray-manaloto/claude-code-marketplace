@@ -324,3 +324,36 @@ RF1e3a settled after required-artifact repair: independent four focused methods/
 - RF3a reviewed four-file commit `dd1f4bf98dea73d6719a4a64ab3da7bc085762df` was synchronized with the latest integration tip and fast-forwarded by the merger. Exact postimages and prerequisite receipts matched; integrated development check, task validation, 19-file acceptance baseline and diff check all exited 0. RF1, RF2, RF3a and RF3b local implementation gates are complete. Final independent standards/specification review and worker cleanup remain; tracker publication and peer-authority application retain their separate pending status.
 
 - Final two-axis review found one P2 unsupported first-baseline comparison claim and one duplicated-schema maintenance judgment. A single implementer applied both in a 15-added/5-removed two-file repair with red/green regression, unchanged settlement and healthy recovery. Independent standards and specification re-review passed all 31 shared tests, 17 schema rejection controls and 11 literal outcome controls, with no remaining findings or actionable retros. The earlier 80 private tests and all nine private files remain unchanged. Reviewed repair synchronization/integration, exact committed-head re-attestation and worker cleanup are next; publication and peer-authority application remain external blockers.
+
+## RF4 portable publication — 2026-10-13
+
+The final repair is integrated at `208a57bcab189901718cd9b1c21c2f627b71a8aa`.
+The user now authorizes commit and push, and explicitly confirmed the full reusable
+package after the private/shared implementation gap was explained. The existing
+eleven unpublished commits descend from `b136d75`; the remote onboarding branch
+already contains that base and is not this publication's target.
+
+Both session worktrees were clean at admission. Existing tasks validation, normal
+check and 19-file acceptance baseline passed. The current retro's 80 private tests
+and independent guide reviews passed; their production/test source hashes remain
+fixed. RF4 transfers those reusable sources with explicit local configuration,
+portable examples/guidance and new boundary checks. Implementation and publication
+are pending; live state, raw results and credential bindings stay local.
+
+The source transfer and explicit configuration boundary are implemented. Initial
+checks exposed imported CLI fixture assumptions, which are being adapted without
+weakening their assertions. Independent review found a P2 uv path-selection gap
+and one duplicated JSON-hook judgment; the repair keeps selected runtime aliases,
+requires the native `uv` name and reuses the existing strict JSON hook. Both new
+path regressions failed before the repair (exit 1); final checks and re-review are
+pending. Strict research returned exit 0 with a provisional Serper substitution
+after Firecrawl Search HTTP 402; the sanitized receipt preserves that gap.
+
+The coordinated writer slot returned after the peer published its two isolated
+units. The exact independently reviewed final patch was applied after checking
+all preimages; all 14 source bindings match. The existing task validation, normal
+check and acceptance baseline exited 0: 31 shared tests, 87 portable tests and
+all 19 original file hashes passed. Standards and specification review have zero
+remaining findings. Publication records are sanitized; the active private runtime,
+state and schedule remain unchanged. Commit, push and exact remote verification
+are the remaining delivery steps. See [publication review](publication-review.md).
