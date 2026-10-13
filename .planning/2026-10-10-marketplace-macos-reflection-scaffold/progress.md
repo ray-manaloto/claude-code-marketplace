@@ -3219,3 +3219,36 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   untested); the implementer is applying the P2 and cheap P3s before
   integration. rf-env-scrub handed off (89 tests rc 0 in all three selector
   modes; `check` rc 0 with the project venv exported); its cold review is running.
+
+- 2026-10-13 (Claude session, lane allocation): allocated lane `retro-gate`
+  (CT-01, Opus; worktree `.claude/worktrees/retro-gate`, branch
+  `claude/retro-gate-task`, base `361688e`) importing the calibrated parent
+  draft, and lane `team` (CT-03, Sonnet; worktree `.claude/worktrees/team`,
+  branch `claude/team-roles-rules`, same base) importing the agent-role, ADR
+  and glossary drafts. Both were approved as after-M0 lanes in interview round 2;
+  their ticket numbers bind once the spec and tickets are published. Active
+  lanes: codex-session-history (repair), rf-env-scrub (review), retro-gate, team.
+
+- 2026-10-13 (Claude session, SKILL repair cycle): the Fable cold review of
+  lane `codex-session-history` returned PASS-with-P2 (liveness subcommands
+  `turns`/`children`/`logs` untested) plus seven P3s (ambiguous-prefix
+  resolution, missing ordinals on turn-final messages, undocumented liveness
+  command and `--json` placement, OTel env-var mismatch, untested AgentsView
+  and OTel wrappers, unmasked secret shapes in digests, unbounded receipt
+  reads). The implementer applied all of them test-first (12 hermetic tests,
+  suite/check/baseline/diff-check rc 0) in `89b0705` and a follow-up fix for the
+  same ambiguous-prefix class in the receipts script; branch tip `ea893a8`
+  (includes `f039041`). Focused re-review of the delta dispatched; integration
+  adds the `test:codex-session-history` task row and its `check:research`
+  dependency.
+
+- 2026-10-13 (Claude session, TEAM handoff): lane `team` (CT-03) handed off at
+  `9103931` — five agent roles, three path-scoped rules, `docs/agents/claude-team.md`,
+  ADR 0001 and the glossary Workflow section; validate/check/baseline/diff-check
+  rc 0. Its retro draft's process finding is applied now: lane records are
+  committed before the worktree is cut (the `team` and `retro-gate` records were
+  created after their worktrees, so those lanes read them from the integration
+  branch). Citations to files other lanes will create are marked "arrives with
+  lane …" and get a citation recheck at each of those integrations. Fable cold
+  review dispatched. Still running: SKILL focused re-review, rf-env-scrub cold
+  review, retro-gate implementation.

@@ -26,7 +26,8 @@ Conventions from the takeover interview (rounds 1–2, all accepted):
 
 - One unit per lane. A lane runs in `.claude/worktrees/<unit>` on branch
   `claude/<unit>-<slug>` cut from the integration tip, with the path allowlist,
-  owner, reviewer, base SHA and status recorded in [lanes/](lanes/). The
+  owner, reviewer, base SHA and status recorded in [lanes/](lanes/). Commit the
+  lane record before cutting the worktree so the lane's base carries it. The
   `.gitignore` is a frozen baseline file, so `.claude/worktrees/` is excluded
   through `.git/info/exclude` until a reviewed baseline transition.
 - The parent merges one lane at a time; publication uses the A09 route;
