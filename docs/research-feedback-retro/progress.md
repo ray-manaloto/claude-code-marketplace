@@ -357,3 +357,12 @@ all 19 original file hashes passed. Standards and specification review have zero
 remaining findings. Publication records are sanitized; the active private runtime,
 state and schedule remain unchanged. Commit, push and exact remote verification
 are the remaining delivery steps. See [publication review](publication-review.md).
+
+RF4 source publication is complete at `2beaba6b5b609a481ac3cc62d17cbe6a64cbc1cc`
+on `codex/research-feedback-retro`, including all eleven earlier commits. Native
+push and an independent remote read both exited 0; the exact remote tip matched
+at 2026-10-13 04:45:36 UTC and the worktree was clean. Both independent reviewers
+confirmed the committed source and evidence bindings with zero remaining findings.
+The full twelve-commit publication history passed gitleaks with zero findings.
+This four-document closure changes no qualified source or live runtime state;
+the recorded 118 offline tests and 19 preserved acceptance hashes remain applicable.

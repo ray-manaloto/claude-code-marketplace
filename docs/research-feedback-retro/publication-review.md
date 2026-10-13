@@ -1,9 +1,12 @@
 # Portable refresh publication review
 
 The complete reusable RF1/RF2 runner, its tests and the latest operating lessons
-are implemented and locally qualified for publication. The earlier eleven commits
-remain on `codex/research-feedback-retro`; this unit starts at `208a57bc`.
-Commit, push and exact remote verification remain delivery steps.
+are committed and published on `codex/research-feedback-retro`, including the
+earlier eleven commits. The source publication is
+[`2beaba6b5b609a481ac3cc62d17cbe6a64cbc1cc`](https://github.com/ray-manaloto/claude-code-marketplace/commit/2beaba6b5b609a481ac3cc62d17cbe6a64cbc1cc).
+Push and independent remote verification both exited 0 at 2026-10-13 04:45:36 UTC;
+the remote tip matched that commit and the worktree was clean. This documentation
+update records that observed publication without changing the qualified source.
 
 The [setup guide](../../dev/research_refresh/README.md) requires explicit local
 runtime and state paths. [Provenance](portable-provenance.json) binds all nine
@@ -74,10 +77,12 @@ the scope. Writing-for-agents, two-axis code review and retrospective guidance
 were applied. Native Git, installed Python, the development mise wrapper and
 read-only specialist agents supplied local evidence. The initial test failures,
 both uv counterexamples and their repairs remain in local verification receipts.
-Installed gitleaks 8.30.1 scanned the 23 proposed publication files with zero
-findings and exit 0. The initial development-wrapper lookup exited 1 because the
-installed tool was inactive there; its existing executable was selected directly
-without changing activation or installing anything.
+Installed gitleaks 8.30.1 scanned all twelve publication commits from `b136d75`
+through `2beaba6` with zero findings and exit 0. That committed-history scan binds
+the final source publication; an earlier 23-file scan also exited 0 but preceded
+an edit to this report. The initial development-wrapper lookup exited 1 because
+the installed tool was inactive there; its existing executable was selected
+directly without changing activation or installing anything.
 
 The required research used native fnox and mise research-fanout with Exa,
 Firecrawl, Last30Days, Context7 and GitHub. The first preparation attempt exited 2

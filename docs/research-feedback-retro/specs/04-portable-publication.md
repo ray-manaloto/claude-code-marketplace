@@ -1,9 +1,10 @@
 # Share the complete reusable refresh workflow
 
-Status: scope confirmed by the user on 2026-10-13; implemented, reviewed and locally checked.
-Git publication is pending its exact remote verification.
-Git publication is authorized. Tracker publication and peer-authority changes
-remain separate operations.
+Status: implemented, independently reviewed, locally checked and published on
+`codex/research-feedback-retro`. Source commit `2beaba6b5b609a481ac3cc62d17cbe6a64cbc1cc`
+was pushed and independently matched to the remote tip on 2026-10-13 at 04:45:36 UTC.
+See the [publication review](../publication-review.md) for evidence and limits.
+Tracker publication and peer-authority changes remain separate operations.
 
 ## Problem Statement
 
@@ -30,7 +31,7 @@ the accepted research and admission contracts. Keep live state and diagnostics l
 
 ## Implementation Decisions
 
-- Reuse the existing integration branch and all eleven unpublished commits.
+- Reuse the existing integration branch and all eleven previously unpublished commits.
 - Transfer the seven accepted source/test modules; record exact input hashes.
 - Keep runtime preflight, native task contract, SDK/tool pins, coverage eligibility,
   cooldown, immutable history and recovery behavior intact.
