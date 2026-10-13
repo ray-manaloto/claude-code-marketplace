@@ -3208,3 +3208,14 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `8b986d3`; retro filed at `retros/codex-session-history.md`; cold review
   dispatched. The parent owns adding `test:codex-session-history` to
   `mise.dev.toml` at integration. Lane rf-env-scrub still running.
+
+- 2026-10-13 (Claude session, A06u3 integration): Fable cold review of lane
+  commit `8f783a0` returned PASS-with-P3 (nested-TOML `RecursionError` path
+  deferred to the next A06 unit; lane-record staleness applied). Merged into the
+  integration branch with composed-tree gates rc 0 (validate 50, check, baseline
+  19/19, `test:examples` 24, diff --check). Review disposition appended to
+  `retros/a06-classification-methods.md`. #69 stays open for retained-corpus
+  consumption. SKILL review returned PASS-with-P2 (liveness subcommands
+  untested); the implementer is applying the P2 and cheap P3s before
+  integration. rf-env-scrub handed off (89 tests rc 0 in all three selector
+  modes; `check` rc 0 with the project venv exported); its cold review is running.

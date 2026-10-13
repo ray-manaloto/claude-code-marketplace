@@ -216,6 +216,96 @@ class OfflineCliTests(unittest.TestCase):
         self.receipt.write_bytes(data)
         return hashlib.sha256(data).hexdigest()
 
+    def selected_blob(self, data, path="config.toml"):
+        self.sha = hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
+        (self.receipt.parent / "blobs" / self.sha).write_bytes(data)
+        self.row.update(path=path, blob_sha=self.sha, size=len(data),
+                        sha256=hashlib.sha256(data).hexdigest())
+        document = json.loads((self.entry / "normalized.json").read_bytes())
+        document["normalized"]["items"] = [{"repository": "openai/codex", "path": path, "sha": self.sha}]
+        self.pin = self.rebind_run(document)
+
+    def inspected(self):
+        code, stdout, stderr = self.invoke()
+        self.assertEqual((code, stderr), (0, ""))
+        result = json.loads(stdout)
+        self.assertEqual((result["blobs"], result["source_paths"]), (1, 1))
+        record = json.loads(Path(result["receipt"]).read_bytes())
+        self.assertEqual(record["inspections"][0]["validity"], "UNVERIFIED")
+        return record["inspections"][0]
+
+    def test_valid_configuration_has_actual_toml_syntax_method(self):
+        self.selected_blob(b'model = "example-model"\n', ".github/codex/home/config.toml")
+        row = self.inspected()
+        self.assertEqual(row["inspection"], "parsed")
+        self.assertEqual(row["method"], "python-stdlib-tomllib.loads")
+        self.assertEqual(row["kind"], "configuration")
+
+    def test_invalid_toml_or_utf8_is_a_sanitized_inspection_result(self):
+        for data in (b'model = "SYNTHETIC_PRIVATE_VALUE" trailing\n', b'model = \xff\n'):
+            with self.subTest(data=data):
+                self.selected_blob(data)
+                row = self.inspected()
+                self.assertEqual(row["inspection"], "invalid_syntax")
+                self.assertEqual(row["method"], "python-stdlib-tomllib.loads")
+                self.assertEqual(row["reason"], "Invalid TOML syntax or UTF-8; input values omitted")
+                self.assertNotIn("SYNTHETIC_PRIVATE_VALUE", json.dumps(row))
+
+    def test_parsed_model_field_records_only_the_pinned_string_rule(self):
+        self.schema.write_bytes(encoded({"title": "SyntheticConfigToml",
+                                       "properties": {"model": {"type": "string"}}}))
+        self.schema_hash = digest(self.schema.read_bytes())
+        self.document["schema_sha256"] = self.schema_hash
+        self.selected_blob(b'model = "unavailable-model-name"\n')
+        row = self.inspected()
+        self.assertEqual(row["model_field"], {"method": "pinned-root-model-type",
+            "status": "present_string", "rule": "properties.model.type=string",
+            "schema_sha256": self.schema_hash, "release_tag": "rust-v0.162.1",
+            "release_commit": "092d3acd6bec3e3a14bdc7e7a2810ab628ab759d"})
+        self.assertNotIn("unavailable-model-name", json.dumps(row))
+
+    def test_numeric_and_absent_model_fields_are_distinct(self):
+        self.schema.write_bytes(encoded({"properties": {"model": {"type": "string"}}}))
+        self.schema_hash = digest(self.schema.read_bytes())
+        self.document["schema_sha256"] = self.schema_hash
+        for data, status in ((b'model = 42\n', "present_wrong_type"), (b'# no root model\n', "absent")):
+            with self.subTest(status=status):
+                self.selected_blob(data)
+                row = self.inspected()
+                self.assertEqual(row["inspection"], "parsed")
+                self.assertEqual(row["model_field"]["status"], status)
+
+    def test_unknown_and_complex_fields_remain_explicitly_uninspected(self):
+        self.schema.write_bytes(encoded({"properties": {"model": {"type": "string"},
+            "hooks": {"allOf": [{"$ref": "#/definitions/HooksToml"}]}}}))
+        self.schema_hash = digest(self.schema.read_bytes())
+        self.document["schema_sha256"] = self.schema_hash
+        self.selected_blob(b'model = "example-model"\nmystery = "PRIVATE_VALUE"\n[hooks]\nstart = ["PRIVATE_VALUE"]\n')
+        row = self.inspected()
+        self.assertEqual(row["model_field"]["status"], "present_string")
+        self.assertEqual(row["uninspected_fields"], ["hooks", "mystery"])
+        self.assertNotIn("PRIVATE_VALUE", json.dumps(row))
+
+    def test_documentation_and_unknown_paths_are_not_configuration(self):
+        for path, kind in (("docs/schema.md", "documentation"), ("guide.rst", "documentation"),
+                           ("other.toml", "unknown"), ("schema.py", "unknown")):
+            with self.subTest(path=path):
+                self.selected_blob(b'not TOML\xff', path)
+                row = self.inspected()
+                self.assertEqual((row["kind"], row["inspection"], row["method"]),
+                                 (kind, "not_inspected", None))
+                self.assertEqual(row["reason"], "Selected path is not config.toml; configuration inspection not executed")
+
+    def test_no_direct_string_rule_does_not_invent_schema_traversal(self):
+        self.schema.write_bytes(encoded({"properties": {"model": {"allOf": [{"$ref": "#/defs/model"}]}}}))
+        self.schema_hash = digest(self.schema.read_bytes())
+        self.document["schema_sha256"] = self.schema_hash
+        self.selected_blob(b'model = "example-model"\n')
+        row = self.inspected()
+        self.assertEqual(row["model_field"], {"method": None, "status": "not_inspected",
+                                              "reason": "Pinned root model:string rule unavailable"})
+        self.assertEqual(row["uninspected_fields"], ["model"])
+
     def rebind_run(self, document):
         (self.entry / "normalized.json").write_text(json.dumps(document))
         manifest = json.loads((self.entry / "manifest.json").read_bytes())
@@ -296,8 +386,8 @@ class OfflineCliTests(unittest.TestCase):
             record = json.loads(output.read_bytes())
             self.assertEqual(record["retrieval_receipt_sha256"], self.pin)
             self.assertEqual(record["inspections"], [{**self.row, "validity": "UNVERIFIED",
-                "method": None, "inspection": "not_inspected",
-                "reason": "TOML syntax, release-schema, native and runtime validation not executed"}])
+                "kind": "configuration", "method": "python-stdlib-tomllib.loads", "inspection": "invalid_syntax",
+                "reason": "Invalid TOML syntax or UTF-8; input values omitted"}])
             outputs.append(output)
         self.assertNotEqual(*outputs)
         self.assertEqual(inputs, {p: p.read_bytes() for p in inputs})
@@ -308,11 +398,18 @@ class OfflineCliTests(unittest.TestCase):
         document["normalized"].update(returned_count=2, total_counts=[898], complete_candidate=False, control_status="not_run")
         document["normalized"]["items"].append({"repository": "openai/codex", "path": "docs.md", "sha": self.sha})
         self.document.update(search_status="partial", example_coverage="provisional", credential_route="GH_TOKEN")
+        self.row.update(fork=True, parent="upstream/codex", source="upstream/codex")
         self.document["blobs"].append({**self.row, "path": "docs.md", "duplicate_of": "config.toml"})
         code, stdout, stderr = self.invoke(pin=self.rebind_run(document))
         self.assertEqual((code, stderr), (0, ""))
         result = json.loads(stdout)
         self.assertEqual((result["blobs"], result["source_paths"], result["example_coverage"]), (1, 2, "provisional"))
+        record = json.loads(Path(result["receipt"]).read_bytes())
+        self.assertEqual([row["inspection"] for row in record["inspections"]], ["invalid_syntax", "not_inspected"])
+        self.assertEqual([row["kind"] for row in record["inspections"]], ["configuration", "documentation"])
+        self.assertEqual(record["inspections"][1]["duplicate_of"], "config.toml")
+        self.assertTrue(all(row["fork"] and row["parent"] == "upstream/codex" and
+                            row["source"] == "upstream/codex" for row in record["inspections"]))
         self.document["blobs"].pop()
         self.refused(pin=self.save_receipt())
 
