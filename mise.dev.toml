@@ -326,3 +326,23 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_c
 description = "Run shared offline receipt and acceptance-state controls"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_research_outcomes.py -v'
+
+[tasks."retro:gate-merge"]
+description = "Refuse a merge commit of a lane branch whose retro record fails (hk pre-merge-commit)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/hooks/git_gate.py merge'
+
+[tasks."retro:gate-push"]
+description = "Refuse a push carrying a lane merge whose retro record fails (hk pre-push)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/hooks/git_gate.py push'
+
+[tasks."hooks:install"]
+description = "Parent-run at integration: install the hk retro-gate Git hooks into this checkout"
+dir = "{{config_root}}"
+run = "hk install --force-local"
+
+[tasks."test:hooks"]
+description = "Exercise the retro-gate hook scripts and hk hooks in scratch repositories"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_hooks.py -v'
