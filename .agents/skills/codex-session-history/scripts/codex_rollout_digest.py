@@ -28,6 +28,9 @@ WRITE_HINT = re.compile(
 )
 COMMIT_RE = re.compile(r"\[([\w./-]+(?: \(root-commit\))?) ([0-9a-f]{7,40})\] (.{0,100})")
 SHA_RE = re.compile(r"\b[0-9a-f]{40}\b")
+SECRET_RE = re.compile(
+    r"ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_-]{16,}|Bearer [A-Za-z0-9._-]{16,}|-----BEGIN [A-Z ]*PRIVATE KEY-----"
+)
 
 
 def resolve_rollout(spec: str) -> tuple[str, dict]:
@@ -37,15 +40,20 @@ def resolve_rollout(spec: str) -> tuple[str, dict]:
         raise SystemExit(f"no rollout file at {spec} and no {STATE_DB}")
     con = sqlite3.connect(f"file:{STATE_DB}?mode=ro", uri=True)
     con.row_factory = sqlite3.Row
-    row = con.execute(
+    rows = con.execute(
         "select id, rollout_path, title, cwd, model, reasoning_effort, git_branch, git_sha, "
         "created_at, updated_at, archived, source, cli_version, tokens_used "
-        "from threads where id = ? or id like ?",
-        (spec, f"{spec}%"),
-    ).fetchone()
+        "from threads where id = ? or id like ? order by id = ? desc, updated_at desc limit 21",
+        (spec, f"{spec}%", spec),
+    ).fetchall()
     con.close()
-    if row is None:
+    if not rows:
         raise SystemExit(f"thread {spec} not found in {STATE_DB}")
+    row = rows[0]
+    if row["id"] != spec and len(rows) > 1:
+        sys.stderr.write(f"ambiguous thread prefix {spec!r}; candidates:\n")
+        sys.stderr.write("".join(f"  {r['id']}\n" for r in rows))
+        raise SystemExit(2)
     path = row["rollout_path"]
     if not os.path.isabs(path):
         path = os.path.join(CODEX_HOME, path)
@@ -72,8 +80,12 @@ def text_of(content) -> str:
     return "\n".join(out)
 
 
+def mask(s: str) -> str:
+    return SECRET_RE.sub("<redacted>", s)
+
+
 def clip(s: str, n: int) -> str:
-    s = (s or "").strip()
+    s = mask((s or "").strip())
     return s if len(s) <= n else s[:n] + f" …[+{len(s) - n} chars]"
 
 
@@ -126,7 +138,7 @@ def digest(path: str, meta: dict, *, user_chars: int, final_chars: int, timeline
                 elif et == "task_started":
                     turns += 1
                 elif et == "task_complete":
-                    finals.append((t, p.get("turn_id"), p.get("duration_ms"), p.get("last_agent_message") or ""))
+                    finals.append((t, rec.get("ordinal"), p.get("turn_id"), p.get("duration_ms"), p.get("last_agent_message") or ""))
                 elif et == "turn_aborted":
                     aborted += 1
             elif typ == "response_item":
@@ -209,8 +221,8 @@ def digest(path: str, meta: dict, *, user_chars: int, final_chars: int, timeline
         out.append(clip(txt, user_chars))
         out.append("")
     out.append(f"## Turn-final agent messages ({len(finals)})")
-    for t, turn, dur, msg in finals:
-        out.append(f"### [{t}] turn={turn} duration={round((dur or 0)/60000,1)}min")
+    for t, o, turn, dur, msg in finals:
+        out.append(f"### [{t}] ord={o} turn={turn} duration={round((dur or 0)/60000,1)}min")
         out.append(clip(msg, final_chars))
         out.append("")
     out.append(f"## Compaction summaries ({len(compactions)})")

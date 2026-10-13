@@ -5,7 +5,8 @@ Codex's global hook writes one directory per hook turn under
 ~/.codex/research-coverage/<thread-id>/<turn-id>/ with manifest.json,
 required.json and per-provider <source>.json + .raw files. This prints the
 policy, query, strict-five flag and each source's recorded status without
-loading raw provider bytes, so a successor can see which research is already
+loading raw provider bytes (each <source>.json is read up to 2 MiB; larger
+files report file_status "oversized"), so a successor can see which research is already
 settled and which routes failed (quota, 402, validator rejection) before
 spending a new request.
 """
@@ -18,13 +19,18 @@ import sys
 
 CODEX_HOME = os.environ.get("CODEX_HOME", os.path.expanduser("~/.codex"))
 ROOT = os.path.join(CODEX_HOME, "research-coverage")
+MAX_BYTES = 2 * 1024 * 1024
+OVERSIZED = object()
 
 
 def load(path: str):
     try:
-        with open(path, "r", encoding="utf-8") as fh:
-            return json.load(fh)
-    except (OSError, json.JSONDecodeError) as exc:
+        with open(path, "rb") as fh:
+            raw = fh.read(MAX_BYTES + 1)
+        if len(raw) > MAX_BYTES:
+            return OVERSIZED
+        return json.loads(raw)
+    except (OSError, ValueError) as exc:
         return {"_error": str(exc)[:120]}
 
 
@@ -41,6 +47,8 @@ def source_status(d: dict) -> str:
 
 def describe_run(run_dir: str, verbose: bool) -> dict:
     manifest = load(os.path.join(run_dir, "manifest.json"))
+    if not isinstance(manifest, dict):
+        manifest = {"_error": "oversized" if manifest is OVERSIZED else "not an object"}
     out = {
         "run": os.path.basename(run_dir),
         "generated_at": manifest.get("generated_at"),
@@ -61,7 +69,11 @@ def describe_run(run_dir: str, verbose: bool) -> dict:
         if fn.endswith(".json") and fn not in ("manifest.json", "required.json"):
             name = fn[:-5]
             d = load(os.path.join(run_dir, fn))
-            out["sources"].setdefault(name, {})["file_status"] = source_status(d) if isinstance(d, dict) else type(d).__name__
+            if d is OVERSIZED:
+                status = "oversized"
+            else:
+                status = source_status(d) if isinstance(d, dict) else type(d).__name__
+            out["sources"].setdefault(name, {})["file_status"] = status
     if verbose:
         out["required"] = load(os.path.join(run_dir, "required.json"))
     return out

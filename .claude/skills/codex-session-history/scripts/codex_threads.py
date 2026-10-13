@@ -43,11 +43,15 @@ def iso(epoch) -> str | None:
 
 
 def resolve_id(con: sqlite3.Connection, spec: str) -> str:
-    row = con.execute("select id from threads where id = ? or id like ? order by updated_at desc limit 2",
-                      (spec, f"{spec}%")).fetchall()
-    if not row:
+    rows = con.execute("select id from threads where id = ? or id like ? order by id = ? desc, updated_at desc "
+                       "limit 21", (spec, f"{spec}%", spec)).fetchall()
+    if not rows:
         raise SystemExit(f"thread {spec!r} not found")
-    return row[0]["id"]
+    if rows[0]["id"] != spec and len(rows) > 1:
+        sys.stderr.write(f"ambiguous thread prefix {spec!r}; candidates:\n")
+        sys.stderr.write("".join(f"  {r['id']}\n" for r in rows))
+        raise SystemExit(2)
+    return rows[0]["id"]
 
 
 def emit(rows: list[dict], as_json: bool, cols: list[str]) -> None:

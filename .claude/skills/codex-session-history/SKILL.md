@@ -20,12 +20,14 @@ evidence.
 
 1. **Resolve the thread.** From a `codex://threads/<id>` link, worktree path or
    title fragment, run `codex_threads.py list --cwd <repo-or-worktree-substring> --days 7`,
-   then `codex_threads.py show <id-prefix>`. Done when you can name the
-   rollout file and the thread's cwd.
+   then `codex_threads.py show <id-prefix>`. `--json` is a top-level flag
+   (`codex_threads.py --json show <id>`); an ambiguous prefix exits 2 with the
+   candidate ids, so lengthen it. Done when you can name the rollout file and
+   the thread's cwd.
 2. **Establish liveness.** `codex_threads.py turns <id>` gives each turn's
    `completed`/`failed` status and error (usage-limit failures are common).
-   Liveness evidence is the last `completed_at` plus a running
-   `kernel.js … --working-dir <cwd>` process; a writer lock is only a marker.
+   Liveness evidence is the last `completed_at` plus a running process from
+   `pgrep -fl 'kernel.js.*--working-dir <cwd>'`; a writer lock is only a marker.
    A thread named `[scheduler]…` or `[fork]…` is usually an automation
    (`~/.codex/automations/*/automation.toml`) that will fire again. Done when
    you can say running, stopped-clean or stopped-failed, with the evidence.

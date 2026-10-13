@@ -3,8 +3,9 @@
 
 The local collector (launchd com.opensymphony.codex-otel) receives Codex OTLP
 logs on 127.0.0.1:4318 and writes redacted JSON lines (bodies stripped, only
-service.name / service.version / deployment.environment.name kept) to
-$CODEX_OTEL_FILE, rotating at 10 MB. This counts records per service/version
+service.name / service.version / deployment.environment.name kept), rotating
+at 10 MB. Input: --glob, else $CODEX_OTEL_FILE (one file) when set, else the
+$CODEX_OTEL_FILE_GLOB pattern, else the launchd collector's default path. This counts records per service/version
 and time window so you can confirm a Codex build was active at a given time;
 it cannot recover prompt text, which the collector deliberately drops.
 """
@@ -22,7 +23,7 @@ DEFAULT = os.path.expanduser("~/Library/Application Support/OpenSymphony/codex-o
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--glob", default=os.environ.get("CODEX_OTEL_FILE_GLOB", DEFAULT))
+    ap.add_argument("--glob", default=os.environ.get("CODEX_OTEL_FILE") or os.environ.get("CODEX_OTEL_FILE_GLOB", DEFAULT))
     ap.add_argument("--max-bytes", type=int, default=50_000_000, help="read at most this many bytes per file from the end")
     a = ap.parse_args()
     files = sorted(glob.glob(a.glob))
