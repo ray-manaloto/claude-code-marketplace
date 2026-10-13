@@ -3219,3 +3219,12 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   untested); the implementer is applying the P2 and cheap P3s before
   integration. rf-env-scrub handed off (89 tests rc 0 in all three selector
   modes; `check` rc 0 with the project venv exported); its cold review is running.
+
+- 2026-10-13 (Claude session, lane allocation): allocated lane `retro-gate`
+  (CT-01, Opus; worktree `.claude/worktrees/retro-gate`, branch
+  `claude/retro-gate-task`, base `361688e`) importing the calibrated parent
+  draft, and lane `team` (CT-03, Sonnet; worktree `.claude/worktrees/team`,
+  branch `claude/team-roles-rules`, same base) importing the agent-role, ADR
+  and glossary drafts. Both were approved as after-M0 lanes in interview round 2;
+  their ticket numbers bind once the spec and tickets are published. Active
+  lanes: codex-session-history (repair), rf-env-scrub (review), retro-gate, team.
