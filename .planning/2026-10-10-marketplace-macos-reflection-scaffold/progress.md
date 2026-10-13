@@ -3228,3 +3228,55 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   and glossary drafts. Both were approved as after-M0 lanes in interview round 2;
   their ticket numbers bind once the spec and tickets are published. Active
   lanes: codex-session-history (repair), rf-env-scrub (review), retro-gate, team.
+
+- 2026-10-13 (Claude session, SKILL repair cycle): the Fable cold review of
+  lane `codex-session-history` returned PASS-with-P2 (liveness subcommands
+  `turns`/`children`/`logs` untested) plus seven P3s (ambiguous-prefix
+  resolution, missing ordinals on turn-final messages, undocumented liveness
+  command and `--json` placement, OTel env-var mismatch, untested AgentsView
+  and OTel wrappers, unmasked secret shapes in digests, unbounded receipt
+  reads). The implementer applied all of them test-first (12 hermetic tests,
+  suite/check/baseline/diff-check rc 0) in `89b0705` and a follow-up fix for the
+  same ambiguous-prefix class in the receipts script; branch tip `ea893a8`
+  (includes `f039041`). Focused re-review of the delta dispatched; integration
+  adds the `test:codex-session-history` task row and its `check:research`
+  dependency.
+
+- 2026-10-13 (Claude session, TEAM handoff): lane `team` (CT-03) handed off at
+  `9103931` — five agent roles, three path-scoped rules, `docs/agents/claude-team.md`,
+  ADR 0001 and the glossary Workflow section; validate/check/baseline/diff-check
+  rc 0. Its retro draft's process finding is applied now: lane records are
+  committed before the worktree is cut (the `team` and `retro-gate` records were
+  created after their worktrees, so those lanes read them from the integration
+  branch). Citations to files other lanes will create are marked "arrives with
+  lane …" and get a citation recheck at each of those integrations. Fable cold
+  review dispatched. Still running: SKILL focused re-review, rf-env-scrub cold
+  review, retro-gate implementation.
+
+- 2026-10-13 (Claude session, SKILL integration): focused re-review of the
+  codex-session-history repairs returned PASS (12 tests). Merged
+  `claude/codex-session-history-skill` (`ea893a8`) into the integration branch
+  with the `test:codex-session-history` task added to `mise.dev.toml` and to
+  `check:research`'s dependencies. Composed-tree gates rc 0 (validate 51, the
+  new task 12 tests, check, baseline 19/19, diff --check). `check:research`
+  attempt 1 raced with a concurrent reviewer's suites (15 `test:collect`
+  errors); attempt 2 serial rc 0 with all suites OK — recorded as a race, not
+  evidence. rf-env-scrub review returned PASS-with-P3 (handoff drift only;
+  merge-tree clean) and retro-gate (CT-01) handed off at `0f7ddad` (15 tests,
+  calibration 22/15); both proceed next.
+
+- 2026-10-13 (Claude session, rf-env-scrub integration): Fable cold review
+  PASS-with-P3. Merged `claude/rf-env-scrub-inherited-selectors` (`281a198`,
+  repair `716e888`) into the integration branch; gates run **with the project
+  venv exported** as the user-facing promise: validate 51 rc 0, check rc 0,
+  baseline 19/19 rc 0, 89 `research_refresh` tests rc 0, diff --check rc 0.
+  Retro filed at `retros/rf-env-scrub.md`; C1/C2/C3 released from the M0
+  barrier in the ledger. A stray `.a05b-*` test scratch directory left in the
+  root checkout by the raced `check:research` attempt 1 (its `TemporaryDirectory`
+  cleanup never ran) was removed; it was untracked, 60 KB, created 15:11.
+  TEAM review returned PASS-with-P2: P2-1 (gate invocation form) is answered
+  by the actual `retro:gate` task, which takes a positional unit and passes
+  `--unit` to the script — the retro-gate lane record's `required_checks` text
+  was the wrong source and is corrected; P2-2 (two sources of truth for the
+  retro record shape) and five P3s go back to the doc-writer for one repair
+  cycle before integration.

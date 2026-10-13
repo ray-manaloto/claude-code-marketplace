@@ -50,6 +50,10 @@ pass the `queries` map to `metrics(current, previous)`.
 
 The normal `./dev/mise run check` includes these tests. The development CI job
 runs the same dependency-free check entry point using runner-installed Python.
+The checks run from any shell because the check entry point and test harness
+scrub inherited runtime selectors such as `VIRTUAL_ENV` and `UV_PYTHON`.
+The refresh CLI still refuses a selector that names any environment other than
+the borrowed project's own `.venv`.
 Original Claude/container acceptance remains independent and unchanged.
 
 ## Validation and sharing

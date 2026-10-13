@@ -1,0 +1,23 @@
+{
+  "skill_name": "codex-session-history",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A Codex Desktop thread codex://threads/01a12bd1-cf17-70f1-9592-d554bf4860a1 was working in ~/.codex/worktrees/86d0/claude-code-marketplace. Tell me whether it is still running, what its last three turns did, and which of its turns failed and why. Cite ordinals.",
+      "expected_output": "Uses codex_threads.py show/turns (not grep over the raw rollout) to report last completed turn time, failed turns with the usage-limit error text, writer-lock mtime, and a bounded summary of the last turn-final messages with [timestamp ord=N] citations; states that lock presence is not liveness.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm taking over the marketplace repo from Codex. Produce a takeover brief for thread 01a130ef-265d-72b0-8465-80f3e4128bee: what it owned, explicit user decisions, what's uncommitted or unpublished, and the first five actions I should take.",
+      "expected_output": "Runs codex_rollout_digest.py to a scratch path, delegates or reads the digest, and writes a brief following references/brief-template.md with all eight sections, SHAs/paths taken from the digest, 'clipped' markers where applicable, and no invented outcomes.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Did any Codex research run for the marketplace project in the last 3 days get a strict-five pass? List the runs, which providers failed and why (quota, 402, validator), without re-running any research.",
+      "expected_output": "Uses codex_research_receipts.py over the relevant threads' research-coverage dirs, reports per-run policy/query/per-provider status, identifies Context7 quota errors / Firecrawl 402 + provisional Serper fallback / Last30Days validator rejections as recorded gaps, and makes no provider call.",
+      "files": []
+    }
+  ]
+}
