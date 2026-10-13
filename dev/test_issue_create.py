@@ -8,6 +8,9 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from githubkit import GitHub
+import httpx
+
 from issue_create import (Refusal, apply, attempt_path, binding_path, full_body,
                           intent_path, main, manifest, pages, preview, verify)
 
@@ -26,13 +29,14 @@ class FakeIssues:
         self.failure = None
         self.attach = True
         self.visible = True
+        self.parent_lookup = 404
 
     @staticmethod
     def response(data):
         return SimpleNamespace(status_code=200, raw_response=SimpleNamespace(json=lambda: data))
 
     def get(self, owner, repo, number):
-        assert (owner, repo, number) == ("ray-manaloto", "claude-code-marketplace", 11)
+        assert (owner, repo, number) == ("ray-manaloto", "claude-code-marketplace", self.parent["number"])
         return self.response(self.parent)
 
     def list_for_repo(self, owner, repo, *, state, per_page, page):
@@ -41,20 +45,29 @@ class FakeIssues:
         return self.response(rows[(page - 1) * 100:page * 100])
 
     def list_sub_issues(self, owner, repo, number, *, per_page, page):
-        assert number == 11 and per_page == 100
+        assert number == self.parent["number"] and per_page == 100
         return self.response(self.children[(page - 1) * 100:page * 100])
+
+    def get_parent(self, owner, repo, number):
+        assert (owner, repo, number) == ("ray-manaloto", "claude-code-marketplace", 62)
+        if self.parent_lookup == "timeout":
+            raise TimeoutError("parent lookup")
+        response = self.response(self.parent)
+        response.status_code = self.parent_lookup
+        return response
 
     def create(self, owner, repo, *, data):
         assert (owner, repo) == ("ray-manaloto", "claude-code-marketplace")
-        assert set(data) == {"title", "body", "labels", "parent_issue_id"}
-        assert data["parent_issue_id"] == 101  # database id, never #11
+        assert set(data) in ({"title", "body", "labels", "parent_issue_id"}, {"title", "body", "labels"})
+        if "parent_issue_id" in data:
+            assert data["parent_issue_id"] == self.parent["id"]  # database id, never issue number
         self.posts.append(data)
         if self.failure == "before":
             raise TimeoutError("before send")
         child = row(62, 1001, data["body"], data["labels"])
         child["title"] = data["title"]
         self.repository.append(child)
-        if self.attach:
+        if self.attach and "parent_issue_id" in data:
             self.children.append(child)
         if self.failure == "after":
             raise TimeoutError("after send")
@@ -91,6 +104,168 @@ class CreationTests(unittest.TestCase):
         self.client = FakeClient()
         self.digest = preview(self.client, self.manifest, "A01", self.journal)
         self.path = intent_path(self.journal, "A01")
+
+    def generic_manifest(self, parent=77, local_id="T1"):
+        self.ticket = dict(self.ticket, local_id=local_id)
+        self.client.issues.parent.update(number=77, id=707)
+        payload = {"version": 2, "repo": "ray-manaloto/claude-code-marketplace",
+                   "parent_number": parent, "tickets": [self.ticket]}
+        self.manifest.write_text(json.dumps(payload) + "\n")
+
+    def test_approved_generic_ticket_under_chosen_existing_parent(self):
+        self.generic_manifest()
+        digest = preview(self.client, self.manifest, "T1", self.journal)
+        path = intent_path(self.journal, "T1")
+        self.assertEqual(apply(self.client, path, digest, self.manifest), "VERIFIED")
+        self.assertEqual(self.client.issues.posts[0]["parent_issue_id"], 707)
+        binding = json.loads(binding_path(path).read_text())
+        self.assertEqual((binding["local_id"], binding["parent_number"]), ("T1", 77))
+
+    def test_standalone_spec_has_no_parent_and_uncertain_send_is_verify_only(self):
+        self.generic_manifest(parent=None, local_id="remaining-spec")
+        digest = preview(self.client, self.manifest, "remaining-spec", self.journal)
+        path = intent_path(self.journal, "remaining-spec")
+        self.client.issues.failure = "after"
+        self.assertEqual(apply(self.client, path, digest, self.manifest), "UNRESOLVED")
+        self.assertEqual(verify(self.client, path, digest, self.manifest), "VERIFIED")
+        self.assertNotIn("parent_issue_id", self.client.issues.posts[0])
+        self.assertIsNone(json.loads(binding_path(path).read_text())["parent_number"])
+        with self.assertRaisesRegex(Refusal, "verify only"):
+            apply(self.client, path, digest, self.manifest)
+        self.assertEqual(len(self.client.issues.posts), 1)
+
+    def test_standalone_verification_rejects_attached_or_unverified_parent(self):
+        self.generic_manifest(parent=None, local_id="spec")
+        digest = preview(self.client, self.manifest, "spec", self.journal)
+        path = intent_path(self.journal, "spec")
+        self.client.issues.parent_lookup = 200
+        self.assertEqual(apply(self.client, path, digest, self.manifest), "UNRESOLVED")
+        self.assertFalse(binding_path(path).exists())
+        for status in (200, 410, 500, "timeout"):
+            with self.subTest(status=status):
+                self.client.issues.parent_lookup = status
+                self.assertEqual(verify(self.client, path, digest, self.manifest), "UNRESOLVED")
+        self.client.issues.parent_lookup = 404
+        self.assertEqual(verify(self.client, path, digest, self.manifest), "VERIFIED")
+        self.assertEqual(len(self.client.issues.posts), 1)
+
+    def test_standalone_parent_absence_through_installed_sdk_http_boundary(self):
+        for parent_status, expected in ((404, "VERIFIED"), (410, "UNRESOLVED"), (500, "UNRESOLVED")):
+            with self.subTest(parent_status=parent_status):
+                self.setUp()
+                self.generic_manifest(parent=None, local_id="spec")
+                remote = self.client.issues
+                def respond(request):
+                    prefix = "/repos/ray-manaloto/claude-code-marketplace/issues"
+                    if request.method == "GET" and request.url.path == prefix:
+                        return httpx.Response(200, json=remote.repository)
+                    if request.method == "POST" and request.url.path == prefix:
+                        response = remote.create("ray-manaloto", "claude-code-marketplace",
+                                                 data=json.loads(request.content))
+                        return httpx.Response(201, json=response.raw_response.json())
+                    if request.method == "GET" and request.url.path == prefix + "/62/parent":
+                        return httpx.Response(parent_status, json={"message": "parent lookup"})
+                    raise AssertionError(f"unexpected offline request: {request.method} {request.url.path}")
+                with GitHub("offline-test-token", transport=httpx.MockTransport(respond),
+                            auto_retry=False, http_cache=False, trust_env=False) as client:
+                    digest = preview(client, self.manifest, "spec", self.journal)
+                    path = intent_path(self.journal, "spec")
+                    self.assertEqual(apply(client, path, digest, self.manifest), expected)
+                    self.assertEqual(verify(client, path, digest, self.manifest), expected)
+                self.assertEqual(len(remote.posts), 1)
+
+    def test_generic_publication_refuses_manifest_drift_before_send(self):
+        self.generic_manifest()
+        original = self.manifest.read_text()
+        digest = preview(self.client, self.manifest, "T1", self.journal)
+        path = intent_path(self.journal, "T1")
+        for key, value in (("parent_number", 78), ("repo", "other/repo"), ("version", 1)):
+            with self.subTest(key=key):
+                payload = json.loads(original)
+                payload[key] = value
+                self.manifest.write_text(json.dumps(payload))
+                with self.assertRaises(Refusal):
+                    apply(self.client, path, digest, self.manifest)
+                self.assertFalse(attempt_path(path).exists())
+        for key, value in (("local_id", "T2"), ("title", "Changed"), ("body", "Changed"), ("labels", ["bug"])):
+            with self.subTest(key=key):
+                payload = json.loads(original)
+                payload["tickets"][0][key] = value
+                self.manifest.write_text(json.dumps(payload))
+                with self.assertRaises(Refusal):
+                    apply(self.client, path, digest, self.manifest)
+        self.assertEqual(self.client.issues.posts, [])
+
+    def test_generic_identifiers_require_approval_and_safe_journal_names(self):
+        self.generic_manifest(local_id="RF3a.fix_1")
+        preview(self.client, self.manifest, "RF3a.fix_1", self.journal)
+        with self.assertRaisesRegex(Refusal, "absent"):
+            preview(self.client, self.manifest, "T2", self.journal)
+        for local_id in ("../escape", "/absolute", ".", "bad:marker", "bad\\path", "x" * 65):
+            with self.subTest(local_id=local_id):
+                self.generic_manifest(local_id=local_id)
+                with self.assertRaises(Refusal):
+                    preview(self.client, self.manifest, local_id, self.journal)
+        self.assertEqual(self.client.issues.posts, [])
+
+    def test_legacy_manifest_cannot_select_generic_parent_or_identifier(self):
+        original = self.manifest.read_text()
+        for parent, local_id in ((77, "A01"), (None, "A01"), (11, "T1")):
+            with self.subTest(parent=parent, local_id=local_id):
+                payload = json.loads(original)
+                payload["parent_number"] = parent
+                payload["tickets"][0]["local_id"] = local_id
+                self.manifest.write_text(json.dumps(payload))
+                with self.assertRaises(Refusal):
+                    manifest(self.manifest)
+
+    def test_generic_parent_identity_changes_refuse_send_or_leave_verify_unresolved(self):
+        self.generic_manifest()
+        digest = preview(self.client, self.manifest, "T1", self.journal)
+        path = intent_path(self.journal, "T1")
+        self.client.issues.parent["id"] = 808
+        with self.assertRaisesRegex(Refusal, "drifted"):
+            apply(self.client, path, digest, self.manifest)
+        self.client.issues.parent["id"] = 707
+        self.assertEqual(apply(self.client, path, digest, self.manifest), "VERIFIED")
+        self.client.issues.parent["id"] = 808
+        self.assertEqual(verify(self.client, path, digest, self.manifest), "UNRESOLVED")
+
+    def test_standalone_requires_complete_fresh_inventory_and_unique_marker(self):
+        self.generic_manifest(parent=None, local_id="spec")
+        self.client.issues.repository = [row(n, n + 1000) for n in range(1, 2001)]
+        with self.assertRaisesRegex(Refusal, "incomplete"):
+            preview(self.client, self.manifest, "spec", self.journal)
+        self.client.issues.repository = [self.client.issues.parent]
+        digest = preview(self.client, self.manifest, "spec", self.journal)
+        path = intent_path(self.journal, "spec")
+        self.client.issues.repository.append(row(78, 808))
+        with self.assertRaisesRegex(Refusal, "drifted"):
+            apply(self.client, path, digest, self.manifest)
+        self.client.issues.repository.pop()
+        self.assertEqual(apply(self.client, path, digest, self.manifest), "VERIFIED")
+        duplicate = row(79, 809, full_body(self.ticket))
+        duplicate["state"] = "closed"
+        self.client.issues.repository.append(duplicate)
+        self.assertEqual(verify(self.client, path, digest, self.manifest), "UNRESOLVED")
+        with self.assertRaisesRegex(Refusal, "inventory"):
+            preview(self.client, self.manifest, "spec", self.journal.parent / "other")
+
+    def test_generic_manifest_refuses_duplicate_ids_and_noninteger_parent(self):
+        self.generic_manifest()
+        original = self.manifest.read_text()
+        for parent in (True, 0, -1, "77"):
+            with self.subTest(parent=parent):
+                payload = json.loads(original)
+                payload["parent_number"] = parent
+                self.manifest.write_text(json.dumps(payload))
+                with self.assertRaises(Refusal):
+                    manifest(self.manifest)
+        payload = json.loads(original)
+        payload["tickets"].append(payload["tickets"][0])
+        self.manifest.write_text(json.dumps(payload))
+        with self.assertRaises(Refusal):
+            manifest(self.manifest)
 
     def test_single_create_parent_id_and_durable_binding(self):
         self.assertEqual(apply(self.client, self.path, self.digest, self.manifest), "VERIFIED")
