@@ -49,6 +49,14 @@ Conventions from the takeover interview (rounds 1–2, all accepted):
 - Ticket state lives in [ticket-ledger.md](ticket-ledger.md); the new spec
   "Claude team takeover and self-improving workflow" is published through
   to-spec/to-tickets and its tickets join that ledger.
+- Stage invocation modes are recorded, not assumed: on 2026-10-13 the user
+  typed `/grill-with-docs` and its `grilling` and `domain-modeling` skills ran
+  natively through the Skill tool; `to-spec`, `to-tickets`, `implement-spec`
+  and `retro` were applied as file-guided fallbacks from the installed
+  `SKILL.md` files (the mode Codex also recorded) under the user's standing
+  authorization. [skill-invocations.md](skill-invocations.md) binds each
+  stage's source hash, mode and output pointer and gains a row whenever the
+  user types one of the four user-only verbs natively.
 
 | Lane | Unit | Writer | Start | State |
 | --- | --- | --- | --- | --- |

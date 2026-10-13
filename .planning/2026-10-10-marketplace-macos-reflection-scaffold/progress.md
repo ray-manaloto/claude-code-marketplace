@@ -3376,3 +3376,18 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   the named task (only `check:research` has dependencies), and root
   `CLAUDE.md` now duplicates root `AGENTS.md` lines; both are fixed at NAV
   integration.
+
+- 2026-10-13 (Claude session, invocation-mode correction): a side agent's
+  review found the activation record claiming the five stages were "invoked
+  natively". Actual modes: the user typed `/grill-with-docs` and its
+  `grilling` and `domain-modeling` skills ran natively through the Skill tool;
+  `to-spec`, `to-tickets`, `implement-spec` and `retro` are user-invoked-only
+  and were applied as file-guided fallbacks from the installed 1.3.1
+  `SKILL.md` files under the round-1 Q3 authorization — the same mode Codex
+  recorded; `writing-for-agents`, `skill-creator` and
+  `agentsview-finding-history` ran natively. Corrected
+  `docs/agents/claude-takeover.md`, the plan's takeover section, the takeover
+  retro (new P2 steering row) and the scratchpad spec draft; added
+  `skill-invocations.md` binding each stage's source path, SHA-256, mode and
+  output pointer, to be extended whenever the user types one of the four
+  user-only verbs.
