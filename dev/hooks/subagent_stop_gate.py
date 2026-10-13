@@ -30,7 +30,7 @@ def main() -> int:
     refusals = git_gate.check_lanes(repo, [branch])
     if refusals:
         reason = (f"{refusals[0]}\nBefore stopping, write the lane retro record at "
-                  f".planning/{git_gate.PLAN_ID}/retros/<unit>.md in {repo} (docs/agents/ticket-retro.md) "
+                  f".planning/{git_gate.PLAN_ID}/retros/<unit>.md in this worktree (docs/agents/ticket-retro.md) "
                   "and run ./dev/mise run retro:gate -- <unit>.")
         print(json.dumps({"decision": "block", "reason": reason}))
     return 0

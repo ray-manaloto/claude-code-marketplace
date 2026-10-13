@@ -23,3 +23,15 @@ real checkout (parent-run at integration).
 No-ops: none, because each hook script enforces a rule that no existing check covered.
 
 Steering beyond the row above: none, because `AGENTS.md` and `CLAUDE.md` are untouched.
+
+## Cold review disposition (Fable, PASS-with-P2) and repair
+
+| Severity | Category and finding | Applied action and verification |
+| --- | --- | --- |
+| P2 | Automated checks (P2-1): `git_gate.py` accepted `name-rev` suffixes, so a sync merge of the integration tip was blamed on another lane. Observed: `retro:gate-push` rc 2 blamed `claude/nav-guidance-hierarchy` for `51f63c6`. | Applied: only exact ref names count. A merge is attributed by its default subject, else by refs pointing exactly at its second parent; the integration branch wins and lane-record branches are preferred. The regression test `test_sync_merge_of_the_integration_tip_is_not_blamed_on_another_lane` failed first (it blamed `claude/a-b`) and now passes. On this branch, `git_gate.py push` rc 0. |
+| P2 | Steering/global guidance (P2-2): the layer-2 paragraph overclaimed. A fast-forward, `--squash`, `--no-commit` then commit, and an unknown merge source all passed open. | Applied: `hooks:install` also sets local `merge.ff=false` and logs it. The merge gate refuses a source it cannot classify, or a missing source; `main` and the integration branch are allowed. The paragraph lists fast-forward (merge or pull), squash, rebase and cherry-pick as outside layer 2, with pre-push as the backstop. Tests: `test_merge_gate_classifies_the_merge_source`, and the hk test merges a fast-forwardable branch. |
+| P3 | Automated checks (P3-2/3): there were no tests for a multi-lane push, a merge of `main`, a missing merge source or a gate exit 1. The fake `dev/mise` used `shell=True`. | Applied: `test_push_refuses_only_the_failing_lane` and `test_merge_gate_classifies_the_merge_source`. The fake mise uses `shlex` argv; the suite has 13 tests, rc 0. |
+| P3 | Information access (P3-4): reasons carried absolute paths and raw exception text. | Applied: reasons are repository-relative, and timeouts or start failures are classified. Tests assert that the scratch path never appears. |
+
+Review P3-1 (`extraKnownMarketplaces`) is the parent's decision and owner; `test:hooks`
+stays out of `check:research` until the parent wires it at integration.

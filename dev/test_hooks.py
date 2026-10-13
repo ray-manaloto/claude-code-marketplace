@@ -19,12 +19,15 @@ GIT_DIR = subprocess.run(["git", "--exec-path"], capture_output=True, text=True,
 SCRUB = ("VIRTUAL_ENV", "UV_PROJECT_ENVIRONMENT", "MARKETPLACE_PYTHON", "RETRO_UNIT", "CLAUDE_LANE_UNIT",
          "PLAN_ID", "PWF_PLAN_ROOT", "HK_MISE", "HK_FILE", "HK")
 FAKE_MISE = """#!{python} -I
-import os, subprocess, sys, tomllib
+import shlex, subprocess, sys, tomllib
 from pathlib import Path
 root = Path(__file__).resolve().parents[1]
-task = tomllib.loads((root / "mise.dev.toml").read_text())["tasks"][sys.argv[2]]
-env = dict(os.environ, MARKETPLACE_PYTHON=sys.executable)
-sys.exit(subprocess.run(task["run"], shell=True, cwd=root, env=env).returncode)
+run = tomllib.loads((root / "mise.dev.toml").read_text())["tasks"][sys.argv[2]]["run"]
+for line in [run] if isinstance(run, str) else run:
+    argv = shlex.split(line.replace("${{MARKETPLACE_PYTHON:-python3}}", sys.executable))
+    code = subprocess.run(argv, cwd=root).returncode
+    if code:
+        sys.exit(code)
 """
 
 
@@ -59,12 +62,11 @@ class Scratch(unittest.TestCase):
         self.git("commit", "-q", "-m", "lane work")
         self.git("checkout", "-q", "main")
 
-    def lane(self, **fields):
-        record = {"unit": "x", "branch": "claude/x-y", **fields}
-        (self.plan / "lanes" / "x.json").write_text(json.dumps(record))
+    def lane(self, unit="x", branch="claude/x-y", **fields):
+        (self.plan / "lanes" / f"{unit}.json").write_text(json.dumps({"unit": unit, "branch": branch, **fields}))
 
-    def retro(self, present=True):
-        path = self.plan / "retros" / "x.md"
+    def retro(self, present=True, unit="x"):
+        path = self.plan / "retros" / f"{unit}.md"
         path.parent.mkdir(exist_ok=True)
         path.write_text(COMPLETE) if present else path.unlink(missing_ok=True)
 
@@ -93,7 +95,8 @@ class PreToolUse(Scratch):
         output = json.loads(out)["hookSpecificOutput"]
         self.assertEqual((output["hookEventName"], output["permissionDecision"]), ("PreToolUse", "deny"))
         self.assertTrue(output["permissionDecisionReason"].startswith(f"retro gate refused {branch}:"), output)
-        self.assertIn("retro record missing", output["permissionDecisionReason"])
+        self.assertIn(f"retro record missing: .planning/{PLAN}/retros/x.md", output["permissionDecisionReason"])
+        self.assertNotIn(self.tmp.name, output["permissionDecisionReason"])
 
     def assert_allowed(self, command):
         self.assertEqual(self.bash(command), (0, ""), command)
@@ -132,6 +135,60 @@ class PreToolUse(Scratch):
         self.assert_allowed("./dev/mise run delivery:publish intent.json abc")
 
 
+class GitGateCli(Scratch):
+    def gate(self, mode, **env):
+        result = subprocess.run([sys.executable, "-I", str(HOOKS / "git_gate.py"), mode], cwd=self.repo,
+                                env={**self.env, **env}, capture_output=True, text=True, timeout=20)
+        self.assertNotIn(self.tmp.name, result.stdout)
+        return result.returncode, result.stdout
+
+    def commit(self, branch, name):
+        self.git("checkout", "-q", branch)
+        (self.repo / name).write_text(name)
+        self.git("add", name)
+        self.git("commit", "-q", "-m", name)
+
+    def test_sync_merge_of_the_integration_tip_is_not_blamed_on_another_lane(self):
+        self.git("checkout", "-q", "-b", "claude/a-b")
+        self.lane(unit="a", branch="claude/a-b")
+        self.commit("claude/a-b", "a1")
+        self.commit("main", "m1")
+        tip = self.git("rev-parse", "HEAD").stdout.strip()
+        self.commit("main", "m2")
+        for branch in ("claude/a-b", "claude/x-y"):  # both lanes sync; name-rev calls the tip claude/a-b^2
+            self.git("checkout", "-q", branch)
+            self.git("merge", "--no-ff", "-m", "sync integration", tip)
+        self.retro()
+        rc, out = self.gate("push")
+        self.assertEqual(rc, 0, out)
+        self.assertNotIn("claude/a-b", out)
+
+    def test_push_refuses_only_the_failing_lane(self):
+        self.retro()
+        self.git("checkout", "-q", "-b", "claude/z-w")
+        self.lane(unit="z", branch="claude/z-w")
+        self.commit("claude/z-w", "z1")
+        self.git("checkout", "-q", "main")
+        for branch in ("claude/x-y", "claude/z-w"):
+            self.git("merge", "--no-ff", "--no-edit", branch)
+        rc, out = self.gate("push")
+        self.assertEqual(rc, 2, out)
+        self.assertIn(f"retro gate refused claude/z-w:\nRETRO GATE FAILED for .planning/{PLAN}/retros/z.md", out)
+        self.assertNotIn("refused claude/x-y", out)
+
+    def test_merge_gate_classifies_the_merge_source(self):
+        for action in ("merge main", "merge origin/main", "merge --no-ff codex/marketplace-native-onboarding"):
+            self.assertEqual(self.gate("merge", GIT_REFLOG_ACTION=action)[0], 0, action)
+        refusals = {"merge claude/x-y": "retro record missing",
+                    "merge claude/q-r": "unit could not be derived",  # the retro gate exits 1
+                    "merge feature/foo": "no lane branch derivable for feature/foo",
+                    None: "merge source unknown"}
+        for action, reason in refusals.items():
+            rc, out = self.gate("merge", **({"GIT_REFLOG_ACTION": action} if action else {}))
+            self.assertEqual(rc, 2, (action, out))
+            self.assertIn(reason, out)
+
+
 class StopHooks(Scratch):
     def stop(self, script, **extra):
         return self.hook(script, {"hook_event_name": "Stop", "cwd": str(self.repo), "session_id": "s", **extra})
@@ -144,6 +201,7 @@ class StopHooks(Scratch):
         self.assertEqual(decision["decision"], "block")
         self.assertIn("retro record missing", decision["reason"])
         self.assertIn(f".planning/{PLAN}/retros/<unit>.md", decision["reason"])
+        self.assertNotIn(self.tmp.name, decision["reason"])
         self.assertEqual(self.stop("subagent_stop_gate.py", stop_hook_active=True), (0, ""))
         self.retro()
         self.assertEqual(self.stop("subagent_stop_gate.py"), (0, ""))
@@ -191,14 +249,16 @@ class HkHooks(Scratch):
         mise.chmod(0o755)
         self.git("add", "-A")
         self.git("commit", "-q", "-m", "hooks")
-        result = subprocess.run(["hk", "install"], cwd=self.repo, env=self.env, capture_output=True, text=True,
-                                timeout=30)
+        result = subprocess.run(["dev/mise", "run", "hooks:install"], cwd=self.repo, env=self.env,
+                                capture_output=True, text=True, timeout=30)
         self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("merge.ff=false", result.stdout)
+        self.assertEqual(self.git("config", "--local", "merge.ff").stdout.strip(), "false")
         self.git("init", "-q", "--bare", str(self.tmp / "remote.git"))
         self.git("remote", "add", "origin", str(self.tmp / "remote.git"))
 
     def test_merge_commit_and_push_refused_then_accepted(self):
-        refused = self.git("merge", "--no-ff", "--no-edit", "claude/x-y", check=False)
+        refused = self.git("merge", "--no-edit", "claude/x-y", check=False)  # fast-forwardable
         self.assertNotEqual(refused.returncode, 0, refused.stdout + refused.stderr)
         self.assertIn("retro gate refused claude/x-y", refused.stdout + refused.stderr)
         self.git("merge", "--abort")

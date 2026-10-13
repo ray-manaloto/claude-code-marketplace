@@ -45,15 +45,20 @@ commits it on the lane branch, so every layer below finds it there or in the
 merged tree. One check runs in three layers (CT-01, CT-02):
 
 1. mise task `retro:gate -- <unit>`: the manual and CI form.
-2. `hk.pkl` Git hooks, agent-independent so Codex is bound too:
-   `pre-merge-commit` runs `retro:gate-merge` and `pre-push` runs
-   `retro:gate-push`, both through `dev/hooks/git_gate.py`. The merge form gates
-   the `claude/` or `codex/` branch being merged (Git exposes it only through
-   `GIT_REFLOG_ACTION` before the merge commit); the push form gates the second
-   parent of each lane merge not yet on the remote. The integration branch and
-   `main` are never units. The parent installs the hooks once with
-   `./dev/mise run hooks:install` (`hk install --force-local`, because a global
-   hk install otherwise suppresses the per-repository hooks).
+2. `hk.pkl` Git hooks: `pre-merge-commit` runs `retro:gate-merge` and
+   `pre-push` runs `retro:gate-push`, both through `dev/hooks/git_gate.py`.
+   The merge form gates each `claude/` or `codex/` ref being merged (Git
+   exposes it only through `GIT_REFLOG_ACTION` before the merge commit) and
+   refuses a source it cannot classify. The push form gates each unpublished
+   lane merge, attributed by its default subject or by refs pointing exactly
+   at its second parent. The integration branch and `main` are never units.
+   The parent runs `./dev/mise run hooks:install` once: `hk install
+   --force-local`, because a global hk install suppresses the per-repository
+   hooks, plus local `merge.ff=false`. This layer binds any agent, Codex
+   included, only for merge commits. A fast-forward (`--ff` merge or pull), `--squash`, a
+   rebase, a cherry-pick, or `--no-commit` then commit all skip
+   `pre-merge-commit`. `pre-push` is the backstop for merge commits; squash,
+   rebase and cherry-pick leave none, so they rely on layer 3 and review.
 3. Claude Code hooks in `.claude/settings.json`: `PreToolUse`
    (`dev/hooks/pretooluse_gate.py`) denies `git merge`, `git push` and
    `delivery:publish` of a failing lane; `delivery:publish` pushes with

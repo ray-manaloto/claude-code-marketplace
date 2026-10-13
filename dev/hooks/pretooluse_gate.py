@@ -52,7 +52,7 @@ def lanes_for(verb: str, args: list[str], repo: str) -> list[str]:
     if verb == "merge" and {"--abort", "--quit"} & set(args):
         return []
     if verb == "merge" and git_gate.git(repo, "rev-parse", "-q", "--verify", "MERGE_HEAD"):
-        return git_gate.merging_lanes(repo)
+        return git_gate.classify(repo, git_gate.merge_sources(repo))[0]
     named = [arg.lstrip("+").split(":", 1)[0] for arg in args if not arg.startswith("-")]
     if verb == "push":  # git push [remote] [refspec...]; no refspec or HEAD means the current branch
         current = git_gate.git(repo, "branch", "--show-current") or ""

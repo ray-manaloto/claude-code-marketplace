@@ -338,9 +338,9 @@ dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/hooks/git_gate.py push'
 
 [tasks."hooks:install"]
-description = "Parent-run at integration: install the hk retro-gate Git hooks into this checkout"
+description = "Parent-run at integration: install the hk retro-gate Git hooks and refuse fast-forward merges here"
 dir = "{{config_root}}"
-run = "hk install --force-local"
+run = ["hk install --force-local", "git config --local merge.ff false", "echo 'hooks:install: set merge.ff=false in local Git config'"]
 
 [tasks."test:hooks"]
 description = "Exercise the retro-gate hook scripts and hk hooks in scratch repositories"
