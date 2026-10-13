@@ -133,7 +133,7 @@ dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_git_delivery.py -v'
 
 [tasks."test:issue-amend"]
-description = "Exercise A07a single-issue amendment and ambiguous-send controls offline"
+description = "Exercise issue amendments, accepted completion and ambiguous sends offline"
 dir = "{{config_root}}"
 depends = ["deps:check"]
 run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_issue_amend.py -v'
@@ -145,15 +145,22 @@ depends = ["deps:check"]
 usage = 'arg "<issue>"; arg "<body_file>"; arg "<labels_file>"; arg "<intent_file>"'
 run = 'uv run --no-sync --offline python -B dev/issue_amend.py preview --issue "${usage_issue?}" --body-file "${usage_body_file?}" --labels-file "${usage_labels_file?}" --intent-file "${usage_intent_file?}"'
 
+[tasks."issue:completion-preview"]
+description = "Bind accepted completion evidence to one exact open issue"
+dir = "{{config_root}}"
+depends = ["deps:check"]
+usage = 'arg "<issue>"; arg "<evidence_file>"; arg "<intent_file>"'
+run = 'uv run --no-sync --offline python -B dev/issue_amend.py preview-completion --issue "${usage_issue?}" --evidence-file "${usage_evidence_file?}" --intent-file "${usage_intent_file?}"'
+
 [tasks."issue:apply"]
-description = "Attempt one exact issue body/label PATCH from a SHA-bound intent"
+description = "Attempt one SHA-bound issue amendment or completed-state PATCH"
 dir = "{{config_root}}"
 depends = ["deps:check"]
 usage = 'arg "<intent_file>"; arg "<sha256>"'
 run = 'uv run --no-sync --offline python -B dev/issue_amend.py apply --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_sha256?}"'
 
 [tasks."issue:verify"]
-description = "Read back an attempted issue amendment without another write"
+description = "Read back an attempted issue change without another write"
 dir = "{{config_root}}"
 depends = ["deps:check"]
 usage = 'arg "<intent_file>"; arg "<sha256>"'
