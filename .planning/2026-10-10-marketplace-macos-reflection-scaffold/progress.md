@@ -2956,3 +2956,57 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   review and exact remote verification. This entry records publication
   preparation; the delivery receipt supplies the resulting commit and outcome.
   Detached ticket work and the separate handoff are excluded from this delivery.
+
+- The user requested more parallel specialist work. Three native collaboration
+  agents acknowledged bounded read-only assignments: `parallel_lsan_specialist`
+  (requested `gpt-6-astra`, high), `parallel_handoff_reviewer` and
+  `parallel_contract_specialist` (both requested `gpt-6.1-sol`, high).
+  The parent remains the only implementation/Git writer. Their first wave
+  established the handoff's exact receipt bindings and integration conflicts,
+  exposed #28/#30 and A06/A12b acceptance cycles for explicit disposition,
+  and found that timeout cleanup leaves LSan interruption handlers ignored.
+  The parent has applied a narrow current-helper restoration and an offline
+  regression in the #13 checkout; verification and independent repair review
+  are in progress. The original native verdict and retired proposal are unchanged.
+  Official OpenAI model/subagent documentation was fetched. A separate strict-five
+  team-research attempt is running outside the repository under scoped fnox;
+  provider coverage and selected-model execution are not yet qualification claims.
+  The initial read-only container census requests no shared capacity. No native
+  run, container operation, issue transition or A06 resumption is admitted here.
+  The skill reference was resolved through its symlink after one missing-path
+  read; the plan selector succeeded with `bash` after direct execution returned 126.
+
+- The parallel wave's #13 repair is locally committed at `4905c8e52ecd502de3b79e666799ab990a054c52`.
+  The six-test suite, named task validation, check and original baseline all
+  passed; independent cold review passed the exact helper/test hashes. The
+  checkout is clean. The retired proposal and original inconclusive native
+  verdict are unchanged. Handoff and contract reviews are complete, and a
+  separate Luna receipt verifier confirmed all ten research raw hashes.
+  [The execution record](parallel-specialists.md) binds requested models, actual
+  tools, findings and the remaining integration sequence. Strict-five exited 1:
+  GitHub Releases failed with a transport error; Firecrawl Search used a
+  provisional fallback after HTTP 402. The [frontier correction](retros/acceptance-frontier.md)
+  is a proposal only; its independent review and any change to the earlier user
+  hold remain pending. No native execution or issue transition ran.
+
+- The user explicitly accepted the independently reviewed acceptance-frontier
+  correction: “Apply the reviewed correction (Recommended)”. The parent applied
+  it to the active plan, workflow amendment and team record. A06 can resume after
+  actionable completed-unit defects are verified; future native/provider/OCI
+  gates hold their actual dependents. Offline #28 prerequisite acceptance still
+  requires source integration and its own checks. A12b still waits for A06,
+  and GitHub edges, runtime admissions and ticket completion remain unchanged.
+  A readiness specialist is checking the smallest eligible A06 unit while a
+  separate specialist checks the first selective feedback-helper integration.
+
+- Both follow-up inspections passed: the A05b/completed-unit ledger leaves no
+  actionable implementation defect blocking bounded A06 resumption, and the
+  four-file feedback integration has no material static blocker. Task validation,
+  check and all 19 original baseline hashes passed after the accepted correction.
+  A later handoff-checkout diff belongs to the scheduler's portable-package work,
+  so imports must use fixed `208a57b` blobs. The user explicitly authorized
+  coordination with that task; its visible ACK released the common-directory
+  writer slot for two units only, with no repository/Git mutation in flight.
+  Publish this documentation, then qualify/integrate the small feedback helper,
+  preserve the scheduler's edits, and return the slot. A06 implementation follows
+  a later allocation; readiness alone is not implementation or acceptance.

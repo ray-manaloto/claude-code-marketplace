@@ -20,6 +20,23 @@ amend the remaining frontier. A01–A05b and A09 are published on the branch;
 the #11 amendment, new ticket identities, source-checkout transfer and hosted
 CI qualification remain separate gates.
 
+## Accepted prerequisite correction — 2026-10-13
+
+The user approved the independently reviewed
+[acceptance-frontier correction](retros/acceptance-frontier.md). A06 may resume
+once actionable defects in completed units are applied and verified; blocked
+future native/provider/OCI acceptance holds only the work that depends on it.
+A12b still depends on A06's own gate. A bounded #28 baseline-transition design
+and review may proceed before A06/A12b assembly; applying a changed baseline
+still requires explicit versioned review and preserves the original receipts.
+After source integration and its own checks, #28's reviewed offline v2
+dispatch/help/isolation milestone may satisfy that specific #30 prerequisite.
+Other #30 native/schema/transport prerequisites remain. #28 stays partial/open
+until public v2 and fresh Claude/OCI acceptance. #29's reviewed offline bridge
+measurement informs dependent design only; live and confined-install gates stay
+pending. Existing GitHub ticket-level edges require separately qualified
+amendment before they represent these narrower milestones.
+
 ## Problem Statement
 
 Many foundation operations exist only as host-specific scripts or manually

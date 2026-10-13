@@ -5,7 +5,8 @@ Original source HEAD before transfer: `6b5b092efa6bdf678815073db42f69fae3f07ab3`
 Current writer root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
 Retained detached worktree: `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`.
 Branch: `codex/marketplace-native-onboarding`.
-Verified current HEAD: `48027d2d333611d162cdff8cabb7bc1eecf944da`.
+Source-transfer baseline: `48027d2d333611d162cdff8cabb7bc1eecf944da`.
+Read the selected plan and live Git identity for the current HEAD.
 
 The canonical handoff digest is
 `d4115dd495ba9445430d9b1133e20247b2f86803a8161fcd91f15322b4cedd7c`.
@@ -38,13 +39,48 @@ read-only. Full Claude/container acceptance remains unrun.
 ```mermaid
 flowchart TD
   M[Read-only monitor] -->|Reads visible progress| P[Parent: sole writer]
-  P -->|Bounded native collaboration brief| C[Configuration and harness inspector]
-  P -->|Bounded native collaboration brief| D[Documentation reviewer]
-  C -->|ACK, findings, evidence| P
-  D -->|ACK, findings, evidence| P
-  P -->|Fresh bounded brief| R[Independent cold reviewer]
-  R -->|Findings and disposition checks| P
+  P -->|Exact source and receipt packet| L[LSan runtime specialist]
+  P -->|Exact branch and review packet| H[Handoff integration specialist]
+  P -->|Exact contracts and gates| C[CLI and Context7 acceptance specialist]
+  L -->|ACK and findings| P
+  H -->|ACK and findings| P
+  C -->|ACK and findings| P
+  P --> W[One implementation writer]
+  W --> R[Independent reviewer in a freed slot]
+  R --> V[Named checks and retrospective]
+  V --> D[Authorized serialized integration and delivery]
 ```
+
+## Parallel specialist execution
+
+The user's 2026-10-13 request authorizes task-matched subagents. This session
+has four concurrent slots including the parent, so use at most three workers.
+Start with bounded read-only lanes; reserve a freed slot for cold review.
+Nested teams do not increase that shared capacity. The selected
+[execution record](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/parallel-specialists.md)
+names exact agents, requested models, source identities, tools and results.
+
+Use GPT-6.1 Sol with high effort for complex integration, contract analysis and
+independent review; use GPT-6 Astra with high effort for the ambiguous native
+runtime problem. Use GPT-6 Luna for bounded receipt/hash extraction that can be
+checked mechanically. These are task-specific choices, not benchmarked optimality.
+Reassess effort when a packet becomes routine. Each model override starts with
+a fresh, narrow packet instead of inheriting the full parent history. Do not
+change global settings or infer the backend's served identity from a request.
+
+Workers get exact HEADs, input paths, a read-only tool scope, expected output,
+stop conditions and the `/root` reply channel; require an ACK and status probe.
+Select inventory fields before printing them; container IDs, state and scoped
+ownership fields are enough for the initial census. Keep full private metadata
+outside the shared transcript and repository.
+Only the parent writes implementation, shared planning and Git state. Keep
+compiler/OCI/provider runs behind their existing admissions, one heavy operation
+at a time. The user-approved
+[acceptance-frontier correction](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/acceptance-frontier.md)
+lets A06 resume after actionable defects in completed units are verified.
+Future runtime gates hold only their actual dependents. Offline milestones
+must pass source integration and their own checks before dependent work starts;
+GitHub ticket-level blockers remain unchanged until separately amended.
 
 ## Ownership
 

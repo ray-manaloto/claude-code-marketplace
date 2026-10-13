@@ -115,9 +115,32 @@ The one-writer and per-unit gates above remain in force.
 | W2 | Publish context-sized ticket graph | User-approved granularity and genuine native blocking edges | Complete; 50 sub-issues #12–#61 under #11, all parent/body/label/edge checks verified |
 | W3 | Standby Claude takeover document | Exact live state, issue frontier and explicit sole-writer transfer | Complete; independent final review found no material findings; standby only |
 | W4 | Implement approved ticket graph | Per-worktree ownership, disjoint file scopes, bounded tests/review, per-ticket retro with all actionable findings applied and verified, then serialized integration | Independent #13/#28/#29 worktrees admitted after user-facing parallel summary; no integration or publication of those three tickets. #13 repaired pre-run review passed and one guarded private LSan trial ran; command rc 1, overall INCONCLUSIVE, patched clean case rc 86 for 120-byte leak; later read-only closure reconciliation passed. Trial and partial retro are locally committed through `65d93d1`; clean-control preparation reached `8062821` but three live census reviews withheld admission. The requested [follow-up retro](/Users/rmanaloto/.codex/worktrees/issue-13-lsan/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/issue-13.md) applied offline regression gates, retry guidance and proposal retirement at local commit `5e119e5`; task validation/check/baseline and independent code/document reviews passed. The overall #13 gate remains partial. The bounded native experiment and full witness gate remain unrun. #28 offline v2 CLI contract is locally committed at `a1bd33e`; public CLI/OCI acceptance remains partial. #29 offline Context7 bridge is locally committed at `3131b89`; live provider/confined install remains partial. #30 waits for prerequisites. #12 closure committed `2cc4c029`, #24 boundary committed `931b536`, #25 helper selection committed `54d34c8b`; GitHub issues remain open at last verification |
-| W5 | Reconcile the 17-point workflow clarification | Source-backed gap audit, resolved decision frontier, reviewed spec/ticket amendment, per-task retro application gate | Retrospective remediation active; A01–A05b and A09 published at `93bb798b`; A07a and A12a published at `a8ecd40b`, with hosted fast CI success; A10 planner published at `bcf97606`; A07b spec #11 body verified live; A08 publisher published at `3972f3b9`, all 17 child issues #62–#78 independently verified under #11, and all 21 new blocker edges independently verified live after A08b1 publication `623dad43`; A08b2 independently verified the complete 67-child graph, all 139 blocker edges and sole `ready-for-agent` labels on #12–#78, with handoff published at `906cdbc1`; individual acceptance and closure remain separate. A11a preflight published at `d95e3406`, A11b helper at `48027d2d`, and source handoff at `42d94f`; the guarded live switch returned rc 2 on an unexpected `.venv`, but exact checkout/retained state was independently reconciled and source-root tools/deps/static/baseline checks passed. A11 physical transfer is accepted by manual reconciliation, not an automated guard pass. A06 remains paused; #13/#28/#29 local states are recorded in W4 without source integration |
+| W5 | Reconcile the 17-point workflow clarification | Source-backed gap audit, resolved decision frontier, reviewed spec/ticket amendment, per-task retro application gate | Retrospective remediation active; A01–A05b and A09 published at `93bb798b`; A07a and A12a published at `a8ecd40b`, with hosted fast CI success; A10 planner published at `bcf97606`; A07b spec #11 body verified live; A08 publisher published at `3972f3b9`, all 17 child issues #62–#78 independently verified under #11, and all 21 new blocker edges independently verified live after A08b1 publication `623dad43`; A08b2 independently verified the complete 67-child graph, all 139 blocker edges and sole `ready-for-agent` labels on #12–#78, with handoff published at `906cdbc1`; individual acceptance and closure remain separate. A11a preflight published at `d95e3406`, A11b helper at `48027d2d`, and source handoff at `42d94f`; the guarded live switch returned rc 2 on an unexpected `.venv`, but exact checkout/retained state was independently reconciled and source-root tools/deps/static/baseline checks passed. A11 physical transfer is accepted by manual reconciliation, not an automated guard pass. A06 resumption follows the accepted prerequisite correction below; #13/#28/#29 local states are recorded in W4 without source integration |
 
-The approved historical A-index is
+The first [parallel specialist wave](parallel-specialists.md) is complete:
+three bounded read-only lanes ran concurrently, followed by independent repair
+and receipt reviews in freed slots. The resulting #13 signal-restoration repair
+is locally committed at `4905c8e52ecd502de3b79e666799ab990a054c52`, with six
+tests, named static/baseline checks and focused review passed. Its native gate
+is still partial. The handoff has four selective integration units ready for
+parent execution. The [acceptance-cycle correction](retros/acceptance-frontier.md)
+was independently reviewed and explicitly accepted by the user on 2026-10-13.
+A06 may resume after actionable defects in completed units are verified; future
+native/provider/OCI gates hold their actual dependents. A12b still waits for
+A06 acceptance. #28's offline milestone needs source integration and its own
+checks before satisfying that specific #30 prerequisite; its other prerequisites
+and full ticket acceptance remain. Baseline-transition design can proceed
+independently, with versioned review before application. GitHub dependencies
+are unchanged. Parent implementation and integration stay serialized.
+
+The readiness review verified A05b and the completed-unit remediation ledger;
+no remaining actionable implementation defect blocks bounded A06 resumption.
+Its next unit reconciles the retained blob-retrieval seam and four offline tests
+before example classification. A user-authorized coordination exchange with
+the scheduler task reserved the writer slot for documentation delivery and the
+first feedback-helper integration only; return it before starting another unit.
+
+The approved A-index, with the current prerequisite correction, is
 [automation-amendment-draft.md](automation-amendment-draft.md). Its older
 "unpublished" wording and the phase notes below are preserved as history;
 the W5 row above and [progress.md](progress.md) carry current publication state.
@@ -151,21 +174,22 @@ focused review, with A03b normalization version 2, captured published-run
 inventory, and hash-checked bytes used for comparison. Its retro requires A05b
 to bind public reruns and quarantine under a per-query writer lock. A05b passed
 six public offline fixtures, focused review and a bounded live command. The
-live search is partial and its comparison is suppressed. A06 is paused under
-the user's retrospective-action hold; no live full-inventory or NEW/GONE
+live search is partial and its comparison is suppressed. A06 was paused under
+the user's retrospective-action hold before the accepted correction above; no live full-inventory or NEW/GONE
 result has been qualified. The [application audit](retros/application-audit-2026-10-12.md)
 preserves its original snapshot and adds current statuses for the now-complete
 hosted fast check, physical transfer, publication actions and remaining
 ticket blockers. The user clarified that named retrospective actions
 may proceed in prerequisite order to clear this hold. The user's later
-parallel-worktree direction admits independent #13/#28/#29; A06 and other
-unrelated tickets remain paused until the open actions are applied and
-verified or explicitly rejected.
+parallel-worktree direction admitted independent #13/#28/#29. The correction
+above narrows the subsequent hold to actionable completed-unit defects and
+the actual dependents of missing runtime gates.
 Parent ownership of this plan and the integration branch is unchanged. The
 earlier separate ticket worktrees retain their files; current writing is
 serialized across this Git common directory. Record each approved local slice's state and receipts; the
-old GitHub frontier does not override W5. The native review and explicit parent
-dispositions are in [automation-amendment-review.md](../../docs/agents/automation-amendment-review.md).
+old GitHub frontier does not override W5. The historical native review and parent
+dispositions remain in the [retained worktree review](/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/agents/automation-amendment-review.md);
+that local artifact has not been transferred to the source branch.
 Do not reopen the twelve settled requirement interpretations or manually publish
 bootstrap issues/commits. The current review-task helper is not A01 acceptance.
 
