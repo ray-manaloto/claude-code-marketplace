@@ -3148,3 +3148,17 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   records these source milestones. A separate A09 publication follows this
   parent-owned documentation update; no issue closure or additional runtime
   qualification is implied.
+
+
+- Follow-up publication attempt 1 stopped with native A09 rc 2 after creating
+  local commit `41836815`, before push. A separate redacted diagnostic confirmed
+  the remote remained `a0713408` and found exactly one potential leak: the
+  Context7 measurement's `candidate.api_sha256` field. Independent read-only
+  source inspection and cached-file hashing confirmed it is the SDK API module's
+  checksum. The immutable failed attempt remains preserved. The exact redacted
+  report and independent adjudication are recorded in
+  `evidence/completion-workflow/offline-followup-scan-adjudication.json`.
+  Recovery uses the existing A09 reviewed-baseline route, retaining the literal
+  history scan rc 1 and requiring residual scan rc 0, fresh named checks and
+  exact remote verification. Recovery publication remains pending at this
+  preparation point; no runtime, provider, OCI or full-ticket claim changes.
