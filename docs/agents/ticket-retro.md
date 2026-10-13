@@ -35,12 +35,21 @@ shared plan and final acceptance; reviewers remain independent of implementation
    their exact deferred disposition. A finding may be rejected only with a
    specific evidence-backed reason that it is inapplicable or harmful. Publish
    GitHub state only through its qualified mutation task.
-5. On every ticket or task completion, hold **all new ticket dispatch** until
-   every actionable retro finding is applied, tested and independently reviewed.
-   Already-running independent siblings may finish with their own gates. An
-   external blocker keeps its actual dependents held; it does not turn a verified
-   non-actionable hypothesis into an actionable fix. Recompute the frontier only
-   after this dispatch barrier settles. Independently
+5. For source task `01a130ef-265d-72b0-8465-80f3e4128bee`'s confirmed Q1/Q2
+   allocation, hold the originating lane's next product
+   task and affected dependency successors until every actionable retro finding
+   is applied, checked and independently reviewed. The bounded repair itself may
+   proceed through this barrier. Keep its findings and verification in the
+   originating retro record instead of creating a new chain of retro tasks.
+   Independent lanes may continue and dispatch ready work through their own gates.
+   A separately authorized task's stricter explicit user barrier remains
+   authoritative for that task; this rule does not relax it implicitly.
+   An open lane is also affected when the repair changes its owned paths or
+   required-check behavior: it may continue isolated edits, but must refresh and
+   recheck before integration or acceptance. An external blocker keeps its actual
+   dependents held; it does not turn a verified non-actionable hypothesis into an
+   actionable fix. Recompute the affected frontier after the repair is accepted.
+   Independently
    reviewed plan, documentation or completed implementation units may use an
    already-authorized branch publication once their own checks and retro pass.
    Finish that delivery through `delivery:prepare` and `delivery:publish`, then
