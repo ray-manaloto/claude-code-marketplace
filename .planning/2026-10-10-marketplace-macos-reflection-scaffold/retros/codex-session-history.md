@@ -31,3 +31,35 @@ by case. No-ops: the draft's sentence restating that scripts open SQLite
 read-only was deleted because the code already guarantees it. Every actionable
 finding is applied in this unit or deferred to a named owner with a
 verification step.
+
+## Review, repair and integration disposition (parent, 2026-10-13)
+
+Independent Fable cold review of lane commit `762b02f`: **PASS-with-P2** —
+the liveness subcommands (`turns`, `children`, `logs`, `show`'s history branch)
+had no test — plus seven P3s: ambiguous id prefix silently resolved, turn-final
+messages lacked `ord=`, the liveness command and top-level `--json` placement
+were not in SKILL.md, `codex_otel_tail.py` read a different variable than its
+docstring named, the AgentsView and OTel wrappers were untested, digests did
+not mask obvious secret shapes, and receipt JSON reads were unbounded. The
+implementer applied every finding test-first in `89b0705` and the same
+ambiguous-prefix contract in the receipts script in `ea893a8` (12 hermetic
+tests). The focused re-review of the delta returned **PASS for integration**
+(12 tests rc 0, `check` rc 0, baseline 19/19 rc 0, `git diff --check` rc 0;
+`.claude`/`.agents` copies identical in bytes and modes).
+
+| Severity | Finding | Disposition |
+| --- | --- | --- |
+| P2 | Liveness subcommands untested. | Applied: fixture-backed `thread_history_1.sqlite`/`logs_2.sqlite` tests under a temporary `CODEX_HOME`; verified by the re-review. The earlier "deferred with owner" row above is superseded by this application. |
+| P3 ×7 | Listed above. | Applied in `89b0705`/`ea893a8`; each has a test; verified by the re-review. |
+| P3 | Commit subjects captured by the git-commit regex bypass `clip()` and therefore the secret mask. | Deferred with owner: the implementer routes them through `mask()` in lane `codex-session-history-tests-2` (CT-10). |
+
+Integrated by the parent with `test:codex-session-history` added to
+`mise.dev.toml` and to the `check:research` dependency list. Composed-tree
+gates: `tasks validate` 51 rc 0, `test:codex-session-history` 12 rc 0, `check`
+rc 0, `check:acceptance-baseline` 19/19 rc 0, `git diff --cached --check` rc 0.
+`check:research` attempt 1 failed with 15 errors in `test:collect` while an
+independent reviewer was running suites concurrently in another worktree;
+attempt 2, run serially, returned rc 0 with every suite OK. The raced attempt is
+recorded, not counted; the serial pass is the receipt (log retained in the
+session scratchpad). Tool-economy learning: named checks stay serialized
+across worktrees, as the contract already requires.

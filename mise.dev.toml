@@ -114,7 +114,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]
@@ -311,6 +311,11 @@ description = "Exercise SHA-bound public blob retrieval offline"
 dir = "{{config_root}}"
 depends = ["deps:check"]
 run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_codex_examples.py -v'
+[tasks."test:codex-session-history"]
+description = "Exercise codex-session-history skill scripts against synthetic Codex records"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_codex_session_history.py -v'
+
 [tasks."check:research-outcomes"]
 description = "Run shared offline receipt and acceptance-state controls"
 dir = "{{config_root}}"

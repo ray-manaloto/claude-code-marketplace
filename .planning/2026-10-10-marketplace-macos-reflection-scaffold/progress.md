@@ -3252,3 +3252,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   lane …" and get a citation recheck at each of those integrations. Fable cold
   review dispatched. Still running: SKILL focused re-review, rf-env-scrub cold
   review, retro-gate implementation.
+
+- 2026-10-13 (Claude session, SKILL integration): focused re-review of the
+  codex-session-history repairs returned PASS (12 tests). Merged
+  `claude/codex-session-history-skill` (`ea893a8`) into the integration branch
+  with the `test:codex-session-history` task added to `mise.dev.toml` and to
+  `check:research`'s dependencies. Composed-tree gates rc 0 (validate 51, the
+  new task 12 tests, check, baseline 19/19, diff --check). `check:research`
+  attempt 1 raced with a concurrent reviewer's suites (15 `test:collect`
+  errors); attempt 2 serial rc 0 with all suites OK — recorded as a race, not
+  evidence. rf-env-scrub review returned PASS-with-P3 (handoff drift only;
+  merge-tree clean) and retro-gate (CT-01) handed off at `0f7ddad` (15 tests,
+  calibration 22/15); both proceed next.
