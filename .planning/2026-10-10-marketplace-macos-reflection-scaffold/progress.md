@@ -3081,3 +3081,43 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   A09 publication remains a separate recorded operation. A06 may now receive its
   fresh worktree allocation; no A06 implementation, runtime gate or tracker
   closure is claimed by this documentation unit.
+
+- The unchanged A09 publication intent first failed with Git rc 128 because the
+  child environment lacked the existing SSH-agent socket. That attempt remains
+  preserved. A child-only restoration of the existing macOS socket passed the
+  read-only transport check; native publication, history scan and remote SHA
+  verification then returned rc 0 at `f0d79a0`. Independent publication review
+  passed, and hosted research-fast run `38361604530` completed successfully.
+- A06 retrieval unit one and the independently ready #28 offline import now
+  have separate fresh branches/worktrees at `f0d79a0`. Each branch creation,
+  locked `tools:prepare` and `deps:sync` returned rc 0; setup preserved source
+  and worktree tracked files. Both writers acknowledged their disjoint scopes.
+  The peer received the shared Git/named-check interval after setup. Local
+  implementation and scoped offline controls may proceed; their independent
+  reviews, named gates, retro acceptance and source integration remain pending.
+
+- #28's selective offline refresh passed normal and optimized fixture/event
+  controls and the optimized bad-help refusal. A separate merger source-integrated
+  it at `cbb455b`; named checks, all 19 original baseline hashes, preservation,
+  independent source review and the originating retro passed. Full #28 and #30's
+  approved milestone/edge amendment remain pending.
+- A06 retrieval unit one repaired two cold-review findings with public controls:
+  symlinked selected artifacts are refused, and SDK request failures produce
+  controlled unresolved results. All three producer attempts are retained; final
+  local commit `e1c2852` passed independent review. A distinct source consumer
+  imported it at `0971a4f`, then committed the two reviewed catalog/task
+  projections at `312635f6`. Seven example tests, composed research checks,
+  task validation, static checks and the 19-file baseline returned rc 0.
+  Independent source/retro review passed; historical producer acceptance was not
+  replayed or relabelled. Classification and full A06 remain pending.
+- The [offline-unit receipt](../../evidence/completion-workflow/offline-unit-integrations.json)
+  binds these accepted source units and actual command/log hashes. Publication
+  remains pending a separate A09 operation. Both fresh worker units preserved
+  the retained worktrees, parent documents and inherited source files.
+- The independent #29 refresh has a fresh branch at `312635f6`; managed creation,
+  native branch setup, locked tools preparation and dependency sync passed.
+  The selected existing Context7 4.3.0 package matches the historical three-file
+  hashes; the observed 2.1.6 cache is rejected. Its worker may run only the
+  bounded synthetic loopback seam before separate named-check/review/integration
+  gates. Fresh installation, live provider, cancellation and native caller
+  acceptance remain pending, and #40 stays held.

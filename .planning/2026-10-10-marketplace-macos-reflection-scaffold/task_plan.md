@@ -37,6 +37,20 @@ Preserve the final reviewed contract hash and the confirmed decisions in the
 [acceptance record](../../evidence/completion-workflow/contract-acceptance.json).
 This records workflow admission, not completion of the remaining implementation.
 
+W1 and source alignment are accepted and published at `f0d79a0`; its hosted
+research-fast run `38361604530` passed. #28's offline contract was requalified,
+independently reviewed and source-integrated at `cbb455b`. A06 retrieval unit
+one, including its catalog and named test wiring, passed source checks and
+independent review at `312635f6`. Both originating retros have no remaining
+actionable finding. Their
+[acceptance receipt](../../evidence/completion-workflow/offline-unit-integrations.json)
+records local acceptance; branch publication remains a separate A09 operation.
+A06's offline classification slice follows under its own allocation. A fresh #29 branch,
+`codex/29-offline-refresh`, starts from `312635f6` with its own prepared
+development environment and a bounded pinned-runtime loopback allocation.
+#28 and #29 remain partial/open; their live/native/OCI gates, #30's reviewed
+milestone/edge amendment and #40's actual prerequisites remain held.
+
 ## Small units
 
 Each unit has one purpose, at most about five maintained files and 300 handwritten
@@ -138,8 +152,8 @@ The one-writer and per-unit gates above remain in force.
 | W1 | Publish full-baseline spec | Accepted scope and test seams, source-backed claims, ready-for-agent issue | Complete; GitHub #11 |
 | W2 | Publish context-sized ticket graph | User-approved granularity and genuine native blocking edges | Complete; 50 sub-issues #12–#61 under #11, all parent/body/label/edge checks verified |
 | W3 | Standby Claude takeover document | Exact live state, issue frontier and explicit sole-writer transfer | Complete; independent final review found no material findings; standby only |
-| W4 | Implement approved ticket graph | Per-worktree ownership, disjoint file scopes, bounded tests/review, per-ticket retro with all actionable findings applied and verified, then serialized integration | Independent #13/#28/#29 worktrees admitted after user-facing parallel summary; no integration or publication of those three tickets. #13 repaired pre-run review passed and one guarded private LSan trial ran; command rc 1, overall INCONCLUSIVE, patched clean case rc 86 for 120-byte leak; later read-only closure reconciliation passed. Trial and partial retro are locally committed through `65d93d1`; clean-control preparation reached `8062821` but three live census reviews withheld admission. The requested [follow-up retro](/Users/rmanaloto/.codex/worktrees/issue-13-lsan/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/issue-13.md) applied offline regression gates, retry guidance and proposal retirement at local commit `5e119e5`; task validation/check/baseline and independent code/document reviews passed. The overall #13 gate remains partial. The bounded native experiment and full witness gate remain unrun. #28 offline v2 CLI contract is locally committed at `a1bd33e`; public CLI/OCI acceptance remains partial. #29 offline Context7 bridge is locally committed at `3131b89`; live provider/confined install remains partial. #30 waits for prerequisites. #12 closure committed `2cc4c029`, #24 boundary committed `931b536`, #25 helper selection committed `54d34c8b`; GitHub issues remain open at last verification |
-| W5 | Reconcile the 17-point workflow clarification | Source-backed gap audit, resolved decision frontier, reviewed spec/ticket amendment, per-task retro application gate | Retrospective remediation active; A01–A05b and A09 published at `93bb798b`; A07a and A12a published at `a8ecd40b`, with hosted fast CI success; A10 planner published at `bcf97606`; A07b spec #11 body verified live; A08 publisher published at `3972f3b9`, all 17 child issues #62–#78 independently verified under #11, and all 21 new blocker edges independently verified live after A08b1 publication `623dad43`; A08b2 independently verified the complete 67-child graph, all 139 blocker edges and sole `ready-for-agent` labels on #12–#78, with handoff published at `906cdbc1`; individual acceptance and closure remain separate. A11a preflight published at `d95e3406`, A11b helper at `48027d2d`, and source handoff at `42d94f`; the guarded live switch returned rc 2 on an unexpected `.venv`, but exact checkout/retained state was independently reconciled and source-root tools/deps/static/baseline checks passed. A11 physical transfer is accepted by manual reconciliation, not an automated guard pass. A06 resumption follows the accepted prerequisite correction below; #13/#28/#29 local states are recorded in W4 without source integration |
+| W4 | Implement approved ticket graph | Per-worktree ownership, disjoint file scopes, bounded tests/review, per-ticket retro with all actionable findings applied and verified, then serialized integration | Independent #13/#28/#29 worktrees admitted after user-facing parallel summary; their full native/provider acceptance remains partial; selected offline source integrations are recorded below. #13 repaired pre-run review passed and one guarded private LSan trial ran; command rc 1, overall INCONCLUSIVE, patched clean case rc 86 for 120-byte leak; later read-only closure reconciliation passed. Trial and partial retro are locally committed through `65d93d1`; clean-control preparation reached `8062821` but three live census reviews withheld admission. The requested [follow-up retro](/Users/rmanaloto/.codex/worktrees/issue-13-lsan/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/issue-13.md) applied offline regression gates, retry guidance and proposal retirement at local commit `5e119e5`; task validation/check/baseline and independent code/document reviews passed. The overall #13 gate remains partial. The bounded native experiment and full witness gate remain unrun. #28 offline v2 CLI contract is requalified and source-integrated at `cbb455b` with independent review and retro PASS; public CLI/OCI acceptance remains partial. #29 retained offline bridge at `3131b89` is being requalified in a fresh source-based worktree; live provider/confined install remains partial. #30 waits for prerequisites. #12 closure committed `2cc4c029`, #24 boundary committed `931b536`, #25 helper selection committed `54d34c8b`; GitHub issues remain open at last verification |
+| W5 | Reconcile the 17-point workflow clarification | Source-backed gap audit, resolved decision frontier, reviewed spec/ticket amendment, per-task retro application gate | Retrospective remediation active; A01–A05b and A09 published at `93bb798b`; A07a and A12a published at `a8ecd40b`, with hosted fast CI success; A10 planner published at `bcf97606`; A07b spec #11 body verified live; A08 publisher published at `3972f3b9`, all 17 child issues #62–#78 independently verified under #11, and all 21 new blocker edges independently verified live after A08b1 publication `623dad43`; A08b2 independently verified the complete 67-child graph, all 139 blocker edges and sole `ready-for-agent` labels on #12–#78, with handoff published at `906cdbc1`; individual acceptance and closure remain separate. A11a preflight published at `d95e3406`, A11b helper at `48027d2d`, and source handoff at `42d94f`; the guarded live switch returned rc 2 on an unexpected `.venv`, but exact checkout/retained state was independently reconciled and source-root tools/deps/static/baseline checks passed. A11 physical transfer is accepted by manual reconciliation, not an automated guard pass. A06 retrieval unit1 is source-accepted at `312635f6`, with classification pending; W4 distinguishes #28 offline source acceptance from #13/#29 residual gates |
 
 The first [parallel specialist wave](parallel-specialists.md) is complete:
 three bounded read-only lanes ran concurrently, followed by independent repair
@@ -151,20 +165,20 @@ parent execution. The [acceptance-cycle correction](retros/acceptance-frontier.m
 was independently reviewed and explicitly accepted by the user on 2026-10-13.
 A06 may resume after actionable defects in completed units are verified; future
 native/provider/OCI gates hold their actual dependents. A12b still waits for
-A06 acceptance. #28's offline milestone needs source integration and its own
-checks before satisfying that specific #30 prerequisite; its other prerequisites
-and full ticket acceptance remain. Baseline-transition design can proceed
+A06 acceptance. #28's offline milestone has passed source integration and its own
+checks. #30 remains held until A12b approves the specific offline milestone and
+dependency-edge amendment, its qualified mutation runs, and other prerequisites
+pass. Full #28 acceptance remains separate. Baseline-transition design can proceed
 independently, with versioned review before application. GitHub dependencies
 are unchanged. Integration stays serialized; independently admitted worktrees
 may implement disjoint ready units concurrently.
 
-The readiness review verified A05b and the completed-unit remediation ledger;
-no remaining actionable implementation defect blocks bounded A06 resumption.
-Its next unit reconciles the retained blob-retrieval seam and four offline tests
-before method-bound example classification. The earlier two-unit source slot
-was returned after publication. The scheduler has now explicitly allocated the
-W1 source-policy import and parent-owned onboarding/plan alignment; product
-workers receive separate recorded worktree/path allocations.
+A05b and the completed-unit remediation ledger remain accepted. W1 source
+policy and onboarding/plan alignment are published at `f0d79a0`. A06 retrieval
+unit one is source-accepted at `312635f6`, including seven example tests and
+reviewed catalog/task wiring. Method-bound offline classification remains the
+next A06 unit under its own recorded worktree/path allocation. Each source
+integration and publication keeps a separate owner and receipt.
 
 The approved A-index, with the current prerequisite correction, is
 [automation-amendment-draft.md](automation-amendment-draft.md). Its older
