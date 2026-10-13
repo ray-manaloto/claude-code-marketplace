@@ -19,3 +19,8 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_r
 description = "Replay explicit native observations and feedback without provider calls"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/research_feedback.py'
+
+[tasks."check:research-outcomes"]
+description = "Run shared offline receipt and acceptance-state controls"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_research_outcomes.py -v'
