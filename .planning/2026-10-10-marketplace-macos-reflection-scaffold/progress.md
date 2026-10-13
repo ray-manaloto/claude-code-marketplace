@@ -3360,3 +3360,19 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   "no coverage warnings" sentence and file the lane's retro record. Fable cold
   review dispatched. A CT-11 ticket (serialize named checks across worktrees
   with a lock) was added to the spec proposal from today's two race receipts.
+
+- 2026-10-13 (Claude session, NAV review): Fable cold review of lane `nav`
+  returned PASS-with-P2 — duplication inside the lane's own files (evidence
+  rule restated, unit-size rule in three places, dev-tests rule repeated in
+  `CODING_STANDARDS.md`), the completion contract unreachable from the
+  hierarchy, and three instructions dropped from the old root `AGENTS.md`
+  without an owner ("do not install plugin runtimes just to lint", "avoid
+  redundant project copies of global skills", "do not copy Claude hooks or
+  slash commands into Codex configuration"); P3s for inaccuracies (`.gitignore`
+  is one of the 19; the plugin directory has no importer; CT-01 stale; five
+  `docs/agents` files missing from the map), rule classification and
+  unactionable lines. Repair cycle dispatched. Out-of-lane items for the
+  parent: `.claude/rules/dev-tests.md` line 8 wrongly says `check` depends on
+  the named task (only `check:research` has dependencies), and root
+  `CLAUDE.md` now duplicates root `AGENTS.md` lines; both are fixed at NAV
+  integration.
