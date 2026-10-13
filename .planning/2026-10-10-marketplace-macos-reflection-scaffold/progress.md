@@ -3319,3 +3319,16 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   task passes for all six prior retro records and for `retros/retro-gate.md`.
   CT-01 is now the first layer of the gate; CT-02 (hk + Claude Code hooks)
   can start.
+
+- 2026-10-13 (Claude session, gate-hooks dispatch): lane `gate-hooks` (CT-02,
+  Opus) allocated with its record committed before the worktree was cut at
+  `2d1f60e`, and dispatched: `hk.pkl` pre-merge-commit/pre-push steps,
+  `.claude/settings.json` PreToolUse/SubagentStop/Stop hooks with
+  `onFailure: block`, `dev/hooks/*.py` with stdin-JSON contract tests and a
+  scratch-repository hk test. Convention applied from this lane on: a lane
+  writes its retro record at `retros/<unit>.md` inside its worktree so the
+  SubagentStop gate can check it. The root checkout's untracked
+  `.claude/settings.json` keeps user-specific keys; the committed project file
+  will carry hooks, permissions and plugins, and the parent migrates the
+  user-specific keys to `settings.local.json` at integration (user informed).
+  Active: c1-catalog-promotion, nav, gate-hooks.
