@@ -1,0 +1,25 @@
+{
+  "unit": "m0-remaining-work-merge",
+  "tickets": ["#90", "#92", "#93", "#97", "#101", "#84", "#85", "#86", "#87", "#88", "#89"],
+  "title": "Merge codex/marketplace-remaining-work into codex/marketplace-native-onboarding",
+  "owner": "parent (Claude session)",
+  "writer_model": "fable",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "base_sha": "d2a41032e4b9318f309cbbe73dbbd79920dc4418",
+  "merge_source": {
+    "branch": "codex/marketplace-remaining-work",
+    "sha": "01952894da255c4a9e6e4c37a6721e3698fee818",
+    "contains": ["codex/research-feedback-retro@6cca08b9529eeacaf8e3be379440b3bf27d184f8", "W1", "B1", "T1", "T2", "T3", "T4 partial"]
+  },
+  "owned_paths": ["every path changed on the merge source; conflict resolutions in docs/agents/ticket-retro.md and mise.dev.toml"],
+  "conflict_policy": {
+    "docs/agents/ticket-retro.md": "keep HEAD item 5 (user-confirmed per-lane barrier, Q1 2026-10-13)",
+    "mise.dev.toml": "union: keep test:examples/research:examples (HEAD) and check:research-outcomes (branch)"
+  },
+  "required_checks": ["tasks validate", "check", "check:acceptance-baseline", "check:research", "check:research-outcomes", "git diff --check"],
+  "resource_admissions": {"host_heavy": "not needed", "publication": "A09 route, standing authorization (Q2 2026-10-13)"},
+  "status": "in-progress",
+  "created_at": "2026-10-13T20:30:00Z"
+}

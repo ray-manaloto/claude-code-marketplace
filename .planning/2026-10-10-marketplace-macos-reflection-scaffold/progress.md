@@ -3162,3 +3162,12 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   history scan rc 1 and requiring residual scan rc 0, fresh named checks and
   exact remote verification. Recovery publication remains pending at this
   preparation point; no runtime, provider, OCI or full-ticket claim changes.
+
+- 2026-10-13 (Claude session): the user transferred sole integration-writer
+  ownership to the Claude Code session after rounds 1–2 of the takeover
+  interview (all recommendations accepted). Activation record written to
+  `docs/agents/claude-takeover.md`; plan header, takeover section, ticket
+  ledger, lane records and these findings added. Pre-merge gates on `d2a4103`:
+  `tasks validate` 48 tasks rc 0, `check` rc 0, `check:acceptance-baseline`
+  19/19 rc 0. No Codex worktree, branch or packet was modified. M0 merge,
+  A06 unit3 and the codex-session-history lanes are next.

@@ -1,6 +1,19 @@
-# Claude agent takeover — standby draft
+# Claude agent takeover
 
-Status: standby only. The user has not activated a transfer. Refresh all observed state at activation. Full-baseline spec issue #11 and its 50 approved sub-issues are published; publication is planning, not implementation acceptance.
+Status: **activated 2026-10-13** by the user's explicit transfer. The sections below the activation record are the historical standby snapshot and are retained as written; the activation record governs.
+
+## Activation record (2026-10-13)
+
+- Trigger: Codex threads `01a127db` (onboarding writer), `01a130ef` (source writer), `01a12bd1` (LLVM/RF peer and `refresh-llvm-github-research` heartbeat) and `01a13185` (agent-protocol side project) stopped; the last two failed on `usage_limit_exceeded` until 2026-10-19. No Codex thread is mid-turn.
+- Transfer: the user confirmed the four threads are stopped for good and made the Claude Code session the sole integration writer for `codex/marketplace-native-onboarding` and the canonical plan. Observed at transfer: source checkout `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`, HEAD `d2a41032e4b9318f309cbbe73dbbd79920dc4418`, remote `origin/codex/marketplace-native-onboarding` at `848552cd0b41e4ff24b6fe24f9a9626ee09bfa34`, common Git directory `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git`, clean tree apart from untracked `.agent/`, `.agents/`, `.claude/`.
+- Import sources, read-only: all 19 Codex worktrees under `/Users/rmanaloto/.codex/worktrees/` (`2a14` and `c658` dirty; `a06-retrieval-refresh` holds the uncommitted A06 unit3), branches `codex/marketplace-remaining-work` (`0195289`, contains the RF branch `6cca08b`) and `codex/research-feedback-retro`, and the private packets `/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-completion-workflow-qbj4yn5d/` and `~/.local/state/marketplace-llvm23-fork-01a12bd1/remaining-work-20261013/`. Never reset, archive or edit them.
+- Still running: the `refresh-llvm-github-research` heartbeat in thread `01a12bd1`; it writes only under `~/.local/state/marketplace-llvm23-fork-01a12bd1/github-research/` and currently fails on the usage limit.
+- Authority granted: publish the integration branch through the A09 route without per-push confirmation; close tickets only through the qualified close operation, one at a time; open a draft PR to `main` for visibility, never merge; host-heavy runs need per-run confirmation; the five-stage workflow (grill-with-docs → to-spec → to-tickets → implement-spec → retro) is invoked natively from mattpocock-skills 1.3.1 under the user's `/grill-with-docs` invocation.
+- Conventions: see the [Claude takeover section](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md#claude-takeover-2026-10-13) of the plan, the [lane records](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/lanes/) and the [ticket ledger](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/ticket-ledger.md). Codex may resume after 2026-10-19 under the same lane and retro-gate rules; `.codex/` roles are kept compatible.
+
+## Historical standby snapshot (superseded)
+
+Full-baseline spec issue #11 and its 50 approved sub-issues are published; publication is planning, not implementation acceptance.
 
 ## Entry and authority
 

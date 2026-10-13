@@ -1,13 +1,69 @@
 # Marketplace onboarding and C++ foundation
 
 PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`
-Plan and integration-branch owner: parent Codex chat. Independent implementation
-lanes use separately allocated worktrees and disjoint paths. Integration, shared
-planning, named checks and publication remain serialized; reviewers are read-only.
+Plan and integration-branch owner: the Claude Code session since the
+[takeover](#claude-takeover-2026-10-13) on 2026-10-13; before that, the parent
+Codex chat. Independent implementation lanes use separately allocated worktrees
+and disjoint paths. Integration, shared planning, named checks and publication
+remain serialized; reviewers are read-only.
 Project root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
 Set `PWF_PLAN_ROOT` to that root and `PLAN_ID` above for commands launched elsewhere.
 The detached `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`
 retains its uncommitted work and private evidence. Do not reset or archive it.
+
+## Claude takeover (2026-10-13)
+
+Codex threads `01a127db`, `01a130ef`, `01a12bd1` and `01a13185` stopped; the
+last two failed on `usage_limit_exceeded` until 2026-10-19. The user transferred
+sole integration-writer ownership of `codex/marketplace-native-onboarding` and
+this plan to the Claude Code session at HEAD `d2a4103` (remote `848552c`). The
+[activation record](../../docs/agents/claude-takeover.md) binds the observed
+state and granted authority. Every Codex worktree, branch and private evidence
+packet is a read-only import source. The `refresh-llvm-github-research`
+heartbeat keeps running outside the repository.
+
+Conventions from the takeover interview (rounds 1–2, all accepted):
+
+- One unit per lane. A lane runs in `.claude/worktrees/<unit>` on branch
+  `claude/<unit>-<slug>` cut from the integration tip, with the path allowlist,
+  owner, reviewer, base SHA and status recorded in [lanes/](lanes/). The
+  `.gitignore` is a frozen baseline file, so `.claude/worktrees/` is excluded
+  through `.git/info/exclude` until a reviewed baseline transition.
+- The parent merges one lane at a time; publication uses the A09 route;
+  tickets close only through the qualified close operation, one at a time.
+- Every unit ends with a retro record in [retros/](retros/) whose actionable
+  findings are applied before integration; the deterministic gate
+  `dev/retro_gate.py` (lane GATE) refuses integration or publication without it
+  and runs identically as a mise task, an `hk` git hook and Claude Code hooks.
+- Learnings land by kind: mechanical rules in checks, judgement rules in
+  `CODING_STANDARDS.md`, navigation in the nearest `AGENTS.md` or
+  `.claude/rules`, repeated workflows in skills, roles in `.claude/agents`.
+- Models: Opus 5.5 implementers for code lanes, Sonnet 5.5 for documentation
+  lanes, Fable for review, retro and synthesis, Haiku for mechanical extraction.
+  Up to four offline lanes run concurrently; host-heavy lanes run one at a time
+  with per-run user confirmation.
+- Ticket state lives in [ticket-ledger.md](ticket-ledger.md); the new spec
+  "Claude team takeover and self-improving workflow" is published through
+  to-spec/to-tickets and its tickets join that ledger.
+
+| Lane | Unit | Writer | Start | State |
+| --- | --- | --- | --- | --- |
+| M0 | Merge `codex/marketplace-remaining-work` (`0195289`) into the integration tip; keep HEAD's `ticket-retro.md` item 5, union `mise.dev.toml`; composed-tree gates; Fable review; A09 publish | parent | now | in progress |
+| A06u3 | #69 unit3 TOML and pinned model-field methods, imported from the `a06-retrieval-refresh` worktree | Opus | now | allocated |
+| SKILL | `codex-session-history` skill (`.claude/skills`, `.agents/skills` mirror) | Opus | now | allocated |
+| GATE | `dev/retro_gate.py`, tests, `hk.pkl`, `.claude/settings.json` hooks, mise task rows | Opus | after M0 | planned |
+| TEAM | `.claude/agents`, `.claude/rules`, `docs/agents/claude-team.md`, ADR 0001, glossary Workflow section | Sonnet | after M0 | planned |
+| NAV | root `AGENTS.md` pointer, per-directory `AGENTS.md` + `CLAUDE.md` importers, `CODING_STANDARDS.md` | Sonnet | after M0 | planned |
+| B1 | #90 RF record reconciliation | Sonnet | after M0 | planned |
+| C1/C3 | #94, #95 at the `dev/research_refresh` runner boundary; C2 after C1 | Opus | after M0 | planned |
+| LEDGER | plan, ledger, `docs/status.md`, lane records | parent | after M0 | planned |
+| CLOSE | RF parent specs #79–#82, the 18 source-qualified #11 milestones, B1/T1/T2/T3, then T4 | parent + Haiku | after M0 publish | planned |
+| wave 2 | #27 transport, #26 schema/codegen | Opus | per-run confirmation | planned |
+| heavy | #21 → #20 → #17 → #16 → L1 (#96), one at a time | Opus | per-run confirmation | planned |
+
+B2 (#91) needs the Codex Desktop attachment operation and is relabelled for a
+human. The agent-protocol / dynamic-agents work of thread `01a13185` is out of
+scope and referenced only.
 
 ## Objective
 
