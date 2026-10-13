@@ -56,6 +56,12 @@ shared plan and final acceptance; reviewers remain independent of implementation
    verify the remote SHA. A blocked native experiment does not withhold those
    eligible commits or turn their publication into runtime qualification.
 
+`./dev/mise run retro:gate -- <unit>` checks only the record's shape: all
+seven categories addressed, at least one verification binding (exit code,
+`PASS`, SHA-256 or named check), and no open finding without an owner, blocker
+or ticket. It exits 0, 2 with one reason per line, or 1 for usage. Judgement
+about the findings stays with the independent reviewer.
+
 The retro gate passes only when the record binds actual checks and every
 actionable finding is applied, tested and independently reviewed or explicitly
 rejected with an evidence-backed reason. Open or deferred actionable findings

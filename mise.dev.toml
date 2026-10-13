@@ -127,6 +127,12 @@ description = "Also verify the 19 original files against the onboarding baseline
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
+[tasks."retro:gate"]
+description = "Refuse integration or publication of a unit without a complete retrospective record"
+dir = "{{config_root}}"
+usage = 'arg "<unit>"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/retro_gate.py --unit "${usage_unit?}"'
+
 [tasks."test:delivery"]
 description = "Exercise A09 exact-input staging, scan and publication refusals in scratch repositories"
 dir = "{{config_root}}"
