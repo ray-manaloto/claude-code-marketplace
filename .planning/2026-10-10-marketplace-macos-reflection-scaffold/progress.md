@@ -2777,3 +2777,48 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   matched. A11's physical transfer and source-root qualification are now
   accepted by documented manual reconciliation. The A11b command remains
   rc 2 with `recovery_required`; no automated switch-pass claim is made.
+- The three-file A11 closure-status tree `ad0f3978db228342ca38ce6ea95a284438da446b`
+  passed independent review. Named `delivery:publish` and its history scan
+  exited 0, producing `75ee2d5aaaa93e9fb78bd92bf6cb495845405f9d`;
+  a separate remote read matched. A08b2 proceeds from this source HEAD.
+- A08b2 preflight used one fresh live GraphQL read of all 71 repository
+  issues. All 50 existing and 17 new child issues are OPEN, and their complete
+  blocked-by sets match the approved old index and A-ticket manifest with
+  zero mismatches. The existing #12/#24/#25 retain `ready-for-agent`; #62–#78
+  have no labels. A second read confirmed every new title and the exact
+  manifest body plus stable ticket marker. The read-only response is
+  `/private/tmp/a08b2-live-bodies.json`, SHA-256 `3d634f35`; the 17-label
+  intent inputs are frozen in `/private/tmp/a08b2-labels-1vd18ey_/plan.json`,
+  SHA-256 `f9ca9bb6`. No label mutation has run. The source-root
+  `docs/agents/issue-tracker.md` guidance now names the qualified create,
+  edge and amendment tasks; review and publication remain pending.
+- A08b2 prepublication independent read-only review confirmed that
+  `ready-for-agent` expresses specification readiness, separate from blocked,
+  implementation, acceptance and closure states. Source-root named
+  `issue:new-edges-audit` exited 0 with `NEW_EDGES_VERIFIED`. Named
+  `issue:preview`, `issue:apply`, and `issue:verify` exited 0 for each of
+  #62–#78; each update preserved the exact issue body, recorded one intent
+  and one attempt, and added only `ready-for-agent`. A fresh complete live
+  GraphQL read verified 67 children of #11, all 118 existing and 21 new
+  approved blocker edges, all 67 sole `ready-for-agent` labels, all child
+  issues OPEN, and all 17 new exact bodies/titles. The private receipt is
+  `/private/tmp/a08b2-final-receipt.json`, SHA-256 `a3a6209f`;
+  `/private/tmp/a08b2-labels-1vd18ey_/operations.jsonl` SHA-256 `9decdf4f`
+  records 16 scripted operations, with #62 verified separately. Independent
+  postpublication live review and local plan/retro publication remain pending.
+  Labeling does not reopen work, satisfy a blocker, admit A06, or close an issue.
+  Current implementation state: A01–A05b/A09 published at `93bb798b`,
+  A07a/A12a published at `a8ecd40b`, A07b applied to #11, A08a published
+  #62–#78, A10 planner published at `bcf97606`, A11 physically transferred
+  and source handoff published at `75ee2d5a`; A08b2 is being settled, A06
+  remains paused, and A12b remains blocked by A06 and A08b.
+- Independent A08b2 postpublication live read-only review exited 0 and found
+  no mismatches: 67 unique #11 children, 139 exact blocker edges, sole
+  `ready-for-agent` labels, exact prepublication title/body/state for all
+  children, and 17 SHA-matching intents and attempt markers. Its initial
+  GitHubKit GraphQL wrapper probe exited 1; the corrected direct-data read
+  exited 0. A08b2 relationship/label publication is verified, while ticket
+  acceptance and closure remain separate. The source-root plan's referenced
+  `automation-amendment-draft.md` was absent after A11; parent restored its
+  exact old-worktree bytes (SHA-256 `f1bd8121`) without modifying the retained
+  copy. Documentation/retro review and source commit/publication remain.
