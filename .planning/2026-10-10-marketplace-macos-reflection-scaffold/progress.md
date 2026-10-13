@@ -2852,3 +2852,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   status-wording contradictions; parent corrected both, and focused
   re-review passed. Local commit is pending. A06 and dependent A12b remain
   held.
+- Parent recorded the first source retrospective archive in four bounded
+  local commits: `30529ed` (A01–A04), `5b4dfe7` (A05a/A05b/#12/#24/#25),
+  `110259a` (AGENTS pointer, protocol and live plan/progress), and `019e032`
+  (application audit and transfer retro). No push or issue mutation followed.
+  A second exact-copy batch now holds nine later W5 retrospectives plus the
+  workflow-gate retrospective and its two linked JSON receipts. Byte and
+  relative-link checks passed locally. Source task validation (44), `check`,
+  and baseline19 each exited 0. Independent later-batch review passed with no
+  finding after verifying twelve exact copies, thirteen links, embedded
+  receipt digests and absence of credential payloads in the two JSON files.
+  The ten later records were committed locally at `e68a5fe` and `4e16ddd`;
+  linked receipts and addendum are next. A06/A12b remain held.

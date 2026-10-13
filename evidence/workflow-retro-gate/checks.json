@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "\u2713 All 25 task(s) validated successfully\n",
+      "stdout_sha256": "47de9057c04290b0ad740d84e7b20d4aabc1ec9cd3c0659bf4e027b45b0af4e1"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "stderr": "[check] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py\n",
+      "stderr_sha256": "4ec94851e44f319cfd410f5b4227f5dee784f6b7ae8387ae255fa1b1a4445c6f",
+      "stdout": "{\"checks\": {\"baseline\": 0, \"json\": 2321, \"python\": 180, \"shell\": 6, \"toml\": 19}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stdout_sha256": "9fcde5349924f9d842dd87d9d85a5c7228ac10fb1741a914210ea1b4f39ad1aa"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "exit_code": 0,
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "stderr_sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9",
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 2321, \"python\": 180, \"shell\": 6, \"toml\": 19}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stdout_sha256": "c948852fcea236c1cd89745036a9fa504246a32e276fa325fdcdfde084f97b59"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "identity": {
+    "branch": "codex/marketplace-native-onboarding",
+    "common_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "6130ab5e9298e4c70d8c39a0ebd3c6857458c5c5"
+  },
+  "schema_version": 1
+}

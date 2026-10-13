@@ -67,5 +67,16 @@ focused re-review; public v2 and OCI acceptance remain open. #30 is a
 separate native child-process contract ticket. None of #13/#28/#29/#30 is
 marked complete by these preparatory reviews, and their GitHub issues remain
 OPEN at the last read. The source protocol transfer and archival audit passed
-local static checks and independent archival re-review. Commit and any
-separately authorized publication remain pending.
+local static checks and independent archival re-review. The first ten records,
+protocol and audit were committed locally through `019e032`; remote
+publication remains separate.
+
+Nine later W5 retrospective records (A07a, A07b, A08a, A08b1, A09, A10,
+A11a, A12a0 and A12a1) and the workflow-gate retrospective are now copied
+from the retained checkout without historical edits. Its two linked JSON
+receipts were copied with it. Their source-branch archival review, commit and
+publication were separately gated; independent archival review passed with no
+finding. The ten later records were committed locally in `e68a5fe` and
+`4e16ddd`; the linked receipt and addendum commit and remote publication are
+pending. The current W5 row remains the live implementation and admission
+status.
