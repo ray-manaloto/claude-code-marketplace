@@ -2947,3 +2947,12 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   proposal is retired with all three failed reviews preserved. #13 remains
   partial, with no integration or publication. A06/A12b remain held, and the
   separate research-feedback-retro handoff awaits reconciliation.
+
+- Publication correction: the user's earlier item 16 already authorized this
+  integration branch push. The parent incorrectly withheld 13 reviewed source
+  documentation/status commits behind #13's unrelated native gate. The
+  [scope retro](retros/publication-scope.md) applies a protocol clarification
+  and selects the source branch for the existing A09 checks, scans, independent
+  review and exact remote verification. This entry records publication
+  preparation; the delivery receipt supplies the resulting commit and outcome.
+  Detached ticket work and the separate handoff are excluded from this delivery.

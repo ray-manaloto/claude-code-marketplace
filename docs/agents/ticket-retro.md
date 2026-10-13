@@ -35,6 +35,12 @@ into the shared plan.
    evidence-backed reason that it is inapplicable or harmful. Recompute the
    ready frontier after applying the retro changes; publish GitHub state only
    through its qualified mutation task.
+5. Apply a hold to the work that depends on the missing gate. Independently
+   reviewed plan, documentation or completed implementation units may use an
+   already-authorized branch publication once their own checks and retro pass.
+   Finish that delivery through `delivery:prepare` and `delivery:publish`, then
+   verify the remote SHA. A blocked native experiment does not withhold those
+   eligible commits or turn their publication into runtime qualification.
 
 The retro gate passes only when the record binds actual checks and every
 actionable finding is applied and verified or is explicitly rejected with an
