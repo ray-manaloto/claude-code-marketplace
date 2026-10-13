@@ -3171,3 +3171,17 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `tasks validate` 48 tasks rc 0, `check` rc 0, `check:acceptance-baseline`
   19/19 rc 0. No Codex worktree, branch or packet was modified. M0 merge,
   A06 unit3 and the codex-session-history lanes are next.
+
+- 2026-10-13 (Claude session, M0): merged `codex/marketplace-remaining-work`
+  (`01952894`) into the integration branch as `e0667ec` (parent `f38b7fe`).
+  Conflicts resolved per the user's direction (HEAD item 5 in
+  `docs/agents/ticket-retro.md`; union of `mise.dev.toml`). Composed-tree gates
+  with `VIRTUAL_ENV` removed: validate 50 rc 0, check rc 0, baseline 19/19 rc 0,
+  check:research-outcomes 19 tests rc 0, check:research rc 0 (87 refresh tests
+  OK). With the project venv exported, four `research_refresh` tests fail on
+  `Conflicting runtime overrides: VIRTUAL_ENV`; reproduced identically in Codex's
+  clean `marketplace-remaining` worktree, so it is pre-existing. Allocated repair
+  lane `rf-env-scrub` through the retro barrier; C1/C2/C3 held until it lands.
+  Retro: `retros/m0-remaining-work-merge.md`. Fable cold review dispatched;
+  A09 publication follows its disposition. Lane worktrees created from `e0667ec`:
+  `a06-unit3`, `codex-session-history`, `rf-env-scrub`.
