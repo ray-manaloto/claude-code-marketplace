@@ -4,6 +4,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -13,10 +14,13 @@ if sys.version_info < (3, 11):
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT / "dev/research_refresh"))
+from runtime_preflight import scrubbed  # noqa: E402  (single selector list for the CLI and harness)
 
 
-def run(*args):
-    return subprocess.run(args, cwd=ROOT, check=True, capture_output=True, text=True)
+def run(*args, env=None):
+    return subprocess.run(args, cwd=ROOT, env=env, check=True, capture_output=True, text=True)
 
 
 def check(baseline=False):
@@ -66,7 +70,8 @@ def check(baseline=False):
     run("git", "diff", "--check")
     run("git", "diff", "--cached", "--check")
     for directory, pattern in (("dev", "test_research_*.py"), ("dev/research_refresh", "test_*.py")):
-        result = run(sys.executable, "-B", "-m", "unittest", "discover", "-s", directory, "-p", pattern)
+        result = run(sys.executable, "-B", "-m", "unittest", "discover", "-s", directory, "-p", pattern,
+                     env=scrubbed(os.environ))
         print(result.stderr, file=sys.stderr, end="")
     print(json.dumps({"status": "pass", "root": str(ROOT), "checks": counts}, sort_keys=True))
 

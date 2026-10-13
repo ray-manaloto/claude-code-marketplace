@@ -6,16 +6,25 @@ import fcntl
 import io
 import hashlib
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 
 import refresh
+import runtime_preflight
 
 
 class FeedbackChecks(unittest.TestCase):
+    def hermetic(self):
+        """Build the test environment explicitly; never inherit a developer shell's selectors."""
+        return patch.dict(os.environ, runtime_preflight.scrubbed(os.environ), clear=True)
+
     def setUp(self):
+        environment = self.hermetic()
+        environment.start()
+        self.addCleanup(environment.stop)
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         fixture_root = Path(temporary.name).resolve()
@@ -1315,6 +1324,19 @@ class FeedbackChecks(unittest.TestCase):
                     self.assertNotIsInstance(caught.exception, refresh.NativeLaunchFailure)
                     self.assertEqual(launch.call_count, 1)
                     launch.return_value.wait.assert_called_once_with(timeout=1)
+
+    def test_inherited_foreign_selector_is_scrubbed_by_harness(self):
+        with tempfile.TemporaryDirectory() as foreign, patch.dict(os.environ, {'VIRTUAL_ENV': foreign}), \
+                patch.object(Path, 'open', side_effect=[io.StringIO() for _ in range(4)]), \
+                patch.object(refresh.subprocess, 'Popen') as launch:
+            launch.return_value.wait.return_value = 0
+            with self.assertRaisesRegex(ValueError, 'Conflicting runtime overrides: VIRTUAL_ENV'):
+                refresh.command(['offline'], Path(foreign) / 'response', 1)
+            launch.assert_not_called()
+            with self.hermetic():
+                self.assertEqual(refresh.command(['offline'], Path(foreign) / 'response', 1), 0)
+            self.assertEqual(launch.call_count, 1)
+            self.assertEqual(launch.call_args.kwargs['env']['VIRTUAL_ENV'], str(refresh.BORROWED / '.venv'))
 
     def test_proposal_comparison_failure_never_promotes(self):
         for diff_exit, envelope in ((1, {}), (0, {'status': 'SUCCESS'})):
