@@ -3401,3 +3401,14 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   19/19, 91 refresh tests, diff --check). Retro filed at
   `retros/c1-catalog-promotion.md`; lane record `retro: passed`; #94 ledger
   row integrated, closure pending.
+
+- 2026-10-13 (merger fork, NAV integration): focused re-review PASS. Merged
+  `claude/nav-guidance-hierarchy` (`5cadad4` + repairs `6dc421e`): root
+  `AGENTS.md` as a 60-line pointer, directory guidance pairs for `dev/`,
+  `docs/`, `evidence/`, `.planning/`, `.claude/`, and the 66-line reviewer-only
+  `CODING_STANDARDS.md`. Parent follow-ups in the same commit: `.claude/AGENTS.md`
+  names the sanctioned skill exceptions (`gh-stack`; repository-authored skills
+  with their mirror), root `CLAUDE.md` drops the duplicated issue-tracker
+  section. Composed-tree gates rc 0 (validate 52, check, baseline 19/19,
+  diff --check); retro filed at `retros/nav.md` and gated; lane record
+  `retro: passed`.
