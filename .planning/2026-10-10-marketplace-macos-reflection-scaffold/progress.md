@@ -2883,3 +2883,24 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   writer census. Both failed receipts are preserved in the #13 worktree.
   No repaired admission or native trial has run. Source W4 status now records
   these local-only states; A06 and A12b remain held.
+- #13's repaired pre-run review later passed with two separated strict writer
+  censuses, exact proposal/hash bindings, Docker state, capacity and an
+  immediately released lease probe. A newly appearing unrelated `mise` task
+  caused the first prepared admission to be withdrawn before launch; its
+  receipt is retained. After two new clean censuses, one guarded native trial
+  ran under the canonical lease. The original clean LSan control reproduced
+  the 20-second timeout; the patched private runtime produced the reflection
+  stdout but its clean case exited 86 and reported 120 leaked bytes in three
+  macOS objc/libxpc initialization allocations. A different unrelated `mise`
+  task failed the final writer census. The command exited 1 and its frozen
+  report says INCONCLUSIVE; no leak, overflow or combined-mode witness ran.
+  Independent read-only review matched all 50 command-log hashes and the
+  admission; separate closure reconciliation passed two later clean censuses,
+  all 25 run-PID absence checks, protected/source/default checks and a free
+  lease. Cleanup does not upgrade the trial verdict. The sanitized attempt,
+  guide update and partial retrospective are locally committed in the detached
+  #13 worktree through `65d93d1ba58804b3091f766d5ab45f585f821a6d`.
+  Retrospective action: a separately admitted bounded clean-control experiment
+  with dyld tracing on/off, minimal clean witness and intentional-leak positive
+  control; changed candidate or policy then needs fresh review and full gate.
+  No source integration, publication or #13 qualification has occurred.
