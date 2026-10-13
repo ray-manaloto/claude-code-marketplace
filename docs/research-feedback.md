@@ -37,6 +37,10 @@ pass the `queries` map to `metrics(current, previous)`.
   proposed change. Independently enforce batch/manifest integrity, catalog hashes,
   pagination budgets, candidate relevance anchors and completeness expectations.
   Capped searches are incomplete even when they do not appear in this blocker list.
+  The refresh runner applies this split: changed queries must be complete,
+  nonempty and anchored; unrelated capped or incomplete queries allow only a
+  catalog-only promotion that keeps the accepted baseline fixed. An empty
+  regression anywhere in the batch still blocks promotion.
 - This module detects regression, not first-empty validity. The transport must
   classify uncontrolled empties and capability failures before supplying native
   status. `complete` alone cannot certify a first empty response.

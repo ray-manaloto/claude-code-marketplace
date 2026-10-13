@@ -2078,6 +2078,160 @@ class FeedbackChecks(unittest.TestCase):
                     refresh.run(argparse.Namespace(proposal='proposal.json'))
                 command.assert_not_called()
 
+    def two_query_workflow(self, root, cooldown=0):
+        refresh.write(root / 'policy.json', {**self.policy, 'minimum_seconds_between_runs': cooldown})
+        catalog = {'searches': copy.deepcopy(self.catalog['searches'][:2])}
+        refresh.write(root / 'searches.json', catalog)
+        catalog['searches'][0]['query'] += ' in:title'  # The affected query changes fingerprint.
+        refresh.write(root / 'candidate.json', catalog)
+        return [s['id'] for s in catalog['searches']]
+
+    def publish_used(self, root, run_id, mutate):
+        state = refresh.read(root / 'learning-state.json')
+        catalog = refresh.read(root / 'cycles' / state['last_attempt_cycle'] / 'catalog-used.json')
+        run, rows = root / 'results/runs' / ('test_' + run_id), []
+        for search in catalog['searches']:
+            row = self.fixture_row(search)
+            mutate(row)
+            refresh.write(run / (row['search_id'] + '.json'), row)
+            rows.append(row)
+        manifest = self.manifest(run_id, rows, ['runs/test_' + run_id + '/' + r['search_id'] + '.json' for r in rows])
+        refresh.write(run / 'manifest.json', manifest)
+        refresh.write(root / 'results/manifest.json', manifest)
+        return rows
+
+    def compare_all(self, root, baseline, candidate):
+        runs = root / 'results/runs'
+        sids = sorted(p.stem for p in (runs / ('test_' + candidate)).glob('*.json') if p.name != 'manifest.json')
+        outcome = self.comparison(root, baseline, candidate, sids[0])
+        outcome['queries'] = [self.comparison(root, baseline, candidate, sid)['queries'][0] for sid in sids]
+        fingerprint = lambda run, sid: refresh.read(runs / ('test_' + run) / (sid + '.json'))['query_fingerprint']
+        outcome.update(total_queries_compared=len(sids), incompatible_queries=sum(fingerprint(baseline, s) != fingerprint(candidate, s) for s in sids))
+        return outcome
+
+    def staged_native(self, root, stage, compared, mutate, faults=()):
+        def native(arguments, output, timeout):
+            if arguments[0] == 'github-search':
+                refresh.write(output.with_suffix('.json'), self.envelope(self.publish_used(root, stage[0], mutate)))
+                return 8 if (stage[0], 'native') in faults else 0
+            compared.append(Path(arguments[2]).name)
+            refresh.write(output.with_suffix('.json'), self.compare_all(root, Path(arguments[2]).name.removeprefix('test_'), stage[0]))
+            return 124 if (stage[0], 'diff') in faults else 0
+        return native
+
+    def test_catalog_only_promotion_keeps_baseline_until_ordinary_refresh(self):
+        modes = {'capped': True, 'incomplete': True, 'affected_capped': False, 'affected_unanchored': False,
+                 'empty_regression': False, 'native': False, 'diff': False}
+        for mode, permitted in modes.items():
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory).resolve()
+                affected, broad = self.two_query_workflow(root, cooldown=30)
+                stage, compared, clock = ['old'], [], [refresh.time.time()]
+                def mutate(row):
+                    if stage[0] != 'promo':
+                        return
+                    if row['search_id'] == broad and mode in ('capped', 'incomplete'):
+                        row['issues'][0]['number'] = 2  # Raw NEW/GONE claims that must stay suppressed.
+                        row.update(total_count=2) if mode == 'capped' else row.update(is_complete=False)
+                    elif row['search_id'] == broad and mode == 'empty_regression':
+                        row.update(issues=[], item_count=0, total_count=0)
+                    elif row['search_id'] == affected and mode == 'affected_capped':
+                        row.update(total_count=5)
+                    elif row['search_id'] == affected and mode == 'affected_unanchored':
+                        row['issues'][0].update(number=9, html_url='https://github.com/o/r/issues/9')
+                native = self.staged_native(root, stage, compared, mutate, {('promo', mode)})
+                run = lambda proposal=None: refresh.run(argparse.Namespace(proposal=proposal))
+                with patch.object(refresh, 'ROOT', root), patch.object(refresh, 'command', native), patch.object(refresh.time, 'time', lambda: clock[0]), contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(run(), 0)
+                    accepted = refresh.read(root / 'learning-state.json')
+                    history = {p: p.read_bytes() for p in (root / 'learning-events.jsonl', root / 'results/runs/test_old/manifest.json')}
+                    before = (root / 'searches.json').read_bytes()
+                    refresh.write(root / 'proposal.json', {'catalog': 'candidate.json', 'base_catalog_sha256': refresh.digest(root / 'searches.json'), 'changes': {affected: self.proposal['changes']['test']}})
+                    clock[0] += 31
+                    stage[0] = 'promo'
+                    self.assertEqual(run('proposal.json'), 8 if mode == 'native' else 2)
+                    state = refresh.read(root / 'learning-state.json')
+                    receipt = refresh.read(root / 'cycles' / state['last_attempt_cycle'] / 'receipt.json')
+                    for key in ('accepted_baseline', 'last_run_id', 'last_cycle', 'baseline_commit'):
+                        self.assertEqual(state[key], accepted[key])
+                    for path, raw in history.items():
+                        self.assertTrue(path.read_bytes().startswith(raw))
+                    self.assertIs(receipt['fresh_snapshot_accepted'], False)
+                    self.assertEqual(receipt['promoted'], permitted)
+                    self.assertEqual((root / 'searches.json').read_bytes(), (root / 'candidate.json').read_bytes() if permitted else before)
+                    with patch.object(refresh, 'command') as blocked:
+                        with self.assertRaisesRegex(ValueError, 'Cooldown'):
+                            run()
+                        clock[0] += 31
+                        if permitted:
+                            self.assertEqual(receipt['attempt_status'], 'accepted_with_coverage_warning')
+                            self.assertTrue(receipt['catalog_only_promotion'])
+                            self.assertEqual(list(receipt['coverage_warning_queries']), [broad])
+                            derived = {q['search_id']: q for q in refresh.read(root / receipt['comparison_evidence'])['queries']}
+                            self.assertEqual(derived[affected]['suppression_reasons'], ['approved_query_identity_drift'])
+                            self.assertFalse(derived[broad]['content_claims_eligible'])
+                            self.assertEqual((derived[broad]['new_count'], derived[broad]['gone_count']), (0, 0))
+                            with self.assertRaisesRegex(ValueError, 'Stale proposal'):
+                                run('proposal.json')
+                            over = refresh.read(root / 'candidate.json')
+                            over['searches'][0]['max_pages'] = 25
+                            refresh.write(root / 'over.json', over)
+                            refresh.write(root / 'proposal.json', {'catalog': 'over.json', 'base_catalog_sha256': refresh.digest(root / 'searches.json'), 'changes': {}})
+                            with self.assertRaisesRegex(ValueError, 'budget'):
+                                run('proposal.json')
+                        else:
+                            self.assertEqual(receipt['attempt_status'], 'failed')
+                        blocked.assert_not_called()
+                    stage[0] = 'next'
+                    self.assertEqual(run(), 0)  # Restarted ordinary refresh compares with the fixed baseline.
+                    state = refresh.read(root / 'learning-state.json')
+                    self.assertEqual((state['last_run_id'], state['baseline_commit']['outcome']), ('next', 'accepted'))
+                    self.assertEqual(set(compared), {'test_old'})
+                    self.assertEqual((root / 'searches.json').read_bytes(), (root / 'candidate.json').read_bytes() if permitted else before)
+
+    def test_interrupted_catalog_only_promotion_recovers_and_retries(self):
+        for fault in ('catalog', 'state'):
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory).resolve()
+                affected, broad = self.two_query_workflow(root)
+                stage, compared, tripped, replace = ['old'], [], [False], Path.replace
+                def mutate(row):
+                    if stage[0] in ('promo', 'retry') and row['search_id'] == broad:
+                        row.update(total_count=2)
+                def persist(path, target):
+                    staged = target == root / 'learning-state.json' and json.loads(path.read_bytes())
+                    if compared and not tripped[0] and (target == root / 'searches.json' if fault == 'catalog'
+                                                        else staged and staged['terminal_commit']['cycle'] == staged['last_attempt_cycle']):
+                        tripped[0] = True
+                        raise OSError('interrupted ' + fault + ' write')
+                    return replace(path, target)
+                native = self.staged_native(root, stage, compared, mutate)
+                run = lambda proposal=None: refresh.run(argparse.Namespace(proposal=proposal))
+                with patch.object(refresh, 'ROOT', root), patch.object(refresh, 'command', native), patch.object(Path, 'replace', persist), contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(run(), 0)
+                    accepted, before = refresh.read(root / 'learning-state.json'), (root / 'searches.json').read_bytes()
+                    refresh.write(root / 'proposal.json', {'catalog': 'candidate.json', 'base_catalog_sha256': refresh.digest(root / 'searches.json'), 'changes': {affected: self.proposal['changes']['test']}})
+                    stage[0] = 'promo'
+                    self.assertEqual(run('proposal.json'), 2)
+                    self.assertTrue(tripped[0])
+                    state = refresh.read(root / 'learning-state.json')
+                    receipt = refresh.read(root / 'cycles' / state['last_attempt_cycle'] / 'receipt.json')
+                    self.assertEqual((receipt['attempt_status'], receipt['promoted']), ('incomplete', False))
+                    self.assertEqual((root / 'searches.json').read_bytes(), before)
+                    for key in ('accepted_baseline', 'last_run_id', 'queries'):
+                        self.assertEqual(state[key], accepted[key])
+                    if fault == 'state':
+                        with patch.object(refresh, 'command') as blocked:
+                            self.assertEqual(run(), 2)  # Explicit recovery turn before any new query.
+                            blocked.assert_not_called()
+                    stage[0] = 'retry'
+                    self.assertEqual(run('proposal.json'), 2)
+                    self.assertEqual((root / 'searches.json').read_bytes(), (root / 'candidate.json').read_bytes())
+                    stage[0] = 'next'
+                    self.assertEqual(run(), 0)
+                    self.assertEqual(refresh.read(root / 'learning-state.json')['last_run_id'], 'next')
+                    self.assertEqual(set(compared), {'test_old'})
+
     def test_failed_experiment_preserves_catalog_bytes(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()

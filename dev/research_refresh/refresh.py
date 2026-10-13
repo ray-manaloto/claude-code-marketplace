@@ -612,6 +612,17 @@ def accepted_baseline(state, receipt, policy):
     return manifest
 
 
+def promoted_drift(state, policy, active, active_sha):
+    """Query IDs that committed catalog-only promotions changed after the fixed accepted baseline."""
+    marker = state.get('coverage_commit')
+    if marker is None or 'accepted_baseline' not in state:
+        return set()
+    if require(verify_commit(marker).get('catalog_binding'), dict, 'Coverage catalog binding').get('catalog_sha256') != active_sha:
+        return set()  # Only a catalog committed through a runner cycle approves identity drift.
+    accepted = check_catalog(read(evidence_path(ROOT / 'cycles' / state['last_cycle'] / 'catalog-used.json')), policy)
+    return {sid for sid in active if accepted.get(sid) != active[sid]}
+
+
 def promote(cycle, canonical, receipt, old, new, proposal, state, state_path):
     receipt['failed_stage'] = 'promotion_intent'
     changes = evidence_path(ROOT / 'search-changes.jsonl')
@@ -1445,7 +1456,9 @@ def run(args):
             return failed_attempt(cycle, state_path, state, receipt, 'Snapshot comparison failed')
         if prior:
             _, baseline_rows = snapshot(prior)
-            outcome = comparison(read(cycle / 'diff.json'), baseline_rows, rows, read(prior)['run_id'], data['run_id'], (proposal or {}).get('changes', {}), feedback)
+            receipt['promoted_query_drift'] = sorted(promoted_drift(state, policy, old, before_hash))
+            approved = set((proposal or {}).get('changes', {})) | set(receipt['promoted_query_drift'])
+            outcome = comparison(read(cycle / 'diff.json'), baseline_rows, rows, read(prior)['run_id'], data['run_id'], approved, feedback)
             receipt['suppressed_queries'] = outcome['suppressed_queries']
             if receipt['suppressed_queries']:
                 receipt['comparison_state'] = 'suppressed'
@@ -1455,10 +1468,12 @@ def run(args):
         failures = evaluate(proposal, rows) if proposal else []
         if proposal and (rc or receipt['failed']):
             failures.append('Batch failure prevents promotion')
-        if proposal and receipt['coverage_warning_queries']:
-            failures.append('Coverage warning prevents promotion')
-        if proposal and receipt['unverified_empty_queries']:
-            failures.append('Unexpectedly empty queries prevent promotion; coverage unverified')
+        # Affected queries must be complete and nonempty; unrelated warnings permit catalog-only promotion.
+        affected = sorted(set((proposal or {}).get('changes', {})) & receipt['coverage_warning_queries'].keys())
+        if affected:
+            failures.append('Affected query coverage warning prevents promotion: ' + ', '.join(affected))
+        if proposal and any(metric['empty_regression'] for metric in feedback.values()):
+            failures.append('Unexpected empty regression prevents promotion; coverage unverified')
         if proposal and digest(canonical) != before_hash:
             failures.append('Concurrent active catalog change prevents promotion')
         if proposal and not failures:
@@ -1470,6 +1485,7 @@ def run(args):
         warning = bool(receipt['coverage_warning_queries'])
         if warning:
             receipt['comparison_state'] = 'suppressed'
+        receipt['catalog_only_promotion'] = receipt['promoted'] and warning  # Baseline stays fixed.
         if not proposal or receipt['promoted']:
             proposed['queries'] = feedback
             if warning and prior is None:

@@ -57,7 +57,13 @@ python3 -B /path/to/checkout/dev/research_refresh/refresh.py \
 ```
 
 The same flags accept `--proposal proposals/NAME/proposal.json`, relative to the
-selected state directory. Missing/invalid configuration exits 2 before locking,
+selected state directory. A proposal promotes only when every changed query is
+complete, nonempty and keeps its relevance anchor, and no query regressed to empty.
+Coverage warnings on unrelated queries permit a catalog-only promotion: exit 2,
+`fresh_snapshot_accepted=false`, `catalog_only_promotion=true`, the accepted
+baseline unchanged and NEW/GONE claims suppressed. Later refreshes accept only
+the committed catalog's drift (`promoted_query_drift`) against that baseline.
+Missing/invalid configuration exits 2 before locking,
 writing or launch. The borrowed runtime stays read-only; the fixed fnox profile
 and native mise flags preserve the existing no-sync/no-install route. See the
 [operating guide](../../docs/research-feedback-retro/portable-workflow.md) for
