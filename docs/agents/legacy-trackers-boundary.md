@@ -58,3 +58,38 @@ The required knowledge-base graph query exited 3 because Graphify marked its
 result truncated (56 of 3,758 nodes shown) and noted a pre-#1504 node-ID
 scheme. The pinned Git source and byte-matched installed modules therefore
 served as the source authority for this ticket. No graph rebuild was run.
+
+## Additive CLI extension boundary (ticket #28)
+
+The first new operation verb is `issues`; subsequent operation verbs are added
+as their own tickets supply an implementation and acceptance receipt. The v2
+top-level help contract is exactly
+`aggregated-research <verb> [args...]\n  verbs: trackers issues\n`.
+The `trackers` entry remains first. New verbs are dispatched by exact token,
+without treating a tracker argument as an operation or changing the existing
+unknown-verb exit 2 and diagnostic. The pinned legacy executable still reports
+only `trackers`; v2 help is a successor contract, not a claim about that build.
+
+The `trackers` branch delegates its entire argument vector to the pinned public
+dispatcher. Its console output, exit code, JSON fields and ordering, issue/PR
+control arms, and caller-selected `--out` location remain owned by the legacy
+implementation. New operation results will use their separately versioned
+schemas; they may not reuse `adapter: trackers` or the tracker output path by
+default. No schema or provider behavior for `issues` is promised by this
+dispatch-only fixture.
+
+[`dev/cli_extension_contract.py`](../../dev/cli_extension_contract.py) is the
+offline reference seam and v2 help assertion. Its `issues` handler is a test
+double that proves dispatch and return-code separation. Its `trackers` branch
+replays the #24 hit and armed-null inputs through the pinned installed Python
+modules, asserting byte-for-byte equality with the retained JSON fixtures.
+The run receipt is [`fixture.json`](../../evidence/issue-28-cli/fixture.json).
+
+`ci/acceptance.sh` contains three legacy `verbs: trackers` checks and is one
+of the 19 original frozen files. The v2 assertion is prepared in the fixture
+without editing that script or relabeling the original OCI test as passing for
+new verbs. When a real `issues` executable ships, a separately reviewed
+baseline transition must activate the v2 assertion in the container check,
+retain the original 19 hashes as historical evidence, and rerun fresh-session
+and OCI acceptance. Until then, #28 qualifies an offline extension contract,
+not a public v2 CLI release.
