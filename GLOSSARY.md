@@ -72,3 +72,32 @@ _Avoid_: Comparison status
 
 **Unavailable borrowed runtime**: A borrowed execution environment that fails the refresh's required identity or import checks.
 _Avoid_: Provider outage
+
+## Workflow
+
+**Unit**: One bounded piece of work with a single purpose, small enough for one writer and one review, planned, implemented, tested, reviewed, retro'd, integrated and published as separately recorded states. A ticket is a unit with a tracker identity; a unit may also be a plan or documentation change.
+_Avoid_: Task, chunk
+
+**Lane**: The allocation of one unit to one writer in one worktree on one branch, with an explicit path allowlist, a reviewer, a base commit and a status. Lanes run in parallel only when their allowlists are disjoint.
+_Avoid_: Stream, track
+
+**Integration tip**: The current commit of the integration branch. A lane reconciles the tip into its branch before handoff; the merger integrates one lane at a time onto it.
+_Avoid_: Latest main
+
+**Merger**: The role that verifies a lane's changed paths stay inside its allowlist, checks its gate evidence and integrates it serially. It is distinct from the writer and the reviewer of that lane.
+_Avoid_: Releaser
+
+**Gate**: A named check whose actual exit code must be recorded before a state advances. A static gate never stands in for runtime, provider, fresh-session or container acceptance.
+_Avoid_: Quality bar
+
+**Frontier**: The set of open tickets whose blocking edges all point at tickets with accepted dispositions. It is recomputed from the live tracker graph, never from a closed issue alone.
+_Avoid_: Backlog, ready list
+
+**Retro barrier**: The rule that a unit's next product task and its dependency successors stay held until every actionable retrospective finding is applied, checked and independently reviewed or rejected with evidence. Independent lanes continue.
+_Avoid_: Freeze
+
+**Receipt**: An immutable record binding a command, its exact inputs (paths, revisions, hashes), its actual exit code and the identity of what ran. Receipts are cited, never paraphrased into success.
+_Avoid_: Log, report
+
+**Admission**: An explicit, recorded permission for an operation that consumes shared or host-heavy capacity, mutates global state, publishes or calls a paid provider. A previous receipt does not grant a new admission.
+_Avoid_: Approval, clearance

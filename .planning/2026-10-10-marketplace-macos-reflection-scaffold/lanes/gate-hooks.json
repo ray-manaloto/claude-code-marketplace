@@ -1,0 +1,25 @@
+{
+  "unit": "gate-hooks",
+  "tickets": ["CT-02 (spec 'Claude team takeover and self-improving workflow', publication pending user approval)"],
+  "title": "Hook wiring for the retro gate: hk pre-merge-commit/pre-push steps, Claude Code PreToolUse/Stop/SubagentStop hooks, hook scripts with stdin-JSON contract tests",
+  "owner": "implementer",
+  "writer_model": "opus",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/gate-hooks",
+  "branch": "claude/gate-hooks-wiring",
+  "base_sha": "e618243",
+  "depends_on": ["retro-gate (CT-01) integrated at e618243"],
+  "owned_paths": [
+    "hk.pkl",
+    ".claude/settings.json",
+    "dev/hooks/",
+    "dev/test_hooks.py",
+    "mise.dev.toml (task rows for hooks only)",
+    "docs/agents/claude-team.md (gate layers paragraph only)"
+  ],
+  "excluded_shared_paths": ["dev/retro_gate.py", "dev/check.py", "AGENTS.md", "CLAUDE.md", ".claude/agents/", ".claude/rules/", ".gitignore", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"],
+  "required_checks": ["python3 -I -m unittest discover -s dev -p test_hooks.py", "hk validate / hk run in a scratch repository", "tasks validate", "check", "check:acceptance-baseline", "git diff --check", "retro:gate -- gate-hooks"],
+  "resource_admissions": {"host_heavy": "not admitted", "providers": "none", "network": "none", "git_hooks": "install only in scratch repositories during tests; the parent runs hk install in the real checkout at integration"},
+  "status": "allocated",
+  "created_at": "2026-10-13T20:31:33Z"
+}

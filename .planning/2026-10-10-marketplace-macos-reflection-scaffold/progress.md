@@ -3280,3 +3280,42 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   was the wrong source and is corrected; P2-2 (two sources of truth for the
   retro record shape) and five P3s go back to the doc-writer for one repair
   cycle before integration.
+
+- 2026-10-13 (Claude session, batch publication 2): lane `c1-catalog-promotion`
+  (#94, Opus) allocated with its record committed before the worktree was cut.
+  Publishing the integration branch through the A09 route with the A06u3,
+  codex-session-history and rf-env-scrub integrations; remote preimage `05c3dc9`.
+
+- 2026-10-13 (Claude session, publication 2 and dispatch): A09 publication
+  succeeded — `published=f250f75`, `history_scan_rc=0`, remote verified at
+  `f250f75` (preimage `05c3dc9`). retro-gate cold review returned PASS-with-P2
+  (a dead `#N` alternative in the owner regex refuses "tracked in #29" rows;
+  unbounded record read) plus P3s (prose "pending" false positive on A04,
+  `--branch` flag and a usage error instead of a guessed unit for CT-02 hooks,
+  ≈417-line budget overage accepted by both reviewer and implementer); repair
+  cycle dispatched. TEAM repairs landed at `ea8c8c9`; focused re-review
+  dispatched. Lane `c1-catalog-promotion` (#94) dispatched to an Opus
+  implementer on offline fixtures only. Active: retro-gate (repair), team
+  (re-review), c1 (implementing).
+
+- 2026-10-13 (Claude session, TEAM integration): focused re-review of the
+  team repairs returned PASS (no P1/P2; the `ticket-retro.md` shape paragraph
+  lands with CT-01). Merged `claude/team-roles-rules` (`ea8c8c9`) into the
+  integration branch: five agent roles (opus/sonnet/fable/fable/haiku), three
+  path-scoped rules, `docs/agents/claude-team.md`, ADR 0001, glossary Workflow
+  section. Composed-tree gates rc 0 (validate 51, check, baseline 19/19,
+  diff --check). Retro filed at `retros/team.md`. The path-scoped rule
+  `.claude/rules/planning-records.md` already loads when the parent edits
+  planning files. retro-gate repairs landed at `82c351f` (18 tests, corpus
+  23/15 of 38; A04 still fails on a genuinely missing category); focused
+  re-review dispatched.
+
+- 2026-10-13 (Claude session, retro-gate integration): focused re-review of
+  the retro-gate repairs returned PASS. Merged `claude/retro-gate-task`
+  (`82c351f`, lane `894d07d` + repairs `5ea8ee4`): `dev/retro_gate.py`,
+  18 CLI tests, six fixture records, the `retro:gate` mise task and the
+  record-shape paragraph in `docs/agents/ticket-retro.md`. Composed-tree gates
+  rc 0 (validate 52, suite 18, check, baseline 19/19, diff --check). The live
+  task passes for all six prior retro records and for `retros/retro-gate.md`.
+  CT-01 is now the first layer of the gate; CT-02 (hk + Claude Code hooks)
+  can start.
