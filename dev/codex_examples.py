@@ -13,6 +13,7 @@ import re
 import secrets
 import subprocess
 import sys
+import tomllib
 from collections.abc import Callable
 
 from githubkit import GitHub
@@ -171,6 +172,35 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             "example_coverage": receipt["example_coverage"]}
 
 
+def inspect_configuration(path: str, data: bytes, schema: dict[str, object]) -> dict[str, object]:
+    """Report a bounded method outcome without claiming full validity."""
+    if Path(path).name != "config.toml":
+        return {"validity": "UNVERIFIED", "kind": "documentation" if Path(path).suffix in
+                (".md", ".rst") else "unknown", "method": None, "inspection": "not_inspected",
+                "reason": "Selected path is not config.toml; configuration inspection not executed"}
+    try:
+        parsed = tomllib.loads(data.decode("utf-8"))
+    except (UnicodeDecodeError, tomllib.TOMLDecodeError):
+        return {"validity": "UNVERIFIED", "kind": "configuration",
+                "method": "python-stdlib-tomllib.loads", "inspection": "invalid_syntax",
+                "reason": "Invalid TOML syntax or UTF-8; input values omitted"}
+    properties = schema.get("properties")
+    model = properties.get("model") if isinstance(properties, dict) else None
+    field: dict[str, object] = {"method": None, "status": "not_inspected",
+                              "reason": "Pinned root model:string rule unavailable"}
+    if isinstance(model, dict) and model.get("type") == "string":
+        field = {"method": "pinned-root-model-type", "rule": "properties.model.type=string",
+                 "status": "absent" if "model" not in parsed else
+                           ("present_string" if isinstance(parsed["model"], str) else "present_wrong_type"),
+                 "schema_sha256": SCHEMA_SHA256, "release_tag": "rust-v0.162.1",
+                 "release_commit": RELEASE_COMMIT}
+    return {"validity": "UNVERIFIED", "kind": "configuration", "model_field": field,
+            "uninspected_fields": sorted(key for key in parsed
+                                         if key != "model" or field["status"] == "not_inspected"),
+            "method": "python-stdlib-tomllib.loads", "inspection": "parsed",
+            "reason": "Model availability, full schema, current release, native and runtime validation not executed"}
+
+
 def offline(args: argparse.Namespace) -> dict[str, object]:
     """Consume an independently pinned historical receipt; perform no native/provider calls."""
     match = RUN.fullmatch(args.run_id)
@@ -212,6 +242,7 @@ def offline(args: argparse.Namespace) -> dict[str, object]:
                 or normalized["reasons"])):
         raise BlobError("invalid offline normalized budget or coverage")
     schema_bytes = confined(SCHEMA).read_bytes()
+    schema = json.loads(schema_bytes)
     pinned = {"version": 1, "saved_run_id": args.run_id,
               "saved_manifest_sha256": digest(manifest_bytes),
               "saved_normalized_sha256": manifest["normalized_sha256"],
@@ -225,7 +256,7 @@ def offline(args: argparse.Namespace) -> dict[str, object]:
     if (not isinstance(receipt, dict) or set(receipt) != set(pinned) | {"credential_route", "blobs"}
             or any(type(receipt[k]) is not type(v) or receipt[k] != v for k, v in pinned.items())
             or receipt["credential_route"] not in ("gh_cli", "GITHUB_TOKEN", "GH_TOKEN", "fixture")
-            or digest(schema_bytes) != SCHEMA_SHA256 or not isinstance(json.loads(schema_bytes), dict)):
+            or digest(schema_bytes) != SCHEMA_SHA256 or not isinstance(schema, dict)):
         raise BlobError("offline receipt metadata or schema mismatch")
     if (not 1 <= len(args.sha) <= MAX_SELECTED or len(set(args.sha)) != len(args.sha)
             or any(not re.fullmatch(r"[0-9a-f]{40}", sha) for sha in args.sha)):
@@ -274,9 +305,7 @@ def offline(args: argparse.Namespace) -> dict[str, object]:
                 or hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest() != sha):
             raise BlobError("offline blob identity, bytes or duplicate mismatch")
         first.setdefault(sha, path)
-        inspections.append({**row, "validity": "UNVERIFIED", "method": None,
-                            "inspection": "not_inspected", "reason":
-                            "TOML syntax, release-schema, native and runtime validation not executed"})
+        inspections.append({**row, **inspect_configuration(path, data, schema)})
     root = confined(ROOT / "evidence/codex-examples/classifications")
     target = confined(root / f"{args.run_id}--{secrets.token_hex(8)}")
     output = confined(target / "receipt.json")
