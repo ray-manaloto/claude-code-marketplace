@@ -3195,3 +3195,16 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   files during the review) was already settled by `321fbde`. Publication of
   `codex/marketplace-native-onboarding` through the A09 route follows in the
   commit that carries this entry; the remote preimage is `848552c`.
+
+- 2026-10-13 (Claude session): A09 publication succeeded — `published=05c3dc9`,
+  `history_scan_rc=0`, remote `codex/marketplace-native-onboarding` verified at
+  `05c3dc9` (preimage `848552c`); intent SHA-256
+  `eabff70bb4c532ff8e1115197000ef5cb76ce0b6ebf85478647a3f080be925ba`, hook tree
+  `a21be5fe…` unchanged. Lane A06u3 handed off: import hashes matched, 24 tests
+  (17 retained + 7 new) rc 0 normal and optimized, named checks rc 0, lane
+  commit `8f783a0` merged with the tip as `93402c0`; cold review dispatched.
+  Lane SKILL handed off: skill plus byte/mode-identical mirror, 25-record fixture,
+  six hermetic tests rc 0, named checks rc 0, lane commit `762b02f` merged as
+  `8b986d3`; retro filed at `retros/codex-session-history.md`; cold review
+  dispatched. The parent owns adding `test:codex-session-history` to
+  `mise.dev.toml` at integration. Lane rf-env-scrub still running.

@@ -1,6 +1,6 @@
 # Ticket ledger
 
-Every GitHub issue for this repository with its live state, frontier status, blocking edges, Claude lane and local evidence state. Regenerate the first six columns from the tracker (`gh api graphql` with `blockedBy`/`parent`); the last two are maintained by the parent at each lane transition. Frontier = open with no open blockers; a closed blocker still needs an accepted disposition before dependents start. Snapshot: 2026-10-13, integration tip `e0667ec` (M0 merged), remote `848552c`.
+Every GitHub issue for this repository with its live state, frontier status, blocking edges, Claude lane and local evidence state. Regenerate the first six columns from the tracker (`gh api graphql` with `blockedBy`/`parent`); the last two are maintained by the parent at each lane transition. Frontier = open with no open blockers; a closed blocker still needs an accepted disposition before dependents start. Snapshot: 2026-10-13, integration tip `05c3dc9` (M0 merged and published), remote `05c3dc9`.
 
 | Issue | Title | Spec | GH | Frontier | Blocked by | Lane | Local state |
 |---|---|---|---|---|---|---|---|
@@ -62,7 +62,7 @@ Every GitHub issue for this repository with its live state, frontier status, blo
 | [#66](https://github.com/ray-manaloto/claude-code-marketplace/issues/66) | A04 — Validated catalog and immutable recording | #11 | OPEN | blocked | #63 | CLOSE | A04 published 93bb798; closure pending |
 | [#67](https://github.com/ray-manaloto/claude-code-marketplace/issues/67) | A05a — Compatible baseline and pure comparison | #11 | OPEN | blocked | #66, #65 | CLOSE | A05a published 93bb798; closure pending |
 | [#68](https://github.com/ray-manaloto/claude-code-marketplace/issues/68) | A05b — Public rerun and comparison receipt | #11 | OPEN | blocked | #67 | CLOSE | A05b published 93bb798; closure pending |
-| [#69](https://github.com/ray-manaloto/claude-code-marketplace/issues/69) | A06 — Codex release-schema example receipt | #11 | OPEN | blocked | #68 | CLOSE | IN FLIGHT: unit1 a071340 + unit2 5acdc3a in tip; unit3 (TOML/model-field methods) uncommitted in a06-retrieval-refresh worktree at b4922e6 |
+| [#69](https://github.com/ray-manaloto/claude-code-marketplace/issues/69) | A06 — Codex release-schema example receipt | #11 | OPEN | blocked | #68 | CLOSE | unit1 a071340 + unit2 5acdc3a in tip; unit3 implemented/tested on claude/a06-unit3-classification-methods (8f783a0, 24 tests); review + integration pending; retained-corpus consumption still open |
 | [#70](https://github.com/ray-manaloto/claude-code-marketplace/issues/70) | A07a — Qualify one-issue amendment operations | #11 | OPEN | blocked | #66 | CLOSE | A07a published a8ecd40; closure pending |
 | [#71](https://github.com/ray-manaloto/claude-code-marketplace/issues/71) | A07b — Apply the approved spec #11 amendment | #11 | OPEN | blocked | #70 | CLOSE | A07b applied; spec #11 body verified live; closure pending |
 | [#72](https://github.com/ray-manaloto/claude-code-marketplace/issues/72) | A08a — Publish and bind ticket identities | #11 | OPEN | blocked | #71 | CLOSE | A08a published 3972f3b; closure pending |

@@ -7,7 +7,7 @@
   "reviewer": "reviewer (fable, cold)",
   "worktree": ".claude/worktrees/codex-session-history",
   "branch": "claude/codex-session-history-skill",
-  "base_sha": null,
+  "base_sha": "e0667ec",
   "import_source": {
     "draft": "/private/tmp/claude-501/-Users-rmanaloto-dev-github-ray-manaloto-claude-code-marketplace/464a2816-4b5d-4665-b39a-8303cb014efb/scratchpad/skill/codex-session-history/",
     "note": "parent-authored draft: SKILL.md, scripts/{codex_rollout_digest,codex_threads,codex_research_receipts,agentsview_search,codex_otel_tail}.py, references/{sources,brief-template}.md, evals/evals.json; all scripts smoke-tested against the four takeover threads"
@@ -18,9 +18,27 @@
     "dev/fixtures/codex-rollout-synthetic.jsonl",
     "dev/test_codex_session_history.py"
   ],
-  "excluded_shared_paths": ["mise.dev.toml", "dev/check.py", "AGENTS.md", ".claude/settings.json"],
-  "required_checks": ["python3 -I dev/test_codex_session_history.py (synthetic fixture, no ~/.codex access)", "tasks validate", "check", "check:acceptance-baseline", "git diff --check", "retro:gate"],
-  "resource_admissions": {"host_heavy": "not admitted", "providers": "none", "network": "none"},
-  "status": "allocated",
-  "created_at": "2026-10-13T20:30:00Z"
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "dev/check.py",
+    "AGENTS.md",
+    ".claude/settings.json"
+  ],
+  "required_checks": [
+    "python3 -I -m unittest discover -s dev -p test_codex_session_history.py (synthetic fixture, no ~/.codex access)",
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check",
+    "retro:gate"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none"
+  },
+  "status": "implemented, tested, committed locally; cold review running; integration pending",
+  "created_at": "2026-10-13T20:30:00Z",
+  "lane_commit": "762b02f",
+  "merged_head": "8b986d3"
 }
