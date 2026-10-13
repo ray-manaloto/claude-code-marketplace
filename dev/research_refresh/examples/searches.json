@@ -1,0 +1,239 @@
+{
+  "version": "1.0.0",
+  "searches": [
+    {
+      "id": "mise-llvm-issues",
+      "description": "Find LLVM installation, release asset and version selection problems.",
+      "search_type": "ISSUE",
+      "query": "llvm",
+      "target_repo": "jdx/mise",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "mise-llvm-prs",
+      "description": "Find implemented LLVM backend fixes and linked source changes.",
+      "search_type": "PULL_REQUEST",
+      "query": "llvm",
+      "target_repo": "jdx/mise",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "mise-pinning-discussions",
+      "description": "Find exact pin upgrade explanations; narrowed after discussion 11943 established the local/bump distinction.",
+      "search_type": "DISCUSSION",
+      "query": "upgrade bump",
+      "target_repo": "jdx/mise",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "mise-bump-issues",
+      "description": "Find reported limitations of automated exact pin updates.",
+      "search_type": "ISSUE",
+      "query": "bump",
+      "target_repo": "jdx/mise",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "mise-bump-prs",
+      "description": "Find implementation changes to native pin bumping and lockfile updates.",
+      "search_type": "PULL_REQUEST",
+      "query": "bump",
+      "target_repo": "jdx/mise",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "renovate-mise-prs",
+      "description": "Find native mise manager changes; title scope removes dependency PRs that only mention mise in their bodies.",
+      "search_type": "PULL_REQUEST",
+      "query": "mise in:title",
+      "target_repo": "renovatebot/renovate",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "renovate-mise-discussions",
+      "description": "Find exact pin update configuration examples and manager limitations.",
+      "search_type": "DISCUSSION",
+      "query": "mise",
+      "target_repo": "renovatebot/renovate",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "iwyu-clang-issues",
+      "description": "Find compiler compatibility and resource directory problems for matching LLVM and IWYU.",
+      "search_type": "ISSUE",
+      "query": "clang",
+      "target_repo": "include-what-you-use/include-what-you-use",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "iwyu-clang-prs",
+      "description": "Find implemented compatibility fixes and native build examples.",
+      "search_type": "PULL_REQUEST",
+      "query": "clang",
+      "target_repo": "include-what-you-use/include-what-you-use",
+      "sort": "updated",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-health-mise",
+      "description": "Positive code search control for the primary repository.",
+      "search_type": "CODE",
+      "query": "mise",
+      "target_repo": "jdx/mise",
+      "filenames": [
+        "README.md"
+      ],
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-llvm-version-prefix",
+      "description": "Find LLVM release tag prefix configurations; inspect each matching entry because broad llvm matches included unrelated cargo-llvm-cov and tauri pins. One page covers the observed six results; the saved experiment requires complete coverage and retains its inspected example.",
+      "search_type": "CODE",
+      "query": "\"llvm/llvm-project\" version_prefix",
+      "filenames": [
+        "mise.toml"
+      ],
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-mise-bump-ci",
+      "description": "Find CI jobs that update exact mise pins with upgrade --bump.",
+      "search_type": "CODE",
+      "query": "mise upgrade bump path:.github/workflows",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-iwyu-cmake",
+      "description": "Find reusable native CMake include-what-you-use integration examples.",
+      "search_type": "CODE",
+      "query": "CMAKE_CXX_INCLUDE_WHAT_YOU_USE",
+      "filenames": [
+        "CMakeLists.txt"
+      ],
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-mise-zstd-window",
+      "description": "Follow https://github.com/jdx/mise/pull/13566 to the bounded zstd decoder that fixed LLVM archive installation.",
+      "search_type": "CODE",
+      "query": "window_log_max",
+      "target_repo": "jdx/mise",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-mise-bump-implementation",
+      "description": "Follow https://github.com/jdx/mise/discussions/11943 to exact pin upgrade implementation.",
+      "search_type": "CODE",
+      "query": "bump",
+      "target_repo": "jdx/mise",
+      "filenames": [
+        "upgrade.rs"
+      ],
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-renovate-mise-sidecars",
+      "description": "Follow https://github.com/renovatebot/renovate/pull/46514 to native dependency sidecar and lockfile handling.",
+      "search_type": "CODE",
+      "query": "sidecar path:lib/modules/manager/mise",
+      "target_repo": "renovatebot/renovate",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-iwyu-llvm-tag",
+      "description": "Follow https://github.com/include-what-you-use/include-what-you-use/pull/2115 to compiler tag wiring; code search covers the default branch, so verify clang_23 separately before reuse.",
+      "search_type": "CODE",
+      "query": "LLVM_TAG path:.github/workflows",
+      "target_repo": "include-what-you-use/include-what-you-use",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-pinned-update-workflow",
+      "description": "Follow the first run's digitalcheck-dito example to its pinned mise update workflow with scheduled and manual entry points.",
+      "search_type": "CODE",
+      "query": "mise upgrade bump path:.github/workflows",
+      "target_repo": "digitalservicebund/digitalcheck-dito",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "mise-pinning-focused",
+      "description": "Narrow 69 discussion matches to titles naming bump while retaining the inspected precision explanation.",
+      "search_type": "DISCUSSION",
+      "query": "bump in:title",
+      "target_repo": "jdx/mise",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "renovate-mise-focused",
+      "description": "Avoid discussions that mention mise only in a body; retain the observed multi-version lockfile limitation.",
+      "search_type": "DISCUSSION",
+      "query": "mise in:title",
+      "target_repo": "renovatebot/renovate",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "iwyu-llvm23-prs",
+      "description": "Narrow the 659-match clang PR discovery window to the requested LLVM major and its inspected CI pin.",
+      "search_type": "PULL_REQUEST",
+      "query": "23 in:title",
+      "target_repo": "include-what-you-use/include-what-you-use",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "workflow-githubkit-cache-prs",
+      "description": "Watch the SDK cache and throttling implementation after verifying the v0.16.1 fix and current configuration docs.",
+      "search_type": "PULL_REQUEST",
+      "query": "cache in:title",
+      "target_repo": "yanyongyu/githubkit",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "renovate-mise-lockfile-discussions",
+      "description": "Focus the repeatedly capped mise title search on lockfile behavior; retain the verified multi-version specifier report.",
+      "search_type": "DISCUSSION",
+      "query": "mise lockfile in:title",
+      "target_repo": "renovatebot/renovate",
+      "max_pages": 1,
+      "max_items": 30
+    },
+    {
+      "id": "code-mise-bump-ci-phrase",
+      "description": "Search actual upgrade command phrases in dedicated scheduled/manual update workflows after an unrelated publish workflow entered the broad query.",
+      "search_type": "CODE",
+      "query": "\"mise upgrade\" \"--bump\" \"workflow_dispatch\" \"schedule\" path:.github/workflows",
+      "filenames": [
+        "mise-upgrade.yml"
+      ],
+      "max_pages": 1,
+      "max_items": 30
+    }
+  ]
+}

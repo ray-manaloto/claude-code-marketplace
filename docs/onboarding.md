@@ -83,6 +83,8 @@ Firecrawl 402 with provisional fallback, and Last30Days validator rejection
 remain recorded gaps. The new onboarding does not recertify that research.
 
 Read the [current handoff](status.md) and [build task index](build-roadmap.md).
+For research coverage regression or offline replay, read
+[research feedback](research-feedback.md) before interpreting empty results.
 After onboarding, follow that small-task sequence and its prerequisites.
 Global tool installation and heavy compiler/matrix operations
 need their own admitted phases. The future 96-tree / 384-cell matrix is a
