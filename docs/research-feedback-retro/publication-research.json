@@ -1,0 +1,128 @@
+{
+  "request_id": "01a13361-b99d-7592-8850-203030cadc1c",
+  "policy_version": "strict-five-v2",
+  "query": "mise run no-deps skip-tools uv no-sync portable Python offline tests explicit state directory",
+  "repo": "jdx/mise",
+  "actual_exit": 0,
+  "verdict": "PROVISIONAL",
+  "blocker": "Firecrawl Search primary returned HTTP 402; substituted by Serper. Native Firecrawl Search coverage remains incomplete.",
+  "sources": [
+    {
+      "source": "github-issues",
+      "status": "empty_verified",
+      "route": null,
+      "provisional": false,
+      "items": 0,
+      "control": {
+        "count": 10,
+        "query": "mise"
+      },
+      "attempts": []
+    },
+    {
+      "source": "github-discussions",
+      "status": "empty_verified",
+      "route": null,
+      "provisional": false,
+      "items": 0,
+      "control": {
+        "count": 10,
+        "query": "mise"
+      },
+      "attempts": []
+    },
+    {
+      "source": "github-releases",
+      "status": "empty_verified",
+      "route": null,
+      "provisional": false,
+      "items": 0,
+      "control": {
+        "count": 1,
+        "query": "jdx/mise"
+      },
+      "attempts": []
+    },
+    {
+      "source": "exa",
+      "status": "ok",
+      "route": null,
+      "provisional": false,
+      "items": 10,
+      "control": null,
+      "attempts": []
+    },
+    {
+      "source": "context7",
+      "status": "ok",
+      "route": null,
+      "provisional": false,
+      "items": 5,
+      "control": null,
+      "attempts": []
+    },
+    {
+      "source": "firecrawl-developer",
+      "status": "ok",
+      "route": null,
+      "provisional": false,
+      "items": 10,
+      "control": null,
+      "attempts": []
+    },
+    {
+      "source": "firecrawl-search",
+      "status": "ok",
+      "route": "serper",
+      "provisional": true,
+      "items": 9,
+      "control": null,
+      "attempts": [
+        {
+          "route": "firecrawl-search",
+          "status": "skipped",
+          "http_status": null,
+          "reason": "Error: Request failed with status code 402"
+        },
+        {
+          "route": "serper",
+          "status": "ok",
+          "http_status": 200,
+          "reason": null
+        }
+      ]
+    },
+    {
+      "source": "last30days",
+      "status": "ok",
+      "route": null,
+      "provisional": false,
+      "items": 2,
+      "control": null,
+      "attempts": []
+    }
+  ],
+  "verified_raw_sha256": {
+    "github-issues.raw": "c9938edecb99d754b2d039ac9eec320a94c769b6a6417921e2dcbef9e2fe01a0",
+    "github-discussions.raw": "e56779ec134a9f8d1d081cbb18e643fab4abb2dbcbc9b45057d681aa549f358e",
+    "github-releases.raw": "0e7f056474aa750171ce76d4693df3e26e7b833c36949befb71a5828dda049d7",
+    "exa.raw": "7d39cdd66453f78282e8944d97fb3c808b5818887c0d30b220a48010dc978ce4",
+    "context7.raw": "8fdd0dd10d9b1f2f52f41c6caa0f0738895c67e1664db380ce22b57f5c95d03c",
+    "firecrawl-developer.raw": "b2757caa4e3a7d98144ce95ac1d81d983c29e8a923a55507b1b026908bd9f10b",
+    "firecrawl-search.raw": "697eb482219b76adda2c7733f71ac7a621cf99e37e058aee42d72d12fface251",
+    "firecrawl-search.primary.raw": "bee9d1fdf4fff96b77675942c3440d59f0a7bd6bbdc0fdea55415d389db15799",
+    "firecrawl-search.serper.raw": "697eb482219b76adda2c7733f71ac7a621cf99e37e058aee42d72d12fface251",
+    "last30days.raw": "b5fdf29ffb8357dab0a061b39885a57b630e165ef7cf2371333487f4ac43dec4"
+  },
+  "manifest_sha256": "3573f8e66e324f32f1c484dd7798c38512b22aaa09caebed98a1578fa9a9acdd",
+  "primary_sources": [
+    "https://mise.jdx.dev/cli/run.html",
+    "https://docs.astral.sh/uv/reference/cli/#uv-run",
+    "https://docs.python.org/3.14/library/unittest.html#test-discovery"
+  ],
+  "initial_preparation_failure": {
+    "exit": 2,
+    "reason": "Explicit Last30Days plan missing; corrected before provider attempts"
+  },
+  "raw_location": "Local hook receipt directory; raw results are excluded from Git"
+}

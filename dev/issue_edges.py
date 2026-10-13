@@ -32,6 +32,12 @@ BLOCKERS = {
 def approved(manifest_file: Path, graph_file: Path,
              graph_sha: str) -> tuple[dict[str, dict], str]:
     data, manifest_sha = manifest(manifest_file)
+    graph_source = read(graph_file)
+    if not HEX.fullmatch(graph_sha) or sha(graph_source) != graph_sha:
+        raise Refusal("graph SHA-256 mismatch")
+    graph = json.loads(graph_source)
+    if isinstance(graph, dict) and graph.get("schema") == "marketplace-edge-graph-v2":
+        return approved_graph(graph, graph_file, manifest_file), manifest_sha
     if set(BLOCKERS) != {x["local_id"] for x in data["tickets"]}:
         raise Refusal("ticket set changed")
     for ticket in data["tickets"]:
@@ -42,10 +48,6 @@ def approved(manifest_file: Path, graph_file: Path,
         expected = ", ".join(BLOCKERS[ticket["local_id"]]) or "none"
         if actual != expected:
             raise Refusal("approved blocker map drifted")
-    graph_source = read(graph_file)
-    if not HEX.fullmatch(graph_sha) or sha(graph_source) != graph_sha:
-        raise Refusal("graph SHA-256 mismatch")
-    graph = json.loads(graph_source)
     if (not isinstance(graph, dict) or graph.get("schema") != "a08b-graph-audit-v1"
             or graph.get("status") != "verified" or graph.get("repo") != REPOSITORY
             or graph.get("manifest_sha256") != manifest_sha or graph.get("parent_number") != 11
@@ -63,11 +65,73 @@ def approved(manifest_file: Path, graph_file: Path,
     return bindings, manifest_sha
 
 
+def approved_graph(graph: dict, graph_file: Path, manifest_file: Path) -> dict[str, dict]:
+    """Bind the exact union of creation manifests, including distinct spec parents."""
+    if (set(graph) != {"schema", "status", "repo", "manifests", "tickets"}
+            or graph["status"] != "verified" or graph["repo"] != REPOSITORY
+            or not isinstance(graph["manifests"], list) or not graph["manifests"]
+            or not isinstance(graph["tickets"], list)):
+        raise Refusal("unverified dependency graph")
+    declared, paths, parents = {}, set(), set()
+    for ref in graph["manifests"]:
+        if (not isinstance(ref, dict) or set(ref) != {"file", "sha256", "parent_number"}
+                or not isinstance(ref["file"], str) or not ref["file"]
+                or Path(ref["file"]).is_absolute() or ".." in Path(ref["file"]).parts):
+            raise Refusal("invalid manifest reference")
+        path = graph_file.parent / ref["file"]
+        payload, digest = manifest(path)
+        if (digest != ref["sha256"] or payload["parent_number"] != ref["parent_number"]
+                or payload["parent_number"] is None or path.resolve() in paths):
+            raise Refusal("manifest binding drifted")
+        paths.add(path.resolve())
+        parents.add(payload["parent_number"])
+        for ticket in payload["tickets"]:
+            if ticket["local_id"] in declared:
+                raise Refusal("duplicate manifest local identity")
+            declared[ticket["local_id"]] = digest
+    if manifest_file.resolve() not in paths:
+        raise Refusal("primary manifest absent from graph")
+    bindings = {}
+    for row in graph["tickets"]:
+        if (not isinstance(row, dict)
+                or set(row) != {"local_id", "manifest_sha256", "intent_sha256",
+                                "issue_id", "issue_number", "blocked_by"}
+                or not isinstance(row["local_id"], str) or row["local_id"] in bindings
+                or declared.get(row["local_id"]) != row["manifest_sha256"]
+                or not isinstance(row["intent_sha256"], str)
+                or not HEX.fullmatch(row["intent_sha256"])
+                or type(row["issue_id"]) is not int or row["issue_id"] <= 0
+                or type(row["issue_number"]) is not int or row["issue_number"] <= 0
+                or row["issue_number"] in parents or not isinstance(row["blocked_by"], list)
+                or any(not isinstance(key, str) or key not in declared for key in row["blocked_by"])
+                or len(set(row["blocked_by"])) != len(row["blocked_by"])):
+            raise Refusal("invalid dependency bindings")
+        bindings[row["local_id"]] = row
+    if (set(bindings) != set(declared)
+            or len({row["issue_id"] for row in bindings.values()}) != len(bindings)
+            or len({row["issue_number"] for row in bindings.values()}) != len(bindings)):
+        raise Refusal("missing or aliased dependency bindings")
+    remaining, settled = set(bindings), set()
+    while remaining:
+        ready = {key for key in remaining if set(bindings[key]["blocked_by"]) <= settled}
+        if not ready:
+            raise Refusal("cyclic dependency graph")
+        settled.update(ready)
+        remaining.difference_update(ready)
+    return bindings
+
+
+def blockers(target: str, bindings: dict[str, dict]) -> list[str] | tuple[str, ...]:
+    return bindings[target].get("blocked_by", BLOCKERS.get(target, ()))
+
+
 def issue(client: GitHub, number: int, expected_id: int) -> dict:
     response = client.rest(API_VERSION).issues.get(OWNER, REPO, number)
     if response.status_code != 200:
         raise Refusal("issue GET failed")
-    row = snapshot(response.raw_response.json(), number)
+    row = snapshot(response.raw_response.json(), number, completion=True)
+    # Edge intents predate completion metadata; preserve their literal preimages.
+    row.pop("state_reason")
     if row["id"] != expected_id:
         raise Refusal("issue identity drifted")
     return row
@@ -102,8 +166,11 @@ def state(client: GitHub, target_local: str, bindings: dict[str, dict]) -> dict:
     return {"issue": current, "blocked_by": dependencies}
 
 
-def path_for(journal: Path, target: str, blocker: str) -> Path:
-    if target not in BLOCKERS or blocker not in BLOCKERS[target]:
+def path_for(journal: Path, target: str, blocker: str,
+             bindings: dict[str, dict] | None = None) -> Path:
+    if (not isinstance(target, str) or not isinstance(blocker, str)
+            or target not in (bindings if bindings is not None else BLOCKERS)
+            or blocker not in (blockers(target, bindings) if bindings is not None else BLOCKERS[target])):
         raise Refusal("unapproved blocker edge")
     return journal / f"{target}-by-{blocker}.intent.json"
 
@@ -123,7 +190,7 @@ def intent(path: Path, digest: str, manifest_file: Path,
             or set(data) != {"version", "manifest_sha256", "graph_sha256", "target", "blocker", "preimage"}
             or data["version"] != 1 or data["manifest_sha256"] != manifest_sha
             or data["graph_sha256"] != graph_sha
-            or path != path_for(path.parent, data["target"], data["blocker"])):
+            or path != path_for(path.parent, data["target"], data["blocker"], bindings)):
         raise Refusal("intent source drifted")
     return data, bindings
 
@@ -131,10 +198,12 @@ def intent(path: Path, digest: str, manifest_file: Path,
 def preview(client: GitHub, manifest_file: Path, graph_file: Path, graph_sha: str,
             journal: Path, target: str, blocker_local: str) -> str:
     bindings, manifest_sha = approved(manifest_file, graph_file, graph_sha)
-    path = path_for(journal, target, blocker_local)
+    path = path_for(journal, target, blocker_local, bindings)
     if (path.exists() or path.is_symlink()
             or attempt_path(path).exists() or attempt_path(path).is_symlink()):
         raise Refusal("existing intent or attempt")
+    if audit(client, bindings, complete=False) != "NEW_EDGES_VERIFIED":
+        raise Refusal("unexpected existing dependency graph")
     before = state(client, target, bindings)
     blocker = bindings[blocker_local]
     issue(client, blocker["issue_number"], blocker["issue_id"])
@@ -159,7 +228,8 @@ def verify(client: GitHub, path: Path, digest: str, manifest_file: Path,
         return "UNRESOLVED"
     blocker = bindings[data["blocker"]]
     expected = [blocker["issue_id"], blocker["issue_number"]]
-    return "EDGE_VERIFIED" if expected in current["blocked_by"] else "UNRESOLVED"
+    return "EDGE_VERIFIED" if (all(row in current["blocked_by"] for row in before["blocked_by"] + [expected])
+                              and audit(client, bindings, complete=False) == "NEW_EDGES_VERIFIED") else "UNRESOLVED"
 
 
 def apply(client: GitHub, path: Path, digest: str, manifest_file: Path,
@@ -169,6 +239,8 @@ def apply(client: GitHub, path: Path, digest: str, manifest_file: Path,
     attempt = attempt_path(path)
     if attempt.exists() or attempt.is_symlink():
         raise Refusal("attempt already recorded; verify only")
+    if audit(client, bindings, complete=False) != "NEW_EDGES_VERIFIED":
+        raise Refusal("unexpected existing dependency graph")
     if state(client, data["target"], bindings) != data["preimage"]:
         raise Refusal("issue or dependency preimage drifted")
     blocker = bindings[data["blocker"]]
@@ -189,12 +261,13 @@ def apply(client: GitHub, path: Path, digest: str, manifest_file: Path,
         return "UNRESOLVED"
 
 
-def audit(client: GitHub, bindings: dict[str, dict]) -> str:
+def audit(client: GitHub, bindings: dict[str, dict], *, complete: bool = True) -> str:
     for target, binding in bindings.items():
-        current = issue(client, binding["issue_number"], binding["issue_id"])
+        issue(client, binding["issue_number"], binding["issue_id"])
         observed = blocked_by(client, binding["issue_number"])
-        if observed != sorted([[bindings[key]["issue_id"], bindings[key]["issue_number"]]
-                              for key in BLOCKERS[target]]):
+        expected = sorted([[bindings[key]["issue_id"], bindings[key]["issue_number"]]
+                           for key in blockers(target, bindings)])
+        if (observed != expected if complete else any(row not in expected for row in observed)):
             return "UNRESOLVED"
     return "NEW_EDGES_VERIFIED"
 

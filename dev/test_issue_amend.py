@@ -7,6 +7,7 @@ from types import SimpleNamespace
 import unittest
 
 from issue_amend import Refusal, apply, intent, marker, preview, verify
+import issue_amend as amendment
 
 
 def issue(body="old", labels=("ready-for-agent",), updated="t1"):
@@ -27,11 +28,14 @@ class FakeIssues:
 
     def update(self, owner, repo, number, *, data):
         assert (owner, repo, number) == ("ray-manaloto", "claude-code-marketplace", 11)
-        assert set(data) == {"body", "labels"}
+        assert set(data) in ({"body", "labels"}, {"state", "state_reason"})
         self.writes.append(data)
         if self.failure == "before":
             raise TimeoutError("before send")
-        self.current = issue(data["body"], tuple(reversed(data["labels"])), "t2")
+        if "state" in data:
+            self.current = {**self.current, **data, "updated_at": "t2"}
+        else:
+            self.current = issue(data["body"], tuple(reversed(data["labels"])), "t2")
         if self.failure == "after":
             raise TimeoutError("after application")
         if self.failure == "503":
@@ -70,6 +74,21 @@ class AmendmentTests(unittest.TestCase):
         with self.assertRaisesRegex(Refusal, "verify only"):
             apply(self.client, self.path, self.digest)
         self.assertEqual(set(self.client.issues.writes[0]), {"body", "labels"})
+
+    def test_retained_v1_intent_and_marker_remain_verify_only(self):
+        self.path.write_text('{"version":1,"repo":"ray-manaloto/claude-code-marketplace",'
+                             '"number":11,"preimage":{"id":77,"number":11,"title":"Spec",'
+                             '"body":"old","state":"open","updated_at":"t1",'
+                             '"labels":["ready-for-agent"]},'
+                             '"desired":{"body":"retained","labels":["needs-info"]}}\n')
+        digest = amendment.sha(self.path.read_bytes())
+        marker(self.path).write_text('{"version":1,"intent_sha256":"' + digest +
+                                     '","operation":"PATCH body labels"}\n')
+        self.client.issues.current = issue("retained", ("needs-info",), "t2")
+        self.assertEqual(verify(self.client, self.path, digest), "VERIFIED")
+        with self.assertRaisesRegex(Refusal, "verify only"):
+            apply(self.client, self.path, digest)
+        self.assertEqual(self.client.issues.writes, [])
 
     def test_drift_prevents_marker_and_write(self):
         self.client.issues.current = issue(updated="t-other")
@@ -155,6 +174,145 @@ class AmendmentTests(unittest.TestCase):
             apply(self.client, target, digest)
         self.assertFalse(marker(real_intent).exists())
         self.assertEqual(self.client.issues.writes, [])
+
+
+class CompletionTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(dir=Path(tempfile.gettempdir()).resolve())
+        self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.path = self.base / "completion.json"
+        self.client = FakeClient()
+        before = {**issue(), "labels": ["ready-for-agent"], "state_reason": None}
+        binding = {"repo": "ray-manaloto/claude-code-marketplace", "number": 11,
+                   "issue_id": 77, "preimage_sha256": amendment.sha(amendment.wire(before))}
+        refs = {}
+        for kind, result in (("acceptance", "accepted"), ("review", "approved"),
+                             ("retro", "applied"), ("delivery", "delivered")):
+            path = self.base / f"{kind}.json"
+            path.write_bytes(amendment.wire({"version": 1, **binding, "result": result}))
+            refs[kind] = {"path": str(path), "sha256": amendment.sha(path.read_bytes())}
+        self.evidence = self.base / "evidence.json"
+        self.evidence.write_bytes(amendment.wire({"version": 1, **binding, "references": refs}))
+
+    def prepare(self):
+        return amendment.preview_completion(self.client, 11, self.evidence, self.path)
+
+    def test_completion_preserves_content_and_closes_only_bound_issue(self):
+        digest = self.prepare()
+        self.assertEqual(apply(self.client, self.path, digest), "VERIFIED")
+        self.assertEqual(verify(self.client, self.path, digest), "VERIFIED")
+        self.assertEqual(self.client.issues.writes, [{"state": "closed", "state_reason": "completed"}])
+        self.assertEqual(self.client.issues.current["body"], "old")
+        with self.assertRaisesRegex(Refusal, "verify only"):
+            apply(self.client, self.path, digest)
+
+    def test_already_completed_is_truthful_no_send(self):
+        digest = self.prepare()
+        self.client.issues.current.update(state="closed", state_reason="completed", updated_at="t2")
+        self.assertEqual(apply(self.client, self.path, digest), "ALREADY_COMPLETED")
+        self.assertEqual(apply(self.client, self.path, digest), "ALREADY_COMPLETED")
+        self.assertEqual(self.client.issues.writes, [])
+        self.assertFalse(marker(self.path).exists())
+
+    def test_stale_evidence_is_refused_before_journal_or_send(self):
+        digest = self.prepare()
+        (self.base / "review.json").write_text("{}")
+        with self.assertRaisesRegex(Refusal, "evidence SHA-256"):
+            apply(self.client, self.path, digest)
+        self.assertFalse(marker(self.path).exists())
+        self.assertEqual(self.client.issues.writes, [])
+
+    def test_wrong_evidence_identity_or_verdict_cannot_prepare_closure(self):
+        original = self.evidence.read_bytes()
+        for field, value in (("repo", "other/repo"), ("number", 12), ("issue_id", 78),
+                             ("preimage_sha256", "0" * 64)):
+            with self.subTest(field=field):
+                data = json.loads(original)
+                data[field] = value
+                self.evidence.write_bytes(amendment.wire(data))
+                with self.assertRaises(Refusal):
+                    self.prepare()
+                self.assertFalse(self.path.exists())
+        self.evidence.write_bytes(original)
+        for kind in ("acceptance", "review", "retro", "delivery"):
+            with self.subTest(kind=kind):
+                data = json.loads(original)
+                del data["references"][kind]
+                self.evidence.write_bytes(amendment.wire(data))
+                with self.assertRaises(Refusal):
+                    self.prepare()
+                data = json.loads(original)
+                receipt_path = self.base / f"{kind}.json"
+                saved = receipt_path.read_bytes()
+                receipt = json.loads(saved)
+                receipt["result"] = "pending"
+                receipt_path.write_bytes(amendment.wire(receipt))
+                data["references"][kind]["sha256"] = amendment.sha(receipt_path.read_bytes())
+                self.evidence.write_bytes(amendment.wire(data))
+                with self.assertRaisesRegex(Refusal, f"{kind} evidence"):
+                    self.prepare()
+                receipt_path.write_bytes(saved)
+
+    def test_exact_preimage_rejects_drift_and_wrong_issue_id(self):
+        digest = self.prepare()
+        for field, value in (("updated_at", "stale"), ("id", 78), ("number", 12)):
+            with self.subTest(field=field):
+                self.client.issues.current = {**issue(), field: value}
+                with self.assertRaises(Refusal):
+                    apply(self.client, self.path, digest)
+                self.assertFalse(marker(self.path).exists())
+        self.assertEqual(self.client.issues.writes, [])
+
+    def test_uncertain_closure_is_verify_only(self):
+        for failure, result in (("before", "UNRESOLVED"), ("after", "VERIFIED"), ("503", "VERIFIED")):
+            with self.subTest(failure=failure):
+                self.path = self.base / f"{failure}.json"
+                self.client = FakeClient()
+                digest = self.prepare()
+                self.client.issues.failure = failure
+                self.assertEqual(apply(self.client, self.path, digest), "UNRESOLVED")
+                self.assertEqual(verify(self.client, self.path, digest), result)
+                with self.assertRaisesRegex(Refusal, "verify only"):
+                    apply(self.client, self.path, digest)
+                self.assertEqual(len(self.client.issues.writes), 1)
+
+    def test_process_death_keeps_completion_marker(self):
+        digest = self.prepare()
+        self.client.issues.failure = "death"
+        with self.assertRaises(KeyboardInterrupt):
+            apply(self.client, self.path, digest)
+        self.assertEqual(verify(self.client, self.path, digest), "VERIFIED")
+        with self.assertRaisesRegex(Refusal, "verify only"):
+            apply(self.client, self.path, digest)
+
+    def test_closed_wrong_reason_or_changed_content_does_not_claim_completion(self):
+        digest = self.prepare()
+        self.client.issues.current.update(state="closed", state_reason="not_planned")
+        with self.assertRaisesRegex(Refusal, "drifted"):
+            apply(self.client, self.path, digest)
+        with self.assertRaisesRegex(Refusal, "already closed"):
+            amendment.preview_completion(self.client, 11, self.evidence, self.base / "closed.json")
+        self.client.issues.current.update(state_reason="completed", body="unrelated amendment")
+        with self.assertRaisesRegex(Refusal, "drifted"):
+            apply(self.client, self.path, digest)
+        self.assertEqual(self.client.issues.writes, [])
+
+    def test_completion_verification_preserves_reason_and_content(self):
+        digest = self.prepare()
+        self.assertEqual(apply(self.client, self.path, digest), "VERIFIED")
+        for field, value in (("state_reason", "not_planned"), ("body", "unrelated"), ("id", 78)):
+            saved = self.client.issues.current.copy()
+            self.client.issues.current[field] = value
+            self.assertEqual(verify(self.client, self.path, digest), "UNRESOLVED")
+            self.client.issues.current = saved
+
+    def test_typed_evidence_refuses_equal_but_noninteger_identity(self):
+        data = json.loads(self.evidence.read_bytes())
+        data["issue_id"] = 77.0
+        self.evidence.write_bytes(amendment.wire(data))
+        with self.assertRaisesRegex(Refusal, "evidence binding"):
+            self.prepare()
 
 
 if __name__ == "__main__":
