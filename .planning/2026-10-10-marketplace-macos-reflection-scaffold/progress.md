@@ -3069,3 +3069,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   validator rejects schema 1.4 youtube=no-results. Firecrawl Search returned
   HTTP 402; Serper remains provisional. All ten raw bindings matched on
   re-verification. These gaps do not become provider or runtime acceptance.
+
+
+- W1 source policy import and completion-contract alignment are locally accepted
+  through `2b112103e6de163936fd016e57e341a0c132b5d8`. Independent W1 and applied
+  alignment reviews passed without actionable findings. Task validation, check,
+  original 19-file baseline and diff checks all returned rc 0 on the reviewed
+  composition. The native commit preserved those exact bytes and unrelated files.
+  The [source-alignment receipt](../../evidence/completion-workflow/source-alignment.json)
+  binds the reviewed files, real check exits and retrospective disposition.
+  A09 publication remains a separate recorded operation. A06 may now receive its
+  fresh worktree allocation; no A06 implementation, runtime gate or tracker
+  closure is claimed by this documentation unit.

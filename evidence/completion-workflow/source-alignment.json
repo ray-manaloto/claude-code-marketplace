@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "unit": "W1 source policy import and approved completion-contract alignment",
+  "status": "locally accepted; publication pending a separate A09 receipt",
+  "source_branch": "codex/marketplace-native-onboarding",
+  "source_commit": "2b112103e6de163936fd016e57e341a0c132b5d8",
+  "source_tree": "468c999f1729d1b078bf6f1a0e9189b7d1d6eb84",
+  "w1_source_commit": "e82237aa6d4d181ff353c79d408fb14da8ff1445",
+  "approved_contract_sha256": "98283e1be1f724c08d19086fbe7dc4188b231d5ce2582930879455d263a8eb59",
+  "review_dispositions": {
+    "w1_composition_review": "PASS; no actionable findings",
+    "completion_alignment_review": "PASS; no material findings",
+    "evidence_class": "independent read-only source, receipt and hash inspection"
+  },
+  "named_checks": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "actual_exit_code": 0,
+      "stdout_sha256": "96f166ac065742354525c4e2021be69d2050bc3158c35b48f424ccf679ea4af4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check"
+      ],
+      "actual_exit_code": 0,
+      "stdout_sha256": "68494b433fe1f1ab8eac2bc1383db849aca255bca79294a46de4a77f7b7d76ad",
+      "stderr_sha256": "4ec94851e44f319cfd410f5b4227f5dee784f6b7ae8387ae255fa1b1a4445c6f"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "actual_exit_code": 0,
+      "stdout_sha256": "d5bb97ceaf45f54941b84a2c439636f5f528ad8b7d8c3978774c45808ddbda40",
+      "stderr_sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "actual_exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "original_acceptance_hashes_matched": 19,
+  "reviewed_files": [
+    {
+      "path": "docs/onboarding.md",
+      "sha256": "ef9732b8b98cb0273c5d96caf918713f5340175e1aea89aea006eb3930f47971"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "a889a79c0d0bd48bb88ac83b2faf09e9e78908f3b66a3bb70b0c197f464927bb"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "915c6f71cd3c0d96c7784055ae2977b7d8e92456df087d5622b7c5994e9e22ab"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/completion-contract.md",
+      "sha256": "15773cac88226d70e62e0eaad1c83c327e4919cef1f0e2790aff7b6b4970775d"
+    },
+    {
+      "path": "evidence/completion-workflow/contract-acceptance.json",
+      "sha256": "49e16036ff674b72cb25431c91e5dc6c251e5ba0b9c4c86d2615cffb3b6e9f6e"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/completion-contract.md",
+      "sha256": "044d2a3fddfdf19b75cd96be100952ebbbdae74b19414517a2fed01e75924b0e"
+    }
+  ],
+  "preservation": {
+    "unrelated_tracked_files": 8352,
+    "preexisting_untracked_files": 12
+  },
+  "retro_disposition": "All actionable unit findings corrected and independently accepted; originating records retain the repairs and no-action reasons.",
+  "local_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-completion-workflow-qbj4yn5d/parent-alignment/acceptance.json",
+      "sha256": "0e9a13c8d848c38204548841dcc14b80aa1505fe74be4a662e3e291d87e190c9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-completion-workflow-qbj4yn5d/parent-alignment/review-dispositions.json",
+      "sha256": "1929121d15be32e7b5ed295540daef88e5b62dee397227d82f4ee9aaa7f4046b"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-completion-workflow-qbj4yn5d/parent-alignment/checks-attempt-1/TERMINAL.json",
+      "sha256": "2ff8e27f80a7148067882627df7d654819e2f8d3c43b39c1476b64b83ab3fb19"
+    }
+  ],
+  "limits": [
+    "No product ticket was closed by this unit.",
+    "Native, provider, fresh-session and OCI acceptance remain separately gated.",
+    "Strict-five research remains incomplete; original failures and provisional routes are preserved."
+  ]
+}
