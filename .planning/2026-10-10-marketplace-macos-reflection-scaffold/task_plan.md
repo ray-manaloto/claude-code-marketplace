@@ -11,6 +11,29 @@ Set `PWF_PLAN_ROOT` to that root and `PLAN_ID` above for commands launched elsew
 The detached `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`
 retains its uncommitted work and private evidence. Do not reset or archive it.
 
+## Session handoff (updated 2026-10-13)
+
+Next step: integrate lane `gate-hooks` (CT-02) when its Fable cold review
+passes — migrate the user-specific keys of the root `.claude/settings.json`
+to `settings.local.json`, run `./dev/mise run hooks:install`, add `test:hooks`
+to `check:research` — then publish via A09; after the user approves the
+11-ticket breakdown, publish the spec and tickets from
+[proposals/claude-takeover-spec/](proposals/claude-takeover-spec/) through
+`issue:create-*` and `issue:new-edge-*`.
+Tip at handoff: `4870211` local; last published `f250f75` (publication of this
+commit follows). Lanes: a06-unit3 #69, codex-session-history, rf-env-scrub,
+team CT-03, retro-gate CT-01, nav CT-04, c1-catalog-promotion #94 — all
+integrated with `retro: passed`; gate-hooks CT-02 handed off at `51f63c6`,
+cold review in progress. Pending user decisions: (1) to-tickets approval of
+CT-01…CT-11 (CT-11 = serialize named checks); (2) settings.json composition
+(default: project keys committed, user keys to `settings.local.json`).
+Resume: read `lanes/*.json`, `retros/*.md`, `ticket-ledger.md`,
+`skill-invocations.md`, `docs/agents/claude-takeover.md`; run
+`./dev/mise tasks validate`, `./dev/mise run check`,
+`./dev/mise run check:acceptance-baseline`; integrate reviewed lanes one at a
+time behind `./dev/mise run retro:gate -- <unit>`; publish through the A09
+route (`delivery:prepare`, `delivery:publish`).
+
 ## Claude takeover (2026-10-13)
 
 Codex threads `01a127db`, `01a130ef`, `01a12bd1` and `01a13185` stopped; the

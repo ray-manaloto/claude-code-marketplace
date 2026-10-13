@@ -3412,3 +3412,10 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   section. Composed-tree gates rc 0 (validate 52, check, baseline 19/19,
   diff --check); retro filed at `retros/nav.md` and gated; lane record
   `retro: passed`.
+
+- NEXT (2026-10-13, after `/clear`): integrate `gate-hooks` (CT-02) once its
+  cold review passes (settings key migration, `hooks:install`, `test:hooks`
+  into `check:research`), publish via A09, then publish the takeover spec and
+  CT-01…CT-11 tickets from `proposals/claude-takeover-spec/` after the user's
+  to-tickets approval. Pending decisions: to-tickets approval; settings.json
+  composition. Everything else is integrated with `retro: passed`.
