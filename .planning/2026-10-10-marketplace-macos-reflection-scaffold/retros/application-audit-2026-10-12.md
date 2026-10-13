@@ -77,6 +77,6 @@ from the retained checkout without historical edits. Its two linked JSON
 receipts were copied with it. Their source-branch archival review, commit and
 publication were separately gated; independent archival review passed with no
 finding. The ten later records were committed locally in `e68a5fe` and
-`4e16ddd`; the linked receipt and addendum commit and remote publication are
-pending. The current W5 row remains the live implementation and admission
-status.
+`4e16ddd`; the linked receipts and addendum were committed at `9975c98`.
+Remote publication remains pending. The current W5 row remains the live
+implementation and admission status.

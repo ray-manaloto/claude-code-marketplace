@@ -122,8 +122,10 @@ The approved historical A-index is
 "unpublished" wording and the phase notes below are preserved as history;
 the W5 row above and [progress.md](progress.md) carry current publication state.
 The source-branch retrospective protocol transfer and ten-record historical
-audit passed local static checks and independent archival re-review; its
-commit and publication remain separate from A06/A12b admission.
+audit passed local static checks and independent archival re-review. The
+later ten-record archive and its linked receipts passed the same bounded
+checks. Both transfers are locally committed through `9975c98`; remote
+publication remains separate from A06/A12b admission.
 The user approved its original fourteen-slice breakdown and blocking edges on 2026-10-12.
 A01/A02 retrospectives split late A12 into A12a fast-check/hosted CI
 qualification after A09 publication and A12b assembly. A04's retro split A03
