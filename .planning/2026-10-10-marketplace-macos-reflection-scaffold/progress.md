@@ -3285,3 +3285,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   (#94, Opus) allocated with its record committed before the worktree was cut.
   Publishing the integration branch through the A09 route with the A06u3,
   codex-session-history and rf-env-scrub integrations; remote preimage `05c3dc9`.
+
+- 2026-10-13 (Claude session, publication 2 and dispatch): A09 publication
+  succeeded — `published=f250f75`, `history_scan_rc=0`, remote verified at
+  `f250f75` (preimage `05c3dc9`). retro-gate cold review returned PASS-with-P2
+  (a dead `#N` alternative in the owner regex refuses "tracked in #29" rows;
+  unbounded record read) plus P3s (prose "pending" false positive on A04,
+  `--branch` flag and a usage error instead of a guessed unit for CT-02 hooks,
+  ≈417-line budget overage accepted by both reviewer and implementer); repair
+  cycle dispatched. TEAM repairs landed at `ea8c8c9`; focused re-review
+  dispatched. Lane `c1-catalog-promotion` (#94) dispatched to an Opus
+  implementer on offline fixtures only. Active: retro-gate (repair), team
+  (re-review), c1 (implementing).
