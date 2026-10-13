@@ -3391,3 +3391,13 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `skill-invocations.md` binding each stage's source path, SHA-256, mode and
   output pointer, to be extended whenever the user types one of the four
   user-only verbs.
+
+- 2026-10-13 (merger fork, C1 integration): Fable cold review PASS-with-P3,
+  confirmation re-review PASS. Merged `claude/c1-catalog-promotion`
+  (`52ce420` + `6c09b7f`) into the integration branch: catalog-only
+  promotion at the runner boundary with `catalog_only_promotion` and
+  `promoted_query_drift` receipts; an unrelated empty regression still blocks
+  (reviewer upheld). Composed-tree gates rc 0 (validate 52, check, baseline
+  19/19, 91 refresh tests, diff --check). Retro filed at
+  `retros/c1-catalog-promotion.md`; lane record `retro: passed`; #94 ledger
+  row integrated, closure pending.
