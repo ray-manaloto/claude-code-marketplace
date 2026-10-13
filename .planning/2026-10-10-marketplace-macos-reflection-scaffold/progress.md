@@ -2870,3 +2870,16 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `ai-agent-setup-prompt.md` remain untracked. Remote stays at
   `111424b05fbe93342bfd3f31c3f430a91620e060`; these archival commits
   have not been pushed. A06 and A12b remain held.
+- The independent #13/#28/#29 worktrees have advanced without source
+  integration or publication. #29's offline Context7 bridge and applied
+  retrospective are locally committed at `3131b89`; its live provider and
+  confined install gates remain partial. #28's offline v2 CLI contract and
+  applied retrospective are locally committed at `a1bd33e`; public CLI and
+  OCI acceptance remain partial. #13's guarded private LSan trial preparation
+  is locally committed through `f113a89`; its exact inventory/Docker overlay
+  passed focused static controls and independent final-code review. Two
+  independent live pre-run attempts returned FAIL because an unknown
+  concurrent `mise run test` in another dotfiles worktree occupied the shared
+  writer census. Both failed receipts are preserved in the #13 worktree.
+  No repaired admission or native trial has run. Source W4 status now records
+  these local-only states; A06 and A12b remain held.
