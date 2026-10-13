@@ -96,10 +96,14 @@ def main() -> int:
                 runs = [r for r in os.listdir(p) if os.path.isdir(os.path.join(p, r))]
                 print(f"{t}  runs={len(runs)}")
         return 0
-    matches = [t for t in os.listdir(ROOT) if t.startswith(a.thread)]
+    matches = sorted(t for t in os.listdir(ROOT) if t.startswith(a.thread))
     if not matches:
         raise SystemExit(f"no receipts for {a.thread!r}")
-    tdir = os.path.join(ROOT, matches[0])
+    if a.thread not in matches and len(matches) > 1:
+        sys.stderr.write(f"ambiguous thread prefix {a.thread!r}; candidates:\n")
+        sys.stderr.write("".join(f"  {t}\n" for t in matches))
+        raise SystemExit(2)
+    tdir = os.path.join(ROOT, a.thread if a.thread in matches else matches[0])
     runs = sorted(r for r in os.listdir(tdir) if os.path.isdir(os.path.join(tdir, r)))
     if a.run:
         runs = [r for r in runs if r.startswith(a.run)]

@@ -244,6 +244,15 @@ class CodexSessionHistoryTest(unittest.TestCase):
         shown = json.loads(self.run_script("codex_threads.py", "--json", "show", TWINS[1]))
         self.assertEqual(shown["id"], TWINS[1])
 
+    def test_receipts_ambiguous_prefix_refuses(self):
+        for tid in TWINS:
+            (self.codex_home / "research-coverage" / tid / TURN).mkdir(parents=True)
+        err = self.run_script("codex_research_receipts.py", "01bbbbbb", rc=2)
+        self.assertIn("ambiguous", err)
+        for tid in TWINS:
+            self.assertIn(tid, err)
+        self.run_script("codex_research_receipts.py", TWINS[0])
+
     def test_otel_tail_reads_env_file(self):
         record = {"resourceLogs": [{
             "resource": {"attributes": [
