@@ -9,10 +9,9 @@ research core, introduced incrementally behind the current interfaces;
 
 - Marketplace and plugin identity (`.claude-plugin/marketplace.json`), the plugin's
   CLI, wrappers and data paths.
-- The 19 acceptance-baseline files in `evidence/onboarding/baseline-files.json` and the
-  frozen `.gitignore`.
-- Existing edits and the source checkout; verify checkout, branch, HEAD and Git
-  common directory before editing.
+- The 19 acceptance-baseline files in `evidence/onboarding/baseline-files.json`;
+  `.gitignore` is one of them.
+- Existing edits and the source checkout; verify checkout, branch, HEAD and Git dir first.
 
 ## Start here
 
@@ -23,34 +22,35 @@ research core, introduced incrementally behind the current interfaces;
    `docs/agents/claude-team.md`. Vocabulary: `GLOSSARY.md`. Reviewer judgement
    rules: `CODING_STANDARDS.md`.
 4. Per-directory guidance: `dev/`, `docs/`, `evidence/`, `.planning/`, `.claude/` and
-   `plugins/aggregated-research/` each have an `AGENTS.md` (nested `CLAUDE.md` imports
-   it); `.claude/rules/*.md` hold path-scoped rules; `.codex/` is native Codex config.
+   `plugins/aggregated-research/` each have an `AGENTS.md`; a nested `CLAUDE.md` imports
+   it everywhere except the plugin (a later lane adds it). `.claude/rules/*.md` hold
+   path-scoped rules.
 
 ## Standing workflow
 
 grill-with-docs → to-spec → to-tickets → implement-spec → retro, per
 `docs/agents/issue-tracker.md` (GitHub Issues hold specs and tickets).
-- Read the ownership rule in `docs/agents/codex-task-orchestration.md` before
-  allocating a writer, worktree or takeover; brief each agent with file scope,
-  prerequisite receipts and checks.
+- Read the ownership rule and unit-size limit in `docs/agents/codex-task-orchestration.md`
+  before allocating a writer, worktree or takeover; brief each agent with file scope,
+  prerequisite receipts and checks. The parent owns shared planning files.
 - Every ticket or task outcome, partial or blocked included, ends at the retro gate in
   `docs/agents/ticket-retro.md`.
-- A unit stays near five maintained files and 300 handwritten changed lines; the parent
-  owns shared planning files.
 - Record actual exit codes, Git identity and reviewer dispositions; planned, implemented,
   reviewed, tested, committed and published are separate states.
 
 ## Gotchas
 
 - Run `./dev/mise tasks validate`, `./dev/mise run check` and
-  `./dev/mise run check:acceptance-baseline`. The root `mise.toml` / `mise.lock` define
-  the Linux OCI image and install in the container only.
-- Named checks run one at a time and are static; container, provider, hook-runtime and
-  fresh-session acceptance (`ci/acceptance.sh`) need a separately admitted operation.
+  `./dev/mise run check:acceptance-baseline`. Root `mise.toml` / `mise.lock` define the
+  Linux OCI image (container install only); do not install plugin runtimes just to lint.
+- Run named checks from one worktree at a time; a raced result is not a receipt (CT-11
+  adds a lock). They are static: container, provider, hook-runtime and fresh-session
+  acceptance (`ci/acceptance.sh`) need a separately admitted operation.
 - Global settings, hooks, trust, credentials, model defaults, global mise, other
   repositories and host-heavy work need their own recorded admission. Push, publish,
   merge, daemon registration and native goals wait for explicit instruction.
-- Reuse inherited Codex skills and plugins; `.codex/` receives no Claude hooks.
+- Reuse inherited Codex skills and plugins; do not copy Claude hooks or slash commands
+  into native Codex configuration.
 - New-tool research uses Exa, Firecrawl, Last30Days, Context7 and GitHub under
   `fnox --config ~/.config/fnox/config.toml --profile codex_research --no-defaults
   --no-daemon --non-interactive exec -- <command>`; keep secrets out of output, cite

@@ -1,7 +1,8 @@
 # docs/
 
 Each fact has one authoritative document; link to it and leave the copy out. A
-change to a decision, protocol or status edits the owner below and nothing else.
+change to a decision, protocol or status edits the owner below and nothing else, and
+other documents point at a plan, receipt or helper by relative link.
 
 ## Authority
 
@@ -15,7 +16,7 @@ change to a decision, protocol or status edits the owner below and nothing else.
 | Core qualification and build matrix | `core-qualification.md`, `baseline-presets.md` |
 | Toolchains | `p2996-toolchain.md`, `llvm-tools.md`, `iwyu-toolchain.md`, `vcpkg-toolchain.md`, `vcpkg-toolchains.md`, `sanitizers.md` |
 | Offline research feedback | `research-feedback.md`, with records in `research-feedback-retro/` |
-| Agent protocols: ownership, retro gate, tracker, team, takeover, triage, domain | `agents/` |
+| Agent protocols | `agents/`: ownership (`codex-task-orchestration.md`), `ticket-retro.md`, `issue-tracker.md`, `claude-team.md`, `claude-takeover.md`, `triage-labels.md`, `domain.md`, `codex-example-classification.md` (example triage), `context7-bridge.md` (Context7 bridge), `full-baseline-ticket-review.md` (baseline ticket review), `legacy-trackers-boundary.md` (legacy tracker limits), `python-bridge-placement.md` (Python bridge placement) |
 | Architecture decisions | `adr/` (numbered, `Accepted` status) |
 
 Vocabulary lives in `../GLOSSARY.md`; reviewer judgement rules in
@@ -28,5 +29,4 @@ Vocabulary lives in `../GLOSSARY.md`; reviewer judgement rules in
   standing workflow.
 - New decisions go in a new ADR that names what it supersedes; an accepted ADR keeps
   its text.
-- Point at a plan, receipt or helper with a relative link; restate none of its content.
 - Sanitized material only: no secrets, tokens, provider payloads or transcripts.
