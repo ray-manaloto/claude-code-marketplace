@@ -3010,3 +3010,16 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   Publish this documentation, then qualify/integrate the small feedback helper,
   preserve the scheduler's edits, and return the slot. A06 implementation follows
   a later allocation; readiness alone is not implementation or acceptance.
+
+- The approved scheduling/team documentation was published through A09 at
+  `304255d13c5d171ce4e107c3a3d5f3c9a945983b`; all checks and scans passed, and a
+  separate remote read matched. The parent then imported the fixed `208a57b`
+  feedback helper and 12 tests, added existing check discovery and two mise tasks,
+  and preserved every earlier configuration record. All named checks passed;
+  four public replay cases returned their expected 0/2/0/2 with unchanged inputs.
+  Independent cold review passed exact source and immutable receipt hashes.
+  The [unit retrospective](retros/feedback-integration.md) records applied
+  provenance/evidence improvements and exclusions. This entry records completed
+  implementation/review and publication preparation; A09's external receipt
+  supplies the final commit/remote state. Return the two-unit writer allocation
+  after delivery; A06, remaining handoff units and native gates are not completed.

@@ -65,6 +65,7 @@ def check(baseline=False):
 
     run("git", "diff", "--check")
     run("git", "diff", "--cached", "--check")
+    run(sys.executable, "-B", "-m", "unittest", "discover", "-s", "dev", "-p", "test_research_*.py")
     print(json.dumps({"status": "pass", "root": str(ROOT), "checks": counts}, sort_keys=True))
 
 

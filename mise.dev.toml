@@ -280,3 +280,13 @@ dir = "{{config_root}}"
 depends = ["deps:check"]
 usage = 'arg "<graph_file>"; arg "<graph_sha256>"'
 run = 'uv run --no-sync --offline python -B dev/issue_edges.py audit --manifest-file dev/issue-tickets.json --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}"'
+
+[tasks."check:research-feedback"]
+description = "Run offline research coverage regression controls"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_research_feedback.py -v'
+
+[tasks."research:replay-feedback"]
+description = "Replay explicit native observations and feedback without provider calls"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/research_feedback.py'
