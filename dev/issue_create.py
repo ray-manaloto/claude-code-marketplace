@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A08a: create one approved child issue with a durable, single-POST intent."""
+"""Create one manifest-approved issue with a durable, single-POST intent."""
 
 from __future__ import annotations
 
@@ -10,12 +10,14 @@ import re
 import sys
 
 from githubkit import GitHub
+from githubkit.exception import RequestFailed
 
 from github_search_one_page import API_VERSION, credential
 from issue_amend import OWNER, REPO, Refusal, labels, publish, read, sha, wire
 
 REPOSITORY = f"{OWNER}/{REPO}"
 LOCAL_ID = re.compile(r"A\d\d(?:[ab])?\Z")
+GENERIC_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,63}\Z")
 PAGE_SIZE, MAX_REPO_PAGES = 100, 20
 
 
@@ -23,13 +25,18 @@ def manifest(path: Path) -> tuple[dict, str]:
     source = read(path)
     data = json.loads(source)
     if (not isinstance(data, dict) or set(data) != {"version", "repo", "parent_number", "tickets"}
-            or data["version"] != 1 or data["repo"] != REPOSITORY or data["parent_number"] != 11
+            or type(data["version"]) is not int or data["version"] not in (1, 2)
+            or data["repo"] != REPOSITORY
+            or data["parent_number"] is not None and (
+                type(data["parent_number"]) is not int or data["parent_number"] <= 0)
+            or data["version"] == 1 and data["parent_number"] != 11
             or not isinstance(data["tickets"], list) or not 1 <= len(data["tickets"]) <= 50):
         raise Refusal("invalid ticket manifest")
     seen = set()
     for ticket in data["tickets"]:
         if (not isinstance(ticket, dict) or set(ticket) != {"local_id", "title", "body", "body_sha256", "labels"}
-                or not isinstance(ticket["local_id"], str) or not LOCAL_ID.fullmatch(ticket["local_id"])
+                or not isinstance(ticket["local_id"], str)
+                or not (LOCAL_ID if data["version"] == 1 else GENERIC_ID).fullmatch(ticket["local_id"])
                 or ticket["local_id"] in seen or not isinstance(ticket["title"], str)
                 or not ticket["title"].strip() or not isinstance(ticket["body"], str)
                 or not ticket["body"].strip() or sha(ticket["body"].encode()) != ticket["body_sha256"]
@@ -97,10 +104,11 @@ def parent_issue(client: GitHub, number: int) -> dict:
     return row
 
 
-def inventory(client: GitHub, parent_number: int) -> dict:
-    parent = parent_issue(client, parent_number)
-    repository, children = pages(client, None), pages(client, parent_number)
-    if len(children) > 100 or any(row["id"] == parent["id"] for row in children):
+def inventory(client: GitHub, parent_number: int | None) -> dict:
+    parent = parent_issue(client, parent_number) if parent_number is not None else None
+    repository = pages(client, None)
+    children = pages(client, parent_number) if parent is not None else []
+    if len(children) > 100 or parent is not None and any(row["id"] == parent["id"] for row in children):
         raise Refusal("parent at native 100-child limit or invalid listing")
     return {"parent": parent, "repository": repository, "children": children}
 
@@ -111,7 +119,7 @@ def matches(rows: list[dict], ticket: dict) -> list[dict]:
 
 
 def intent_path(journal: Path, local_id: str) -> Path:
-    if not LOCAL_ID.fullmatch(local_id):
+    if not GENERIC_ID.fullmatch(local_id):
         raise Refusal("invalid local ID")
     return journal / f"{local_id}.intent.json"
 
@@ -122,6 +130,19 @@ def attempt_path(path: Path) -> Path:
 
 def binding_path(path: Path) -> Path:
     return path.with_name(path.name + ".binding.json")
+
+
+def operation(data: dict) -> str:
+    return "POST issue" if data["parent_number"] is None else "POST issue with parent_issue_id"
+
+
+def parent_absent(client: GitHub, number: int) -> bool:
+    try:
+        return client.rest(API_VERSION).issues.get_parent(OWNER, REPO, number).status_code == 404
+    except RequestFailed as error:
+        return error.response.status_code == 404
+    except Exception:
+        return False
 
 
 def preview(client: GitHub, manifest_file: Path, local_id: str, journal: Path) -> str:
@@ -137,7 +158,7 @@ def preview(client: GitHub, manifest_file: Path, local_id: str, journal: Path) -
         raise Refusal("parent at native 100-child limit")
     if matches(before["repository"], ticket) or matches(before["children"], ticket):
         raise Refusal("local ID already appears in GitHub inventory")
-    payload = {"version": 1, "repo": REPOSITORY, "manifest_sha256": manifest_sha,
+    payload = {"version": data["version"], "repo": REPOSITORY, "manifest_sha256": manifest_sha,
                "parent_number": data["parent_number"], "ticket": ticket, "preimage": before}
     encoded = wire(payload)
     publish(path, encoded)
@@ -151,7 +172,8 @@ def load_intent(path: Path, digest: str, manifest_file: Path) -> dict:
     data, actual_manifest_sha = manifest(manifest_file)
     intent = json.loads(source)
     if (not isinstance(intent, dict) or set(intent) != {"version", "repo", "manifest_sha256", "parent_number", "ticket", "preimage"}
-            or intent["version"] != 1 or intent["repo"] != REPOSITORY
+            or type(intent["version"]) is not int or intent["version"] != data["version"]
+            or intent["repo"] != REPOSITORY
             or intent["manifest_sha256"] != actual_manifest_sha
             or intent["parent_number"] != data["parent_number"]
             or intent["ticket"] not in data["tickets"]
@@ -162,7 +184,7 @@ def load_intent(path: Path, digest: str, manifest_file: Path) -> dict:
 
 def verify(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
     data = load_intent(path, digest, manifest_file)
-    if json.loads(read(attempt_path(path))) != {"version": 1, "intent_sha256": digest, "operation": "POST issue with parent_issue_id"}:
+    if json.loads(read(attempt_path(path))) != {"version": 1, "intent_sha256": digest, "operation": operation(data)}:
         raise Refusal("invalid attempt marker")
     ticket = data["ticket"]
     current = inventory(client, data["parent_number"])
@@ -172,8 +194,10 @@ def verify(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
     child = found[0]
     if (child["body"] != full_body(ticket) or child["title"] != ticket["title"]
             or child["labels"] != ticket["labels"] or child["state"] != "open"
-            or current["parent"]["id"] != data["preimage"]["parent"]["id"]
-            or [(x["id"], x["number"]) for x in current["children"]].count((child["id"], child["number"])) != 1):
+            or data["parent_number"] is None and not parent_absent(client, child["number"])
+            or data["parent_number"] is not None and (
+                current["parent"]["id"] != data["preimage"]["parent"]["id"]
+                or [(x["id"], x["number"]) for x in current["children"]].count((child["id"], child["number"])) != 1)):
         return "UNRESOLVED"
     binding = {"version": 1, "intent_sha256": digest, "local_id": ticket["local_id"],
                "parent_number": data["parent_number"], "issue_id": child["id"], "issue_number": child["number"]}
@@ -195,12 +219,13 @@ def apply(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
     if before != data["preimage"] or len(before["children"]) >= 100 or matches(before["repository"], data["ticket"]):
         raise Refusal("fresh issue preimage drifted")
     publish(attempt, wire({"version": 1, "intent_sha256": digest,
-                           "operation": "POST issue with parent_issue_id"}))
+                           "operation": operation(data)}))
     ticket = data["ticket"]
+    payload = {"title": ticket["title"], "body": full_body(ticket), "labels": ticket["labels"]}
+    if before["parent"] is not None:
+        payload["parent_issue_id"] = before["parent"]["id"]
     try:
-        client.rest(API_VERSION).issues.create(OWNER, REPO, data={
-            "title": ticket["title"], "body": full_body(ticket), "labels": ticket["labels"],
-            "parent_issue_id": before["parent"]["id"]})
+        client.rest(API_VERSION).issues.create(OWNER, REPO, data=payload)
     except Exception:
         return "UNRESOLVED"
     try:
