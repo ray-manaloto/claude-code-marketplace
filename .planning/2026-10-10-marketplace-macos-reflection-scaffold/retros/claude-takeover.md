@@ -15,7 +15,6 @@ via GraphQL `blockedBy`/`parent`), and the pre-merge gate exits on `d2a4103`
 | P2 | Automated checks: no deterministic check refuses integration or publication of a unit without a retro record, so the "retro after every ticket" rule depended on agent memory. Calibration of a draft gate against the 33 existing records passed 16 and failed 17, mostly older A-series records that skipped categories. | The GATE lane adds `dev/retro_gate.py`, `dev/test_retro_gate.py`, the `retro:gate` mise task, `hk` git steps and Claude Code hooks; this record is written to the shape that gate checks. Applied as a planned lane with an owner, not a deferred wish; verification is the lane's own tests. |
 | P3 | Information access: Codex's evidence lives in rollouts, SQLite stores and private packets outside the repository, and nothing in the repository told a successor where. | `findings.md` now lists the stores and the hash-bound A06 unit3 import packet; the SKILL lane ships `codex-session-history` so the lookup is a script, not archaeology. Verified: the scripts ran against all four threads (digests of 65–115 MB rollouts in under 0.5 s each). |
 | P3 | Steering: `.gitignore` is one of the 19 frozen baseline files, so the lane worktree directory cannot be ignored in the committed tree without a baseline transition. | Local exclusion added to `.git/info/exclude`; the plan records the constraint so a reviewed baseline transition can carry it later. Verified by `git status --short` showing no `.claude/worktrees` entries after creation. |
-
 | P2 | Steering: the activation record said the five stages were "invoked natively", but only the `grilling`/`domain-modeling` pair (via the user's typed `/grill-with-docs`) and the supporting skills ran through the Skill tool; `to-spec`, `to-tickets`, `implement-spec` and `retro` were file-guided fallbacks. The five-stage protocol forbids claiming a model call that did not happen. Found by a side agent's review on 2026-10-13. | Applied: the record, the plan's takeover section and the spec draft now state the actual modes; `skill-invocations.md` binds each stage's source path, SHA-256 (computed with `shasum -a 256`), mode and output pointer and is updated per stage. Verified by re-reading the three files and by `retro:gate -- claude-takeover` rc 0 after the edit. |
 
 Coding standards: no judgement-only rule found; the existing reviewer guidance
@@ -25,7 +24,7 @@ AgentsView's semantic index (9 % built) was replaced by lexical search with the
 coverage status recorded; no further change. No-ops: the superseded standby
 wording is kept as a labelled historical snapshot rather than deleted, because
 its receipts are still cited elsewhere; no ineffective instruction was added.
-All four findings above are applied in this unit or allocated to a named lane
+All five findings above are applied in this unit or allocated to a named lane
 with its own verification; none is deferred without an owner. Checks on the
 composed tree: `check` and `git diff --check` recorded in the commit receipt in
 `progress.md`.
