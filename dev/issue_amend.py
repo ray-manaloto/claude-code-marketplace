@@ -103,11 +103,15 @@ def fetch(client: GitHub, number: int, completion: bool = False) -> dict:
     return snapshot(response.raw_response.json(), number, completion)
 
 
+def matches_completion_binding(data: object, binding: dict) -> bool:
+    return (isinstance(data, dict) and type(data.get("version")) is int and data["version"] == 1
+            and not any(type(data.get(key)) is not type(value) or data[key] != value for key, value in binding.items()))
+
+
 def completion_evidence(data: object, before: dict) -> None:
     binding = {"repo": f"{OWNER}/{REPO}", "number": before["number"],
                "issue_id": before["id"], "preimage_sha256": sha(wire(before))}
-    if (not isinstance(data, dict) or type(data.get("version")) is not int or data["version"] != 1
-            or any(type(data.get(key)) is not type(value) or data[key] != value for key, value in binding.items())
+    if (not matches_completion_binding(data, binding)
             or not isinstance(data.get("references"), dict) or set(data["references"]) != set(VERDICTS)):
         raise Refusal("invalid completion evidence binding")
     for kind, verdict in VERDICTS.items():
@@ -120,8 +124,7 @@ def completion_evidence(data: object, before: dict) -> None:
         if sha(source) != ref["sha256"]:
             raise Refusal("completion evidence SHA-256 mismatch")
         receipt = json.loads(source)
-        if (not isinstance(receipt, dict) or type(receipt.get("version")) is not int or receipt["version"] != 1
-                or any(type(receipt.get(key)) is not type(value) or receipt[key] != value for key, value in binding.items())
+        if (not matches_completion_binding(receipt, binding)
                 or receipt.get("result") != verdict):
             raise Refusal(f"{kind} evidence is not accepted for this preimage")
 
