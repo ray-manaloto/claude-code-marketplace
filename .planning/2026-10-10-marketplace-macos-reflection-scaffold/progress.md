@@ -1810,3 +1810,963 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   commits and receipts, the remaining local frontier and the #28 acceptance
   assertion versus frozen-baseline conflict. Transfer remains inactive and
   requires an explicit user message that Codex ownership has stopped.
+
+## 2026-10-12 requirement reconciliation
+
+- The user's 17-point clarification requests portable mise-first execution,
+  minimal project-managed Python, JDX tooling, complete supported diagnostic
+  matrices, telemetry, current dependencies, live command review, and branch
+  publication followed by work from the source checkout. This directly
+  authorizes the requested push and checkout transfer; it does not mark the
+  existing implementation or a new dependency revision qualified.
+- Re-attested clean branch `codex/marketplace-native-onboarding` at
+  `6130ab5e9298e4c70d8c39a0ebd3c6857458c5c5`. The source checkout remains
+  `main` at `6b5b092efa6bdf678815073db42f69fae3f07ab3`, with untracked
+  handoff inputs. Read-only agent `setup_transfer_audit` found no tracked-path
+  collisions and confirmed the Matt Pocock tracker/label/domain setup is
+  already present on the integration branch. Preserve the old worktree and
+  its ignored artifacts when moving branch ownership.
+- Read-only agent `command_guard` confirmed missing operational mise tasks,
+  no root Python dependency manifest, direct Python commands in current docs,
+  and historical host/global-profile dependencies. It reviews submitted
+  batches; no arbitrary tool-call interception has been established.
+  `sanitizer_research` is checking upstream diagnostic/platform contracts.
+  All three acknowledged their scope and live status probe; parent remains
+  the sole implementation writer.
+- The user answered the first four interpretation questions: direct read-only
+  inspection is allowed, operational tasks must have identical human/agent/CI
+  arguments, namespaces use `com::rsm::<module>`, and latest stable dependencies
+  are locked and qualified. Telemetry defaults to structured files; integrate
+  native Claude/Codex/Antigravity signals with one shared Mac collector owned
+  by `~/.config/mise/`, never a collector per project. These decisions are now
+  recorded in `docs/accepted-decisions.md`; implementation remains pending.
+- Native fnox → mise `research-fanout` ran for request
+  `01a130e8-1fe3-7e72-90d4-a6157ed06785` with an explicit three-topic
+  Last30Days plan and returned 0. GitHub's three routes were controlled empty;
+  Exa, Context7, Firecrawl developer, and Last30Days returned results.
+  Firecrawl Search used provisional Serper fallback after credits exhaustion.
+  The wrapper reports a provisional pass; this is not full native five-provider
+  coverage. Raw receipts remain in the hook's request-specific directory.
+  The existing research task permits dependency synchronization; this launch
+  did not establish that its environment was immutable. Subsequent research
+  calls will use supported no-sync controls after route inspection.
+- `command_guard` verified the installed mise and uv help surfaces, each
+  returning 0, for `run --no-deps --skip-tools`, `UV_NO_SYNC=1`, and
+  `UV_PYTHON_DOWNLOADS=never`. The new telemetry research request
+  `01a1310a-5f82-7f20-8285-26971760346a` was launched through native fnox and
+  the named mise research task with those controls and auto-install disabled.
+  It exited 1: Context7 reported monthly quota exhaustion. GitHub's three
+  routes were controlled empty; Exa, Firecrawl developer and Last30Days
+  returned results. Firecrawl Search returned HTTP 402 and used a provisional
+  Serper substitute. All ten raw-file/attempt hashes matched the manifest.
+  This is incomplete coverage; the native failed receipt is preserved and
+  known quota routes will not be retried. No project collector or global
+  configuration was created or changed.
+- The next five answers accepted all three targets, fast commit hooks with
+  explicit expensive profiles, format-aware schemas, GitHubKit-first work,
+  and amendment of #11 with versioned acceptance transitions. The user added
+  exact-release Codex schema assets and reuse of saved-search behavior from
+  knowledge-base, dotfiles and the PDF-updater project. A read-only source
+  audit is in progress; transport parity is not assumed. Remaining questions
+  concern enforcement coverage, telemetry storage/retention and the first
+  unified task's acceptance seams.
+- The user accepted combined native-hook, guard-agent and CI enforcement,
+  with explicit coverage limits. Telemetry uses `~/.local/state/otel/` with
+  rotation and configurable retention defaulting to 30 days. The known-result
+  search control was explained; its acceptance decision is still pending.
+- Added `docs/agents/workflow-reconciliation.md`: requirement gaps, upstream
+  sanitizer/check families and incompatibilities, all ten Valgrind tools,
+  performance measurement boundaries, schema/telemetry constraints and actual
+  research route status. Read-only review is pending; no new runtime support
+  or installed tools are claimed.
+- The user accepted the first GitHubKit task's test seams, including bounded
+  known-result controls. The twelve interpretation questions are resolved.
+  Independent inventory review found one GCC completeness omission; added its
+  individual check names, incompatible pairs and pointer-pair prerequisites,
+  and strengthened two runtime/architecture citations. The reviewer otherwise
+  found the LLVM/Valgrind inventory and qualification boundaries correct.
+- The reconciliation documentation passed `./dev/mise tasks validate`,
+  `./dev/mise run check`, and `./dev/mise run check:acceptance-baseline`, each
+  with exit 0; all 19 original file hashes remain unchanged. Spec #11 was read
+  live with its empty comment list and existing 50-ticket index. Its current
+  telemetry/global-hook exclusions need an explicit scoped amendment; no
+  hosted issue was changed by this audit.
+- The independent command-guard review found two wording conflicts: the old
+  global-profile setup still read as a current dependency, and the report
+  still mentioned unresolved interpretations. Both were corrected: portable
+  project declarations supersede global-profile reliance, historical receipts
+  remain intact, and the twelve interpretations are explicitly resolved.
+- The command-guard reviewer passed the corrected four-file documentation
+  unit. The reconciliation report is bound by SHA-256
+  `5089909fb7885a2bb89b5f6a4752791bf7a47a2640388f3b36f2540fd8b47981`;
+  accepted decisions by `4cd7542bda079afce9312c91a29d4a8cf2cf7ca918323b2a8e6bf8da4f66b9a1`.
+  This settles its review gate; it is not yet committed or published.
+- Completed the read-only three-project reuse audit and recorded exact donor
+  identities/anchors in `docs/agents/github-search-reuse.md`. Only the PDF-updater
+  currently uses GitHubKit; identified replay, incomplete-result and corruption
+  defects are excluded from adaptation. No donor files or credentials changed.
+- Drafted `automation-amendment-draft.md` with eight bounded bootstrap tickets
+  and genuine blocking edges. It establishes the requested GitHubKit/replay
+  route and repeatable publication/transfer before the broader evidence-backed
+  modernization amendment. Ticket granularity is not yet approved; no issue,
+  implementation or dependency environment was changed.
+- Two read-only reviewers identified oversized stateful slices and missing
+  delivery details. Revised the proposal to twelve tickets: separate paging
+  controls, recording, comparison, single-issue amendment, graph publication
+  and transfer preparation/application. Added explicit initial tool/lock/sync
+  tasks, complete-outbound secret scanning, preserved-path inventories,
+  execution-root verification, active guide migration and hook coverage limits.
+  The remainder amendment is now assembly/review only. Review of this revised
+  breakdown and user granularity approval remain pending.
+- Source-audit review added a critical public-task control: offline replay must
+  succeed with credentials unavailable and network forbidden. Live credentials
+  resolve only after local validation. Corrected donor storage wording to avoid
+  claiming enforced immutability, and clarified the read-only commands that ran.
+- Both reviewers passed the revised twelve-ticket amendment, SHA-256
+  `e46f9c2d9215f47bfea5a804d2da22150ee73e787d60053b39c12963ed2fbe00`.
+  The user has been asked to review its granularity/blocking edges as required
+  by the invoked to-tickets skill; that approval remains pending. The app
+  queued the draft for display. No implementation, issue mutation or transfer
+  has begun.
+- Read-only bootstrap preparation confirmed mise `version` returns 0 and
+  reports `2026.10.8 macos-arm64`; the earlier wrapped `--version` probe returned
+  1/help. Native `deps --help` returned 0. Primary release pages currently list
+  GitHubKit 0.16.1, uv 0.13.0 and Python 3.15.0; these are candidates for locked
+  project qualification, not newly installed or qualified runtimes.
+- The user requested a native Claude lead/subagent adversarial review before
+  approving the twelve-ticket breakdown. Prepared `review:prepare` and
+  `review:claude` named mise tasks backed by a bounded standard-library Python
+  runner, plus minimal project Python/dependency declarations. Installed Python
+  3.15.0, uv 0.13.0 and Claude 2.1.296 were observed; no tool was installed.
+  The proposed run freezes document inputs, restricts file/agent tools, requests
+  Fable 5.1/max effort and requires correlated native child execution evidence.
+  The initial runner review found exceptional-exit and exact-model validation
+  gaps; both were corrected. Offline preparation exited 0. The first launch
+  found native mise deps need project-local `experimental = true`; no global
+  setting changed. The first Claude probe failed because safe mode suppresses
+  custom agents; its retained stream proves zero spawned children, and a
+  string-message event also exposed a parser bug. The repaired runner uses
+  named native general-purpose subagents and preserves incomplete receipts.
+- The second native delegation probe exited 0 and verified one completed child
+  correlated to its Agent call, with only Fable 5.1 observed for lead and child,
+  no denied/unexpected calls and unchanged sources. Evidence:
+  `/private/tmp/marketplace-claude-review-olhfd2s1/`. Maximum effort is configured
+  through CLI/process-local environment; this CLI's Agent schema did not expose
+  per-invocation effort/background parameters, so those prompt requirements
+  were removed. Full adversarial review remains pending. Static checks and all
+  19 original acceptance hashes passed after the runner fixes.
+- The full native Claude lead launched exactly three Fable 5.1 specialists:
+  requirements-graph, search-correctness and delivery-recovery. All completed;
+  native start/completion events and child IDs matched each Agent call. The
+  parent exceeded its 900-second bound during synthesis (native exit 143), so
+  `/private/tmp/marketplace-claude-review-oprwaz61/` remains INCOMPLETE.
+- A reviewed `review:reconcile` task reused the hash-verified frozen packet and
+  those completed reports in a new lead-only Fable 5.1/max-effort session.
+  `/private/tmp/marketplace-claude-review-dbc423fe/` completed in 717.15 seconds,
+  native exit 0, with no new agents, denied/unexpected tools or source changes.
+  The verdict was not ready as written, approvable after bounded edits. The
+  twelve settled requirements were preserved; no structural redesign was
+  recommended. Findings and parent dispositions are being incorporated before
+  user granularity approval. This is review evidence, not ticket implementation.
+- Prepared `review:retain` to copy only the frozen packet, sanitized native
+  events, manifest, receipt and terminal report into project evidence. It checks
+  hashes and continuation lineage, excludes stderr and arbitrary files, and
+  refuses a different existing archive. Failed/missing receipts stay explicitly
+  incomplete/unverified. Independent retention review and execution are pending.
+- Independent continuation/linkage and retention-source reviews passed. All four
+  native attempts are archived under `evidence/claude-amendment-review/` through
+  `review:retain`, each exit 0; the identical-repeat control also exited 0.
+- Added `docs/agents/automation-amendment-review.md` with actual native identities,
+  separate timeout/continuation outcomes, all ten synthesized finding groups and
+  explicit parent disagreements. Revised the amendment to fourteen slices:
+  A07a/b separate qualification/application, A08a/b separate creation/graph
+  verification; A03 and A07a consume A04's recording/catalog contracts. Added
+  append-only recovery, raw SDK replay, mutation intent, historical-blob scans
+  and enforced writer-root transfer criteria. The original twelve requirements
+  remain settled. Corrected-draft review and active-guidance reconciliation are
+  pending; no A-ticket has been implemented or approved by this revision.
+- The independent cold reviewer passed the corrected amendment at
+  `b446e415c38af99fcc8f30f654872e4642b0b090ed812bbb6a839b39086e94df`
+  and review/disposition document at
+  `f67f16c9ee78812ad47d33bb7bcf018e358f9b9ec5b628c3fa755f0399b84b4f`.
+  The graph is acyclic; A11's reuse of the already-qualified A09 operation is
+  not a ticket cycle. This was a bounded document review, not runtime validation.
+- Updated current tracker/takeover/published-index guidance and W4/W5 plan state
+  to identify the proposed local A-frontier, approval status and sole writer.
+  Removed manual issue-mutation guidance, retained historical issue identities,
+  distinguished the old frontier from current admission and made post-transfer
+  writer-root binding explicit. Updated the standby snapshot to current HEAD
+  and uncommitted W5 work. This small guidance unit awaits independent review.
+- The command-guard reviewer passed all four guidance surfaces at their supplied
+  hashes, confirming proposed status, W5 hold, sole writer, qualified-task-only
+  instructions and source-root enforcement. The original 50-issue map is intact.
+  All six task definitions validate; lightweight and 19-file baseline checks
+  exit 0. Only the plan's review-status wording changed to record that outcome.
+  Native review, archival and corrected-document gates are settled; user
+  granularity approval remains. HEAD is still `6130ab5e9298e4c70d8c39a0ebd3c6857458c5c5`;
+  all W5 changes remain uncommitted, with no issue mutation, push or transfer.
+- A separate task supplied an offline feedback reuse candidate after this
+  review settled. Read-only Git checks confirmed clean branch
+  `codex/research-feedback-retro` in the separate `research-refresh-retro`
+  worktree at `600130d1a23e429e986e817630af671c84592c3d`, following
+  `7d0c2fd312c58d575f6c2047d0e6fde538ed0784`. Its committed receipt reports
+  twelve offline tests and all 19 baseline hashes passing, without retained
+  raw logs; hosted/live/scheduled behavior remains unverified. This checkout
+  has not integrated or independently executed it. Assess reuse at the approved
+  GitHubKit unit, preserving the current pins, deps and review tasks; the
+  fourteen-slice approval object is unchanged. No integration or reply to the
+  other task was initiated from this notice.
+- The stop hook explicitly requested a fresh strict-five run for request
+  `01a1310a-5f82-7f20-8285-26971760346a`. Native fnox launched the named mise
+  task with the existing explicit Last30Days plan, no-deps/skip-tools and
+  uv no-sync/no-download controls. Final exit was 1. The new manifest at
+  `~/.codex/research-coverage/01a130ef-265d-72b0-8465-80f3e4128bee/01a1310a-5f82-7f20-8285-26971760346a/retry-20261012T1848Z/manifest.json`
+  preserves the original receipt and reports all five groups: GitHub's three
+  routes controlled-empty (controls 10/10/1); Exa 10 results; Context7 error
+  `Monthly quota reached`; Firecrawl developer 10 results and Search HTTP 402
+  with provisional Serper fallback; Last30Days 8 results with both planned
+  github/grounding sources reporting ok. All ten raw/attempt SHA-256 checks
+  passed. RESEARCH INCOMPLETE remains the disposition. No further quota retry
+  or billing change is implied; the fourteen-slice approval was pending at this receipt.
+- On 2026-10-12 the user approved the reviewed fourteen-slice A-frontier and
+  its dependencies. The local amendment and W5 plan now record approval; A01
+  is active under the same sole writer and worktree. No A-ticket was published
+  or implemented by this status change. The HEAD, branch and Git common
+  directory were rechecked before editing and matched the prior handoff.
+- A01 implementation in this worktree uses the existing named `tools:prepare`,
+  `deps:lock`, `deps:sync`, `deps:check` and `test:bootstrap` tasks. The bootstrap
+  runner checks `mise.dev.lock` v3 against exact tool requests, backends and all
+  three required platform downloads before install/sync/check. The wrapper
+  clears inherited `MISE_TASK_SKIP_DEPENDS` so review tasks retain their
+  `deps:check` prerequisite. Scratch controls now exercise both regressions.
+  `test:bootstrap` and `deps:check` each exit 0; `tasks validate` exits 0
+  (11 tasks), `check` exits 0, `check:acceptance-baseline` exits 0 (19 hashes),
+  and `git diff --check` exits 0. Root OCI hashes remain
+  `c4785d6824b59d8e1e4b0fbdc57839bc20f712a07312de7c074f1746f5387573`
+  and `11df5e3fe8ff4fde65a6636a7f1ab2545758a9a0adefdda5ab4930a9151add01`.
+  The cold reviewer is rechecking these two fixes; A01 review gate remains open.
+- A01 focused cold re-review passed without remaining findings at
+  `dev/mise` SHA-256 `63af0e68339e7281788430f6d926b9fbdca8896158d6a04899b7eac03f3237aa`
+  and `dev/bootstrap.py` SHA-256
+  `c1900c7a7b179cbb66b298770a380cf732517189c468170b329e1c6843587dfb`.
+  The reviewer independently verified the inherited-skip dry run and six
+  bootstrap controls; each named task exited 0. Parent then ran `deps:lock`,
+  `tools:prepare` and `deps:sync` sequentially; all exited 0. Lock hashes
+  remained `ec820845ba498223714852ca50675b8399124fe7f660cd513e9c36c48fdbd313`
+  (mise) and `020c82f19a01b2c7e00717c193fa602e5537fa57fb371208475dbfbd9ff94886`
+  (uv). `tools:prepare` reported both exact tools already installed and
+  installed zero tools. `deps:sync` checked 17 packages without change. A01
+  local implementation/review/test gate is complete, still uncommitted and
+  unpublished. It does not assert fresh-session, Linux/OCI or hosted CI
+  acceptance; A12 owns those transitions. A02 is next.
+- A02's first offline named-task run exited 1 before any request: the shared
+  mise Python 3.15.0 `_ssl` extension required a missing
+  `/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib`. `deps:check` had not imported
+  `ssl` or the locked SDK, so A01's earlier local pass was insufficient for
+  application runtime readiness. No Homebrew/global repair was made.
+- A01 now pins `MISE_DATA_DIR` to project `.mise`, installs the exact locked
+  Python 3.15.0 and uv 0.13.0 there through `tools:prepare`, and checks an
+  isolated Python `ssl` import plus locked `githubkit` import. The named task
+  first installed those two project-scoped tools (exit 0); `deps:sync` rebuilt
+  `.venv` against the local interpreter and installed 17 locked packages (exit
+  0); `deps:check` and all six scratch bootstrap controls then exited 0.
+  `.mise/.gitignore` is generated by `tools:prepare` so the 19-file original
+  `.gitignore` hash remains unchanged. The baseline gate was rerun and exited 0.
+- A02 adds a GitHubKit 0.16.1 code-search task with one page/five items,
+  automatic retries and HTTP cache off, a 15-second client timeout, safe
+  credential-route selection and no token output. Its offline empty fixture
+  exited 0 as `empty_unverified`, and four focused tests exited 0, including a
+  503 single-request control, missing/null/value SDK fields and stable item
+  identity. Native fnox `codex_research` launched the named live task; it exited
+  0 through `gh_cli` auth and retained public repo `openai/codex` raw plus
+  normalized receipts at
+  `evidence/github-search-one-page/20261012T192548Z-d72b7e85/`. The response
+  reported total 898, returned 5 and correctly marked `partial`; its raw hash
+  is `7a689ba315367282e8bc9733337939c85f39e90c57e6c70390e053b04536cab6`.
+  An offline replay of exactly that raw response through the SDK exited 0 at
+  `evidence/github-search-one-page/20261012T192724Z-33992b35/`, with equal raw
+  and canonical normalized hashes. No full-collection/empty-control claim is
+  made from this page. A02 and the A01 runtime repair await focused read-only
+  reviews; no issue publication or commit occurred.
+- The A01 runtime repair received a focused read-only PASS. A02's first cold
+  review found two P2 gaps: `gh` inherited `GH_TOKEN`, and the offline fixture
+  represented JSON body only rather than the HTTP response. The CLI fallback
+  now clears `GH_TOKEN` and `GH_HOST` before `gh auth token --hostname
+  github.com`. A02 now retains HTTP status, allowlisted response headers and
+  exact base64 body bytes with a SHA-256 check, plus safe fixed request metadata;
+  offline mode validates that envelope before feeding it to the same GitHubKit
+  transport. The old body-only receipts remain immutable preliminary evidence.
+  `test:one-page` exited 0 (six controls); the public offline empty fixture
+  exited 0 as `empty_unverified`; the public offline 503 fixture exited 2 as
+  `error` and retained its response receipt. The native fnox `codex_research`
+  live task exited 0 via `gh_cli` at
+  `evidence/github-search-one-page/20261012T193651Z-cc501ef6/`, with five of
+  898 results and `partial` status. Public offline replay of that exact HTTP
+  envelope exited 0 at `20261012T193658Z-eb12ab90/`. Both raw files have
+  SHA-256 `5b95fc70969870fa39b6e426854339d5fd6bfe443c9fc5e04d28f1b5fa562cd6`;
+  canonical normalized JSON compares equal. Focused read-only re-review of the
+  repaired A02 boundary is pending; nothing was committed or published.
+- Focused read-only A02 re-review returned PASS at source SHA-256
+  `0a64f9ca37931f3886afed4cbbd3a3835cf6feaffb9bf114afc20eb3d44fa292`
+  and test SHA-256
+  `5098497c3fe85d9ea1311db21c56567e56aaf4ee9415394698a6d7a297b1a569`.
+  The reviewer checked the CLI environment scrub, HTTP envelope, raw/body
+  hashes, normalized equality and 503 receipt with six read-only assertions
+  (all rc 0); no reviewer network or credential access occurred. Parent
+  `tasks validate`, `check`, `check:acceptance-baseline` and `git diff --check`
+  all exited 0 after the repair. A01 and A02 local implementation/test/review
+  gates are complete; neither is committed or published. A04 follows the
+  approved dependency graph.
+- A04 now has `dev/saved-searches.toml` with a scoped code-search query and
+  same-repository control definition, `dev/search_catalog.py` for strict
+  catalog/select validation, exact effective query and versioned fingerprint,
+  and named `research:catalog`, `research:quarantine`, and `test:catalog` tasks.
+  The A02 SDK boundary accepts explicit effective queries/per-page and pins
+  the installed REST schema to `2026-03-10`; six A02 tests still exit 0.
+  Catalog validation exits 0 with catalog digest
+  `2f12e8ad650f00ef2400d8d9acdd128dcc4e0202f7dde6105e80c310faa107fd`
+  and fingerprint
+  `550e181943d16e9dd94a18f798f97cf4bfec16f5cfe5a467e7801883cf0edea4`.
+  A named offline record of the empty fixture exited 0 at
+  `evidence/saved-searches/runs/codex-schema--1791834335766132000--747966bbfbc179da/`
+  (`empty_unverified`); a second named record replayed the saved A02 live HTTP
+  envelope and exited 0 at
+  `evidence/saved-searches/runs/codex-schema--1791834403418782000--73b8ad54811dc757/`
+  (`partial`). The latter manifest binds its original fixture hash and the
+  exact query/fingerprint; normalized result matches A02's five-of-898 capture.
+  `test:catalog` exited 0 with five controls: unsafe/case-colliding IDs,
+  invalid selection and corrupt selected record before auth/network, two
+  concurrent record processes, hash-bound quarantine preserving old bytes,
+  and interrupted/unselected-corrupt reporting. `tasks validate` exited 0 for
+  16 tasks. A04 is under independent read-only review and remains uncommitted.
+- The per-ticket retro protocol is linked from `AGENTS.md` and issue-tracker
+  guidance. Missed A01/A02 retros are recorded under `retros/`. A01's
+  onboarding pointer now documents project-local `.mise`, explicit prepare/sync
+  and import guards; A02 added a public offline 503 test with forbidden
+  auth/transport. Their findings produced `check:research`, which ran bootstrap
+  (seven controls), one-page (seven), catalog (eight then) and the 19-hash
+  baseline, all exit 0. Hosted CI qualification moved from late A12 assembly to
+  early A12a, blocked by A01/A02 and separate host admission; A12b owns later
+  assembly. A03 inherits per-attempt HTTP envelope preservation. Amendment,
+  ticket index, issue guidance and plan reflect the local reshuffle; no GitHub
+  publication occurred.
+- A04 first read-only review returned CHANGES_NEEDED on selected run symlinks,
+  unreadable unselected manifests, active/interrupted writers, direct ledger
+  writes and newest-quarantine baseline fallback. Parent added selected-run
+  refusal, manifest-read classification, advisory writer locks, temporary-then-
+  link ledger publication and reset handling. Eight offline tests exited 0.
+  Focused re-review found three further P2 cases: IDs containing `--`,
+  overlapping creation/observation order, and pending-file removal races.
+  Parent switched the ledger to version 2 with `recorded_at_ns` as a reset
+  barrier, removed run-name timestamp parsing and tolerates disappeared pending
+  entries. Nine `test:catalog` controls exit 0, including double-dash IDs,
+  overlapping ordering and a later observation after reset. Second focused
+  read-only re-review is pending. A04 remains uncommitted; retro not begun.
+- Historical completed local tickets #12, #24 and #25 also received missed
+  retrospective records under `retros/issue-12.md`, `issue-24.md` and
+  `issue-25.md`. They rely on their original independent review and command
+  receipts; no native/hosted acceptance was rerun. Findings reinforce #13's
+  negative LSan repair control, #28's versioned CLI baseline, #29/#30's bridge
+  and native mapping gates, A09's outbound scan, A10's path inventory and
+  A12b's acceptance routing. Their GitHub issues remain unclosed at the last
+  verified snapshot and are not changed by writing these retro records.
+- Second A04 focused review resolved the ID and observation-order issues but
+  found one more pending-file TOCTOU. Parent changed the pending check to one
+  `lstat()` snapshot with FileNotFoundError treated as vanished, and added a
+  deterministic disappearance fixture. `test:catalog` again exited 0 with
+  nine tests. Third focused read-only re-review is pending. The project-wide
+  `tasks validate` (17 tasks), `check`, 19-hash baseline and `git diff --check`
+  each exited 0 after the retro/graph updates.
+- Third focused A04 read-only re-review returned PASS with no remaining
+  findings at source SHA-256
+  `8fa9755177742c246922b533c6bbd81e63ed46450fa1db4fc6e532581dc7d850`
+  and test SHA-256
+  `5b979d4b5a8019d0a7f9aabf574dfbdcf5b744df4ab3d6ea890233f50efcd75b`.
+  The reviewer ran `test:catalog` (nine tests, rc 0) and `git diff --check`
+  (rc 0), with no writes/network/credentials. A04 local implementation/test/
+  review gate is complete; it remains uncommitted/unpublished. Its retro in
+  `retros/A04.md` records the path/race/reset findings and source size (358
+  source + 186 test lines). It split broad A03 into A03a bounded attempts and
+  A03b controlled-empty/completeness, each with its own test/review/retro gate;
+  A05 now depends on A03b. The local amendment, index, issue guidance and plan
+  reflect this reanalysis. A12a's hosted CI gate now explicitly depends on A09
+  branch publication, since a local-only branch cannot prove a hosted run.
+- A03a now has a named `research:collect` path and `dev/collect_saved_search.py`.
+  The A02 SDK seam accepts an explicit page while preserving page-1 defaults;
+  the catalog raises its current query bound to two pages/ten items. Collection
+  stores each HTTP envelope or unavailable transport attempt, caps retries to
+  two sends per page, applies page/item/time budgets, records duplicate/total
+  drift and primary/secondary limit reasons, and leaves all non-error results
+  partial or empty-unverified until A03b. The public offline task exited 0 on
+  an empty fixture, retaining a new immutable run. `test:one-page` (seven),
+  `test:catalog` (nine) and `test:collect` (eight) each exited 0. A native fnox
+  `codex_research` invocation of the named live collector exited 0 at
+  `evidence/saved-searches/runs/codex-schema--1791835615392017000--b2451f6bd8490b1c/`:
+  two HTTP 200 pages, ten of total 898, `partial` with `item_limit`, and
+  distinct page body hashes. After that live receipt, A03a added a per-request
+  remaining HTTP timeout and a process wall deadline with an offline slow-peer
+  control; this final source is under independent read-only review. No full
+  collection, control or comparison verdict is claimed.
+- A03a cold reviewer returned `CHANGES_NEEDED` with three P2 paths: received
+  HTTP 200 evidence could be lost after parse/normalization failure, a short
+  page below its reported total could become a complete candidate, and ordinary
+  403 responses could be mislabeled secondary rate limits. Parent added an
+  HTTP response capture hook before SDK parsing, retained the captured envelope
+  on errors, introduced `unexpected_short_page`, and required rate-limit
+  evidence for 403. A pre-request exhausted clock also now produces an error
+  outcome without an unbound `result`. `test:collect` exited 0 with ten tests,
+  including new malformed-SDK/normalization, short-page and ordinary-403 controls.
+  `check:research` exited 0 (bootstrap seven, one-page seven, catalog nine,
+  collect ten, 19 original baseline hashes); `tasks validate` found 19 valid
+  tasks, and `git diff --check` exited 0.
+  Focused independent re-review is pending; A03a remains open.
+- The re-review exposed two more capture-hook edges before final disposition:
+  private repository responses could enter public raw evidence, and a deadline
+  after a complete response could discard its envelope. The parent added
+  private-result withholding at the response hook and SDK normalization
+  boundary, plus post-capture timeout preservation and explicit time-limit
+  reason. `test:collect` first failed on the wrapped private hook exception
+  (rc 1), then passed after handling GitHubKit `RequestError` wrapping (12
+  tests, rc 0), including private and post-capture timeout fixtures. The
+  independent reviewer is rerunning on this stable source; A03a is still open.
+- A03a focused reviewer returned PASS with no remaining P2+ findings, bound to
+  `dev/collect_saved_search.py` SHA-256 `8599c632127e26cff31914bf08972500e7c713b4b16df617e55f21ccc85b35d7`
+  and `dev/github_search_one_page.py` SHA-256 `112173284455380b8671a8246e715c869cf4990c20c34ada32f1008747f87a37`.
+  Final-source `research:collect live codex-schema` under native fnox
+  `codex_research` exited 0 at
+  `evidence/saved-searches/runs/codex-schema--1791836388445290000--8385f42d6953e0ab/`.
+  It records two HTTP 200 pages, ten of reported 898 items, `partial` with
+  `item_limit` and `control_status=not_run`; raw and normalized SHA-256 values
+  match the manifest (`4a6d7a8f1056292b5936a282d564eb37f9b8fed79720a8e5943b9185a77f5bbc`,
+  `c21156f2d327662831bf4905367475fc2f1a9a3bd466f2d92dc830222a9221af`).
+  The A03a retro is recorded at `retros/A03a.md`; it keeps A03b focused on
+  controls/verdicts in a separate module, reusing the privacy and timeout-safe
+  request seam. A03a local test/review/live/retro gate is complete, uncommitted
+  and unpublished. A03b is next; no complete/verified-empty verdict or delta
+  comparison is claimed.
+- A03b implementation is under independent read-only review. New
+  `dev/control_saved_search.py` evaluates catalog controls only for an A03a
+  completeness candidate, shares the original deadline and a bounded total
+  send budget, records each control HTTP envelope or unavailable attempt, and
+  promotes to `complete`/`empty_verified` only after all expected minima pass.
+  Catalog validation now rejects a control identical to the main query and a
+  minimum above the item limit; the offline fixture path accepts only declared
+  main/control queries. `test:control` exited 0 with five cases, while
+  `check:research` exited 0 with bootstrap seven, one-page seven, catalog nine,
+  collect twelve, control five and the 19 original baseline hashes. A03b has
+  no live controlled-empty receipt or reviewer disposition yet.
+- A03b reviewer returned `CHANGES_NEEDED` for two P2 edges: a control response
+  could be promoted after the shared deadline, and an exhausted offline
+  response sequence could be misrecorded as a synthetic failed control. The
+  parent added a post-response deadline check that retains raw, plus explicit
+  fixture exhaustion tracking/refusal before `record`. A deterministic
+  advancing-clock control and a public-task missing-control fixture now cover
+  both. The first `test:collect` after this changed contract exited 1 because
+  its formerly complete two-page fixture omitted the now-required control;
+  the fixture was corrected to a deliberately partial count. `test:collect`
+  subsequently exited 0 (12), `test:control` exited 0 (6). Focused independent
+  re-review is pending; A03b remains open.
+- A03b focused re-review returned PASS with no remaining P2+ findings, bound
+  to `dev/control_saved_search.py` SHA-256 `85ad89438ba03f29bd9a3776208785b7b61ad1e4b19870c66e7663abcc459ec0`
+  and `dev/collect_saved_search.py` SHA-256 `2bea8daf85e5a4fa9f1a55d92db6916cd5c06ca8e70c1a4c5150d265fa9bf5ef`.
+  Named checks passed: control six, collect twelve, catalog nine, one-page
+  seven, bootstrap seven, 19 baseline hashes, 20 tasks validate and diff check;
+  actual rc 0. The retrospective is `retros/A03b.md`; it applies a versioned
+  A03b normalization requirement to A05 and preserves A12a hosted CI as a
+  later gate. A03b local implementation/test/review/retro gate is complete,
+  uncommitted and unpublished. Its full and verified-empty examples are
+  controlled offline fixtures only. The live codex-schema search remains
+  partial; A05 is next.
+- A fresh A03b-source live `research:collect live codex-schema` under native
+  fnox `codex_research` exited 0 at
+  `evidence/saved-searches/runs/codex-schema--1791837279871878000--59b358fe26427ce1/`.
+  It remains `partial` with ten of reported 898 items and `item_limit`; the
+  same-budget control is explicitly `not_run/main_incomplete` (two sends used
+  of four). This confirms the live path does not promote a truncated result;
+  it does not qualify a live full or verified-empty outcome.
+- A05 implementation analysis found two separately reviewable concerns:
+  compatible immutable baseline selection and comparison are read-only, while
+  public reruns need an explicit concurrent-writer predecessor contract before
+  attaching deltas to new receipts. The local amendment now splits A05 into
+  A05a/A05b; A06 depends on A05b. `dev/search_compare.py` starts A05a with
+  final-status/control eligibility, selected-artifact hash rechecks, fingerprint
+  version 2 and quarantine barrier selection. No A05a test or review gate has
+  passed yet; no public comparison or NEW/GONE claim is made.
+- A05a's named `./dev/mise run test:compare` exited 0 with five scratch
+  controls covering first baseline, complete/verified-empty changes, partial
+  suppression, fingerprint changes, quarantine reset and artifact hash drift.
+  First focused review found a P2: a selected record corrupted after preflight
+  could be skipped, silently falling back to an older baseline. Parent moved
+  the catalog's full published-record verification into shared `verified_run`,
+  calls it before compatibility filtering, and refuses selected directory or
+  symlink substitutions. A new test covers four post-preflight mutations.
+  Final-source `test:compare` exited 0 (six), `test:catalog` exited 0 (nine),
+  `check:research` exited 0 (19 baseline hashes), `tasks validate` exited 0
+  (21), and `git diff --check` exited 0. Focused re-review is pending; public
+  reruns remain A05b work.
+- The A05a re-review fixed the four original mutation cases but found two
+  further P2 gaps: a second normalized-file read could parse unhashed bytes,
+  and a missing formerly published manifest could be mistaken for an
+  interrupted run. Parent now parses the hashed buffer and requires the
+  selected run inventory and manifest digests captured at preflight. Baseline
+  selection refuses a missing or changed published manifest; new tests cover
+  both boundary cases. `test:compare` exited 0 (seven), `test:catalog` exited
+  0 (nine), and `git diff --check` exited 0. Final focused re-review and the
+  final-source broad check remain pending.
+- A05a final focused re-review returned PASS with no remaining P2+ findings,
+  bound to `search_compare.py` SHA-256 `b1f506ea9b8e1f64cdb3d503e47885bd81db793c681ea5af6381c90bd6d6d231`,
+  `test_search_compare.py` SHA-256 `b225ffa31b03e6d4fcb8a997eed8307a78dac9306f2fc9c25524ff815a133e61`
+  and `search_catalog.py` SHA-256 `bb7941796d6bb0fd7c380427187d8c858191138fcaaa86e5b7274193a61ad5d3`.
+  Final-source `check:research` exited 0, preserving all 19 original hashes;
+  task validation passed 21 and diff check exited 0. `retros/A05a.md` records
+  the reviewer-found mutation gaps and applies a per-query lock and race
+  acceptance requirement to A05b in the local amendment. A05a's local
+  implementation/test/review/retro gate is complete, uncommitted and
+  unpublished; no public rerun or NEW/GONE claim has been made. A05b is next.
+- A05b implementation has started. The public selected/all collector now
+  acquires a bounded per-query writer lock before preflight and authentication,
+  selects A05a's verified baseline, records the observation, then appends a
+  hash-bound comparison receipt. The A04 public capture and quarantine paths
+  share that lock; all-mode offline replay uses an explicit per-ID fixture
+  directory. The first nonblocking lock variant failed A04's two-process
+  append control (one rc 2, one rc 0), so acquisition now waits up to a bounded
+  deadline and serializes both. `test:catalog` then exited 0 (nine).
+  `test:publish` exited 0 (five) with first/changed/reset outcomes, all/subset
+  preservation, invalid baseline before credentials, a quarantine race and
+  two concurrent public writers. Focused review, final-source broad checks and
+  live smoke are pending; A05b is not yet complete.
+- A05b's current-source `check:research` exited 0 with all bounded tests and
+  19 baseline hashes; `tasks validate` exited 0 for 23 tasks and diff check
+  exited 0. A native fnox `codex_research` invocation of named
+  `research:collect-all live` exited 0 and appended run
+  `codex-schema--1791838352470495000--780ef2a027d3c66a` plus comparison
+  receipt digest `96dbbeb74a67757d8ed3ea1434a88d89e51cb06e26f3a9dc8fd9bd7c79d3be2d`.
+  Its actual result is `partial` (10 of reported 898, `item_limit`, two sends),
+  control `not_run`, comparison `suppressed/current_ineligible`; no NEW/GONE
+  result is claimed. Independent focused review remains pending.
+- A05b's reviewer found a P2 post-collection drift path: a captured prior
+  could change during network collection while the new observation was still
+  published with a stale delta. Parent now revalidates the exact A05a
+  preflight snapshot after recording the new observation and before comparison
+  publication; drift returns rc 2 with `unresolved` and no comparison receipt,
+  while retaining attempted HTTP evidence. A new offline mutation test passes.
+  The all-query contract is per row: a later invalid row refuses before its
+  own auth/network, while earlier immutable receipts stand; a mixed-batch
+  fixture covers this. `test:publish` now exits 0 with six controls; final
+  focused re-review and final-source broad checks remain pending.
+- A05b final focused reviewer returned PASS with no remaining P2+ findings,
+  bound to source hashes in `retros/A05b.md`. Final-source `check:research`
+  exited 0 with publish six, compare seven, collect twelve, control six,
+  catalog nine and all 19 original hashes; task validation passed 23 and diff
+  check exited 0. The A05b retro records the bounded serial lock, post-collect
+  baseline revalidation and per-row all-mode admission, and applies explicit
+  provisional coverage wording to A06. A05b local implementation/test/live
+  smoke/review/retro gate is complete, uncommitted and unpublished. Its live
+  result remains partial and suppressed; A06 is next.
+- A06 began from the existing A05b partial `codex-schema` observation (10 of
+  reported 898, `item_limit`). Installed CLI reports `codex-cli 0.162.1`.
+  Official release tag `rust-v0.162.1` resolves through GitHub's tag object
+  `7a078f6bb4ce0dc2a81408b334ce52979d92c603` to commit
+  `092d3acd6bec3e3a14bdc7e7a2810ab628ab759d`; release API identifies
+  `config-schema.json` asset 625964243, size 236751 and SHA-256
+  `7933a70506e753a6e98c16800d2a76770b2af2b7295491f8f0b8e713e952027e`.
+  The exact asset was downloaded to `evidence/codex-examples/release/` for
+  local hash verification. Two bounded saved GitHubKit queries for config and
+  hook examples were added; collection, full-blob retrieval, validation and
+  focused review remain pending.
+- The user asked whether `mattpocock-skills:implement` and `implement-spec`
+  were invoked per ticket. They were not invoked for prior A-slices; this was
+  a workflow omission. Both skill files were read. From A06 forward, use the
+  approved spec/ticket graph, pre-agreed test seams, regular checks and
+  independent review. Their commit and per-ticket implementer/merger branch
+  steps conflict with this project's sole implementation writer and current
+  local unpublished A-slice boundary; do not retroactively claim those steps.
+- The user explicitly required all completed-ticket retros before further A06
+  work and both `implement`/`implement-spec` workflows for each new ticket.
+  Parent paused A06 and read the `retro` and `writing-for-agents` skill files.
+  The completed ticket set is W4 issues #12/#24/#25 and W5 A01/A02/A04/
+  A03a/A03b/A05a/A05b. All ten have individual retro files under `retros/`
+  with concrete receipt/reviewer anchors, severity-ordered findings, applied
+  fixes or named downstream gates, and remaining-frontier reassessment. A
+  read-only independent audit of this coverage is pending. The user-requested
+  workflow pointer is now in `docs/agents/issue-tracker.md`.
+- An A06 catalog expansion exposed a fixture assumption in A05b's test:
+  `test:publish` failed one mixed-batch case when its scratch catalog copied
+  all new query rows before appending a second ID. The fixture now copies only
+  its intended first row. `test:publish` exits 0 (six tests), subsequent
+  `check:research` exits 0 (all research suites and 19 baseline hashes),
+  `tasks validate` exits 0 (23 tasks), and `git diff --check` exits 0. This
+  restores the old gate before A06 resumes; A06 remains in progress.
+- Independent read-only retrospective audit returned PASS: the ten completed
+  W4/W5 ticket records are present and complete against their actual local
+  gates. The reviewer checked W4 commits, cited review files and selected
+  saved-search receipts on disk; no missing record or unassigned actionable
+  finding was reported. A06 is still incomplete and receives its own retro
+  only after implementation, tests and focused review.
+- The user clarified that written retros and named downstream owners are not
+  enough: research and apply every retrospective task before any new item.
+  Parent immediately stopped A06 and corrected the earlier "gate clear"
+  interpretation. `retros/application-audit-2026-10-12.md` now separates the
+  ten completed-ticket records' applied local fixes from open A09/A10/A12a/
+  A12b and published #13/#28/#29/#30 actions. `docs/agents/ticket-retro.md`
+  now requires each actionable finding to be applied/verified or explicitly
+  rejected, and keeps an open-action hold on new-ticket work. W5 in
+  `task_plan.md` is held; A06 is paused in progress, not complete.
+- The strict-five-v2 same-turn research command under native fnox exited 1.
+  Receipt: `~/.codex/research-coverage/01a130ef-265d-72b0-8465-80f3e4128bee/01a1317e-1c1d-7d00-8210-31ddbc146f5a/manifest.json`.
+  GitHub Discussions returned `empty_unverified` (canary zero), Context7
+  exited 1 with quota text, and Firecrawl Search HTTP 402 used provisional
+  Serper. GitHub Issues/Releases were verified empty; Exa, Firecrawl
+  Developer and Last30Days returned results. The five-provider conclusion is
+  RESEARCH INCOMPLETE; local primary receipts determine retro action state.
+- A06 preserved work in progress includes the exact Codex 0.162.1 release
+  schema asset with matching SHA-256, bounded saved config/hook searches
+  (config one `complete`, hook `empty_verified`), and SHA-checked GitHubKit
+  blob receipts for one config example and one provisional schema-source blob.
+  `dev/codex_examples.py`, its four offline blob tests and the named mise tasks
+  remain unreviewed; no A06 completion or example-validity claim is made.
+- The independent read-only audit of the retrospective application ledger found
+  two omitted A12b links: #12 issue-state reconciliation after A09 and #24
+  hosted/OCI acceptance mapping. The parent corrected both rows in
+  `retros/application-audit-2026-10-12.md`; the reviewer found no falsely
+  marked local fix or unsupported verification claim. All open retrospective
+  actions remain held. The user's explicit all-action hold keeps A06 paused
+  until the application boundary is satisfied or revised by the user.
+- The Stop hook requested a repeat of strict-five research request
+  `01a1317e-1c1d-7d00-8210-31ddbc146f5a`. Parent preserved the first
+  receipt as a sibling `-attempt1` directory and reran the exact native fnox
+  and mise command with the original output directory; native rc was 1.
+  GitHub Discussions remained `empty_unverified` because its canary returned
+  zero. Context7 exited 1 with a monthly quota message. Firecrawl Search
+  returned HTTP 402 and used provisional Serper. Exa, Last30Days and
+  Firecrawl Developer returned results; GitHub Issues/Releases were verified
+  empty. Strict-five remains failed and the retrospective action hold stands.
+- The user removed the Git-common-directory writer restriction so independent
+  low-conflict issues can use separate Git worktrees under the inherited
+  `implement-spec` workflow. Parent revised current AGENTS, orchestration,
+  issue-tracker, takeover, plan/index and bounded role wording to one writer
+  per worktree with disjoint file scopes and serialized integration. Historical
+  evidence and published issue bodies retain their original wording and are
+  marked as superseded locally. `./dev/mise tasks validate` exited 0 (25
+  tasks), `./dev/mise run check` exited 0, and `git diff --check` exited 0.
+  This ownership change does not itself clear the separately accepted
+  retrospective-action hold; A09 remains the active remediation unit.
+- A09 outbound-history preflight found that the integration branch is absent
+  from `origin` and `gitleaks` 8.30.1 `git --log-opts=HEAD` exited 1 with 225
+  redacted `generic-api-key` findings; the `origin/main..HEAD` comparison also
+  exited 1 with 225. Most match hash fields in committed evidence, but no
+  blanket false-positive disposition has been made. Private reports remain
+  under `/tmp/marketplace-a09-scan.YaGkzG/` and
+  `/tmp/marketplace-a09-delta.Z9M2Pw/`; an independent read-only triage is in
+  progress. A09 push is blocked pending exact finding resolution and an
+  independently reviewed publication task.
+- Independent read-only A09 triage inspected the recorded Git blobs for all
+  225 findings at 18 commits and 89 evidence paths. It classified 221 as
+  64-hex JSON digest fields (219 file-keyed, two explicit digest keys) and
+  four as source lines binding secret-scan receipt names to 64-hex literals;
+  no credential-shaped value was found. This is a false-positive adjudication
+  candidate, not a passing Gitleaks rc. A follow-up is checking whether the
+  values match named artifact digests where the targets are available. No
+  scanner configuration, branch history or Git state has been changed.
+- Follow-up verification of the 225 Gitleaks matches found 203 exact
+  SHA-256 matches to the named files at their recorded commits. Twenty name
+  seven external absolute files whose current bytes match, but historical
+  bytes are not attested. Two older `comparison.json` path-keyed digest
+  values do not match the referenced committed receipt or any observed
+  ancestor version. They remain evidence-binding discrepancies requiring
+  provenance review; they are not credential-shaped values. A09 publication
+  remains blocked while the mismatches and full scan disposition are resolved.
+- A separate read-only policy review found that ticket-retro ownership,
+  onboarding admission/takeover wording and one review prompt still implied
+  global serialization. Parent corrected current normative text while leaving
+  the frozen ticket graph and historical receipts unchanged. The focused
+  recheck found one remaining omission in the retro protocol: named remediation
+  actions must be allowed to clear the user hold. Parent added that exception;
+  A06 and unrelated new tickets remain paused. Project validation and static
+  check each exited 0 after the first corrections, as did `git diff --check`;
+  after the final wording change, `./dev/mise tasks validate`, `./dev/mise run
+  check`, and `git diff --check` each exited 0.
+- A separate read-only A09 selection audit mapped reviewed A01–A05b code
+  paths and identified two mixed files: `mise.dev.toml` contains paused A06
+  example tasks/dependency, and `dev/saved-searches.toml` contains paused A06
+  config/hook records. Those need exact partial-index staging; blanket `git
+  add` would publish unreviewed A06. Raw/live evidence and scratch records
+  remain private unless each is sanitized and explicitly selected. A managed
+  A09 helper worktree was created from integration HEAD `6130ab5e`; its worker
+  owns only `dev/git_delivery.py` and `dev/test_git_delivery.py`. Parent owns
+  the current checkout, named task integration and shared plan. No branch
+  commit or push has occurred.
+- After the per-worktree policy and A09 scan annotations, `./dev/mise run
+  check:acceptance-baseline` exited 0 with all 19 frozen file hashes intact.
+  This is static preservation only; it does not qualify a branch push, hosted
+  CI or OCI acceptance.
+- A09 helper preparation in the isolated managed worktree produced only
+  `dev/git_delivery.py` and `dev/test_git_delivery.py`; its static project
+  checks passed, but the named scratch test task is not integrated. An
+  independent cold review found six material issues: fetch-vs-push URL
+  verification, Git pathspec magic staging unintended files, no owner-reviewed
+  scan-baseline path, whole-file staging of mixed A06 inputs, missing hook
+  preimage control, and missing index-mode binding for pre-staged blobs. The
+  reviewer reproduced the pathspec mutation in scratch and ran three helper
+  tests. Disposition: not ready to integrate. The isolated writer is fixing
+  these findings; parent has made no commit or push.
+- Parent copied the original redacted 225-finding report into
+  `evidence/git-delivery/initial-outbound-gitleaks-redacted.json` with matching
+  SHA-256, wrote an append-only scan triage and proposed exact-finding
+  adjudication JSON, and confirmed the copied report self-scans at rc 0 with
+  zero findings. A separate unchanged-HEAD baseline probe returned rc 0/zero
+  residual while the original pre-baseline history scan remains rc 1.
+  Independent read-only review found no substantive adjudication issue after
+  verifying all 225 findings, report bytes and SHA; parent corrected two
+  status/wording ambiguities. `check:acceptance-baseline` again exited 0 with
+  19 frozen hashes; no publication is authorized by these static checks.
+- The user lifted the unrelated-ticket hold for independent #13/#28/#29 after
+  asking for a parallel summary. Parent created three managed worktrees at
+  exact HEAD `6130ab5e`; #13 and #28 writers completed read-only preflight,
+  made no edits and paused when the user requested the step-by-step workflow.
+  #29 has a clean worktree but no active writer. A06 remains paused; #30
+  awaits its prerequisites. Parent retains serialized integration.
+- A09's isolated helper was repaired after focused review. The final helper
+  and test file SHA-256 values are `e8787bdae2a813b4f263f938c2074a6a5966ee3ad5c1cc0c7ed1fb140d2307e6`
+  and `c8a68bb2c31488439b7c6d9bc069870644b1bcbcc08193b3dc72c9e8d201bb7d`.
+  An independent reviewer found the untracked mixed-file staging and hook
+  preimage controls repaired; ten scratch tests exited 0. Integration and
+  publication remain open: the named task must bind the approved hook digest
+  and reviewed scan artifacts, then run actual checks and scans. A concurrent
+  hook edit during push can only be detected afterward; no live push occurred.
+- After the user identified the omission, parent read the inherited
+  `$mattpocock-skills:retro` and `writing-for-agents` sources and revised the
+  per-unit protocol, AGENTS pointer, issue workflow, orchestration handoff and
+  W4/W5 gates. Every ticket and task now requires a severity-ordered retro
+  after implementation/tests/independent review, application and verification
+  of every actionable finding, focused re-review and repeat retro after
+  material fixes before integration or publication. Open actions remain
+  partial with explicit blockers; no ticket retro in the new #13/#28/#29
+  frontier has run yet because implementation remains paused.
+- After the retro protocol edits, `./dev/mise tasks validate` exited 0 for 25
+  tasks; `./dev/mise run check` exited 0; `./dev/mise run
+  check:acceptance-baseline` exited 0 with all 19 original hashes; and `git
+  diff --check` exited 0. Both #13 and #28 writers acknowledged the new
+  per-ticket retro and remain paused before implementation.
+- The independent retro-workflow reviewer found a stale blanket hold, an
+  implementation-only trigger that skipped blocked outcomes, an unclear
+  invocation route for a skill with `disable-model-invocation: true`, and
+  unsupported ACK/check claims. Parent applied every finding: plan and
+  pointers now cover partial/blocked tasks and the #13/#28/#29 exception;
+  the record cites `evidence/workflow-retro-gate/checks.json` (SHA-256
+  `6a1e6d752fd95311a86130492307e363ea1df3a2f14de712e9dcf930b8d6413c`)
+  and `worktrees.json` (SHA-256
+  `ea33554e796ff0fef38cf1cc384fe0a315adee6ca9e48fe1b7ade8ecc1fe281f`).
+  Focused read-only re-review found no remaining issue. The corrected protocol
+  is recorded in `retros/workflow-retro-gate-2026-10-12.md`. Final-source
+  `./dev/mise run check`, `check:acceptance-baseline` and `git diff --check`
+  each exited 0; 19 original hashes remain intact. No #13/#28/#29 ticket
+  implementation or retro has run; each outcome will require its own gate.
+- The admitted #13/#28/#29 worktree frontier is now active. #13 captured a
+  97-object read-only Ninja recipe and prepared a private LSan repair mode;
+  no native heavy trial has run. #28 prepared an offline v2 CLI seam but a
+  cold reviewer found that optimized Python could skip bare-assert guards
+  and still write PASS; repair and a per-ticket retro remain due. Its real
+  public CLI/OCI acceptance remains partial. #29 observed cached Context7
+  4.3.0 local loopback direct and MCP trials and is preparing a decision;
+  no paid/global installation was performed. These isolated diffs are not
+  integrated or published.
+- Parent copied the independently reviewed A09 delivery helper into its
+  checkout and registered five named `delivery:*`/`test:delivery` tasks.
+  The first two scratch-test runs failed because inherited mise/Git hook
+  configuration reached temporary fixtures; a scoped test Git environment
+  repaired that interference. `./dev/mise run test:delivery` now exits 0
+  for all 10 cases; `./dev/mise tasks validate` exits 0 for 30 tasks;
+  `./dev/mise run check`, `check:acceptance-baseline` (all 19 original
+  hashes), and `git diff --check` each exit 0. A focused read-only review
+  of the copied helper, named tasks, and active hook configuration is in
+  progress. No A09 index staging, commit or push has occurred.
+- A09's focused review found two exact-index validation gaps: inherited
+  `GIT_CONFIG_*` could run a configured pre-commit command in the scratch
+  checkout, and `git archive` could omit a selected path via `export-ignore`.
+  Parent scrubbed scratch Git environment, replaced its porcelain commit with
+  hook-free plumbing, and made the scratch `write-tree` match the selected
+  index tree before running checks. Both hostile controls now pass; the full
+  `test:delivery` suite exits 0 for 14 cases. Focused read-only re-review
+  matched the final helper/test hashes, independently passed all 14 cases and
+  the 19-file baseline, and returned PASS for both repairs. The A09 retro
+  records each applied finding. No selected files are staged, committed or
+  published yet.
+- A09 then staged exactly 25 reviewed paths: 22 ordinary files and three
+  hash-bound partial blobs (`mise.dev.toml`, `dev/saved-searches.toml`, and
+  the A01-only `docs/onboarding.md` paragraph). Independent selection review
+  passed; paused A06 rows, W5 policy edits and private evidence are excluded.
+  Prepared index tree `442c004c` passed staged whitespace and the working
+  `check:research` suite (rc 0), but its first exact-tree task run failed on
+  system Python 3.9 after the scratch Git PATH override. Parent bound the
+  already-running Python 3.15 interpreter only for scratch named tasks,
+  restaged the helper, and obtained tree `90bedf7b`. The direct exact-tree
+  check now exits 0, including task validation, static baseline and 14
+  delivery tests; the one-line fix passed focused read-only re-review. No
+  commit, push or hosted acceptance has occurred.
+- A09 publication passed. Independent index review matched all 25 selected
+  paths, three partial blob hashes and staged tree `90bedf7b`; staged
+  Gitleaks returned rc 0. The fresh old-HEAD history scan returned rc 1 with
+  exactly 225 previously adjudicated redacted fingerprints, and the reviewed
+  baseline residual returned rc 0. The SHA-bound `delivery:publish` task
+  exited 0 after rerunning named checks, created commit
+  `93bb798bcb14a6daed992c5e5e4fcb4a688c7c56`, and pushed the exact
+  branch ref. A separate remote read matched that full SHA and the local
+  HEAD tree remains `90bedf7b`. W5/A06/private evidence edits remain
+  unstaged. A07/A08 issue publication, A10/A11 source-checkout transfer,
+  A12a hosted CI and full OCI acceptance are still separate gates.
+- After A09, parent admitted three independent worktrees at published HEAD
+  `93bb798b`: A07a for the one-issue amendment task, A10 for a dry-run
+  source-checkout transfer plan, and A12a for lightweight CI preparation.
+  None has issue/checkout/hosted mutation authority from its preparation
+  alone. Parent captured #11's current body and labels read-only and drafted
+  an append-only amendment candidate. The original 13,947 body bytes match
+  SHA-256 `84e925c2`; the 17,221-byte candidate has SHA-256 `d6c570ee`,
+  preserves that exact prefix, and remains unreviewed and unpublished.
+  A12a found an inherited bootstrap self-test referring to an absent task;
+  its isolated worker is repairing that focused test before final gates.
+- A07a's isolated single-send issue amendment helper passed 10 offline
+  controls, named checks and a read-only cold review. The reviewer reproduced
+  an ancestor-symlink redirect; the writer added component-wise rejection,
+  a failing-before/passing-after regression and focused re-review PASS. A12a
+  repaired clean-checkout tests that depended on a private untracked A02 raw
+  receipt and two stale catalog-count assumptions, then added a separate
+  read-only fast workflow. Cold review found no remaining A12a finding.
+  Parent integrated exactly ten reviewed A07a/A12a paths: staged tree
+  `ace0877b6623f63704c23279eb331f30856e7175` passed independent selection
+  review, staged Gitleaks rc 0, and direct selected-tree checks rc 0. The
+  SHA-bound `delivery:publish` task exited 0 with outbound history scan rc 0,
+  committed `a8ecd40b02e647bd4e98da8e30b9442e6c9c18a8`, and pushed it;
+  a separate remote read matched the full SHA. W5/A06/private evidence edits
+  remain unstaged. Hosted [`research-fast` run 38320574468](https://github.com/ray-manaloto/claude-code-marketplace/actions/runs/38320574468)
+  on that exact SHA concluded success for the sole job and all required steps;
+  A12a's hosted gate passes. Full Claude/container acceptance is separate.
+- A10's dry-run source-checkout planner passed five scratch controls and
+  independent cold review after two repairs: readiness now requires explicit
+  source-environment preparation admission in addition to exact handoff
+  hashes, and ignored-file hashing has count/byte/time bounds. The reviewed
+  receipt `/tmp/a10-plan-repaired.json` remains `ready_for_apply=false` with
+  12 source untracked handoffs pending approval and absent source `.mise` and
+  `.venv`; no source switch or source write occurred. A11 must re-inventory,
+  prepare and verify the source-root environment explicitly before its
+  post-transfer checks.
+- The qualified A07a task made a fresh read-only preview of #11. Its intent
+  SHA-256 is `4a38c3312fe63d3f1dd64004001385516b58540b40e139c1dc18696216ed0b7f`;
+  the current issue body/label preimage exactly matches the previously
+  captured SHA-256 `84e925c2` and `ready-for-agent` label, and the desired
+  body exactly matches append-only candidate SHA-256 `d6c570ee`. An
+  independent content review is pending; no issue PATCH has been sent.
+- A07b independent content review found two small repairs: call the old 50
+  issues' evidence “publication receipts” and explicitly freeze the sole
+  desired `ready-for-agent` label. Parent applied both; focused final-byte
+  review passed. A fresh qualified preview bound issue #11's unchanged
+  preimage and final candidate SHA-256 `5dfc7a31` in intent SHA-256
+  `837b65ad`. Exactly one named `issue:apply` exited 0 with `VERIFIED`; a
+  separate `issue:verify` exited 0 with `VERIFIED`. Independent read-only
+  `gh issue view` returned OPEN, sole `ready-for-agent`, and the exact
+  17,224-byte body SHA-256 `5dfc7a31` at
+  https://github.com/ray-manaloto/claude-code-marketplace/issues/11.
+  A07b issue publication passes; A08 ticket identities and relationships
+  remain pending.
+- Parent integrated the A10 planner into the current `a8ecd40b` checkout and
+  replaced the worker's fixed old commit with explicit published/source HEAD
+  arguments on the named tasks. The first live dry run exposed that global
+  argparse requirements also blocked the planner's source-root `probe` child;
+  parent moved that requirement to the `plan` action. The five scratch tests
+  and named `checkout:plan` now exit 0. Fresh plan SHA-256 `5ccf5438` binds
+  old HEAD `a8ecd40b` and source HEAD `6b5b092e`, finds 12 pending untracked
+  handoffs, absent source `.mise`/`.venv`, and reports `ready_for_apply=false`.
+  A focused independent integration review is in progress; A11 remains held.
+- A10 focused review found and parent repaired two false-readiness paths:
+  hidden tracked edits and untracked content changing after its approval hash.
+  Seven scratch tests and independent final-byte re-review passed. A fresh
+  planner receipt `/private/tmp/a10-plan-current-v2.json` has SHA-256
+  `563a4a9d` and remains unready with 12 pending source handoffs. Exact selected
+  tree `57340aac` passed the SHA-bound `delivery:publish` gate (rc 0, history
+  scan rc 0), producing `bcf97606eb6fd36c7d84976bfaeaff6362322847`;
+  independent remote read matched. No A11 transfer occurred.
+- A08a's isolated publisher and nine offline tests passed independent code
+  review. The separate 17-ticket payload needed three current-state repairs
+  for A01/A07a/A12a; final manifest SHA-256 `29b97011` passed focused
+  independent content review. No child issue has been created yet.
+- A08a exact four-file selection tree `24c10dd0` passed independent staged
+  review and the SHA-bound `delivery:publish` task (rc 0, outbound scan rc 0),
+  producing `3972f3b9d127f0de2e3274498c5caeff9e06dead`; a separate remote
+  read matched. Sequential named preview/apply/verify operations published
+  A01–A12b as child issues #62–#78. Each apply returned `UNRESOLVED` after
+  its single POST; a separate verify-only invocation returned `VERIFIED` and
+  wrote its durable binding. No second POST was attempted for any ID. A fresh
+  complete repository and #11 child-list audit matched all 17 manifest bodies,
+  titles, empty labels, OPEN states, unique numbers and parent edges; #11 had
+  67 children. The private graph receipt is
+  `evidence/issue-publication-private/graph-audit.json`, SHA-256 `53559e3b`.
+  Independent live graph cold review passed with no findings at 2026-10-12
+  23:39:14 UTC: 67 unique children #12–#78, all 17 new titles, exact bodies,
+  markers, OPEN states, empty labels, parent edges and bindings matched.
+  Ticket publication does not imply implementation or full acceptance.
+- The A10 named `checkout:plan-approved` dry run exited 0 for published HEAD
+  `3972f3b9` and source HEAD `6b5b092e`. The 12 source untracked files were
+  reviewed for preservation and bound by exact SHA-256 approvals. Plan
+  `/private/tmp/a11-plan-approved.json` SHA-256 `b191fad7` reports
+  `ready_for_apply=true`, with source `.mise` and `.venv` absent and source
+  preparation explicitly admitted. A11 has not detached or switched either
+  checkout; its bounded preflight/recovery helper is in progress. A08b still
+  owns blocker and readiness-label relationships after the verified parent
+  child graph; no such edges or labels have been published by this audit.
+- A11a's isolated SHA-bound preflight passed seven scratch tests, task
+  validation, static check, baseline19 and independent final-byte review after
+  a scope-binding repair. Parent integration named tests and checks exited 0;
+  selected tree `f5a5da3d` passed independent selection review. Named
+  `delivery:publish` exited 0 with history scan rc 0, producing
+  `d95e340669b21c32a829327d3324fe304c850a60`; a separate remote read
+  matched. No live transfer intent was prepared and no checkout switched.
+  A11b remains the guarded executor and source-root qualification gate.
+- A08b1's new-edge-only helper passed seven parent scratch tests, task
+  validation (48), `check`, baseline19, diffcheck and independent staged
+  review. The SHA-bound publish gate exited 0, producing
+  `623dad43ae07b3f87e928350dc2649a86a8d661c`; a separate remote read
+  matched. Named live preview/apply/verify operations then published exactly
+  21 new blocker edges for #62–#78. The complete named edge audit exited 0
+  with `NEW_EDGES_VERIFIED`. Independent live read-only review matched all
+  21 edges and the 67-child parent graph; there were no extra new-ticket
+  edges. The private receipt is
+  `evidence/issue-publication-private/edges/local-edge-receipt.json`, SHA-256
+  `4990e9b9`. Existing-ticket relationships and readiness labels remain A08b2.
+- A11b's isolated guarded-switch helper passed five scratch worktree tests,
+  static checks and independent final-byte review. Parent integrated the two
+  reviewed Python files and named task block. Parent five-test run, task
+  validation (50), `check`, baseline19 and diffcheck exited 0. The helper
+  has not yet been published or used to switch either checkout. Fresh A10
+  plan, A11a intent, guarded switch and source-root qualification remain.
+- A11b selected tree `3110900c` passed independent final selection review;
+  the SHA-bound `delivery:publish` gate exited 0 with history scan rc 0,
+  producing `48027d2d333611d162cdff8cabb7bc1eecf944da`. A separate
+  remote read matched. No live checkout switch has occurred yet.
+- The source-transfer execution used fresh A10 plan
+  `/private/tmp/a11-plan-current-v3.json` SHA-256 `08a415a8` and A11a intent
+  `/private/tmp/a11-intent-current-v3.json` SHA-256 `3b5dc003`. The named
+  `checkout:switch-guarded` ran once and returned **rc 2** after recording
+  admitted, detached, switch-started and switched. Its durable
+  `/private/tmp/a11-switch-journal-v3` ended `recovery_required`, not
+  `verified`: a new source `.venv` appeared between switched and failure
+  markers, changing the ignored inventory. The creator is unproven. Do not
+  replay this journal or reset either checkout.
+- Independent read-only reconciliation found the source root on
+  `codex/marketplace-native-onboarding` at `48027d2d`, with all 12 approved
+  untracked entries matching exact hashes. It checked all 8,319 tracked
+  paths against HEAD with batched `git hash-object` and found zero content
+  or mode mismatches. The old root is detached at the same commit; its 15
+  dirty entries, 257 untracked entries and index/status hashes match the
+  pre-switch plan. Its only ignored difference is one pycache created by a
+  later investigative Python import. This proves physical branch ownership
+  and no observed retained-data loss, while preserving the guard's rc 2.
+- The unexpected empty source `.venv` was archived privately before setup at
+  `/private/tmp/a11-source-venv-before-sync.tar.gz`, SHA-256 `0f578e18`.
+  From the source root, `tools:prepare`, `deps:sync`, `deps:check`, task
+  validation (44), `check`, baseline19 and diffcheck all exited 0. The pinned
+  preparation installed Python 3.15.0 and uv 0.13.0; the reviewed lock
+  resolved 18 packages and synchronized 17 packages. The 932-line
+  append-only pre-transfer progress from the detached worktree was copied
+  exactly into this source-root plan before this entry; source prefix and
+  copied file bytes were verified. A09 handoff update and publication still
+  need their own review and gate before A11 can close.

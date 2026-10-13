@@ -1,9 +1,12 @@
 # Marketplace onboarding and C++ foundation
 
 PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`
-Plan owner and sole implementation writer: parent Codex chat.
-Project root: `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`.
+Plan and integration-branch owner: parent Codex chat. Current writing is
+serialized across the Git common directory; review agents are read-only.
+Project root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
 Set `PWF_PLAN_ROOT` to that root and `PLAN_ID` above for commands launched elsewhere.
+The detached `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`
+retains its uncommitted work and private evidence. Do not reset or archive it.
 
 ## Objective
 
@@ -15,7 +18,8 @@ to a native C++26 P2996 research core; build/toolchain work follows onboarding.
 
 Each unit has one purpose, at most about five maintained files and 300 handwritten
 changed lines. Generated evidence is checked mechanically. Settle each unit's
-acceptance before expanding it; parent writes, workers inspect and review.
+acceptance before admitting dependents. The parent owns this plan and serializes
+implementation and integration under the current common-directory boundary.
 
 | Unit | Deliverable | Gate | State |
 | --- | --- | --- | --- |
@@ -110,7 +114,51 @@ The one-writer and per-unit gates above remain in force.
 | W1 | Publish full-baseline spec | Accepted scope and test seams, source-backed claims, ready-for-agent issue | Complete; GitHub #11 |
 | W2 | Publish context-sized ticket graph | User-approved granularity and genuine native blocking edges | Complete; 50 sub-issues #12–#61 under #11, all parent/body/label/edge checks verified |
 | W3 | Standby Claude takeover document | Exact live state, issue frontier and explicit sole-writer transfer | Complete; independent final review found no material findings; standby only |
-| W4 | Implement approved ticket graph | One writer and bounded review/check receipts per ticket | In progress; ticket #12 closure committed `2cc4c029`, ticket #24 legacy boundary committed `931b536`, and ticket #25 reversible helper selection reviewed; GitHub issues remain open |
+| W4 | Implement approved ticket graph | Per-worktree ownership, disjoint file scopes, bounded tests/review, per-ticket retro with all actionable findings applied and verified, then serialized integration | Independent #13/#28/#29 worktrees admitted after user-facing parallel summary; implementation in progress, no integration; #30 waits for prerequisites. #12 closure committed `2cc4c029`, #24 boundary committed `931b536`, #25 helper selection committed `54d34c8b`; GitHub issues remain open at last verification |
+| W5 | Reconcile the 17-point workflow clarification | Source-backed gap audit, resolved decision frontier, reviewed spec/ticket amendment, per-task retro application gate | Retrospective remediation active; A01–A05b and A09 published at `93bb798b`; A07a and A12a published at `a8ecd40b`, with hosted fast CI success; A10 planner published at `bcf97606`; A07b spec #11 body verified live; A08 publisher published at `3972f3b9`, all 17 child issues #62–#78 independently verified under #11, and all 21 new blocker edges independently verified live after A08b1 publication `623dad43`; A08b2 existing-ticket edges and labels remain; A11a preflight published at `d95e3406` and A11b helper at `48027d2d`; guarded live switch returned rc 2 on a new source `.venv`, then exact branch/checkout state and retained data were independently reconciled, source-root tools/deps/static/baseline checks passed; A11 handoff update commit and audit remain open. A06 remains paused; #13/#28/#29 worktrees retain their prior state without concurrent writes under the current boundary |
+
+The current local A-index is [automation-amendment-draft.md](automation-amendment-draft.md).
+The user approved its original fourteen-slice breakdown and blocking edges on 2026-10-12.
+A01/A02 retrospectives split late A12 into A12a fast-check/hosted CI
+qualification after A09 publication and A12b assembly. A04's retro split A03
+into A03a bounded attempts and A03b controlled-empty verdicts. Reviewed
+A01–A05b code and the A09 delivery gate are published on the integration
+branch at `93bb798b`; A07a and A12a follow at `a8ecd40b`. The hosted
+`research-fast` run on that exact SHA concluded success. Their GitHub
+amendment issues remain unpublished.
+A02 exposed a missing host SSL library
+in the shared Python tool; A01 now uses a project-scoped tool install. Focused
+read-only reviews of A01, A02 and A04 passed. Their retro records and local
+improvements are complete. `check:research` exits 0; it is not hosted CI
+acceptance. A04's nine offline controls pass and its immutable receipts remain
+uncommitted. A03a passed twelve offline controls and focused review; its
+final-source live receipt is bounded `partial` with `item_limit` (10/898), not
+a full or controlled-empty result. Its retro applies the private-result and
+timeout-safe seam to A03b. A03b passed six control fixtures and focused
+review; it can promote only a complete candidate with passed same-budget
+controls. Its complete and verified-empty outcomes are exercised in offline
+fixtures only. A05 is split into read-only baseline/comparison A05a and
+concurrency-safe public rerun A05b. A05a passed seven comparison fixtures and
+focused review, with A03b normalization version 2, captured published-run
+inventory, and hash-checked bytes used for comparison. Its retro requires A05b
+to bind public reruns and quarantine under a per-query writer lock. A05b passed
+six public offline fixtures, focused review and a bounded live command. The
+live search is partial and its comparison is suppressed. A06 is paused under
+the user's retrospective-action hold; no live full-inventory or NEW/GONE
+result has been qualified. The [application audit](retros/application-audit-2026-10-12.md)
+distinguishes written retros and local fixes from pending hosted, transfer and
+published-issue actions. The user clarified that named retrospective actions
+may proceed in prerequisite order to clear this hold. The user's later
+parallel-worktree direction admits independent #13/#28/#29; A06 and other
+unrelated tickets remain paused until the open actions are applied and
+verified or explicitly rejected.
+Parent ownership of this plan and the integration branch is unchanged. The
+earlier separate ticket worktrees retain their files; current writing is
+serialized across this Git common directory. Record each approved local slice's state and receipts; the
+old GitHub frontier does not override W5. The native review and explicit parent
+dispositions are in [automation-amendment-review.md](../../docs/agents/automation-amendment-review.md).
+Do not reopen the twelve settled requirement interpretations or manually publish
+bootstrap issues/commits. The current review-task helper is not A01 acceptance.
 
 Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
 Its post-commit baseline check exited 0 and the worktree was clean.
