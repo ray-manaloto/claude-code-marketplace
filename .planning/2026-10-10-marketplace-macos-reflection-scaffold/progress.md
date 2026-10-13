@@ -2908,10 +2908,11 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   code-review receipt passed static checks and were locally committed at
   `806282107e63ebf29a2128d358236e3d5a754afc` in the detached ticket
   checkout. A quiet snapshot produced a SHA-bound native proposal, but two
-  separate independent live pre-run reviews withheld admission: unknown
+  separate independent live pre-run reviews initially withheld admission: unknown
   shared `mise` PID 46023 was present across two strict census samples, then
-  a later clean sample was followed by `mise run test` PID 85432. Both failed
-  reviews are preserved there. No clean-control witness ran; the proposal
+  a later clean sample was followed by `mise run test` PID 85432. A third
+  review also observed a clean sample followed by unknown `mise` PID 65456.
+  All three failed reviews are preserved there. No clean-control witness ran; the proposal
   remains uncommitted to keep its exact checkout HEAD binding. A fresh pair
   of clean censuses and passing independent review remain required. #28 and
   #29 remain committed local partials; A06/A12b remain held.
