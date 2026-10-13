@@ -3045,3 +3045,27 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   changed. The external review record binds final file hashes and disposition;
   A09 records publication separately. Return the writer allocation after the
   remote SHA is independently confirmed.
+
+- The human explicitly requested the full remaining-work workflow, parallel
+  implementation in separate Git worktrees, and a retrospective after every
+  ticket/task. Q1 confirmed that repair barriers hold the originating lane and
+  affected dependencies while independent lanes proceed. After a Claude Fable
+  team found 16 issues in the completion contract, all original corrections and
+  one follow-up handoff note passed independent review. The saved integrity
+  verifier returned rc 0 for 40 bindings and actual native team participation.
+  Q2 then confirmed the revised contract and existing public test seams. The
+  interview phase is complete; A06/A12b and required runtime gates are not.
+- The scheduler delivered W1's two reviewed policy commits and explicitly
+  allocated their source import plus this task's onboarding/canonical-plan
+  alignment. A separate merger owns the four policy files; parent planning
+  writes follow its returned interval. W1 source composition and this alignment
+  require separate actual check/review receipts; this parent alignment remains
+  pending source application, named checks and independent review. The peer retains generic tracker
+  tooling and LLVM/RF ownership; no source, host or issue authority is inferred
+  from another task's completed receipt. The approved contract is recorded in
+  [completion-contract.md](completion-contract.md).
+- Research coverage remains incomplete: the strict-five command for request
+  01a133aa-ecbe-7b51-b397-a43480577775 returned rc 1 because its Last30Days
+  validator rejects schema 1.4 youtube=no-results. Firecrawl Search returned
+  HTTP 402; Serper remains provisional. All ten raw bindings matched on
+  re-verification. These gaps do not become provider or runtime acceptance.

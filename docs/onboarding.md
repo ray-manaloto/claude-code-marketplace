@@ -19,7 +19,8 @@ Set `PLAN_ID=2026-10-10-marketplace-macos-reflection-scaffold` and
 An export inside one tool subprocess cannot pin the already-running host.
 Read the selected `task_plan.md`, `findings.md`, and `progress.md`; do not create
 a competing root plan. The [team contract](agents/codex-task-orchestration.md)
-defines the sole writer and read-only review lanes.
+defines per-worktree implementation ownership, serialized integration and
+independent review lanes.
 
 ## Development and acceptance
 

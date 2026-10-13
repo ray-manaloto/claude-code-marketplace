@@ -1,8 +1,9 @@
 # Marketplace onboarding and C++ foundation
 
 PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`
-Plan and integration-branch owner: parent Codex chat. Current writing is
-serialized across the Git common directory; review agents are read-only.
+Plan and integration-branch owner: parent Codex chat. Independent implementation
+lanes use separately allocated worktrees and disjoint paths. Integration, shared
+planning, named checks and publication remain serialized; reviewers are read-only.
 Project root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
 Set `PWF_PLAN_ROOT` to that root and `PLAN_ID` above for commands launched elsewhere.
 The detached `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`
@@ -14,12 +15,35 @@ Qualify native Codex onboarding while preserving the Claude marketplace and OCI
 acceptance contracts. The accepted product direction is incremental migration
 to a native C++26 P2996 research core; build/toolchain work follows onboarding.
 
+## Confirmed completion workflow
+
+The user confirmed the [completion contract](completion-contract.md) after a
+Claude Fable lead and two Fable reviewers examined it. All 16 original findings
+and one follow-up handoff note were corrected; both independent follow-ups
+passed, and the saved verifier checked 40 bound files with rc 0. Q1 applies retro
+barriers per lane and affected dependencies; Q2 confirms the complete execution
+contract and existing public test seams. The interview is complete.
+
+Reuse spec #11 and its 67 child identities. A06 may proceed after the W1 source
+policy import and its own allocation; A12b follows A06 acceptance. Independently
+ready existing tickets can proceed concurrently. New or changed A12b ticket
+slices and edges still require their specific review. Eighteen source-qualified
+milestones need individual tracker reconciliation; publication and a closed issue
+do not replace acceptance. The peer owns the generic tracker extensions, including
+acceptance-close qualification. Missing required gates remain explicit blockers.
+
+The selected five-stage skills and their durable protocol remain authoritative.
+Preserve the final reviewed contract hash and the confirmed decisions in the
+[acceptance record](../../evidence/completion-workflow/contract-acceptance.json).
+This records workflow admission, not completion of the remaining implementation.
+
 ## Small units
 
 Each unit has one purpose, at most about five maintained files and 300 handwritten
 changed lines. Generated evidence is checked mechanically. Settle each unit's
 acceptance before admitting dependents. The parent owns this plan and serializes
-implementation and integration under the current common-directory boundary.
+integration; a retrospective holds its lane and affected dependencies until all
+actionable repairs are applied, checked and independently reviewed.
 
 | Unit | Deliverable | Gate | State |
 | --- | --- | --- | --- |
@@ -131,14 +155,16 @@ A06 acceptance. #28's offline milestone needs source integration and its own
 checks before satisfying that specific #30 prerequisite; its other prerequisites
 and full ticket acceptance remain. Baseline-transition design can proceed
 independently, with versioned review before application. GitHub dependencies
-are unchanged. Parent implementation and integration stay serialized.
+are unchanged. Integration stays serialized; independently admitted worktrees
+may implement disjoint ready units concurrently.
 
 The readiness review verified A05b and the completed-unit remediation ledger;
 no remaining actionable implementation defect blocks bounded A06 resumption.
 Its next unit reconciles the retained blob-retrieval seam and four offline tests
-before example classification. A user-authorized coordination exchange with
-the scheduler task reserved the writer slot for documentation delivery and the
-first feedback-helper integration only; return it before starting another unit.
+before method-bound example classification. The earlier two-unit source slot
+was returned after publication. The scheduler has now explicitly allocated the
+W1 source-policy import and parent-owned onboarding/plan alignment; product
+workers receive separate recorded worktree/path allocations.
 
 The approved A-index, with the current prerequisite correction, is
 [automation-amendment-draft.md](automation-amendment-draft.md). Its older
