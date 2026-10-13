@@ -3121,3 +3121,30 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   bounded synthetic loopback seam before separate named-check/review/integration
   gates. Fresh installation, live provider, cancellation and native caller
   acceptance remain pending, and #40 stays held.
+
+- The prior offline closure published #28's offline contract and A06 retrieval
+  unit one at `a0713408`. Native publication and separate remote verification
+  returned rc 0; hosted research-fast run `38372912753` completed successfully
+  on that exact commit. Full ticket/native/provider/OCI acceptance stayed separate.
+- #29's refreshed cached Context7 bridge was independently accepted locally,
+  reconciled to the latest source tip, and separately imported at `66905b4`.
+  Fresh source normal/optimized/fault controls returned 0/0/1, with ten loopback
+  requests in each positive run. The expected fault produced no accepted output.
+  Named source checks, original 19-file baseline, owned-process settlement and
+  independent source/retro review passed. Historical producer and failed install
+  evidence remain intact. Full #29 is PARTIAL/OPEN and #40 is HELD.
+- A06 classification unit2 repaired four product-review findings: independent
+  observation timestamps, malformed normalized identities, contradictory
+  coverage claims and bounded artifact reads. The verifier's failure receipts
+  and timeout handling were repaired before sealed proof. Normal/optimized and
+  named example runs each passed 17 tests; all project/baseline checks passed.
+  Local commit `e1fdc24f` and its 61-file handoff passed independent review.
+  The separate source import at `5acdc3a3` passed fresh checks, exact tree/parent
+  and file-preservation controls, and independent code/receipt/retro review.
+  Its source helper repairs preserve failed Git reads in the terminal roster and
+  require the accepted committed tree. Full classification remains UNVERIFIED;
+  TOML/schema methods and actual retained-corpus classification remain pending.
+- The [follow-up receipt](../../evidence/completion-workflow/offline-followup-integrations.json)
+  records these source milestones. A separate A09 publication follows this
+  parent-owned documentation update; no issue closure or additional runtime
+  qualification is implied.
