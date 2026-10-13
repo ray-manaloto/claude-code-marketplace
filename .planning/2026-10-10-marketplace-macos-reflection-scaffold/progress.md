@@ -3241,3 +3241,14 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   (includes `f039041`). Focused re-review of the delta dispatched; integration
   adds the `test:codex-session-history` task row and its `check:research`
   dependency.
+
+- 2026-10-13 (Claude session, TEAM handoff): lane `team` (CT-03) handed off at
+  `9103931` — five agent roles, three path-scoped rules, `docs/agents/claude-team.md`,
+  ADR 0001 and the glossary Workflow section; validate/check/baseline/diff-check
+  rc 0. Its retro draft's process finding is applied now: lane records are
+  committed before the worktree is cut (the `team` and `retro-gate` records were
+  created after their worktrees, so those lanes read them from the integration
+  branch). Citations to files other lanes will create are marked "arrives with
+  lane …" and get a citation recheck at each of those integrations. Fable cold
+  review dispatched. Still running: SKILL focused re-review, rf-env-scrub cold
+  review, retro-gate implementation.

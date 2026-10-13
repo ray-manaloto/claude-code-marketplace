@@ -1,6 +1,8 @@
 {
   "unit": "team",
-  "tickets": ["CT-03 (spec 'Claude team takeover and self-improving workflow', publication pending user approval)"],
+  "tickets": [
+    "CT-03 (spec 'Claude team takeover and self-improving workflow', publication pending user approval)"
+  ],
   "title": "Team roles, path-scoped rules, team guide, workflow vocabulary and ADR 0001",
   "owner": "doc-writer",
   "writer_model": "sonnet",
@@ -19,9 +21,29 @@
     "docs/adr/0001-claude-takeover-and-retro-gate.md",
     "GLOSSARY.md"
   ],
-  "excluded_shared_paths": [".claude/settings.json", "AGENTS.md", "CLAUDE.md", "docs/agents/codex-task-orchestration.md", "docs/agents/ticket-retro.md", "mise.dev.toml", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"],
-  "required_checks": ["tasks validate", "check", "check:acceptance-baseline", "git diff --check", "every cited path exists (rg --files)"],
-  "resource_admissions": {"host_heavy": "not admitted", "providers": "none", "network": "none"},
-  "status": "allocated",
-  "created_at": "2026-10-13T20:03:11Z"
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/agents/codex-task-orchestration.md",
+    "docs/agents/ticket-retro.md",
+    "mise.dev.toml",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "required_checks": [
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check",
+    "every cited path exists (rg --files)"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none"
+  },
+  "status": "implemented, checks rc 0, committed locally; cold review running; integration pending",
+  "created_at": "2026-10-13T20:03:11Z",
+  "lane_commit": "9103931 (CT-03 commit + merge of f039041)"
 }
