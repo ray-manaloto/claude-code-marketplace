@@ -52,13 +52,16 @@ EVIDENCE = re.compile(
     r"check:acceptance-baseline|tasks validate|19 (original |baseline )?(file )?hash(es)?|"
     r"\btests? pass(ed)?\b|\ball \d+ tests\b)"
 )
-# A trailing hyphen marks a compound word ("pending-file race"), not a state.
+# Open-state words count only in a row's last (disposition) cell; a trailing
+# hyphen marks a compound word ("pending-file race"), not a state.
 OPEN = re.compile(r"\b(pending|todo|tbd|open finding|unresolved|not yet applied)\b(?!-)", re.I)
 RESOLVED_OPEN = re.compile(
     r"\b(deferred|owner|blocker|held|external|separate (ticket|unit|operation|owner)|future ticket #?\d+|"
-    r"#\d+|A\d{2}[ab]?\b|remains partial|partial)\b",
+    r"A\d{2}[ab]?\b|remains partial|partial)\b|(?<!\w)#\d+",
     re.I,
 )
+MAX_RECORD_BYTES = 1 << 20
+UNDERIVABLE = "unit could not be derived; pass --unit or --branch"
 BRANCH = re.compile(r"^(?:claude|codex)/([A-Za-z0-9][A-Za-z0-9-]*)")
 
 
@@ -92,7 +95,7 @@ def lane_unit(plan_dir: Path, branch: str) -> str | None:
 
 def unit_from_branch(branch: str, plan_dir: Path) -> str | None:
     """Prefer a lane record naming the branch, then the longest existing record prefix."""
-    branch = re.sub(r"[~^]\d*$", "", re.sub(r"^(remotes/[^/]+/|heads/)", "", branch.strip()))
+    branch = re.sub(r"([~^]\d*)+$", "", re.sub(r"^(remotes/[^/]+/|heads/)", "", branch.strip()))
     match = BRANCH.match(branch)
     if not match:
         return None
@@ -104,32 +107,40 @@ def unit_from_branch(branch: str, plan_dir: Path) -> str | None:
     for candidate in candidates:
         if (plan_dir / "retros" / f"{candidate}.md").is_file():
             return candidate
-    return lane or parts[0]
+    return lane
 
 
 def derive_unit(args, repo: Path, plan_dir: Path) -> str:
+    """Precedence: --unit, --branch, --from-merge-head, $RETRO_UNIT, then the current branch."""
     if args.unit:
         return args.unit
-    if args.from_merge_head:
+    if args.branch is not None:
+        name = args.branch
+    elif args.from_merge_head:
         if git(repo, "rev-parse", "-q", "--verify", "MERGE_HEAD") is None:
             raise UsageError("--from-merge-head: no merge in progress (MERGE_HEAD is absent)")
         name = git(repo, "name-rev", "--name-only", "MERGE_HEAD") or ""
-        unit = unit_from_branch(name, plan_dir)
-        if not unit:
-            raise UsageError(f"--from-merge-head: MERGE_HEAD names {name!r}, not a claude|codex/<unit>-<slug> branch")
-        return unit
-    env = os.environ.get("RETRO_UNIT") or os.environ.get("CLAUDE_LANE_UNIT")
-    if env:
-        return env
-    unit = unit_from_branch(git(repo, "branch", "--show-current") or "", plan_dir)
+    else:
+        env = os.environ.get("RETRO_UNIT") or os.environ.get("CLAUDE_LANE_UNIT")
+        if env:
+            return env
+        name = git(repo, "branch", "--show-current") or ""
+    unit = unit_from_branch(name, plan_dir)
     if not unit:
-        raise UsageError("usage: --unit <id> (or set RETRO_UNIT, use --from-merge-head, "
-                         "or check out a claude|codex/<unit>-<slug> branch)")
+        raise UsageError(f"{UNDERIVABLE} (branch {name!r} matches no lane record or retro record)")
     return unit
+
+
+def open_without_owner(line: str) -> bool:
+    cells = [cell.strip() for cell in line.strip().strip("|").split("|") if cell.strip()]
+    last = cells[-1] if cells else ""
+    return bool(OPEN.search(last)) and not RESOLVED_OPEN.search(line) and not EVIDENCE.search(last)
 
 
 def check_record(path: Path) -> list[str]:
     try:
+        if path.stat().st_size > MAX_RECORD_BYTES:
+            return ["retro record larger than 1 MiB"]
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
         return [f"retro record missing: {path} ({exc.strerror or exc})"]
@@ -145,7 +156,7 @@ def check_record(path: Path) -> list[str]:
     if not EVIDENCE.search(flat):
         reasons.append("no verification binding (exit code, PASS, SHA-256 or named check) found")
     for line in text.splitlines():
-        if line.startswith("|") and OPEN.search(line) and not RESOLVED_OPEN.search(line):
+        if line.startswith("|") and open_without_owner(line):
             reasons.append(f"open finding without owner/blocker: {line.strip()[:120]}")
     return reasons
 
@@ -153,6 +164,7 @@ def check_record(path: Path) -> list[str]:
 def run(argv: list[str]) -> int:
     ap = Parser(prog="retro_gate.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--unit", help="unit id; defaults to $RETRO_UNIT or the claude/<unit>-<slug> branch name")
+    ap.add_argument("--branch", help="derive the unit from this branch name (hooks without MERGE_HEAD)")
     ap.add_argument("--from-merge-head", action="store_true", help="derive the unit from the branch being merged")
     ap.add_argument("--repo", help="repository root (default: the Git top level of the working directory)")
     ap.add_argument("--plan-id", default=os.environ.get("PLAN_ID") or DEFAULT_PLAN_ID)

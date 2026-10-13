@@ -79,6 +79,15 @@ class RetroGateCli(unittest.TestCase):
             self.assertEqual(rc, 2)
             self.assertIn(" - no verification binding (exit code, PASS, SHA-256 or named check) found", out)
 
+    def test_oversized_record_is_refused_before_reading(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            big = Path(tmp, "big.md")
+            big.write_text((FIXTURES / "complete.md").read_text() + "x" * (1 << 20))
+            rc, out, _ = gate("--record", str(big))
+            self.assertEqual(rc, 2)
+            self.assertEqual([line for line in out if line.startswith(" - ")],
+                             [" - retro record larger than 1 MiB"])
+
     def test_stub_reports_every_reason(self):
         rc, out, _ = self.check("stub.md")
         self.assertEqual(rc, 2)
@@ -123,6 +132,11 @@ class RetroGateCli(unittest.TestCase):
         for name in ("m0-remaining-work-merge.md", "codex-session-history.md", "A01.md"):
             rc, out, _ = gate("--record", str(CORPUS / name))
             self.assertEqual(rc, 0, (name, out))
+        # A04 ("scans pending entries ... reviewer PASS") and acceptance-frontier ("| #29 ...") rows are
+        # resolved; both records still fail on other reasons (a missing category / no binding).
+        for name in ("A04.md", "acceptance-frontier.md"):
+            _, out, _ = gate("--record", str(CORPUS / name))
+            self.assertFalse([line for line in out if "open finding" in line], (name, out))
 
 
 class RetroGateUnitDerivation(unittest.TestCase):
@@ -165,11 +179,33 @@ class RetroGateUnitDerivation(unittest.TestCase):
         self.assertEqual(rc, 2, out)
         self.assertIn("z.md", out[0])
 
-    def test_unknown_branch_unit_is_missing_record(self):
+    def test_underivable_branch_is_usage_error(self):
         git(self.repo, "checkout", "-q", "-b", "codex/q-r")
-        rc, out, _ = self.run_gate()
+        rc, _, err = self.run_gate()
+        self.assertEqual(rc, 1, err)
+        self.assertIn("unit could not be derived; pass --unit or --branch", err)
+
+    def test_explicit_branch_and_name_rev_suffixes(self):
+        for branch, expected in (("claude/x-y", 0), ("remotes/origin/claude/x-y~2^2~1", 0), ("claude/z-w^", 2)):
+            rc, out, _ = self.run_gate("--repo", str(self.repo), "--branch", branch)
+            self.assertEqual(rc, expected, (branch, out))
+            self.assertIn("x.md" if expected == 0 else "z.md", out[0])
+        for branch in ("main", "codex/q-r"):
+            rc, _, err = self.run_gate("--repo", str(self.repo), "--branch", branch)
+            self.assertEqual(rc, 1, (branch, err))
+            self.assertIn("unit could not be derived; pass --unit or --branch", err)
+
+    def test_lane_record_names_unit_for_branch(self):
+        lanes = self.repo / ".planning" / PLAN / "lanes"
+        lanes.mkdir()
+        (lanes / "q.json").write_text('{"unit": "z", "branch": "codex/q-r"}')
+        (lanes / "w.json").write_text('{"unit": "w", "branch": "codex/w-v"}')
+        rc, out, _ = self.run_gate("--repo", str(self.repo), "--branch", "codex/q-r")
         self.assertEqual(rc, 2, out)
-        self.assertTrue(any("retro record missing" in line for line in out), out)
+        self.assertIn("z.md", out[0])
+        rc, out, _ = self.run_gate("--repo", str(self.repo), "--branch", "codex/w-v")
+        self.assertEqual(rc, 2, out)
+        self.assertTrue(out[1].startswith(" - retro record missing:"), out)
 
     def test_from_merge_head(self):
         rc, _, err = self.run_gate("--from-merge-head")

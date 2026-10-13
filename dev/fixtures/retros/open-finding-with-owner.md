@@ -7,6 +7,7 @@ Unit: `fixture-open-finding-with-owner`. Exits: suite rc 0 (4 tests), `tasks val
 | --- | --- | --- |
 | P2 | Automated checks: nothing refused a duplicated task row. | Pending, deferred with owner: the parent adds the assertion in ticket #12. |
 | P3 | Navigation: the brief named a path relative to the wrong directory. | Applied: the brief names the absolute path; verified by rerunning the step. |
+| P3 | Tool economy: the suite ran slowly. | Pending: tracked in #29. |
 
 Coding standards: none, because no judgement rule arose from this unit.
 Steering: none, because `AGENTS.md` still points to the protocol unchanged.
