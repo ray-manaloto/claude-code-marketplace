@@ -2128,6 +2128,8 @@ class FeedbackChecks(unittest.TestCase):
                 affected, broad = self.two_query_workflow(root, cooldown=30)
                 stage, compared, clock = ['old'], [], [refresh.time.time()]
                 def mutate(row):
+                    if stage[0] == 'promo2' and row['search_id'] == affected:
+                        row.update(total_count=2)  # Now-unrelated warning during the second promotion.
                     if stage[0] != 'promo':
                         return
                     if row['search_id'] == broad and mode in ('capped', 'incomplete'):
@@ -2182,12 +2184,29 @@ class FeedbackChecks(unittest.TestCase):
                         else:
                             self.assertEqual(receipt['attempt_status'], 'failed')
                         blocked.assert_not_called()
+                    if permitted:  # A second catalog-only promotion rebinds drift to the new active catalog.
+                        self.assertEqual(receipt['promoted_query_drift'], [])
+                        second = refresh.read(root / 'candidate.json')
+                        second['searches'][1]['query'] += ' in:title'
+                        refresh.write(root / 'second.json', second)
+                        refresh.write(root / 'proposal.json', {'catalog': 'second.json', 'base_catalog_sha256': refresh.digest(root / 'searches.json'), 'changes': {broad: self.proposal['changes']['test']}})
+                        stage[0] = 'promo2'
+                        self.assertEqual(run('proposal.json'), 2)
+                        state = refresh.read(root / 'learning-state.json')
+                        receipt = refresh.read(root / 'cycles' / state['last_attempt_cycle'] / 'receipt.json')
+                        self.assertEqual((receipt['catalog_only_promotion'], receipt['promoted_query_drift']), (True, [affected]))
+                        self.assertEqual(list(receipt['coverage_warning_queries']), [affected])
+                        self.assertEqual(state['accepted_baseline'], accepted['accepted_baseline'])
+                        self.assertEqual((root / 'searches.json').read_bytes(), (root / 'second.json').read_bytes())
+                        clock[0] += 31
                     stage[0] = 'next'
                     self.assertEqual(run(), 0)  # Restarted ordinary refresh compares with the fixed baseline.
                     state = refresh.read(root / 'learning-state.json')
+                    receipt = refresh.read(root / 'cycles' / state['last_attempt_cycle'] / 'receipt.json')
+                    self.assertEqual(receipt['promoted_query_drift'], sorted([affected, broad]) if permitted else [])
                     self.assertEqual((state['last_run_id'], state['baseline_commit']['outcome']), ('next', 'accepted'))
                     self.assertEqual(set(compared), {'test_old'})
-                    self.assertEqual((root / 'searches.json').read_bytes(), (root / 'candidate.json').read_bytes() if permitted else before)
+                    self.assertEqual((root / 'searches.json').read_bytes(), (root / 'second.json').read_bytes() if permitted else before)
 
     def test_interrupted_catalog_only_promotion_recovers_and_retries(self):
         for fault in ('catalog', 'state'):
