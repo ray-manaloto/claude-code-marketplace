@@ -3413,14 +3413,17 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   diff --check); retro filed at `retros/nav.md` and gated; lane record
   `retro: passed`.
 
-- NEXT (2026-10-13, after `/clear`): integrate `gate-hooks` (CT-02) once its
-  cold review passes (settings key migration, `hooks:install`, `test:hooks`
-  into `check:research`), publish via A09, then publish the takeover spec and
-  CT-01…CT-11 tickets from `proposals/claude-takeover-spec/` after the user's
-  to-tickets approval. Pending decisions: to-tickets approval; settings.json
-  composition. Everything else is integrated with `retro: passed`.
-
 - 2026-10-13 (merger fork, batch publication 3): publishing the C1 and NAV
   integrations, the retro-passed lane records, the takeover retro table fix,
   the session handoff and the persisted spec proposal through the A09 route;
   remote preimage `f250f75`.
+
+- NEXT (2026-10-13, after `/clear`): integrate `gate-hooks` (CT-02) after its
+  focused re-review passes (migrate user-specific keys of the root
+  `.claude/settings.json` to `settings.local.json`, run
+  `./dev/mise run hooks:install`, add `test:hooks` to the `depends` of
+  `check:research`), publish via A09, then publish the takeover spec and the
+  CT-01…CT-11 tickets from `proposals/claude-takeover-spec/` after the user's
+  to-tickets approval. Pending decisions: to-tickets approval; settings.json
+  composition. Published remote: `28fedf1`. Rule: rewrite this NEXT bullet in
+  place at every handoff; it must stay the last bullet.
