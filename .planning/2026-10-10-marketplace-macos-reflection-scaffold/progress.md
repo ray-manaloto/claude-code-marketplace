@@ -2916,3 +2916,34 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   remains uncommitted to keep its exact checkout HEAD binding. A fresh pair
   of clean censuses and passing independent review remain required. #28 and
   #29 remain committed local partials; A06/A12b remain held.
+
+- The requested fresh #13 clean-control retrospective is in progress. Five
+  deterministic regression groups passed directly (rc 0); the project check
+  now invokes that suite. The previous proposal is retired because helper
+  bytes changed; its three failed reviews remain preserved. The native control
+  has not run. Retained-worktree plan routing now points here. Named checks
+  and focused independent review still need to settle this retrofit.
+
+- A separate authorized informational handoff reports review-complete branch
+  `codex/research-feedback-retro` at `208a57bcab189901718cd9b1c21c2f627b71a8aa`
+  in `/Users/rmanaloto/.codex/worktrees/research-refresh-retro/claude-code-marketplace`.
+  This parent has not reconciled that branch or its review receipts yet.
+  The reported workflow-authority amendment is a proposal, not applied authority;
+  integration and tracker publication remain separate. Hold reconciliation until
+  the current requested retrospective is settled.
+
+- The fresh #13 follow-up retro is locally committed at
+  `5e119e537b1b9d4c3b517e5549a6f16191f0532d`; its isolated checkout is clean.
+  Five new offline regression groups plus the existing nine verdict controls
+  now run through `dev/check.py`. Task validation, check and the original
+  19-file baseline each exited 0. Independent review found a further clean-case
+  false-completion gap; the parent repaired it, added refusals and obtained a
+  passing focused re-review. A separate routing/status review passed. The
+  [retro](/Users/rmanaloto/.codex/worktrees/issue-13-lsan/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/issue-13.md)
+  binds checks, findings and dispositions. The retained plan header/progress
+  pointer remains an uncommitted routing correction alongside preserved edits.
+  All actionable offline findings in this pass are applied and verified. The
+  native clean-control action remains admission blocked and unrun; the old
+  proposal is retired with all three failed reviews preserved. #13 remains
+  partial, with no integration or publication. A06/A12b remain held, and the
+  separate research-feedback-retro handoff awaits reconciliation.
