@@ -3319,3 +3319,60 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   task passes for all six prior retro records and for `retros/retro-gate.md`.
   CT-01 is now the first layer of the gate; CT-02 (hk + Claude Code hooks)
   can start.
+
+- 2026-10-13 (Claude session, gate-hooks dispatch): lane `gate-hooks` (CT-02,
+  Opus) allocated with its record committed before the worktree was cut at
+  `2d1f60e`, and dispatched: `hk.pkl` pre-merge-commit/pre-push steps,
+  `.claude/settings.json` PreToolUse/SubagentStop/Stop hooks with
+  `onFailure: block`, `dev/hooks/*.py` with stdin-JSON contract tests and a
+  scratch-repository hk test. Convention applied from this lane on: a lane
+  writes its retro record at `retros/<unit>.md` inside its worktree so the
+  SubagentStop gate can check it. The root checkout's untracked
+  `.claude/settings.json` keeps user-specific keys; the committed project file
+  will carry hooks, permissions and plugins, and the parent migrates the
+  user-specific keys to `settings.local.json` at integration (user informed).
+  Active: c1-catalog-promotion, nav, gate-hooks.
+
+- 2026-10-13 (Claude session, NAV handoff): lane `nav` (CT-04) handed off at
+  `d58079c` (lane `5cadad4`): root `AGENTS.md` cut from 70 to 60 lines as a
+  pointer, `AGENTS.md` + `@AGENTS.md` importer pairs for `dev/`, `docs/`,
+  `evidence/`, `.planning/`, `.claude/`, and a 71-line reviewer-only
+  `CODING_STANDARDS.md`; validate/check/baseline/diff-check rc 0. Its retro
+  draft defers two items to the parent: a `CLAUDE.md` importer for
+  `plugins/aggregated-research/AGENTS.md` (excluded path) and a mechanical
+  check for the root-pointer line cap and pointer resolution. It also saw a
+  transient `mise ERROR` on a first batch of named checks that passed on rerun
+  — the second concurrent-run race today (C1 and gate-hooks were running checks
+  in their worktrees). Fable cold review dispatched.
+
+- 2026-10-13 (Claude session, C1 handoff): lane `c1-catalog-promotion` (#94)
+  handed off at `7295463` (lane `52ce420`, +186/−6 with 154 test lines):
+  catalog-only promotion at the runner boundary — affected queries must be
+  complete, nonempty and anchored and bound to the current catalog; unrelated
+  capped/incomplete warnings permit catalog-only promotion with rc 2,
+  `fresh_snapshot_accepted=false`, fixed baseline and suppressed NEW/GONE;
+  interrupted catalog/state writes recover and retry; new receipt fields
+  `catalog_only_promotion` and `promoted_query_drift`. 91 tests rc 0,
+  `check:research` rc 0, baseline rc 0. One design decision is put to the
+  reviewer: an unrelated *empty regression* still blocks promotion (treated as
+  a failure signal per the RF contract and lesson L014, not a warning). Two
+  parent follow-ups at integration: amend `portable-workflow.md`'s
+  "no coverage warnings" sentence and file the lane's retro record. Fable cold
+  review dispatched. A CT-11 ticket (serialize named checks across worktrees
+  with a lock) was added to the spec proposal from today's two race receipts.
+
+- 2026-10-13 (Claude session, NAV review): Fable cold review of lane `nav`
+  returned PASS-with-P2 — duplication inside the lane's own files (evidence
+  rule restated, unit-size rule in three places, dev-tests rule repeated in
+  `CODING_STANDARDS.md`), the completion contract unreachable from the
+  hierarchy, and three instructions dropped from the old root `AGENTS.md`
+  without an owner ("do not install plugin runtimes just to lint", "avoid
+  redundant project copies of global skills", "do not copy Claude hooks or
+  slash commands into Codex configuration"); P3s for inaccuracies (`.gitignore`
+  is one of the 19; the plugin directory has no importer; CT-01 stale; five
+  `docs/agents` files missing from the map), rule classification and
+  unactionable lines. Repair cycle dispatched. Out-of-lane items for the
+  parent: `.claude/rules/dev-tests.md` line 8 wrongly says `check` depends on
+  the named task (only `check:research` has dependencies), and root
+  `CLAUDE.md` now duplicates root `AGENTS.md` lines; both are fixed at NAV
+  integration.
