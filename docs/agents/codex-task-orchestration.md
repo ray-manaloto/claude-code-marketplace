@@ -102,6 +102,20 @@ application state each retain a separately admitted owner; heavy host execution
 is serialized. A feature allocation grants no source-checkout integration slot:
 the source owner must admit that handoff against exact commits and preimages.
 
+Before reporting completion, each worker reconciles the latest integration tip
+into its own branch. Record the native exit, integration tip and resulting
+HEAD/tree; report a changed tip and rerun affected checks against reconciled
+bytes before handoff. Already-running siblings follow this same completion rule.
+A **separate MERGER** verifies that changed paths are a subset of the ticket's
+allowlist, checks the base and actual check/review/retro evidence, then integrates
+one worker at a time under the parent's allocation. Unexpected paths or unresolved
+ownership stop admission. Resolve conflicts while preserving other work; the
+source-owner integration handoff remains separately admitted.
+
+Hold competing writes to the owned checkout through the full commit/hook interval.
+Record its owner, start, terminal evidence and release. This procedural allocation
+does not claim mechanical exclusion or qualified hook behavior across worktrees.
+
 Follow the [standing workflow](issue-tracker.md#standing-improvement-workflow).
 The [retro gate](ticket-retro.md) controls acceptance and new-ticket dispatch;
 record identities, actual exits and independent reviews in the unit's evidence
