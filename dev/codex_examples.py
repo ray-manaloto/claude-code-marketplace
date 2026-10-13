@@ -171,17 +171,143 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             "example_coverage": receipt["example_coverage"]}
 
 
+def offline(args: argparse.Namespace) -> dict[str, object]:
+    """Consume an independently pinned historical receipt; perform no native/provider calls."""
+    match = RUN.fullmatch(args.run_id)
+    relative = Path(args.offline_receipt)
+    if (not match or relative.is_absolute() or not args.receipt_sha256
+            or not re.fullmatch(r"[0-9a-f]{64}", args.receipt_sha256)):
+        raise BlobError("invalid offline run, receipt path or digest pin")
+    receipt_path = confined(ROOT / relative)
+    runs = confined(ROOT / "evidence/codex-examples/runs")
+    if (receipt_path.name != "receipt.json" or receipt_path.parent.parent != runs
+            or not re.fullmatch(re.escape(args.run_id) + r"--[0-9a-f]{16}", receipt_path.parent.name)):
+        raise BlobError("offline receipt is not the selected retrieval run")
+    receipt_bytes = receipt_path.read_bytes()
+    if digest(receipt_bytes) != args.receipt_sha256:
+        raise BlobError("retrieval receipt digest mismatch")
+    receipt = json.loads(receipt_bytes)
+    entry = confined(ROOT / "evidence/saved-searches/runs" / args.run_id)
+    manifest_bytes = confined(entry / "manifest.json").read_bytes()
+    for name in ("raw.json", "normalized.json"):
+        confined(entry / name)
+    manifest, normalized = verified_run(entry, match, manifest_bytes)
+    if (type(manifest["version"]) is not int or manifest["observed_at_ns"] <= 0
+            or normalized["status"] not in ("complete", "partial") or not isinstance(normalized["items"], list)
+            or any(type(normalized[k]) is not int or normalized[k] < 0 for k in
+                   ("returned_count", "request_budget", "requests_used", "attempt_count", "pages_succeeded"))
+            or normalized["returned_count"] != len(normalized["items"])
+            or not 1 <= normalized["requests_used"] <= normalized["request_budget"] <= 20
+            or not 1 <= normalized["pages_succeeded"] <= normalized["attempt_count"] <= normalized["requests_used"]
+            or not isinstance(normalized["total_counts"], list)
+            or len(normalized["total_counts"]) != normalized["pages_succeeded"]
+            or any(type(n) is not int or n < 0 for n in normalized["total_counts"])
+            or type(normalized["complete_candidate"]) is not bool
+            or type(normalized["collection_complete_candidate"]) is not bool
+            or not isinstance(normalized["reasons"], list) or any(not isinstance(r, str) for r in normalized["reasons"])
+            or normalized["control_status"] not in ("passed", "failed", "not_run")
+            or not normalized["collection_complete_candidate"] and normalized["control_status"] != "not_run"
+            or normalized["status"] == "complete" and (normalized["complete_candidate"] is not True
+                or normalized["control_status"] != "passed" or not normalized["collection_complete_candidate"]
+                or normalized["reasons"])):
+        raise BlobError("invalid offline normalized budget or coverage")
+    schema_bytes = confined(SCHEMA).read_bytes()
+    pinned = {"version": 1, "saved_run_id": args.run_id,
+              "saved_manifest_sha256": digest(manifest_bytes),
+              "saved_normalized_sha256": manifest["normalized_sha256"],
+              "search_status": normalized["status"],
+              "example_coverage": "bounded" if normalized["status"] == "complete" else "provisional",
+              "sdk": "githubkit", "sdk_api_version": API_VERSION,
+              "release_tag": "rust-v0.162.1", "release_commit": RELEASE_COMMIT,
+              "schema_asset": "config-schema.json", "schema_sha256": SCHEMA_SHA256,
+              "installed_cli": "codex-cli 0.162.1", "max_selected": MAX_SELECTED,
+              "max_blob_bytes": MAX_BLOB_BYTES}
+    if (not isinstance(receipt, dict) or set(receipt) != set(pinned) | {"credential_route", "blobs"}
+            or any(type(receipt[k]) is not type(v) or receipt[k] != v for k, v in pinned.items())
+            or receipt["credential_route"] not in ("gh_cli", "GITHUB_TOKEN", "GH_TOKEN", "fixture")
+            or digest(schema_bytes) != SCHEMA_SHA256 or not isinstance(json.loads(schema_bytes), dict)):
+        raise BlobError("offline receipt metadata or schema mismatch")
+    if (not 1 <= len(args.sha) <= MAX_SELECTED or len(set(args.sha)) != len(args.sha)
+            or any(not re.fullmatch(r"[0-9a-f]{40}", sha) for sha in args.sha)):
+        raise BlobError("invalid selected blob budget or SHA")
+    identities = set()
+    for item in normalized["items"]:
+        if (not isinstance(item, dict) or any(not isinstance(item.get(k), str) for k in ("repository", "path", "sha"))
+                or not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", item["repository"])
+                or not re.fullmatch(r"[0-9a-f]{40}", item["sha"])
+                or item["path"].startswith("/") or any(part in ("", ".", "..") for part in item["path"].split("/"))):
+            raise BlobError("invalid normalized source identity")
+        identity = (item["repository"], item["path"], item["sha"])
+        if identity in identities or "identity" in item and item["identity"] != ":".join(identity):
+            raise BlobError("duplicate or inconsistent normalized identity")
+        identities.add(identity)
+    selected = [item for item in normalized["items"] if item["sha"] in args.sha]
+    rows = receipt["blobs"]
+    if (not isinstance(rows, list) or not 1 <= len(selected) <= MAX_SELECTED
+            or set(args.sha) != {item["sha"] for item in selected} or len(rows) != len(selected)
+            or len({item["repository"] for item in selected}) != 1):
+        raise BlobError("offline selected paths or budget mismatch")
+    first, provenance, inspections = {}, None, []
+    for item, row in zip(selected, rows):
+        repo, path, sha = item["repository"], item["path"], item["sha"]
+        if (not isinstance(row, dict) or set(row) != {"repository", "path", "blob_sha", "sha256",
+                "size", "fork", "parent", "source", "duplicate_of"}
+                or type(row["size"]) is not int or not 0 <= row["size"] <= MAX_BLOB_BYTES
+                or type(row["fork"]) is not bool
+                or any(value is not None and (not isinstance(value, str) or not re.fullmatch(
+                    r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", value)) for value in (row["parent"], row["source"]))):
+            raise BlobError("invalid offline blob provenance or budget")
+        metadata = (row["fork"], row["parent"], row["source"])
+        if (provenance is not None and provenance != metadata
+                or row["fork"] and (row["parent"] is None or row["source"] is None)
+                or not row["fork"] and (row["parent"] is not None or row["source"] is not None)):
+            raise BlobError("inconsistent offline repository provenance")
+        provenance = metadata
+        with confined(receipt_path.parent / "blobs" / sha).open("rb") as stream:
+            data = stream.read(MAX_BLOB_BYTES + 1)
+        if len(data) > MAX_BLOB_BYTES:
+            raise BlobError("offline blob exceeds byte budget")
+        expected = {"repository": repo, "path": path, "blob_sha": sha,
+                    "sha256": digest(data), "size": len(data), "fork": row["fork"],
+                    "parent": row["parent"], "source": row["source"], "duplicate_of": first.get(sha)}
+        if (row != expected
+                or hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest() != sha):
+            raise BlobError("offline blob identity, bytes or duplicate mismatch")
+        first.setdefault(sha, path)
+        inspections.append({**row, "validity": "UNVERIFIED", "method": None,
+                            "inspection": "not_inspected", "reason":
+                            "TOML syntax, release-schema, native and runtime validation not executed"})
+    root = confined(ROOT / "evidence/codex-examples/classifications")
+    target = confined(root / f"{args.run_id}--{secrets.token_hex(8)}")
+    output = confined(target / "receipt.json")
+    record = {**pinned, "credential_route": receipt["credential_route"], "retrieval_receipt": str(relative),
+              "retrieval_receipt_sha256": args.receipt_sha256, "inspections": inspections}
+    root.mkdir(parents=True, exist_ok=True)
+    target.mkdir()
+    with output.open("xb") as stream:
+        stream.write(encoded(record))
+    return {"status": "recorded", "receipt": str(output), "blobs": len(first),
+            "source_paths": len(rows), "example_coverage": pinned["example_coverage"]}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("run_id")
     parser.add_argument("--sha", action="append", required=True)
+    parser.add_argument("--offline-receipt")
+    parser.add_argument("--receipt-sha256")
     args = parser.parse_args()
     try:
-        print(json.dumps(run(args), sort_keys=True))
+        if args.receipt_sha256 is not None and args.offline_receipt is None:
+            raise BlobError("receipt digest requires offline mode")
+        print(json.dumps(offline(args) if args.offline_receipt is not None else run(args), sort_keys=True))
         return 0
     except RequestError:
         print(json.dumps({"status": "unresolved", "reason": "GitHub request failed"}),
               file=sys.stderr)
+        return 2
+    except (TypeError, AttributeError, IndexError):
+        print(json.dumps({"status": "unresolved", "reason": "malformed artifact shape"}), file=sys.stderr)
         return 2
     except (BlobError, OSError, ValueError, KeyError, subprocess.TimeoutExpired) as error:
         print(json.dumps({"status": "unresolved", "reason": str(error)}), file=sys.stderr)
