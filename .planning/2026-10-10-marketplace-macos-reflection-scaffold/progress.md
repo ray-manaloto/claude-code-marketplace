@@ -3419,3 +3419,8 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   CT-01…CT-11 tickets from `proposals/claude-takeover-spec/` after the user's
   to-tickets approval. Pending decisions: to-tickets approval; settings.json
   composition. Everything else is integrated with `retro: passed`.
+
+- 2026-10-13 (merger fork, batch publication 3): publishing the C1 and NAV
+  integrations, the retro-passed lane records, the takeover retro table fix,
+  the session handoff and the persisted spec proposal through the A09 route;
+  remote preimage `f250f75`.
