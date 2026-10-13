@@ -121,6 +121,9 @@ The approved historical A-index is
 [automation-amendment-draft.md](automation-amendment-draft.md). Its older
 "unpublished" wording and the phase notes below are preserved as history;
 the W5 row above and [progress.md](progress.md) carry current publication state.
+The source-branch retrospective protocol transfer and ten-record historical
+audit passed local static checks and independent archival re-review; its
+commit and publication remain separate from A06/A12b admission.
 The user approved its original fourteen-slice breakdown and blocking edges on 2026-10-12.
 A01/A02 retrospectives split late A12 into A12a fast-check/hosted CI
 qualification after A09 publication and A12b assembly. A04's retro split A03
@@ -149,8 +152,9 @@ six public offline fixtures, focused review and a bounded live command. The
 live search is partial and its comparison is suppressed. A06 is paused under
 the user's retrospective-action hold; no live full-inventory or NEW/GONE
 result has been qualified. The [application audit](retros/application-audit-2026-10-12.md)
-distinguishes written retros and local fixes from pending hosted, transfer and
-published-issue actions. The user clarified that named retrospective actions
+preserves its original snapshot and adds current statuses for the now-complete
+hosted fast check, physical transfer, publication actions and remaining
+ticket blockers. The user clarified that named retrospective actions
 may proceed in prerequisite order to clear this hold. The user's later
 parallel-worktree direction admits independent #13/#28/#29; A06 and other
 unrelated tickets remain paused until the open actions are applied and

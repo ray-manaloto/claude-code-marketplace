@@ -2829,3 +2829,26 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `906cdbc1ade3dee19da45c27503747f139e44384`; a separate remote read
   matched. This publishes the verified graph/label status, qualified-task
   guidance, exact historical A-index copy and applied retrospective findings.
+- The A08b2 closure status was separately reviewed, checked and published at
+  `111424b05fbe93342bfd3f31c3f430a91620e060`; a separate remote read
+  matched. The source branch now has all 67 labels and 139 edges verified;
+  individual ticket acceptance and closure remain separate.
+- A read-only retrospective-transfer audit found that
+  `docs/agents/ticket-retro.md` and the AGENTS.md navigation pointer were
+  present only in the retained detached worktree. Parent copied the protocol
+  into the source checkout and added the pointer while retaining the current
+  one-writer-per-common-directory rule. Independent read-only policy review
+  passed with no finding; source task validation (44), `check`, baseline19 and
+  diff check each exited 0. The transfer remains uncommitted and unpublished;
+  the historical audit and its per-ticket records still require reconciliation.
+  Retained #13 and #29 focused reviews passed for their bounded preparatory
+  claims; #28 received a P2 inherited event-sink finding, repaired in its
+  isolated worktree with a two-mode control, and passed focused re-review.
+- Parent copied the ten completed-ticket retrospective records in the old
+  application audit byte-for-byte into the source checkout and added a
+  current-status addendum. A source check confirmed all ten byte matches and
+  all audit links resolve. Source task validation (44), `check`, and baseline19
+  each exited 0 after the archive. Independent archival review found two
+  status-wording contradictions; parent corrected both, and focused
+  re-review passed. Local commit is pending. A06 and dependent A12b remain
+  held.
