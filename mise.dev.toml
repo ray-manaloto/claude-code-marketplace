@@ -255,7 +255,7 @@ usage = 'flag "--manifest-file <path>" default="dev/issue-tickets.json" help="Ap
 run = 'uv run --no-sync --offline python -B dev/issue_create.py verify --manifest-file "${usage_manifest_file?}" --local-id "${usage_local_id?}" --journal-dir "${usage_journal_dir?}" --intent-sha256 "${usage_sha256?}"'
 
 [tasks."test:issue-new-edges"]
-description = "Exercise A08b1 new blocker-edge and ambiguous-send controls offline"
+description = "Exercise approved blocker graphs, legacy A-series and recovery offline"
 dir = "{{config_root}}"
 depends = ["deps:check"]
 run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_issue_edges.py -v'
@@ -264,29 +264,29 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 description = "Record one selected new-ticket blocker-edge intent without mutation"
 dir = "{{config_root}}"
 depends = ["deps:check"]
-usage = 'arg "<graph_file>"; arg "<graph_sha256>"; arg "<journal_dir>"; arg "<target>"; arg "<blocker>"'
-run = 'uv run --no-sync --offline python -B dev/issue_edges.py preview --manifest-file dev/issue-tickets.json --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --journal-dir "${usage_journal_dir?}" --target "${usage_target?}" --blocker "${usage_blocker?}"'
+usage = 'flag "--manifest-file <path>" default="dev/issue-tickets.json" help="Approved versioned manifest"; arg "<graph_file>"; arg "<graph_sha256>"; arg "<journal_dir>"; arg "<target>"; arg "<blocker>"'
+run = 'uv run --no-sync --offline python -B dev/issue_edges.py preview --manifest-file "${usage_manifest_file?}" --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --journal-dir "${usage_journal_dir?}" --target "${usage_target?}" --blocker "${usage_blocker?}"'
 
 [tasks."issue:new-edge-apply"]
-description = "Attempt one SHA-bound A08b1 blocker-edge mutation"
+description = "Attempt one SHA-bound approved blocker-edge mutation"
 dir = "{{config_root}}"
 depends = ["deps:check"]
-usage = 'arg "<graph_file>"; arg "<graph_sha256>"; arg "<intent_file>"; arg "<intent_sha256>"'
-run = 'uv run --no-sync --offline python -B dev/issue_edges.py apply --manifest-file dev/issue-tickets.json --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_intent_sha256?}"'
+usage = 'flag "--manifest-file <path>" default="dev/issue-tickets.json" help="Approved versioned manifest"; arg "<graph_file>"; arg "<graph_sha256>"; arg "<intent_file>"; arg "<intent_sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_edges.py apply --manifest-file "${usage_manifest_file?}" --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_intent_sha256?}"'
 
 [tasks."issue:new-edge-verify"]
 description = "Read back an attempted blocker edge without another send"
 dir = "{{config_root}}"
 depends = ["deps:check"]
-usage = 'arg "<graph_file>"; arg "<graph_sha256>"; arg "<intent_file>"; arg "<intent_sha256>"'
-run = 'uv run --no-sync --offline python -B dev/issue_edges.py verify --manifest-file dev/issue-tickets.json --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_intent_sha256?}"'
+usage = 'flag "--manifest-file <path>" default="dev/issue-tickets.json" help="Approved versioned manifest"; arg "<graph_file>"; arg "<graph_sha256>"; arg "<intent_file>"; arg "<intent_sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_edges.py verify --manifest-file "${usage_manifest_file?}" --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}" --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_intent_sha256?}"'
 
 [tasks."issue:new-edges-audit"]
-description = "Read only the 21 approved A01-A12b blocker edges"
+description = "Audit the complete approved blocker graph across open and closed issues"
 dir = "{{config_root}}"
 depends = ["deps:check"]
-usage = 'arg "<graph_file>"; arg "<graph_sha256>"'
-run = 'uv run --no-sync --offline python -B dev/issue_edges.py audit --manifest-file dev/issue-tickets.json --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}"'
+usage = 'flag "--manifest-file <path>" default="dev/issue-tickets.json" help="Approved versioned manifest"; arg "<graph_file>"; arg "<graph_sha256>"'
+run = 'uv run --no-sync --offline python -B dev/issue_edges.py audit --manifest-file "${usage_manifest_file?}" --graph-file "${usage_graph_file?}" --graph-sha256 "${usage_graph_sha256?}"'
 
 [tasks."check:research-feedback"]
 description = "Run offline research coverage regression controls"
