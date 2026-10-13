@@ -1,70 +1,60 @@
 # Marketplace development
 
 This repository publishes the `ray-manaloto` Claude Code marketplace and its
-`aggregated-research` plugin. Preserve their public names, CLI and data paths.
-The accepted next product is a native C++26 P2996 research core, introduced
-incrementally behind the current interfaces. Python-core and SBE-first plans
-in historical material are superseded by `docs/accepted-decisions.md`.
+`aggregated-research` plugin. The accepted next product is a native C++26 P2996
+research core, introduced incrementally behind the current interfaces;
+`docs/accepted-decisions.md` supersedes the Python-core and SBE-first plans.
+
+## Preserve
+
+- Marketplace and plugin identity (`.claude-plugin/marketplace.json`), the plugin's
+  CLI, wrappers and data paths.
+- The 19 acceptance-baseline files in `evidence/onboarding/baseline-files.json` and the
+  frozen `.gitignore`.
+- Existing edits and the source checkout; verify checkout, branch, HEAD and Git
+  common directory before editing.
 
 ## Start here
 
-Read `docs/onboarding.md`, `docs/accepted-decisions.md`, and the selected plan.
-Current PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`.
-Plans live in `.planning/<PLAN_ID>/`; `PWF_PLAN_ROOT` means the project root,
-not the `.planning` directory. Verify checkout, branch, HEAD and common Git
-directory before editing. Preserve existing edits and the source checkout.
+1. `docs/onboarding.md`, then `docs/accepted-decisions.md`.
+2. Selected plan: PLAN_ID `2026-10-10-marketplace-macos-reflection-scaffold` under
+   `.planning/<PLAN_ID>/`; `PWF_PLAN_ROOT` is the project root, not `.planning`.
+3. Takeover and team protocol: `docs/agents/claude-takeover.md`,
+   `docs/agents/claude-team.md`. Vocabulary: `GLOSSARY.md`. Reviewer judgement
+   rules: `CODING_STANDARDS.md`.
+4. Per-directory guidance: `dev/`, `docs/`, `evidence/`, `.planning/`, `.claude/` and
+   `plugins/aggregated-research/` each have an `AGENTS.md` (nested `CLAUDE.md` imports
+   it); `.claude/rules/*.md` hold path-scoped rules; `.codex/` is native Codex config.
 
-## Project map and commands
+## Standing workflow
 
-- `.claude-plugin/marketplace.json`: marketplace identity and dependency policy.
-- `plugins/aggregated-research/`: plugin manifest, skill, hook and confined wrappers.
-- Root `mise.toml` / `mise.lock`: Linux OCI acceptance image. Never run their
-  full install/bootstrap on macOS as a development setup step.
-- `.github/workflows/acceptance.yml` and `ci/acceptance.sh`: full Claude/container
-  acceptance; require a separately admitted host/container operation.
-- `mise.dev.toml` and `dev/mise`: explicit lightweight development configuration.
-- `.codex/`: native Codex project configuration and bounded read-only roles.
-- `evidence/onboarding/`: sanitized verification receipts, not secrets or transcripts.
+grill-with-docs → to-spec → to-tickets → implement-spec → retro, per
+`docs/agents/issue-tracker.md` (GitHub Issues hold specs and tickets).
+- Read the ownership rule in `docs/agents/codex-task-orchestration.md` before
+  allocating a writer, worktree or takeover; brief each agent with file scope,
+  prerequisite receipts and checks.
+- Every ticket or task outcome, partial or blocked included, ends at the retro gate in
+  `docs/agents/ticket-retro.md`.
+- A unit stays near five maintained files and 300 handwritten changed lines; the parent
+  owns shared planning files.
+- Record actual exit codes, Git identity and reviewer dispositions; planned, implemented,
+  reviewed, tested, committed and published are separate states.
 
-Run `./dev/mise tasks validate` and `./dev/mise run check` with existing tools.
-For onboarding preservation, `./dev/mise run check:acceptance-baseline` also
-verifies all 19 original file hashes. These are static checks; they do not prove
-container, provider or hook-runtime acceptance. See `docs/onboarding.md` for
-prerequisites. Do not install plugin runtimes just to lint.
+## Gotchas
 
-## Ownership and completion
-
-Before allocating a writer, parallel worktree or takeover, read the current
-ownership rule in `docs/agents/codex-task-orchestration.md`. Give each agent an
-explicit brief, file scope, prerequisite receipts and checks.
-For durable spec/ticket, triage-label and domain-document conventions, read
-`docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, and
-`docs/agents/domain.md` when relevant. For improvement proposals and implementation,
-follow the standing workflow in `docs/agents/issue-tracker.md`.
-For every ticket or task outcome, including partial or blocked work, follow
-`docs/agents/ticket-retro.md` for the acceptance and new-ticket dispatch gate.
-Keep each unit near five maintained files and 300 handwritten changed lines;
-settle its gate before expanding. Parent owns shared planning files.
-
-Record actual command exit codes, exact Git identity and reviewer dispositions.
-Distinguish planned, implemented, reviewed, tested, committed and published.
-A static check cannot substitute for fresh-session or full OCI acceptance.
-
-## Current admission and research
-
-Initial onboarding permits lightweight work in this worktree. Global settings,
-hooks, trust, credentials, model defaults, global mise, other repositories and
-host-heavy work require their separately recorded ownership/admission phases.
-Do not push, publish, merge, register daemons or create a native goal implicitly.
-Reuse inherited Codex skills/plugins; do not copy Claude hooks or slash commands
-into native Codex configuration. Avoid redundant project copies of global skills.
-
-New tool/workflow research uses Exa, Firecrawl, Last30Days, Context7 and GitHub,
-with native `fnox --config ~/.config/fnox/config.toml --profile codex_research
---no-defaults --no-daemon --non-interactive exec -- <command>`. Never print or
-persist injected secrets. Use primary docs/source for final claims and record
-every attempted route, including failures. For a strict hook receipt, run
-`mise -C <dotfiles-checkout> run research-fanout` under that `fnox exec`, with
-`--strict-five`, `--request-id` equal to the hook turn ID, the hook's output
-directory and an explicit Last30Days plan. Preserve old receipts; known quota
-failures remain gaps, and provisional fallbacks are not strict passes.
+- Run `./dev/mise tasks validate`, `./dev/mise run check` and
+  `./dev/mise run check:acceptance-baseline`. The root `mise.toml` / `mise.lock` define
+  the Linux OCI image and install in the container only.
+- Named checks run one at a time and are static; container, provider, hook-runtime and
+  fresh-session acceptance (`ci/acceptance.sh`) need a separately admitted operation.
+- Global settings, hooks, trust, credentials, model defaults, global mise, other
+  repositories and host-heavy work need their own recorded admission. Push, publish,
+  merge, daemon registration and native goals wait for explicit instruction.
+- Reuse inherited Codex skills and plugins; `.codex/` receives no Claude hooks.
+- New-tool research uses Exa, Firecrawl, Last30Days, Context7 and GitHub under
+  `fnox --config ~/.config/fnox/config.toml --profile codex_research --no-defaults
+  --no-daemon --non-interactive exec -- <command>`; keep secrets out of output, cite
+  primary sources, record every attempted route. A strict hook receipt runs
+  `mise -C <dotfiles-checkout> run research-fanout` with `--strict-five`, `--request-id`
+  equal to the hook turn ID, the hook's output directory and an explicit Last30Days
+  plan; quota failures stay gaps.
