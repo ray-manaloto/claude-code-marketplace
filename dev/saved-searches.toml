@@ -12,3 +12,29 @@ timeout_seconds = 15
 [[search.control]]
 query = "README"
 expected_min = 1
+
+[[search]]
+id = "codex-config-examples"
+query = "model filename:config.toml"
+repo = "openai/codex"
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "codex-hook-examples"
+query = "SessionStart filename:hooks.json"
+repo = "openai/codex"
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+
+[[search.control]]
+query = "README"
+expected_min = 1
