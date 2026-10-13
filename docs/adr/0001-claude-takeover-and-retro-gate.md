@@ -15,7 +15,9 @@ unit3 and two tracker commits were mid-flight. The user asked a Claude Code team
 to take over, keep every Codex worktree and private evidence packet untouched as
 import sources, and make "retro after every ticket, apply every learning" a rule
 the harness enforces instead of one an agent remembers. Codex may resume after
-2026-10-19 and must meet the same rule.
+2026-10-19 and must meet the same rule. The parent's draft gate, calibrated against
+the 33 existing Codex retro records, found 17 that skipped at least one
+category, which is why prose lost to a mechanical check.
 
 ## Decision
 

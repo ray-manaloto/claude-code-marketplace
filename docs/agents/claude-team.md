@@ -47,15 +47,9 @@ in three layers:
 3. Claude Code hooks - `PreToolUse` denial of `git merge`, `git push` and
    `delivery:publish`, plus `Stop`/`SubagentStop` blocks keyed to a lane record.
 
-Layer 1 arrives with lane retro-gate (CT-01); layers 2 and 3 arrive with lane
-GATE-2. The gate checks record shape and bindings; judgement about findings
+Layer 1 arrives with CT-01; layers 2 and 3 arrive with ticket CT-02 (hook
+wiring) of the takeover spec. The gate checks record shape and bindings; judgement about findings
 stays with the reviewer.
-
-## Model split
-
-Opus implements code lanes, Sonnet writes documentation lanes, Fable reviews,
-runs retros and synthesizes, Haiku extracts mechanical facts. Choose the role by
-the lane record's `writer_model`.
 
 ## Concurrency
 
@@ -73,6 +67,4 @@ import sources.
 
 ## Where learnings land
 
-Mechanical rules go to `dev/check.py` or a named check; judgement rules to
-`CODING_STANDARDS.md` (arrives with lane NAV); navigation to the nearest `AGENTS.md` or a `paths:`-scoped
-`.claude/rules/*.md`; repeated workflows to skills; roles to `.claude/agents`.
+By kind, per [ADR 0001](../adr/0001-claude-takeover-and-retro-gate.md). `CODING_STANDARDS.md` arrives with ticket CT-04 (NAV).

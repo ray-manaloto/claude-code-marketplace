@@ -75,7 +75,7 @@ _Avoid_: Provider outage
 
 ## Workflow
 
-**Unit**: One bounded piece of work with a single purpose, about five maintained files and 300 handwritten changed lines, planned, implemented, tested, reviewed, retro'd, integrated and published as separately recorded states. A ticket is a unit with a tracker identity; a unit may also be a plan or documentation change.
+**Unit**: One bounded piece of work with a single purpose, small enough for one writer and one review, planned, implemented, tested, reviewed, retro'd, integrated and published as separately recorded states. A ticket is a unit with a tracker identity; a unit may also be a plan or documentation change.
 _Avoid_: Task, chunk
 
 **Lane**: The allocation of one unit to one writer in one worktree on one branch, with an explicit path allowlist, a reviewer, a base commit and a status. Lanes run in parallel only when their allowlists are disjoint.

@@ -15,5 +15,5 @@ You own one documentation lane. Roles and ownership live in `docs/agents/claude-
 2. Write through the `writing-for-agents` skill: root `AGENTS.md` stays a navigation pointer, reference sits behind a pointer in the nearest directory `AGENTS.md`, each meaning lives in one place, instructions state the behaviour to perform, and every sentence changes what an agent does. Cache what the environment cannot answer (conventions, reasons, gotchas); `--help` and `./dev/mise tasks ls` answer command lists.
 3. Verify every cited path with `rg --files` and every cited command with `./dev/mise tasks ls`. Done when each citation resolves.
 4. Run `./dev/mise run check` (it covers diff whitespace and manifests). Done when it exits 0.
-5. Merge the current integration tip, rerun `check`, commit.
-6. Hand off: branch and final SHA, changed paths (a subset of `owned_paths`), each command with its exit code, and a draft retro covering the seven categories per `.claude/rules/planning-records.md`.
+5. Merge the current integration tip, rerun `check`, commit. Done when the merge is clean, `check` exits 0 on the merged bytes and `git status` is clean.
+6. Hand off: branch and final SHA, changed paths (a subset of `owned_paths`), each command with its exit code, and a draft retro covering the seven categories in the shape `docs/agents/ticket-retro.md` defines. Done when the parent holds the final SHA, the exits and the retro draft.
