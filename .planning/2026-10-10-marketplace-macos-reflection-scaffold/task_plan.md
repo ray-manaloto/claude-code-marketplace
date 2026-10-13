@@ -33,9 +33,12 @@ Conventions from the takeover interview (rounds 1–2, all accepted):
 - The parent merges one lane at a time; publication uses the A09 route;
   tickets close only through the qualified close operation, one at a time.
 - Every unit ends with a retro record in [retros/](retros/) whose actionable
-  findings are applied before integration; the deterministic gate
-  `dev/retro_gate.py` (lane GATE) refuses integration or publication without it
-  and runs identically as a mise task, an `hk` git hook and Claude Code hooks.
+  findings are applied before integration; a lane writes its record inside
+  its own worktree (the path is part of every lane's allowlist) so the gate can
+  see it before handoff. The deterministic gate `dev/retro_gate.py`
+  (`./dev/mise run retro:gate -- <unit>`, integrated at `e618243`) refuses
+  integration or publication without it and runs identically as a mise task,
+  an `hk` git hook and Claude Code hooks (lane gate-hooks, ticket CT-02).
 - Learnings land by kind: mechanical rules in checks, judgement rules in
   `CODING_STANDARDS.md`, navigation in the nearest `AGENTS.md` or
   `.claude/rules`, repeated workflows in skills, roles in `.claude/agents`.
