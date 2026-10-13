@@ -2770,3 +2770,10 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   exactly into this source-root plan before this entry; source prefix and
   copied file bytes were verified. A09 handoff update and publication still
   need their own review and gate before A11 can close.
+- The four-file source handoff staged tree `2c99f56780b55ece823fe08ce774e7ae6800578a`
+  passed independent final selection/content review with no findings.
+  Named `delivery:publish` exited 0 with history scan rc 0, producing
+  `42d94f9562bdf122356650fc2ebdefa0d6bd48ea`; a separate remote read
+  matched. A11's physical transfer and source-root qualification are now
+  accepted by documented manual reconciliation. The A11b command remains
+  rc 2 with `recovery_required`; no automated switch-pass claim is made.
