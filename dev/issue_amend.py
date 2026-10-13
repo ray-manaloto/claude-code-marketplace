@@ -17,6 +17,8 @@ from github_search_one_page import API_VERSION, credential
 
 OWNER, REPO = "ray-manaloto", "claude-code-marketplace"
 HEX = re.compile(r"[0-9a-f]{64}\Z")
+COMPLETED = {"state": "closed", "state_reason": "completed"}
+VERDICTS = {"acceptance": "accepted", "review": "approved", "retro": "applied", "delivery": "delivered"}
 
 
 class Refusal(ValueError):
@@ -72,7 +74,7 @@ def labels(value: object) -> list[str]:
     return sorted(value)
 
 
-def snapshot(raw: object, number: int) -> dict:
+def snapshot(raw: object, number: int, completion: bool = False) -> dict:
     if not isinstance(raw, dict) or "pull_request" in raw:
         raise Refusal("issue response invalid or is a pull request")
     try:
@@ -84,16 +86,44 @@ def snapshot(raw: object, number: int) -> dict:
             result["number"] != number or type(result["number"]) is not int or
             not isinstance(result["title"], str) or
             result["body"] is not None and not isinstance(result["body"], str) or
-            result["state"] != "open" or not isinstance(result["updated_at"], str)):
+            result["state"] not in (("open", "closed") if completion else ("open",))
+            or not isinstance(result["updated_at"], str)):
         raise Refusal("unexpected issue identity or state")
+    if completion:
+        result["state_reason"] = raw.get("state_reason")
+        if result["state_reason"] not in (None, "completed", "not_planned", "reopened"):
+            raise Refusal("unexpected completion reason")
     return {**result, "labels": names}
 
 
-def fetch(client: GitHub, number: int) -> dict:
+def fetch(client: GitHub, number: int, completion: bool = False) -> dict:
     response = client.rest(API_VERSION).issues.get(OWNER, REPO, number)
     if response.status_code != 200:
         raise Refusal("issue GET did not succeed")
-    return snapshot(response.raw_response.json(), number)
+    return snapshot(response.raw_response.json(), number, completion)
+
+
+def completion_evidence(data: object, before: dict) -> None:
+    binding = {"repo": f"{OWNER}/{REPO}", "number": before["number"],
+               "issue_id": before["id"], "preimage_sha256": sha(wire(before))}
+    if (not isinstance(data, dict) or type(data.get("version")) is not int or data["version"] != 1
+            or any(type(data.get(key)) is not type(value) or data[key] != value for key, value in binding.items())
+            or not isinstance(data.get("references"), dict) or set(data["references"]) != set(VERDICTS)):
+        raise Refusal("invalid completion evidence binding")
+    for kind, verdict in VERDICTS.items():
+        ref = data["references"][kind]
+        if (not isinstance(ref, dict) or set(ref) != {"path", "sha256"}
+                or not isinstance(ref["path"], str) or not Path(ref["path"]).is_absolute()
+                or not isinstance(ref["sha256"], str) or not HEX.fullmatch(ref["sha256"])):
+            raise Refusal("invalid completion evidence reference")
+        source = read(Path(ref["path"]))
+        if sha(source) != ref["sha256"]:
+            raise Refusal("completion evidence SHA-256 mismatch")
+        receipt = json.loads(source)
+        if (not isinstance(receipt, dict) or type(receipt.get("version")) is not int or receipt["version"] != 1
+                or any(type(receipt.get(key)) is not type(value) or receipt[key] != value for key, value in binding.items())
+                or receipt.get("result") != verdict):
+            raise Refusal(f"{kind} evidence is not accepted for this preimage")
 
 
 def intent(path: Path, digest: str) -> dict:
@@ -101,6 +131,17 @@ def intent(path: Path, digest: str) -> dict:
     if not HEX.fullmatch(digest) or sha(source) != digest:
         raise Refusal("intent SHA-256 mismatch")
     data = json.loads(source)
+    if isinstance(data, dict) and data.get("version") == 2:
+        if (type(data["version"]) is not int
+                or set(data) != {"version", "repo", "number", "preimage", "desired", "evidence"}
+                or data["repo"] != f"{OWNER}/{REPO}" or type(data["number"]) is not int
+                or data["number"] <= 0 or data["desired"] != COMPLETED
+                or not isinstance(data["preimage"], dict) or data["preimage"].get("state") != "open"
+                or snapshot({**data["preimage"], "labels": [{"name": x} for x in data["preimage"].get("labels", [])]},
+                            data["number"], True) != data["preimage"]):
+            raise Refusal("invalid completion intent")
+        completion_evidence(data["evidence"], data["preimage"])
+        return data
     if (not isinstance(data, dict) or set(data) != {"version", "repo", "number", "preimage", "desired"}
             or data["version"] != 1 or data["repo"] != f"{OWNER}/{REPO}"
             or type(data["number"]) is not int or data["number"] <= 0
@@ -126,6 +167,21 @@ def preview(client: GitHub, number: int, body_file: Path, labels_file: Path, out
     return sha(payload)
 
 
+def preview_completion(client: GitHub, number: int, evidence_file: Path, output: Path) -> str:
+    """Prepare closure using four SHA-bound typed receipts for the exact open preimage."""
+    if type(number) is not int or number <= 0 or output.exists() or output.is_symlink():
+        raise Refusal("invalid issue number or existing intent")
+    before = fetch(client, number, True)
+    if before["state"] != "open":
+        raise Refusal("issue already closed; no completion intent prepared")
+    evidence = json.loads(read(evidence_file))
+    completion_evidence(evidence, before)
+    payload = wire({"version": 2, "repo": f"{OWNER}/{REPO}", "number": number,
+                    "preimage": before, "desired": COMPLETED, "evidence": evidence})
+    publish(output, payload)
+    return sha(payload)
+
+
 def marker(path: Path) -> Path:
     return path.with_name(path.name + ".attempt.json")
 
@@ -133,10 +189,13 @@ def marker(path: Path) -> Path:
 def verify(client: GitHub, path: Path, digest: str) -> str:
     data = intent(path, digest)
     attempt = json.loads(read(marker(path)))
-    if attempt != {"version": 1, "intent_sha256": digest, "operation": "PATCH body labels"}:
+    operation = "PATCH completed state" if data["version"] == 2 else "PATCH body labels"
+    if attempt != {"version": 1, "intent_sha256": digest, "operation": operation}:
         raise Refusal("invalid attempt marker")
-    current = fetch(client, data["number"])
+    current = fetch(client, data["number"], data["version"] == 2)
     before, desired = data["preimage"], data["desired"]
+    if data["version"] == 2:
+        return "VERIFIED" if current == {**before, **desired, "updated_at": current["updated_at"]} else "UNRESOLVED"
     if (all(current[key] == before[key] for key in ("id", "number", "title", "state"))
             and current["body"] == desired["body"] and current["labels"] == desired["labels"]):
         return "VERIFIED"
@@ -147,10 +206,14 @@ def apply(client: GitHub, path: Path, digest: str) -> str:
     data = intent(path, digest)
     if marker(path).exists() or marker(path).is_symlink():
         raise Refusal("attempt already recorded; use verify only")
-    if fetch(client, data["number"]) != data["preimage"]:
+    current = fetch(client, data["number"], data["version"] == 2)
+    if (data["version"] == 2
+            and current == {**data["preimage"], **COMPLETED, "updated_at": current["updated_at"]}):
+        return "ALREADY_COMPLETED"
+    if current != data["preimage"]:
         raise Refusal("issue preimage drifted")
     publish(marker(path), wire({"version": 1, "intent_sha256": digest,
-                                "operation": "PATCH body labels"}))
+                                "operation": "PATCH completed state" if data["version"] == 2 else "PATCH body labels"}))
     try:
         client.rest(API_VERSION).issues.update(OWNER, REPO, data["number"],
                                                data=data["desired"])
@@ -170,6 +233,10 @@ def main() -> int:
     p.add_argument("--body-file", type=Path, required=True)
     p.add_argument("--labels-file", type=Path, required=True)
     p.add_argument("--intent-file", type=Path, required=True)
+    p = sub.add_parser("preview-completion")
+    p.add_argument("--issue", type=int, required=True)
+    p.add_argument("--evidence-file", type=Path, required=True)
+    p.add_argument("--intent-file", type=Path, required=True)
     for name in ("apply", "verify"):
         p = sub.add_parser(name)
         p.add_argument("--intent-file", type=Path, required=True)
@@ -184,9 +251,12 @@ def main() -> int:
             if args.mode == "preview":
                 print(preview(client, args.issue, args.body_file, args.labels_file, args.intent_file))
                 return 0
+            if args.mode == "preview-completion":
+                print(preview_completion(client, args.issue, args.evidence_file, args.intent_file))
+                return 0
             result = globals()[args.mode](client, args.intent_file, args.intent_sha256)
             print(result)
-            return 0 if result == "VERIFIED" else 2
+            return 0 if result in ("VERIFIED", "ALREADY_COMPLETED") else 2
     except (Refusal, OSError, UnicodeError, ValueError) as error:
         print(f"REFUSED: {error}", file=sys.stderr)
         return 2
