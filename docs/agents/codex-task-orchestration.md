@@ -68,10 +68,11 @@ Reassess effort when a packet becomes routine. Each model override starts with
 a fresh, narrow packet instead of inheriting the full parent history. Do not
 change global settings or infer the backend's served identity from a request.
 
-Workers get exact HEADs, input paths, a read-only tool scope, expected output,
+Workers get exact HEADs, input paths, an allocated tool/file scope, expected output,
 stop conditions and the `/root` reply channel; require an ACK and status probe.
 Use [bounded tool output](#bounded-tool-output) for thread and host inventories.
-Only the allocated writer mutates repository files or Git state. Keep
+Each writer mutates only its allocated worktree and file scope; shared Git
+operations follow [Ownership](#ownership). Keep
 compiler/OCI/provider runs behind their existing admissions, one heavy operation
 at a time. The user-approved
 [acceptance-frontier correction](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/acceptance-frontier.md)
@@ -82,11 +83,29 @@ GitHub ticket-level blockers remain unchanged until separately amended.
 
 ## Ownership
 
-Read-only workers share this filesystem and own no files. They preserve all edits,
-report through native collaboration, acknowledge identity/objective/first action,
-and answer a status probe. Record identities and reviews in the selected plan.
-The parent coordinates source integration and the shared plan; edits require the
-current writer allocation, including documentation and Git index changes.
+This is the current rule for new allocations; the source-handoff and initial
+onboarding snapshots retain their historical authority and evidence.
+The user's approved remaining-work allocation supersedes retained
+single-common-directory implementation wording for this feature's allocated
+worktrees. Source integration and the canonical plan remain with their current
+owner; their reconciliation is a separate handoff, not an applied W1 change.
+Use one implementation writer per worktree with explicit disjoint file scopes.
+Allocated independent worktrees may run in parallel. Read-only reviewers own no
+repository files and independently review each bounded unit. All agents preserve
+others' edits, ACK identity/objective/first action and answer a status probe.
+
+The parent owns its integration checkout, shared planning and allocation record.
+Serialize integration and operations that mutate shared common-Git state; record
+their owner and settled preimage. Local edits and commits use the assigned
+worktree's index. Host-heavy operations, global configuration and private active
+application state each retain a separately admitted owner; heavy host execution
+is serialized. A feature allocation grants no source-checkout integration slot:
+the source owner must admit that handoff against exact commits and preimages.
+
+Follow the [standing workflow](issue-tracker.md#standing-improvement-workflow).
+The [retro gate](ticket-retro.md) controls acceptance and new-ticket dispatch;
+record identities, actual exits and independent reviews in the unit's evidence
+packet, then let the parent reconcile the shared plan.
 
 Before the first edit in each unit:
 
@@ -97,11 +116,13 @@ Before the first edit in each unit:
 2. Reconcile those observations with the latest explicit writer allocation.
    A checkout path, dirty state, task title or idle status cannot establish who
    holds it. If ownership is ambiguous, remain read-only and obtain explicit
-   release from the latest evidenced holder. If another task holds it, finish
-   read-only preparation and obtain its release for the bounded unit. Use
+   release from the latest evidenced holder. If another task holds the selected
+   worktree or file scope, finish read-only preparation and obtain its release
+   for the bounded unit. Use
    cross-thread messaging only within the user's existing authorization.
-3. Bind the release to the holder, checkout/common directory, settled HEAD,
-   permitted unit and absence of in-flight writers or Git mutations. Recheck
+3. Bind the allocation or release to the holder, checkout/common directory,
+   settled HEAD, permitted unit and file scope. Check for conflicting writers
+   in that worktree/scope and in-flight shared Git mutations. Recheck
    local identity before applying the reviewed unit. Record its checks and
    delivery, then return the allocation before starting another unit.
 

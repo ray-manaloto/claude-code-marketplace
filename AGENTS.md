@@ -34,16 +34,15 @@ prerequisites. Do not install plugin runtimes just to lint.
 
 ## Ownership and completion
 
-Use one implementation writer per Git common directory. Read-only subagents
-inspect configuration/harness contracts or independently review bounded changes.
-Give each an explicit brief, file scope, prerequisite receipts and checks.
-See `docs/agents/codex-task-orchestration.md` for the current team and takeover.
+Before allocating a writer, parallel worktree or takeover, read the current
+ownership rule in `docs/agents/codex-task-orchestration.md`. Give each agent an
+explicit brief, file scope, prerequisite receipts and checks.
 For durable spec/ticket, triage-label and domain-document conventions, read
 `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, and
-`docs/agents/domain.md` when relevant.
+`docs/agents/domain.md` when relevant. For improvement proposals and implementation,
+follow the standing workflow in `docs/agents/issue-tracker.md`.
 For every ticket or task outcome, including partial or blocked work, follow
-`docs/agents/ticket-retro.md` and verify its actionable findings before
-integration or publication.
+`docs/agents/ticket-retro.md` for the acceptance and new-ticket dispatch gate.
 Keep each unit near five maintained files and 300 handwritten changed lines;
 settle its gate before expanding. Parent owns shared planning files.
 
