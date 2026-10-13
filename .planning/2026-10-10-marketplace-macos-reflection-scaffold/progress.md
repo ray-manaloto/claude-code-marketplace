@@ -3332,3 +3332,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   will carry hooks, permissions and plugins, and the parent migrates the
   user-specific keys to `settings.local.json` at integration (user informed).
   Active: c1-catalog-promotion, nav, gate-hooks.
+
+- 2026-10-13 (Claude session, NAV handoff): lane `nav` (CT-04) handed off at
+  `d58079c` (lane `5cadad4`): root `AGENTS.md` cut from 70 to 60 lines as a
+  pointer, `AGENTS.md` + `@AGENTS.md` importer pairs for `dev/`, `docs/`,
+  `evidence/`, `.planning/`, `.claude/`, and a 71-line reviewer-only
+  `CODING_STANDARDS.md`; validate/check/baseline/diff-check rc 0. Its retro
+  draft defers two items to the parent: a `CLAUDE.md` importer for
+  `plugins/aggregated-research/AGENTS.md` (excluded path) and a mechanical
+  check for the root-pointer line cap and pointer resolution. It also saw a
+  transient `mise ERROR` on a first batch of named checks that passed on rerun
+  — the second concurrent-run race today (C1 and gate-hooks were running checks
+  in their worktrees). Fable cold review dispatched.
