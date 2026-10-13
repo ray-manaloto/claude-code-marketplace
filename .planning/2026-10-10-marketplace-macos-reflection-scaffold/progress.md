@@ -3309,3 +3309,13 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   planning files. retro-gate repairs landed at `82c351f` (18 tests, corpus
   23/15 of 38; A04 still fails on a genuinely missing category); focused
   re-review dispatched.
+
+- 2026-10-13 (Claude session, retro-gate integration): focused re-review of
+  the retro-gate repairs returned PASS. Merged `claude/retro-gate-task`
+  (`82c351f`, lane `894d07d` + repairs `5ea8ee4`): `dev/retro_gate.py`,
+  18 CLI tests, six fixture records, the `retro:gate` mise task and the
+  record-shape paragraph in `docs/agents/ticket-retro.md`. Composed-tree gates
+  rc 0 (validate 52, suite 18, check, baseline 19/19, diff --check). The live
+  task passes for all six prior retro records and for `retros/retro-gate.md`.
+  CT-01 is now the first layer of the gate; CT-02 (hk + Claude Code hooks)
+  can start.
