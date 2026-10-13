@@ -3185,3 +3185,13 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   Retro: `retros/m0-remaining-work-merge.md`. Fable cold review dispatched;
   A09 publication follows its disposition. Lane worktrees created from `e0667ec`:
   `a06-unit3`, `codex-session-history`, `rf-env-scrub`.
+
+- 2026-10-13 (Claude session, M0 review and publication): the independent
+  Fable cold review of merge `e0667ec` returned PASS — conflict fidelity,
+  no content loss (50 branch paths present; only the two directed resolutions
+  and three HEAD-side onboarding lines differ), all 19 baseline hashes intact,
+  nothing unintended committed, and gates rc 0 (validate 50, check, baseline,
+  check:research-outcomes, check:research). Its one P3 (uncommitted planning
+  files during the review) was already settled by `321fbde`. Publication of
+  `codex/marketplace-native-onboarding` through the A09 route follows in the
+  commit that carries this entry; the remote preimage is `848552c`.
