@@ -3297,3 +3297,15 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   dispatched. Lane `c1-catalog-promotion` (#94) dispatched to an Opus
   implementer on offline fixtures only. Active: retro-gate (repair), team
   (re-review), c1 (implementing).
+
+- 2026-10-13 (Claude session, TEAM integration): focused re-review of the
+  team repairs returned PASS (no P1/P2; the `ticket-retro.md` shape paragraph
+  lands with CT-01). Merged `claude/team-roles-rules` (`ea8c8c9`) into the
+  integration branch: five agent roles (opus/sonnet/fable/fable/haiku), three
+  path-scoped rules, `docs/agents/claude-team.md`, ADR 0001, glossary Workflow
+  section. Composed-tree gates rc 0 (validate 51, check, baseline 19/19,
+  diff --check). Retro filed at `retros/team.md`. The path-scoped rule
+  `.claude/rules/planning-records.md` already loads when the parent edits
+  planning files. retro-gate repairs landed at `82c351f` (18 tests, corpus
+  23/15 of 38; A04 still fails on a genuinely missing category); focused
+  re-review dispatched.
