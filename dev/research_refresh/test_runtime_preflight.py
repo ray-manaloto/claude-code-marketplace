@@ -78,6 +78,15 @@ class RuntimePreflightTests(unittest.TestCase):
                                environment={'VIRTUAL_ENV': str(self.venv), 'UV_PROJECT_ENVIRONMENT': str(self.venv)})
         self.assertEqual(result['outcome'], 'runtime_ready')
 
+    def test_overrides_compare_against_project_venv(self):
+        foreign, alias = Path(self.temp.name) / 'foreign', Path(self.temp.name) / 'alias'
+        foreign.mkdir()
+        alias.symlink_to(self.venv)
+        self.assertEqual(runtime.overrides({'VIRTUAL_ENV': str(foreign)}, self.project), ['VIRTUAL_ENV'])
+        self.assertEqual(runtime.overrides({'VIRTUAL_ENV': str(alias)}, self.project), [])
+        inherited = dict.fromkeys(runtime.INHERITED, str(foreign))
+        self.assertEqual(runtime.scrubbed({**inherited, 'PATH': '/synthetic'}), {'PATH': '/synthetic'})
+
     def test_sdk_mismatch_refuses_before_process(self):
         self.metadata.write_text('Version: 9.0\n')
         with patch.object(runtime.subprocess, 'Popen') as launch:

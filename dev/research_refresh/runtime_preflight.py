@@ -9,6 +9,7 @@ import tomllib
 
 SELECTORS = ('UV_PROJECT', 'UV_WORKING_DIR', 'UV_PYTHON', 'UV_CONFIG_FILE',
              'UV_ENV_FILE', 'UV_ISOLATED', 'UV_NO_PROJECT', 'PYTHONHOME', 'PYTHONPATH')
+INHERITED = SELECTORS + ('VIRTUAL_ENV', 'UV_PROJECT_ENVIRONMENT', 'UV_NO_CONFIG')
 IMPORTS = '''import importlib.metadata, json, pathlib, ssl, sys
 import githubkit
 print(json.dumps(dict(executable=str(pathlib.Path(sys.executable).absolute()),
@@ -28,6 +29,11 @@ def unique_object(pairs):
             raise ValueError('Import identity contains duplicate keys')
         result[key] = value
     return result
+
+
+def scrubbed(environment):
+    """Copy an environment without inherited selectors so test harnesses are hermetic."""
+    return {key: value for key, value in environment.items() if key not in INHERITED}
 
 
 def overrides(environment, project):
