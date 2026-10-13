@@ -105,16 +105,41 @@ class EdgeTests(unittest.TestCase):
 
     def test_cross_parent_graph_publishes_only_declared_edges(self):
         self.rf_graph()
+        attempts = []
         for target, blocker in (("RF3a", "RF1"), ("RF3a", "RF2"),
                                 ("RF4", "RF1"), ("RF4", "RF2"),
                                 ("RF4", "RF3a"), ("RF4", "RF3b")):
             digest = edges.preview(self.client, *self.common, self.journal, target, blocker)
             path = self.journal / f"{target}-by-{blocker}.intent.json"
             self.assertEqual(edges.apply(self.client, path, digest, *self.common), "EDGE_VERIFIED")
+            attempts.append((path, digest))
         bindings, _ = edges.approved(*self.common)
         self.assertEqual(edges.audit(self.client, bindings), "NEW_EDGES_VERIFIED")
+        for path, digest in attempts:
+            self.assertEqual(edges.verify(self.client, path, digest, *self.common), "EDGE_VERIFIED")
         with self.assertRaises(edges.Refusal):
             edges.preview(self.client, *self.common, self.journal, "RF3b", "RF1")
+
+    def test_legacy_multi_blocker_recovery_preserves_retained_and_requested_edges(self):
+        attempts = []
+        for blocker in ("A03b", "A04"):
+            digest = edges.preview(self.client, *self.common, self.journal, "A05a", blocker)
+            path = self.journal / f"A05a-by-{blocker}.intent.json"
+            self.assertEqual(edges.apply(self.client, path, digest, *self.common), "EDGE_VERIFIED")
+            attempts.append((path, digest))
+        for path, digest in attempts:
+            self.assertEqual(edges.verify(self.client, path, digest, *self.common), "EDGE_VERIFIED")
+        number = self.bindings["A05a"]["issue_number"]
+        retained = list(self.client.deps[number])
+        for missing in retained:
+            with self.subTest(missing=missing):
+                self.client.deps[number] = [row for row in retained if row != missing]
+                path, digest = attempts[-1]
+                self.assertEqual(edges.verify(self.client, path, digest, *self.common), "UNRESOLVED")
+        self.client.deps[number] = retained + [{"id": 9999, "number": 999}]
+        path, digest = attempts[0]
+        self.assertEqual(edges.verify(self.client, path, digest, *self.common), "UNRESOLVED")
+        self.assertEqual(self.client.writes, 2)
 
     def test_cyclic_graph_refuses_before_journal_or_send(self):
         graph = self.rf_graph()

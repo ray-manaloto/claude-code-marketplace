@@ -228,7 +228,7 @@ def verify(client: GitHub, path: Path, digest: str, manifest_file: Path,
         return "UNRESOLVED"
     blocker = bindings[data["blocker"]]
     expected = [blocker["issue_id"], blocker["issue_number"]]
-    return "EDGE_VERIFIED" if (current["blocked_by"] == sorted(before["blocked_by"] + [expected])
+    return "EDGE_VERIFIED" if (all(row in current["blocked_by"] for row in before["blocked_by"] + [expected])
                               and audit(client, bindings, complete=False) == "NEW_EDGES_VERIFIED") else "UNRESOLVED"
 
 
