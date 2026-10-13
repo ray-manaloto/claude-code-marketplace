@@ -2,7 +2,7 @@
 
 PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`.
 Original source HEAD before transfer: `6b5b092efa6bdf678815073db42f69fae3f07ab3`.
-Current writer root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
+Integration root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
 Retained detached worktree: `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`.
 Branch: `codex/marketplace-native-onboarding`.
 Source-transfer baseline: `48027d2d333611d162cdff8cabb7bc1eecf944da`.
@@ -32,20 +32,20 @@ source root. The selected plan records exact exit codes and limitations.
 The detached worktree still holds unrelated uncommitted edits and private
 evidence. Its 932-line append-only progress delta was copied byte-for-byte
 into the source-root selected plan. Other local drafts remain in place for
-separate review. The parent is the only implementation writer across this Git
-common directory under the current AGENTS.md instruction; reviewers are
-read-only. Full Claude/container acceptance remains unrun.
+separate review. At that handoff, the parent held the sole implementation
+writer allocation; reviewers were read-only. Later allocations follow
+[Ownership](#ownership). Full Claude/container acceptance remains unrun.
 
 ```mermaid
 flowchart TD
-  M[Read-only monitor] -->|Reads visible progress| P[Parent: sole writer]
+  M[Read-only monitor] -->|Reads visible progress| P[Parent: coordination and review]
   P -->|Exact source and receipt packet| L[LSan runtime specialist]
   P -->|Exact branch and review packet| H[Handoff integration specialist]
   P -->|Exact contracts and gates| C[CLI and Context7 acceptance specialist]
   L -->|ACK and findings| P
   H -->|ACK and findings| P
   C -->|ACK and findings| P
-  P --> W[One implementation writer]
+  P --> W[Allocated implementation writer]
   W --> R[Independent reviewer in a freed slot]
   R --> V[Named checks and retrospective]
   V --> D[Authorized serialized integration and delivery]
@@ -70,10 +70,8 @@ change global settings or infer the backend's served identity from a request.
 
 Workers get exact HEADs, input paths, a read-only tool scope, expected output,
 stop conditions and the `/root` reply channel; require an ACK and status probe.
-Select inventory fields before printing them; container IDs, state and scoped
-ownership fields are enough for the initial census. Keep full private metadata
-outside the shared transcript and repository.
-Only the parent writes implementation, shared planning and Git state. Keep
+Use [bounded tool output](#bounded-tool-output) for thread and host inventories.
+Only the allocated writer mutates repository files or Git state. Keep
 compiler/OCI/provider runs behind their existing admissions, one heavy operation
 at a time. The user-approved
 [acceptance-frontier correction](../../.planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/acceptance-frontier.md)
@@ -84,11 +82,73 @@ GitHub ticket-level blockers remain unchanged until separately amended.
 
 ## Ownership
 
-Workers share this filesystem, own no files, and must preserve all edits. The
-parent owns project implementation and the one selected plan. Workers report via
-native collaboration, acknowledge identity/objective/first action, and answer a
-status probe before their handoff is counted as live. No sidebar chats are created.
-Worker identities and review receipts are recorded in the selected plan.
+Read-only workers share this filesystem and own no files. They preserve all edits,
+report through native collaboration, acknowledge identity/objective/first action,
+and answer a status probe. Record identities and reviews in the selected plan.
+The parent coordinates source integration and the shared plan; edits require the
+current writer allocation, including documentation and Git index changes.
+
+Before the first edit in each unit:
+
+1. Discover exact checkouts with `git worktree list --porcelain`. For the selected
+   checkout, read its status, branch, HEAD and absolute Git common directory.
+   Locate files with `rg --files` before opening inferred names. A missing path
+   triggers discovery, not another guessed suffix.
+2. Reconcile those observations with the latest explicit writer allocation.
+   A checkout path, dirty state, task title or idle status cannot establish who
+   holds it. If ownership is ambiguous, remain read-only and obtain explicit
+   release from the latest evidenced holder. If another task holds it, finish
+   read-only preparation and obtain its release for the bounded unit. Use
+   cross-thread messaging only within the user's existing authorization.
+3. Bind the release to the holder, checkout/common directory, settled HEAD,
+   permitted unit and absence of in-flight writers or Git mutations. Recheck
+   local identity before applying the reviewed unit. Record its checks and
+   delivery, then return the allocation before starting another unit.
+
+## Bounded tool output
+
+`read_thread` limits turns and characters per item, not total response size.
+`list_threads` may include every pinned task. Parse native results in the tool
+executor and select only the fields needed for the question before display.
+For an ownership ACK, select recent assistant messages and retain coverage counts.
+Keep the full response and continuation cursor in ephemeral executor state;
+read another page when needed to establish coverage. An excerpt cannot establish
+that an omitted event did not happen.
+
+For a one-turn read, this projection bounds the complete displayed string,
+including its coverage metadata, to 6,000 JavaScript characters:
+
+```javascript
+function threadExcerpt(page) {
+  const items = (page.turns ?? []).flatMap(turn => turn.items ?? []);
+  const messages = items.filter(item =>
+    item.type === "agentMessage" && typeof item.text === "string");
+  const summary = {
+    excerpt: true,
+    threadId: String(page.thread?.id ?? "").slice(0, 80),
+    itemsOnPage: items.length,
+    messagesOnPage: messages.length,
+    hasOlderPages: page.page?.hasMore === true,
+    messages: messages.slice(-3).map(item => ({
+      phase: String(item.phase ?? "").slice(0, 40),
+      text: item.text.slice(0, 1400),
+      textTruncated: item.text.length > 1400
+    }))
+  };
+  const rendered = JSON.stringify(summary);
+  const output = rendered.length <= 6000 ? rendered :
+    rendered.slice(0, 5900) + "\n[TRUNCATED: narrow fields or read another page.]";
+  if (output.length > 6000) throw new Error("Display budget exceeded");
+  return output;
+}
+```
+
+Call `text(threadExcerpt(page))` once after parsing the native JSON text block.
+A parse failure is an inspection failure; report that error without dumping the
+raw response. Select container IDs, state and scoped ownership fields for a host
+census. For batched calls, inspect every result but budget their combined display;
+keep omitted results available for a focused follow-up. Raw private metadata and
+transcripts remain outside repository evidence.
 
 ## Initial onboarding admission snapshot
 

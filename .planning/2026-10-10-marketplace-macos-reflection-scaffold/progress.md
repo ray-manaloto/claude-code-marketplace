@@ -3023,3 +3023,25 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   implementation/review and publication preparation; A09's external receipt
   supplies the final commit/remote state. Return the two-unit writer allocation
   after delivery; A06, remaining handoff units and native gates are not completed.
+
+- The user explicitly invoked the retrospective again after feedback publication
+  at `d7aa31c85be4c7c4778ea335581486c6dc417085`. The parent verified that exact
+  commit's hosted fast CI success and audited the seven retrospective categories.
+  The [process follow-up](retros/process-followup.md) applies earlier writer
+  reconciliation, exact path discovery and bounded native-tool output to the
+  existing team guide. Its projection passed a live 263-item control and an
+  oversized escaped-text control under the complete 6,000-character display cap.
+  The parent stayed read-only until the scheduler published `6cca08b` and
+  explicitly released the writer allocation with no mutations in flight; fresh
+  source/peer identities matched. This entry records application; named checks,
+  final independent review and A09 delivery remain pending. Return the temporary
+  allocation afterward. No A06, native/provider/OCI or issue state changed.
+
+- The process-follow-up unit passed task validation (46 tasks), `check` and all
+  19 original baseline hashes. Independent review verified the bounded changes,
+  release evidence and log hashes. Its P3 receipt finding was applied: the
+  displayed JavaScript is now hashed byte-for-byte including its final newline,
+  while the earlier normalized receipt remains preserved. No source behavior
+  changed. The external review record binds final file hashes and disposition;
+  A09 records publication separately. Return the writer allocation after the
+  remote SHA is independently confirmed.
