@@ -2822,3 +2822,10 @@ interfaces are retained. Native confinement and all dependency builds remain pen
   `automation-amendment-draft.md` was absent after A11; parent restored its
   exact old-worktree bytes (SHA-256 `f1bd8121`) without modifying the retained
   copy. Documentation/retro review and source commit/publication remain.
+- The five-file A08b2 handoff staged tree
+  `05e3bf3d879cbe839cb6111cd10be20ebfb0316d` passed independent
+  final-byte review without findings. The SHA-bound named `delivery:publish`
+  exited 0 with outbound history scan rc 0, producing
+  `906cdbc1ade3dee19da45c27503747f139e44384`; a separate remote read
+  matched. This publishes the verified graph/label status, qualified-task
+  guidance, exact historical A-index copy and applied retrospective findings.
