@@ -209,6 +209,17 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_apply.py prepare --plan-
 description = "Exercise A11a drift, collision, remote, retention and interruption refusals in scratch"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_apply.py -v'
+[tasks."checkout:switch-guarded"]
+description = "Revalidate SHA-bound A10/A11a preimages and journal a guarded source switch"
+dir = "{{config_root}}"
+usage = 'arg "<plan_file>"; arg "<plan_sha256>"; arg "<intent_file>"; arg "<intent_sha256>"; arg "<journal_dir>"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -B dev/checkout_switch.py switch --plan-file "${usage_plan_file?}" --plan-sha256 "${usage_plan_sha256?}" --intent-file "${usage_intent_file?}" --intent-sha256 "${usage_intent_sha256?}" --journal-dir "${usage_journal_dir?}"'
+
+[tasks."test:checkout-switch"]
+description = "Exercise guarded switch, drift and inspected recovery on scratch Git worktrees"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_checkout_switch.py -v'
+
 [tasks."test:issue-create"]
 description = "Exercise A08a single-POST creation, binding and recovery offline"
 dir = "{{config_root}}"
