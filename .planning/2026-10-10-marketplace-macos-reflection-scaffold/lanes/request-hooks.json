@@ -58,13 +58,14 @@
     "global_settings": "none"
   },
   "status": "allocated",
-  "review": null,
-  "retro": null,
+  "review": "fable cold review PASS-with-P2/P3 on 9a902a2 -> repairs 8adf3e4 (P2 pin, P3 compact instructions, P3 chmod 700)",
+  "retro": "passed",
   "created_at": "2026-10-14",
   "notes": [
     "UserPromptSubmit does not fire for the built-in /compact (CT-87)",
     "AskUserQuestion answers arrive in PostToolUse tool_response (CT-87)",
     "the ledger format must match what lane request-catch (CT-90) parses; coordinate through CL4 E1/E2",
-    "2026-10-14: parent widened owned_paths to dev/test_hooks.py after the implementer showed test:hooks cannot pass otherwise (allocation rule: a lane that adds a settings hook owns the Settings test)"
+    "2026-10-14: parent widened owned_paths to dev/test_hooks.py after the implementer showed test:hooks cannot pass otherwise (allocation rule: a lane that adds a settings hook owns the Settings test)",
+    "retro: passed (retros/request-hooks.md, retro:gate rc 0); record blob b1b7098 at 6a6ca77 (writer fable high) added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires"
   ]
 }
