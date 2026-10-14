@@ -3,11 +3,9 @@
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
-import re
-import re._parser
 import tempfile
-import tomllib
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -15,39 +13,26 @@ from unittest.mock import patch
 from githubkit import GitHub
 import httpx
 
+from git_delivery import PRIVATE_RULE_ID, PRIVATE_RULES_ENV, PRIVATE_RULES_DEFAULT
 import issue_amend
 from issue_create import (Refusal, apply, attempt_path, binding_path, full_body,
                           intent_path, main, manifest, pages, preview, verify)
+
+from test_git_delivery import SYNTHETIC_PRIVATE_NAME, synthetic_private_rules
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def private_name_sample() -> str:
-    """Text the real private-name rule flags, built from the rule at run time so no file holds it (D145)."""
-    with (ROOT / ".gitleaks.toml").open("rb") as source:
-        pattern = next(rule["regex"] for rule in tomllib.load(source)["rules"] if rule["id"] == "private-tr-project")
+    """A name the synthetic private rule flags; no test reads the real private rule file (D178)."""
+    return SYNTHETIC_PRIVATE_NAME
 
-    def build(tokens) -> str:
-        out = []
-        for op, value in tokens:
-            name = str(op)
-            if name == "LITERAL":
-                out.append(chr(value))
-            elif name == "IN":
-                out.append(chr(next(v if str(o) == "LITERAL" else v[0] for o, v in value if str(o) in ("LITERAL", "RANGE"))))
-            elif name == "BRANCH":
-                out.append(build(value[1][0]))
-            elif name == "SUBPATTERN":
-                out.append(build(value[-1]))
-            elif name in ("MAX_REPEAT", "MIN_REPEAT"):
-                out.append(build(value[2]) * value[0])
-            elif name != "AT":
-                raise AssertionError(f"private-name rule uses an unsupported regex token {name}")
-        return "".join(out)
 
-    sample = build(re._parser.parse(pattern))
-    assert re.search(pattern, f" {sample} "), "derived sample does not match the private-name rule"
-    return sample
+def use_synthetic_private_rule(test: unittest.TestCase, directory: Path) -> Path:
+    """Point the scanner's private rule file at a synthetic rule for the rest of the test."""
+    path = synthetic_private_rules(directory / "private-rules.toml")
+    test.enterContext(patch.dict(os.environ, {PRIVATE_RULES_ENV: str(path)}))
+    return path
 
 
 def secret_sample() -> str:
@@ -139,6 +124,7 @@ class CreationTests(unittest.TestCase):
         temp = tempfile.TemporaryDirectory(dir=Path(tempfile.gettempdir()).resolve())
         self.addCleanup(temp.cleanup)
         base = Path(temp.name)
+        use_synthetic_private_rule(self, base)
         self.journal = base / "journal"
         self.journal.mkdir()
         self.manifest = base / "tickets.json"
@@ -405,9 +391,9 @@ class CreationTests(unittest.TestCase):
     def test_scan_hit_refuses_preview_before_any_request(self):
         # An inline allow comment in issue text never suppresses a finding.
         for case, (field, text, rule) in enumerate((
-                ("title", private_name_sample(), "private-tr-project"),
+                ("title", private_name_sample(), PRIVATE_RULE_ID),
                 ("body", secret_sample(), "aws-access-key-id"),
-                ("labels", private_name_sample(), "private-tr-project"),
+                ("labels", private_name_sample(), PRIVATE_RULE_ID),
                 ("body", secret_sample() + " # gitleaks:allow betterleaks:allow", "aws-access-key-id"))):
             with self.subTest(case=case, field=field):  # never label a subtest with fixture text
                 self.hit_manifest(field, text)
@@ -424,7 +410,7 @@ class CreationTests(unittest.TestCase):
         # An intent journaled before the scan existed still reaches the scan at apply.
         preimage = json.loads(self.path.read_text())["preimage"]
         for field, text, rule in (("body", secret_sample(), "aws-access-key-id"),
-                                  ("title", private_name_sample(), "private-tr-project")):
+                                  ("title", private_name_sample(), PRIVATE_RULE_ID)):
             with self.subTest(field=field):
                 ticket = self.hit_manifest(field, text)
                 journal = self.journal.parent / f"apply-{field}"
@@ -453,6 +439,22 @@ class CreationTests(unittest.TestCase):
             self.assertEqual((client.requests, len(client.issues.posts)), (0, 0))
             self.assertFalse(attempt_path(self.path).exists())
 
+    def test_unusable_private_rule_file_refuses_preview_and_apply(self):
+        wrong = synthetic_private_rules(self.journal.parent / "wrong.toml", rule_id="other-rule")
+        for case, value in enumerate((str(self.journal.parent / "absent.toml"), str(wrong))):
+            with self.subTest(case=case), patch.dict(os.environ, {PRIVATE_RULES_ENV: value}):
+                client = FakeClient()
+                journal = Path(tempfile.mkdtemp(dir=self.journal.parent))
+                for attempt in (lambda: preview(client, self.manifest, "A01", journal),
+                                lambda: apply(client, self.path, self.digest, self.manifest)):
+                    with self.assertRaises(Refusal) as caught:
+                        attempt()
+                    self.assertFalse(SYNTHETIC_PRIVATE_NAME in str(caught.exception), "rule text leaked")
+                    self.assertIn(PRIVATE_RULES_ENV, str(caught.exception))
+                    self.assertIn(PRIVATE_RULES_DEFAULT, str(caught.exception))
+                self.assertEqual((client.requests, len(client.issues.posts), list(journal.iterdir())), (0, 0, []))
+                self.assertFalse(attempt_path(self.path).exists())
+
     def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
         name, key = private_name_sample(), secret_sample()
         ticket = self.hit_manifest("title", name)
@@ -472,7 +474,7 @@ class CreationTests(unittest.TestCase):
         self.assertFalse(name in stderr.getvalue() or key in stderr.getvalue(), "fixture text leaked into stderr")
         self.assertEqual(stderr.getvalue().splitlines(), [
             "REFUSED: secret scan hit: local id A01, field body, rule aws-access-key-id; nothing sent",
-            "REFUSED: secret scan hit: local id A01, field title, rule private-tr-project; nothing sent"])
+            f"REFUSED: secret scan hit: local id A01, field title, rule {PRIVATE_RULE_ID}; nothing sent"])
         self.assertEqual(client.requests, 0)
 
     def test_clean_manifest_is_sent_unchanged(self):
