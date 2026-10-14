@@ -896,6 +896,24 @@ verbatim in `progress-archive-2026-10-13.md`.
   covers D178 part 1. Worktree removed, branch kept. Nothing pushed; D178 part 2 (history rewrite)
   is next. Report: `reviews/ccm-20261014/republish/rule-split-merge-report.md`.
 
+- 2026-10-14 (D178 part 2 history rewrite and the combined A09 publish, D178, D183): dry run in a
+  scratch clone (receipt and runbook in `~/.local/state/claude-code-marketplace/d178-tools/`), then
+  the local rewrite: `git filter-branch --index-filter` blob substitution of the two dirty
+  `.gitleaks.toml` blobs over every local branch except main, cross-checked by an independent
+  object rewriter (same 12 tips). Verify: 0 of 136 commits carry the private rule, 114 pairs differ
+  only in `.gitleaks.toml`, 10 identical, 0 parent, header or message mismatches; the tip tree is
+  byte-identical to `272d6d2`; scan through `scan_config` over `main..NEW` private 0. Backup:
+  11 refs `refs/backup/d178-pre-rewrite/*` plus a private bundle (private-notes `archive/`,
+  untracked). Records `f555f56`: `reviews/ccm-20261014/republish/d178-rewrite-receipt.md` and
+  `d178-sha-map.tsv` (124 rows; old SHAs cited in records resolve through the map). With the
+  user's go (D183) the parent force-pushed `bea3e67` (rewrite of `959c56f`) with lease `959c56f`,
+  rc 0, pre-push retro gate passed for ten lanes; ls-remote and PR #110 head = `bea3e67`. Then one
+  A09 fast-forward publish `bea3e67..9422625` (outbound scan 0 findings, private 0,
+  `history_scan_rc` 0; receipts DL-235, DL-236 for DL-212, DL-221 in `d3425a4`, local). CI on
+  `9422625`: development checks success; acceptance and research-fast running. The user posts the
+  Support addendum (13 replaced commits, the PR #110 test merge `3d81dec`, the force-push compare)
+  on the same Support ticket (id in private notes). Report: `reviews/ccm-20261014/republish/combined-publish-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
