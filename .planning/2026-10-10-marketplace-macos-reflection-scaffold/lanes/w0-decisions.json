@@ -1,0 +1,96 @@
+{
+  "unit": "w0-decisions",
+  "tickets": [
+    "CT-24 (wave-0 seed; pending issue)",
+    "W0-6 of C4 Minimal wave-0 set"
+  ],
+  "title": "Decisions ledger seed: dev/plan_decide.py (approval|operation|receipt) and P/decisions.jsonl seeded through it",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/w0-decisions",
+  "branch": "claude/w0-decisions-ledger",
+  "base_sha": null,
+  "allocated_from": "d420a7e",
+  "base_rule": "base_sha = the commit that adds this record (C4 required change 2), i.e. the wave-0 allocation commit; it cannot name itself, so the parent fills it in the next records commit; the worktree is cut from that commit and the brief names its SHA",
+  "import_source": null,
+  "depends_on": [
+    "none"
+  ],
+  "delivers": [
+    "W0-6: dev/plan_decide.py minimal subcommands approval, operation, receipt; append-only JSONL; approved() query; duplicate approval is an idempotent no-op (T-E5, byte prefix unchanged)",
+    "W0-6 seed: P/decisions.jsonl rows written by the CLI: #91 relabel (operation, pending), draft PR to main (operation, pending), T4 Phase C budget (operation, pending user approval, D25), to-tickets approval of CT-01..CT-25 (+CT-02b) (approval pending, D3/D23); each row cites its task_plan decision id in source",
+    "proposed parent hunk (not lane-owned): mise rows plan:decide and test:plan-decide plus check:research depends, applied by the merger at integration (D7 fallback)"
+  ],
+  "owned_paths": [
+    "dev/plan_decide.py",
+    "dev/test_plan_decide.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/decisions.jsonl (rows written only through dev/plan_decide.py)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/w0-decisions.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ledger-w0-decisions.jsonl"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    ".claude/settings.json",
+    "hk.pkl",
+    "dev/check.py",
+    "dev/hooks/",
+    "dev/doctor/",
+    "docs/agents/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "*/AGENTS.md",
+    "*/CLAUDE.md",
+    "GLOSSARY.md",
+    "CODING_STANDARDS.md",
+    ".claude/agents/",
+    ".claude/rules/",
+    ".claude/skills/",
+    ".agents/",
+    ".gitignore",
+    "ci/acceptance.sh",
+    ".github/workflows/acceptance.yml",
+    "evidence/onboarding/baseline-files.json",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/findings.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ticket-ledger.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/lanes/*.json (parent-only, D8)",
+    "dev/retro_gate.py",
+    "dev/git_delivery.py"
+  ],
+  "required_checks": [
+    "python3 -I -m unittest discover -s dev -p test_plan_decide.py -v",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "./dev/mise run test:hooks",
+    "hk validate",
+    "git diff --check",
+    "./dev/mise run retro:gate -- w0-decisions",
+    "check:research: parent-run, serialized (never in the lane)"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none",
+    "git_hooks": "no hooks:install; hk runs only in scratch repositories inside tests",
+    "global_settings": "none (no ~/.claude edits)"
+  },
+  "context_ceiling_tokens": 500000,
+  "pwf": {
+    "PWF_PLAN_ROOT": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace",
+    "PLAN_ID": "2026-10-10-marketplace-macos-reflection-scaffold",
+    "note": "pin in the host env; a Bash prefix never reaches hooks"
+  },
+  "brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-decisions-brief.md",
+  "review_brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-decisions-review-brief.md",
+  "status": "allocated",
+  "review": null,
+  "retro": null,
+  "created_at": "2026-10-14T03:20:32Z",
+  "notes": [
+    "CT-24 remainder (plan:decide task file, issue-tracker.md paragraph, lane:allocate approved() import) stays with the wave-1 CT-24 lane"
+  ]
+}

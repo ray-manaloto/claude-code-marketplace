@@ -504,10 +504,24 @@ verbatim in `progress-archive-2026-10-13.md`.
   W0-7 (CT-21 for the `2a14` paths). `docs/accepted-decisions.md` hunk 2 (compiler foundation
   bullet) applied on the user's word: `git apply --check` rc 0 on the single hunk, result
   byte-identical to the `2a14` copy. Selected set 95 paths (+ I3 review, + I3b report).
-  Verification and publish result: `reviews/ccm-20261013/phase3/I3b-publish-report.md`
-  (publish SHA: pending).
+  Verification and publish result: `reviews/ccm-20261013/phase3/I3b-publish-report.md`.
+  Gates rc 0 (validate 56, check, baseline 19, frontier 29, retro gate ×2, gitleaks dir 0
+  findings); `delivery:prepare` rc 0 (tree `061c0cdf`), `delivery:publish` rc 0: published
+  `d420a7e` (parent `0a68dce`, 95 files, history scan rc 0); CI research-fast `38504716758`
+  success. This post-publish line is unstaged; the next publish carries it.
 
-- NEXT (2026-10-13, owner: parent; rewrite in place, keep last): group 4: wave-0 prevention
-  W0-1…W0-7 (C4 safety order) as lanes with Fable review; then the CT-21 import lane; then the
-  user types `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`. Still no
-  `hooks:install` (D2).
+- 2026-10-14 (Phase 4 group 4, wave-0 allocation, root checkout at `d420a7e`): five lanes
+  allocated from C4's W0-1..W0-7 with disjoint `owned_paths` and one owner per hot spot:
+  `w0-doctor` (CT-22a part 1; owns `.claude/settings.json`, `dev/check.py`, `mise.dev.toml`,
+  `hk.pkl`, `dev/test_hooks.py` in this wave), `w0-decisions` (CT-24 seed), `w0-docs` (W0-7,
+  owns `docs/agents/` rows), then sequenced `w0-doctor-records` (CT-22a part 2) and
+  `w0-session-hooks` (CT-23 seeds; takes over `settings.json`/`mise.dev.toml` after
+  `w0-doctor` integrates; integrates last, D26). Records `lanes/w0-*.json` (status allocated,
+  `base_sha` filled after this commit), ledger rows CT-02b/22/23/24, Phase 4 checklist.
+  Worktree prep rcs, briefs and dispatch order: `reviews/ccm-20261013/phase3/W0-allocation-report.md`.
+
+- NEXT (2026-10-14, owner: parent; rewrite in place, keep last): dispatch `w0-doctor`,
+  `w0-decisions`, `w0-docs` with their briefs (`reviews/ccm-20261013/phase3/w0/`); fill
+  `base_sha` with the allocation commit; cut `w0-doctor-records` and `w0-session-hooks` after
+  `w0-doctor` and `w0-decisions` integrate; then the CT-21 import lane; then the user types
+  `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`. Still no `hooks:install` (D2).

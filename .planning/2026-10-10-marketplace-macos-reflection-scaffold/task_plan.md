@@ -7,8 +7,8 @@ PLAN_ID `2026-10-10-marketplace-macos-reflection-scaffold`; `PWF_PLAN_ROOT` (abs
 is closed. Pin `PWF_PLAN_ROOT` and `PLAN_ID` in the host env (a Bash prefix never reaches hooks).
 
 ## Session handoff (2026-10-13)
-- Checkout: HEAD `0a68dce` = remote (A09 publish of merge `760b154`, lane `697e1da`, CT-02,
-  plus the session retro); no `MERGE_HEAD`; group-3B set (95 paths) staged for the second publish.
+- Checkout: HEAD `d420a7e` = remote (second A09 publish, group 3B, 95 paths, on `0a68dce`;
+  CI `38504716758` success); no `MERGE_HEAD`; only these post-publish record lines are unstaged.
 - Settings split committed (D4/D21): project `.claude/settings.json` holds `$schema`, hooks, four
   workflow plugins + marketplaces, autoCompact keys, `env.PLAN_ID`; personal keys stay local.
 - Snapshot `imports/codex-worktrees-20261013/` (index only, D24); review `reviews/ccm-20261013/`
@@ -71,7 +71,8 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
 - [ ] 9 pwf migration: this plan shape (done 2026-10-13 ahead of approval), pins in settings
   `env`, `progress.md` archive, `.mode` = `inject-smart`, planning-records rule (D8, D12)
   (open: no `.mode` written; the rest is in the group-3B set)
-- [ ] 10 Persist the review; `retro:gate -- ccm-20261013-session`; second A09 publish (D13)
+- [x] 10 Persist the review; `retro:gate -- ccm-20261013-session`; second A09 publish (D13)
+  (group 3B: published `d420a7e`)
 - [ ] 11 Spec and tickets: `issue:create-*`, edges, `ready-for-agent` (D3, D23; Phase 5)
 - [ ] 12 On the user's word: #91 relabel, draft PR to `main`, worktree cleanup (D9, D20)
 - [ ] 13 Handoff: rewrite Next Step and Current Phase; `session-catchup.py --metadata`;
@@ -92,7 +93,16 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
   merge rule and hooks caveats, `.claude/AGENTS.md` marketplaces line, `issue-tracker.md`
   `issue:*` mapping, `skill-invocations.md:20`, `spec.md:61,65`, `checkout_transfer.py:17`;
   the absolute `2a14` paths in `claude-takeover.md:26` and `codex-task-orchestration.md:6` go to CT-21
-- **Status:** pending
+- Lanes (allocated 2026-10-14, commit `plan: allocate wave-0 prevention lanes`; records `lanes/w0-*.json`,
+  briefs `reviews/ccm-20261013/phase3/w0/`, report `phase3/W0-allocation-report.md`):
+  - [ ] w0-doctor (CT-22a part 1: W0-1 test, W0-4 core, W0-5, doctor fixtures): allocated, cut
+  - [ ] w0-decisions (CT-24 seed: W0-6): allocated, cut
+  - [ ] w0-docs (W0-7; CT-02b and CT-23 doc slices): allocated, cut
+  - [ ] w0-doctor-records (CT-22a part 2: lanes.py, agents.py): allocated, sequenced after w0-doctor
+  - [ ] w0-session-hooks (CT-23 seeds: W0-3, hooks fixtures + corpus): allocated, sequenced, integrates last
+  W0-1 keys are already in `.claude/settings.json` (merge `760b154`); local pins stay a parent/user
+  step. The W0-7 `.git/info/exclude` lines already exist.
+- **Status:** in_progress (lanes allocated; none dispatched)
 
 ### Phase 5: Tickets publication and /to-tickets (user-typed stages)
 - [ ] `/mattpocock-skills:setup-matt-pocock-skills` in a fresh session (seed drift, P2-21)

@@ -1,0 +1,107 @@
+{
+  "unit": "w0-docs",
+  "tickets": [
+    "W0-7 of C4 Minimal wave-0 set (D15, D26)",
+    "CT-02b doc slice (claude-team.md merge rule, both Stop hooks)",
+    "CT-23 doc slice (claude-team.md Context budget)"
+  ],
+  "title": "Wave-0 docs: claude-team.md integration rule, context budget, restart rule, hooks; D15 rewrite of ticket-retro.md; .claude/AGENTS.md settings key list; issue-tracker.md issue:* mapping; skill-invocations and spec residual rows",
+  "owner": "doc-writer",
+  "writer_model": "opus (high) per the parent's wave-0 brief (frontier.toml model_policy.docs = sonnet)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/w0-docs",
+  "branch": "claude/w0-docs-rules",
+  "base_sha": null,
+  "allocated_from": "d420a7e",
+  "base_rule": "base_sha = the commit that adds this record (C4 required change 2), i.e. the wave-0 allocation commit; it cannot name itself, so the parent fills it in the next records commit; the worktree is cut from that commit and the brief names its SHA",
+  "import_source": null,
+  "depends_on": [
+    "none"
+  ],
+  "delivers": [
+    "claude-team.md: Integration (merge --no-ff, never --no-commit; retro:gate by hand until hk layer 2 is installed), Context budget (warn 400K, checkpoint 550K, fork_deny 500K, hard 650K, all below autoCompactWindow 700000), Roles restart rule (.claude/agents created mid-session need a restart), Hooks (pwf Stop and stop_gate.py compose; pwf .mode never gate; trust-held hooks, disableAllHooks, managed settings caveats), two-gate note (lane state vs pwf phase state)",
+    "ticket-retro.md:4-8 D15 rewrite per SYNTHESIS section 4",
+    ".claude/AGENTS.md: project settings key list and marketplaces line (project in settings.json, personal in settings.local.json)",
+    "issue-tracker.md: issue:* qualified-operation mapping under a movable heading (the seed heading arrives with the user-typed setup skill)",
+    "P/skill-invocations.md:20 and P/proposals/claude-takeover-spec/spec.md:61,65 per SYNTHESIS section 4",
+    "already done, verify only: .git/info/exclude holds .agent/ and the settings backup path; secrets posture line at claude-takeover.md:13"
+  ],
+  "owned_paths": [
+    "docs/agents/claude-team.md",
+    "docs/agents/ticket-retro.md",
+    "docs/agents/issue-tracker.md",
+    ".claude/AGENTS.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/skill-invocations.md (row 20 only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/proposals/claude-takeover-spec/spec.md (lines 61, 65 only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/w0-docs.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ledger-w0-docs.jsonl"
+  ],
+  "excluded_shared_paths": [
+    "docs/agents/claude-takeover.md (2a14 paths wait for CT-21)",
+    "docs/agents/codex-task-orchestration.md (2a14 path waits for CT-21)",
+    "docs/agents/automation-amendment-review.md",
+    "docs/agents/github-search-reuse.md",
+    "docs/agents/workflow-reconciliation.md",
+    "docs/agents/codex-example-classification.md (CT-21)",
+    "dev/checkout_transfer.py (CT-21)",
+    "dev/",
+    "mise.dev.toml",
+    ".claude/settings.json",
+    "hk.pkl",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "*/AGENTS.md",
+    "*/CLAUDE.md",
+    "GLOSSARY.md",
+    "CODING_STANDARDS.md",
+    ".claude/agents/",
+    ".claude/rules/",
+    ".claude/skills/",
+    ".agents/",
+    ".gitignore",
+    "ci/acceptance.sh",
+    ".github/workflows/acceptance.yml",
+    "evidence/onboarding/baseline-files.json",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/findings.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ticket-ledger.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/lanes/*.json (parent-only, D8)",
+    "dev/retro_gate.py",
+    "dev/git_delivery.py"
+  ],
+  "required_checks": [
+    "rg --files check of every cited path; ./dev/mise tasks ls for every cited task",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "./dev/mise run test:hooks",
+    "hk validate",
+    "git diff --check",
+    "./dev/mise run retro:gate -- w0-docs",
+    "check:research: parent-run, serialized (never in the lane)"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none",
+    "git_hooks": "no hooks:install; hk runs only in scratch repositories inside tests",
+    "global_settings": "none (no ~/.claude edits)"
+  },
+  "context_ceiling_tokens": 500000,
+  "pwf": {
+    "PWF_PLAN_ROOT": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace",
+    "PLAN_ID": "2026-10-10-marketplace-macos-reflection-scaffold",
+    "note": "pin in the host env; a Bash prefix never reaches hooks"
+  },
+  "brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-docs-brief.md",
+  "review_brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-docs-review-brief.md",
+  "status": "allocated",
+  "review": null,
+  "retro": null,
+  "created_at": "2026-10-14T03:20:32Z",
+  "notes": [
+    "documents rules and thresholds only; the doctor, agent_gate and prompt_hook hook lines are proposed by their lanes as literal edits for the parent"
+  ]
+}
