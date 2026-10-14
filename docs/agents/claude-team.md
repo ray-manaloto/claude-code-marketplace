@@ -39,17 +39,42 @@ separate (planned, implemented, tested, reviewed, committed, published).
 ## The retro gate
 
 `dev/retro_gate.py` refuses integration or publication of a unit whose retro
-record is missing, skips a category or leaves a finding open. One check runs
-in three layers:
+record is missing, skips a category or leaves a finding open. A lane writes that
+record at `.planning/<PLAN_ID>/retros/<unit>.md` inside its own worktree and
+commits it on the lane branch, so every layer below finds it there or in the
+merged tree. One check runs in three layers (CT-01, CT-02):
 
-1. mise task `retro:gate` - the manual and CI form.
-2. `hk` git steps on merge and push - agent-independent, so Codex is bound too.
-3. Claude Code hooks - `PreToolUse` denial of `git merge`, `git push` and
-   `delivery:publish`, plus `Stop`/`SubagentStop` blocks keyed to a lane record.
+1. mise task `retro:gate -- <unit>`: the manual and CI form.
+2. `hk.pkl` Git hooks: `pre-merge-commit` runs `retro:gate-merge` and
+   `pre-push` runs `retro:gate-push`, both through `dev/hooks/git_gate.py`.
+   The merge form gates each `claude/` or `codex/` ref being merged (Git
+   exposes it only through `GIT_REFLOG_ACTION` before the merge commit) and
+   refuses a source it cannot classify. The push form gates each unpublished
+   lane merge, attributed by its default subject or by refs pointing exactly
+   at its second parent. The integration branch and `main` are never units.
+   The parent runs `./dev/mise run hooks:install` once: `hk install
+   --force-local`, because a global hk install suppresses the per-repository
+   hooks, plus local `merge.ff=false`. This layer binds any agent, Codex
+   included, only for merge commits. A fast-forward (`--ff` merge or pull), `--squash`, a
+   rebase, a cherry-pick, or `--no-commit` then commit all skip
+   `pre-merge-commit`. `pre-push` is the backstop for merge commits; squash,
+   rebase and cherry-pick leave none, so they rely on layer 3 and review.
+3. Claude Code hooks in `.claude/settings.json`: `PreToolUse`
+   (`dev/hooks/pretooluse_gate.py`) denies `git merge`, `git push` and
+   `delivery:publish` of a failing lane; `delivery:publish` pushes with
+   `--no-verify`, so it checks the unpublished lane merges itself.
+   `SubagentStop` (`subagent_stop_gate.py`) blocks a subagent whose `cwd` is a
+   lane worktree without a passing record, and `Stop` (`stop_gate.py`) blocks
+   the parent while a lane record says integrated without a passed retro. Each
+   blocks once; a continuation is allowed.
 
-Layer 1 arrives with CT-01; layers 2 and 3 arrive with ticket CT-02 (hook
-wiring) of the takeover spec. The gate checks record shape and bindings; judgement about findings
-stays with the reviewer.
+Lane record vocabulary for the `Stop` gate: `status` starts with `allocated`,
+`implementing`, `implemented`, `reviewed`, `integrated` or `published`, plus
+free text; an integrated or published lane keeps the word `integrated`.
+`retro` is `pending` (or absent) until `retro:gate -- <unit>` exits 0 on the
+integrated tree, then `passed`. `./dev/mise run test:hooks` exercises every
+layer in scratch repositories. The gate checks record shape and bindings;
+judgement about findings stays with the reviewer.
 
 ## Concurrency
 

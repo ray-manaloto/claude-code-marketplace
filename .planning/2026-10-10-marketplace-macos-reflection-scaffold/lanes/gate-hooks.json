@@ -7,7 +7,8 @@
   "reviewer": "reviewer (fable, cold)",
   "worktree": ".claude/worktrees/gate-hooks",
   "branch": "claude/gate-hooks-wiring",
-  "base_sha": "e618243",
+  "base_sha": "2d1f60e",
+  "allocated_from": "e618243",
   "depends_on": ["retro-gate (CT-01) integrated at e618243"],
   "owned_paths": [
     "hk.pkl",
@@ -15,11 +16,17 @@
     "dev/hooks/",
     "dev/test_hooks.py",
     "mise.dev.toml (task rows for hooks only)",
-    "docs/agents/claude-team.md (gate layers paragraph only)"
+    "docs/agents/claude-team.md (gate layers paragraph only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/gate-hooks.md"
   ],
   "excluded_shared_paths": ["dev/retro_gate.py", "dev/check.py", "AGENTS.md", "CLAUDE.md", ".claude/agents/", ".claude/rules/", ".gitignore", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md", ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"],
   "required_checks": ["python3 -I -m unittest discover -s dev -p test_hooks.py", "hk validate / hk run in a scratch repository", "tasks validate", "check", "check:acceptance-baseline", "git diff --check", "retro:gate -- gate-hooks"],
   "resource_admissions": {"host_heavy": "not admitted", "providers": "none", "network": "none", "git_hooks": "install only in scratch repositories during tests; the parent runs hk install in the real checkout at integration"},
-  "status": "allocated",
+  "status": "integrated into codex/marketplace-native-onboarding (cold review PASS-with-P2, repairs dec8425, re-review PASS 21:04Z; repair 697e1da test:hooks under dev/mise, focused re-review PASS-with-P3); A09 publication pending",
+  "lane_commit": "697e1da (0c2748e + repairs dec8425 + repair 697e1da)",
+  "merged_head": "697e1da (child of e12cf04 = merge of d0d6d4d)",
+  "review": "fable cold review PASS-with-P2 (P2-1 name-rev attribution, P2-2 layer-2 overclaim; P3s) -> repairs dec8425 -> focused re-review PASS (a221b354) -> integration test:hooks rc 1 under dev/mise -> repair 697e1da -> focused re-review PASS-with-P3 (reviews/ccm-20261013/phase3/I1b-review.md)",
+  "retro": "passed",
+  "integration_merge": "the parent merge commit carrying this record state (parents 9cd396a 697e1da; SHA in progress.md)",
   "created_at": "2026-10-13T20:31:33Z"
 }

@@ -114,7 +114,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]
@@ -326,3 +326,23 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_c
 description = "Run shared offline receipt and acceptance-state controls"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -B -m unittest discover -s dev -p test_research_outcomes.py -v'
+
+[tasks."retro:gate-merge"]
+description = "Refuse a merge commit of a lane branch whose retro record fails (hk pre-merge-commit)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/hooks/git_gate.py merge'
+
+[tasks."retro:gate-push"]
+description = "Refuse a push carrying a lane merge whose retro record fails (hk pre-push)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/hooks/git_gate.py push'
+
+[tasks."hooks:install"]
+description = "Parent-run at integration: install the hk retro-gate Git hooks and refuse fast-forward merges here"
+dir = "{{config_root}}"
+run = ["hk install --force-local", "git config --local merge.ff false", "echo 'hooks:install: set merge.ff=false in local Git config'"]
+
+[tasks."test:hooks"]
+description = "Exercise the retro-gate hook scripts and hk hooks in scratch repositories"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_hooks.py -v'
