@@ -1,6 +1,6 @@
 # retro-gate retrospective — deterministic retro gate (CT-01)
 
-Unit `retro-gate`, branch `claude/retro-gate-task`, commit `894d07d`, merged with tip `c8f4e64` as `0f7ddad`. Exits (VIRTUAL_ENV unset): suite 15 tests rc 0 (pre- and post-merge), `retro:gate m0-remaining-work-merge` rc 0, `retro:gate A11b` rc 2, `tasks validate` rc 0 (51), `check` rc 0, `check:acceptance-baseline` rc 0 (19/19), `git diff --check` rc 0. Imported draft gave 5 red tests before the rewrite. Cold review: PASS-with-P2, all findings applied; merged with tip `9d478cd` as `82c351f`.
+Unit `retro-gate`, branch `claude/retro-gate-task`, commit `894d07d`, merged with tip `c8f4e64` as `0f7ddad`. Exits (VIRTUAL_ENV unset): suite 15 tests rc 0 (pre- and post-merge), `retro:gate m0-remaining-work-merge` rc 0, `retro:gate A11b` rc 2, `tasks validate` rc 0 (51), `check` rc 0, `check:acceptance-baseline` rc 0 (19/19), `git diff --check` rc 0. Imported draft gave 5 red tests before the rewrite. Cold review: PASS-with-P2, all findings applied; merged with tip `9d478cd` as `82c351f` after repair `5ea8ee4` (final lane tip; integration merge `e618243`).
 
 | Severity | Category and finding | Applied action and verification |
 | --- | --- | --- |

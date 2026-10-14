@@ -92,4 +92,4 @@ import sources.
 
 ## Where learnings land
 
-By kind, per [ADR 0001](../adr/0001-claude-takeover-and-retro-gate.md). `CODING_STANDARDS.md` arrives with ticket CT-04 (NAV).
+By kind, per [ADR 0001](../adr/0001-claude-takeover-and-retro-gate.md). Reviewer judgement rules live in `CODING_STANDARDS.md` (integrated with ticket CT-04, lane `nav`, merge `fa892d2`).

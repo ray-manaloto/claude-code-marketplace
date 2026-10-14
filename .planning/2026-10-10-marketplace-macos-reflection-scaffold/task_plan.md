@@ -1,46 +1,326 @@
 # Marketplace onboarding and C++ foundation
 
-PLAN_ID: `2026-10-10-marketplace-macos-reflection-scaffold`
-Plan and integration-branch owner: the Claude Code session since the
-[takeover](#claude-takeover-2026-10-13) on 2026-10-13; before that, the parent
-Codex chat. Independent implementation lanes use separately allocated worktrees
-and disjoint paths. Integration, shared planning, named checks and publication
-remain serialized; reviewers are read-only.
-Project root: `/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`.
-Set `PWF_PLAN_ROOT` to that root and `PLAN_ID` above for commands launched elsewhere.
-The detached `/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace`
-retains its uncommitted work and private evidence. Do not reset or archive it.
+PLAN_ID `2026-10-10-marketplace-macos-reflection-scaffold`; `PWF_PLAN_ROOT` (absolute):
+`/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace`. Owner: session
+`ccm-20261013-check` (`b74a0bf1-dd98-44d5-8122-e47e12ad4fd2`) owns this plan and the branch
+`codex/marketplace-native-onboarding` since 2026-10-13; dead session `ccm-20261013` (`464a2816`)
+is closed. Pin `PWF_PLAN_ROOT` and `PLAN_ID` in the host env (a Bash prefix never reaches hooks).
 
-## Session handoff (updated 2026-10-13)
-Next: integrate `gate-hooks` (CT-02; repairs at `e12cf04`, focused re-review in
-progress) once it passes: move root `.claude/settings.json`'s user-specific keys
-to `settings.local.json`, run `./dev/mise run hooks:install`, add `test:hooks`
-to `check:research`, publish via A09 (`delivery:prepare`, `delivery:publish`).
-Handoff base: `28fedf1` (local tip = published remote `28fedf1`). Integrated,
-`retro: passed`: a06-unit3 #69, codex-session-history, rf-env-scrub, team CT-03,
-retro-gate CT-01, nav CT-04, c1-catalog-promotion #94. Pending user decisions:
-(1) to-tickets approval of CT-01…CT-11 (CT-11 = serialize named checks), then
-publish the [spec and tickets](proposals/claude-takeover-spec/) via
-`issue:create-*` and `issue:new-edge-*`; (2) settings.json composition (default:
-project keys committed, user keys to `settings.local.json`). Resume: read
-`lanes/*.json`, `retros/*.md`, `ticket-ledger.md`, `skill-invocations.md`,
-`docs/agents/claude-takeover.md`, `findings.md` sections 'Claude takeover
-(2026-10-13)' and 'Inherited limitations'; run `./dev/mise tasks validate`,
-`./dev/mise run check`, `./dev/mise run check:acceptance-baseline`; integrate
-reviewed lanes one at a time behind `./dev/mise run retro:gate -- <unit>`.
+## Session handoff (2026-10-13)
+- Checkout: HEAD `0a68dce` = remote (A09 publish of merge `760b154`, lane `697e1da`, CT-02,
+  plus the session retro); no `MERGE_HEAD`; group-3B set (95 paths) staged for the second publish.
+- Settings split committed (D4/D21): project `.claude/settings.json` holds `$schema`, hooks, four
+  workflow plugins + marketplaces, autoCompact keys, `env.PLAN_ID`; personal keys stay local.
+- Snapshot `imports/codex-worktrees-20261013/` (index only, D24); review `reviews/ccm-20261013/`
+  (SYNTHESIS.md ranks it; R1-R8, C1-C4, T1/T2, sweeps A/B/C).
+- Next action: group 4, wave-0 prevention W0-1..W0-7 (C4 safety order) as lanes with Fable
+  review; then the CT-21 import lane. Live PreToolUse gate denies `git merge`/`git push` text.
+- Pending user: none of D1-D45 (approved; hunk 2 applied 2026-10-13); typing
+  `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`; personal autoCompact (D21).
+- Resume order: `reviews/ccm-20261013/SYNTHESIS.md` (§1, §5) > `lanes/*.json` >
+  `retros/ccm-20261013-session.md`; then `./dev/mise tasks validate`, `./dev/mise run check`.
 
-## Claude takeover (2026-10-13)
+## Goal
+Finish the gate-hooks merge, publish a clean tip through A09, file CT-01..CT-25 (+CT-02b) as
+GitHub tickets under the takeover spec, run the lane waves behind the retro gate, and keep one
+C++26 P2996 ticket active (D27/D28) until the native research core replaces the Python core.
 
-Codex threads `01a127db`, `01a130ef`, `01a12bd1` and `01a13185` stopped; the
-last two failed on `usage_limit_exceeded` until 2026-10-19. The user transferred
-sole integration-writer ownership of `codex/marketplace-native-onboarding` and
-this plan to the Claude Code session at HEAD `d2a4103` (remote `848552c`). The
-[activation record](../../docs/agents/claude-takeover.md) binds the observed
-state and granted authority. Every Codex worktree, branch and private evidence
-packet is a read-only import source. The `refresh-llvm-github-research`
-heartbeat keeps running outside the repository.
+## Next Step
+Group 4: wave-0 prevention W0-1..W0-7 (C4 safety order) as lanes with Fable review; then the CT-21
+import lane; then the user types `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`.
 
-Conventions from the takeover interview (rounds 1–2, all accepted):
+## Current Phase
+Phase 3: Repair and publish (SYNTHESIS §5 runbook steps 1-13)
+
+## Phases
+
+### Phase 0: Takeover and M0
+- [x] Codex threads stopped; sole writer transferred at HEAD `d2a4103` (remote `848552c`)
+- [x] M0 merged `codex/marketplace-remaining-work`; cold review PASS; published `05c3dc9`
+- **Status:** complete
+
+### Phase 1: Wave-0 lanes CT-01..CT-04 and imports
+- [x] Integrated, `retro: passed`, on origin `28fedf1`: a06-unit3 #69, codex-session-history,
+  rf-env-scrub, team CT-03, retro-gate CT-01, nav CT-04, c1-catalog-promotion #94
+- [x] gate-hooks CT-02 built (`0c2748e`+`dec8425`, re-review PASS 21:04Z); merge staged
+  (`e12cf04`), not committed: finishes in Phase 3
+- **Status:** complete
+
+### Phase 2: Session review ccm-20261013
+- [x] Ten cold reviews, meta-review, prevention team, import lane design, Codex sweeps:
+  `reviews/ccm-20261013/` (SYNTHESIS §1: P1 15, P2 25 after dedup over 27 table rows,
+  P3 31); retro `retros/ccm-20261013-session.md`; plan-update P1/P2/P3 and skill K1/K2
+- **Status:** complete
+
+### Phase 3: Repair and publish
+Serial, parent only, each step after the decision it names; rcs recorded in progress.md.
+- [x] 1 Snapshot `settings.local.json` and `git diff --cached`; keep `settings.json.before-ct02`
+- [x] 2 Settings split per R5 §B; key-set assertions; `git add .claude/settings.json` (D4)
+- [x] 3 Record fixes inside the merge: `retros/gate-hooks.md`, `lanes/gate-hooks.json`
+  (status integrated, retro passed in one edit); `retro:gate -- gate-hooks` rc 0
+- [x] 4 CT-02b minimum before commit: none (a fix inside the merge needs the abort path)
+- [x] 5 Gates rc 0: tasks validate, check, baseline 19/19, test:hooks (13), hk validate 2.6.0
+  and 2.5.0, retro:gate, check:research, `git diff --cached --check`
+- [x] 6 Commit the merge (done as `760b154`, parents `9cd396a 697e1da`; declares the `test:hooks` hunk and the
+  settings composition); `MERGE_HEAD` gone; `stop_gate.py` silent (D1)
+- [x] 7 `git mv retros/a06-classification-methods.md retros/a06-unit3.md`; SYNTHESIS §4 record
+  corrections outside the merge; doc rewrites (D15); `.agent/` in `.git/info/exclude` (D8)
+  (group 3A: a06 as a copy alias; residual §4 rows in I3 report §7 go to W0-7 and CT-21)
+- [x] 8 A09 publish of steps 6-7 only, before any `hooks:install` (D2); record the remote SHA
+  (group 2: `0a68dce` carried step 6 and the session retro; step 7 rides the second publish)
+- [ ] 9 pwf migration: this plan shape (done 2026-10-13 ahead of approval), pins in settings
+  `env`, `progress.md` archive, `.mode` = `inject-smart`, planning-records rule (D8, D12)
+  (open: no `.mode` written; the rest is in the group-3B set)
+- [ ] 10 Persist the review; `retro:gate -- ccm-20261013-session`; second A09 publish (D13)
+- [ ] 11 Spec and tickets: `issue:create-*`, edges, `ready-for-agent` (D3, D23; Phase 5)
+- [ ] 12 On the user's word: #91 relabel, draft PR to `main`, worktree cleanup (D9, D20)
+- [ ] 13 Handoff: rewrite Next Step and Current Phase; `session-catchup.py --metadata`;
+  `plan-doctor.sh` PASS/PASS; then `/clear` is safe
+- **Status:** in_progress
+
+### Phase 4: Wave 0 prevention (C4 order, D26)
+- [ ] W0-1 settings keys: `autoCompactEnabled: true`, `autoCompactWindow: 700000`,
+  `env.PLAN_ID`; local `PWF_PLAN_ROOT`, `PWF_INJECT=smart`, `PWF_TRUSTED_PYTHON` (D21)
+- [ ] W0-2 fixtures: usage curve, rejected command, staged records, 113-command corpus
+- [ ] W0-3 `dev/context_budget.py`, `dev/hooks/agent_gate.py`, `dev/hooks/prompt_hook.py`
+- [ ] W0-4 doctor slice CT-22a (`dev/doctor/`, surfaces session-start, check, pre-commit)
+- [ ] W0-5 hk `pre-commit` `records` step = `doctor --surface pre-commit`
+- [ ] W0-6 `decisions.jsonl` seeded + `dev/plan_decide.py` minimal (CT-24 seed)
+- [ ] W0-7 docs: claude-team.md (`--no-ff`, never `--no-commit`; context budget; restart
+  rule; two Stop gates), D15 rewrites, `.claude/AGENTS.md` key list, secrets line (N1);
+  residual SYNTHESIS §4 rows (I3 review P3-5): `ticket-retro.md:4-8` D15 rewrite, `claude-team.md`
+  merge rule and hooks caveats, `.claude/AGENTS.md` marketplaces line, `issue-tracker.md`
+  `issue:*` mapping, `skill-invocations.md:20`, `spec.md:61,65`, `checkout_transfer.py:17`;
+  the absolute `2a14` paths in `claude-takeover.md:26` and `codex-task-orchestration.md:6` go to CT-21
+- **Status:** pending
+
+### Phase 5: Tickets publication and /to-tickets (user-typed stages)
+- [ ] `/mattpocock-skills:setup-matt-pocock-skills` in a fresh session (seed drift, P2-21)
+- [ ] `/mattpocock-skills:retro <dead-session transcript>`; apply through one retro-writer lane
+- [ ] "publish spec" from `proposals/claude-takeover-spec/spec.md` (`issue:create-*`)
+- [ ] `/mattpocock-skills:to-tickets #<spec>`; approve C4's CT-01..CT-24 (+CT-02b) (D3, D23)
+- [ ] "publish tickets": blockers first, edge graph, `issue:new-edges-audit`, `ready-for-agent`
+- [ ] `ledger:sync` by hand; `skill-invocations.md` row per typed stage
+- **Status:** pending
+
+### Phase 6: Wave 1 lanes
+- [ ] CT-02b gate follow-up (int. 1), CT-11 check lock (2), CT-05 ledger (3), CT-15 plan
+  records (4), CT-21 Codex imports (5, D24); CT-12, CT-16, CT-24 only if D5 admits them
+- [ ] One C++ ticket active alongside (#21 first; D27 class = `frontier.toml` include
+  list; D28 offline split unit fills the cxx slot when no heavy run is admitted)
+- [ ] per lane: allocation commit, `.claude/worktrees/<unit>`, `implementer` with `tdd`,
+  cold `reviewer`, `retro-writer` until `retro:gate` rc 0, `--no-ff` merge, A09 publish
+- **Status:** pending
+
+### Phase 7: Wave 2+ incl. heavy chain and C++26 core
+- [ ] Wave 2: CT-17, CT-19, CT-18, C3 #95 offline, CT-22b in the heavy slot
+- [ ] Wave 3: CT-07, CT-23, CT-06, CT-09 (CT-12 here if not in wave 1); CT-25
+  ticket-frontier skill once CT-05/15/17/19/22/24 are integrated (D32)
+- [ ] Wave 4+: CT-10, CT-20, CT-08, C2 #98, CT-05/CT-21 split units, `<spec>-review-fixes`
+- [ ] Heavy chain, one C++ ticket always active (D27/D28), each run confirmed (D5, D18): #21
+  Relocated CMake Config consumers, then #20, #17, #16, L1 #96; frontier READY now: #16,
+  #17, #20, #21, #96; blocked native chain #18, #19, #22, #23 (foundation acceptance)
+- [ ] `/mattpocock-skills:wayfinder "C++26 P2996 research core"` in its own session
+- [ ] CLOSE operations between waves (#12, #24, #25, #62-#78, #90, #92, #93, #94, #97; T4
+  #101 only under D25); end-of-spec `code-review` from `start_sha` (D10)
+- **Status:** pending
+
+## Tickets
+
+Takeover spec "Claude team takeover and self-improving workflow"
+(`proposals/claude-takeover-spec/`).
+No CT issue exists on GitHub: every GitHub cell reads "pending /to-tickets" (Phase 5). States:
+built, integrated, published (on origin `28fedf1`), proposed. Binding table: C4 §Reconciled.
+
+| Ticket | Title | State | Blocked by | Wave | Lane unit | GitHub |
+|---|---|---|---|---|---|---|
+| CT-01 | Retro gate task | published (AC2 open, test unwired) | none | done | retro-gate | pending /to-tickets |
+| CT-02 | Hook wiring for the retro gate | built, re-review PASS, mid-merge | CT-01 | runbook | gate-hooks | pending /to-tickets |
+| CT-02b | Gate follow-up: token-anchored verbs, heredoc strip, deadline deny, corpus, `hooks_install.py` guard | proposed | CT-02 | 1 (int. 1) | ct02b-gate-followup | pending /to-tickets |
+| CT-03 | Team roles, rules, vocabulary | published | none | done | team | pending /to-tickets |
+| CT-04 | Guidance hierarchy | published | none | done | nav | pending /to-tickets |
+| CT-05 | Lane-record validator (`lane:set`, `lane:validate`), ledger generator | proposed | none | 1 (int. 3) | ct05-ledger | pending /to-tickets |
+| CT-06 | `/lane-retro <unit>` | proposed | CT-01, CT-03, CT-19 | 3 | ct06-lane-retro | pending /to-tickets |
+| CT-07 | Codex compatibility (roles, config, mirror test) | proposed | CT-02, CT-03 | 3 | ct07-codex-compat | pending /to-tickets |
+| CT-08 | Baseline transition v2 (`.gitignore`, `.agent/`) | proposed | user admission (D6) | 4 | ct08-baseline-v2 | pending /to-tickets |
+| CT-09 | Tool adoption decision table | proposed | none | 3 | ct09-tool-evaluation | pending /to-tickets |
+| CT-10 | codex-session-history coverage, `codex_status.py`, `codex:supersede` | proposed | none | 4 | ct10-codex-status | pending /to-tickets |
+| CT-11 | Serialize named checks (lock) + receipt line | proposed | none | 1 (int. 2) | ct11-check-lock | pending /to-tickets |
+| CT-12 | Wire every development test (`test:retro-gate`, unwired-test rule) | proposed | CT-22a | 1 (sixth) if D5 admits, else 2 | ct12-unwired-tests | pending /to-tickets |
+| CT-13 | Grilling-question mod (AskUserQuestion) | proposed | D14 | user-typed | ct13-ask-mod | pending /to-tickets |
+| CT-14 | `plugins/aggregated-research` guidance + `CLAUDE.md` importer | proposed | none | 3/4 | ct14-plugin-guidance | pending /to-tickets |
+| CT-15 | Planning-file shape, `plan:log`, `plan:handoff`, `check:planning` | proposed | none | 1 (int. 4) | ct15-plan-records | pending /to-tickets |
+| CT-16 | Settings composition check (`dev/doctor/settings.py` rule) | proposed | D4; after CT-22a | 1 (sixth) or 2 | ct16-settings-check | pending /to-tickets |
+| CT-17 | Lane lifecycle: `lane:allocate`, `lane:integrate`, `session:status`, stop-gate extensions | proposed | CT-01, CT-02, CT-05, CT-11, CT-22a, CT-24 | 2 (int. 1) | ct17-lane-lifecycle | pending /to-tickets |
+| CT-18 | A09 batch publish wrapper (refuses `MERGE_HEAD`) | proposed | CT-02, CT-22a | 2 (int. 3) | ct18-publish-batch | pending /to-tickets |
+| CT-19 | Slotted briefs (`lane:brief`), agent constants, SubagentStop receipt journal | proposed | CT-02, CT-03, CT-05 | 2 (int. 2) | ct19-lane-brief | pending /to-tickets |
+| CT-20 | `agent-session-history` skill, `/session-review`, transcript detectors | proposed | CT-07, CT-10, CT-22 | 4 | ct20-session-review | pending /to-tickets |
+| CT-21 | Import Codex worktree inputs (119 files), `check_inputs.py`, `check:inputs` | designed (T2); lane record allocated-pending-merge | none | 1 (int. 5, D24) | ct21-codex-imports | pending /to-tickets |
+| CT-22 | Doctor core (`dev/doctor/`, six surfaces); CT-22a = wave-0 slice | proposed | none | 0 (a); 1 heavy slot or 2 (b) | ct22-doctor | pending /to-tickets |
+| CT-23 | Session hooks follow-up (thresholds via env, `ctx:status`, roster drift) | proposed | CT-19, CT-22 | 3 | ct23-session-hooks | pending /to-tickets |
+| CT-24 | Decisions ledger (`plan_decide.py`, `decisions.jsonl`, `plan:decide`) | proposed | none | 1 (small) | ct24-decisions | pending /to-tickets |
+| CT-25 | ticket-frontier orchestration skill (K1 §8: `frontier.py`, scheduler agent, executor gate G1-G7, learning ledger) | proposed (D32) | CT-05, CT-15, CT-17, CT-19, CT-22, CT-24 | 3 | ct25-ticket-frontier | pending /to-tickets |
+
+Lane-unit names for proposed tickets are P1/P3 proposals (R8 names renumbered to C4's ids),
+not records: each name is fixed by its allocation commit. Only `ct21-codex-imports` has a
+lane record today; CT-25 is K1 §8 (D32), not in C4's table, and joins the D3/D23 approval.
+
+Open GitHub frontier (closure prerequisites per row: `ticket-ledger.md`; sweep B for #62-#78,
+#101). Operations, not lanes, unless marked:
+
+| Group | Issues | State and carrier |
+|---|---|---|
+| A06 and A-series closes | #69 (blocked by #68); #62-#78 | CLOSE after CT-21 imports the `2a14` evidence; #72-#78 have no closure packet; #78 waits for A06 acceptance |
+| Remaining-work tracker | #90 B1, #92 T1, #93 T3 (READY, in tip via M0); #97 T2 (blocked by #92); #101 T4 (blocked; attempt 3 STOPPED/NOT_COMPLETED, budgets 3/3, D25) | parent-run qualified closes between waves |
+| Human operation | #91 B2 (READY; relabel `ready-for-human`, D20) | Codex Desktop attachment repair |
+| Research queries | #94 C1 (integrated `4c1ea6b`, closure pending); #95 C3 (wave 2 #4 offline lane); #98 C2 (blocked by #94; wave 4+) | lanes then closes |
+| LLVM bundle chain | #96 L1 (heavy 5); #99 L2, #100 L3 (blocked by #96); #102-#105 L4a-d; #106 L5a; #107 L5b; #108 L6 | heavy lanes under D5, one at a time |
+| Native foundation (spec #11) | #21, #20, #17, #16 READY (heavy 1-4); #18, #19, #22, #23 blocked; #12, #24, #25 CLOSE | the C++26 chain of Phase 7 |
+
+## Lanes
+
+Projection of `lanes/*.json` on 2026-10-13 (the records are the source; SYNTHESIS §4 lists the
+field corrections still to apply in Phase 3 step 7).
+
+| Unit | Tickets | Branch @ base | status | retro |
+|---|---|---|---|---|
+| m0-remaining-work-merge | #90 #92 #93 #97 #101 #84-#89 | integration branch @ `d2a4103` | merged, review PASS, published `05c3dc9` | passed |
+| a06-unit3 | #69 | `claude/a06-unit3-classification-methods` @ `e0667ec` | integrated (PASS-with-P3); published `f250f75`, on `28fedf1` | passed (record `a06-classification-methods.md`, alias `retros/a06-unit3.md`; gate rc 0) |
+| codex-session-history | none | `claude/codex-session-history-skill` @ `e0667ec` | integrated (re-review PASS); published `f250f75`, on `28fedf1` | passed |
+| rf-env-scrub | none | `claude/rf-env-scrub-inherited-selectors` @ `e0667ec` | integrated; C1/C2/C3 released; published `f250f75`, on `28fedf1` | passed |
+| retro-gate | CT-01 | `claude/retro-gate-task` @ `361688e` | integrated (re-review PASS); on `28fedf1` | passed |
+| team | CT-03 | `claude/team-roles-rules` @ `361688e` | integrated (re-review PASS); on `28fedf1` | passed |
+| nav | CT-04 | `claude/nav-guidance-hierarchy` @ `7e22d13` (allocation `c6ff7ef`) | integrated `fa892d2`; on `28fedf1` | passed |
+| c1-catalog-promotion | #94 | `claude/c1-catalog-promotion` @ `447110a` (allocation `ca60871`) | integrated `4c1ea6b`; #94 closure pending | passed |
+| gate-hooks | CT-02 | `claude/gate-hooks-wiring` @ `2d1f60e` (allocated from `e618243`) | integrated `760b154` (lane `697e1da`); published `0a68dce` | passed |
+| ct21-codex-imports | CT-21 | `claude/ct21-codex-imports` @ TBD at cut | allocated-pending-merge (designed, not cut) | pending |
+
+## Decisions Made
+
+Rows are the journal the injector shows (last three). D1-D26 are SYNTHESIS §8; the default is
+the recommended choice; the user approved D1-D26 at their defaults on 2026-10-13. D27-D41 are the user's
+answers to K1 §9 (`reviews/ccm-20261013/skills/K1-orchestrator-skill-design.md`).
+
+| Id | Decision and default | Status |
+|---|---|---|
+| T-R1/R2 | Takeover interview rounds 1-2 (lanes, retro gate, models, A09 route, ledger): see Appendix A | accepted 2026-10-13 |
+| D1 | Mid-merge: finish it as a declared evil merge (vs abort and redo) | approved 2026-10-13 |
+| D2 | `hooks:install`: defer to CT-02b (A09 would refuse after install) | approved 2026-10-13 |
+| D3 | Tickets: approve C4's CT-01..CT-24 (+CT-02b); publish CT-01..CT-04 as done sub-issues | approved 2026-10-13 |
+| D4 | Settings composition: R5 §B (project: schema, hooks, plugins, marketplaces; local: the rest); secrets stay in fnox | approved 2026-10-13 |
+| D5 | Heavy chain #21 > #20 > #17 > #16 > L1 #96; wave-2 heavy slot = #21; cap wave 1 at three lanes if preferred | approved 2026-10-13 |
+| D6 | CT-08 scope: `.gitignore` + `baseline-files.v2.json` + `dev/check.py` only, wave 4 | approved 2026-10-13 |
+| D7 | `mise/tasks/<unit>.toml` includes if `task_config.includes` validates; else parent appends rows | approved 2026-10-13 |
+| D8 | Lane records parent-only; per-lane ledger `ledger-<unit>.jsonl`; amend planning-records.md | approved 2026-10-13 |
+| D9 | Remove the eight integrated worktrees after publish and the a06 fix | approved 2026-10-13 |
+| D10 | Spec `start_sha` for the end-of-spec `code-review` = `361688e` (vs `e0667ec`) | approved 2026-10-13 |
+| D11 | Codex sweeps A/B/C: run them (done in revision 2; outputs land in step 7) | approved 2026-10-13 |
+| D12 | `progress.md`: archive to `progress-archive-2026-10-13.md` | approved 2026-10-13 |
+| D13 | Codex digests (1.7 MB): do not commit; commit briefs and reports | approved 2026-10-13 |
+| D14 | AskUserQuestion request: build CT-13 as a mod (vs a CLAUDE.md rule vs no) | approved 2026-10-13 |
+| D15 | Invocation wording: rewrite `claude-takeover.md:11` and `ticket-retro.md:4-8` per SYNTHESIS §4 | approved 2026-10-13 |
+| D16 | `/retro` cadence: per build session | approved 2026-10-13 |
+| D17 | Keep per-lane cold review and per-spec `code-review` | approved 2026-10-13 |
+| D18 | Heavy tickets via `/implement` in a lane worktree with a lane record | approved 2026-10-13 |
+| D19 | T4 Phase C: new attempt needs a new budget and explicit approval; decide after sweep B | approved 2026-10-13 |
+| D20 | Draft PR to `main` and the #91 relabel: both on the user's word after CT-02 publishes | approved 2026-10-13 |
+| D21 | Auto-compaction: project `autoCompactEnabled: true`, `autoCompactWindow: 700000`; user flips both personal copies | approved 2026-10-13 |
+| D22 | Hook set and latency budget: C4's inventory only (SessionStart doctor 15 s, prompt hook, Bash and Agent gates, existing Stop gates) | approved 2026-10-13 |
+| D23 | Ticket table: accept C4's reconciled CT-01..CT-24 (+CT-02b) at `/to-tickets` | approved 2026-10-13 |
+| D24 | CT-21 import policy: index files committed, 119-file payload only through the CT-21 lane, keep-private sets in the 0700 mirror; fifth wave-1 lane | approved 2026-10-13 |
+| D25 | T4 fourth attempt: none without explicit approval, a new budget, a fresh issue-write interval, rebuilt parent packets | approved 2026-10-13 |
+| D26 | Wave-0 timing: runbook 1-8 with existing hooks first; then settings, fixtures, docs; then doctor; then agent/prompt hooks; blocking Stop rules last | approved 2026-10-13 |
+| D27 | C++ ticket class = explicit include list in `frontier.toml` now; `area:cxx` label later | accepted 2026-10-13 |
+| D28 | cxx slot takes the ticket's offline portion as a split unit when no heavy run is admitted; admission asked once per scheduler run | accepted 2026-10-13 |
+| D29 | `frontier.toml` owns `context_ceiling_fraction`; `frontier.py plan` refuses on mismatch with `dev/doctor/budget.py` | accepted 2026-10-13 |
+| D30 | `max_parallel` counts writer lanes only; hard cap 8 live agents | accepted 2026-10-13 |
+| D31 | Retro auto/propose boundary = K1 §6 list | accepted 2026-10-13 |
+| D32 | Skill built as CT-25 in wave 3 after CT-05/15/17/19/22/24; parent follows K1 §5 by hand until then | accepted 2026-10-13 |
+| D33 | Executor gate G1-G7 accepted; G7 required for team mode only | accepted 2026-10-13 |
+| D34 | Skill name `ticket-frontier` | accepted 2026-10-13 |
+| D35 | Fable escalation only after one Opus attempt ends partial/blocked with reason `reasoning` | accepted 2026-10-13 |
+| D36 | Scheduler model Opus high | accepted 2026-10-13 |
+| D37 | Publish batch per integration | accepted 2026-10-13 |
+| D38 | Plain-text confirmations until CT-13 lands | accepted 2026-10-13 |
+| D39 | Learning ledger: JSONL under `P/frontier/`, rows cite `retros/<unit>.md` row ids | accepted 2026-10-13 |
+| D40 | `allow_subagents=false` under `claude-agent` until G7 | accepted 2026-10-13 |
+| D41 | `/ticket-frontier` user-invocable for status and re-planning | accepted 2026-10-13 |
+| D42 | A second heavy C++ ticket waits unless admitted explicitly with `--admitted` (K2 default a) | accepted 2026-10-13 |
+| D43 | Context thresholds compare against the implement model's ceiling (K2 default b) | accepted 2026-10-13 |
+| D44 | Frontier tests run via `unittest discover -s dev -p test_ticket_frontier.py` (K2 default c) | accepted 2026-10-13 |
+| D45 | Plain-text answers live in `frontier/answers.jsonl` until CT-24 (K2 default d) | accepted 2026-10-13 |
+| D12-applied | `progress.md` archive applied 2026-10-13 ahead of D12 approval against the append-only rule in `.claude/rules/planning-records.md`; reversible from `reviews/ccm-20261013/plan-backups/` | recorded 2026-10-13 |
+| D-all | D1-D26 presented 2026-10-13 and approved at defaults; D27-D45 accepted; CT-25 added; accepted-decisions hunk 2 applied on the user's word | approved 2026-10-13 (D1–D45) |
+
+## Errors Encountered
+
+P1 findings of the review (SYNTHESIS §2) with the ticket that prevents a recurrence and the C3
+detector id that catches it; the full chain is SYNTHESIS §2b.
+
+| Id | Error | Prevention ticket | Detector |
+|---|---|---|---|
+| P1-1 | Root checkout mid-merge (`MERGE_HEAD e12cf04`) with no record; handoff said nothing started | CT-17, CT-22 | C.merge-in-progress |
+| P1-2 | Staged `.claude/settings.json` carries personal MCP permissions and all plugins | CT-16 | I.settings-non-project-key |
+| P1-3 | Handoff ordered `hooks:install` before publish; A09 would refuse the hook tree | CT-02b | C.hooks-break-delivery |
+| P1-4 | gate-hooks re-review PASS recorded nowhere; lane record stale | CT-05, CT-19 | B.review-missing |
+| P1-5 | CT-01 marked passed while `dev/test_retro_gate.py` is wired to no task | CT-12 | H.unwired-test |
+| P1-6 | Build started on tickets never approved or published | CT-24 | E.approval-missing |
+| P1-7 | `/grill-with-docs` arrived as pasted text; docs call a request an invocation authority | CT-22 (D15) | D.invocation-row-unbacked |
+| P1-8 | The 19:14Z AskUserQuestion mod request survives in no record | CT-13 | E.request-uncaptured |
+| P1-9 | #91 relabel accepted, never applied | CT-24 | E.operation-unreceipted |
+| P1-10 | Tip code reads data that exists only in the untracked `2a14` worktree | CT-21 | H.pinned-data-missing |
+| P1-11 | Plan had no phases, Goal, Next Step, Current Phase; progress by append (430 KB re-injected) | CT-15 | K.plan-no-phases |
+| P1-12 | No `tdd`; every lane dispatched as `general-purpose` | CT-19 | F.lane-dispatch-generic |
+| P1-13 | `a06-unit3` record claims retro passed; `retro_gate.py --unit` exits 2 | CT-05 (step 7 rename) | H.retro-unit-alias |
+| P1-14 | Auto-compaction off; parent died at 977 K tokens; fork inherited the full window | CT-23 (W0-1, W0-3) | A.autocompact-off |
+| P1-15 | Agent definitions created mid-session were never offered | CT-19, CT-22 (W0-4) | F.agents-not-offered |
+
+## Workflow
+
+Stage script (D2 §4). The parent runs Skill calls for `grilling`, `domain-modeling`, `tdd`,
+`code-review`, `pr`, `research`, `prototype`, `writing-for-agents`, lanes, worktrees, merges,
+`retro:gate`, `issue:*-preview/-verify`, `delivery:prepare`; it asks before `issue:*-apply`,
+`delivery:publish`, qualified closes and host-heavy runs. The user types, in order:
+
+1. `/mattpocock-skills:setup-matt-pocock-skills` (fresh session; parent diffs `docs/agents/`).
+2. `/mattpocock-skills:grill-with-docs <idea>` (fresh session, plan mode off; no `/clear`
+   until tickets publish).
+3. `/mattpocock-skills:to-spec` (seams shown first, approval awaited).
+4. "publish spec" (parent runs `issue:create-preview/apply/verify`).
+5. `/mattpocock-skills:to-tickets <spec path or #n>`; approve the numbered breakdown.
+6. "publish tickets" (`issue:create-*`, `issue:new-edge-*`, audit, `ready-for-agent`).
+7. `/clear`, then `/mattpocock-skills:implement-spec #<spec>` (parent runs the waves).
+8. Heavy ticket: `/clear`, `/mattpocock-skills:implement #<n>`; confirm each heavy run.
+9. Before each `/clear` of a build session: `/mattpocock-skills:retro`.
+10. `/mattpocock-skills:handoff "<purpose>"` for a Codex resume, prototype or colleague.
+11. `/mattpocock-skills:triage #<n>` for an external issue.
+12. `/mattpocock-skills:wayfinder "C++26 P2996 research core"` in its own session.
+
+A stage counts as invoked only when the user types it; `skill-invocations.md` records each.
+Lane protocol: `docs/agents/claude-team.md` (roles, lifecycle, retro gate) and R8 §Integration
+(one merger, `--no-ff` without `--no-commit`, `check:research` serialized, publish after each
+integration, lanes never write shared planning files, never `isolation: worktree`).
+Context budget (C4, binding; one threshold dict in `dev/doctor/budget.py`): warn 400 K,
+fork deny 500 K, checkpoint 550 K (write `plan:handoff`, delegate with small briefs), hard 650 K,
+all below `autoCompactWindow` 700 K. Until the hooks exist the parent applies the rule by hand.
+
+## Appendix A: Claude takeover (2026-10-13)
+
+Codex threads `01a127db`, `01a130ef`, `01a12bd1` and `01a13185` stopped; the three trees died on
+`usage_limit_exceeded` (nine spawned children inside a turn, eight at 14:07-14:09Z, `01a128a0`
+on 10-12) until 2026-10-19. The user transferred sole integration-writer ownership of
+`codex/marketplace-native-onboarding` and this plan to the Claude Code session at HEAD
+`d2a4103` (remote `848552c`). The [activation record](../../docs/agents/claude-takeover.md)
+binds the observed state and granted authority. Every Codex worktree, branch and private
+evidence packet is a read-only import source. The `refresh-llvm-github-research` heartbeat
+(4 h rrule, target `01a12bd1`) keeps running outside the repository and writes only under
+`github-research/`; Codex's packet `lane-ledger.json` is superseded (supersession notice:
+SYNTHESIS §4, sweep B §4). The `2a14`/`c658` worktree data is snapshotted
+(`imports/codex-worktrees-20261013`, MANIFEST `259f9fae`; private mirror
+`~/.local/state/marketplace-imports/codex-worktrees-20261013`); CT-21 imports what the tip
+cites; the worktrees are removed only after CT-21 is published. Do not reset or archive them.
+
+Conventions from the takeover interview (rounds 1-2, all accepted):
 
 - One unit per lane. A lane runs in `.claude/worktrees/<unit>` on branch
   `claude/<unit>-<slug>` cut from the integration tip, with the path allowlist,
@@ -67,33 +347,29 @@ Conventions from the takeover interview (rounds 1–2, all accepted):
 - Ticket state lives in [ticket-ledger.md](ticket-ledger.md); the new spec
   "Claude team takeover and self-improving workflow" is published through
   to-spec/to-tickets and its tickets join that ledger.
-- Stage invocation modes are recorded, not assumed: on 2026-10-13 the user
-  typed `/grill-with-docs` and its `grilling` and `domain-modeling` skills ran
-  natively through the Skill tool; `to-spec`, `to-tickets`, `implement-spec`
-  and `retro` were applied as file-guided fallbacks from the installed
-  `SKILL.md` files (the mode Codex also recorded) under the user's standing
-  authorization. [skill-invocations.md](skill-invocations.md) binds each
-  stage's source hash, mode and output pointer and gains a row whenever the
-  user types one of the four user-only verbs natively.
-
-| Lane | Unit | Writer | Start | State |
-| --- | --- | --- | --- | --- |
-| M0 | Merge `codex/marketplace-remaining-work` (`0195289`) into the integration tip; keep HEAD's `ticket-retro.md` item 5, union `mise.dev.toml`; composed-tree gates; Fable review; A09 publish | parent | now | in progress |
-| A06u3 | #69 unit3 TOML and pinned model-field methods, imported from the `a06-retrieval-refresh` worktree | Opus | now | allocated |
-| SKILL | `codex-session-history` skill (`.claude/skills`, `.agents/skills` mirror) | Opus | now | allocated |
-| GATE | `dev/retro_gate.py`, tests, `hk.pkl`, `.claude/settings.json` hooks, mise task rows | Opus | after M0 | planned |
-| TEAM | `.claude/agents`, `.claude/rules`, `docs/agents/claude-team.md`, ADR 0001, glossary Workflow section | Sonnet | after M0 | planned |
-| NAV | root `AGENTS.md` pointer, per-directory `AGENTS.md` + `CLAUDE.md` importers, `CODING_STANDARDS.md` | Sonnet | after M0 | planned |
-| B1 | #90 RF record reconciliation | Sonnet | after M0 | planned |
-| C1/C3 | #94, #95 at the `dev/research_refresh` runner boundary; C2 after C1 | Opus | after M0 | planned |
-| LEDGER | plan, ledger, `docs/status.md`, lane records | parent | after M0 | planned |
-| CLOSE | RF parent specs #79–#82, the 18 source-qualified #11 milestones, B1/T1/T2/T3, then T4 | parent + Haiku | after M0 publish | planned |
-| wave 2 | #27 transport, #26 schema/codegen | Opus | per-run confirmation | planned |
-| heavy | #21 → #20 → #17 → #16 → L1 (#96), one at a time | Opus | per-run confirmation | planned |
+- Stage invocation modes are recorded, not assumed. On 2026-10-13 `/grill-with-docs`
+  arrived inside pasted text and was not expanded by the harness; `grilling` and
+  `domain-modeling` ran natively through the Skill tool; `to-spec`, `to-tickets`,
+  `implement-spec` and `retro` were applied file-guided from the installed `SKILL.md`
+  files at the user's round-1 Q3 request. None of the five stages has been invoked;
+  a stage counts as invoked only when the user types it (SYNTHESIS P1-7; D15 applies
+  the same wording to `docs/agents/`). [skill-invocations.md](skill-invocations.md)
+  binds each stage's source hash, mode and output pointer.
 
 B2 (#91) needs the Codex Desktop attachment operation and is relabelled for a
-human. The agent-protocol / dynamic-agents work of thread `01a13185` is out of
-scope and referenced only.
+human (D20; the label is still `ready-for-agent` on GitHub). The agent-protocol /
+dynamic-agents work of thread `01a13185` is out of scope and referenced only; its ticket 30
+targets this repository's `.codex/` and `hooks.json`, so CT-07 coordinates with it.
+
+The lane table that stood here until 2026-10-13 was stale on every row and is replaced by the
+`## Lanes` projection above; `reviews/ccm-20261013/plan-backups/task_plan.pre-rewrite-20261013.md`
+keeps the pre-rewrite file byte for byte.
+
+## Appendix B: Accepted contracts (preserved from the pre-rewrite plan)
+
+The sections below are the accepted contracts of the Codex era, kept verbatim (tables keep
+their original row widths). They are history and reference, not current state; current state
+is above the fold.
 
 ## Objective
 
@@ -228,6 +504,7 @@ actionable repairs are applied, checked and independently reviewed.
 | 14c | P2996 LSan and LSan+UBSan witnesses | Clean/leak/overflow diagnostics, exact runtime and private builds | Blocked: installed LSan clean exit deadlocks during leak scan; closure verified |
 | 14c1 | Private LSan stopped-world repair preparation | Exact pinned-source hunk, syntax control and independent review | Planned |
 
+
 ## Full-baseline spec workflow
 
 The user expanded the requested spec to the complete accepted research baseline,
@@ -320,7 +597,8 @@ earlier separate ticket worktrees retain their files; current writing is
 serialized across this Git common directory. Record each approved local slice's state and receipts; the
 old GitHub frontier does not override W5. The historical native review and parent
 dispositions remain in the [retained worktree review](/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/agents/automation-amendment-review.md);
-that local artifact has not been transferred to the source branch.
+that local artifact has not been transferred to the source branch (imported by CT-21;
+the link becomes `../../docs/agents/automation-amendment-review.md` once it integrates).
 Do not reopen the twelve settled requirement interpretations or manually publish
 bootstrap issues/commits. The current review-task helper is not A01 acceptance.
 
@@ -564,3 +842,25 @@ clean and leak cases in both modes plus signed-overflow detection in the combine
 mode, with exact loader paths. Native compiler/runtime execution follows separate
 preparation review and fresh capacity. No runtime replacement, dependency build,
 shared installation, preset expansion or full matrix is included.
+
+## Appendix C: References
+
+- Review: `reviews/ccm-20261013/SYNTHESIS.md` (§1 verdict, §2 findings, §2b root causes,
+  §4 record corrections, §5 runbook, §6 re-plan, §7 automation, §8 decisions, §9 unverified);
+  `R4-pwf-audit.md` (this plan's shape and the injector rules); `R8-parallel-plan.md` (waves,
+  allowlists); `prevention/C4-coverage-check.md` (binding ticket table, wave-0 set);
+  `T2-import-lane-design.md` (CT-21); `codex-sweeps/B-packet-and-t4-state.md` (closure
+  prerequisites, T4 state, supersession); `D2-workflow-proposal.md` §4 (stage script);
+  `skills/K1-orchestrator-skill-design.md` (CT-25, D27-D41); plan-update reports
+  `P1-plan-rewrite-report.md`, `P2-records-update-report.md`, `P3-plan-review.md`.
+- Records: `lanes/*.json` (allocation, status), `retros/*.md` (gate), `ticket-ledger.md`
+  (GitHub state), `skill-invocations.md`, `findings.md` (history and research pointers),
+  `progress.md` (dated receipts; the injector shows its last 20 lines).
+- Authority: `docs/agents/claude-takeover.md`, `docs/agents/claude-team.md`,
+  `docs/agents/codex-task-orchestration.md`, `docs/agents/ticket-retro.md`,
+  `docs/accepted-decisions.md` (C++26 P2996 core, incremental migration), `CODING_STANDARDS.md`.
+- Injector: `~/.claude/plugins/cache/planning-with-files/planning-with-files/3.24.0/`
+  (`scripts/inject-plan.py`, `scripts/check-complete.sh`, `scripts/phase-status.sh`); the
+  SessionStart and UserPromptSubmit views carry this file's first 50 lines (legacy) or the
+  Goal, Next Step, Current Phase, phase count, in_progress phase and last three decisions
+  (`PWF_INJECT=smart` or `.mode` = `inject-smart`); PreToolUse carries the first 30 lines.

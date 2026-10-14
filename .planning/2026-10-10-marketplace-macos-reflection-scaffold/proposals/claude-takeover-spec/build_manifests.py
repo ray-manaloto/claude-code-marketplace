@@ -2,8 +2,8 @@
 """Build the version-2 creation manifests for the takeover spec and its tickets.
 
 usage: build_manifests.py spec OUT.json            # standalone spec (parent_number null)
-       build_manifests.py tickets OUT.json PARENT  # ten tickets under the created spec number
-The spec body comes from ../../drafts/spec-claude-takeover.md; ticket bodies are
+       build_manifests.py tickets OUT.json PARENT  # eleven tickets (CT-01..CT-11) under the created spec number
+The spec body comes from spec.md beside this script; ticket bodies are
 defined below. body_sha256 is computed here so the manifest validates.
 """
 import hashlib
@@ -71,18 +71,18 @@ TICKETS = [
       "Adopted items appear as new tickets with blocking edges; rejected items carry an evidence-backed reason.",
       "`check` and the baseline stay rc 0."],
      []),
-    ("CT-11", "CT-11: Serialize named checks across worktrees",
-     "**What to build:** concurrent `./dev/mise run check` / `check:research` invocations from different lane worktrees no longer race on shared tool state: the named checks take a repository-wide lock (bounded wait, deterministic refusal with the holder's identity on timeout) and the retro gate records the lock outcome, so a raced run can never be mistaken for a pass.",
-     ["Two concurrent `check:research` runs from two worktrees serialize; the second waits or refuses with a reason naming the holder, and neither leaves test scratch directories in a checkout.",
-      "The lock is exercised by a hermetic test with two subprocesses; a stale lock from a dead process is reclaimed deterministically.",
-      "`check`, `check:acceptance-baseline` and `git diff --check` stay rc 0; the two observed races on 2026-10-13 (fifteen `test:collect` errors; a transient `mise ERROR`) are cited as the motivating evidence."],
-     ["CT-01"]),
     ("CT-10", "CT-10: codex-session-history coverage and evaluation",
      "**What to build:** hermetic tests for the thread-history, log and child-thread subcommands, a stub daemon for the AgentsView wrapper and a fixture for the OTel export, plus one run of the skill-creator evaluation loop with recorded pass rates.",
      ["Every script under the skill has at least one fixture-backed test under a temporary `CODEX_HOME`; the real record stores are never read in tests.",
       "The evaluation loop's with-skill and baseline runs are recorded with their assertions and pass rates in the skill workspace.",
       "`check` and the baseline stay rc 0."],
      []),
+    ("CT-11", "CT-11: Serialize named checks across worktrees",
+     "**What to build:** concurrent `./dev/mise run check` / `check:research` invocations from different lane worktrees no longer race on shared tool state: the named checks take a repository-wide lock (bounded wait, deterministic refusal with the holder's identity on timeout) and the retro gate records the lock outcome, so a raced run can never be mistaken for a pass.",
+     ["Two concurrent `check:research` runs from two worktrees serialize; the second waits or refuses with a reason naming the holder, and neither leaves test scratch directories in a checkout.",
+      "The lock is exercised by a hermetic test with two subprocesses; a stale lock from a dead process is reclaimed deterministically.",
+      "`check`, `check:acceptance-baseline` and `git diff --check` stay rc 0; the two observed races on 2026-10-13 (fifteen `test:collect` errors; a transient `mise ERROR`) are cited as the motivating evidence."],
+     ["CT-01"]),
 ]
 
 

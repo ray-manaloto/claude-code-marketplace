@@ -3,7 +3,7 @@
 Unit: `c1-catalog-promotion` (GitHub issue #94, "C1: Qualify affected queries
 without accepting an incomplete baseline"). Worktree `.claude/worktrees/c1-catalog-promotion`,
 branch `claude/c1-catalog-promotion`, lane commit `52ce420` on base `ca60871`,
-test strengthening `6c09b7f`, merged with `e618243` as `7295463`. Changed
+test strengthening `6c09b7f`, merged with `2d1f60e` as `7295463` (integration merge `4c1ea6b`). Changed
 paths: `dev/research_refresh/refresh.py`, `dev/research_refresh/test_refresh.py`,
 `dev/research_refresh/README.md`, `docs/research-feedback.md` (+186/−6, of
 which 154 test lines; the repair added +20/−1 test lines). Delivered at the

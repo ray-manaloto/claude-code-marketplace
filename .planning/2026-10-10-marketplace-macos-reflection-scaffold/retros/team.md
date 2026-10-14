@@ -1,7 +1,7 @@
 # team retrospective — roles, rules, team guide, vocabulary and ADR 0001
 
 Unit: `team` (ticket CT-03 of the takeover spec). Worktree `.claude/worktrees/team`,
-branch `claude/team-roles-rules`, lane commit `9103931` on base `361688e`,
+branch `claude/team-roles-rules`, lane commit `5107322` on base `361688e` (sync merges `9103931`, `5becfc0`),
 repairs at `ea8c8c9` (includes the merge of `447110a`). Delivered: five project
 agent roles under `.claude/agents` (implementer/opus, doc-writer/sonnet,
 reviewer/fable, retro-writer/fable, extractor/haiku; reviewer and extractor

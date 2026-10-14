@@ -16,6 +16,59 @@ This record consolidates the user's decisions from the originating chat as of 20
 - The PDF date-update feature and patient/document bytes are excluded. Its research aggregator and generated plugin are candidate consumers after this foundation; this is not permission to edit that other checkout. Private uploads require a per-run destination choice. Mutating tools belong in an explicit opt-in profile.
 - Global Python interpreter promotion and local OpenTelemetry Collector work are separate accepted streams. Carry forward their ownership boundaries; do not absorb or duplicate them in marketplace onboarding.
 
+## Automation and observability clarification (2026-10-12)
+
+- Humans, coding agents and CI/CD use the same named mise tasks with the same
+  parameters. Repeatable operations belong in reusable Python/C++ library
+  code behind those tasks, reached by thin host-specific skills. Direct
+  read-only inspection and native agent communication are allowed; manual
+  operational commands must not replace the repeatable automation.
+- All Python invocations and CMake build operations go through named mise
+  tasks. Declare the minimal Python support and its dependencies in project
+  `pyproject.toml` and mise dependency configuration. The project must build
+  without relying on user/global mise configuration. Prefer moving reusable
+  implementation into the C++26 reflection core as it becomes qualified.
+- C++ namespaces use `com::rsm::<module>`. Dotted module/package identifiers
+  may use `com.rsm.<module>`; dots are not C++ namespace separators.
+- Check latest stable dependency releases during each update unit, then lock
+  exact versions/source identities and qualify them before adoption. A new
+  reflection-fork revision is a qualification candidate, not an automatic
+  replacement for an established compiler/runtime witness.
+- Default telemetry is structured output in a directory, with secret/content
+  redaction. Integrate available native Claude, Codex and Antigravity signals.
+  Use one shared OpenTelemetry Collector on the Mac, owned by user/global mise
+  under `~/.config/mise/`; projects add support there when needed instead of
+  creating their own collector. Remote export requires a selected destination.
+  This clarification does not establish current collector or host-signal
+  availability. Write under `~/.local/state/otel/`, separated by service and
+  project, with rotation and configurable retention defaulting to 30 days.
+  Signal-specific acceptance remains to be qualified.
+- Cover macOS ARM64, Linux ARM64 and Linux x86-64 in the generated support
+  matrix. Report unsupported combinations explicitly; upstream availability
+  and compilation alone do not establish runtime qualification.
+- Run relevant fast formatting, lint and schema checks in hk pre-commit,
+  including cmake-format. Post-commit verifies and records without changing
+  committed files. Expensive compiler, sanitizer and Valgrind checks use
+  explicit pre-push/CI profiles through the same named mise tasks.
+- Use official in-file schema declarations where valid, otherwise external
+  association and exact-version native validation. Prefer Codex release
+  schema assets matching the installed version. Keep config, hook-file and
+  hook-protocol schemas distinct; unsupported extra fields must not be added.
+- Build the project-owned, locked GitHubKit saved-search/replay task before
+  further build-design implementation. Compare reusable behavior from
+  knowledge-base, dotfiles and `test.results.20260929` without changing those
+  projects. Use the unified task to find Codex release-schema usage examples.
+- Amend spec #11 and its existing dependency graph. Version intentional
+  acceptance-baseline transitions with reviewed compatibility checks; retain
+  the original 19-file preservation receipts and completed-unit evidence.
+- Combine native blocking hooks for supported calls, read-only command-guard
+  review and CI checks of the shared mise commands. Document and test each
+  host's coverage; do not claim every action can be intercepted.
+- The unified GitHubKit task must pass deterministic offline replay, saved
+  query/provenance, pagination and rate-limit tests plus a bounded live
+  Codex-schema search. Unexpected empty results use a bounded same-capability
+  known-result control; a failed control yields unverified, not a success.
+
 ## Native data and runtime design
 
 - Canonical common schemas initially feed the existing Python generator and the C++ candidate; preserve datamodel-code-generator as a baseline and gap detector until behavior parity. Eventually replace that functionality in C++26.
@@ -27,7 +80,7 @@ This record consolidates the user's decisions from the originating chat as of 20
 
 ## Compiler and build foundation
 
-- Global mise owns tool installations; named p2996 and gcc16 profiles isolate the selected compilers. Preserve the current default compiler for unrelated work.
+- The earlier qualified host setup used global mise installations and named p2996/gcc16 profiles. Portable project declarations and tasks now supersede reliance on those global profiles; retain their historical receipts and preserve the default compiler for unrelated work. The shared Mac collector remains explicitly owned by global mise.
 - Latest stable GCC is the intended GCC lane; the inspected starting point is 16.2.0 via native mise Homebrew bootstrap. Re-attest actual package identity/patches at installation.
 - P2996 LLVM and its libc++/runtimes use an exact fork commit. Build IWYU against the exact fork Clang libraries/headers, not merely the same major.
 - Starting identities: LLVM f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e; IWYU clang_21 791e69ea4662cb3e74e8128fd5fd69bd7f4ea6b3; CMake 4.4.4; Ninja 1.13.2; sccache 0.18.0; vcpkg e456309491fd875487bf02b8a0dca76c1b1b00cc. Verify before install and preserve source/runtime provenance.
