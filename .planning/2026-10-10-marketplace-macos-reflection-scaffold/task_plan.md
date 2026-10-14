@@ -48,6 +48,7 @@ line is the tracking record. Tick a line only with its evidence.
 - [ ] R-157 (D150, D154): hk 2.6.0 lane: all relevant builtins, parallel steps, jactionlint, pre-push guard (R18; CT-82 part B); issue: none yet
 - [ ] R-158 (D150, D157): update all dependencies with offline docs and repo mirrors (R21 batches 1-5); issue: none yet
 - [ ] R-165 (D156): pin CI to ubuntu-26.04 and fix what breaks; issue: none yet
+- [ ] R-171 (D163, D170): auto-merge ruleset keeps A09 direct pushes working (admin bypass or PR-only checks), researched and dry-run on a scratch branch first; issue: none yet
 - [ ] R-166 (D157): mise minimum_release_age 1h for this project; issue: none yet
 - [ ] R-167 (D157): automated dependency updates through GHA (Renovate or Dependabot review, R22), zero agent tokens unless an upgrade breaks; issue: none yet
 - [ ] R-168 (D158): hk linters and build tools for Python, TypeScript and C++ (native tools first); issue: none yet
