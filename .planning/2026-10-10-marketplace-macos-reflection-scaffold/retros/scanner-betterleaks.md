@@ -3,8 +3,9 @@
 Unit `scanner-betterleaks`. Worktree `.claude/worktrees/scanner-betterleaks`, branch
 `claude/scanner-betterleaks`, base `5c4ff9a`, cut from allocation commit `ca53deb`. Implementation
 commits `6a222a4` (pin) and `ee2ae8d` (fixes, rule, tests); writer Claude Opus 5.5 (implementer).
-This is the implementer's draft: the cold review has not run yet, so the review section below is empty
-by state, not by result. The retro-writer reruns this record after the review.
+Cold review of `4eeb732` (reviewer via the coordinator): **PASS-with-findings**. The lane fixed the one
+P3 inside its paths in `6948135`; the other findings are parent-owned and deferred to integration
+(review section below). The retro-writer reruns this record after the parent's integration edits.
 
 Delivered, test-first (each test failed before its change, receipts in the handoff):
 `mise.dev.toml` pins `"aqua:betterleaks/betterleaks" = "1.9.0"` (newest 1.x, released 2026-09-29;
@@ -32,7 +33,9 @@ commits. Measurement: pinned betterleaks `git --config .gitleaks.toml --redact=1
 
 | Severity | Category and finding | Applied action and verification |
 | --- | --- | --- |
-| none | Cold review not run yet (reviewer is dispatched by the parent after this handoff). | Owner parent: dispatch the reviewer on `ee2ae8d`; the retro-writer adds its findings here. |
+| P3 | Coding standards (review, `.claude/rules/dev-tests.md`): `dev/test_git_delivery.py` found the scanner with `shutil.which("betterleaks")`, so an unpinned PATH binary could run or the test could skip silently. Reproduced on `4eeb732`: with a stub `betterleaks` first on PATH, the test ran the stub (`stub ran: yes`, failing `0 != 1`). | Applied in `6948135`: `pinned_betterleaks()` reads the pin from `mise.dev.toml` with `tomllib`, resolves the binary with `./dev/mise which betterleaks`, asserts `betterleaks version` equals the pin, and fails rather than skips when the binary is missing and `MISE_TASK_NAME` is `test:delivery`. Verification: with the stub first on PATH, `test:delivery` rc 0 (18 tests) and the stub did not run. A fake mise returning the stub FAILS (`(0, '9.9.9') != (0, '1.9.0')`). With the pinned install moved aside, `test:delivery` rc 1, the test FAILS with "pinned betterleaks 1.9.0 is missing", and the install was then restored. Outside the task a missing binary is a reported skip. |
+| P3 | Automated checks (review, parent-owned): the companion patch (the `mise.dev.lock` entry and the `TOOL_BACKENDS` row) must land with the pin. | Deferred to integration, owner parent, using the patch whose sha256 is listed in the lane audit below. |
+| P3 | Navigation (review, parent-owned): add `.mise/` to the shared `.git/info/exclude`. | Deferred to integration, owner parent. |
 
 ## Lane audit (seven categories)
 
