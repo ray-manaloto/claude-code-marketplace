@@ -16,7 +16,8 @@ Runbook: `reviews/ccm-20261013/phase3/HANDOFF-2026-10-14.md` §2(b) and §3.
   pre-merge-commit ran the retro gate: passed.
 - Records R `ec6ed95` (12 files; hk pre-commit `records` step passed): HANDOFF §3 hunks and ledger
   rows, listed in its message.
-- Publish P: pending at commit time.
+- Publish P `959c56f61e4f6eede2a0fb66e4827b8657d56556` (parent `ec6ed95`, index tree `1666b201`, 1 file);
+  preimage `2185777`; no refusal.
 
 ## Lane checks on `b01d9bb` (lane worktree)
 
@@ -63,5 +64,22 @@ check in this window (this session was the only writer; no agents running).
 ## Publish (A09)
 
 Selected path: this report only; M and R travel as ancestors. Preimage `2185777`; check_task
-`["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`. Results: pending at
-commit time.
+`["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`. The committed copy in
+P says "pending"; the fields below were filled after the publish and travel in the next records
+commit.
+
+| Command | rc | Output |
+| --- | --- | --- |
+| `git diff --cached --name-only HEAD \| wc -l` (before) | 0 | 0 |
+| `./dev/mise run delivery:inspect-hooks -- inspect-hooks.json …` | 0 | `hook_tree_sha256=a21be5fe…4af8`, unchanged |
+| `./dev/mise run delivery:prepare -- prepare.json 6155ff23…` | 0 | `head=ec6ed95f…`, `index_tree=1666b201…` |
+| `./dev/mise run delivery:publish -- publish.json a047da8d…` (17:17:45-17:20:31Z) | 0 | `published=959c56f6…`, `history_scan_rc=0` |
+
+## Post-publish verification
+
+| Command | rc | Result |
+| --- | --- | --- |
+| `git rev-parse HEAD origin/codex/marketplace-native-onboarding` | 0 | both `959c56f6…` |
+| `git ls-remote --heads origin` | 0 | `codex/marketplace-native-onboarding` `959c56f6…`, `main` `6b5b092…` |
+| `gh run list` / `gh run watch 38605846587 --exit-status` | 0 | on `959c56f`: development checks `38605846526` success (17:21:36Z), research-fast `38605846265` and `38605832916` success (17:22:32Z), acceptance `38605846587` success (17:23:46Z) |
+| `git worktree remove` gate-git-path, w0-doctor, scrub | 0 | each clean beforehand; branches kept |

@@ -791,10 +791,9 @@ verbatim in `progress-archive-2026-10-13.md`.
   plan-decide, retro-gate, frontier, check:records, hk validate, both retro gates, handoff 36,
   `git diff --check`, doctor check surface, check:research (17 tasks).
 
-- NEXT (2026-10-14 rev 12, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
-  keep last): Integrate w0-doctor (`f1bbc8d`) per HANDOFF §2(b); then wave 0a of plan Phase 4b:
-  CT-40, the D7 spike and `21-offline` in the cxx slot, its lane record written first (D77, D82).
-  Never start an unpublished ticket outside Phase 4b. HEAD `21af565` = remote; pending operations
-  DL-3, DL-4; Pending user: grill round 3, Q39-Q55
-  (`reviews/ccm-20261014/grill-round3-questions.md`; includes D82's four questions and the Docker
-  volumes); the typed stages (HANDOFF §2(j)). Before /clear: `dev/handoff.py check` (HANDOFF §7).
+- NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
+  keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
+  CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
+  never merge. HEAD `959c56f` = remote; pending operations DL-4; Pending user: GitHub Support purge
+  request (`reviews/ccm-20261014/republish/`); file the guard and C++ check tickets; Q2-order-v2 §6
+  U1-U5; typed stages (HANDOFF §2(j), D90). Before /clear: `dev/handoff.py check` (HANDOFF §7).
