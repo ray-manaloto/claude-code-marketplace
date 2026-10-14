@@ -6,6 +6,10 @@ run `write --dry-run`, then copy this file to `.agents/skills/session-handoff/re
 Keep each section short: the block budget is 16 lines of 100 characters; no em-dashes. `notes`
 bullets are optional and dropped from the block, in order, when they do not fit (they always stay
 here). `state-rows` holds hand-written `| Item | Value |` rows appended to HANDOFF §1.
+There is no `pending-user` section (D167, CT-90): `write` generates the roll-call line (open
+request ids, unprojected and unlinked counts) and the `Pending user` line from the `- [ ] R-n`
+items of the plan's `## Open requests`; an item awaits the user when it says `owner user`. A
+`pending-user` section here makes `write` refuse. Something the user owes becomes an R-n line.
 
 ## action
 Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first CT-80
@@ -14,10 +18,6 @@ check (D77, D82, D104). History was replaced (D143, D148): rebase old-history br
 ## owner
 Owner: start as `ccm-20261014T034212.915972000-05` (D61 format, D76; HANDOFF §8);
 rewrite owner line 4 with `dev/handoff.py owner`.
-
-## pending-user
-Pending user: GitHub Support purge request (`reviews/ccm-20261014/republish/`); file the
-guard and C++ check tickets; Q2-order-v2 §6 U1-U5; typed stages (HANDOFF §2(j), D90).
 
 ## runbook
 Runbook: `reviews/ccm-20261013/phase3/HANDOFF-2026-10-14.md`.

@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 sys.dont_write_bytecode = True
 DEV = Path(__file__).resolve().parent
@@ -141,10 +142,7 @@ TEMPLATE = """# Handoff template
 Integrate beta, then fan out the parallel table.
 
 ## owner
-Owner: start as `next-session` (HANDOFF §8); rewrite the owner line.
-
-## pending-user
-Pending user: D1, D2; the typed stages (HANDOFF §2(j)).
+Owner: start as `next-session` (HANDOFF §8).
 
 ## runbook
 Runbook: `reviews/ccm-test/phase3/HANDOFF-2026-10-14.md`.
@@ -156,6 +154,18 @@ Runbook: `reviews/ccm-test/phase3/HANDOFF-2026-10-14.md`.
 ## state-rows
 | CI | run 42 success |
 """
+
+
+@contextlib.contextmanager
+def pinned_git_env(home: Path):
+    """Scratch HOME and global Git config, no system config, no inherited GIT_*: the caller's global hk
+    hooks never run in a fixture, and the request ledger resolves under the scratch HOME (D167)."""
+    home.mkdir(parents=True, exist_ok=True)
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_") and k not in ("VIRTUAL_ENV", "HK", "HK_PROFILE")}
+    env.update(HOME=str(home), GIT_CONFIG_GLOBAL=str(home / ".gitconfig"), GIT_CONFIG_NOSYSTEM="1",
+               GIT_TERMINAL_PROMPT="0")
+    with mock.patch.dict(os.environ, env, clear=True):
+        yield
 
 
 def make_repo(tmp: Path) -> dict:
@@ -237,6 +247,8 @@ class Fixture(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="handoff-test-"))
         self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.enterContext(pinned_git_env(self.tmp / "home"))
+        self.requests = self.tmp / "home/.local/state/claude-code-marketplace/requests"
         self.fx = make_repo(self.tmp)
         self.ctx = handoff.Context(repo=self.fx["repo"], plan_id=PLAN_ID)
         self._probe = handoff.run_probe
@@ -248,6 +260,25 @@ class Fixture(unittest.TestCase):
 
     def check(self, agents_done=True):
         return handoff.check(self.ctx, handoff.state(self.ctx, agents_done=agents_done))
+
+
+class GitEnvironmentTests(unittest.TestCase):
+    def test_global_git_hooks_never_fire_in_fixtures(self):
+        tmp = Path(tempfile.mkdtemp(prefix="handoff-gitenv-"))
+        self.addCleanup(shutil.rmtree, tmp, True)
+        marker, hooks, home = tmp / "hook-fired", tmp / "global-hooks", tmp / "caller-home"
+        hooks.mkdir()
+        home.mkdir()
+        for event in ("pre-commit", "commit-msg", "prepare-commit-msg", "post-commit"):
+            (hooks / event).write_text(f"#!/bin/sh\necho {event} >> '{marker}'\n")
+            (hooks / event).chmod(0o755)
+        config = f"[core]\n\thooksPath = {hooks}\n[hook \"marker\"]\n\tevent = post-commit\n\tcommand = touch '{marker}'\n"
+        (home / ".gitconfig").write_text(config)
+        (tmp / "global.gitconfig").write_text(config)
+        caller = {"HOME": str(home), "GIT_CONFIG_GLOBAL": str(tmp / "global.gitconfig")}
+        with mock.patch.dict(os.environ, caller), pinned_git_env(tmp / "scratch-home"):
+            make_repo(tmp)
+        self.assertFalse(marker.exists(), marker.read_text() if marker.exists() else "")
 
 
 class StateTests(Fixture):
@@ -398,7 +429,8 @@ class WriteTests(Fixture):
         self.assertNotIn("—", out["next_step"])
         self.assertIn(f"HEAD `{self.fx['head']}` = remote", out["next_step"])
         self.assertIn("DL-1", out["next_step"])
-        self.assertIn("Pending user: D1, D2", out["next_step"])
+        self.assertIn("Pending user: none;", out["next_step"])
+        self.assertIn("- Pending operations (receipt-less `decisions.jsonl` rows, HANDOFF §1): DL-1.", out["next_step"])
         self.assertIn("rev 2", out["next_step"])
         self.assertIn("Then in parallel: gamma, delta.", out["next_step"])
         bullet = out["next_bullet"].splitlines()
@@ -530,6 +562,124 @@ class CliTests(Fixture):
         self.assertEqual(caught.exception.code, 1)
 
 
+OWNER_ID = "11111111-2222-3333-4444-555555555555"
+
+
+class RequestTests(Fixture):
+    """D167 request catch through the CLI seam: ledger rows vs `## Open requests` items."""
+    run_cli = CliTests.run_cli
+
+    def check_json(self):
+        rc, out, _ = self.run_cli("check", "--json", "--agents-done")
+        data = json.loads(out)
+        return rc, [(f["id"], f["severity"]) for f in data["findings"]], data
+
+    def capture(self, *rows, name="ledger.jsonl"):
+        self.requests.mkdir(parents=True, exist_ok=True)
+        with (self.requests / name).open("a") as fh:
+            fh.writelines(json.dumps(row) + "\n" for row in rows)
+
+    def project(self, *items):
+        plan = self.fx["plan"] / "task_plan.md"
+        section = "## Open requests (D160)\n\nIntro.\n\n" + "".join(f"{item}\n" for item in items) + "\n"
+        plan.write_text(plan.read_text().replace("## Goal\n", section + "## Goal\n"))
+
+    def test_unprojected_capture_is_p1(self):
+        self.capture({"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa", "prompt": "build the skill"},
+                     {"session_id": "other-session", "prompt_id": "99999999-bbbb", "prompt": "a fork's ask"})
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (2, [("H.request-unprojected", "P1")]))
+        self.assertIn("p:4462d3b1", data["findings"][0]["subject"])
+        self.assertNotIn("build the skill", json.dumps(data))  # never the prompt text
+        self.assertEqual(data["requests"]["unprojected"], ["p:4462d3b1"])
+        self.assertEqual((data["requests"]["captured"], data["requests"]["foreign"]), (1, 1))  # the fork's row: counted, not caught
+        self.capture({"session_id": OWNER_ID, "prompt": "a payload without a key field"})
+        self.assertEqual(self.check_json()[2]["requests"]["unkeyed"], 1)
+
+    def test_foreign_session_rows_are_counted_not_caught(self):
+        # a stale owner line scopes every row out (CL4 §4.5); `foreign` makes the mismatch visible until CT-93a
+        self.capture({"session_id": "worktree-session", "prompt_id": "77777777-cccc"},
+                     {"session_id": "fork-session", "prompt_id": "88888888-dddd"})
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (0, []))
+        self.assertEqual((data["requests"]["captured"], data["requests"]["foreign"]), (0, 2))
+        self.assertEqual(data["requests"]["session"], OWNER_ID)
+
+    def test_answer_row_is_keyed_by_its_tool_use_not_its_turn(self):
+        # CT-87 receipt: prompt_id is on every payload of a turn, so an answer row carries both fields
+        self.capture({"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa", "hook_event_name": "UserPromptSubmit"},
+                     *({"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa", "tool_use_id": f"toolu_01Xq{tail}",
+                        "hook_event_name": "PostToolUse", "tool_name": "AskUserQuestion"} for tail in ("Ab3dEf7h", "Zz9yXx1w")))
+        self.project("- [ ] R-1 · p:4462d3b1 · D1 · the prompt's ask; issue: #12",
+                     "- [ ] R-2 · p:Ab3dEf7h · D1 · the first answer; issue: #13")
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (2, [("H.request-unprojected", "P1")]))
+        self.assertEqual(data["requests"]["unprojected"], ["p:Zz9yXx1w"])  # answer keys: the last 8 characters
+
+    def test_projection_or_disposition_closes_the_catch(self):
+        self.capture({"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa"},
+                     {"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa", "tool_use_id": "toolu_01XqAb3dEf7h",
+                      "tool_name": "AskUserQuestion"})
+        self.capture({"key": "p:Ab3dEf7h", "disposition": "noted", "ref": "chat", "ts": "x"}, name="dispositions.jsonl")
+        self.project("- [ ] R-1 · p:4462d3b1 · D1 · build the skill; issue: #12")
+        self.assertEqual(self.check_json()[:2], (0, []))
+
+    def test_open_item_without_issue_link_is_p2(self):
+        self.capture({"session_id": OWNER_ID, "prompt_id": "4462d3b1-aaaa"})
+        self.project("- [ ] R-119 (D114): claude-agent intake skill (p:4462d3b1); issue: none yet",
+                     "- [ ] R-120 (D114): visual artifact, see upstream #102134; issue: none yet",
+                     "- [ ] R-121 · p:abcdef12 · D1 · CT-9 · issue: #42 · linked",
+                     "- [x] R-100 (D90): done without an issue; done: `abc1234`, rc 0")
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (2, [("H.request-unlinked", "P2")]))
+        self.assertIn("R-119, R-120", data["findings"][0]["subject"])
+        self.assertNotIn("R-121", data["findings"][0]["subject"])
+        self.assertEqual(data["requests"]["open"], ["R-119", "R-120", "R-121"])
+        self.assertEqual(data["requests"]["unlinked"], ["R-119", "R-120"])
+
+    def test_bare_issue_field_links_an_item(self):
+        # CL4 §4.2 line shape: `#N` is its own `·` field; a bare number inside prose is not a link
+        self.project("- [ ] R-171 · p:4462d3b1 · D114 · CT-86 · #136 · owner parent · blocked by R-127 · text",
+                     "- [ ] R-172 · D148 · none · #137",
+                     "- [ ] R-173 · D109 · none · pending issue · owner user · see #109 in the republish notes")
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (2, [("H.request-unlinked", "P2")]))
+        self.assertEqual(data["requests"]["unlinked"], ["R-173"])
+
+    def write_dry_run(self):
+        rc, out, err = self.run_cli("write", "--dry-run", "--agents-done", "--template", str(self.fx["template"]))
+        return rc, " ".join(out.replace("\n+", "\n").split()), err
+
+    def test_write_dry_run_rolls_call_and_generates_pending_user(self):
+        self.project("- [ ] R-7 · p:4462d3b1 · D1 · owner user · type /to-tickets; issue: #7",
+                     "- [ ] R-8 · D2 · owner parent · build it; issue: #8", "- [x] R-9 · done: rc 0")
+        rc, out, err = self.write_dry_run()
+        self.assertEqual(rc, 0, out + err)
+        self.assertIn("- Open requests: 2 open, 0 unlinked, 0/0 captured unprojected (no ledger); Pending user: R-7; "
+                      "ids: R-7, R-8.", out)
+        self.assertIn("dry-run: 3 file(s) would be written", out)
+
+    def test_write_refuses_a_hand_written_pending_user_section(self):
+        template = self.fx["template"]
+        template.write_text(template.read_text() + "\n## pending-user\nPending user: D1.\n")
+        rc, _, err = self.write_dry_run()
+        self.assertEqual(rc, 1)
+        self.assertIn("`pending-user` is generated", err)
+
+    def test_write_refuses_when_the_roll_call_overflows_the_block(self):
+        self.project(*(f"- [ ] R-{n} · D1 · item; issue: #{n}" for n in range(1000, 1100)))
+        rc, out, err = self.write_dry_run()
+        self.assertEqual(rc, 1, out)
+        self.assertIn("the open-request roll-call takes", err)
+
+    def test_absent_ledger_is_reported_not_a_finding(self):
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (0, []))
+        self.assertFalse(data["requests"]["ledger_present"])
+        self.assertTrue(data["requests"]["ledger"].endswith("claude-code-marketplace/requests/ledger.jsonl"))
+        self.assertEqual(data["requests"]["captured"], 0)
+
+
 class SkillFilesTests(unittest.TestCase):
     SKILLS = ("session-handoff", "session-resume")
 
@@ -550,7 +700,7 @@ class SkillFilesTests(unittest.TestCase):
 
     def test_template_sections(self):
         template = handoff.load_template(ROOT / ".claude/skills/session-handoff/references/handoff-template.md")
-        self.assertEqual(set(template) >= {"action", "owner", "pending-user", "runbook"}, True)
+        self.assertEqual(set(template) >= {"action", "owner", "runbook"}, True)
 
 
 @unittest.skipUnless(handoff.plugin_root(), "planning-with-files cache not installed")

@@ -90,6 +90,8 @@ single-common-directory implementation wording for this feature's allocated
 worktrees. Source integration and the canonical plan remain with their current
 owner; their reconciliation is a separate handoff, not an applied W1 change.
 Use one implementation writer per worktree with explicit disjoint file scopes.
+A lane that adds or removes a settings hook also owns the `Settings` test in
+`dev/test_hooks.py`, which pins the hook set (retro request-hooks).
 Allocated independent worktrees may run in parallel. Read-only reviewers own no
 repository files and independently review each bounded unit. All agents preserve
 others' edits, ACK identity/objective/first action and answer a status probe.

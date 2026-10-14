@@ -4,7 +4,8 @@
 Subcommands (all read the checkout under --repo and the plan under .planning/<plan-id>):
   state [--json|--brief] [--agents-done]   facts: HEAD/remote, ops, counts, worktrees, lanes, pending
                                            operations, newest reports, the doctor block, agents flag
-  check [--json] [--agents-done]           X3 §2 predicate Z as doctor-shaped findings; exit 2 on P1/P2
+  check [--json] [--agents-done]           X3 §2 predicate Z as doctor-shaped findings (with the D167
+                                           request catch); exit 2 on P1/P2
   write [--dry-run] [--template F]         regenerate `## Next Step`, the NEXT bullet and HANDOFF §1/§7/§8
                                            into temp copies, probe them, move them only when check passes
   owner --session NAME [--session-id ID]   rewrite the plan's owner paragraph
@@ -47,6 +48,12 @@ SHA_RE = re.compile(r"`([0-9a-f]{7,40})`")
 PATH_EXT = (".md", ".json", ".py", ".toml", ".jsonl", ".sh", ".txt", ".pkl", ".lock")
 PATH_PREFIX = ("RV/", "P/", "dev/", "docs/", ".claude/", "reviews/", "lanes/", "retros/", "evidence/", "phase")
 OPS = ("MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_LOG", "rebase-merge", "rebase-apply")
+# D167 request catch, dated D113 exception; the C++ requests module CT-93a deletes these five constants
+REQUESTS_STATE = ".local/state/claude-code-marketplace/requests"  # CL4 E1 ledger dir (CT-88 creates it)
+KEY_RE = re.compile(r"\bp:([\w-]{8})")  # an answer's tool_use_id, last 8 (all start `toolu_01`), else prompt_id, first 8
+ITEM_RE = re.compile(r"- \[([ xX])\] (R-\d+)\b")  # a projected request line (CL4 §4.2)
+LINK_RE = re.compile(r"\bissue:? #\d+\b|(?<=· )#\d+(?= ·|$)|github\.com/[\w.-]+/[\w.-]+/issues/\d+", re.I)  # D168 link: `issue: #N`, the bare `· #N ·` field (CL4 §4.2) or an issue URL
+OWNER_USER_RE = re.compile(r"\bowner:? user\b")  # an item awaiting the user (CL4 §4.2)
 GIT_SKIP = {"MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_LOG"}
 
 
@@ -94,6 +101,11 @@ class Context:
     def repo_plan(self) -> Path:
         """The real plan directory (receipts resolve here even when the text comes from an overlay)."""
         return self.repo / ".planning" / self.plan_id
+
+    @property
+    def requests_dir(self) -> Path:
+        # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+        return Path.home() / REQUESTS_STATE
 
     @property
     def repo_rv(self) -> Path | None:
@@ -221,7 +233,10 @@ def load_template(path: Path) -> dict[str, str]:
             buf.append(line)
     if key:
         out[key] = "\n".join(buf).strip()
-    missing = {"action", "owner", "pending-user", "runbook"} - set(out)
+    missing = {"action", "owner", "runbook"} - set(out)
+    if "pending-user" in out:  # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+        raise ValueError(f"template {path}: `pending-user` is generated from `## Open requests` items marked "
+                         "`owner user` (D167); move each entry there as an R-n line and delete the section")
     if missing:
         raise ValueError(f"template {path} lacks sections: {sorted(missing)}")
     return out
@@ -283,6 +298,52 @@ def pending_operations(plan: Path) -> list[dict]:
             if row.get("kind") == "operation" and not row.get("receipt") and row.get("id") not in closed]
 
 
+def jsonl(path: Path) -> list[dict]:
+    # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+    rows = []
+    for line in read(path).splitlines():
+        try:
+            row = json.loads(line) if line.strip() else None
+        except ValueError:
+            continue
+        if isinstance(row, dict):
+            rows.append(row)
+    return rows
+
+
+def section_lines(plan_text: str, prefix: str) -> list[str]:
+    # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+    out, on = [], False
+    for line in plan_text.splitlines():
+        if line.startswith("## "):
+            on = line.startswith(prefix)
+        elif on:
+            out.append(line)
+    return out
+
+
+def requests(ctx: Context, plan_text: str) -> dict:
+    """Captured requests (CL4 E1 ledger) against the `## Open requests` projection (CL4 E3); the ledger
+    rows in scope are the plan owner's session (CL4 §4.5); dispositions.jsonl rows close a key too."""
+    # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+    section = section_lines(plan_text, "## Open requests")
+    owner = OWNER_RE.search(" ".join(plan_text.split()))
+    session = owner["id"] if owner else None
+    ledger = ctx.requests_dir / "ledger.jsonl"
+    closed = set(KEY_RE.findall("\n".join(section)))
+    closed |= {str(row.get("key", "")).removeprefix("p:") for row in jsonl(ctx.requests_dir / "dispositions.jsonl")}
+    rows = jsonl(ledger)
+    keys = [str(row["tool_use_id"])[-8:] if row.get("tool_use_id") else str(row.get("prompt_id") or "")[:8]
+            for row in rows if session is None or row.get("session_id") == session]
+    foreign = sum(1 for row in rows if session is not None and row.get("session_id") != session)  # other sessions: visible, not caught (CT-93a)
+    unprojected = list(dict.fromkeys(f"p:{key}" for key in keys if key and key not in closed))
+    items = [(m[2], line) for line in bullets(section) if (m := ITEM_RE.match(line)) and m[1] == " "]
+    return {"ledger": str(ledger), "ledger_present": ledger.is_file(), "session": session,
+            "captured": len(keys), "foreign": foreign, "unkeyed": keys.count(""), "unprojected": unprojected, "open": [rid for rid, _ in items],
+            "unlinked": [rid for rid, line in items if not LINK_RE.search(line)],
+            "user": [rid for rid, line in items if OWNER_USER_RE.search(line)]}
+
+
 def newest_reports(plan: Path, limit: int = 8) -> list[dict]:
     files = [p for p in (plan / "reviews").glob("**/phase*/**/*") if p.is_file()]
     files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
@@ -340,7 +401,7 @@ def state(ctx: Context, agents_done: bool = False) -> dict:
         "agents_done_utc": now() if agents_done else None,
         "mode": read(ctx.plan / ".mode").strip() or None,
         "handoff": str(ctx.handoff_path.relative_to(ctx.plan)) if ctx.handoff_path else None,
-        "next_step": next_step_block(plan_text),
+        "next_step": next_step_block(plan_text), "requests": requests(ctx, plan_text),  # D167, dated D113 exception; CT-93a deletes it
         "next_bullet_last": None if span is None else span[1] >= len(progress_text.splitlines()),
     }
 
@@ -559,6 +620,14 @@ def check(ctx: Context, st: dict, probe: bool = True) -> list[Finding]:
         if op["id"] and not re.search(rf"\b{re.escape(op['id'])}\b", block_text):
             found.append(Finding("H.pending-decision-unlisted", "P2", f"pending operation {op['id']} ({op['subject']}) is not in `## Next Step`",
                                  fix_hint="run `dev/handoff.py write` (lists every receipt-less operation)", auto_fixable=True))
+    req = st["requests"]  # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+    if req["unprojected"]:
+        found.append(Finding("H.request-unprojected", "P1", f"{len(req['unprojected'])} captured request(s) have no "
+                             f"`## Open requests` line and no disposition: {', '.join(req['unprojected'])}",
+                             (req["ledger"],), "add `- [ ] R-n · p:<id8> · ...` or a dispositions.jsonl row (CL4 §4.4)"))
+    if req["unlinked"]:
+        found.append(Finding("H.request-unlinked", "P2", f"{len(req['unlinked'])} open request(s) have no GitHub issue "
+                             f"link: {', '.join(req['unlinked'])}", fix_hint="link each intake sub-issue as `issue: #N` (D168)"))
     if st["next_bullet_last"] is False:
         found.append(Finding("H.next-not-last", "P1", "progress.md `- NEXT` bullet is not the last entry",
                              fix_hint="run `dev/handoff.py write` (moves it to the end)", auto_fixable=True))
@@ -587,7 +656,7 @@ def exit_code(found: list[Finding]) -> int:
 def print_findings(found: list[Finding], st: dict | None, as_json: bool) -> None:
     if as_json:
         print(json.dumps({"schema": "handoff-check/v1", "generated_utc": now(), "repo": st["repo"] if st else None,
-                          "findings": [f.to_json() for f in found],
+                          "findings": [f.to_json() for f in found], "requests": st["requests"] if st else None,  # D167, dated D113 exception; CT-93a deletes it
                           "counts": {s: sum(f.severity == s for f in found) for s in ("P1", "P2", "P3")},
                           "rc": exit_code(found)}, indent=1))
         return
@@ -606,6 +675,14 @@ def owner_name(template: dict, name: str | None) -> str:
 def next_rev(block: list[str]) -> int:
     match = re.search(r"\brev (\d+)\b", "\n".join(block))
     return int(match.group(1)) + 1 if match else 1
+
+
+def roll_call(req: dict) -> str:
+    """The `## Next Step` roll-call line; `Pending user` lists the open items marked `owner user`."""
+    # D167, dated D113 exception; the C++ requests module CT-93a deletes it
+    return (f"Open requests: {len(req['open'])} open, {len(req['unlinked'])} unlinked, {len(req['unprojected'])}/"
+            f"{req['captured']} captured unprojected ({'ledger' if req['ledger_present'] else 'no ledger'}); "
+            f"Pending user: {', '.join(req['user']) or 'none'}; ids: {', '.join(req['open']) or 'none'}.")
 
 
 def render(ctx: Context, st: dict, template: dict, name: str | None = None) -> dict:
@@ -633,7 +710,7 @@ def render(ctx: Context, st: dict, template: dict, name: str | None = None) -> d
     codex = sum(1 for w in st["worktrees"] if w["kind"] == "codex")
     wt_line = (f"Worktrees not in HEAD: {', '.join(live) or 'none'}; {stale} integrated (removable on the "
                f"user's word); {codex} Codex worktrees, read-only.")
-    ops_line = "Pending operations (`decisions.jsonl` rows without a receipt; subjects in HANDOFF §1): " + (
+    ops_line = "Pending operations (receipt-less `decisions.jsonl` rows, HANDOFF §1): " + (
         ", ".join(op["id"] for op in st["pending_operations"]) or "none") + "."
     agents = ("none (verified by the parent, --agents-done)" if st["agents_done"] else "UNCONFIRMED (run write with --agents-done)")
     agents_line = f"Agents running at /clear: {agents}. {template['owner']} {template['runbook']}"
@@ -642,13 +719,15 @@ def render(ctx: Context, st: dict, template: dict, name: str | None = None) -> d
               f"Session handoff ({today} rev {rev}, for the session after /clear; regenerated by dev/handoff.py):"]
     notes = [n[2:] if n.startswith("- ") else n for n in bullets(template.get("notes", "").splitlines()) if n]
     optional = [wt_line, reports_line] + notes
+    roll_line = roll_call(st["requests"])  # D167, dated D113 exception; CT-93a deletes it
     for lanes_line in (lanes_named, lanes_short):  # degrade the lane names to a count when they do not fit
-        required = [head_line, lanes_line, ops_line, template["pending-user"], agents_line]
+        required = [head_line, lanes_line, ops_line, roll_line, agents_line]
         lines = header + [l for b in required for l in wrap("- " + b)]
         if len(lines) <= BLOCK_LINES:
             break
     else:
-        raise ValueError(f"required handoff lines exceed {BLOCK_LINES} ({len(lines)}): shorten the template sentences")
+        raise ValueError(f"required handoff lines exceed {BLOCK_LINES} ({len(lines)}), the open-request roll-call "
+                         f"takes {len(wrap('- ' + roll_line))}: close requests (tick with evidence) or shorten the template sentences")
     for item in optional:
         extra = wrap("- " + item)
         if len(lines) + len(extra) <= BLOCK_LINES:
@@ -656,7 +735,7 @@ def render(ctx: Context, st: dict, template: dict, name: str | None = None) -> d
     block = "\n".join(lines).replace("—", "-")
     bullet_text = (f"- NEXT ({today} rev {rev}, owner: next session `{name}`; rewrite in place, keep last): "
                    f"{template['action']} HEAD `{st['head']}` {rel} remote; pending operations "
-                   f"{', '.join(op['id'] for op in st['pending_operations']) or 'none'}; {template['pending-user']} "
+                   f"{', '.join(op['id'] for op in st['pending_operations']) or 'none'}; {roll_line} "
                    f"Before /clear: `dev/handoff.py check` (HANDOFF §7).")
     bullet_lines = wrap(bullet_text)
     if len(bullet_lines) > BULLET_LINES:
