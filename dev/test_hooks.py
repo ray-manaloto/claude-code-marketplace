@@ -107,7 +107,8 @@ class PreToolUse(Scratch):
 
     def test_lane_merge_and_push_denied_until_retro_passes(self):
         for command in ("git merge --no-ff claude/x-y", "git -C . merge -m 'take lane' claude/x-y",
-                        "git push origin claude/x-y", "ls && git push -u origin +claude/x-y:claude/x-y"):
+                        "git push origin claude/x-y", "ls && git push -u origin +claude/x-y:claude/x-y",
+                        "git \\\npush origin claude/x-y", "git merge \\\n  --no-ff claude/x-y"):
             self.assert_denied(command)
         self.retro()
         for command in ("git merge --no-ff claude/x-y", "git push origin claude/x-y"):
@@ -163,6 +164,11 @@ class GhWriteGate(unittest.TestCase):
         "gh issue comment 1 -F - <<'EOF'\nBODYTEXT\nEOF", "bash -lc 'gh pr comment 1 -b BODYTEXT'",
         "x=$(gh issue create -t t -b BODYTEXT)", "echo `gh pr close 1`", "eval gh issue close 1",
         "sh -c 'gh api graphql -f query=\"mutation { a(x: 1) { id } }\"'",
+        # review findings on 27cae68: a continuation is joined before segments split; a substituted query is unreadable
+        "gh api \\\n-X POST repos/x/y/issues -f title=BODYTEXT", "gh \\\nissue comment 1 -b BODYTEXT",
+        "gh pr create \\\n  --title t \\\n  --body BODYTEXT", 'gh api graphql -f query="$Q"',
+        'gh api graphql -f query="$(cat m.graphql)"', "gh api graphql -f query=`cat m.graphql`",
+        "gh api graphql -F query='$Q'",
     )
     ALLOWED = (
         "gh issue view 12", "gh issue list --label bug", "gh issue ls", "gh issue status", "gh -R o/r issue view 1",

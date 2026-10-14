@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import git_gate  # noqa: E402
 
 SEGMENT = re.compile(r"&&|\|\||[;|&\n]")
+CONTINUATION = re.compile(r"\\\r?\n")  # a backslash-newline continues the same simple command
 VALUE_OPTIONS = {"-C", "-c", "--git-dir", "--work-tree", "--namespace"}
 # D179 (2026-10-14): dated exception to D92/D113 (rule 14) until the D131 C++ gate port (CT-02b.4).
 GH_READS = {"issue": {"list", "ls", "view", "status"},
@@ -50,7 +51,7 @@ GH_ROUTE = ("raw gh write refused ({form}; D179): GitHub text passes the secret 
 
 def actions(command: str):
     """Yield (verb, args, -C dir) for each git merge/push or delivery:publish segment."""
-    for segment in SEGMENT.split(command):
+    for segment in SEGMENT.split(CONTINUATION.sub(" ", command)):
         try:
             tokens = shlex.split(segment)
         except ValueError:
@@ -72,7 +73,7 @@ def actions(command: str):
 
 def gh_writes(command: str, depth: int = 0):
     """Yield the form of each raw gh write in a Bash command, read from tokens, never substrings."""
-    for segment in SEGMENT.split(command):
+    for segment in SEGMENT.split(CONTINUATION.sub(" ", command)):
         try:
             tokens = shlex.split(segment)
         except ValueError:
@@ -135,8 +136,8 @@ def api_form(args: list[str]) -> str | None:
     if endpoint and endpoint.rstrip("/").rsplit("/", 1)[-1] == "graphql":
         queries = [(kind, value.partition("=")[2]) for kind, value in sent if value.partition("=")[0] == "query"]
         if not queries or any(kind == "input" for kind, _ in sent) or any(
-                kind == "typed" and query.startswith("@") for kind, query in queries):
-            return "gh api graphql without an inline query"
+                (kind == "typed" and query.startswith("@")) or "$" in query or "`" in query for kind, query in queries):
+            return "gh api graphql without an inline query"  # a file, a variable or a substitution is unreadable
         return "gh api graphql mutation" if any(re.search(r"\bmutation\b", q) for _, q in queries) else None
     method = method or ("POST" if sent else "GET")
     if method == "GET":

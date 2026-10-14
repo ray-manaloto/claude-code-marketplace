@@ -61,9 +61,9 @@ prefix_rule(
 )
 
 prefix_rule(
-    pattern = ["gh", "api", ["-XPOST", "-XPUT", "-XPATCH", "-XDELETE", "--method=POST", "--method=PUT",
-                             "--method=PATCH", "--method=DELETE", "--method=post", "--method=put",
-                             "--method=patch", "--method=delete"]],
+    pattern = ["gh", "api", ["-XPOST", "-XPUT", "-XPATCH", "-XDELETE", "-Xpost", "-Xput", "-Xpatch", "-Xdelete",
+                             "--method=POST", "--method=PUT", "--method=PATCH", "--method=DELETE", "--method=post",
+                             "--method=put", "--method=patch", "--method=delete"]],
     decision = WRITE,
     justification = ROUTE,
     match = ["gh api -XDELETE repos/o/r", "gh api --method=PUT repos/o/r/topics"],

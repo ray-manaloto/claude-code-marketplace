@@ -21,7 +21,8 @@ anthropics/claude-code issues.
   down on its mark and is deleted (D128 path).
 - Third dated exception, 2026-10-14 (D179, R-174): the Bash `PreToolUse` gate also refuses raw
   `gh` writes (issue and PR writes; release, gist, label and repo writes; `gh api` with a non-GET
-  method, with fields that imply POST, or a graphql mutation) and names the scanned route,
+  method, with fields that imply POST, a graphql mutation, or a graphql query it cannot read: a file,
+  a variable or a substitution; a backslash-newline continues the same command) and names the scanned route,
   `./dev/mise run gh:write -- <gh args>` (`dev/gh_write.py`, reusing the issue route's scan). The
   rule is new Python in the gate until the D131 C++ port takes it over (CT-02b.4). For Codex,
   `.codex/rules/gh-write.rules` forbids the same leading prefixes; a prefix rule cannot see

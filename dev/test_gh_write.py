@@ -99,7 +99,7 @@ class CodexRules(unittest.TestCase):
                  "gh pr review 4 --approve", "gh pr close 4", "gh pr merge 4", "gh pr ready 4", "gh release create v1",
                  "gh gist create f.txt", "gh label create bug", "gh repo edit", "gh repo deploy-key add k.pub",
                  "gh api -X POST repos/o/r/issues", "gh api --method PATCH repos/o/r", "gh api -XDELETE repos/o/r",
-                 "gh api --method=PUT repos/o/r/topics")
+                 "gh api --method=PUT repos/o/r/topics", "gh api -Xpost repos/o/r/issues", "gh api -Xdelete repos/o/r")
     ALLOWED = ("gh issue view 12", "gh pr list", "gh pr diff 4", "gh api repos/o/r", "gh api -X GET search/issues",
                "./dev/mise run gh:write -- issue comment 1 -b x")
 
