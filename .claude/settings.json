@@ -38,6 +38,18 @@
     }
   },
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "async": true,
+            "timeout": 10,
+            "command": "/bin/mkdir -p -m 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "startup|resume|clear|compact|fork",
@@ -47,6 +59,16 @@
             "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/doctor/cli.py\" --surface session-start --format context",
             "timeout": 15,
             "statusMessage": "Checking checkout state"
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
           }
         ]
       }
@@ -60,6 +82,41 @@
             "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/hooks/pretooluse_gate.py\"",
             "timeout": 10,
             "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "async": true,
+            "timeout": 10,
+            "command": "/bin/mkdir -p -m 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "{ printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; } | /usr/bin/jq -cRs '{hookSpecificOutput:{hookEventName:\"SubagentStart\",additionalContext:.}}'"
           }
         ]
       }

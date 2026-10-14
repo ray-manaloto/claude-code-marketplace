@@ -1,8 +1,8 @@
 # Hooks and mods
 
 Which workflow rules run as Claude Code mods, which stay settings hooks, and what to watch before
-changing that. Decisions: D92, D94, D95, D102, D103, D128, D130 and D131 in the plan's Decisions
-table; ADR 0007 and ADR 0008. Evidence: `.planning/<PLAN_ID>/reviews/ccm-20261014/research5/` R1
+changing that. Decisions: D92, D94, D95, D102, D103, D128, D130, D131 and D166 in the plan's
+Decisions table; ADR 0007 and ADR 0008. Evidence: `.planning/<PLAN_ID>/reviews/ccm-20261014/research5/` R1
 (mod loading gaps), R2 (issue #92533), R3 (awaiting the plugin reload), R7 (detecting the remote
 switch), R8 (C++ gate hooks) and R9 (C++ bridges), all cited to Claude Code docs, its changelog and
 anthropics/claude-code issues.
@@ -16,7 +16,29 @@ anthropics/claude-code issues.
   `subagent_stop_gate.py`. Do not move or delete them without a new decision.
 - Until the mods-library units land, the other hooks in `.claude/settings.json` stay as they are; the
   unit that ships each mod deletes its hook in the same change (D59).
+- Second dated exception, 2026-10-14 (D166): the request capture and carry hooks below stay settings
+  hooks until each matching mod event is verified live; then the mod does the work, the hook stands
+  down on its mark and is deleted (D128 path).
 - Third-party plugin hooks, such as planning-with-files, are outside this rule.
+
+## Request capture and carry hooks (D166; tickets CT-88, CT-89)
+
+Every captured request must reach the plan and survive compaction, `/clear`, resume and subagent
+briefs (CL4 E1, E4). The hooks hold no logic beyond `/usr/bin/jq`, `/usr/bin/sed` and printing, and
+none blocks:
+- Capture: async `UserPromptSubmit` and `PostToolUse` (matcher `AskUserQuestion`) append the hook
+  stdin, `jq -c .`, to `~/.local/state/claude-code-marketplace/requests/ledger.jsonl`. The ledger stays
+  untracked and outside every published path because prompts can name the private project; read it
+  with `./dev/mise run requests:tail`. Its key is the first 8 characters of `tool_use_id`, else
+  `prompt_id` (the `p:<id8>` of a plan line). The built-in `/compact` fires no `UserPromptSubmit`
+  (CT-87 probe receipt).
+- Carry: `PreCompact` (stdout becomes compaction instructions), `SessionStart` (`startup`, `resume`,
+  `clear`, `compact`) and `SubagentStart` (as `additionalContext`) print the open `- [ ]` items of the
+  task_plan `## Open requests` section, read from
+  `${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md`. Keep the section under
+  10,000 characters, the hook output cap (#94358). `CLAUDE.md` `# Compact instructions` backs them.
+- The catch that refuses a handoff with an unprojected request is `dev/handoff.py` (D167), not these
+  hooks.
 
 ## Why the three deny gates stay hooks
 
@@ -67,6 +89,7 @@ Cited in R1 and R2:
 ## Watch list (ticket CT-80)
 
 Recheck before any change to the rule, and whenever one of these moves: #99130, #96831, #100869,
-#92533, #101384, #84320, and any Claude Code changelog entry that mentions mods, `tool.check`,
-`session.start` or the rollout switch. A recheck runs the two-stage research route of D100 and writes
+#92533, #101384, #84320, #102134 (the compaction mod event is not raised; the D166 hooks wait on it),
+and any Claude Code changelog entry that mentions mods, `tool.check`, `session.start`,
+`session.compact` or the rollout switch. #96831 and #100869 also gate the D166 stand-down. A recheck runs the two-stage research route of D100 and writes
 a new cited report beside R1-R3; a decision changes only from that report.
