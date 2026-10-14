@@ -62,6 +62,7 @@
   "created_at": "2026-10-14",
   "notes": [
     "mirrors count as one maintained file each; the unit is at the five-file limit with the mirrors as copies",
-    "the request ledger itself is CT-88's; this lane reads its documented format"
+    "the request ledger itself is CT-88's; this lane reads its documented format",
+    "a09-hook-events retro P-2: dev/test_handoff.py git() (line 33) and the bare clone (line 200) pass no env, so the global hk hooks run in its scratch repositories; pin HOME, GIT_CONFIG_GLOBAL=/dev/null and GIT_CONFIG_NOSYSTEM=1 as dev/test_git_delivery.py setUp does, and cite the test_handoff rc 0 in this lane's retro"
   ]
 }

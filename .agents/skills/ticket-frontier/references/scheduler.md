@@ -83,7 +83,7 @@ proposal.
 1. Write `lanes/<unit>.json` with the fields `.claude/rules/planning-records.md` lists,
    `status: allocated`, `base_sha` = the integration tip; commit it on the integration branch.
 2. `git worktree add .claude/worktrees/<unit> -b claude/<unit>-<slug> <base_sha>`.
-3. In the worktree: `unset VIRTUAL_ENV; ./dev/mise run tools:prepare && ./dev/mise run deps:sync`.
+3. In the worktree: `unset VIRTUAL_ENV; ./dev/mise run tools:prepare && ./dev/mise run deps:sync`; when the lane record admits `network: none`, this step is the parent's and its rc goes into the record's `notes`.
 
 ## Integration by hand (until CT-17 `lane:integrate`)
 

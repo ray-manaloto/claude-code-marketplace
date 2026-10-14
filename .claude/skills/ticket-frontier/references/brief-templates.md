@@ -21,7 +21,7 @@ LANE-UNIT: <unit>
 Role: implementer (.claude/agents/implementer.md). Ticket: <issue URL or P/proposals/.../tickets.preview.json#<CT-id>>.
 Record: P/lanes/<unit>.json (read first; parent-owned, do not edit).
 Worktree: .claude/worktrees/<unit>  Branch: claude/<unit>-<slug>  base_sha: <allocation commit>
-Env: PWF_PLAN_ROOT=<root> PLAN_ID=<plan id>; unset VIRTUAL_ENV; run ./dev/mise run tools:prepare && deps:sync once.
+Env: PWF_PLAN_ROOT=<root> PLAN_ID=<plan id>; unset VIRTUAL_ENV; tools:prepare && deps:sync already ran in the worktree (record.notes); rerun them only when the record admits network.
 Allowlist: exactly record.owned_paths. Your ledger: P/ledger-<unit>.jsonl (append-only). Never: task_plan.md, progress.md,
   findings.md, ticket-ledger.md, mise.dev.toml, .claude/settings.json, any AGENTS.md outside the allowlist.
 Tasks: put new test:*/verb rows in mise/tasks/<unit>.toml; name the check:research entry you need in the handoff.

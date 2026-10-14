@@ -802,6 +802,13 @@ verbatim in `progress-archive-2026-10-13.md`.
   probe; tickets CT-86..CT-93c. Running: agy-history skill builder, a09-hook-events, CT-87 probe,
   CT-92 intake issues. Corrected: the deny gate never ran on be1a0f9 and 878e7f0 (`git -C $MP`).
 
+- 2026-10-14 (Claude session, lane a09-hook-events retro): cold review PASS-with-P3 on `06e1deb`;
+  retro comment `25db4c4`; record committed at `5744151`; `test:delivery` rc 0 (20),
+  `tasks validate` rc 0, `check` rc 0, `check:acceptance-baseline` rc 0, `git diff --check` rc 0,
+  `retro_gate.py --unit a09-hook-events` rc 0. Parent edits E1-E5 applied: E1 yes, E2 yes (both
+  with the .agents mirror), E3 yes, E4 yes (status then integrated), E5 yes. Next: merge
+  `claude/a09-hook-events` (tip `0e063ce`), then DL-212 (scanner-betterleaks A09 publish).
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
