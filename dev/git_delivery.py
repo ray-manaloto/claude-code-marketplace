@@ -203,6 +203,21 @@ def selected_state(root: Path, paths: set[str], pre: dict[str, str], tree: str |
     return actual_tree
 
 
+def share_pinned_installs(root: Path, selected: Path) -> None:
+    # dev/mise sets MISE_DATA_DIR=<checkout>/.mise and refuses auto-install, so
+    # the copy links the source's pinned installs, not a copy or a download.
+    # Called after the tree comparison and excluded, so no tool path enters a
+    # tree; mise state written at run time stays in the copy's own .mise.
+    data = selected / ".mise"
+    if data.exists() or data.is_symlink():
+        raise Refusal("reviewed tree carries a .mise entry")
+    data.mkdir()
+    (data / "installs").symlink_to((root / ".mise/installs").resolve(), target_is_directory=True)
+    (selected / ".git/info").mkdir(exist_ok=True)
+    with (selected / ".git/info/exclude").open("a", encoding="utf-8") as exclude:
+        exclude.write("/.mise/\n")
+
+
 def check_selected_tree(root: Path, tree: str) -> None:
     # Mixed files intentionally differ from the working checkout. Run the
     # static baseline and delivery tests on the exact index tree as well.
@@ -231,13 +246,17 @@ def check_selected_tree(root: Path, tree: str) -> None:
             cwd=selected, env=env,
         ).decode("ascii")
         run(["git", "update-ref", "HEAD", commit], cwd=selected, env=env)
+        share_pinned_installs(root, selected)
         for argv in (
             ("tasks", "validate"),
             ("run", "check"),
             ("run", "check:acceptance-baseline"),
             ("run", "test:delivery"),
         ):
-            run([str(selected / "dev/mise"), *argv], cwd=selected, env=env)
+            try:
+                run([str(selected / "dev/mise"), *argv], cwd=selected, env=env)
+            except Refusal as exc:  # run() drops output, so name the failing task
+                raise Refusal(f"selected-tree {' '.join(argv)}: {exc}") from exc
 
 
 def identity(args: argparse.Namespace) -> Path:
