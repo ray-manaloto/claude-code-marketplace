@@ -853,6 +853,20 @@ verbatim in `progress-archive-2026-10-13.md`.
   (DL-212, DL-221) waits for an explicit instruction. Report:
   `reviews/ccm-20261014/republish/a09-selected-tree-merge-report.md`.
 
+- 2026-10-14 (capture-filter integration, D164): capture-filter (CT-88 follow-up, D166) merged
+  `53de52d` (records `d078d86`, retro blob `1d98cd7` byte-identical to `da016c9`); no conflict. The
+  `UserPromptSubmit` capture now drops prompts that start `<task-notification>`, `<event kind=` or
+  `<<autonomous-loop`. Gates rc 0 on the merged tree: tasks validate (66), check,
+  check:acceptance-baseline (19), check:research, test:hooks (25), retro:gate,
+  `git diff --check d078d86`, betterleaks 1.9.0 over `dc96614..HEAD` (no finding). Parent edits:
+  the hooks-and-mods Capture line applied; the live-ledger prune not run (rows already
+  dispositioned); `dev/check.py` left unchanged because check:research runs test:hooks and then
+  `dev/check.py --baseline`, so the suite would run twice (it passes when run the way check.py
+  would call it; CI coverage of `dev/test_hooks.py` is a parent choice). The retro commit
+  `da016c9` carries a Claude Fable 5.1 trailer, its actual writer. Lane record integrated with
+  retro "passed"; worktree removed, branch kept. Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/capture-filter-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
