@@ -1,7 +1,7 @@
 # Hooks and mods
 
 Which workflow rules run as Claude Code mods, which stay settings hooks, and what to watch before
-changing that. Decisions: D92, D94, D95, D102, D103, D128, D130, D131 and D166 in the plan's
+changing that. Decisions: D92, D94, D95, D102, D103, D128, D130, D131, D166 and D179 in the plan's
 Decisions table; ADR 0007 and ADR 0008. Evidence: `.planning/<PLAN_ID>/reviews/ccm-20261014/research5/` R1
 (mod loading gaps), R2 (issue #92533), R3 (awaiting the plugin reload), R7 (detecting the remote
 switch), R8 (C++ gate hooks) and R9 (C++ bridges), all cited to Claude Code docs, its changelog and
@@ -19,6 +19,13 @@ anthropics/claude-code issues.
 - Second dated exception, 2026-10-14 (D166): the request capture and carry hooks below stay settings
   hooks until each matching mod event is verified live; then the mod does the work, the hook stands
   down on its mark and is deleted (D128 path).
+- Third dated exception, 2026-10-14 (D179, R-174): the Bash `PreToolUse` gate also refuses raw
+  `gh` writes (issue and PR writes; release, gist, label and repo writes; `gh api` with a non-GET
+  method, with fields that imply POST, or a graphql mutation) and names the scanned route,
+  `./dev/mise run gh:write -- <gh args>` (`dev/gh_write.py`, reusing the issue route's scan). The
+  rule is new Python in the gate until the D131 C++ port takes it over (CT-02b.4). For Codex,
+  `.codex/rules/gh-write.rules` forbids the same leading prefixes; a prefix rule cannot see
+  `gh -R <repo> ...`, an endpoint before `-X`, field-implied POSTs or graphql mutations.
 - Third-party plugin hooks, such as planning-with-files, are outside this rule.
 
 ## Request capture and carry hooks (D166; tickets CT-88, CT-89)
@@ -94,5 +101,9 @@ Cited in R1 and R2:
 Recheck before any change to the rule, and whenever one of these moves: #99130, #96831, #100869,
 #92533, #101384, #84320, #102134 (the compaction mod event is not raised; the D166 hooks wait on it),
 and any Claude Code changelog entry that mentions mods, `tool.check`, `session.start`,
-`session.compact` or the rollout switch. #96831 and #100869 also gate the D166 stand-down. A recheck runs the two-stage research route of D100 and writes
+`session.compact` or the rollout switch. #96831 and #100869 also gate the D166 stand-down.
+D179 watch: recheck the gh rule when `gh` adds or renames a write subcommand, when Codex rules leave
+experimental status (developers.openai.com/codex/rules), and when GitHub secret scanning or custom
+patterns reach issue and PR text on this repository (G1 audit, recommendations 1 and 5); the rule
+retires with the D131 port or that GitHub-side guard. A recheck runs the two-stage research route of D100 and writes
 a new cited report beside R1-R3; a decision changes only from that report.

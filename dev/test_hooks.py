@@ -139,6 +139,71 @@ class PreToolUse(Scratch):
         self.assert_allowed("./dev/mise run delivery:publish intent.json abc")
 
 
+class GhWriteGate(unittest.TestCase):
+    """D179: the Bash gate refuses raw gh writes and names the scanned route; reads and the route pass."""
+
+    REFUSED = (
+        "gh issue comment 12 --body BODYTEXT", "gh issue create -t t -b BODYTEXT", "gh issue new", "gh issue edit 3",
+        "gh issue close 3", "gh issue reopen 3", "gh issue delete 3", "gh pr create --fill", "gh pr new",
+        "gh pr edit 4 -b BODYTEXT", "gh pr comment 4 -b BODYTEXT", "gh pr review 4 --approve", "gh pr close 4",
+        "gh pr reopen 4", "gh pr merge 4 --squash", "gh pr ready 4", "gh release create v1 -n BODYTEXT",
+        "gh release edit v1", "gh gist create f.txt", "gh gist edit 1", "gh label create bug", "gh label edit bug",
+        "gh repo edit --description BODYTEXT", "gh repo create o/r", "gh repo deploy-key add k.pub",
+        "gh repo autolink create x y", "gh issue frobnicate 3", "gh api -X POST repos/o/r/issues",
+        "gh api --method PATCH repos/o/r/issues/1", "gh api --method=delete repos/o/r/labels/x",
+        "gh api -XPUT repos/o/r/topics", "gh api -iX POST repos/o/r", "gh api repos/o/r/issues -f title=BODYTEXT",
+        "gh api repos/o/r/issues/1/comments -F body=@c.md", "gh api repos/o/r/issues --field title=t",
+        "gh api repos/o/r/issues --raw-field=title=t", "gh api repos/o/r/issues --input body.json",
+        "gh api -X GET -X POST repos/o/r/issues", "gh api --unknown repos/o/r",
+        "gh api graphql -f query='mutation { addComment(input: {}) { clientMutationId } }'",
+        "gh api graphql -F query=@q.graphql", "gh api graphql --input q.json", "gh api graphql",
+        "gh -R owner/repo issue comment 1 -b BODYTEXT", "gh --repo=owner/repo pr create", "gh issue -R o/r close 1",
+        "GH_TOKEN=x gh pr comment 1 -b BODYTEXT", "env GH_HOST=h /opt/homebrew/bin/gh issue edit 1",
+        "git status && gh issue comment 1 -b BODYTEXT", "ls; gh pr merge 1", "cat c.md | gh issue comment 1 -F -",
+        "gh issue comment 1 -F - <<'EOF'\nBODYTEXT\nEOF", "bash -lc 'gh pr comment 1 -b BODYTEXT'",
+        "x=$(gh issue create -t t -b BODYTEXT)", "echo `gh pr close 1`", "eval gh issue close 1",
+        "sh -c 'gh api graphql -f query=\"mutation { a(x: 1) { id } }\"'",
+    )
+    ALLOWED = (
+        "gh issue view 12", "gh issue list --label bug", "gh issue ls", "gh issue status", "gh -R o/r issue view 1",
+        "gh issue", "gh pr view 4 --comments", "gh pr list", "gh pr status", "gh pr diff 4", "gh pr checks 4",
+        "gh pr checkout 4", "gh release list", "gh release view v1", "gh repo view", "gh repo clone o/r",
+        "gh repo deploy-key list", "gh label list", "gh gist list", "gh api repos/o/r/issues",
+        "gh api -X GET search/issues -f q=x", "gh api --method get repos/o/r", "gh api -H 'Accept: x' repos/o/r",
+        "gh api --paginate repos/o/r/pulls --jq '.[].number'",
+        "gh api graphql -f query='query { viewer { login } }'", "gh api graphql -F owner=o -f query='{ viewer { id } }'",
+        "gh auth status", "gh help issue create", "gh run list", "gh search issues x", "which gh",
+        "./dev/mise run gh:write -- issue comment 12 --body-file c.md",
+        "./dev/mise run gh:write -- api -X POST repos/o/r/issues -f title=t && gh issue view 12",
+        "git commit -m 'gate: refuse gh issue create'", "grep -rn 'gh pr merge' docs",
+    )
+
+    def bash(self, command):
+        with tempfile.TemporaryDirectory() as cwd:
+            result = subprocess.run([sys.executable, "-I", str(HOOKS / "pretooluse_gate.py")], capture_output=True,
+                                    input=json.dumps({"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": cwd,
+                                                      "tool_input": {"command": command}}),
+                                    env=environment(Path(cwd)), text=True, timeout=10)
+        return result.returncode, result.stdout
+
+    def test_raw_gh_writes_are_denied_with_the_scanned_route_named(self):
+        for command in self.REFUSED:
+            with self.subTest(command=command):
+                rc, out = self.bash(command)
+                self.assertEqual(rc, 0)
+                output = json.loads(out or "{}").get("hookSpecificOutput", {})
+                self.assertEqual(output.get("permissionDecision"), "deny", out)
+                reason = output["permissionDecisionReason"]
+                self.assertIn("./dev/mise run gh:write -- <gh args>", reason)
+                self.assertIn("issue:create-preview", reason)
+                self.assertNotIn("BODYTEXT", reason)  # the reason names the form, never the text
+
+    def test_gh_reads_and_the_scanned_route_pass(self):
+        for command in self.ALLOWED:
+            with self.subTest(command=command):
+                self.assertEqual(self.bash(command), (0, ""))
+
+
 class GitGateCli(Scratch):
     def gate(self, mode, **env):
         result = subprocess.run([sys.executable, "-I", str(HOOKS / "git_gate.py"), mode], cwd=self.repo,
