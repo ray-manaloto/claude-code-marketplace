@@ -45,3 +45,14 @@ or execution readiness.
 - Creating an issue is publication of a plan, not authorization to push a
   branch, merge a PR, modify global tools, or run host-heavy operations.
   Preserve the separate project admission checks.
+
+## When a skill says publish / fetch
+
+- "Publish to the tracker" or "create an issue" means the qualified
+  `issue:create-preview`, `issue:create-apply`, `issue:create-verify` sequence; a new
+  blocker edge means `issue:new-edge-*`, and a body or label update means
+  `issue:preview`, `issue:apply`, `issue:verify`. Never call `gh issue create` or
+  `gh issue edit` directly.
+- "Fetch" or "read the issue" means `gh issue view` or `gh issue list`.
+- A `research/<name>` branch from a wayfinder run stays local until an admitted A09
+  publish.

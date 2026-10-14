@@ -20,6 +20,9 @@ the lane lifecycle and the gate. Role definitions are `.claude/agents/*.md`.
 The merger is the parent or a separately briefed session. It verifies that
 changed paths sit inside `owned_paths`, then integrates one lane at a time.
 
+Restart rule: `.claude/agents/*.md` are committed and present before the session
+that dispatches them; a session that creates them restarts first.
+
 ## Lane lifecycle
 
 Each stage ends on a receipt recorded in `.planning/<PLAN_ID>/`; states stay
@@ -35,6 +38,19 @@ separate (planned, implemented, tested, reviewed, committed, published).
 | integrate | merger | merge commit, composed-tree check exits |
 | publish | parent | `delivery:prepare` and `delivery:publish` receipts, remote SHA |
 | close | parent | ticket ledger row and the qualified close operation, one ticket at a time |
+
+## Integration
+
+- Merge every lane with `git merge --no-ff <branch>` and let Git create the commit;
+  `--no-commit` then commit skips `pre-merge-commit`, the retro gate's merge layer.
+  A PreToolUse deny for `--no-commit` lands with CT-02b.
+- Until `hooks:install` has put hk layer 2 in place (it waits for CT-02b), run
+  `./dev/mise run retro:gate -- <unit>` by hand before the merge and again on the
+  merged tree. Layer 3 stays live meanwhile.
+- Two gates track two states. The retro gate and the `Stop` gate read lane state
+  (`lanes/<unit>.json`, `retros/<unit>.md`); pwf reads phase state (`task_plan.md`).
+  A passing retro does not close a phase and a closed phase does not pass a lane:
+  record both.
 
 ## The retro gate
 
@@ -75,6 +91,38 @@ free text; an integrated or published lane keeps the word `integrated`.
 integrated tree, then `passed`. `./dev/mise run test:hooks` exercises every
 layer in scratch repositories. The gate checks record shape and bindings;
 judgement about findings stays with the reviewer.
+
+## Hook composition
+
+- Two `Stop` hooks run on every parent stop: the pwf `gate-stop.sh` and
+  `dev/hooks/stop_gate.py`. They compose into one block per `Stop` because pwf blocks
+  only when `.planning/<PLAN_ID>/.mode` carries `gate`. Leave `.mode` absent or set to
+  `inject-smart`, never `gate`. The check for this and the compose test land with
+  CT-16 and CT-02b.
+- `onFailure` has no effect on `Stop` and `SubagentStop`; those two gates block through
+  their decision output alone. `onFailure: block` matters on `PreToolUse`, where a
+  timed-out hook otherwise allows the call.
+- Hooks bind only where Claude Code runs them: an interactive session holds project
+  hooks back until the user accepts workspace trust, `disableAllHooks` in any settings
+  file switches them all off, and only managed settings can keep a hook from being
+  bypassed. Treat a hook-free session as ungated and run `retro:gate` by hand.
+
+## Context budget
+
+Thresholds count tokens in the session transcript and sit below the project
+`autoCompactWindow` (700000, `.claude/settings.json`):
+
+| Level | Tokens | Behaviour |
+| --- | --- | --- |
+| warn | 400K | checkpoint (append a dated `progress.md` entry, refresh the handoff block at the head of `task_plan.md`), then delegate the remaining work to lanes |
+| fork_deny | 500K | dispatch a fresh `implementer` or `doc-writer`; a fork would start at this size |
+| checkpoint | 550K | finish the handoff, confirm it reads whole, then `/clear` |
+| hard | 650K | stop starting work; only the handoff and `/clear` remain |
+
+Run Codex forensics and transcript reads in subagents so the parent window carries
+conclusions. Use a fork only for tasks of about ten minutes or less, below `fork_deny`.
+The hooks that enforce these levels arrive with ticket CT-22 (`prompt_hook`,
+`agent_gate`); until then the parent applies the table itself.
 
 ## Concurrency
 
