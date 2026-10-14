@@ -79,13 +79,16 @@ class Parser(argparse.ArgumentParser):
 @functools.cache
 def git_executable() -> str | None:
     """The first git on PATH that is not a mise shim (a `mise/shims` entry, or a link to the mise
-    binary; a shim costs ~0.18 s per call). None when there is none, so every git query fails
-    closed. A copy of dev/hooks/git_gate.git_executable; the two files import nothing from each other."""
+    binary; a shim costs ~0.18 s per call), else the first shim, so a shim-only host still enforces;
+    None when there is no git at all. A copy of dev/hooks/git_gate.git_executable (no shared import)."""
+    shim = None
     for entry in os.environ.get("PATH", os.defpath).split(os.pathsep):
-        found = None if Path(entry).parts[-2:] == ("mise", "shims") else shutil.which("git", path=entry)
-        if found and Path(found).resolve().name != "mise":
+        found = shutil.which("git", path=entry)
+        if found and (Path(entry).parts[-2:] == ("mise", "shims") or Path(found).resolve().name == "mise"):
+            shim = shim or found
+        elif found:
             return found
-    return None
+    return shim
 
 
 def git(repo: Path, *args: str) -> str | None:

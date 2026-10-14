@@ -39,9 +39,9 @@ def git(repo, *args):
 
 
 def fake_git(directory, marker, name="git"):
-    """An executable that records each call in `marker` and fails, as a stand-in for a mise shim."""
+    """A stand-in for a mise shim: records each call in `marker`, then runs the real git."""
     directory.mkdir(parents=True, exist_ok=True)
-    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexit 1\n')
+    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexec "{Path(GIT_DIR, "git")}" "$@"\n')
     (directory / name).chmod(0o755)
     return directory / name
 
@@ -249,13 +249,13 @@ class RetroGateUnitDerivation(unittest.TestCase):
         self.assertIn("x.md", out[0])
         self.assertFalse(marker.exists(), "the retro gate executed a mise shim")
 
-    def test_only_shims_on_path_fails_closed_without_running_them(self):
-        git(self.repo, "checkout", "-q", "-b", "claude/x-y")
+    def test_only_shims_on_path_still_derive_the_unit_through_the_shim(self):
+        git(self.repo, "checkout", "-q", "-b", "claude/z-w")
         marker, shims = self.shims()
-        rc, _, err = self.run_gate(PATH=shims)
-        self.assertEqual(rc, 1, err)
-        self.assertIn("unit could not be derived; pass --unit or --branch", err)
-        self.assertFalse(marker.exists(), "the retro gate executed a mise shim")
+        rc, out, _ = self.run_gate(PATH=shims)
+        self.assertEqual(rc, 2, out)
+        self.assertIn("z.md", out[0])
+        self.assertTrue(marker.exists(), "with no other git the retro gate runs the mise shim")
 
 
 if __name__ == "__main__":

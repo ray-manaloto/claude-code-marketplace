@@ -224,9 +224,9 @@ class StopHooks(Scratch):
 
 
 def fake_git(directory, marker, name="git"):
-    """An executable that records each call in `marker` and fails, as a stand-in for a mise shim."""
+    """A stand-in for a mise shim: records each call in `marker`, then runs the real git."""
     directory.mkdir(parents=True, exist_ok=True)
-    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexit 1\n')
+    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexec "{Path(GIT_DIR, "git")}" "$@"\n')
     (directory / name).chmod(0o755)
     return directory / name
 
@@ -258,15 +258,18 @@ class GitResolution(Scratch):
         self.assertIn("retro record missing", out)
         self.assertFalse(self.marker.exists(), "a gate executed the mise shim")
 
-    def test_only_shims_on_path_fails_closed_without_running_them(self):
+    def test_only_shims_on_path_still_enforce_through_the_shim(self):
         relocated = self.tmp / "custom" / "bin"  # a shims dir under MISE_DATA_DIR: git -> the mise binary
         relocated.mkdir(parents=True)
         (relocated / "git").symlink_to(fake_git(self.tmp / "tool", self.marker, name="mise"))
         self.env["PATH"] = os.pathsep.join([str(self.shims), str(relocated)])
+        rc, out = self.hook("pretooluse_gate.py", {"tool_name": "Bash", "cwd": str(self.repo),
+                                                   "tool_input": {"command": "git push origin claude/x-y"}})
+        self.assertIn('"permissionDecision": "deny"', out)
         rc, out = self.merge_gate()
-        self.assertEqual(rc, 1, out)
-        self.assertIn("usage: git_gate.py merge|push (inside a Git checkout)", out)
-        self.assertFalse(self.marker.exists(), "a gate executed the mise shim")
+        self.assertEqual(rc, 2, out)
+        self.assertIn("retro record missing", out)
+        self.assertTrue(self.marker.exists(), "with no other git the gates run the mise shim")
 
 
 class Settings(unittest.TestCase):
