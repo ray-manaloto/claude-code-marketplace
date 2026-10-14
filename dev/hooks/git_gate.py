@@ -18,10 +18,12 @@ lane passes or none applies, 2 when one fails, 1 for usage. Stdlib, no network.
 """
 from __future__ import annotations
 
+import functools
 import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -34,9 +36,27 @@ MERGE_SUBJECT = re.compile(r"^Merge (?:remote-tracking )?branch '([^']+)'")
 GATE_TIMEOUT = 8
 
 
+@functools.cache
+def git_executable() -> str | None:
+    """The first git on PATH that is not a mise shim (a `mise/shims` entry, or a link to the mise
+    binary; a shim costs ~0.18 s per call), else the first shim, so a shim-only host still enforces;
+    None when there is no git at all. dev/retro_gate.py keeps a copy."""
+    shim = None
+    for entry in os.environ.get("PATH", os.defpath).split(os.pathsep):
+        found = shutil.which("git", path=entry)
+        if found and (Path(entry).parts[-2:] == ("mise", "shims") or Path(found).resolve().name == "mise"):
+            shim = shim or found
+        elif found:
+            return found
+    return shim
+
+
 def git(repo, *args: str) -> str | None:
+    executable = git_executable()
+    if not executable:
+        return None
     try:
-        result = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True,
+        result = subprocess.run([executable, "-C", str(repo), *args], capture_output=True, text=True,
                                 timeout=5, check=False)
     except (OSError, subprocess.TimeoutExpired):
         return None

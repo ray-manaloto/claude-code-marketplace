@@ -223,6 +223,55 @@ class StopHooks(Scratch):
         self.assertEqual(self.stop("stop_gate.py"), (0, ""))
 
 
+def fake_git(directory, marker, name="git"):
+    """A stand-in for a mise shim: records each call in `marker`, then runs the real git."""
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexec "{Path(GIT_DIR, "git")}" "$@"\n')
+    (directory / name).chmod(0o755)
+    return directory / name
+
+
+class GitResolution(Scratch):
+    """The gates run a real git, never a mise shim (a shim costs ~0.18 s per call on the dev host)."""
+
+    def setUp(self):
+        super().setUp()
+        self.marker = self.tmp / "shim-calls"
+        self.shims = fake_git(self.tmp / "data" / "mise" / "shims", self.marker).parent
+
+    def merge_gate(self):
+        result = subprocess.run([sys.executable, "-I", str(HOOKS / "git_gate.py"), "merge"], cwd=self.repo,
+                                env={**self.env, "GIT_REFLOG_ACTION": "merge claude/x-y"}, capture_output=True,
+                                text=True, timeout=20)
+        return result.returncode, result.stdout + result.stderr
+
+    def test_gates_skip_a_mise_shims_directory_ahead_of_git(self):
+        self.git("checkout", "-q", "claude/x-y")
+        self.env["PATH"] = os.pathsep.join([str(self.shims), self.env["PATH"]])
+        rc, out = self.hook("pretooluse_gate.py", {"tool_name": "Bash", "cwd": str(self.repo),
+                                                   "tool_input": {"command": "git push origin claude/x-y"}})
+        self.assertEqual((rc, json.loads(out)["hookSpecificOutput"]["permissionDecision"]), (0, "deny"), out)
+        rc, out = self.hook("subagent_stop_gate.py", {"cwd": str(self.repo)})
+        self.assertEqual((rc, json.loads(out)["decision"]), (0, "block"), out)
+        rc, out = self.merge_gate()
+        self.assertEqual(rc, 2, out)
+        self.assertIn("retro record missing", out)
+        self.assertFalse(self.marker.exists(), "a gate executed the mise shim")
+
+    def test_only_shims_on_path_still_enforce_through_the_shim(self):
+        relocated = self.tmp / "custom" / "bin"  # a shims dir under MISE_DATA_DIR: git -> the mise binary
+        relocated.mkdir(parents=True)
+        (relocated / "git").symlink_to(fake_git(self.tmp / "tool", self.marker, name="mise"))
+        self.env["PATH"] = os.pathsep.join([str(self.shims), str(relocated)])
+        rc, out = self.hook("pretooluse_gate.py", {"tool_name": "Bash", "cwd": str(self.repo),
+                                                   "tool_input": {"command": "git push origin claude/x-y"}})
+        self.assertIn('"permissionDecision": "deny"', out)
+        rc, out = self.merge_gate()
+        self.assertEqual(rc, 2, out)
+        self.assertIn("retro record missing", out)
+        self.assertTrue(self.marker.exists(), "with no other git the gates run the mise shim")
+
+
 class Settings(unittest.TestCase):
     def test_project_settings_wire_each_event_to_an_existing_blocking_script(self):
         hooks = json.loads((ROOT / ".claude" / "settings.json").read_text())["hooks"]

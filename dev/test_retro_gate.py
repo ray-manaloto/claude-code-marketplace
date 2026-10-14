@@ -15,6 +15,8 @@ CORPUS = ROOT / ".planning" / "2026-10-10-marketplace-macos-reflection-scaffold"
 SELECTORS = ("VIRTUAL_ENV", "UV_PROJECT_ENVIRONMENT", "MARKETPLACE_PYTHON")
 SCRUBBED = SELECTORS + ("RETRO_UNIT", "CLAUDE_LANE_UNIT", "PLAN_ID", "PWF_PLAN_ROOT")
 PLAN = "test-plan"
+# The git binary itself, ahead of any version-manager shim.
+GIT_DIR = subprocess.run(["git", "--exec-path"], capture_output=True, text=True, check=True).stdout.strip()
 
 
 def clean_env(**extra):
@@ -34,6 +36,14 @@ def git(repo, *args):
     subprocess.run(["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@example.invalid",
                     "-c", "commit.gpgsign=false", *args], check=True, capture_output=True,
                    env=clean_env(), timeout=30)
+
+
+def fake_git(directory, marker, name="git"):
+    """A stand-in for a mise shim: records each call in `marker`, then runs the real git."""
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / name).write_text(f'#!/bin/sh\necho "$@" >> "{marker}"\nexec "{Path(GIT_DIR, "git")}" "$@"\n')
+    (directory / name).chmod(0o755)
+    return directory / name
 
 
 class RetroGateCli(unittest.TestCase):
@@ -221,6 +231,31 @@ class RetroGateUnitDerivation(unittest.TestCase):
         rc, out, _ = self.run_gate("--from-merge-head")
         self.assertEqual(rc, 0, out)
         self.assertIn("x.md", out[0])
+
+    def shims(self):
+        """A `mise/shims` directory and a relocated one whose git links to the mise binary."""
+        marker = Path(self.tmp.name, "shim-calls")
+        shims = fake_git(Path(self.tmp.name, "data", "mise", "shims"), marker).parent
+        relocated = Path(self.tmp.name, "custom", "bin")
+        relocated.mkdir(parents=True)
+        (relocated / "git").symlink_to(fake_git(Path(self.tmp.name, "tool"), marker, name="mise"))
+        return marker, os.pathsep.join([str(shims), str(relocated)])
+
+    def test_branch_derivation_skips_mise_shims_ahead_of_git(self):
+        git(self.repo, "checkout", "-q", "-b", "claude/x-y")
+        marker, shims = self.shims()
+        rc, out, _ = self.run_gate(PATH=os.pathsep.join([shims, GIT_DIR]))
+        self.assertEqual(rc, 0, out)
+        self.assertIn("x.md", out[0])
+        self.assertFalse(marker.exists(), "the retro gate executed a mise shim")
+
+    def test_only_shims_on_path_still_derive_the_unit_through_the_shim(self):
+        git(self.repo, "checkout", "-q", "-b", "claude/z-w")
+        marker, shims = self.shims()
+        rc, out, _ = self.run_gate(PATH=shims)
+        self.assertEqual(rc, 2, out)
+        self.assertIn("z.md", out[0])
+        self.assertTrue(marker.exists(), "with no other git the retro gate runs the mise shim")
 
 
 if __name__ == "__main__":
