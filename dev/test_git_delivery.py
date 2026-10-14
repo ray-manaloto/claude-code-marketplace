@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -350,6 +351,89 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(output["history_scan_rc"], "1")
         self.assertEqual(output["baseline_residual_rc"], "0")
         self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery").split()[0], output["published"])
+
+
+    def recording_scanner(self, label: str = "calls") -> tuple[Path, Path]:
+        calls = self.base / label
+        calls.mkdir()
+        scanner = self.base / f"{label}-scanner"
+        scanner.write_text(f"#!/bin/sh\nout='{calls}'/$$\nprintf '%s\\n' \"$@\" > \"$out.argv\"\nenv > \"$out.env\"\nexit 0\n")
+        scanner.chmod(0o700)
+        return scanner, calls
+
+    def publish_selected(self, scanner: Path, tree: str) -> subprocess.CompletedProcess[str]:
+        message = self.base / "message"
+        message.write_text("reviewed change\n")
+        return self.invoke("publish", "--path", "selected.txt", "--index-tree", tree,
+                           "--message-file", str(message), "--check-task", "check",
+                           "--gitleaks-bin", str(scanner))
+
+    def test_publish_scanner_never_sees_config_environment(self) -> None:
+        names = {"GITLEAKS_CONFIG", "GITLEAKS_CONFIG_TOML", "BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML"}
+        self.env.update({name: str(self.base / "foreign.toml") for name in names})
+        scanner, calls = self.recording_scanner()
+        result = self.publish_selected(scanner, self.prepare_selected())
+        self.assertEqual(result.returncode, 0, result.stderr)
+        records = sorted(calls.glob("*.env"))
+        self.assertEqual(len(records), 2)  # staged scan and outbound history scan
+        for record in records:
+            seen = {line.split("=", 1)[0] for line in record.read_text().splitlines()}
+            self.assertEqual(seen & names, set(), record.name)
+
+
+    def test_publish_passes_root_config_to_every_scan(self) -> None:
+        # betterleaks auto-discovers a root .betterleaks.toml before .gitleaks.toml.
+        scanner, calls = self.recording_scanner()
+        result = self.publish_selected(scanner, self.prepare_selected())
+        self.assertEqual(result.returncode, 0, result.stderr)
+        expected = str(self.repo.resolve() / ".gitleaks.toml")
+        records = sorted(calls.glob("*.argv"))
+        self.assertEqual(len(records), 2)
+        for record in records:
+            argv = record.read_text().splitlines()
+            self.assertIn("--config", argv, record.name)
+            self.assertEqual(argv[argv.index("--config") + 1], expected)
+
+
+    def test_publish_refuses_root_scanner_ignore_file(self) -> None:
+        # Both scanners load a root ignore file whatever --gitleaks-ignore-path names.
+        tree = self.prepare_selected()
+        for name in (".gitleaksignore", ".betterleaksignore"):
+            with self.subTest(name=name):
+                ignore = self.repo / name
+                ignore.write_text("")
+                self.addCleanup(ignore.unlink, missing_ok=True)
+                scanner, calls = self.recording_scanner(name.lstrip("."))
+                result = self.publish_selected(scanner, tree)
+                ignore.unlink()
+                self.assertEqual(result.returncode, 2)
+                self.assertEqual(result.stderr.count("\n"), 1)
+                self.assertIn(f"checkout root holds {name}", result.stderr)
+                self.assertEqual(list(calls.iterdir()), [])
+                self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+                self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
+
+    def test_root_config_reports_lone_aws_access_key_id(self) -> None:
+        # betterleaks#408: the default rule needs a paired secret; .gitleaks.toml closes the gap.
+        binary = shutil.which("betterleaks")
+        if binary is None:
+            self.skipTest("betterleaks is not on PATH; run ./dev/mise run test:delivery")
+        config = self.repo / ".gitleaks.toml"
+        shutil.copyfile(HELPER.parent.parent / ".gitleaks.toml", config)
+        synthetic = "AKIA" + "QX7ZM2NB" + "K4RTW6YP"  # assembled so this file holds no key ID
+        documented = "AKIA" + "IOSFODNN7" + "EXAMPLE"
+        (self.repo / "leak.txt").write_text(f"id: {synthetic}\ndoc: {documented}\n")
+        self.git("add", "leak.txt")
+        self.git("commit", "-qm", "fixture")
+        env = {"PATH": "/usr/bin:/bin", "HOME": str(self.base), "GIT_CONFIG_GLOBAL": os.devnull}
+        result = subprocess.run([binary, "git", "--no-banner", "--redact=100", "--log-level=error",
+                                 "--config", str(config), "--report-format=json", "--report-path=-",
+                                 "--log-opts=HEAD~1..HEAD", str(self.repo)],
+                                cwd=self.repo, env=env, text=True, capture_output=True, check=False)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        rules = [finding["RuleID"] for finding in json.loads(result.stdout)]
+        self.assertEqual(rules.count("aws-access-key-id"), 1, rules)
 
 
 if __name__ == "__main__":

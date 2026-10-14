@@ -1,7 +1,19 @@
 # Publish guard (D145): gitleaks' default rules plus generic additions. The private-name rule
 # lives outside the repository (D178); every scan merges it at run time (dev/git_delivery.py
 # scan_config, .claude/rules/secret-scanner.md).
+# One rule restores the lone AWS access key ID finding that betterleaks 1.x lost (#408).
 title = "claude-code-marketplace publish guard"
 
 [extend]
 useDefault = true
+
+[[rules]]
+id = "aws-access-key-id"
+description = "Lone AWS access key ID: betterleaks 1.x reports one only beside a secret key (betterleaks#408)"
+regex = '''\b((?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z2-7]{16})\b'''
+entropy = 3.0
+keywords = ["a3t", "akia", "asia", "abia", "acca"]
+
+[[rules.allowlists]]
+description = "AWS documentation example key IDs, as the default rule exempts them"
+regexes = ['''.+EXAMPLE$''']
