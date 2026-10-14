@@ -1,11 +1,11 @@
 # Ticket and task retrospective gate
 
 For every ticket or task outcome, including partial and blocked attempts,
-follow the user-invoked `$mattpocock-skills:retro` procedure. For implemented
-units, do so after tests and independent review; for earlier blockers, inspect
-the evidence available and mark unrun steps explicitly. The skill disables
-automatic model invocation, so this standing user request is the invocation
-authority. Read its `writing-for-agents` companion before editing agent-facing
+run the lane retrospective below; its seven categories are those of the `retro`
+skill. For implemented units, run it after tests and independent review; for
+earlier blockers, inspect the evidence available and mark unrun steps explicitly.
+`/mattpocock-skills:retro` is separate: the user types it per session and it only
+proposes. Read the `writing-for-agents` skill before editing agent-facing
 documents.
 Use the [current ownership rule](codex-task-orchestration.md#ownership). The unit
 writer applies in-scope fixes and drafts the retro in its allocated evidence
