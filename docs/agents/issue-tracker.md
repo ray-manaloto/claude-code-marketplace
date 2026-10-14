@@ -55,4 +55,5 @@ or execution readiness.
   `gh issue edit` directly.
 - "Fetch" or "read the issue" means `gh issue view` or `gh issue list`.
 - A `research/<name>` branch from a wayfinder run stays local until an admitted A09
-  publish.
+  publish; the Wayfinding block that `setup-matt-pocock-skills` writes above this
+  heading defines the term when the user runs it.
