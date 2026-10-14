@@ -61,12 +61,19 @@
     "network": "none (tests use a recording gh shim)",
     "global_settings": "none"
   },
-  "status": "reviewed, retro passed at lane tip 36fe2b7; merge pending",
+  "status": "integrated",
   "created_at": "2026-10-14",
   "notes": [
     "dated exception D179: new gate rule in Python until the D131 C++ port (CT-02b.4)",
     "the gate must keep refusing nothing the three existing gate rules allow beyond gh writes; the Settings pin stays exact",
-    "never print a private rule value or a matched value"
+    "never print a private rule value or a matched value",
+    "retro: `retros/gh-guard.md` at 36fe2b7 (blob 3ab4eac), gate rc 0; added to the integration branch ahead of the merge in 8ed943a (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; every lane commit carries a Claude Opus 5.5 trailer, and the retro says 412e21e and 36fe2b7 were written by Claude Fable 5.1 (retro-writer) under the trailer lines the parent's brief fixed, so writer_model stays the implementer's",
+    "parent edits from the retro: 1 (.claude/rules/dev-tests.md real-HOME sentence) and 2 (CODING_STANDARDS.md rule 16 under Tests) applied in 8ed943a; 3 became ticket-ledger row CT-96 (pending issue) under #138 for GG-1, GG-2 and GG-7, the GitHub issue is the parent's write; 4 (status and review disposition) applied in 8ed943a and completed at integration",
+    "integrated 2026-10-14 as 94e5445 (parents 8ed943a, 36fe2b7), no conflict, tree 8aaef74 = merge-tree; gates on the merged tree rc 0 (tasks validate 68, check, check:acceptance-baseline 19, check:research, test:hooks 27, test:gh-write 5, test:issue-amend 26, retro:gate, git diff --check 8ed943a and 94d32c4, betterleaks 1.9.0 git 94d32c4..HEAD no finding); live check of the merged gate: the raw issue comment probe deny, the issue view probe allow; report reviews/ccm-20261014/republish/gh-guard-merge-report.md",
+    "lane worktree .claude/worktrees/gh-guard removed by the merger after integration (clean, fully merged); branch claude/gh-guard kept"
   ],
-  "review": "fable cold review PASS-with-findings on 27cae68; P2 continuation and substituted graphql fixed in 412e21e"
+  "head_sha": "36fe2b7",
+  "integration_merge": "94e5445",
+  "review": "fable cold review PASS-with-findings on 27cae68; P2 continuation and substituted graphql fixed in 412e21e",
+  "retro": "passed"
 }
