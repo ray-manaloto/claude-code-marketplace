@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 import unittest
 from unittest import mock
 
@@ -281,8 +282,8 @@ class Settings(unittest.TestCase):
         wired = {event: [h for entry in entries for h in entry["hooks"]] for event, entries in hooks.items()}
         expected = {"PreToolUse": "pretooluse_gate.py", "SubagentStop": "subagent_stop_gate.py",
                     "Stop": "stop_gate.py"}
-        self.assertEqual(set(wired), {*expected, "SessionStart"})
-        (doctor,) = wired["SessionStart"]  # C3 hook entry: never blocks, so no onFailure
+        self.assertEqual(set(wired), {*expected, "SessionStart", *REQUEST_EVENTS})
+        (doctor,) = hooks["SessionStart"][0]["hooks"]  # C3 hook entry: never blocks, so no onFailure
         self.assertEqual(hooks["SessionStart"][0]["matcher"], "startup|resume|clear|compact|fork")
         self.assertEqual((doctor["type"], doctor["timeout"], "onFailure" in doctor), ("command", 15, False))
         self.assertEqual(doctor["command"], 'python3 -I "$CLAUDE_PROJECT_DIR/dev/doctor/cli.py" --surface '
@@ -295,6 +296,115 @@ class Settings(unittest.TestCase):
             self.assertTrue((HOOKS / script).is_file())
         self.assertEqual(hooks["PreToolUse"][0]["matcher"], "Bash")
 
+
+LEDGER = Path(".local/state/claude-code-marketplace/requests/ledger.jsonl")  # CL4 E1, under $HOME
+REQUEST_EVENTS = {"UserPromptSubmit", "PostToolUse", "PreCompact", "SubagentStart"}  # D166, plus SessionStart
+HEADER = "Open requests (task_plan ## Open requests, D166; keep each id and its next action):\n"
+PROMPT = {"session_id": "797fac9e-45f6-4000-bb0b-7a4b6c71a99d", "transcript_path": "/t/797fac9e.jsonl",
+          "cwd": "/w", "prompt_id": "ff1c3221-ef20-4940-a382-bf0dadcffa05", "permission_mode": "default",
+          "hook_event_name": "UserPromptSubmit", "prompt": "/probe-cmd alpha é \"quoted\""}
+ANSWER = {"session_id": "797fac9e-45f6-4000-bb0b-7a4b6c71a99d", "prompt_id": "ff1c3221-ef20-4940-a382-bf0dadcffa05",
+          "hook_event_name": "PostToolUse", "tool_name": "AskUserQuestion",
+          "tool_input": {"questions": [{"question": "Which color?", "options": [{"label": "Blue"}]}]},
+          "tool_response": {"answers": {"Which color?": "Blue"},
+                            "annotations": {"Which color?": {"notes": "free-text note N-7731"}}},
+          "tool_use_id": "toolu_01NaR2bfprATUFujrY2dE1Hy"}
+PLAN_TEXT = """# Plan
+
+## Next Step
+- [ ] not a request (Next Step)
+
+## Open requests (D160)
+
+Intro line.
+
+- [ ] R-119 (D114): claude-agent intake skill; issue: #112
+- [x] R-120 (D114): visual artifact; done: abc1234
+- [ ] R-127 · p:4462d3b1 · D119 · CT-59 · owner user · build CT-59 now
+
+## Goal
+- [ ] not a request (Goal)
+"""
+
+
+class RequestHooks(unittest.TestCase):
+    """D166 capture and carry settings hooks, each command run by /bin/sh on fixture stdin (CT-88, CT-89)."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.tmp = Path(tmp.name)
+        self.hooks = json.loads((ROOT / ".claude" / "settings.json").read_text())["hooks"]
+        self.env = {"HOME": str(self.tmp / "home"), "PATH": "/usr/bin:/bin", "PLAN_ID": PLAN,
+                    "CLAUDE_PROJECT_DIR": str(self.tmp / "worktree")}
+        (self.tmp / "home").mkdir()
+
+    def handler(self, event, matcher=None):
+        (handler,) = [h for entry in self.hooks[event] if entry.get("matcher") == matcher for h in entry["hooks"]]
+        self.assertEqual(handler["type"], "command")
+        self.assertNotIn("onFailure", handler)  # nothing here may block (D166)
+        return handler
+
+    def run_hook(self, event, matcher=None, stdin="{}", **env):
+        proc = subprocess.run(["/bin/sh", "-c", self.handler(event, matcher)["command"]], input=stdin,
+                              capture_output=True, text=True, env={**self.env, **env}, cwd=self.tmp, timeout=10)
+        return proc.returncode, proc.stdout
+
+    def plan(self, root, text=PLAN_TEXT):
+        path = Path(root) / ".planning" / PLAN / "task_plan.md"
+        path.parent.mkdir(parents=True)
+        path.write_text(text)
+
+    def test_capture_hooks_are_async_and_append_the_stdin_row_to_the_untracked_ledger(self):
+        for (event, matcher), payload in {("UserPromptSubmit", None): PROMPT,
+                                          ("PostToolUse", "AskUserQuestion"): ANSWER}.items():
+            with self.subTest(event=event):
+                self.assertIs(self.handler(event, matcher)["async"], True)
+                ledger = self.tmp / "home" / LEDGER
+                before = ledger.read_text().splitlines() if ledger.exists() else []
+                self.assertEqual(self.run_hook(event, matcher, json.dumps(payload, indent=2)), (0, ""))
+                self.assertEqual(ledger.read_text().splitlines(),
+                                 [*before, json.dumps(payload, separators=(",", ":"), ensure_ascii=False)])
+        self.assertEqual(oct((self.tmp / "home" / LEDGER).parent.stat().st_mode & 0o777), "0o700")
+
+    def test_capture_of_invalid_stdin_appends_nothing_and_never_exits_2(self):
+        rc, out = self.run_hook("UserPromptSubmit", stdin="{not json")
+        self.assertEqual((rc, out), (1, ""))
+        self.assertEqual((self.tmp / "home" / LEDGER).read_text(), "")
+
+    def test_carry_hooks_print_only_the_open_request_items(self):
+        self.plan(self.tmp / "worktree")
+        items = HEADER + "- [ ] R-119 (D114): claude-agent intake skill; issue: #112\n" \
+                         "- [ ] R-127 · p:4462d3b1 · D119 · CT-59 · owner user · build CT-59 now\n"
+        self.assertEqual(self.run_hook("PreCompact"), (0, items))
+        self.assertEqual(self.run_hook("SessionStart", "startup|resume|clear|compact"), (0, items))
+        rc, out = self.run_hook("SubagentStart")
+        self.assertEqual((rc, json.loads(out)), (0, {"hookSpecificOutput": {"hookEventName": "SubagentStart",
+                                                                            "additionalContext": items}}))
+
+    def test_carry_reads_the_pinned_plan_root_before_the_project_dir(self):
+        self.plan(self.tmp / "worktree", "## Open requests\n- [ ] R-1 stale worktree copy\n")
+        self.plan(self.tmp / "main", "## Open requests\n- [ ] R-2 integration copy\n")
+        self.assertEqual(self.run_hook("PreCompact", PWF_PLAN_ROOT=str(self.tmp / "main")),
+                         (0, HEADER + "- [ ] R-2 integration copy\n"))
+
+    def test_carry_without_a_plan_prints_the_header_and_exits_0(self):
+        for event, matcher in (("PreCompact", None), ("SessionStart", "startup|resume|clear|compact")):
+            self.assertEqual(self.run_hook(event, matcher), (0, HEADER))
+        rc, out = self.run_hook("SubagentStart")
+        self.assertEqual((rc, json.loads(out)["hookSpecificOutput"]["additionalContext"]), (0, HEADER))
+
+
+    def test_requests_tail_keys_answers_by_last_8_of_tool_use_id_and_prompts_by_first_8_of_prompt_id(self):
+        """The key rule of the request-catch reader (dev/handoff.py, D167): answers never key on prompt_id."""
+        run = tomllib.loads((ROOT / "mise.dev.toml").read_text())["tasks"]["requests:tail"]["run"]
+        ledger = self.tmp / "home" / LEDGER
+        ledger.parent.mkdir(parents=True)
+        ledger.write_text("".join(json.dumps(row) + "\n" for row in (PROMPT, ANSWER, {**ANSWER, "tool_use_id": ""})))
+        proc = subprocess.run(["/bin/sh", "-c", run], capture_output=True, text=True, timeout=10,
+                              env={**self.env, "usage_count": "3"})
+        self.assertEqual((proc.returncode, [json.loads(line)["key"] for line in proc.stdout.splitlines()]),
+                         (0, ["p:ff1c3221", "p:rY2dE1Hy", "p:ff1c3221"]))
 
 class ScratchEnvironment(unittest.TestCase):
     def test_outer_mise_trust_and_config_do_not_reach_the_scratch_repo(self):

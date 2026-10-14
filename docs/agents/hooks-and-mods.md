@@ -29,8 +29,10 @@ none blocks:
 - Capture: async `UserPromptSubmit` and `PostToolUse` (matcher `AskUserQuestion`) append the hook
   stdin, `jq -c .`, to `~/.local/state/claude-code-marketplace/requests/ledger.jsonl`. The ledger stays
   untracked and outside every published path because prompts can name the private project; read it
-  with `./dev/mise run requests:tail`. Its key is the first 8 characters of `tool_use_id`, else
-  `prompt_id` (the `p:<id8>` of a plan line). The built-in `/compact` fires no `UserPromptSubmit`
+  with `./dev/mise run requests:tail`. A row's key, the `p:<id8>` of a plan line or a
+  `dispositions.jsonl` row, is the last 8 characters of `tool_use_id` for an answer (every id starts
+  `toolu_01`, and the row also carries its turn's `prompt_id`) and the first 8 of `prompt_id` for a
+  prompt, as `dev/handoff.py` parses it (D167). The built-in `/compact` fires no `UserPromptSubmit`
   (CT-87 probe receipt).
 - Carry: `PreCompact` (stdout becomes compaction instructions), `SessionStart` (`startup`, `resume`,
   `clear`, `compact`) and `SubagentStart` (as `additionalContext`) print the open `- [ ]` items of the
