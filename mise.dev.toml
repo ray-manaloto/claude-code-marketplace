@@ -114,7 +114,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]
@@ -346,3 +346,24 @@ run = ["hk install --force-local", "git config --local merge.ff false", "echo 'h
 description = "Exercise the retro-gate hook scripts and hk hooks in scratch repositories"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_hooks.py -v'
+
+[tasks.doctor]
+description = "Detect merge, settings and context drift after the fact; exit 2 on P1/P2"
+dir = "{{config_root}}"
+usage = 'arg "[args]" var=#true help="--surface session-start|check|pre-commit --json --format context"'
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/doctor/cli.py ${usage_args:-}'
+
+[tasks."doctor:session-start"]
+description = "Compact checkout-state block for a fresh session (hook form, exit 0 always)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/doctor/cli.py --surface session-start --format context'
+
+[tasks."test:doctor"]
+description = "Exercise every doctor detector against scratch repositories and fixtures"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p "test_doctor*.py" -v'
+
+[tasks."check:records"]
+description = "Refuse staged non-project settings keys (hk pre-commit records step; doctor pre-commit surface)"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/doctor/cli.py --surface pre-commit'

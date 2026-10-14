@@ -6,6 +6,13 @@ amends "package://github.com/jdx/hk/releases/download/v2.5.0/hk@2.5.0#/Config.pk
 min_hk_version = "2.5.0"
 
 hooks {
+    // Records (W0-5, CT-22): refuse staged non-project settings keys before the commit.
+    ["pre-commit"] {
+        stash = "none"
+        steps {
+            ["records"] { check = "./dev/mise run check:records" }
+        }
+    }
     ["pre-merge-commit"] {
         stash = "none"
         steps {

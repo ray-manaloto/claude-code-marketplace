@@ -38,6 +38,19 @@
     }
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/doctor/cli.py\" --surface session-start --format context",
+            "timeout": 15,
+            "statusMessage": "Checking checkout state"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
