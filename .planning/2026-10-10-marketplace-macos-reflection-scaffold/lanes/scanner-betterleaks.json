@@ -1,0 +1,72 @@
+{
+  "unit": "scanner-betterleaks",
+  "tickets": [
+    "CT-82 part A (scanner switch, D159; R17)"
+  ],
+  "title": "Switch A09's secret scanner to betterleaks 1.9.x: mise pin, AWS access key ID rule, and three fixes in dev/git_delivery.py with seam tests",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/scanner-betterleaks",
+  "branch": "claude/scanner-betterleaks",
+  "base_sha": "5c4ff9a",
+  "allocated_from": "5c4ff9a",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "reviews/ccm-20261014/research6/R17-secret-scanner.md sections 1, 7.2-7.4",
+  "depends_on": [
+    "none; runs before the hk lane (both touch mise.dev.toml)"
+  ],
+  "delivers": [
+    "mise.dev.toml pins aqua:betterleaks/betterleaks to an exact 1.9.x version (1.x line); gitleaks stays installed until the parent switches the A09 intents",
+    ".gitleaks.toml gains a standalone AWS access key ID rule (betterleaks#408) with a test fixture proving betterleaks reports it",
+    "dev/git_delivery.py: pops BETTERLEAKS_CONFIG and BETTERLEAKS_CONFIG_TOML with the GITLEAKS_* names; passes --config <root>/.gitleaks.toml; refuses when the root holds .gitleaksignore or .betterleaksignore",
+    "dev/test_git_delivery.py: one failing-first seam test per fix (CLI exit code and refusal text)",
+    "a measured betterleaks history scan of the integration branch with .gitleaks.toml (rc, counts per rule, wall time)"
+  ],
+  "owned_paths": [
+    "mise.dev.toml (betterleaks pin only)",
+    ".gitleaks.toml",
+    "dev/git_delivery.py",
+    "dev/test_git_delivery.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/scanner-betterleaks.md"
+  ],
+  "excluded_shared_paths": [
+    "hk.pkl",
+    "mise.toml",
+    "mise.lock",
+    ".github/",
+    "dev/hooks/",
+    "docs/",
+    "AGENTS.md",
+    "*/AGENTS.md",
+    "CODING_STANDARDS.md",
+    ".claude/",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:delivery",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "betterleaks git --config .gitleaks.toml --log-opts=<integration range> (rc and counts recorded)",
+    "./dev/mise run retro:gate -- scanner-betterleaks"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "mise install of the pinned betterleaks only",
+    "global_settings": "none",
+    "git_hooks": "no hooks:install"
+  },
+  "status": "allocated",
+  "review": null,
+  "retro": null,
+  "created_at": "2026-10-14",
+  "notes": [
+    "D112/D113: fixes to existing Python only; betterleaks 2.0 or kingfisher would be new logic (C++ ticket)",
+    "the pre-push guard step belongs to the hk lane (CT-82 part B)"
+  ]
+}
