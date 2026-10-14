@@ -415,9 +415,9 @@ class CreationTests(unittest.TestCase):
                 journal = Path(tempfile.mkdtemp(dir=self.journal.parent))
                 with self.assertRaises(Refusal) as caught:
                     preview(client, self.manifest, "A01", journal)
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
                 self.assertEqual(str(caught.exception).splitlines(),
                                  [f"secret scan hit: local id A01, field {field}, rule {rule}; nothing sent"])
-                self.assertNotIn(text, str(caught.exception))
                 self.assertEqual((client.requests, list(journal.iterdir())), (0, []))
 
     def test_scan_hit_refuses_apply_on_the_bytes_to_send(self):
@@ -437,10 +437,10 @@ class CreationTests(unittest.TestCase):
                 client = FakeClient()
                 with self.assertRaises(Refusal) as caught:
                     apply(client, path, issue_amend.sha(path.read_bytes()), self.manifest)
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
                 self.assertEqual(str(caught.exception).splitlines(),
                                  [f"secret scan hit: local id A01, field {field}, rule {rule}; nothing sent"])
-                self.assertNotIn(text, str(caught.exception))
-                self.assertEqual((client.requests, client.issues.posts), (0, []))
+                self.assertEqual((client.requests, len(client.issues.posts)), (0, 0))
                 self.assertFalse(attempt_path(path).exists())
 
     def test_missing_pinned_scanner_fails_closed_at_preview_and_apply(self):
@@ -450,12 +450,13 @@ class CreationTests(unittest.TestCase):
                 preview(client, self.manifest, "A01", self.journal.parent / "unused")
             with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
                 apply(client, self.path, self.digest, self.manifest)
-            self.assertEqual((client.requests, client.issues.posts), (0, []))
+            self.assertEqual((client.requests, len(client.issues.posts)), (0, 0))
             self.assertFalse(attempt_path(self.path).exists())
 
     def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
-        ticket = self.hit_manifest("title", private_name_sample())
-        ticket["body"] += f" {secret_sample()}\n"
+        name, key = private_name_sample(), secret_sample()
+        ticket = self.hit_manifest("title", name)
+        ticket["body"] += f" {key}\n"
         ticket["body_sha256"] = hashlib.sha256(ticket["body"].encode()).hexdigest()
         payload = json.loads(self.manifest.read_text())
         payload["tickets"] = [ticket]
@@ -468,6 +469,7 @@ class CreationTests(unittest.TestCase):
         with (patch("sys.argv", argv), patch("issue_create.credential", return_value=("offline", "test")),
               patch("issue_create.GitHub", return_value=client), patch("sys.stderr", stderr)):
             self.assertEqual(main(), 2)
+        self.assertFalse(name in stderr.getvalue() or key in stderr.getvalue(), "fixture text leaked into stderr")
         self.assertEqual(stderr.getvalue().splitlines(), [
             "REFUSED: secret scan hit: local id A01, field body, rule aws-access-key-id; nothing sent",
             "REFUSED: secret scan hit: local id A01, field title, rule private-tr-project; nothing sent"])

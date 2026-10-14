@@ -174,9 +174,9 @@ class AmendmentTests(unittest.TestCase):
                 client, output = FakeClient(), self.path.with_name(f"preview-{field}.json")
                 with self.assertRaises(Refusal) as caught:
                     preview(client, 11, self.body, self.labels, output)
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
                 self.assertEqual(str(caught.exception).splitlines(),
                                  [f"secret scan hit: local id #11, field {field}, rule {rule}; nothing sent"])
-                self.assertNotIn(text, str(caught.exception))
                 self.assertEqual((client.requests, output.exists()), (0, False))
 
     def test_scan_hit_refuses_apply_on_the_bytes_to_send(self):
@@ -192,10 +192,10 @@ class AmendmentTests(unittest.TestCase):
                 client = FakeClient()
                 with self.assertRaises(Refusal) as caught:
                     apply(client, path, amendment.sha(path.read_bytes()))
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
                 self.assertEqual(str(caught.exception).splitlines(),
                                  [f"secret scan hit: local id #11, field {field}, rule {rule}; nothing sent"])
-                self.assertNotIn(text, str(caught.exception))
-                self.assertEqual((client.requests, client.issues.writes, marker(path).exists()), (0, [], False))
+                self.assertEqual((client.requests, len(client.issues.writes), marker(path).exists()), (0, 0, False))
 
     def test_missing_pinned_scanner_fails_closed_at_preview_and_apply(self):
         with patch.object(amendment, "MISE", self.path.with_name("absent-mise")):
@@ -204,16 +204,18 @@ class AmendmentTests(unittest.TestCase):
                 preview(client, 11, self.body, self.labels, self.path.with_name("other.json"))
             with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
                 apply(client, self.path, self.digest)
-            self.assertEqual((client.requests, client.issues.writes, marker(self.path).exists()), (0, [], False))
+            self.assertEqual((client.requests, len(client.issues.writes), marker(self.path).exists()), (0, 0, False))
 
     def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
-        self.body.write_text(f"{private_name_sample()}\n{secret_sample()}\n", encoding="utf-8")
+        name, key = private_name_sample(), secret_sample()
+        self.body.write_text(f"{name}\n{key}\n", encoding="utf-8")
         argv = ["issue_amend.py", "preview", "--issue", "11", "--body-file", str(self.body),
                 "--labels-file", str(self.labels), "--intent-file", str(self.path.with_name("cli.json"))]
         client, stderr = FakeClient(), io.StringIO()
         with (patch("sys.argv", argv), patch("issue_amend.credential", return_value=("offline", "test")),
               patch("issue_amend.GitHub", return_value=client), patch("sys.stderr", stderr)):
             self.assertEqual(main(), 2)
+        self.assertFalse(name in stderr.getvalue() or key in stderr.getvalue(), "fixture text leaked into stderr")
         self.assertEqual(stderr.getvalue().splitlines(), [
             "REFUSED: secret scan hit: local id #11, field body, rule aws-access-key-id; nothing sent",
             "REFUSED: secret scan hit: local id #11, field body, rule private-tr-project; nothing sent"])
