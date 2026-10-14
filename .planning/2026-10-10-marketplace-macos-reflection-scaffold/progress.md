@@ -809,6 +809,16 @@ verbatim in `progress-archive-2026-10-13.md`.
   with the .agents mirror), E3 yes, E4 yes (status then integrated), E5 yes. Next: merge
   `claude/a09-hook-events` (tip `0e063ce`), then DL-212 (scanner-betterleaks A09 publish).
 
+- 2026-10-14 (a09-hook-events integration, D165): merged `30d65a1`, records `53d7b03` (E1-E5,
+  DL-221); gates rc 0 incl. inspect-hooks against the global config. Combined A09 publish
+  (scanner-betterleaks plus a09-hook-events) refused at the selected-tree check: the temporary copy
+  has no pinned betterleaks, so `test:delivery` fails (`6948135`); nothing pushed, DL-212 and DL-221
+  open; fix lane `a09-selected-tree` allocated. Reviews: request-catch PASS-with-P2/P3 (`ee64a19`),
+  request-hooks PASS-with-P2/P3 (`9a902a2`); both retros running. to-tickets: breakdown artifact
+  G8EH3PP7teDfcJoPsceinK (105 tickets); D172 R-118 re-scope first, D173 structure accepted. D171:
+  issue #11 carried a private domain word; body rewritten (scan rc 0), two history revisions await
+  the user's deletion (the auto-mode classifier refused the Chrome click).
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,

@@ -64,7 +64,7 @@ rc 0, no leaks; `git diff --cached --check` rc 0.
 
 ## Publish (A09)
 
-Selected path: this report only; M and R travel as ancestors. Preimage `959c56f`; check_task
+Selected path (attempt 1): this report only; attempt 2 selects this report and the a09-hook-events report; M and R travel as ancestors. Preimage `959c56f`; check_task
 `["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`; `gitleaks_bin` = the
 absolute pinned betterleaks path (D159, the first A09 publish with betterleaks). The committed copy
 in P says "pending"; the fields below were filled after the publish.
@@ -72,14 +72,17 @@ in P says "pending"; the fields below were filled after the publish.
 Attempt 1 stopped at `inspect-hooks`: `safe_configured_hooks()` admits only configured `hook.*`
 events `pre-commit`, `commit-msg` and `pre-push`, and the global hk install of D154 (after the last
 publish `959c56f`) added `prepare-commit-msg`, `pre-merge-commit` and `post-commit` to
-`~/.gitconfig`. Nothing was staged or pushed; M and R stay local. Parent decision pending.
+`~/.gitconfig`. Nothing was staged or pushed; M and R stay local. Parent decision D165: lane
+a09-hook-events fixes the refusal (merged `30d65a1`, records `53d7b03`). Attempt 2 is the combined
+A09 publish recorded in `a09-hook-events-merge-report.md`: its selected paths are both merge
+reports, so one publish carries both integrations and each has its report (D37).
 
 | Command | rc | Output |
 | --- | --- | --- |
 | `git diff --cached --name-only HEAD \| wc -l` (before) | 0 | 0 |
 | `./dev/mise run delivery:inspect-hooks -- inspect-hooks.json d907b24d…` (19:39:21Z, attempt 1) | 2 | `A09 refused: configured Git hook could execute during delivery` |
-| `./dev/mise run delivery:prepare -- prepare.json …` | pending | |
-| `./dev/mise run delivery:publish -- publish.json …` | pending | |
+| `./dev/mise run delivery:prepare -- prepare.json …` (attempt 2, combined, 20:21:25Z) | 0 | `index_tree=c21a2379…` |
+| `./dev/mise run delivery:publish -- publish.json …` (attempt 2, combined, 20:21:36Z) | 2 | refused in `check_selected_tree`: `test:delivery` fails in the extracted tree, which has no pinned betterleaks (`6948135` fails rather than skips under `test:delivery`); nothing pushed. Details in `a09-hook-events-merge-report.md` |
 
 ## Post-publish verification
 

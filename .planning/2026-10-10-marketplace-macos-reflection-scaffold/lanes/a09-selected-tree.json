@@ -1,0 +1,63 @@
+{
+  "unit": "a09-selected-tree",
+  "tickets": [
+    "DL-212 and DL-221 (A09 publish of scanner-betterleaks and a09-hook-events), D159 (betterleaks pin)"
+  ],
+  "title": "A09 selected-tree check runs test:delivery with the source checkout's pinned betterleaks instead of an empty per-copy mise data dir",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/a09-selected-tree",
+  "branch": "claude/a09-selected-tree",
+  "base_sha": "53d7b03",
+  "allocated_from": "53d7b03",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "merger report reviews/ccm-20261014/republish/a09-hook-events-merge-report.md (publish rc 2: test:delivery in the selected-tree copy fails with 'pinned betterleaks 1.9.0 is missing', 6948135)",
+  "delivers": [
+    "check_selected_tree in dev/git_delivery.py gives the selected-tree copy the source checkout's pinned tool installs so test:delivery's scanner test runs the same pinned betterleaks binary (version asserted by the test) with no install and no network",
+    "the scratch tree still equals the reviewed index tree (no tool path enters it), and the copy's mise still refuses auto-install",
+    "a seam test that fails without the fix: a selected-tree check over a tree whose test:delivery needs the pinned scanner passes when the source checkout has the pin and refuses when it lacks it",
+    "no skip marker: test:delivery keeps failing on a missing pin in the main checkout, the selected-tree copy and CI"
+  ],
+  "owned_paths": [
+    "dev/git_delivery.py",
+    "dev/test_git_delivery.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/a09-selected-tree.md"
+  ],
+  "excluded_shared_paths": [
+    "dev/mise",
+    "mise.dev.toml",
+    "mise.dev.lock",
+    "hk.pkl",
+    ".gitleaks.toml",
+    "dev/hooks/",
+    "docs/",
+    "AGENTS.md",
+    "*/AGENTS.md",
+    ".claude/",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:delivery",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- a09-selected-tree"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "fix to existing Python (D113)",
+    "blocks the combined A09 publish (DL-212, DL-221)",
+    "if the fix needs dev/mise or mise.dev.toml, stop and report; the parent widens owned_paths"
+  ]
+}

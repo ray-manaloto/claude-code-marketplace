@@ -1,0 +1,67 @@
+{
+  "unit": "issue-scan",
+  "tickets": [
+    "CT-92 (lane part: scan before create)",
+    "R-174 (public-text guard)"
+  ],
+  "title": "The issue route refuses any title, body, label or comment text that fails the repository's secret and private-name scan before any GitHub call",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/issue-scan",
+  "branch": "claude/issue-scan",
+  "base_sha": "53d7b03",
+  "allocated_from": "53d7b03",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "side-agent note relayed by the user (2026-10-14): the private-name rule runs only on git pushes; issue #11 leak (D171)",
+  "delivers": [
+    "issue:create-preview/apply and issue:preview/apply (and any other issue route that sends free text) scan every outbound text field with the pinned betterleaks and the repository's .gitleaks.toml before any GitHub request, and refuse with exit 2 naming the local id, field and rule id, never the matched text",
+    "the scan runs at preview and again at apply on the exact bytes that will be sent; a missing pinned scanner refuses (fail closed), it never skips",
+    "seam tests with a private-name fixture and a secret fixture (fixtures built so the test file itself does not carry a real private value) prove refusal before any request at both stages, and a clean manifest passes unchanged"
+  ],
+  "owned_paths": [
+    "dev/issue_create.py",
+    "dev/test_issue_create.py",
+    "dev/issue_amend.py",
+    "dev/test_issue_amend.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/issue-scan.md"
+  ],
+  "excluded_shared_paths": [
+    "dev/mise",
+    "mise.dev.toml",
+    "mise.dev.lock",
+    "hk.pkl",
+    ".gitleaks.toml",
+    "dev/hooks/",
+    "dev/git_delivery.py",
+    "docs/",
+    "AGENTS.md",
+    "*/AGENTS.md",
+    ".claude/",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:issue-create",
+    "./dev/mise run test:issue-amend",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- issue-scan"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none (no GitHub call in tests; fixtures only)",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "fix to existing Python (D113): a security fix on an existing route",
+    "never print the private rule's regex values or a matched value (D145)",
+    "if the scan needs a shared helper outside owned_paths, stop and report; the parent widens owned_paths"
+  ]
+}
