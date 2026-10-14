@@ -592,8 +592,18 @@ class RequestTests(Fixture):
         self.assertIn("p:4462d3b1", data["findings"][0]["subject"])
         self.assertNotIn("build the skill", json.dumps(data))  # never the prompt text
         self.assertEqual(data["requests"]["unprojected"], ["p:4462d3b1"])
+        self.assertEqual((data["requests"]["captured"], data["requests"]["foreign"]), (1, 1))  # the fork's row: counted, not caught
         self.capture({"session_id": OWNER_ID, "prompt": "a payload without a key field"})
         self.assertEqual(self.check_json()[2]["requests"]["unkeyed"], 1)
+
+    def test_foreign_session_rows_are_counted_not_caught(self):
+        # a stale owner line scopes every row out (CL4 §4.5); `foreign` makes the mismatch visible until CT-93a
+        self.capture({"session_id": "worktree-session", "prompt_id": "77777777-cccc"},
+                     {"session_id": "fork-session", "prompt_id": "88888888-dddd"})
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (0, []))
+        self.assertEqual((data["requests"]["captured"], data["requests"]["foreign"]), (0, 2))
+        self.assertEqual(data["requests"]["session"], OWNER_ID)
 
     def test_answer_row_is_keyed_by_its_tool_use_not_its_turn(self):
         # CT-87 receipt: prompt_id is on every payload of a turn, so an answer row carries both fields
@@ -626,6 +636,15 @@ class RequestTests(Fixture):
         self.assertNotIn("R-121", data["findings"][0]["subject"])
         self.assertEqual(data["requests"]["open"], ["R-119", "R-120", "R-121"])
         self.assertEqual(data["requests"]["unlinked"], ["R-119", "R-120"])
+
+    def test_bare_issue_field_links_an_item(self):
+        # CL4 §4.2 line shape: `#N` is its own `·` field; a bare number inside prose is not a link
+        self.project("- [ ] R-171 · p:4462d3b1 · D114 · CT-86 · #136 · owner parent · blocked by R-127 · text",
+                     "- [ ] R-172 · D148 · none · #137",
+                     "- [ ] R-173 · D109 · none · pending issue · owner user · see #109 in the republish notes")
+        rc, found, data = self.check_json()
+        self.assertEqual((rc, found), (2, [("H.request-unlinked", "P2")]))
+        self.assertEqual(data["requests"]["unlinked"], ["R-173"])
 
     def write_dry_run(self):
         rc, out, err = self.run_cli("write", "--dry-run", "--agents-done", "--template", str(self.fx["template"]))

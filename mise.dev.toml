@@ -115,7 +115,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor", "test:plan-decide", "test:frontier", "test:retro-gate", "test:delivery"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor", "test:plan-decide", "test:frontier", "test:retro-gate", "test:delivery", "test:handoff"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]
@@ -352,6 +352,11 @@ run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_h
 description = "Exercise the retro gate CLI, unit derivation and git resolution in scratch repositories"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_retro_gate.py -v'
+
+[tasks."test:handoff"]
+description = "Exercise dev/handoff.py state, check, write and the D167 request catch in scratch repositories"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_handoff.py -v'
 
 [tasks."test:frontier"]
 description = "Exercise the ticket-frontier skill script against fixture graphs in scratch plan dirs"

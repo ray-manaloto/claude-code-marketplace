@@ -52,7 +52,7 @@ OPS = ("MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_L
 REQUESTS_STATE = ".local/state/claude-code-marketplace/requests"  # CL4 E1 ledger dir (CT-88 creates it)
 KEY_RE = re.compile(r"\bp:([\w-]{8})")  # an answer's tool_use_id, last 8 (all start `toolu_01`), else prompt_id, first 8
 ITEM_RE = re.compile(r"- \[([ xX])\] (R-\d+)\b")  # a projected request line (CL4 §4.2)
-LINK_RE = re.compile(r"\bissue:? #\d+\b|github\.com/[\w.-]+/[\w.-]+/issues/\d+", re.I)  # D168 issue link
+LINK_RE = re.compile(r"\bissue:? #\d+\b|(?<=· )#\d+(?= ·|$)|github\.com/[\w.-]+/[\w.-]+/issues/\d+", re.I)  # D168 link: `issue: #N`, the bare `· #N ·` field (CL4 §4.2) or an issue URL
 OWNER_USER_RE = re.compile(r"\bowner:? user\b")  # an item awaiting the user (CL4 §4.2)
 GIT_SKIP = {"MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_LOG"}
 
@@ -332,12 +332,14 @@ def requests(ctx: Context, plan_text: str) -> dict:
     ledger = ctx.requests_dir / "ledger.jsonl"
     closed = set(KEY_RE.findall("\n".join(section)))
     closed |= {str(row.get("key", "")).removeprefix("p:") for row in jsonl(ctx.requests_dir / "dispositions.jsonl")}
+    rows = jsonl(ledger)
     keys = [str(row["tool_use_id"])[-8:] if row.get("tool_use_id") else str(row.get("prompt_id") or "")[:8]
-            for row in jsonl(ledger) if session is None or row.get("session_id") == session]
+            for row in rows if session is None or row.get("session_id") == session]
+    foreign = sum(1 for row in rows if session is not None and row.get("session_id") != session)  # other sessions: visible, not caught (CT-93a)
     unprojected = list(dict.fromkeys(f"p:{key}" for key in keys if key and key not in closed))
     items = [(m[2], line) for line in bullets(section) if (m := ITEM_RE.match(line)) and m[1] == " "]
     return {"ledger": str(ledger), "ledger_present": ledger.is_file(), "session": session,
-            "captured": len(keys), "unkeyed": keys.count(""), "unprojected": unprojected, "open": [rid for rid, _ in items],
+            "captured": len(keys), "foreign": foreign, "unkeyed": keys.count(""), "unprojected": unprojected, "open": [rid for rid, _ in items],
             "unlinked": [rid for rid, line in items if not LINK_RE.search(line)],
             "user": [rid for rid, line in items if OWNER_USER_RE.search(line)]}
 
@@ -399,7 +401,7 @@ def state(ctx: Context, agents_done: bool = False) -> dict:
         "agents_done_utc": now() if agents_done else None,
         "mode": read(ctx.plan / ".mode").strip() or None,
         "handoff": str(ctx.handoff_path.relative_to(ctx.plan)) if ctx.handoff_path else None,
-        "next_step": next_step_block(plan_text), "requests": requests(ctx, plan_text),
+        "next_step": next_step_block(plan_text), "requests": requests(ctx, plan_text),  # D167, dated D113 exception; CT-93a deletes it
         "next_bullet_last": None if span is None else span[1] >= len(progress_text.splitlines()),
     }
 
@@ -654,7 +656,7 @@ def exit_code(found: list[Finding]) -> int:
 def print_findings(found: list[Finding], st: dict | None, as_json: bool) -> None:
     if as_json:
         print(json.dumps({"schema": "handoff-check/v1", "generated_utc": now(), "repo": st["repo"] if st else None,
-                          "findings": [f.to_json() for f in found], "requests": st["requests"] if st else None,
+                          "findings": [f.to_json() for f in found], "requests": st["requests"] if st else None,  # D167, dated D113 exception; CT-93a deletes it
                           "counts": {s: sum(f.severity == s for f in found) for s in ("P1", "P2", "P3")},
                           "rc": exit_code(found)}, indent=1))
         return

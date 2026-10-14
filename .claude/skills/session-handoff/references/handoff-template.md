@@ -23,8 +23,6 @@ rewrite owner line 4 with `dev/handoff.py owner`.
 Runbook: `reviews/ccm-20261013/phase3/HANDOFF-2026-10-14.md`.
 
 ## notes
-- Until projected as `owner user` R-n lines (CT-90): GitHub Support purge request
-  (`reviews/ccm-20261014/republish/`); file the guard and C++ check tickets; Q2-order-v2 §6 U1-U5.
 - Integrated and published 2026-10-14: gate-git-path (`2185777`) and w0-doctor (`959c56f`) on
   the scrubbed baseline `62b154a`; receipts in `reviews/ccm-20261014/republish/`.
 - TR material stays local (D144); `.gitleaks.toml` guards A09 publish (D145); a plain push is
