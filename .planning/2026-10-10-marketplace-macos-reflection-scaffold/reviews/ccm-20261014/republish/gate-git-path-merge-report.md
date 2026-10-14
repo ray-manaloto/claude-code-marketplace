@@ -75,3 +75,12 @@ with the repository guard config (D145).
 | `git rev-parse HEAD origin/codex/marketplace-native-onboarding` | 0 | both `21857775…` |
 | `git ls-remote --heads origin` | 0 | `codex/marketplace-native-onboarding` `21857775…`, `main` `6b5b092…` |
 | `gh run list --branch codex/marketplace-native-onboarding` | 0 | on `2185777`: research-fast `38603954292` and `38603962134` success, development checks `38603962082` success, acceptance `38603962612` success (17:10:22Z); on `62b154a`: acceptance `38601873659` and development checks `38601873531` success |
+
+## Correction (2026-10-14, merger finding during scanner-betterleaks)
+
+The Result line above says the PreToolUse deny gate and hk pre-merge-commit ran the retro gate and
+passed. Neither ran. The merge command was `git -C $MP merge ...`: the deny gate does not expand `$MP`,
+finds no repository and allows the command (fail open, the GGP-4 class), and the global hk install did
+not register `pre-merge-commit` until D154 (17:5xZ). The retro check that did run was the manual
+`./dev/mise run retro:gate -- <unit>` in the lane worktree before the merge (rc 0, recorded above), and
+again on the integrated tree. Tracked as CT-86.

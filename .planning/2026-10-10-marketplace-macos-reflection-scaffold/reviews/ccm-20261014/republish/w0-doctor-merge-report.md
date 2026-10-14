@@ -83,3 +83,12 @@ commit.
 | `git ls-remote --heads origin` | 0 | `codex/marketplace-native-onboarding` `959c56f6…`, `main` `6b5b092…` |
 | `gh run list` / `gh run watch 38605846587 --exit-status` | 0 | on `959c56f`: development checks `38605846526` success (17:21:36Z), research-fast `38605846265` and `38605832916` success (17:22:32Z), acceptance `38605846587` success (17:23:46Z) |
 | `git worktree remove` gate-git-path, w0-doctor, scrub | 0 | each clean beforehand; branches kept |
+
+## Correction (2026-10-14, merger finding during scanner-betterleaks)
+
+The Result line above says the PreToolUse deny gate and hk pre-merge-commit ran the retro gate and
+passed. Neither ran. The merge command was `git -C $MP merge ...`: the deny gate does not expand `$MP`,
+finds no repository and allows the command (fail open, the GGP-4 class), and the global hk install did
+not register `pre-merge-commit` until D154 (17:5xZ). The retro check that did run was the manual
+`./dev/mise run retro:gate -- <unit>` in the lane worktree before the merge (rc 0, recorded above), and
+again on the integrated tree. Tracked as CT-86.
