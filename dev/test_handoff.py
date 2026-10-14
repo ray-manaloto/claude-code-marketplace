@@ -636,8 +636,8 @@ class RequestTests(Fixture):
                      "- [ ] R-8 · D2 · owner parent · build it; issue: #8", "- [x] R-9 · done: rc 0")
         rc, out, err = self.write_dry_run()
         self.assertEqual(rc, 0, out + err)
-        self.assertIn("- Requests: 2 open, 0 unlinked, 0/0 captured unprojected (no ledger); Pending user: R-7; "
-                      "open (`## Open requests`): R-7, R-8.", out)
+        self.assertIn("- Open requests: 2 open, 0 unlinked, 0/0 captured unprojected (no ledger); Pending user: R-7; "
+                      "ids: R-7, R-8.", out)
         self.assertIn("dry-run: 3 file(s) would be written", out)
 
     def test_write_refuses_a_hand_written_pending_user_section(self):

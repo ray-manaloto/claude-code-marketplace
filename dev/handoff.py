@@ -678,9 +678,9 @@ def next_rev(block: list[str]) -> int:
 def roll_call(req: dict) -> str:
     """The `## Next Step` roll-call line; `Pending user` lists the open items marked `owner user`."""
     # D167, dated D113 exception; the C++ requests module CT-93a deletes it
-    return (f"Requests: {len(req['open'])} open, {len(req['unlinked'])} unlinked, {len(req['unprojected'])}/"
+    return (f"Open requests: {len(req['open'])} open, {len(req['unlinked'])} unlinked, {len(req['unprojected'])}/"
             f"{req['captured']} captured unprojected ({'ledger' if req['ledger_present'] else 'no ledger'}); "
-            f"Pending user: {', '.join(req['user']) or 'none'}; open (`## Open requests`): {', '.join(req['open']) or 'none'}.")
+            f"Pending user: {', '.join(req['user']) or 'none'}; ids: {', '.join(req['open']) or 'none'}.")
 
 
 def render(ctx: Context, st: dict, template: dict, name: str | None = None) -> dict:

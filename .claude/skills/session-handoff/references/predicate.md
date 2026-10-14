@@ -25,8 +25,8 @@ replaces and deletes them. `check --json` and `state --json` carry a `requests` 
 `ledger_present`, `session`, `captured`, `unkeyed` (rows with neither key field: counted, not caught,
 until CT-86 confirms the payload), `unprojected`, `open`, `unlinked` and `user` (open items
 marked `owner user`). `write` turns it into the roll-call bullet of `## Next Step`
-(`Requests: N open, K unlinked, U/C captured unprojected (ledger|no ledger); Pending user: <ids>;
-open (`## Open requests`): <ids>.`), which replaces the hand-written `pending-user` line; when the
+(`Open requests: N open, K unlinked, U/C captured unprojected (ledger|no ledger); Pending user:
+<ids>; ids: <ids>.`), which replaces the hand-written `pending-user` line; when the
 required bullets exceed the 16-line budget, `write` exits 1 and names the roll-call's share.
 
 Not checked (declared gaps): the index counts stated in the handoff vs `git status` (`write`
