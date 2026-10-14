@@ -157,6 +157,35 @@ class DeliveryTests(unittest.TestCase):
         self.assertIn("configured Git hook could execute", result.stderr)
         self.assertEqual(self.git("diff", "--cached", "--name-only"), "")
 
+    # The user-global hk layout (D154): one hook.hk-<event> section per event.
+    HK_EVENTS = ("pre-commit", "commit-msg", "prepare-commit-msg", "pre-push", "pre-merge-commit", "post-commit")
+
+    def use_global_hooks(self, *events: str) -> None:
+        home = self.base / "home"
+        home.mkdir(exist_ok=True)
+        config = home / ".gitconfig"
+        config.write_text("".join(
+            f'[hook "hk-{event}"]\n\tcommand = hk run {event} --from-hook\n\tevent = {event}\n'
+            for event in events
+        ))
+        self.env = {key: value for key, value in self.env.items() if not key.startswith("GIT_")}
+        self.env.update(HOME=str(home), GIT_CONFIG_GLOBAL=str(config), GIT_CONFIG_NOSYSTEM="1")
+
+    def test_inspect_hooks_admits_global_hk_layout(self) -> None:
+        self.use_global_hooks(*self.HK_EVENTS)
+        result = self.invoke("inspect-hooks")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertRegex(result.stdout, r"\Ahook_tree_sha256=[0-9a-f]{64}\n\Z")
+
+    def test_inspect_hooks_refuses_unknown_global_event(self) -> None:
+        for event in ("post-checkout", "reference-transaction"):
+            with self.subTest(event=event):
+                self.use_global_hooks(*self.HK_EVENTS, event)
+                result = self.invoke("inspect-hooks")
+                self.assertEqual(result.returncode, 2)
+                self.assertEqual(result.stdout, "")
+                self.assertEqual(result.stderr, "A09 refused: configured Git hook could execute during delivery\n")
+
     def test_stage_blob_rejects_symlink_target_and_selected_symlink_mode(self) -> None:
         source = self.base / "reviewed.toml"
         source.write_text("reviewed\n")
