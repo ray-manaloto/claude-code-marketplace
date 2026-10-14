@@ -57,7 +57,7 @@
     "network": "none (no GitHub call in tests; fixtures only)",
     "global_settings": "none"
   },
-  "status": "allocated",
+  "status": "integrated",
   "review": "PASS with P3 on `6088eb5` (reviewer, Fable, cold); P3 IS-2 applied in retro fix `8ef1c10`",
   "retro": "passed",
   "created_at": "2026-10-14",
@@ -65,6 +65,9 @@
     "fix to existing Python (D113): a security fix on an existing route",
     "never print the private rule's regex values or a matched value (D145)",
     "if the scan needs a shared helper outside owned_paths, stop and report; the parent widens owned_paths",
-    "retro: `retros/issue-scan.md` at 42c141c (blob b31aaf8), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; parent edits 1-3 applied in the same records commit, edit 4 (follow-up under #138) recorded as ledger row CT-94 (pending issue)"
-  ]
+    "retro: `retros/issue-scan.md` at 42c141c (blob b31aaf8), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; parent edits 1-3 applied in the same records commit, edit 4 (follow-up under #138) recorded as ledger row CT-94 (pending issue)",
+    "integrated 2026-10-14 as 18b1693 (parents d1ec9aa, 42c141c), no conflict; gates on the merged tree rc 0 (tasks validate 66, check, check:acceptance-baseline, check:research, test:issue-create 24, test:issue-amend 26, retro:gate, git diff --check d1ec9aa, skill mirrors); report reviews/ccm-20261014/republish/scan-agy-merge-report.md"
+  ],
+  "head_sha": "42c141c",
+  "integration_merge": "18b1693"
 }

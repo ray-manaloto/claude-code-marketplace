@@ -829,6 +829,19 @@ verbatim in `progress-archive-2026-10-13.md`.
   pushed; A09 publish waits for lane a09-selected-tree. Report:
   `reviews/ccm-20261014/republish/request-lanes-merge-report.md`.
 
+- 2026-10-14 (issue-scan and agy-history integration, D164): issue-scan (CT-92 lane part, R-174)
+  merged `18b1693` (records `d1ec9aa`, retro blob byte-identical to `42c141c`); agy-history (D153,
+  R-162) merged `c72cc64` (records `34f0e30`, retro byte-identical to `a5d1dbd`); no conflicts.
+  Gates rc 0 after each merge: tasks validate (66), check, check:acceptance-baseline,
+  check:research, test:issue-create (24), test:issue-amend (26), retro:gate, `git diff --check`,
+  skill mirrors (six after agy-history). Parent edits applied: issue-tracker raw `gh` write
+  prohibition; dev-tests derived-sample rule; implementer step 1 install and offline deps:sync;
+  `.claude/AGENTS.md` skills line; R20 WAL clause; codex-session-history description `{id}`; lane
+  records integrated with retro "passed". Ledger: CT-94 (pending issue, scanned route or deny rule
+  for `gh` comments, PR text and `gh api` writes, under #138), CT-95 (pending issue, Antigravity
+  trajectory reader in the C++ core), CT-38 note (38a mirror test method). Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/scan-agy-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
