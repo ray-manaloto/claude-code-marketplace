@@ -48,7 +48,7 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-158 (D150, D157): update all dependencies with offline docs and repo mirrors (R21 batches 1-5); issue: #128
 - [ ] R-165 (D156): pin CI to ubuntu-26.04 and fix what breaks; issue: #129
 - [ ] R-171 (D163, D170): auto-merge ruleset keeps A09 direct pushes working (admin bypass or PR-only checks), researched and dry-run on a scratch branch first; issue: #135
-- [ ] R-174 (D171): public-text guard: review and fix every path that writes text to GitHub outside git (issues, comments, PR bodies, gh api) so the secret and private-name scan runs first; audit team plus lane issue-scan; issue: none yet
+- [ ] R-174 (D171) · p:9dc3aa9d · public-text guard: review and fix every path that writes text to GitHub outside git (issues, comments, PR bodies, gh api) so the secret and private-name scan runs first; audit team plus lane issue-scan; issue: none yet
 - [ ] R-172 (D148) owner user: send the GitHub Support purge request for the old history and PR #109 refs (draft in reviews/ccm-20261014/republish/); issue: none yet
 - [ ] R-173 (D109, D132) owner user: answer Q2-order-v2 section 6 U1-U5 (CT-63a one unit or split; Q83 gate scripts and D60; #13 fallback after R4; Q82 D99 and the remote switch; delivery:publish on CT-18); issue: none yet
 - [ ] R-166 (D157): mise minimum_release_age 1h for this project; issue: #130
