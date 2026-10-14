@@ -283,13 +283,18 @@ def remote_head(root: Path, remote: str, branch: str) -> str | None:
 def scan(root: Path, binary: str, *mode: str, baseline: Path | None = None, report: bool = False) -> tuple[int, bytes]:
     if not Path(binary).is_absolute():
         raise Refusal("scanner path must be absolute")
+    for name in (".gitleaksignore", ".betterleaksignore"):
+        if os.path.lexists(root / name):
+            raise Refusal(f"checkout root holds {name}, which the scanner loads whatever --gitleaks-ignore-path names")
     with tempfile.TemporaryDirectory(prefix="a09-scan-") as temp:
         ignore = Path(temp) / "empty-ignore"
         ignore.touch()
         env = os.environ.copy()
-        env.pop("GITLEAKS_CONFIG", None)
-        env.pop("GITLEAKS_CONFIG_TOML", None)
-        command = [binary, "git", "--no-banner", "--redact=100", "--log-level=error", "--gitleaks-ignore-path", str(ignore)]
+        # betterleaks reads its own names before the gitleaks ones.
+        for name in ("BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML", "GITLEAKS_CONFIG", "GITLEAKS_CONFIG_TOML"):
+            env.pop(name, None)
+        command = [binary, "git", "--no-banner", "--redact=100", "--log-level=error",
+                   "--config", str(root / ".gitleaks.toml"), "--gitleaks-ignore-path", str(ignore)]
         if baseline:
             command.extend(("--baseline-path", str(baseline)))
         if report:
