@@ -7,6 +7,8 @@ captured: Git URLs and scanner findings are never echoed by this program.
 from __future__ import annotations
 
 import argparse
+from collections.abc import Iterator
+import contextlib
 import hashlib
 import json
 import os
@@ -17,12 +19,17 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import tomllib
 
 
 OID = re.compile(r"[0-9a-f]{40}|[0-9a-f]{64}\Z")
 SAFE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:-]*\Z")
 MIXED_FILES = {"mise.dev.toml", "dev/saved-searches.toml"}
 GIT = ["git", "--literal-pathspecs", "-c", "core.hooksPath=/dev/null"]
+# The private-name rule lives outside the repository (D178): every scan merges it at run time.
+PRIVATE_RULE_ID = "private-tr-project"
+PRIVATE_RULES_ENV = "MARKETPLACE_PRIVATE_RULES"
+PRIVATE_RULES_DEFAULT = "~/.local/state/claude-code-marketplace/private-notes/scanner/private-rules.toml"
 
 
 class Refusal(Exception):
@@ -308,13 +315,38 @@ def remote_head(root: Path, remote: str, branch: str) -> str | None:
     return oid.decode("ascii")
 
 
+@contextlib.contextmanager
+def scan_config(tracked: Path, refusal: type[Exception] = Refusal) -> Iterator[Path]:
+    """Yield a private temporary config holding the tracked rules plus the private rule file, then delete it.
+
+    The private file comes from MARKETPLACE_PRIVATE_RULES, else PRIVATE_RULES_DEFAULT. A missing or
+    unreadable file, or one without the private rule id, refuses; the reason never quotes a value.
+    """
+    source = Path(os.environ.get(PRIVATE_RULES_ENV) or os.path.expanduser(PRIVATE_RULES_DEFAULT))
+    try:
+        private = source.read_text(encoding="utf-8")
+        rules = tomllib.loads(private).get("rules")
+        base = tracked.read_text(encoding="utf-8")
+    except (OSError, UnicodeError, tomllib.TOMLDecodeError):
+        rules = base = None
+    if base is None or not isinstance(rules, list) or not any(
+            isinstance(rule, dict) and rule.get("id") == PRIVATE_RULE_ID for rule in rules):
+        raise refusal(f"private scanner rule unavailable: {PRIVATE_RULES_ENV} or {PRIVATE_RULES_DEFAULT} "
+                      f"must be a readable file defining rule {PRIVATE_RULE_ID}")
+    with tempfile.TemporaryDirectory(prefix="scan-config-") as temp:  # mkdtemp creates it 0700
+        combined = Path(temp) / "combined.toml"
+        with os.fdopen(os.open(combined, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as out:
+            out.write(f"{base.rstrip()}\n\n{private}")
+        yield combined
+
+
 def scan(root: Path, binary: str, *mode: str, baseline: Path | None = None, report: bool = False) -> tuple[int, bytes]:
     if not Path(binary).is_absolute():
         raise Refusal("scanner path must be absolute")
     for name in (".gitleaksignore", ".betterleaksignore"):
         if os.path.lexists(root / name):
             raise Refusal(f"checkout root holds {name}, which the scanner loads whatever --gitleaks-ignore-path names")
-    with tempfile.TemporaryDirectory(prefix="a09-scan-") as temp:
+    with tempfile.TemporaryDirectory(prefix="a09-scan-") as temp, scan_config(root / ".gitleaks.toml") as config:
         ignore = Path(temp) / "empty-ignore"
         ignore.touch()
         env = os.environ.copy()
@@ -322,7 +354,7 @@ def scan(root: Path, binary: str, *mode: str, baseline: Path | None = None, repo
         for name in ("BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML", "GITLEAKS_CONFIG", "GITLEAKS_CONFIG_TOML"):
             env.pop(name, None)
         command = [binary, "git", "--no-banner", "--redact=100", "--log-level=error",
-                   "--config", str(root / ".gitleaks.toml"), "--gitleaks-ignore-path", str(ignore)]
+                   "--config", str(config), "--gitleaks-ignore-path", str(ignore)]
         if baseline:
             command.extend(("--baseline-path", str(baseline)))
         if report:

@@ -2,6 +2,7 @@
 
 import io
 import json
+import os
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -10,7 +11,9 @@ from unittest.mock import patch
 
 from issue_amend import Refusal, apply, intent, main, marker, preview, verify
 import issue_amend as amendment
-from test_issue_create import private_name_sample, secret_sample
+from git_delivery import PRIVATE_RULE_ID, PRIVATE_RULES_DEFAULT, PRIVATE_RULES_ENV
+from test_git_delivery import SYNTHETIC_PRIVATE_NAME, synthetic_private_rules
+from test_issue_create import private_name_sample, secret_sample, use_synthetic_private_rule
 
 
 def issue(body="old", labels=("ready-for-agent",), updated="t1"):
@@ -70,6 +73,7 @@ class AmendmentTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(dir=Path(tempfile.gettempdir()).resolve())
         self.addCleanup(self.temp.cleanup)
         base = Path(self.temp.name)
+        use_synthetic_private_rule(self, base)
         self.body = base / "body.md"
         self.body.write_text("new\n", encoding="utf-8")
         self.labels = base / "labels.json"
@@ -166,7 +170,7 @@ class AmendmentTests(unittest.TestCase):
             preview(self.client, 11, self.body, self.labels, other)
 
     def test_scan_hit_refuses_preview_before_any_request(self):
-        for field, text, rule in (("body", private_name_sample(), "private-tr-project"),
+        for field, text, rule in (("body", private_name_sample(), PRIVATE_RULE_ID),
                                   ("labels", secret_sample(), "aws-access-key-id")):
             with self.subTest(field=field):
                 self.body.write_text(f"new {text}\n" if field == "body" else "new\n", encoding="utf-8")
@@ -182,7 +186,7 @@ class AmendmentTests(unittest.TestCase):
     def test_scan_hit_refuses_apply_on_the_bytes_to_send(self):
         # An intent journaled before the scan existed still reaches the scan at apply.
         for field, text, rule in (("body", secret_sample(), "aws-access-key-id"),
-                                  ("labels", private_name_sample(), "private-tr-project")):
+                                  ("labels", private_name_sample(), PRIVATE_RULE_ID)):
             with self.subTest(field=field):
                 data = json.loads(self.path.read_text())
                 data["desired"] = {"body": f"new {text}\n" if field == "body" else "new\n",
@@ -206,6 +210,22 @@ class AmendmentTests(unittest.TestCase):
                 apply(client, self.path, self.digest)
             self.assertEqual((client.requests, len(client.issues.writes), marker(self.path).exists()), (0, 0, False))
 
+    def test_unusable_private_rule_file_refuses_preview_and_apply(self):
+        base = Path(self.temp.name)
+        wrong = synthetic_private_rules(base / "wrong.toml", rule_id="other-rule")
+        for case, value in enumerate((str(base / "absent.toml"), str(wrong))):
+            with self.subTest(case=case), patch.dict(os.environ, {PRIVATE_RULES_ENV: value}):
+                client, output = FakeClient(), self.path.with_name(f"unusable-{case}.json")
+                for attempt in (lambda: preview(client, 11, self.body, self.labels, output),
+                                lambda: apply(client, self.path, self.digest)):
+                    with self.assertRaises(Refusal) as caught:
+                        attempt()
+                    self.assertFalse(SYNTHETIC_PRIVATE_NAME in str(caught.exception), "rule text leaked")
+                    self.assertIn(PRIVATE_RULES_ENV, str(caught.exception))
+                    self.assertIn(PRIVATE_RULES_DEFAULT, str(caught.exception))
+                self.assertEqual((client.requests, len(client.issues.writes), output.exists(), marker(self.path).exists()),
+                                 (0, 0, False, False))
+
     def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
         name, key = private_name_sample(), secret_sample()
         self.body.write_text(f"{name}\n{key}\n", encoding="utf-8")
@@ -218,7 +238,7 @@ class AmendmentTests(unittest.TestCase):
         self.assertFalse(name in stderr.getvalue() or key in stderr.getvalue(), "fixture text leaked into stderr")
         self.assertEqual(stderr.getvalue().splitlines(), [
             "REFUSED: secret scan hit: local id #11, field body, rule aws-access-key-id; nothing sent",
-            "REFUSED: secret scan hit: local id #11, field body, rule private-tr-project; nothing sent"])
+            f"REFUSED: secret scan hit: local id #11, field body, rule {PRIVATE_RULE_ID}; nothing sent"])
         self.assertEqual(client.requests, 0)
 
     def test_clean_amendment_is_sent_unchanged(self):
@@ -252,6 +272,7 @@ class CompletionTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(dir=Path(tempfile.gettempdir()).resolve())
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
+        use_synthetic_private_rule(self, self.base)
         self.path = self.base / "completion.json"
         self.client = FakeClient()
         before = {**issue(), "labels": ["ready-for-agent"], "state_reason": None}

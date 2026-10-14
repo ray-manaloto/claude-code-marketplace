@@ -17,6 +17,7 @@ import tomllib
 
 from githubkit import GitHub
 
+import git_delivery
 from github_search_one_page import API_VERSION, credential
 
 OWNER, REPO = "ray-manaloto", "claude-code-marketplace"
@@ -53,28 +54,29 @@ def scanner(mise: Path) -> str:
 
 
 def scan(local_id: str, fields: dict) -> None:
-    """Refuse outbound issue text that the repository's secret or private-name rules flag (D145, D171)."""
+    """Refuse outbound issue text that the repository's secret or private-name rules flag (D145, D171, D178)."""
     names = sorted(fields)
     binary = scanner(MISE)
-    try:
-        with tempfile.TemporaryDirectory(prefix="issue-scan-") as temp:
-            root, ignore = Path(temp).resolve() / "fields", Path(temp) / "empty-ignore"
-            root.mkdir()
-            ignore.touch()
-            for index, name in enumerate(names):
-                value = fields[name]
-                (root / str(index)).write_text("\n".join(value) if isinstance(value, list) else value, encoding="utf-8")
-            env = {k: v for k, v in os.environ.items() if k not in SCANNER_ENV}
-            result = subprocess.run([binary, "dir", "--no-banner", "--redact=100", "--log-level=error",
-                                     "--ignore-gitleaks-allow", "--config", str(SCAN_CONFIG),
-                                     "--gitleaks-ignore-path", str(ignore), "--report-format=json",
-                                     "--report-path=-", str(root)],
-                                    cwd=temp, env=env, capture_output=True, check=False, timeout=300)
-            findings = json.loads(result.stdout)
-            hits = sorted({(names[int(Path(item["File"]).relative_to(root).as_posix())], item["RuleID"])
-                           for item in findings})
-    except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.SubprocessError):
-        raise Refusal("secret scan could not complete; nothing sent") from None
+    with git_delivery.scan_config(SCAN_CONFIG, Refusal) as config:
+        try:
+            with tempfile.TemporaryDirectory(prefix="issue-scan-") as temp:
+                root, ignore = Path(temp).resolve() / "fields", Path(temp) / "empty-ignore"
+                root.mkdir()
+                ignore.touch()
+                for index, name in enumerate(names):
+                    value = fields[name]
+                    (root / str(index)).write_text("\n".join(value) if isinstance(value, list) else value, encoding="utf-8")
+                env = {k: v for k, v in os.environ.items() if k not in SCANNER_ENV}
+                result = subprocess.run([binary, "dir", "--no-banner", "--redact=100", "--log-level=error",
+                                         "--ignore-gitleaks-allow", "--config", str(config),
+                                         "--gitleaks-ignore-path", str(ignore), "--report-format=json",
+                                         "--report-path=-", str(root)],
+                                        cwd=temp, env=env, capture_output=True, check=False, timeout=300)
+                findings = json.loads(result.stdout)
+                hits = sorted({(names[int(Path(item["File"]).relative_to(root).as_posix())], item["RuleID"])
+                               for item in findings})
+        except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.SubprocessError):
+            raise Refusal("secret scan could not complete; nothing sent") from None
     if result.returncode != (1 if hits else 0) or not all(RULE_ID.fullmatch(rule) for _, rule in hits):
         raise Refusal("secret scan could not complete; nothing sent")
     if hits:

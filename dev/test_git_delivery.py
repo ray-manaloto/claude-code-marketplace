@@ -16,6 +16,17 @@ import unittest
 
 HELPER = Path(__file__).with_name("git_delivery.py")
 ROOT = HELPER.parent.parent
+sys.path.insert(0, str(HELPER.parent))
+from git_delivery import PRIVATE_RULE_ID, PRIVATE_RULES_ENV  # noqa: E402
+
+# A synthetic stand-in for the private-name rule: no test reads the real private file (D178).
+SYNTHETIC_PRIVATE_NAME = "quillfeather"
+
+
+def synthetic_private_rules(path: Path, rule_id: str = PRIVATE_RULE_ID) -> Path:
+    path.write_text(f'[[rules]]\nid = "{rule_id}"\ndescription = "Synthetic private name for tests"\n'
+                    f"regex = '''(?i)\\b{SYNTHETIC_PRIVATE_NAME}\\b'''\n", encoding="utf-8")
+    return path
 
 
 class DeliveryTests(unittest.TestCase):
@@ -27,6 +38,8 @@ class DeliveryTests(unittest.TestCase):
         self.env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
         self.env["PATH"] = os.pathsep.join(("/usr/bin", "/bin", self.env.get("PATH", "")))
         self.env.update(HOME=str(self.base / "home"), GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
+        self.private = synthetic_private_rules(self.base / "private-rules.toml")
+        self.env[PRIVATE_RULES_ENV] = str(self.private)
         self.repo = self.base / "repo"
         self.remote = self.base / "remote.git"
         self.repo.mkdir()
@@ -40,7 +53,8 @@ class DeliveryTests(unittest.TestCase):
         check = self.repo / "dev/mise"
         check.write_text("#!/bin/sh\nexit 0\n")
         check.chmod(0o700)
-        self.git("add", "selected.txt", "mise.dev.toml", "dev/mise")
+        shutil.copyfile(ROOT / ".gitleaks.toml", self.repo / ".gitleaks.toml")
+        self.git("add", "selected.txt", "mise.dev.toml", "dev/mise", ".gitleaks.toml")
         self.git("commit", "-qm", "base")
         subprocess.run(["git", "init", "--bare", "-q", str(self.remote)], check=True, capture_output=True, env=self.env)
         self.git("remote", "add", "origin", str(self.remote))
@@ -458,7 +472,12 @@ class DeliveryTests(unittest.TestCase):
         calls = self.base / label
         calls.mkdir()
         scanner = self.base / f"{label}-scanner"
-        scanner.write_text(f"#!/bin/sh\nout='{calls}'/$$\nprintf '%s\\n' \"$@\" > \"$out.argv\"\nenv > \"$out.env\"\nexit 0\n")
+        # Records argv, environment, and a copy and the modes of the config it was handed.
+        scanner.write_text(f"#!/bin/sh\nout='{calls}'/$$\nprintf '%s\\n' \"$@\" > \"$out.argv\"\nenv > \"$out.env\"\n"
+                           "prev=\nfor arg in \"$@\"; do\n  if [ \"$prev\" = --config ]; then\n"
+                           "    cp \"$arg\" \"$out.config\"\n"
+                           "    { ls -ld \"$arg\"; ls -ld \"$(dirname \"$arg\")\"; } | cut -c1-10 > \"$out.modes\"\n  fi\n"
+                           "  prev=$arg\ndone\nexit 0\n")
         scanner.chmod(0o700)
         return scanner, calls
 
@@ -482,18 +501,73 @@ class DeliveryTests(unittest.TestCase):
             self.assertEqual(seen & names, set(), record.name)
 
 
-    def test_publish_passes_root_config_to_every_scan(self) -> None:
-        # betterleaks auto-discovers a root .betterleaks.toml before .gitleaks.toml.
+    def test_publish_scans_with_tracked_config_plus_private_rule(self) -> None:
+        # An explicit --config (betterleaks auto-discovers a root .betterleaks.toml first) naming one
+        # private temporary file: the tracked rules plus the private rule file, deleted after the scan.
         scanner, calls = self.recording_scanner()
         result = self.publish_selected(scanner, self.prepare_selected())
         self.assertEqual(result.returncode, 0, result.stderr)
-        expected = str(self.repo.resolve() / ".gitleaks.toml")
+        tracked = (self.repo / ".gitleaks.toml").read_text(encoding="utf-8")
+        private = self.private.read_text(encoding="utf-8")
         records = sorted(calls.glob("*.argv"))
-        self.assertEqual(len(records), 2)
+        self.assertEqual(len(records), 2)  # staged scan and outbound history scan
         for record in records:
             argv = record.read_text().splitlines()
-            self.assertIn("--config", argv, record.name)
-            self.assertEqual(argv[argv.index("--config") + 1], expected)
+            config = Path(argv[argv.index("--config") + 1])
+            self.assertFalse(config.is_relative_to(self.repo.resolve()), record.name)
+            self.assertFalse(config.exists(), "combined config outlived its scan")
+            combined = record.with_suffix(".config").read_text(encoding="utf-8")
+            self.assertTrue(tracked in combined and private in combined, "combined config lacks a source")
+            self.assertEqual(record.with_suffix(".modes").read_text().split(), ["-rw-------", "drwx------"])
+
+    def test_publish_refuses_without_a_usable_private_rule_file(self) -> None:
+        tree = self.prepare_selected()
+        unreadable = synthetic_private_rules(self.base / "unreadable.toml")
+        unreadable.chmod(0)
+        self.addCleanup(unreadable.chmod, 0o600)
+        cases = (str(self.base / "absent.toml"),
+                 str(synthetic_private_rules(self.base / "wrong.toml", rule_id="other-rule")),
+                 str(unreadable),
+                 None)  # unset: the default path under the scratch HOME does not exist
+        saved = self.env
+        for case, value in enumerate(cases):
+            with self.subTest(case=case):
+                self.env = {k: v for k, v in saved.items() if k != PRIVATE_RULES_ENV}
+                if value:
+                    self.env[PRIVATE_RULES_ENV] = value
+                scanner, calls = self.recording_scanner(f"case-{case}")
+                try:
+                    result = self.publish_selected(scanner, tree)
+                finally:
+                    self.env = saved
+                self.assertFalse(SYNTHETIC_PRIVATE_NAME in result.stderr, "rule text leaked into the refusal")
+                self.assertEqual(result.returncode, 2, result.stderr)
+                self.assertEqual(result.stderr.count("\n"), 1)
+                self.assertIn(PRIVATE_RULES_ENV, result.stderr)
+                self.assertIn("~/.local/state/claude-code-marketplace/private-notes/scanner/private-rules.toml",
+                              result.stderr)
+                self.assertEqual(list(calls.iterdir()), [])
+                self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+                self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
+    def test_publish_refuses_a_commit_naming_the_private_project(self) -> None:
+        # The real pinned scanner, with the synthetic private rule supplied from outside the checkout.
+        binary = self.pinned_betterleaks()
+        (self.repo / "selected.txt").write_text(f"notes on {SYNTHETIC_PRIVATE_NAME} work\n")
+        prepared = self.invoke("prepare", "--path", "selected.txt")
+        self.assertEqual(prepared.returncode, 0, prepared.stderr)
+        tree = dict(line.split("=", 1) for line in prepared.stdout.splitlines())["index_tree"]
+        result = self.publish_selected(Path(binary), tree)
+        self.assertFalse(SYNTHETIC_PRIVATE_NAME in result.stderr + result.stdout, "private name leaked into output")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertIn("secret scan found potential leaks", result.stderr)
+        self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+        self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
+    def test_tracked_config_holds_no_private_rule(self) -> None:
+        # The private-name rule lives outside the repository (D178); the tracked file holds generic rules.
+        text = (ROOT / ".gitleaks.toml").read_text(encoding="utf-8")
+        self.assertFalse(PRIVATE_RULE_ID in text, "tracked .gitleaks.toml still defines the private rule")
 
 
     def test_publish_refuses_root_scanner_ignore_file(self) -> None:
