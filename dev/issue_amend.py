@@ -26,7 +26,7 @@ VERDICTS = {"acceptance": "accepted", "review": "approved", "retro": "applied", 
 ROOT = Path(__file__).resolve().parents[1]
 MISE, SCAN_CONFIG = ROOT / "dev" / "mise", ROOT / ".gitleaks.toml"
 SCANNER_ENV = ("BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML", "GITLEAKS_CONFIG", "GITLEAKS_CONFIG_TOML")
-RULE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}\Z")
+RULE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}\Z")  # scan constants: R-174 (D171), D113 fix to existing Python
 
 
 class Refusal(ValueError):

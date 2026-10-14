@@ -403,14 +403,16 @@ class CreationTests(unittest.TestCase):
         return ticket
 
     def test_scan_hit_refuses_preview_before_any_request(self):
-        for field, text, rule in (("title", private_name_sample(), "private-tr-project"),
-                                  ("body", secret_sample(), "aws-access-key-id"),
-                                  ("labels", private_name_sample(), "private-tr-project")):
-            with self.subTest(field=field):
+        # An inline allow comment in issue text never suppresses a finding.
+        for case, (field, text, rule) in enumerate((
+                ("title", private_name_sample(), "private-tr-project"),
+                ("body", secret_sample(), "aws-access-key-id"),
+                ("labels", private_name_sample(), "private-tr-project"),
+                ("body", secret_sample() + " # gitleaks:allow betterleaks:allow", "aws-access-key-id"))):
+            with self.subTest(case=case, field=field):  # never label a subtest with fixture text
                 self.hit_manifest(field, text)
                 client = FakeClient()
-                journal = self.journal.parent / f"journal-{field}"
-                journal.mkdir()
+                journal = Path(tempfile.mkdtemp(dir=self.journal.parent))
                 with self.assertRaises(Refusal) as caught:
                     preview(client, self.manifest, "A01", journal)
                 self.assertEqual(str(caught.exception).splitlines(),
