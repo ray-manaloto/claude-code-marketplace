@@ -28,10 +28,12 @@ with the independent reviewer; this only refuses a missing or unresolved record.
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -74,9 +76,24 @@ class Parser(argparse.ArgumentParser):
         raise UsageError(f"{self.prog}: error: {message}")
 
 
+@functools.cache
+def git_executable() -> str | None:
+    """The first git on PATH that is not a mise shim (a `mise/shims` entry, or a link to the mise
+    binary; a shim costs ~0.18 s per call). None when there is none, so every git query fails
+    closed. A copy of dev/hooks/git_gate.git_executable; the two files import nothing from each other."""
+    for entry in os.environ.get("PATH", os.defpath).split(os.pathsep):
+        found = None if Path(entry).parts[-2:] == ("mise", "shims") else shutil.which("git", path=entry)
+        if found and Path(found).resolve().name != "mise":
+            return found
+    return None
+
+
 def git(repo: Path, *args: str) -> str | None:
+    executable = git_executable()
+    if not executable:
+        return None
     try:
-        result = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, check=False)
+        result = subprocess.run([executable, "-C", str(repo), *args], capture_output=True, text=True, check=False)
     except OSError:
         return None
     return result.stdout.strip() if result.returncode == 0 else None
