@@ -1,0 +1,71 @@
+# Raw gh writes skip the secret and private-name scan (D179, R-174); Codex runs them through the route.
+# Codex execpolicy prefix rules (Starlark), per https://developers.openai.com/codex/rules (webclaw
+# mirror offline/research/g1-public-text/docs/codex-rules.md, fetched 2026-10-14). They load only
+# while the project .codex/ layer is trusted, and a prefix covers the leading argv only, so
+# `gh -R o/r issue create`, an endpoint before `-X`, field-implied POSTs and graphql mutations stay
+# outside them; the Claude Bash gate covers those (docs/agents/hooks-and-mods.md, D179).
+# Check: codex execpolicy check --rules .codex/rules/gh-write.rules -- <command>
+
+ROUTE = ("Raw gh writes skip the secret and private-name scan (D179). Use ./dev/mise run gh:write -- <gh args>, " +
+         "or the issue:* tasks for new issues, bodies and labels (docs/agents/issue-tracker.md).")
+WRITE = "forbidden"
+
+prefix_rule(
+    pattern = ["gh", "issue", ["create", "new", "edit", "comment", "close", "reopen", "delete", "transfer", "pin",
+                               "unpin", "lock", "unlock", "develop"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh issue comment 12 --body x", "gh issue create -t t -b b"],
+    not_match = ["gh issue view 12", "gh issue list"],
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", ["create", "new", "edit", "comment", "review", "close", "reopen", "merge", "ready", "lock",
+                            "unlock", "update-branch", "revert"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh pr comment 4 -b x", "gh pr merge 4 --squash"],
+    not_match = ["gh pr view 4", "gh pr diff 4", "gh pr checkout 4"],
+)
+
+prefix_rule(
+    pattern = ["gh", ["release", "gist", "label", "repo"], ["create", "new", "edit", "delete", "upload", "delete-asset",
+                                                          "rename", "archive", "unarchive", "fork", "sync"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh release create v1", "gh label create bug", "gh repo edit --description d"],
+    not_match = ["gh release view v1", "gh label list", "gh repo clone o/r", "gh gist clone 1"],
+)
+
+prefix_rule(
+    pattern = ["gh", "label", "clone"],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh label clone o/source"],
+)
+
+prefix_rule(
+    pattern = ["gh", "repo", ["deploy-key", "autolink"], ["add", "create", "delete"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh repo deploy-key add k.pub"],
+    not_match = ["gh repo deploy-key list"],
+)
+
+prefix_rule(
+    pattern = ["gh", "api", ["-X", "--method"], ["POST", "PUT", "PATCH", "DELETE", "post", "put", "patch", "delete"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh api -X POST repos/o/r/issues", "gh api --method patch repos/o/r"],
+    not_match = ["gh api -X GET search/issues", "gh api repos/o/r"],
+)
+
+prefix_rule(
+    pattern = ["gh", "api", ["-XPOST", "-XPUT", "-XPATCH", "-XDELETE", "-Xpost", "-Xput", "-Xpatch", "-Xdelete",
+                             "--method=POST", "--method=PUT", "--method=PATCH", "--method=DELETE", "--method=post",
+                             "--method=put", "--method=patch", "--method=delete"]],
+    decision = WRITE,
+    justification = ROUTE,
+    match = ["gh api -XDELETE repos/o/r", "gh api --method=PUT repos/o/r/topics"],
+    not_match = ["gh api -XGET repos/o/r"],
+)
