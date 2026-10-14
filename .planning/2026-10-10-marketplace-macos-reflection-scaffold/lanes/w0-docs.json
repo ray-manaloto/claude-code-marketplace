@@ -7,12 +7,12 @@
   ],
   "title": "Wave-0 docs: claude-team.md integration rule, context budget, restart rule, hooks; D15 rewrite of ticket-retro.md; .claude/AGENTS.md settings key list; issue-tracker.md issue:* mapping; skill-invocations and spec residual rows",
   "owner": "doc-writer",
-  "writer_model": "opus (high) per the parent's wave-0 brief (frontier.toml model_policy.docs = sonnet)",
+  "writer_model": "sonnet-5.5",
   "reviewer": "reviewer (fable, high, cold, read-only)",
   "retro_writer": "retro-writer (fable, high)",
   "worktree": ".claude/worktrees/w0-docs",
   "branch": "claude/w0-docs-rules",
-  "base_sha": null,
+  "base_sha": "c21941f",
   "allocated_from": "d420a7e",
   "base_rule": "base_sha = the commit that adds this record (C4 required change 2), i.e. the wave-0 allocation commit; it cannot name itself, so the parent fills it in the next records commit; the worktree is cut from that commit and the brief names its SHA",
   "import_source": null,
@@ -97,11 +97,14 @@
   },
   "brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-docs-brief.md",
   "review_brief": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/phase3/w0/w0-docs-review-brief.md",
-  "status": "allocated",
-  "review": null,
-  "retro": null,
+  "status": "integrated",
+  "review": "PASS-with-P2 (phase3/w0/w0-docs-review.md)",
+  "retro": "passed",
+  "lane_commit": "749577d",
+  "integration_merge": "e40a62a",
   "created_at": "2026-10-14T03:20:32Z",
   "notes": [
-    "documents rules and thresholds only; the doctor, agent_gate and prompt_hook hook lines are proposed by their lanes as literal edits for the parent"
+    "documents rules and thresholds only; the doctor, agent_gate and prompt_hook hook lines are proposed by their lanes as literal edits for the parent",
+    "writer_model from the 4854db1 trailer (Claude Sonnet 5.5); the brief asked opus (high), frontier model_policy.docs = sonnet (review P3-3). lane_commit 749577d = impl 4854db1 + retro repair; integration_merge e40a62a has parents c21941f 749577d"
   ]
 }

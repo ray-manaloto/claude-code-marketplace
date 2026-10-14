@@ -7,15 +7,15 @@ PLAN_ID `2026-10-10-marketplace-macos-reflection-scaffold`; `PWF_PLAN_ROOT` (abs
 is closed. Pin `PWF_PLAN_ROOT` and `PLAN_ID` in the host env (a Bash prefix never reaches hooks).
 
 ## Session handoff (2026-10-13)
-- Checkout: HEAD `d420a7e` = remote (second A09 publish, group 3B, 95 paths, on `0a68dce`;
-  CI `38504716758` success); no `MERGE_HEAD`; only these post-publish record lines are unstaged.
+- Checkout: lane w0-docs integrated (merge `e40a62a` of `749577d` on allocation `c21941f`, then
+  the records commit); remote `d420a7e` until its A09 publish (`phase3/w0/w0-docs-merge-report.md`).
 - Settings split committed (D4/D21): project `.claude/settings.json` holds `$schema`, hooks, four
   workflow plugins + marketplaces, autoCompact keys, `env.PLAN_ID`; personal keys stay local.
 - Snapshot `imports/codex-worktrees-20261013/` (index only, D24); review `reviews/ccm-20261013/`
   (SYNTHESIS.md ranks it; R1-R8, C1-C4, T1/T2, sweeps A/B/C).
 - Next action: group 4, wave-0 prevention W0-1..W0-7 (C4 safety order) as lanes with Fable
   review; then the CT-21 import lane. Live PreToolUse gate denies `git merge`/`git push` text.
-- Pending user: none of D1-D45 (approved; hunk 2 applied 2026-10-13); typing
+- Pending user: D47 (CODING_STANDARDS rule 5 sentence); D1-D45 approved; typing
   `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`; personal autoCompact (D21).
 - Resume order: `reviews/ccm-20261013/SYNTHESIS.md` (§1, §5) > `lanes/*.json` >
   `retros/ccm-20261013-session.md`; then `./dev/mise tasks validate`, `./dev/mise run check`.
@@ -87,7 +87,7 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
 - [ ] W0-4 doctor slice CT-22a (`dev/doctor/`, surfaces session-start, check, pre-commit)
 - [ ] W0-5 hk `pre-commit` `records` step = `doctor --surface pre-commit`
 - [ ] W0-6 `decisions.jsonl` seeded + `dev/plan_decide.py` minimal (CT-24 seed)
-- [ ] W0-7 docs: claude-team.md (`--no-ff`, never `--no-commit`; context budget; restart
+- [x] W0-7 docs: claude-team.md (`--no-ff`, never `--no-commit`; context budget; restart
   rule; two Stop gates), D15 rewrites, `.claude/AGENTS.md` key list, secrets line (N1);
   residual SYNTHESIS §4 rows (I3 review P3-5): `ticket-retro.md:4-8` D15 rewrite, `claude-team.md`
   merge rule and hooks caveats, `.claude/AGENTS.md` marketplaces line, `issue-tracker.md`
@@ -97,7 +97,8 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
   briefs `reviews/ccm-20261013/phase3/w0/`, report `phase3/W0-allocation-report.md`):
   - [ ] w0-doctor (CT-22a part 1: W0-1 test, W0-4 core, W0-5, doctor fixtures): allocated, cut
   - [ ] w0-decisions (CT-24 seed: W0-6): allocated, cut
-  - [ ] w0-docs (W0-7; CT-02b and CT-23 doc slices): allocated, cut
+  - [x] w0-docs (W0-7; CT-02b and CT-23 doc slices): integrated `e40a62a` (lane `749577d`, review
+    PASS-with-P2, retro passed); deferred: `dev/check.py` manifest rule after w0-doctor, D47
   - [ ] w0-doctor-records (CT-22a part 2: lanes.py, agents.py): allocated, sequenced after w0-doctor
   - [ ] w0-session-hooks (CT-23 seeds: W0-3, hooks fixtures + corpus): allocated, sequenced, integrates last
   W0-1 keys are already in `.claude/settings.json` (merge `760b154`); local pins stay a parent/user
@@ -259,6 +260,7 @@ answers to K1 §9 (`reviews/ccm-20261013/skills/K1-orchestrator-skill-design.md`
 | D43 | Context thresholds compare against the implement model's ceiling (K2 default b) | accepted 2026-10-13 |
 | D44 | Frontier tests run via `unittest discover -s dev -p test_ticket_frontier.py` (K2 default c) | accepted 2026-10-13 |
 | D45 | Plain-text answers live in `frontier/answers.jsonl` until CT-24 (K2 default d) | accepted 2026-10-13 |
+| D47 | `CODING_STANDARDS.md` rule 5 gains: "A document that describes behaviour absent at its base names the ticket that lands it, with the id read from the lane record or the ticket ledger, not from a review document." (w0-docs retro audit P3; D31 keeps the file `propose`) | pending user (proposed 2026-10-14 at the w0-docs integration) |
 | D12-applied | `progress.md` archive applied 2026-10-13 ahead of D12 approval against the append-only rule in `.claude/rules/planning-records.md`; reversible from `reviews/ccm-20261013/plan-backups/` | recorded 2026-10-13 |
 | D-all | D1-D26 presented 2026-10-13 and approved at defaults; D27-D45 accepted; CT-25 added; accepted-decisions hunk 2 applied on the user's word | approved 2026-10-13 (D1–D45) |
 

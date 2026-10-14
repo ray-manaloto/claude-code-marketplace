@@ -520,8 +520,20 @@ verbatim in `progress-archive-2026-10-13.md`.
   `base_sha` filled after this commit), ledger rows CT-02b/22/23/24, Phase 4 checklist.
   Worktree prep rcs, briefs and dispatch order: `reviews/ccm-20261013/phase3/W0-allocation-report.md`.
 
-- NEXT (2026-10-14, owner: parent; rewrite in place, keep last): dispatch `w0-doctor`,
-  `w0-decisions`, `w0-docs` with their briefs (`reviews/ccm-20261013/phase3/w0/`); fill
-  `base_sha` with the allocation commit; cut `w0-doctor-records` and `w0-session-hooks` after
-  `w0-doctor` and `w0-decisions` integrate; then the CT-21 import lane; then the user types
-  `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`. Still no `hooks:install` (D2).
+- 2026-10-14 (Phase 4 wave 0, lane w0-docs integration, root checkout at `c21941f`): merge
+  `e40a62a` (`--no-ff` of `749577d` = impl `4854db1` Sonnet 5.5 + retro repair; run from a
+  scratchpad script, merge rc 0, no git hooks installed). Cold review PASS-with-P2, retro passed.
+  Records commit: P2-1 `spec.manifest.json` rebuilt (`body_sha256` `a659d80b…`, file
+  `b8518087…`); `lanes/w0-docs.json` integrated; `base_sha` `c21941f` on all five w0 records;
+  `.claude/rules/planning-records.md` writer_model sentence (D31 auto); `skill-invocations.md`
+  row 20 split into three rows; ledger CT-02b/CT-23 doc slices integrated. Deferred: the
+  `dev/check.py` manifest-hash rule until w0-doctor integrates (it owns `dev/check.py`); the
+  CODING_STANDARDS rule 5 sentence as D47 (pending user). Gates and A09 publish:
+  `reviews/ccm-20261013/phase3/w0/w0-docs-merge-report.md`.
+
+- NEXT (2026-10-14, owner: parent; rewrite in place, keep last): integrate `w0-decisions` once
+  its retro passes, then `w0-doctor` (then apply the w0-docs `dev/check.py` manifest-hash rule,
+  retro `w0-docs.md` audit P2); then cut `w0-doctor-records` and `w0-session-hooks`
+  (`base_sha` `c21941f` recorded); then the CT-21 import lane; then the user answers D47 and
+  types `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`. Still no
+  `hooks:install` (D2).
