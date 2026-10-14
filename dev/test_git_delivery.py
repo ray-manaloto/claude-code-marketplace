@@ -10,10 +10,12 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 import unittest
 
 
 HELPER = Path(__file__).with_name("git_delivery.py")
+ROOT = HELPER.parent.parent
 
 
 class DeliveryTests(unittest.TestCase):
@@ -414,13 +416,29 @@ class DeliveryTests(unittest.TestCase):
                 self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
 
 
+    def pinned_betterleaks(self) -> str:
+        # The mise.dev.toml pin, resolved by the repo's mise, never a PATH lookup.
+        with (ROOT / "mise.dev.toml").open("rb") as source:
+            version = tomllib.load(source)["tools"]["aqua:betterleaks/betterleaks"]
+        env = {key: value for key, value in os.environ.items() if key not in ("VIRTUAL_ENV", "UV_PROJECT_ENVIRONMENT")}
+        found = subprocess.run([str(ROOT / "dev/mise"), "which", "betterleaks"], cwd=ROOT, env=env,
+                               text=True, capture_output=True, check=False)
+        binary = found.stdout.strip()
+        if found.returncode or not binary or not Path(binary).is_file():
+            missing = f"pinned betterleaks {version} is missing; run ./dev/mise install aqua:betterleaks/betterleaks"
+            if os.environ.get("MISE_TASK_NAME") == "test:delivery":
+                self.fail(missing)
+            self.skipTest(missing)
+        reported = subprocess.run([binary, "version"], env={"PATH": "/usr/bin:/bin", "HOME": str(self.base)},
+                                  text=True, capture_output=True, check=False)
+        self.assertEqual((reported.returncode, reported.stdout.strip()), (0, version), binary)
+        return binary
+
     def test_root_config_reports_lone_aws_access_key_id(self) -> None:
         # betterleaks#408: the default rule needs a paired secret; .gitleaks.toml closes the gap.
-        binary = shutil.which("betterleaks")
-        if binary is None:
-            self.skipTest("betterleaks is not on PATH; run ./dev/mise run test:delivery")
+        binary = self.pinned_betterleaks()
         config = self.repo / ".gitleaks.toml"
-        shutil.copyfile(HELPER.parent.parent / ".gitleaks.toml", config)
+        shutil.copyfile(ROOT / ".gitleaks.toml", config)
         synthetic = "AKIA" + "QX7ZM2NB" + "K4RTW6YP"  # assembled so this file holds no key ID
         documented = "AKIA" + "IOSFODNN7" + "EXAMPLE"
         (self.repo / "leak.txt").write_text(f"id: {synthetic}\ndoc: {documented}\n")
