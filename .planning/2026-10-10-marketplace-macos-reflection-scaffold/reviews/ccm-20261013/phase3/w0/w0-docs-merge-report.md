@@ -11,8 +11,11 @@ Logs and intents: `…/scratchpad/merge-w0-docs/` (outside the checkout).
 
 - Merge M `e40a62a4fcaa2d1c2139d4285342f852cf5508d3` (parents `c21941f`, `749577d`).
 - Records R `80f319027dd5a00487ecf59845bdb75f6c507d24` (12 paths).
-- Publish P: pending (filled after `delivery:publish`; the committed copy keeps "pending").
-- CI: pending.
+- Publish P `3bb4fd3d11834a73adaff6f62a76776b1f813a32` (parent `80f3190`, tree `eab45ff2`, 7 files,
+  author Raymond Manaloto); preimage `d420a7e`; no refusal.
+- CI: research-fast run `38509610914` (push, head `3bb4fd3d`) completed `success` 04:07:02Z.
+- Post-publish fields below were filled after the publish. The committed copy (in P) keeps them
+  "pending"; this update is unstaged and the next publish carries it.
 
 ## Pre-flight
 
@@ -89,4 +92,37 @@ named checks above. Treat these rcs as this checkout's, not as proof that nothin
 - Preimage `d420a7e`; check_task `["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`;
   subject "docs: publish wave-0 lane w0-docs integration".
 
-Prepare, publish, post-publish verification and CI: pending.
+| Command | rc | Output |
+|---|---|---|
+| `git diff --cached --name-only HEAD \| wc -l` (before) | 0 | 0 |
+| `./dev/mise run delivery:prepare -- prepare.json 52bec639…` | 0 | `head=80f31902…`, `index_tree=eab45ff2e422b4d1…`; 1 M + 6 A |
+| `./dev/mise run delivery:publish -- publish.json 3835311e…` (04:02:45-04:05:34Z) | 0 | `published=3bb4fd3d…`, `history_scan_rc=0` |
+
+`publish` rc 0 implies rc 0 for the scratch-tree `tasks validate`, `check`,
+`check:acceptance-baseline`, `test:delivery`; each `check_task` in the checkout; `git diff --cached
+--check`; the staged gitleaks 8.30.1 scan; and the outbound history scan over `d420a7e..3bb4fd3`
+(rc 0, no baseline). Per-task output is captured by the script (`dev/git_delivery.py:32-41`).
+
+## Post-publish verification
+
+| Command | rc | Result |
+|---|---|---|
+| `git log --oneline -4` | 0 | `3bb4fd3`, `80f3190`, `e40a62a`, `749577d` |
+| `git rev-parse HEAD origin/codex/marketplace-native-onboarding` | 0 | both `3bb4fd3d…` |
+| `git ls-remote --heads origin codex/marketplace-native-onboarding` | 0 | `3bb4fd3d…` |
+| `git log origin/…..HEAD \| wc -l` | 0 | 0 |
+| `git status --porcelain` | 0 | only `??` parent files: `W0-allocation-report.md` and other lanes' `w0/` files (more appeared during this run) |
+| `gh run list --limit 2` | 0 | `38509610914` research-fast on the publish |
+| `timeout 900 gh run watch …` | 1 | incident: the mise `timeout` shim has no version set; nothing was watched |
+| `gh run watch 38509610914 --exit-status --interval 30` | 0 | completed success |
+
+## Incidents and notes
+
+- Merger identity: this merger ran as Opus 5.5. The commits carry the briefed `Claude Fable 5.1`
+  trailer, so a `writer_model`-from-trailer read of M, R or P would say Fable. Parent decides
+  whether to correct.
+- `D1-D46 approved` per the brief, but `task_plan.md` Decisions has no D46 row; D47 was added
+  after D45. The parent should reconcile the numbering.
+- Race caveat above (sibling `hk validate` during `check`).
+- Not run: `ci/acceptance.sh`, container, provider, hook-runtime and fresh-session acceptance;
+  `hooks:install` (D2).

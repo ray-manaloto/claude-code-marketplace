@@ -1,0 +1,26 @@
+# Review brief: w0-decisions (reviewer)
+
+LANE-UNIT: w0-decisions. Role: reviewer (`.claude/agents/reviewer.md`), Fable high, cold, read-only: do not edit, write, commit, merge, push or spawn agents; return text only (the parent saves it as `RV/phase3/w0/w0-decisions-review.md`).
+Shorthand: ROOT=/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace, P=ROOT/.planning/2026-10-10-marketplace-macos-reflection-scaffold, RV=P/reviews/ccm-20261013, C2/C3/C4=RV/prevention/C{2,3,4}-*.md.
+Inputs: record P/lanes/w0-decisions.json; acceptance source RV/phase3/w0/w0-decisions-brief.md (items and test names) and the C2/C3/C4 anchors it cites; ticket CT-24 (wave-0 seed); the implementer's receipt (path from the parent).
+Worktree ROOT/.claude/worktrees/w0-decisions, branch `claude/w0-decisions-ledger`, fixed point (base) `c21941f`, head = the receipt's final SHA.
+Diff: `git diff codex/marketplace-native-onboarding...<head>` is the lane's own change after its tip merge; also `git diff --stat `c21941f`..<head>` and `git log --first-parent `c21941f`..<head>` to confirm the tip merge. Read every changed file.
+
+## Standards axis (each holds or is a finding)
+- Changed paths are a subset of `owned_paths` plus the lane's retro and ledger; no lane record, task_plan, progress, findings or ticket-ledger edit; the 19 baseline files untouched (`./dev/mise run check:acceptance-baseline`).
+- `CODING_STANDARDS.md`, the nearest `AGENTS.md`, `.claude/rules/*.md`, `docs/agents/codex-task-orchestration.md#ownership`; stdlib only, checked against `sys.stdlib_module_names`, not inferred from `python3 -I` (C4 change 12); <= 80 handwritten lines per file and about 300 per unit (C4), else a reported split point.
+- Tests assert an external seam (CLI, hook stdin/stdout, scratch repo), are red-first per the receipt, and name the C2/C3 ids; no tautological expectations.
+- Receipts bind actual rcs; no named check is claimed while another ran; the retro draft passes `./dev/mise run retro:gate -- w0-decisions`.
+
+## Spec axis
+Every item in the brief is demonstrated by a named test or a receipt line, or recorded as unrun with a reason. Lane-specific checks:
+- Append-only: the four seed rows were written by the CLI (compare `git diff` of `decisions.jsonl` with the receipt's commands); a duplicate approval leaves the byte prefix unchanged (T-E5).
+- False positives: an `operation` row or an unreceipted row never appears in `approved()`; none of the four seed rows is an `approval`.
+- Ids cannot be confused with task_plan D1-D45; every seed row's `source` names its plan decision (D20, D25, D3/D23).
+- No `mise.dev.toml` edit in the lane; the TOML hunk in the receipt is literal, matches the row style of `mise.dev.toml` and is valid TOML (read it; do not write it anywhere).
+
+## Re-run yourself (read-only; record each rc)
+`python3 -I -m unittest discover -s dev -p test_plan_decide.py -v`; `python3 -I dev/plan_decide.py --help`; `./dev/mise run check`; `./dev/mise run retro:gate -- w0-decisions`.
+
+## Verdict format
+`## Standards` and `## Spec` blocks, findings severity-ordered P1/P2/P3 with `path:line` and the evidence read (P1 blocks integration, P2 is fixed before acceptance, P3 defers with an owner), then `Disposition: PASS | PASS-with-P2/P3 | FAIL` and the checks you did not run. <= 400 words per axis.
