@@ -1,0 +1,70 @@
+{
+  "unit": "ct35a-session-start-mod",
+  "tickets": [
+    "CT-35 (A2-22, A2-23; D61, D87, D92, D93, D103; D186 lifts the hold)"
+  ],
+  "title": "Project session-start mod: session.start awaits a plain /reload-plugins before the first request; classic.SessionStart returns reloadSkills and sessionTitle",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/ct35a-session-start-mod",
+  "branch": "claude/ct35a-session-start-mod",
+  "base_sha": "32e742c",
+  "allocated_from": "32e742c",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "skills audit 2026-10-14 (session scratchpad skills-audit/report.md) and the frontier-scheduler scope proposal",
+  "delivers": [
+    "a skills-dir plugin at .claude/skills/session-start/ (.claude-plugin/plugin.json with defaultEnabled true, hooks/hooks.json, hooks/register.ts, a reference SKILL.md) that loads on 2.1.300 without editing .claude/settings.json",
+    "session.start awaits $.command.run reload-plugins (plain, never --force) in interactive sessions before the first request, and reports a held or rejected reload as a status message",
+    "classic.SessionStart returns reloadSkills on startup and clear, and sessionTitle on startup when no title was given (claude -n wins): ccm-<local time %Y%m%dT%H%M%S.%N, hour offset> per D61 and D76, produced by the OS date command (one format string shared with dev/handoff.py next-name; ADR 0008, no logic in the mod)",
+    "no settings SessionStart hook for /clear (D92, D103 replace D61's hook route); the doctor's existing SessionStart hook stays",
+    "acceptance recorded: claude plugin validate --strict .claude/skills/session-start rc 0 and claude plugin list shows session-start@skills-dir; the live check (reload before the first request, a prompt typed during start waits, the title appears, /cost prompt-cache line without a miss) is the user's restart onto 2.1.300, recorded after it",
+    "no .agents/skills mirror (Codex cannot run mods); the parent adds that exception to .claude/AGENTS.md"
+  ],
+  "owned_paths": [
+    ".claude/skills/session-start/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/ct35a-session-start-mod.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/AGENTS.md",
+    ".claude/agents/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)",
+    ".agents/",
+    "docs/agents/hooks-and-mods.md",
+    "docs/adr/",
+    "dev/handoff.py",
+    ".claude/skills/session-handoff/",
+    ".claude/skills/session-resume/"
+  ],
+  "required_checks": [
+    "claude plugin validate --strict .claude/skills/session-start",
+    "claude plugin list (session-start@skills-dir loaded)",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- ct35a-session-start-mod"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "scope from the frontier-scheduler proposal 2026-10-14 (scratchpad skills-audit/report.md S1-S13; R3-await-plugin-reload.md; R1-mod-loading-gaps.md)",
+    "stands alone as a skills-dir plugin because the mods library (CT-31a) is unbuilt; it moves onto the library when CT-31a lands (parent decision D187 under D186)",
+    "reference only: the dotfiles session-start mod queues --force reloads unawaited, the shape D103 rejects; do not copy it",
+    "2.1.300 docs and types are not on disk; use the 2.1.299 copies in the session scratchpad research5/R1/docs and the 2.1.296 mod types; record any API you could not confirm",
+    "cut the worktree with git worktree add, never isolation worktree (#92533 unverified on this host); the mod registers no tool.call hook",
+    "rollback: claude plugin disable session-start@skills-dir"
+  ]
+}

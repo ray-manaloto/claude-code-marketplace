@@ -1,0 +1,65 @@
+{
+  "unit": "handoff-script",
+  "tickets": [
+    "skills audit S4, S7, S9, S10 (R-175)"
+  ],
+  "title": "dev/handoff.py: next-name generator, a fresh start-command default, startup injection probe, --session-id, context line for /quit",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/handoff-script",
+  "branch": "claude/handoff-script",
+  "base_sha": "32e742c",
+  "allocated_from": "32e742c",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "skills audit 2026-10-14 (session scratchpad skills-audit/report.md) and the frontier-scheduler scope proposal",
+  "delivers": [
+    "python3 -I dev/handoff.py next-name prints ccm-<local %Y%m%dT%H%M%S.%N, hour offset> by calling the OS date command with the same format string as the session-start mod (D61, D76; no new Python logic beyond the call, ADR 0008)",
+    "start-command without --name uses next-name, never the current owner's name (S4)",
+    "start-command and owner accept --session-id; the printed start command passes one (S7)",
+    "the injection probe also fires source startup, not only clear (S9)",
+    "context_lines no longer says /session-resume only after /clear; it names the /quit and restart path (S10)",
+    "tests in dev/test_handoff.py cover each change at the CLI seam"
+  ],
+  "owned_paths": [
+    "dev/handoff.py",
+    "dev/test_handoff.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/handoff-script.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/AGENTS.md",
+    ".claude/agents/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)",
+    "dev/doctor/",
+    "dev/check.py",
+    ".claude/skills/",
+    ".agents/",
+    "docs/"
+  ],
+  "required_checks": [
+    "./dev/mise run test:handoff",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- handoff-script"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "scope from the frontier-scheduler proposal 2026-10-14; the skills and docs halves (handoff-skills, ct35b-session-start-docs) follow after these two merge",
+    "existing Python takes fixes only (D113); the generator is one subprocess call to date, so the format string has one source per D61"
+  ]
+}
