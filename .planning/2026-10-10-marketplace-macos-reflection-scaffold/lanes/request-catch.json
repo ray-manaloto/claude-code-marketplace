@@ -1,0 +1,67 @@
+{
+  "unit": "request-catch",
+  "tickets": [
+    "CT-90 (D167, dated D113 exception)"
+  ],
+  "title": "dev/handoff.py request projection and catch: roll-call line, generated pending-user list, H.request-unprojected and H.request-unlinked",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/request-catch",
+  "branch": "claude/request-catch",
+  "base_sha": "0331316",
+  "allocated_from": "0331316",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "reviews/ccm-20261014/context-loss/CL4-proposal.md (E1-E3, E7 and section 6 row CT-89 there, CT-90 here) and CL5 review",
+  "delivers": [
+    "dev/handoff.py reads the task_plan 'Open requests' section and the untracked request ledger (format and path from CL4 E1/E2; absent ledger = no captured requests, reported, not an error) and emits finding H.request-unprojected (P1: a captured request with no task_plan item and no disposition) and H.request-unlinked (P2: an open item with no GitHub issue link)",
+    "the generated Next Step block carries a roll-call line (counts of open requests and their ids, within the block budget) and the pending-user list is generated from the open items instead of the hand-written template section",
+    "dev/test_handoff.py: seam tests through the CLI (check --json exit codes and finding ids) on fixtures: unprojected, projected, linked, disposed, absent ledger",
+    "predicate.md and handoff-template.md document the new findings and the generated list (with the byte-identical .agents mirror)",
+    "every new code path carries a comment naming D167 as a dated D113 exception deleted by CT-93a"
+  ],
+  "owned_paths": [
+    "dev/handoff.py",
+    "dev/test_handoff.py",
+    ".claude/skills/session-handoff/references/predicate.md",
+    ".claude/skills/session-handoff/references/handoff-template.md",
+    ".agents/skills/session-handoff/references/predicate.md",
+    ".agents/skills/session-handoff/references/handoff-template.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/request-catch.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "mise.dev.toml",
+    "dev/hooks/",
+    "dev/doctor/",
+    "docs/",
+    "AGENTS.md",
+    "*/AGENTS.md",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record; task_plan.md is read-only input)"
+  ],
+  "required_checks": [
+    "python3 -I -m unittest discover -s dev -p test_handoff.py",
+    "python3 -I dev/handoff.py check --json (on the live checkout: the new findings appear for the real open items)",
+    "diff -r .claude/skills/session-handoff .agents/skills/session-handoff",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- request-catch"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "review": null,
+  "retro": null,
+  "created_at": "2026-10-14",
+  "notes": [
+    "mirrors count as one maintained file each; the unit is at the five-file limit with the mirrors as copies",
+    "the request ledger itself is CT-88's; this lane reads its documented format"
+  ]
+}
