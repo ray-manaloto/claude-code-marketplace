@@ -19,7 +19,7 @@ add #102134 to the watch list; `mise.dev.toml` gains `requests:tail`; `dev/test_
 Owned paths widened mid-lane: the parent added `dev/test_hooks.py` (the `Settings` test and the
 `RequestHooks` fixture tests only) to the lane record, because `Settings` pinned the hook set to the
 three deny gates and failed `test:hooks` on any D166 hook (finding 1), and the fixture proof belongs
-beside it. The record edit sits uncommitted in the main checkout's lane record; the parent commits it.
+beside it. The parent committed the widened record in `18732c7`, merged here in `69163fa`.
 
 Receipts (VIRTUAL_ENV unset; on the merged bytes `69163fa` unless noted):
 - Fixture checks of every hook command, `/bin/sh -c` on fixture stdin, scratch HOME: capture
