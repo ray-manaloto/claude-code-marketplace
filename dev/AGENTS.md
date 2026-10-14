@@ -10,7 +10,8 @@ Lightweight development surface; nothing here installs a runtime. Tests follow
 runner. Each tracker, delivery and research helper has a sibling `test_<helper>.py`.
 Subdirectories: `hooks/` (the three deny gates that stay settings hooks;
 `docs/agents/hooks-and-mods.md`), `research_refresh/` (runner, own `README.md` and tests), `toolchains/`
-(C++ toolchain steps), `global-mise/` (toolchain mise profiles), `fixtures/`.
+(C++ toolchain steps), `global-mise/` (toolchain mise profiles), `fixtures/`. `doctor/`
+(after-the-fact detectors behind `./dev/mise run doctor`; contract in `.claude/rules/dev-doctor.md`).
 
 ## Test discovery
 

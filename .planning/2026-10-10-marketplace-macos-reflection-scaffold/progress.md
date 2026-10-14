@@ -780,6 +780,17 @@ verbatim in `progress-archive-2026-10-13.md`.
   (D139, DL-185). Pending: w0-doctor rebase and integration with parent edit 2; GitHub Support
   purge of PR #109 refs (user sends); guard in pre-push; deny gate passes delete-only pushes.
 
+- 2026-10-14 (w0-doctor integration, D101, D115): gate-git-path published `2185777` (A09 rc 0,
+  history scan rc 0; CI acceptance, development checks and research-fast success; receipt DL-191).
+  w0-doctor rebased from the archive onto `2185777` (`b01d9bb`), lane checks rc 0, merged `878e7f0`.
+  Records: mise rows `test:retro-gate`, `test:frontier`, `plan:decide`, `test:plan-decide` in
+  `check:research` (HANDOFF §3.1, §3.6, gate-git-path edit 2); THRESHOLDS table test (§3.3, 14
+  doctor tests); retro items 1-4, 6, 7 (§3.5); D12 rows DL-187..DL-189 (§3.4); W0-1, W0-4, W0-5
+  ticked. §3.2 (`dev/check.py` manifest rule) deferred to a C++ ticket under D113, like
+  gate-git-path edit 3. Gates rc 0: tasks validate (64), check, baseline 19, test:doctor, hooks,
+  plan-decide, retro-gate, frontier, check:records, hk validate, both retro gates, handoff 36,
+  `git diff --check`, doctor check surface, check:research (17 tasks).
+
 - NEXT (2026-10-14 rev 12, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Integrate w0-doctor (`f1bbc8d`) per HANDOFF §2(b); then wave 0a of plan Phase 4b:
   CT-40, the D7 spike and `21-offline` in the cxx slot, its lane record written first (D77, D82).

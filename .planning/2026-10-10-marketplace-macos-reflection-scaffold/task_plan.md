@@ -87,13 +87,13 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
 - **Status:** residual (9 open; 11 is Phase 5)
 
 ### Phase 4: Wave 0 prevention (C4 order, D26)
-- [ ] W0-1 settings keys: `autoCompactEnabled: true`, `autoCompactWindow: 700000`,
+- [x] W0-1 settings keys: `autoCompactEnabled: true`, `autoCompactWindow: 700000`,
   `env.PLAN_ID`; local `PWF_PLAN_ROOT`, `PWF_INJECT=smart`, `PWF_TRUSTED_PYTHON` (D21)
 - [ ] W0-2 fixtures: usage curve, rejected command, staged records, 113-command corpus
 - [x] W0-3 cancelled with lane w0-session-hooks (D97): context budget, prompt hook and agent gate
   become mods A2-12..A2-14 (CT-23), never created as files
-- [ ] W0-4 doctor slice CT-22a (`dev/doctor/`, surfaces session-start, check, pre-commit)
-- [ ] W0-5 hk `pre-commit` `records` step = `doctor --surface pre-commit`
+- [x] W0-4 doctor slice CT-22a (`dev/doctor/`, surfaces session-start, check, pre-commit)
+- [x] W0-5 hk `pre-commit` `records` step = `doctor --surface pre-commit`
 - [x] W0-6 `decisions.jsonl` seeded + `dev/plan_decide.py` minimal (CT-24 seed); `plan:decide`
   and `test:plan-decide` mise rows deferred to the w0-doctor integration
 - [x] W0-7 docs: claude-team.md (`--no-ff`, never `--no-commit`; context budget; restart
@@ -104,10 +104,10 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
   the absolute `2a14` paths in `claude-takeover.md:26` and `codex-task-orchestration.md:6` go to CT-21
 - Lanes (allocated 2026-10-14, commit `plan: allocate wave-0 prevention lanes`; records `lanes/w0-*.json`,
   briefs `reviews/ccm-20261013/phase3/w0/`, report `phase3/W0-allocation-report.md`):
-  - [ ] w0-doctor (CT-22a part 1: W0-1 test, W0-4 core, W0-5, doctor fixtures): READY at
-    `f1bbc8d` (review PASS-with-P3 on `64e46d4`, retro repair, focused re-review PASS); integrate
-    next with the deferred hunks (`phase3/HANDOFF-2026-10-14.md` §3), as reviewed: its SessionStart
-    entry stays until A2-11 replaces it with a mod and deletes it (D101)
+  - [x] w0-doctor (CT-22a part 1: W0-1 test, W0-4 core, W0-5, doctor fixtures): integrated
+    `878e7f0` (lane `b01d9bb`, rebased from `f1bbc8d` onto the scrubbed history, D148; review
+    PASS-with-P3, focused re-review PASS, retro passed) with the HANDOFF §3 hunks except §3.2 (C++
+    ticket, D113); its SessionStart entry stays until A2-11 replaces it with a mod (D101)
   - [x] w0-decisions (CT-24 seed: W0-6): integrated `c7054fd` (lane `922eab4`, review and re-review
     PASS-with-P3, retro passed); deferred: mise rows to the w0-doctor integration, D48
   - [x] w0-docs (W0-7; CT-02b and CT-23 doc slices): integrated `e40a62a` (lane `749577d`, review
@@ -123,8 +123,8 @@ Serial, parent only, each step after the decision it names; rcs recorded in prog
   trailer file, report staging); drain-proposals step in `docs/agents/claude-team.md`
 - [ ] CLI 2.1.299 apply-now items (X1 §2 rows 1-6, D51): HANDOFF §2(h), owners named there;
   fail-closed Stop/SubagentStop goes to CT-02b.1 (hook work on the gate scripts, D97, D102)
-- **Status:** in_progress (w0-docs and w0-decisions integrated; w0-doctor ready; one sequenced,
-  w0-doctor-records; w0-session-hooks closed, D97)
+- **Status:** in_progress (w0-docs, w0-decisions, w0-doctor and gate-git-path integrated; one
+  sequenced, w0-doctor-records; w0-session-hooks closed, D97)
 
 ### Phase 4a: User request 2026-10-14 (U1-U6; proposed tickets CT-34..CT-39)
 The user asked for this in session `ccm-20261014` (`ce9c0b3d`) after handoff rev 5. The work runs

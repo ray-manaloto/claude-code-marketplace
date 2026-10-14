@@ -201,5 +201,7 @@ Later work follows its separately recorded selected-plan authority and gates.
 
 Read `.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md`,
 `findings.md`, and `progress.md`. Verify actual Git identity before resuming.
-Use at most five maintained files and about 300 handwritten lines per unit;
+Use at most five maintained files and about 300 handwritten lines per unit; a file over 80
+handwritten lines is accepted when the reviewer reads it in full and the unit's retro names the
+split point;
 record implemented, reviewed, tested, committed and published states separately.

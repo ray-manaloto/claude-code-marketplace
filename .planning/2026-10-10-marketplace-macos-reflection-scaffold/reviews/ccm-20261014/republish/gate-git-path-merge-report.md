@@ -13,7 +13,8 @@ baseline). Scratch logs: the session scratchpad `republish/` (outside the checko
   +254 -2. The PreToolUse deny gate and hk pre-merge-commit ran the retro gate: passed.
 - Records R `8de864c`: lane record, retro parent edits 5-7, ledger D148, D149, DL-184..DL-186,
   progress entry.
-- Publish P: pending at commit time (filled after publish in the next records commit).
+- Publish P `218577753d9484ef0c1491aa29f4f90c6ec43fd9` (parent `8de864c`, index tree `18a01eb3`, 1 file);
+  preimage `62b154a`; no refusal.
 
 ## Guard scan before the rebase
 
@@ -52,5 +53,25 @@ Staged guard scan of R (`gitleaks git --pre-commit --staged`): no leaks; `git di
 ## Publish (A09)
 
 Selected path: this report only; M and R travel as ancestors. Preimage `62b154a`; check_task
-`["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`. Results: pending at
-commit time.
+`["deps:check","check:acceptance-baseline","test:delivery","test:hooks"]`. The committed copy in
+P says "pending"; the fields below were filled after the publish and travel in the next records
+commit.
+
+| Command | rc | Output |
+| --- | --- | --- |
+| `git diff --cached --name-only HEAD \| wc -l` (before) | 0 | 0 |
+| `./dev/mise run delivery:inspect-hooks -- inspect-hooks.json dd599ed9…` | 0 | `hook_tree_sha256=a21be5fe…4af8`, unchanged; `remote_url_sha256` `477a17f8…` |
+| `./dev/mise run delivery:prepare -- prepare.json 5056a3f1…` | 0 | `head=8de864ce…`, `index_tree=18a01eb3…` |
+| `./dev/mise run delivery:publish -- publish.json 038246d9…` (17:04:32-17:07:26Z) | 0 | `published=21857775…`, `history_scan_rc=0` |
+
+`publish` rc 0 implies rc 0 for the scratch-tree checks, each `check_task`, `git diff --cached
+--check`, the staged gitleaks 8.30.1 scan and the outbound history scan over `62b154a..2185777`
+with the repository guard config (D145).
+
+## Post-publish verification
+
+| Command | rc | Result |
+| --- | --- | --- |
+| `git rev-parse HEAD origin/codex/marketplace-native-onboarding` | 0 | both `21857775…` |
+| `git ls-remote --heads origin` | 0 | `codex/marketplace-native-onboarding` `21857775…`, `main` `6b5b092…` |
+| `gh run list --branch codex/marketplace-native-onboarding` | 0 | on `2185777`: research-fast `38603954292` and `38603962134` success, development checks `38603962082` success, acceptance `38603962612` success (17:10:22Z); on `62b154a`: acceptance `38601873659` and development checks `38601873531` success |

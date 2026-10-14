@@ -106,6 +106,12 @@ judgement about findings stays with the reviewer.
   hooks back until the user accepts workspace trust, `disableAllHooks` in any settings
   file switches them all off, and only managed settings can keep a hook from being
   bypassed. Treat a hook-free session as ungated and run `retro:gate` by hand.
+- `SessionStart` (`startup|resume|clear|compact|fork`) runs `dev/doctor/cli.py --surface
+  session-start --format context`: a context block, exit 0 always, until A2-11 replaces it with a
+  mod and deletes the entry (a dated exception to D92, D101). The hk `pre-commit` step `records`
+  runs `./dev/mise run check:records` (doctor `pre-commit` surface, settings rule only, refuses on
+  P1/P2 or a skipped detector); hk is live in every worktree through the global hk install, and
+  `HK=0` bypasses it, so it is a guard, not a gate (CT-22a).
 
 ## Context budget
 

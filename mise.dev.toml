@@ -114,7 +114,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor", "test:plan-decide", "test:frontier", "test:retro-gate"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]
@@ -346,6 +346,26 @@ run = ["hk install --force-local", "git config --local merge.ff false", "echo 'h
 description = "Exercise the retro-gate hook scripts and hk hooks in scratch repositories"
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_hooks.py -v'
+
+[tasks."test:retro-gate"]
+description = "Exercise the retro gate CLI, unit derivation and git resolution in scratch repositories"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_retro_gate.py -v'
+
+[tasks."test:frontier"]
+description = "Exercise the ticket-frontier skill script against fixture graphs in scratch plan dirs"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_ticket_frontier.py -v'
+
+[tasks."plan:decide"]
+description = "Append an approval, operation, decision or receipt row to the decisions ledger"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I dev/plan_decide.py'
+
+[tasks."test:plan-decide"]
+description = "Exercise the decisions ledger CLI and approved() in a scratch ledger"
+dir = "{{config_root}}"
+run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_plan_decide.py -v'
 
 [tasks.doctor]
 description = "Detect merge, settings and context drift after the fact; exit 2 on P1/P2"

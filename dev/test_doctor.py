@@ -4,6 +4,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -152,6 +153,15 @@ class ContextBudget(Scratch):
                                   "frontier.toml").read_text())
         self.assertEqual(budget.THRESHOLDS["fork_deny"],
                          frontier["context_ceiling_fraction"] * frontier["windows"]["opus"])
+
+    def test_team_guide_budget_table_equals_thresholds(self):
+        """w0-docs retro deferral: the claude-team.md Context budget table and budget.THRESHOLDS state one set."""
+        spec = importlib.util.spec_from_file_location("doctor_budget", ROOT / "dev" / "doctor" / "budget.py")
+        budget = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(budget)
+        guide = (ROOT / "docs" / "agents" / "claude-team.md").read_text()
+        table = {name: int(k) * 1000 for name, k in re.findall(r"^\| (\w+) \| (\d+)K \|", guide, re.M)}
+        self.assertEqual(table, budget.THRESHOLDS)
 
     def test_autocompact_line_reports_both_booleans(self):
         """C2 T-A5 / D21: user false + project true -> one `auto-compact:` line naming both; the project file rules."""
