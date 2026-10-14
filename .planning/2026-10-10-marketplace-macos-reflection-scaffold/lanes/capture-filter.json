@@ -48,10 +48,18 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "allocated",
+  "status": "integrated",
   "created_at": "2026-10-14",
   "notes": [
     "the three deny gates and the D101 SessionStart doctor entry stay byte-identical",
-    "the live ledger is read-only evidence; never print prompt text into tracked files"
-  ]
+    "the live ledger is read-only evidence; never print prompt text into tracked files",
+    "retro: `retros/capture-filter.md` at da016c9 (blob 1d98cd7), gate rc 0; added to the integration branch ahead of the merge in d078d86 (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; the retro commit da016c9 carries a Claude Fable 5.1 trailer, its actual writer (retro-writer, fable)",
+    "parent edits from the retro: 1 (docs/agents/hooks-and-mods.md Capture bullet) applied in d078d86; 2 (live-ledger prune) not run, the parent dispositioned those rows; 3 (dev/check.py runs dev/test_hooks.py) not applied: check:research depends on test:hooks and then runs dev/check.py --baseline, so the suite would run twice there; run the way check.py would call it, it passes (rc 0, 25 tests, about 8 s), so CI coverage needs a parent choice (drop test:hooks from check:research, or a development.yml step)",
+    "integrated 2026-10-14 as 53de52d (parents d078d86, da016c9), no conflict, tree d26a5a0 = merge-tree; gates on the merged tree rc 0 (tasks validate 66, check, check:acceptance-baseline 19, check:research, test:hooks 25, retro:gate, git diff --check d078d86 and dc96614, betterleaks 1.9.0 git dc96614..HEAD no finding); report reviews/ccm-20261014/republish/capture-filter-merge-report.md",
+    "lane worktree .claude/worktrees/capture-filter removed by the merger after integration (clean, fully merged); branch claude/capture-filter kept"
+  ],
+  "head_sha": "da016c9",
+  "integration_merge": "53de52d",
+  "review": "fable cold review PASS-with-P3 on 4289ead",
+  "retro": "passed"
 }
