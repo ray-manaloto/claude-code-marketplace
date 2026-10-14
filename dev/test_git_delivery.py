@@ -20,12 +20,13 @@ ROOT = HELPER.parent.parent
 
 class DeliveryTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.env = os.environ.copy()
-        self.env["PATH"] = os.pathsep.join(("/usr/bin", "/bin", self.env.get("PATH", "")))
-        self.env["GIT_CONFIG_GLOBAL"] = os.devnull
         self.temp = tempfile.TemporaryDirectory(prefix="a09-test-")
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
+        # Hermetic Git: no caller GIT_* state, no user or system config, scratch HOME.
+        self.env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
+        self.env["PATH"] = os.pathsep.join(("/usr/bin", "/bin", self.env.get("PATH", "")))
+        self.env.update(HOME=str(self.base / "home"), GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
         self.repo = self.base / "repo"
         self.remote = self.base / "remote.git"
         self.repo.mkdir()
@@ -161,15 +162,14 @@ class DeliveryTests(unittest.TestCase):
     HK_EVENTS = ("pre-commit", "commit-msg", "prepare-commit-msg", "pre-push", "pre-merge-commit", "post-commit")
 
     def use_global_hooks(self, *events: str) -> None:
-        home = self.base / "home"
+        home = Path(self.env["HOME"])
         home.mkdir(exist_ok=True)
         config = home / ".gitconfig"
         config.write_text("".join(
             f'[hook "hk-{event}"]\n\tcommand = hk run {event} --from-hook\n\tevent = {event}\n'
             for event in events
         ))
-        self.env = {key: value for key, value in self.env.items() if not key.startswith("GIT_")}
-        self.env.update(HOME=str(home), GIT_CONFIG_GLOBAL=str(config), GIT_CONFIG_NOSYSTEM="1")
+        self.env["GIT_CONFIG_GLOBAL"] = str(config)
 
     def test_inspect_hooks_admits_global_hk_layout(self) -> None:
         self.use_global_hooks(*self.HK_EVENTS)
