@@ -249,6 +249,14 @@ class RetroGateUnitDerivation(unittest.TestCase):
         self.assertIn("x.md", out[0])
         self.assertFalse(marker.exists(), "the retro gate executed a mise shim")
 
+    def test_git_resolver_matches_the_hook_copy(self):
+        """dev/hooks/git_gate.py keeps the same resolver with no shared import; the code after the docstring stays identical."""
+        def body(path):
+            text = (ROOT / path).read_text()
+            start = text.index("def git_executable()")
+            return text[text.index('"""', text.index('"""', start) + 3) + 3:text.index("\ndef git(", start)]
+        self.assertEqual(body("dev/retro_gate.py"), body("dev/hooks/git_gate.py"))
+
     def test_only_shims_on_path_still_derive_the_unit_through_the_shim(self):
         git(self.repo, "checkout", "-q", "-b", "claude/z-w")
         marker, shims = self.shims()

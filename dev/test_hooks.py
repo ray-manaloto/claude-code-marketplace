@@ -262,10 +262,13 @@ class GitResolution(Scratch):
         relocated = self.tmp / "custom" / "bin"  # a shims dir under MISE_DATA_DIR: git -> the mise binary
         relocated.mkdir(parents=True)
         (relocated / "git").symlink_to(fake_git(self.tmp / "tool", self.marker, name="mise"))
+        self.git("checkout", "-q", "claude/x-y")
         self.env["PATH"] = os.pathsep.join([str(self.shims), str(relocated)])
         rc, out = self.hook("pretooluse_gate.py", {"tool_name": "Bash", "cwd": str(self.repo),
                                                    "tool_input": {"command": "git push origin claude/x-y"}})
-        self.assertIn('"permissionDecision": "deny"', out)
+        self.assertEqual((rc, json.loads(out)["hookSpecificOutput"]["permissionDecision"]), (0, "deny"), out)
+        rc, out = self.hook("subagent_stop_gate.py", {"cwd": str(self.repo)})
+        self.assertEqual((rc, json.loads(out)["decision"]), (0, "block"), out)
         rc, out = self.merge_gate()
         self.assertEqual(rc, 2, out)
         self.assertIn("retro record missing", out)

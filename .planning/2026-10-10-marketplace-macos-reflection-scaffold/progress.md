@@ -769,6 +769,17 @@ verbatim in `progress-archive-2026-10-13.md`.
   `dev/handoff.py` lists closed lanes apart (test added, 35 tests rc 0). HANDOFF §2(c), (h), (i)
   and Phase 4b updated; GLOSSARY: Mod.
 
+- 2026-10-14 (privacy scrub and gate-git-path, D111-D149): research R4-R16 and R12b under
+  `reviews/ccm-20261014/research5/`; decisions D111-D147 (C++ library with thin bridges, D112; TR
+  material local only, D144; publish guard `.gitleaks.toml`, D145; no environment listing, D146).
+  Public history replaced (D143, D148): PR #109 closed, `codex/marketplace-native-onboarding`
+  force-pushed to the scrubbed baseline `62b154a` on `main`, `codex/research-feedback-retro`
+  deleted through the API after the deny gate refused a delete-only push (D149), draft PR #110
+  opened; receipt `reviews/ccm-20261014/republish/republish-receipt.md` (DL-184, DL-186). Lane
+  gate-git-path rebased (`e3b8bd7`), checks rc 0, merged `be1a0f9` with retro parent edits 5-7
+  (D139, DL-185). Pending: w0-doctor rebase and integration with parent edit 2; GitHub Support
+  purge of PR #109 refs (user sends); guard in pre-push; deny gate passes delete-only pushes.
+
 - NEXT (2026-10-14 rev 12, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Integrate w0-doctor (`f1bbc8d`) per HANDOFF §2(b); then wave 0a of plan Phase 4b:
   CT-40, the D7 spike and `21-offline` in the cxx slot, its lane record written first (D77, D82).

@@ -28,6 +28,9 @@ Subdirectories: `hooks/` (the three deny gates that stay settings hooks;
 - Helpers use the standard library only, read inputs boundedly and reach no network.
 - Exit codes: 0 pass, 1 usage, 2 refusal with one reason per stderr line (C2 section E;
   `retro_gate.py`, `plan_decide.py`). argparse exits 2 on usage, so subclass `error`.
+- A hook or gate that spawns git per call resolves it with `git_executable()` (`dev/hooks/git_gate.py`;
+  `dev/retro_gate.py` keeps a copy): a mise shim costs about 186 ms per call against 9.5 ms for
+  `/usr/bin/git`. A test that spawns git puts `git --exec-path` first on PATH.
 - A task that forwards free text runs as `mise run <task> -- <argv>` with no `usage` line; a
   `usage` variadic splits a multi-word argument.
 - A helper that mutates state previews first, applies against a fresh preimage and
