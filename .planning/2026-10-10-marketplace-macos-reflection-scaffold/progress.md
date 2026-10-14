@@ -842,6 +842,17 @@ verbatim in `progress-archive-2026-10-13.md`.
   trajectory reader in the C++ core), CT-38 note (38a mirror test method). Nothing pushed. Report:
   `reviews/ccm-20261014/republish/scan-agy-merge-report.md`.
 
+- 2026-10-14 (a09-selected-tree integration, D164): a09-selected-tree (DL-212, DL-221, D159) merged
+  `db4e4f0` (records `be7e1ea`, retro blob `33d110d` byte-identical to `11f5af7`; the retro lists no
+  parent edits); no conflict. Gates rc 0 on the merged tree: tasks validate (66), check,
+  check:acceptance-baseline (19), check:research, test:delivery (23), retro:gate,
+  `git diff --check be7e1ea`, betterleaks 1.9.0 over `be7e1ea..HEAD` (no finding). A09
+  selected-tree check without publish (`check_selected_tree` on the `db4e4f0` tree `3430f99`):
+  PASS, rc 0; the pinned scanner binary's stat was unchanged. Lane record integrated with retro
+  "passed"; the lane worktree may be removed (parent). Nothing pushed; the combined A09 publish
+  (DL-212, DL-221) waits for an explicit instruction. Report:
+  `reviews/ccm-20261014/republish/a09-selected-tree-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
