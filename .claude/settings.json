@@ -45,7 +45,7 @@
             "type": "command",
             "async": true,
             "timeout": 10,
-            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c 'select(.prompt // \"\" | test(\"^(<task-notification>|<event kind=|<<autonomous-loop)\") | not)' >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
           }
         ]
       }
