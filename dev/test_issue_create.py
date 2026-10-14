@@ -1,9 +1,13 @@
 """Offline A08a public-boundary controls; no credentials or GitHub requests."""
 
 import hashlib
+import io
 import json
 from pathlib import Path
+import re
+import re._parser
 import tempfile
+import tomllib
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -11,8 +15,43 @@ from unittest.mock import patch
 from githubkit import GitHub
 import httpx
 
+import issue_amend
 from issue_create import (Refusal, apply, attempt_path, binding_path, full_body,
                           intent_path, main, manifest, pages, preview, verify)
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def private_name_sample() -> str:
+    """Text the real private-name rule flags, built from the rule at run time so no file holds it (D145)."""
+    with (ROOT / ".gitleaks.toml").open("rb") as source:
+        pattern = next(rule["regex"] for rule in tomllib.load(source)["rules"] if rule["id"] == "private-tr-project")
+
+    def build(tokens) -> str:
+        out = []
+        for op, value in tokens:
+            name = str(op)
+            if name == "LITERAL":
+                out.append(chr(value))
+            elif name == "IN":
+                out.append(chr(next(v if str(o) == "LITERAL" else v[0] for o, v in value if str(o) in ("LITERAL", "RANGE"))))
+            elif name == "BRANCH":
+                out.append(build(value[1][0]))
+            elif name == "SUBPATTERN":
+                out.append(build(value[-1]))
+            elif name in ("MAX_REPEAT", "MIN_REPEAT"):
+                out.append(build(value[2]) * value[0])
+            elif name != "AT":
+                raise AssertionError(f"private-name rule uses an unsupported regex token {name}")
+        return "".join(out)
+
+    sample = build(re._parser.parse(pattern))
+    assert re.search(pattern, f" {sample} "), "derived sample does not match the private-name rule"
+    return sample
+
+
+def secret_sample() -> str:
+    return "AKIA" + "QX7ZM2NB" + "K4RTW6YP"  # assembled so this file holds no key ID
 
 
 def row(number, database_id, body="old", labels=()):
@@ -81,10 +120,18 @@ class FakeIssues:
 class FakeClient:
     def __init__(self):
         self.issues = FakeIssues()
+        self.requests = 0
 
     def rest(self, version):
         assert version == "2026-03-10"
+        self.requests += 1
         return SimpleNamespace(issues=self.issues)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
 
 
 class CreationTests(unittest.TestCase):
@@ -344,6 +391,94 @@ class CreationTests(unittest.TestCase):
             manifest(self.manifest)
         with self.assertRaises(Refusal):
             apply(self.client, self.path, self.digest, self.manifest)
+
+    def hit_manifest(self, field, text):
+        ticket = dict(self.ticket)
+        ticket[field] = ticket[field] + f" {text} " if field != "labels" else [text]
+        if field == "body":
+            ticket["body_sha256"] = hashlib.sha256(ticket["body"].encode()).hexdigest()
+        payload = json.loads(self.manifest.read_text())
+        payload["tickets"] = [ticket]
+        self.manifest.write_text(json.dumps(payload) + "\n")
+        return ticket
+
+    def test_scan_hit_refuses_preview_before_any_request(self):
+        # An inline allow comment in issue text never suppresses a finding.
+        for case, (field, text, rule) in enumerate((
+                ("title", private_name_sample(), "private-tr-project"),
+                ("body", secret_sample(), "aws-access-key-id"),
+                ("labels", private_name_sample(), "private-tr-project"),
+                ("body", secret_sample() + " # gitleaks:allow betterleaks:allow", "aws-access-key-id"))):
+            with self.subTest(case=case, field=field):  # never label a subtest with fixture text
+                self.hit_manifest(field, text)
+                client = FakeClient()
+                journal = Path(tempfile.mkdtemp(dir=self.journal.parent))
+                with self.assertRaises(Refusal) as caught:
+                    preview(client, self.manifest, "A01", journal)
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
+                self.assertEqual(str(caught.exception).splitlines(),
+                                 [f"secret scan hit: local id A01, field {field}, rule {rule}; nothing sent"])
+                self.assertEqual((client.requests, list(journal.iterdir())), (0, []))
+
+    def test_scan_hit_refuses_apply_on_the_bytes_to_send(self):
+        # An intent journaled before the scan existed still reaches the scan at apply.
+        preimage = json.loads(self.path.read_text())["preimage"]
+        for field, text, rule in (("body", secret_sample(), "aws-access-key-id"),
+                                  ("title", private_name_sample(), "private-tr-project")):
+            with self.subTest(field=field):
+                ticket = self.hit_manifest(field, text)
+                journal = self.journal.parent / f"apply-{field}"
+                journal.mkdir()
+                path = intent_path(journal, "A01")
+                path.write_bytes(issue_amend.wire({
+                    "version": 1, "repo": "ray-manaloto/claude-code-marketplace",
+                    "manifest_sha256": issue_amend.sha(self.manifest.read_bytes()),
+                    "parent_number": 11, "ticket": ticket, "preimage": preimage}))
+                client = FakeClient()
+                with self.assertRaises(Refusal) as caught:
+                    apply(client, path, issue_amend.sha(path.read_bytes()), self.manifest)
+                self.assertFalse(text in str(caught.exception), "fixture text leaked into the refusal")  # bool form: a failure never echoes the sample
+                self.assertEqual(str(caught.exception).splitlines(),
+                                 [f"secret scan hit: local id A01, field {field}, rule {rule}; nothing sent"])
+                self.assertEqual((client.requests, len(client.issues.posts)), (0, 0))
+                self.assertFalse(attempt_path(path).exists())
+
+    def test_missing_pinned_scanner_fails_closed_at_preview_and_apply(self):
+        with patch.object(issue_amend, "MISE", self.journal.parent / "absent-mise"):
+            client = FakeClient()
+            with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
+                preview(client, self.manifest, "A01", self.journal.parent / "unused")
+            with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
+                apply(client, self.path, self.digest, self.manifest)
+            self.assertEqual((client.requests, len(client.issues.posts)), (0, 0))
+            self.assertFalse(attempt_path(self.path).exists())
+
+    def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
+        name, key = private_name_sample(), secret_sample()
+        ticket = self.hit_manifest("title", name)
+        ticket["body"] += f" {key}\n"
+        ticket["body_sha256"] = hashlib.sha256(ticket["body"].encode()).hexdigest()
+        payload = json.loads(self.manifest.read_text())
+        payload["tickets"] = [ticket]
+        self.manifest.write_text(json.dumps(payload) + "\n")
+        journal = self.journal.parent / "cli"
+        journal.mkdir()
+        argv = ["issue_create.py", "preview", "--manifest-file", str(self.manifest),
+                "--local-id", "A01", "--journal-dir", str(journal)]
+        client, stderr = FakeClient(), io.StringIO()
+        with (patch("sys.argv", argv), patch("issue_create.credential", return_value=("offline", "test")),
+              patch("issue_create.GitHub", return_value=client), patch("sys.stderr", stderr)):
+            self.assertEqual(main(), 2)
+        self.assertFalse(name in stderr.getvalue() or key in stderr.getvalue(), "fixture text leaked into stderr")
+        self.assertEqual(stderr.getvalue().splitlines(), [
+            "REFUSED: secret scan hit: local id A01, field body, rule aws-access-key-id; nothing sent",
+            "REFUSED: secret scan hit: local id A01, field title, rule private-tr-project; nothing sent"])
+        self.assertEqual(client.requests, 0)
+
+    def test_clean_manifest_is_sent_unchanged(self):
+        self.assertEqual(apply(self.client, self.path, self.digest, self.manifest), "VERIFIED")
+        self.assertEqual(self.client.issues.posts, [{"title": self.ticket["title"], "body": full_body(self.ticket),
+                                                     "labels": [], "parent_issue_id": 101}])
 
     def test_invalid_local_input_refuses_before_credential_lookup(self):
         argv = ["issue_create.py", "apply", "--manifest-file", str(self.manifest),

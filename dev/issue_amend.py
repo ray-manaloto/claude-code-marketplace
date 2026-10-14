@@ -4,12 +4,16 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
+import tempfile
+import tomllib
 
 from githubkit import GitHub
 
@@ -19,10 +23,67 @@ OWNER, REPO = "ray-manaloto", "claude-code-marketplace"
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 COMPLETED = {"state": "closed", "state_reason": "completed"}
 VERDICTS = {"acceptance": "accepted", "review": "approved", "retro": "applied", "delivery": "delivered"}
+ROOT = Path(__file__).resolve().parents[1]
+MISE, SCAN_CONFIG = ROOT / "dev" / "mise", ROOT / ".gitleaks.toml"
+SCANNER_ENV = ("BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML", "GITLEAKS_CONFIG", "GITLEAKS_CONFIG_TOML")
+RULE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}\Z")  # scan constants: R-174 (D171), D113 fix to existing Python
 
 
 class Refusal(ValueError):
     pass
+
+
+@functools.cache
+def scanner(mise: Path) -> str:
+    """The mise.dev.toml betterleaks pin, resolved by the repository's mise, never a PATH lookup."""
+    try:
+        with (ROOT / "mise.dev.toml").open("rb") as source:
+            version = tomllib.load(source)["tools"]["aqua:betterleaks/betterleaks"]
+        env = {k: v for k, v in os.environ.items() if k not in ("VIRTUAL_ENV", "UV_PROJECT_ENVIRONMENT")}
+        found = subprocess.run([str(mise), "which", "betterleaks"], cwd=ROOT, env=env,
+                               capture_output=True, text=True, check=False, timeout=120)
+        binary = found.stdout.strip()
+        reported = subprocess.run([binary, "version"], env={"PATH": "/usr/bin:/bin"}, capture_output=True,
+                                  text=True, check=False, timeout=60)
+    except (OSError, KeyError, ValueError, subprocess.SubprocessError):
+        raise Refusal("pinned betterleaks scanner unavailable; nothing sent") from None
+    if found.returncode or not Path(binary).is_absolute() or (reported.returncode, reported.stdout.strip()) != (0, version):
+        raise Refusal("pinned betterleaks scanner unavailable; nothing sent")
+    return binary
+
+
+def scan(local_id: str, fields: dict) -> None:
+    """Refuse outbound issue text that the repository's secret or private-name rules flag (D145, D171)."""
+    names = sorted(fields)
+    binary = scanner(MISE)
+    try:
+        with tempfile.TemporaryDirectory(prefix="issue-scan-") as temp:
+            root, ignore = Path(temp).resolve() / "fields", Path(temp) / "empty-ignore"
+            root.mkdir()
+            ignore.touch()
+            for index, name in enumerate(names):
+                value = fields[name]
+                (root / str(index)).write_text("\n".join(value) if isinstance(value, list) else value, encoding="utf-8")
+            env = {k: v for k, v in os.environ.items() if k not in SCANNER_ENV}
+            result = subprocess.run([binary, "dir", "--no-banner", "--redact=100", "--log-level=error",
+                                     "--ignore-gitleaks-allow", "--config", str(SCAN_CONFIG),
+                                     "--gitleaks-ignore-path", str(ignore), "--report-format=json",
+                                     "--report-path=-", str(root)],
+                                    cwd=temp, env=env, capture_output=True, check=False, timeout=300)
+            findings = json.loads(result.stdout)
+            hits = sorted({(names[int(Path(item["File"]).relative_to(root).as_posix())], item["RuleID"])
+                           for item in findings})
+    except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.SubprocessError):
+        raise Refusal("secret scan could not complete; nothing sent") from None
+    if result.returncode != (1 if hits else 0) or not all(RULE_ID.fullmatch(rule) for _, rule in hits):
+        raise Refusal("secret scan could not complete; nothing sent")
+    if hits:
+        raise Refusal("\n".join(f"secret scan hit: local id {local_id}, field {field}, rule {rule}; nothing sent"
+                                for field, rule in hits))
+
+
+def refused(error: Exception) -> str:
+    return "\n".join(f"REFUSED: {line}" for line in str(error).splitlines() or [""])
 
 
 def wire(value: object) -> bytes:
@@ -162,6 +223,7 @@ def preview(client: GitHub, number: int, body_file: Path, labels_file: Path, out
         raise Refusal("invalid issue number or existing intent")
     body = read(body_file).decode("utf-8")
     names = labels(json.loads(read(labels_file)))
+    scan(f"#{number}", {"body": body, "labels": names})  # R-174 (D171): D113 fix to existing Python
     before = fetch(client, number)
     data = {"version": 1, "repo": f"{OWNER}/{REPO}", "number": number,
             "preimage": before, "desired": {"body": body, "labels": names}}
@@ -207,6 +269,8 @@ def verify(client: GitHub, path: Path, digest: str) -> str:
 
 def apply(client: GitHub, path: Path, digest: str) -> str:
     data = intent(path, digest)
+    if data["version"] == 1:  # completion (v2) sends only state; v1 sends free text
+        scan(f"#{data['number']}", data["desired"])  # R-174 (D171): D113 fix to existing Python
     if marker(path).exists() or marker(path).is_symlink():
         raise Refusal("attempt already recorded; use verify only")
     current = fetch(client, data["number"], data["version"] == 2)
@@ -261,7 +325,7 @@ def main() -> int:
             print(result)
             return 0 if result in ("VERIFIED", "ALREADY_COMPLETED") else 2
     except (Refusal, OSError, UnicodeError, ValueError) as error:
-        print(f"REFUSED: {error}", file=sys.stderr)
+        print(refused(error), file=sys.stderr)  # R-174: one line per scan hit
         return 2
     except Exception as error:
         print(f"UNRESOLVED: {type(error).__name__}", file=sys.stderr)
