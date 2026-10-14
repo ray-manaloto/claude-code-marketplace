@@ -20,12 +20,13 @@ ROOT = HELPER.parent.parent
 
 class DeliveryTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.env = os.environ.copy()
-        self.env["PATH"] = os.pathsep.join(("/usr/bin", "/bin", self.env.get("PATH", "")))
-        self.env["GIT_CONFIG_GLOBAL"] = os.devnull
         self.temp = tempfile.TemporaryDirectory(prefix="a09-test-")
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
+        # Hermetic Git: no caller GIT_* state, no user or system config, scratch HOME.
+        self.env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
+        self.env["PATH"] = os.pathsep.join(("/usr/bin", "/bin", self.env.get("PATH", "")))
+        self.env.update(HOME=str(self.base / "home"), GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
         self.repo = self.base / "repo"
         self.remote = self.base / "remote.git"
         self.repo.mkdir()
@@ -157,6 +158,34 @@ class DeliveryTests(unittest.TestCase):
         self.assertIn("configured Git hook could execute", result.stderr)
         self.assertEqual(self.git("diff", "--cached", "--name-only"), "")
 
+    # The user-global hk layout (D154): one hook.hk-<event> section per event.
+    HK_EVENTS = ("pre-commit", "commit-msg", "prepare-commit-msg", "pre-push", "pre-merge-commit", "post-commit")
+
+    def use_global_hooks(self, *events: str) -> None:
+        home = Path(self.env["HOME"])
+        home.mkdir(exist_ok=True)
+        config = home / ".gitconfig"
+        config.write_text("".join(
+            f'[hook "hk-{event}"]\n\tcommand = hk run {event} --from-hook\n\tevent = {event}\n'
+            for event in events
+        ))
+        self.env["GIT_CONFIG_GLOBAL"] = str(config)
+
+    def test_inspect_hooks_admits_global_hk_layout(self) -> None:
+        self.use_global_hooks(*self.HK_EVENTS)
+        result = self.invoke("inspect-hooks")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertRegex(result.stdout, r"\Ahook_tree_sha256=[0-9a-f]{64}\n\Z")
+
+    def test_inspect_hooks_refuses_unknown_global_event(self) -> None:
+        for event in ("post-checkout", "reference-transaction"):
+            with self.subTest(event=event):
+                self.use_global_hooks(*self.HK_EVENTS, event)
+                result = self.invoke("inspect-hooks")
+                self.assertEqual(result.returncode, 2)
+                self.assertEqual(result.stdout, "")
+                self.assertEqual(result.stderr, "A09 refused: configured Git hook could execute during delivery\n")
+
     def test_stage_blob_rejects_symlink_target_and_selected_symlink_mode(self) -> None:
         source = self.base / "reviewed.toml"
         source.write_text("reviewed\n")
@@ -214,8 +243,9 @@ class DeliveryTests(unittest.TestCase):
         hook.write_text(f"#!/bin/sh\ntouch '{marker}'\n")
         hook.chmod(0o700)
         configured_marker = self.base / "configured-hook-ran"
-        self.git("config", "hook.safe.event", "pre-push")
-        self.git("config", "hook.safe.command", f"touch '{configured_marker}'")
+        for event in self.HK_EVENTS:  # every admitted event; none may fire on the publish path
+            self.git("config", f"hook.safe-{event}.event", event)
+            self.git("config", f"hook.safe-{event}.command", f"echo {event} >> '{configured_marker}'")
         result = self.invoke("publish", "--path", "selected.txt", "--index-tree", tree,
                              "--message-file", str(message), "--check-task", "check",
                              "--gitleaks-bin", str(scanner),
@@ -224,7 +254,7 @@ class DeliveryTests(unittest.TestCase):
         published = dict(line.split("=", 1) for line in result.stdout.splitlines())["published"]
         self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery").split()[0], published)
         self.assertFalse(marker.exists())
-        self.assertFalse(configured_marker.exists())
+        self.assertFalse(configured_marker.exists(), configured_marker.exists() and configured_marker.read_text())
 
     def test_publish_checks_staged_mixed_config(self) -> None:
         (self.repo / "mise.dev.toml").write_text("good\n")

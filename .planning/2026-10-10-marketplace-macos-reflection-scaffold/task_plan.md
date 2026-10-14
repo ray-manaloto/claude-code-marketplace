@@ -42,12 +42,14 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-148 (D142, D147): provider credit preflight units (SDK before CLI, status enums) as tickets; issue: #122
 - [ ] R-026 (none): fnox env and daemon adoption (latest fnox for this project) as its own ticket; issue: #123
 - [ ] R-163 (D153): complete and migrate TR's unfinished harvester and auto-improve work (generic parts only, D144, D112); issue: #124
-- [ ] R-056 (D90): run setup-matt-pocock-skills, grill-with-docs, to-spec, to-tickets as the user types them (typed stages); issue: #125
+- [ ] R-056 (D90) owner user: run setup-matt-pocock-skills, grill-with-docs, to-spec, to-tickets as the user types them (typed stages; to-tickets typed 2026-10-14, quiz pending); issue: #125
 - [ ] R-142 (D137): research summary artifact showing the five log-built sections (queries, results, stage-2 searches, saved searches, seed map); issue: #126
 - [ ] R-157 (D150, D154): hk 2.6.0 lane: all relevant builtins, parallel steps, jactionlint, pre-push guard (R18; CT-82 part B); issue: #127
 - [ ] R-158 (D150, D157): update all dependencies with offline docs and repo mirrors (R21 batches 1-5); issue: #128
 - [ ] R-165 (D156): pin CI to ubuntu-26.04 and fix what breaks; issue: #129
 - [ ] R-171 (D163, D170): auto-merge ruleset keeps A09 direct pushes working (admin bypass or PR-only checks), researched and dry-run on a scratch branch first; issue: #135
+- [ ] R-172 (D148) owner user: send the GitHub Support purge request for the old history and PR #109 refs (draft in reviews/ccm-20261014/republish/); issue: none yet
+- [ ] R-173 (D109, D132) owner user: answer Q2-order-v2 section 6 U1-U5 (CT-63a one unit or split; Q83 gate scripts and D60; #13 fallback after R4; Q82 D99 and the remote switch; delivery:publish on CT-18); issue: none yet
 - [ ] R-166 (D157): mise minimum_release_age 1h for this project; issue: #130
 - [ ] R-167 (D157): automated dependency updates through GHA (Renovate or Dependabot review, R22), zero agent tokens unless an upgrade breaks; issue: #131
 - [ ] R-168 (D158): hk linters and build tools for Python, TypeScript and C++ (native tools first); issue: #132

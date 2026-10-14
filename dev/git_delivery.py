@@ -47,10 +47,19 @@ def git(root: Path, *args: str) -> bytes:
 
 
 def safe_configured_hooks(raw: bytes) -> None:
-    # commit-tree skips commit hooks; push --no-verify skips pre-push. Every
-    # other configured event is refused because its command may load mutable
-    # files outside the hashed core.hooksPath tree.
-    safe_events = {b"pre-commit", b"commit-msg", b"pre-push"}
+    # Admitted events cannot fire on A09's path: it never runs git commit, merge
+    # or the sequencer (rebase, cherry-pick, revert, am), only plumbing,
+    # update-ref, fetch and push --no-verify. pre-commit, commit-msg,
+    # prepare-commit-msg and post-commit fire only from git commit, merge or
+    # the sequencer, never from commit-tree; pre-merge-commit fires only from git
+    # merge; push --no-verify skips pre-push. Every other configured event is
+    # refused (reference-transaction, for one, fires on update-ref, fetch and
+    # push) because its command may load mutable files outside the hashed
+    # core.hooksPath tree.
+    safe_events = {
+        b"pre-commit", b"commit-msg", b"prepare-commit-msg",
+        b"post-commit", b"pre-merge-commit", b"pre-push",
+    }
     hooks: dict[bytes, dict[bytes, bytes]] = {}
     for entry in raw.split(b"\0"):
         if not entry:
@@ -369,6 +378,7 @@ def publish(args: argparse.Namespace, root: Path, paths: set[str], pre: dict[str
     git(root, "diff", "--cached", "--check")
     check_selected_tree(root, args.index_tree)
     remote_before = remote_head(root, args.remote, args.branch)
+    # Check tasks run with the caller's environment: the safe set above covers only A09's own git calls, so a task that itself runs git commit fires configured hooks.
     for task in args.check_task:
         if not SAFE_NAME.fullmatch(task):
             raise Refusal("invalid check task name")
