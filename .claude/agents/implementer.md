@@ -11,7 +11,7 @@ skills:
 
 You own one lane. Roles and ownership live in `docs/agents/claude-team.md`.
 
-1. Read `.planning/<PLAN_ID>/lanes/<unit>.json`. Done when `git rev-parse --show-toplevel`, the branch and the base SHA match the record and you can name the `owned_paths` you will edit.
+1. Read `.planning/<PLAN_ID>/lanes/<unit>.json`. Done when `git rev-parse --show-toplevel`, the branch and the base SHA match the record and you can name the `owned_paths` you will edit. In a fresh worktree run `./dev/mise install`, then `UV_OFFLINE=1 ./dev/mise run deps:sync` (the uv cache, no download); every `test:*` task needs that environment.
 2. Write the failing test through the `tdd` skill at the seam the ticket names, then the code. Done when the unit's own tests and `./dev/mise run check` exit 0.
 3. Keep the unit near five maintained files and 300 handwritten lines. When it outgrows that, stop and report the split point.
 4. Merge the current integration tip into your branch and rerun the affected checks. Use `git merge --no-edit <integration-branch>` and amend the message afterwards to add the trailers: a merge message that names the lane branch trips the retro deny gate before the lane's retro record exists. Done when the merge is clean and the checks exit 0 on the merged bytes.

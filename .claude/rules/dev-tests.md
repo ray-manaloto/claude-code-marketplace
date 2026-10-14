@@ -10,3 +10,4 @@ paths: ["dev/**"]
 - Run new suites as `python3 -I -m unittest discover -s dev -p <file>` so the interpreter ignores the environment and the current directory; the suites `dev/check.py` runs keep its `-B` invocation and rely on the scrubbed environment instead.
 - A foreign `VIRTUAL_ENV` or `UV_PROJECT_ENVIRONMENT` in the caller's environment must not change a result; scrub or pin selectors inside the test.
 - Fixtures live under `dev/fixtures/<topic>/`, one minimal case per behaviour.
+- A test over a derived sample (a secret or private-name fixture built at run time) checks leakage as `self.assertFalse(sample in output, "fixture text leaked into ...")` before any equality over that output, compares request-body lists by `len()`, and labels subtests by case index: those forms keep the sample out of every failure message, log and transcript (D145).

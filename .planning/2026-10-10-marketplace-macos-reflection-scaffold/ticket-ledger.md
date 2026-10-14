@@ -225,6 +225,7 @@ and criteria still need approval.
 | CT-93a (pending issue) | C++ requests module, bridge and doctor detector; deletes the CT-90 Python check | CT-SPEC (pending) | pending | blocked | rsm-core skeleton (D131, D7 spike) | cxx lane | size M; source CL4-proposal.md section 6 renumbered per CL5 |
 | CT-93b (pending issue) | C++ Stop and SubagentStop gate extension refusing unprojected requests | CT-SPEC (pending) | pending | blocked | CT-93a, CT-02b.1 | cxx lane | size M; source CL4-proposal.md section 6 renumbered per CL5 |
 | CT-93c (pending issue) | C++ request classifier and compaction-summary audit | CT-SPEC (pending) | pending | blocked | CT-93a | cxx lane | size M; source CL4-proposal.md section 6 renumbered per CL5 |
+| CT-94 (pending issue) | Scanned route or deny rule for gh comments, PR text and gh api writes (R-174) | CT-SPEC (pending) | pending | READY | none; files under #138 (R-174) | not allocated | size S; source `retros/issue-scan.md` IS-1 and parent edit 4: a scanned route for `gh issue comment`, `gh pr create\|edit\|comment` and writing `gh api` calls that reuses `issue_amend.scan()`, or a deny gate that refuses the raw commands; path list from the public-text guard audit (session scratchpad `public-text-guard/G1-audit.md`, not committed); the GitHub issue is the parent's write (merger 2026-10-14, scan-agy-merge-report.md) |
 
 ## Closure prerequisites (#62–#78, sweep B)
 

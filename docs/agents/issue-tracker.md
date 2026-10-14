@@ -51,8 +51,10 @@ or execution readiness.
 - "Publish to the tracker" or "create an issue" means the qualified
   `issue:create-preview`, `issue:create-apply`, `issue:create-verify` sequence; a new
   blocker edge means `issue:new-edge-*`, and a body or label update means
-  `issue:preview`, `issue:apply`, `issue:verify`. Never call `gh issue create` or
-  `gh issue edit` directly.
+  `issue:preview`, `issue:apply`, `issue:verify`. Never call `gh issue create`,
+  `gh issue edit`, `gh issue comment`, `gh pr create|edit|comment` or a writing `gh api`
+  call directly: only those tasks run the secret and private-name scan on outbound
+  text first (R-174); a comment or PR body waits for its scanned route (#138).
 - "Fetch" or "read the issue" means `gh issue view` or `gh issue list`.
 - A `research/<name>` branch from a wayfinder run stays local until an admitted A09
   publish; the Wayfinding block that `setup-matt-pocock-skills` writes above this
