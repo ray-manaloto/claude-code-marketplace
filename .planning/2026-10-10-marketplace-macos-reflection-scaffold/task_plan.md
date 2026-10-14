@@ -49,7 +49,7 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-165 (D156): pin CI to ubuntu-26.04 and fix what breaks; issue: #129
 - [ ] R-171 (D163, D170): auto-merge ruleset keeps A09 direct pushes working (admin bypass or PR-only checks), researched and dry-run on a scratch branch first; issue: #135
 - [ ] R-174 (D171): public-text guard: review and fix every path that writes text to GitHub outside git (issues, comments, PR bodies, gh api) so the secret and private-name scan runs first; audit team plus lane issue-scan; issue: #138
-- [x] R-172 (D148) owner user: send the GitHub Support purge request for the old history and PR #109 refs (draft in reviews/ccm-20261014/republish/); issue: #136; sent 2026-10-14 (ticket id in private notes); the D178 follow-up commits go on the same ticket
+- [x] R-172 (D148) owner user: send the GitHub Support purge request for the old history and PR #109 refs (draft in reviews/ccm-20261014/republish/); issue: #136; sent 2026-10-14 (ticket id in private notes); the D178 addendum (13 replaced commits, the PR #110 test merge, the force-push comparison) posted on the same ticket 2026-10-14
 - [ ] R-173 (D109, D132) owner user: answer Q2-order-v2 section 6 U1-U5 (CT-63a one unit or split; Q83 gate scripts and D60; #13 fallback after R4; Q82 D99 and the remote switch; delivery:publish on CT-18); issue: #137
 - [ ] R-166 (D157): mise minimum_release_age 1h for this project; issue: #130
 - [ ] R-167 (D157): automated dependency updates through GHA (Renovate or Dependabot review, R22), zero agent tokens unless an upgrade breaks; issue: #131
