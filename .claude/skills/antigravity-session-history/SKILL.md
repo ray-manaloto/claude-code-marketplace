@@ -21,13 +21,12 @@ its scratch directory outside the repository. The desktop app writes
 
 ## Safety: the app writes while you read
 
-- **Snapshot, then open the snapshot.** Copy each database with its `-wal`
-  and `-shm` into `$S`, record the source mtime and the copy's SHA-256, and
-  open the copy as `sqlite3 'file:<copy>?mode=ro&immutable=1'`. When the
-  copied `-wal` is non-empty, `immutable=1` reads stop at the last checkpoint
-  and miss the newest steps: report the WAL size, read those steps from the
-  mirror, and if only the database holds them, reopen the **scratch copy**
-  with `?mode=ro` alone.
+- **Snapshot, then open the snapshot.** Copy each database with `snap`
+  (recipe 0): it takes the database with its `-wal` and `-shm` as one instant
+  into `$S` and records the source mtime, the copy's SHA-256 and `wal_bytes`.
+  Open the copy as `sqlite3 'file:<copy>?mode=ro&immutable=1'`; when
+  `wal_bytes` is above 0, recipe 0 says what that read misses and how to
+  reread the scratch copy.
 - Read brain files (JSONL, Markdown, JSON, logs) in place with `jq`, `rg`,
   `tail`; they are plain files.
 - Observe the app with `pgrep` only. Starting Antigravity or running `agy`
@@ -89,11 +88,11 @@ its scratch directory outside the repository. The desktop app writes
    search "<concept>" --agent antigravity --since 30d`; an empty answer means
    the archive has not imported Antigravity, so report it as such. Done when
    each cited commit or file is confirmed or marked "not found in workspace".
-6. **Report with steps.** Every claim carries `[created_at step=N]`. Keep
-   proposed apart from approved: an artifact is approved only when a
-   `USER_INPUT` step says "The user has approved this document" for its URI.
-   State the snapshot receipts (source mtime, SHA-256, WAL size) and the
-   mirror gap. A missing record reads "not observed".
+6. **Report with steps.** Keep proposed apart from approved: an artifact is
+   approved only when a `USER_INPUT` step says "The user has approved this
+   document" for its URI. A missing record reads "not observed". Done when
+   every claim carries `[created_at step=N]` and the report states the
+   snapshot receipts (source mtime, SHA-256, `wal_bytes`) and the mirror gap.
 
 ## Known gap: no step decoder yet
 

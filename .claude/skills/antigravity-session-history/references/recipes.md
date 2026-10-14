@@ -13,9 +13,15 @@ search term, `<repo-substring>` part of a workspace path. Long outputs go to
 AG=~/.gemini/antigravity        # the agy CLI: ~/.gemini/antigravity-cli
 S=<scratch>/agy/$(basename "$AG"); mkdir -p "$S"   # one scratch dir per root, outside the repository
 RO() { sqlite3 -readonly "file:$1?mode=ro&immutable=1" "$2"; }
-# snap <live-db>: copy it with -wal/-shm into $S and append a receipt line
-snap() { for f in "$1" "$1-wal" "$1-shm"; do [ -e "$f" ] && cp -p "$f" "$S"/; done
-  b="$S/$(basename "$1")"
+# snap <live-db>: copy it with -wal/-shm into $S as one instant, then append a receipt line
+snap() { b="$S/$(basename "$1")"; n=0
+  while :; do rm -f "$b" "$b-wal" "$b-shm"      # a stale -wal/-shm from an earlier snapshot would replay under ?mode=ro
+    m0=$(stat -f '%Fm %z' "$1" "$1-wal" "$1-shm" 2>/dev/null | tr '\n' ' ')
+    for f in "$1" "$1-wal" "$1-shm"; do [ -e "$f" ] && cp -p "$f" "$S"/; done
+    m1=$(stat -f '%Fm %z' "$1" "$1-wal" "$1-shm" 2>/dev/null | tr '\n' ' ')
+    [ "$m0" = "$m1" ] && break                   # the three files changed during the copy: take them again
+    n=$((n+1)); [ "$n" -ge 5 ] && { echo "snap: $1 changed during 5 copies; stop and retry when the agent is idle" >&2; return 1; }
+  done
   printf '%s src_mtime=%s sha256=%s wal_bytes=%s\n' "$1" "$(stat -f %Sm -t %FT%T%z "$1")" \
     "$(shasum -a 256 "$b" | cut -c1-64)" "$(stat -f %z "$b-wal" 2>/dev/null || echo 0)" \
     | tee -a "$S/snapshots.txt"; }

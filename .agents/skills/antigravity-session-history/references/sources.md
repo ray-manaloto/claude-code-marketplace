@@ -12,7 +12,7 @@ trusting a column.
 
 | Store | Path | What it holds | Notes |
 | --- | --- | --- | --- |
-| Conversation db | `conversations/<id>.db` (+ `-wal`, `-shm`) | One row per step: `steps(idx, step_type, status, has_subtrajectory, metadata, error_details, permissions, task_details, render_info, step_payload, step_format)`; `gen_metadata(idx, data, size)` (full prompts, token usage); `trajectory_meta`, `trajectory_metadata_blob(id, data)` (workspace URI, branch), `executor_metadata(idx, data)` (one row per agent execution; a failed one carries `execution error: <phase>: …`, for example `pre-invocation hook: context summarization`), `parent_references`, `battle_mode_infos`. | WAL format (header bytes 18-19 = `02 02`). Blobs are plain protobuf (`gemini_coder.Step`), not encrypted on this build. Up to 2.8 GB. `immutable=1` skips the WAL: check `wal_bytes`. |
+| Conversation db | `conversations/<id>.db` (+ `-wal`, `-shm`) | One row per step: `steps(idx, step_type, status, has_subtrajectory, metadata, error_details, permissions, task_details, render_info, step_payload, step_format)`; `gen_metadata(idx, data, size)` (full prompts, token usage); `trajectory_meta`, `trajectory_metadata_blob(id, data)` (workspace URI, branch), `executor_metadata(idx, data)` (one row per agent execution; a failed one carries `execution error: <phase>: …`, for example `pre-invocation hook: context summarization`), `parent_references`, `battle_mode_infos`. | WAL format (header bytes 18-19 = `02 02`). Blobs are plain protobuf (`gemini_coder.Step`), not encrypted on this build. Up to 2.8 GB. `wal_bytes` above 0: recipe 0 in recipes.md. |
 | Legacy conversation | `conversations/<id>.pb` | Conversations from before the SQLite move (6 here). | AES-encrypted per AgentsView `antigravity_crypto.go`; unreadable, and these have no mirror. Their brain directory keeps artifacts and `.resolved.N` versions; the index content table keeps partial prompt and answer text. |
 | Summaries and index | `conversation_summaries.db` | `conversation_summaries`: `conversation_id`, `title`, `preview`, `step_count`, `last_modified_time`, `workspace_uris` (JSON array of `file://` URIs), `status`, `source`, `project_id`, `agent_name`, `parent_conversation_id`, `nesting_depth`, `not_fully_idle`, `killed`, `last_user_input_time`, `last_user_input_step_index`, `raw_summary`. FTS5 table `conversations_fts`. | Times are text `YYYY-MM-DD HH:MM:SS.ffffff+00:00` (UTC). Subagents have an empty title and `last_user_input_time` `0001-01-01…`. `status` read `CASCADE_RUN_STATUS_IDLE` for every row, stopped or not. |
 | Full-text index | `conversations_fts` in the summaries db | Columns 0-9 unindexed (`conversation_id`, `chunk_index`, `chunk_first_step`, `chunk_last_step`, `last_modified_time`, `step_count`, `last_step_created_at`, `archived`, byte offsets); indexed 10 `title`, 11 `workspace`, 12 `project`, 13 `user_body`, 14 `agent_body`. `unicode61` tokenizer, prefix indexes 1-3. | Lazy: it covered 35 of 247 conversations here, so a search reports coverage and adds `rg` over the mirrors. The content table `conversations_fts_content` (`c0` id, `c1` chunk, `c2`/`c3` step range, `c13` user text, `c14` agent text) is readable directly. |
@@ -75,8 +75,9 @@ an existing-tool configuration change with its own admission.
   its `step_type` 17 quota errors, the closing ones included. Liveness and the
   stop reason come from the database. Across both roots, about 3,000 steps
   were mirror-less, most of them error notices.
-- An immutable open of a copy whose `-wal` is non-empty misses the WAL's
-  transactions (a 10-row WAL read as 0 rows in a synthetic check).
+- Non-empty `-wal`: recipe 0 in recipes.md states what an immutable read
+  misses and the fallback; the synthetic check behind it read 0 of 10 WAL
+  rows under `immutable=1`.
 - The running app keeps empty `-wal` and `-shm` files beside the databases
   it has open (an August conversation's were dated the morning of the check),
   so their mtimes say when the app opened it, not when the agent last acted.
