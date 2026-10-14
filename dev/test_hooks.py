@@ -337,6 +337,13 @@ ANSWER = {"session_id": "797fac9e-45f6-4000-bb0b-7a4b6c71a99d", "prompt_id": "ff
           "tool_response": {"answers": {"Which color?": "Blue"},
                             "annotations": {"Which color?": {"notes": "free-text note N-7731"}}},
           "tool_use_id": "toolu_01NaR2bfprATUFujrY2dE1Hy"}
+HARNESS_PROMPTS = (  # background-task report: the shape of both live ledger rows (p:9dc3aa9d, p:cf32b5bb)
+    "<task-notification>\n<task-id>b1</task-id>\n<status>completed</status>\n</task-notification>",
+    # Claude Code 2.1.300: a poll event or session notice runs the hook on its `<event kind=...>` element
+    '<event kind="session-notice" at="2026-10-14T00:00:00Z" notice-class="info">done</event>',
+    "<<autonomous-loop>>",  # the CronCreate and ScheduleWakeup sentinels a /loop iteration fires with
+    "<<autonomous-loop-dynamic>>",
+)
 PLAN_TEXT = """# Plan
 
 ## Next Step
@@ -395,6 +402,20 @@ class RequestHooks(unittest.TestCase):
                 self.assertEqual(ledger.read_text().splitlines(),
                                  [*before, json.dumps(payload, separators=(",", ":"), ensure_ascii=False)])
         self.assertEqual(oct((self.tmp / "home" / LEDGER).parent.stat().st_mode & 0o777), "0o700")
+
+    def test_capture_drops_a_harness_prompt_and_keeps_a_user_prompt_that_quotes_one(self):
+        """Harness events reach UserPromptSubmit too (two live ledger rows, 2026-10-14); only user prompts land."""
+        ledger = self.tmp / "home" / LEDGER
+        for prompt in HARNESS_PROMPTS:
+            with self.subTest(prompt=prompt[:24]):
+                self.assertEqual(self.run_hook("UserPromptSubmit", stdin=json.dumps({**PROMPT, "prompt": prompt})),
+                                 (0, ""))
+                self.assertEqual(ledger.read_text(), "")
+        quoting = [{**PROMPT, "prompt": text} for text in ("why did <task-notification> land in the ledger?",
+                                                           "explain this row:\n<task-notification>\n<status>")]
+        for payload in quoting:
+            self.assertEqual(self.run_hook("UserPromptSubmit", stdin=json.dumps(payload)), (0, ""))
+        self.assertEqual(ledger.read_text().splitlines(), [json.dumps(row, separators=(",", ":")) for row in quoting])
 
     def test_capture_of_invalid_stdin_appends_nothing_and_never_exits_2(self):
         rc, out = self.run_hook("UserPromptSubmit", stdin="{not json")
