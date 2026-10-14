@@ -209,6 +209,8 @@ def share_pinned_installs(root: Path, selected: Path) -> None:
     # Called after the tree comparison and excluded, so no tool path enters a
     # tree; mise state written at run time stays in the copy's own .mise.
     data = selected / ".mise"
+    if data.exists() or data.is_symlink():
+        raise Refusal("reviewed tree carries a .mise entry")
     data.mkdir()
     (data / "installs").symlink_to((root / ".mise/installs").resolve(), target_is_directory=True)
     (selected / ".git/info").mkdir(exist_ok=True)

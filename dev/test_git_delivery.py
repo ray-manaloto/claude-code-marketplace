@@ -338,6 +338,42 @@ class DeliveryTests(unittest.TestCase):
         published = dict(line.split("=", 1) for line in result.stdout.splitlines())["published"]
         self.assertEqual(self.git("rev-parse", f"{published}^{{tree}}"), tree)
 
+    def publish_options(self, *paths: str) -> tuple[str, ...]:
+        prepared = self.invoke("prepare", *(arg for path in paths for arg in ("--path", path)))
+        self.assertEqual(prepared.returncode, 0, prepared.stderr)
+        tree = dict(line.split("=", 1) for line in prepared.stdout.splitlines())["index_tree"]
+        message = self.base / "message"
+        message.write_text("reviewed change\n")
+        scanner = self.base / "scanner"
+        scanner.write_text("#!/bin/sh\nexit 0\n")
+        scanner.chmod(0o700)
+        return (*(arg for path in paths for arg in ("--path", path)), "--index-tree", tree,
+                "--message-file", str(message), "--check-task", "check", "--gitleaks-bin", str(scanner))
+
+    def test_scratch_validation_refuses_tree_with_mise_directory(self) -> None:
+        # The copy's .mise is the link to the source installs; a reviewed tree may not carry one.
+        (self.repo / ".mise").mkdir()
+        (self.repo / ".mise/pin").write_text("tracked\n")
+        result = self.invoke("publish", *self.publish_options(".mise/pin"))
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("reviewed tree carries a .mise entry", result.stderr)
+        self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+        self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
+    def test_scratch_validation_refuses_tree_with_mise_symlink(self) -> None:
+        # prepare admits only regular files, so the link reaches the copy from HEAD.
+        (self.repo / ".mise").symlink_to("selected.txt")
+        self.git("add", ".mise")
+        self.git("commit", "-qm", "link")
+        self.head = self.git("rev-parse", "HEAD")
+        self.hook_hash = self.inspect_hook_hash()
+        (self.repo / "selected.txt").write_text("reviewed\n")
+        result = self.invoke("publish", *self.publish_options("selected.txt"))
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("reviewed tree carries a .mise entry", result.stderr)
+        self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+        self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
     def test_scratch_validation_refuses_export_ignored_tree(self) -> None:
         (self.repo / ".gitattributes").write_text("selected.txt export-ignore\n")
         (self.repo / "selected.txt").write_text("reviewed\n")
