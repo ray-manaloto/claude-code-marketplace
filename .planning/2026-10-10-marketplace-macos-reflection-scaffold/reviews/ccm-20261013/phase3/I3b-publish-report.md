@@ -8,9 +8,16 @@ Serial, no agents. Logs and intents are in the session scratchpad `…/scratchpa
 
 ## Result
 
-- Publish SHA: pending (filled after `delivery:publish`).
-- Remote tip after publish: pending.
-- CI: pending.
+- Published `d420a7ee8f589ecac05e667c1a4351cf468da734`, parent `0a68dce`, tree
+  `061c0cdf6a980c320a35bd6ef420124f07b77f9a`, 95 files, author Raymond Manaloto.
+- Remote tip after publish: `d420a7ee…` (`git rev-parse origin/…` and `git ls-remote` agree);
+  `git log origin/…..HEAD` is empty.
+- No refusal.
+- CI: research-fast run `38504716758` (push, head `d420a7ee`) completed `success`
+  (`gh run watch --exit-status --interval 60` rc 0).
+- The sections below were filled in after the publish. The committed copy of this report has the
+  publish fields pending. This update, the publish SHA line in `progress.md` and the
+  `task_plan.md` Checkout line and step-10 tick are unstaged, and the next publish carries them.
 
 ## Inputs
 
@@ -84,13 +91,48 @@ The selected list `phase3/I3-selected-paths.txt` gained `I3-review.md` and this 
 
 ## Prepare and publish
 
-Pending.
+Final staged tree before the reset: `git write-tree` = `061c0cdf6a980c320a35bd6ef420124f07b77f9a`,
+95 paths.
+
+| Command | rc | Output |
+|---|---|---|
+| `git reset -q` (index only) | 0 | 0 paths staged against HEAD |
+| `./dev/mise run delivery:prepare -- prepare.json 8fe6eef8…` | 0 | `head=0a68dce3…`, `index_tree=061c0cdf…`, equal to the pre-reset tree |
+| `./dev/mise run delivery:publish -- publish.json bfc18fe2…` | 0 | `published=d420a7ee…`, `history_scan_rc=0` |
+
+`publish` rc 0 means each of the following also returned rc 0. Any nonzero rc in `run()` refuses.
+
+- In the scratch extraction of `061c0cdf`: `tasks validate`, `check`, `check:acceptance-baseline`
+  and `test:delivery`.
+- In the checkout, each `check_task`: `deps:check`, `check:acceptance-baseline`, `test:delivery`,
+  `test:hooks`.
+- `git diff --cached --check`.
+- The staged gitleaks pre-commit scan.
+
+The outbound history scan over `0a68dce..d420a7e` returned rc 0, so no baseline or adjudication was
+used.
 
 ## Post-publish verification
 
-Pending.
+| Command | rc | Result |
+|---|---|---|
+| `git log --oneline -3` | 0 | `d420a7e`, `0a68dce`, `760b154` |
+| `git rev-parse HEAD origin/codex/marketplace-native-onboarding` | 0 | both `d420a7ee…` |
+| `git ls-remote --heads origin codex/marketplace-native-onboarding` | 0 | `d420a7ee…` |
+| `git log origin/…..HEAD` | 0 | empty |
+| `git status --porcelain` | 0 | empty before the post-publish edits |
+| `git status --porcelain --ignored` | 0 | `!!` on `.agent/`, `.claude/settings.local.json`, `.claude/worktrees/`, `2a14/`, `c658/`, `digests/`, `plan-backups/`, `settings.json.before-ct02` and the tool caches |
+| `gh run list --limit 2` | 0 | run `38504716758` research-fast on `d420a7e` |
+| `gh run watch 38504716758 --exit-status --interval 60` | 0 | completed success |
 
 ## Not verified / notes
 
 - Inside `delivery:publish`, the per-task outputs are captured by the script, and their rc 0 is
-  inferred from `run()`.
+  inferred from `run()` (`dev/git_delivery.py:32-41`).
+- The `${CLAUDE_SKILL_DIR}` substitution in the SKILL.md `!` preamble was exercised only with the
+  variable set in a shell. A live `/ticket-frontier` invocation has not run yet; `|| true` keeps
+  any failure harmless.
+- Not run here: `check:research`, `hk validate`, `ci/acceptance.sh`, and container, provider or
+  fresh-session acceptance. `hooks:install` was not run (D2).
+- `ticket-ledger.md` CT-02b still shows `blocked | CT-02`. CT-02 is now done, so the parent must
+  decide that blocker's disposition at the next ledger pass.
