@@ -27,11 +27,12 @@
     },
     {
       "id": 3,
-      "prompt": "handoff: the next session should start as ccm-20261015 and the pending-user list gained D59.",
-      "expected_output": "Edits references/handoff-template.md (owner and pending-user sections), copies it to the .agents mirror, runs write --dry-run to show the diff, then write and check, and prints the start command naming ccm-20261015.",
+      "prompt": "handoff: the next session should start as ccm-20261015 and the user now owes R-172 (D59).",
+      "expected_output": "Edits references/handoff-template.md (owner section), copies it to the .agents mirror, confirms R-172 is an `owner user` line of `## Open requests` (the generated Pending user line carries it), runs write --dry-run to show the diff, then write and check, and prints the start command naming ccm-20261015.",
       "files": [],
       "expectations": [
         "Changes the template rather than the generated block",
+        "Puts the user-owed item in `## Open requests` as an `owner user` R-n line, never in the template",
         "Syncs the .agents/skills/session-handoff mirror after the template edit",
         "Shows the write --dry-run diff before writing",
         "The start command names ccm-20261015"

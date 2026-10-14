@@ -116,8 +116,10 @@ exit: when a mod event is verified live, the mod does the work and the hook stan
   parent) and `compactions.jsonl` (`PostCompact` stdin appended with `cat`, not `jq`, because the
   payload can be invalid JSON, #89622).
 - Echo: the capture hook runs synchronously (timeout 5 s) and prints one line,
-  `[requests] captured p:<first 8 of the key>; open requests: <N>`, where N is `grep -c '^- \[ \] R-'`
-  over the plan. Never the text. The parent cites `p:<id8>` in the plan line.
+  `[requests] captured p:<id8>; open requests: <N>`, where N is `grep -c '^- \[ \] R-'`
+  over the plan. Never the text. The parent cites `p:<id8>` in the plan line. Key rule as built
+  (D167, lanes request-catch and request-hooks): a prompt keys on the first 8 of `prompt_id`, an
+  answer on the last 8 of `tool_use_id`.
 
 ### 4.2 Projection
 
