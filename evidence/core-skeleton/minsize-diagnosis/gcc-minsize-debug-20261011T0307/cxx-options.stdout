@@ -1,0 +1,575 @@
+The following options are supported by the language C++:
+  --all-warnings              		-Wall
+  --ansi                      		-ansi
+  --assert                    		-A
+  --assert=                   		
+  --comments                  		-C
+  --comments-in-macros        		-CC
+  --compile-std-module        		[disabled]
+  --define-macro              		-D
+  --define-macro=             		
+  --dependencies              		-M
+  --dump                      		-d
+  --dump=                     		
+  --embed-dir=<dir>           		
+  --embed-directory           		--embed-dir=
+  --embed-directory=          		
+  --imacros                   		-imacros
+  --imacros=                  		
+  --include                   		-include
+  --include-barrier           		-I-
+  --include-directory         		-I
+  --include-directory-after   		-idirafter
+  --include-directory-after=  		
+  --include-directory=        		
+  --include-prefix            		-iprefix
+  --include-prefix=           		
+  --include-with-prefix       		-iwithprefix
+  --include-with-prefix-after 		-iwithprefix
+  --include-with-prefix-after= 		
+  --include-with-prefix-before 		-iwithprefixbefore
+  --include-with-prefix-before= 	
+  --include-with-prefix=      		
+  --include=                  		
+  --no-line-commands          		-P
+  --no-standard-includes      		-nostdinc
+  --no-warnings               		-w
+  --output                    		-o
+  --output-pch                		
+  --output=                   		
+  --pedantic                  		-Wpedantic
+  --preprocess                		-E
+  --print-missing-file-dependencies 	-MG
+  --trace-includes            		-H
+  --traditional-cpp           		-traditional-cpp
+  --trigraphs                 		-trigraphs
+  --undefine-macro            		-U
+  --undefine-macro=           		
+  --user-dependencies         		-MM
+  --verbose                   		-v
+  --write-dependencies        		-MD
+  --write-user-dependencies   		-MMD
+  -A<question>=<answer>       		
+  -C                          		
+  -CC                         		
+  -D<macro>[=<val>]           		
+  -E                          		[disabled]
+  -F <dir>                    		
+  -H                          		
+  -I <dir>                    		
+  -M                          		
+  -MD                         		
+  -MF <file>                  		
+  -MG                         		
+  -MM                         		
+  -MMD                        		
+  -MP                         		
+  -MQ <target>                		
+  -MT <target>                		
+  -Mmodules                   		[disabled]
+  -Mno-modules                		[disabled]
+  -P                          		
+  -U<macro>                   		
+  -WNSObject-attribute        		[enabled]
+  -Wabbreviated-auto-in-template-arg 	[available in C++, ObjC++]
+  -Wabi                       		[disabled]
+  -Wabi-tag                   		[available in C++, ObjC++]
+  -Wabi=                      		
+  -Waddress                   		[disabled]
+  -Waddress-of-packed-member  		[enabled]
+  -Waligned-new               		-Waligned-new=global
+  -Waligned-new=[none|global|all] 	[available in C++, ObjC++]
+  -Wall                       		
+  -Walloc-size                		[disabled]
+  -Walloc-size-larger-than=<bytes> 	9223372036854775807 bytes
+  -Walloc-zero                		[disabled]
+  -Walloca                    		[disabled]
+  -Walloca-larger-than=<number> 	9223372036854775807 bytes
+  -Warith-conversion          		[disabled]
+  -Warray-compare             		[disabled]
+  -Warray-parameter           		-Warray-parameter=2
+  -Warray-parameter=<0,2>     		0
+  -Wbidi-chars                		-Wbidi-chars=any
+  -Wbidi-chars=               		unpaired
+  -Wbool-compare              		[disabled]
+  -Wbool-operation            		[disabled]
+  -Wbuiltin-declaration-mismatch 	[enabled]
+  -Wbuiltin-macro-redefined   		[enabled]
+  -Wc++0x-compat              		-Wc++11-compat
+  -Wc++11-compat              		[available in C++, ObjC++]
+  -Wc++11-extensions          		[available in C++, ObjC++]
+  -Wc++14-compat              		[available in C++, ObjC++]
+  -Wc++14-extensions          		[available in C++, ObjC++]
+  -Wc++17-compat              		[available in C++, ObjC++]
+  -Wc++17-extensions          		[available in C++, ObjC++]
+  -Wc++1z-compat              		-Wc++17-compat
+  -Wc++20-compat              		[available in C++, ObjC++]
+  -Wc++20-extensions          		[available in C++, ObjC++]
+  -Wc++23-extensions          		[available in C++, ObjC++]
+  -Wc++26-compat              		[available in C++, ObjC++]
+  -Wc++26-extensions          		[available in C++, ObjC++]
+  -Wc++2a-compat              		-Wc++20-compat
+  -Wcalloc-transposed-args    		[disabled]
+  -Wcast-function-type        		[disabled]
+  -Wcast-qual                 		[disabled]
+  -Wcast-user-defined         		[available in C++, ObjC++]
+  -Wcatch-value               		-Wcatch-value=1
+  -Wcatch-value=<0,3>         		[available in C++, ObjC++]
+  -Wchanges-meaning           		[available in C++, ObjC++]
+  -Wchar-subscripts           		[disabled]
+  -Wchkp                      		
+  -Wclass-conversion          		[available in C++, ObjC++]
+  -Wclass-memaccess           		[available in C++, ObjC++]
+  -Wclobbered                 		[disabled]
+  -Wcomma-subscript           		[available in C++, ObjC++]
+  -Wcomment                   		[disabled]
+  -Wcomments                  		-Wcomment
+  -Wconditionally-supported   		[available in C++, ObjC++]
+  -Wconversion                		[disabled]
+  -Wconversion-null           		[available in C++, ObjC++]
+  -Wcpp                       		[enabled]
+  -Wctad-maybe-unsupported    		[available in C++, ObjC++]
+  -Wctor-dtor-privacy         		[available in C++, ObjC++]
+  -Wdangling-else             		[disabled]
+  -Wdangling-pointer          		-Wdangling-pointer=2
+  -Wdangling-pointer=<0,2>    		0
+  -Wdangling-reference        		[available in C++, ObjC++]
+  -Wdate-time                 		[disabled]
+  -Wdefaulted-function-deleted 		[available in C++, ObjC++]
+  -Wdelete-incomplete         		[available in C++, ObjC++]
+  -Wdelete-non-virtual-dtor   		[available in C++, ObjC++]
+  -Wdeprecated                		[enabled]
+  -Wdeprecated-copy           		[available in C++, ObjC++]
+  -Wdeprecated-copy-dtor      		[available in C++, ObjC++]
+  -Wdeprecated-enum-enum-conversion 	[available in C++, ObjC++]
+  -Wdeprecated-enum-float-conversion 	[available in C++, ObjC++]
+  -Wdeprecated-literal-operator 	[available in C++, ObjC++]
+  -Wdeprecated-openmp         		[enabled]
+  -Wdeprecated-variadic-comma-omission 	[available in C++, ObjC++]
+  -Wdiv-by-zero               		[enabled]
+  -Wdouble-promotion          		[disabled]
+  -Wduplicated-branches       		[disabled]
+  -Wduplicated-cond           		[disabled]
+  -Weffc++                    		[available in C++, ObjC++]
+  -Welaborated-enum-base      		[available in C++, ObjC++]
+  -Wempty-body                		[disabled]
+  -Wendif-labels              		[enabled]
+  -Wenum-compare              		
+  -Wenum-conversion           		[disabled]
+  -Werror                     		[disabled]
+  -Wexceptions                		[available in C++, ObjC++]
+  -Wexpansion-to-defined      		[disabled]
+  -Wexpose-global-module-tu-local 	[available in C++, ObjC++]
+  -Wexternal-tu-local         		[available in C++, ObjC++]
+  -Wextra                     		[disabled]
+  -Wextra-semi                		[available in C++, ObjC++]
+  -Wflex-array-member-not-at-end 	[disabled]
+  -Wfloat-conversion          		[disabled]
+  -Wfloat-equal               		[disabled]
+  -Wformat                    		-Wformat=1
+  -Wformat-contains-nul       		[disabled]
+  -Wformat-diag               		[disabled]
+  -Wformat-extra-args         		[disabled]
+  -Wformat-nonliteral         		[disabled]
+  -Wformat-overflow<0,2>      		-Wformat-overflow=1
+  -Wformat-overflow=<0,2>     		0
+  -Wformat-security           		[disabled]
+  -Wformat-signedness         		[disabled]
+  -Wformat-truncation         		-Wformat-truncation=1
+  -Wformat-truncation=<0,2>   		0
+  -Wformat-y2k                		[disabled]
+  -Wformat-zero-length        		[disabled]
+  -Wformat=<0,2>              		0
+  -Wframe-address             		[disabled]
+  -Wglobal-module             		[available in C++, ObjC++]
+  -Wheader-guard              		[disabled]
+  -Wif-not-aligned            		[enabled]
+  -Wignored-attributes        		[enabled]
+  -Wignored-qualifiers        		[disabled]
+  -Wimport                    		[ignored]
+  -Winaccessible-base         		[available in C++, ObjC++]
+  -Winfinite-recursion        		[disabled]
+  -Winherited-variadic-ctor   		[available in C++, ObjC++]
+  -Winit-list-lifetime        		[available in C++, ObjC++]
+  -Winit-self                 		[disabled]
+  -Wint-in-bool-context       		[disabled]
+  -Wint-to-pointer-cast       		[enabled]
+  -Winterference-size         		[available in C++, ObjC++]
+  -Winvalid-constexpr         		[available in C++, ObjC++]
+  -Winvalid-imported-macros   		[available in C++, ObjC++]
+  -Winvalid-offsetof          		[available in C++, ObjC++]
+  -Winvalid-pch               		[disabled]
+  -Winvalid-utf8              		[disabled]
+  -Wkeyword-macro             		[disabled]
+  -Wleading-whitespace=       		none
+  -Wliteral-suffix            		[available in C++, ObjC++]
+  -Wlogical-not-parentheses   		[disabled]
+  -Wlogical-op                		[disabled]
+  -Wlong-long                 		
+  -Wmain                      		
+  -Wmaybe-uninitialized       		[disabled]
+  -Wmemset-elt-size           		[disabled]
+  -Wmemset-transposed-args    		[disabled]
+  -Wmisleading-indentation    		[disabled]
+  -Wmismatched-dealloc        		[disabled]
+  -Wmismatched-new-delete     		[available in C++, ObjC++]
+  -Wmismatched-tags           		[available in C++, ObjC++]
+  -Wmissing-attributes        		[disabled]
+  -Wmissing-braces            		[disabled]
+  -Wmissing-declarations      		[disabled]
+  -Wmissing-field-initializers 		[disabled]
+  -Wmissing-format-attribute  		-Wsuggest-attribute=format
+  -Wmissing-include-dirs      		[disabled]
+  -Wmissing-requires          		[available in C++, ObjC++]
+  -Wmissing-template-keyword  		[available in C++, ObjC++]
+  -Wmudflap                   		
+  -Wmultichar                 		[disabled]
+  -Wmultiple-inheritance      		[available in C++, ObjC++]
+  -Wmultistatement-macros     		[disabled]
+  -Wnamespaces                		[available in C++, ObjC++]
+  -Wnarrowing                 		
+  -Wno-alloc-size-larger-than 		-Walloc-size-larger-than=18446744073709551615EiB
+  -Wno-alloca-larger-than     		-Walloca-larger-than=18446744073709551615EiB
+  -Wno-vla-larger-than        		-Wvla-larger-than=18446744073709551615EiB
+  -Wnoexcept                  		[available in C++, ObjC++]
+  -Wnoexcept-type             		[available in C++, ObjC++]
+  -Wnon-c-typedef-for-linkage 		[available in C++, ObjC++]
+  -Wnon-template-friend       		[available in C++, ObjC++]
+  -Wnon-virtual-dtor          		[available in C++, ObjC++]
+  -Wnonnull                   		[disabled]
+  -Wnonnull-compare           		[disabled]
+  -Wnormalized                		-Wnormalized=nfc
+  -Wnormalized=[none|id|nfc|nfkc] 	nfc
+  -Wnrvo                      		[available in C++, ObjC++]
+  -Wold-style-cast            		[available in C++, ObjC++]
+  -Wopenacc-parallelism       		[disabled]
+  -Wopenmp                    		[enabled]
+  -Wopenmp-simd               		[disabled]
+  -Woverlength-strings        		[disabled]
+  -Woverloaded-virtual        		-Woverloaded-virtual=2
+  -Woverloaded-virtual=<0,2>  		[available in C++, ObjC++]
+  -Wpacked-bitfield-compat    		
+  -Wpacked-not-aligned        		[disabled]
+  -Wparentheses               		[disabled]
+  -Wpedantic                  		[disabled]
+  -Wpessimizing-move          		[available in C++, ObjC++]
+  -Wplacement-new             		-Wplacement-new=1
+  -Wplacement-new=<0,2>       		[available in C++, ObjC++]
+  -Wpmf-conversions           		[available in C++, ObjC++]
+  -Wpointer-arith             		[disabled]
+  -Wpointer-compare           		[enabled]
+  -Wpragma-once-outside-header 		[enabled]
+  -Wpragmas                   		[enabled]
+  -Wprio-ctor-dtor            		[enabled]
+  -Wpsabi                     		[enabled]
+  -Wrange-loop-construct      		[available in C++, ObjC++]
+  -Wredundant-decls           		[disabled]
+  -Wredundant-move            		[available in C++, ObjC++]
+  -Wredundant-tags            		[available in C++, ObjC++]
+  -Wregister                  		[available in C++, ObjC++]
+  -Wreorder                   		[available in C++, ObjC++]
+  -Wrestrict                  		[disabled]
+  -Wreturn-type               		
+  -Wscalar-storage-order      		[enabled]
+  -Wself-move                 		[available in C++, ObjC++]
+  -Wsequence-point            		[disabled]
+  -Wsfinae-incomplete         		-Wsfinae-incomplete=1
+  -Wsfinae-incomplete=<0,2>   		[available in C++, ObjC++]
+  -Wshift-count-negative      		[enabled]
+  -Wshift-count-overflow      		[enabled]
+  -Wshift-negative-value      		
+  -Wshift-overflow            		-Wshift-overflow=1
+  -Wshift-overflow=<0,2>      		-1
+  -Wsign-compare              		[disabled]
+  -Wsign-conversion           		[disabled]
+  -Wsign-promo                		[available in C++, ObjC++]
+  -Wsized-deallocation        		[available in C++, ObjC++]
+  -Wsizeof-array-argument     		[enabled]
+  -Wsizeof-array-div          		[disabled]
+  -Wsizeof-pointer-div        		[disabled]
+  -Wsizeof-pointer-memaccess  		[disabled]
+  -Wstrict-aliasing=<0,3>     		0
+  -Wstrict-flex-arrays        		[disabled]
+  -Wstrict-null-sentinel      		[available in C++, ObjC++]
+  -Wstrict-overflow=<0,5>     		0
+  -Wstring-compare            		[disabled]
+  -Wstringop-overflow         		-Wstringop-overflow=2
+  -Wstringop-overflow=<0,4>   		2
+  -Wstringop-overread         		[enabled]
+  -Wstringop-truncation       		[disabled]
+  -Wsubobject-linkage         		[available in C++, ObjC++]
+  -Wsuggest-attribute=format  		[disabled]
+  -Wsuggest-override          		[available in C++, ObjC++]
+  -Wswitch                    		[disabled]
+  -Wswitch-bool               		[enabled]
+  -Wswitch-default            		[disabled]
+  -Wswitch-enum               		[disabled]
+  -Wswitch-outside-range      		[enabled]
+  -Wsync-nand                 		[enabled]
+  -Wsynth                     		[ignored]
+  -Wsystem-headers            		[disabled]
+  -Wtemplate-body             		[available in C++, ObjC++]
+  -Wtemplate-id-cdtor         		[available in C++, ObjC++]
+  -Wtemplate-names-tu-local   		[available in C++, ObjC++]
+  -Wtemplates                 		[available in C++, ObjC++]
+  -Wterminate                 		[available in C++, ObjC++]
+  -Wtrailing-whitespace       		-Wtrailing-whitespace=blanks
+  -Wtrailing-whitespace=      		none
+  -Wtrigraphs                 		[enabled]
+  -Wundef                     		[disabled]
+  -Wunicode                   		[enabled]
+  -Wuninitialized             		[disabled]
+  -Wunknown-pragmas           		[disabled]
+  -Wunused                    		[disabled]
+  -Wunused-const-variable     		-Wunused-const-variable=2
+  -Wunused-const-variable=<0,2> 		0
+  -Wunused-local-typedefs     		[disabled]
+  -Wunused-macros             		[disabled]
+  -Wunused-result             		[enabled]
+  -Wunused-variable           		[disabled]
+  -Wuseless-cast              		[disabled]
+  -Wvarargs                   		[enabled]
+  -Wvariadic-macros           		[disabled]
+  -Wvexing-parse              		[available in C++, ObjC++]
+  -Wvirtual-inheritance       		[available in C++, ObjC++]
+  -Wvirtual-move-assign       		[available in C++, ObjC++]
+  -Wvla                       		
+  -Wvla-larger-than=<number>  		9223372036854775807 bytes
+  -Wvla-parameter             		[disabled]
+  -Wvolatile                  		[available in C++, ObjC++]
+  -Wvolatile-register-var     		[disabled]
+  -Wwrite-strings             		[disabled]
+  -Wxor-used-as-pow           		[enabled]
+  -Wzero-as-null-pointer-constant 	[disabled]
+  -Wzero-length-bounds        		[disabled]
+  -ansi                       		
+  -d<letters>                 		
+  -dependency-file            		-MF
+  -fabi-compat-version=       		[available in C++, ObjC++]
+  -faccess-control            		[available in C++, ObjC++]
+  -fada-spec-parent=unit      		
+  -faligned-new               		-faligned-new=1
+  -faligned-new=<N>           		[available in C++, ObjC++]
+  -fall-virtual               		[disabled]
+  -fallow-const-var-array-size 		[enabled]
+  -fallow-extended-attribute-placement 	[enabled]
+  -fallow-extra-keywords      		[enabled]
+  -falt-external-templates    		[disabled]
+  -fapple-kext                		[available in C++]
+  -fasm                       		[enabled]
+  -fassume-sane-operators-new-delete 	[available in C++, ObjC++]
+  -fbuilding-libgcc           		[disabled]
+  -fbuiltin                   		[enabled]
+  -fbuiltin-                  		
+  -fcanonical-system-headers  		
+  -fchar8_t                   		[available in C++, ObjC++]
+  -fcheck-pointer-bounds      		
+  -fchkp-check-incomplete-type 		
+  -fchkp-check-read           		
+  -fchkp-check-write          		
+  -fchkp-first-field-has-own-bounds 	
+  -fchkp-flexible-struct-trailing-arrays 	
+  -fchkp-instrument-calls     		
+  -fchkp-instrument-marked-only 	
+  -fchkp-narrow-bounds        		
+  -fchkp-narrow-to-innermost-array 	
+  -fchkp-optimize             		
+  -fchkp-store-bounds         		
+  -fchkp-treat-zero-dynamic-size-as-infinite 	
+  -fchkp-use-fast-string-functions 	
+  -fchkp-use-nochk-string-functions 	
+  -fchkp-use-static-bounds    		
+  -fchkp-use-static-const-bounds 	
+  -fchkp-use-wrappers         		
+  -fchkp-zero-input-bounds-for-main 	
+  -fcilkplus                  		[ignored]
+  -fconcepts                  		[available in C++, ObjC++]
+  -fconcepts-diagnostics-depth= 	[available in C++, ObjC++]
+  -fconcepts-ts               		[disabled]
+  -fcond-mismatch             		
+  -fconserve-space            		[ignored]
+  -fconstexpr-cache-depth=<number> 	[available in C++, ObjC++]
+  -fconstexpr-depth=<number>  		[available in C++, ObjC++]
+  -fconstexpr-fp-except       		[available in C++, ObjC++]
+  -fconstexpr-loop-limit=<number> 	[available in C++, ObjC++]
+  -fconstexpr-ops-limit=<number> 	[available in C++, ObjC++]
+  -fcontract-checks-outlined  		[available in C++, ObjC++]
+  -fcontract-disable-optimized-checks 	[available in C++, ObjC++]
+  -fcontract-evaluation-semantic=[ignore|observe|enforce|quick_enforce] 	[available
+                              in C++, ObjC++]
+  -fcontracts                 		[available in C++, ObjC++]
+  -fcontracts-client-check=   		[available in C++, ObjC++]
+  -fcontracts-conservative-ipa 		[available in C++, ObjC++]
+  -fcontracts-definition-check=[on|off] 	[available in C++, ObjC++]
+  -fcoroutines                		[available in C++, LTO, ObjC++]
+  -fdebug-cpp                 		
+  -fdeclone-ctor-dtor         		[available in C++, ObjC++]
+  -fdeduce-init-list          		[ignored]
+  -fdefault-inline            		[ignored]
+  -fdeps-file=                		
+  -fdeps-format=              		
+  -fdeps-target=              		
+  -fdiagnostics-all-candidates 		[available in C++, ObjC++]
+  -fdiagnostics-show-template-tree 	[available in C++, ObjC++]
+  -fdirectives-only           		
+  -fdollars-in-identifiers    		
+  -fdump-ada-spec             		[disabled]
+  -fdump-ada-spec-slim        		[disabled]
+  -felide-constructors        		[available in C++, ObjC++]
+  -felide-type                		[available in C++, ObjC++]
+  -femit-struct-debug-baseonly 		
+  -femit-struct-debug-detailed=<spec-list> 	
+  -femit-struct-debug-reduced 		
+  -fenforce-eh-specs          		[available in C++, ObjC++]
+  -fenum-int-equiv            		[disabled]
+  -fexec-charset=<cset>       		
+  -fext-numeric-literals      		[available in C++, ObjC++]
+  -fextended-identifiers      		
+  -fextern-tls-init           		[available in C++, ObjC++]
+  -fexternal-templates        		[disabled]
+  -ffold-simple-inlines       		[available in C++, ObjC++]
+  -ffor-scope                 		[disabled]
+  -ffreestanding              		
+  -ffriend-injection          		[disabled]
+  -fgnu-keywords              		[available in C++, ObjC++]
+  -fguiding-decls             		[disabled]
+  -fhandle-exceptions         		-fexceptions
+  -fhonor-std                 		[disabled]
+  -fhuge-objects              		[disabled]
+  -fimmediate-escalation      		[available in C++, ObjC++]
+  -fimplement-inlines         		[available in C++, ObjC++]
+  -fimplicit-constexpr        		[available in C++, ObjC++]
+  -fimplicit-inline-templates 		[available in C++, ObjC++]
+  -fimplicit-templates        		[available in C++, ObjC++]
+  -finput-charset=<cset>      		
+  -flabels-ok                 		[disabled]
+  -flang-info-include-translate 	[available in C++, ObjC++]
+  -flang-info-include-translate-not 	[available in C++, ObjC++]
+  -flang-info-include-translate= 	
+  -flang-info-module-cmi      		[available in C++, ObjC++]
+  -flang-info-module-cmi=     		
+  -flax-vector-conversions    		[disabled]
+  -fmacro-prefix-map=<old>=<new> 	
+  -fmax-include-depth=        		
+  -fmodule-header             		[available in C++, ObjC]
+  -fmodule-header=            		
+  -fmodule-implicit-inline    		[available in C++, ObjC++]
+  -fmodule-lazy               		[available in C++, ObjC++]
+  -fmodule-mapper=            		
+  -fmodule-only               		[available in C++, ObjC]
+  -fmodule-version-ignore     		[available in C++, ObjC]
+  -fmodules                   		[available in C++, ObjC++]
+  -fmodules-ts                		-fmodules
+  -fms-extensions             		[disabled]
+  -fmudflap                   		
+  -fmudflapir                 		
+  -fmudflapth                 		
+  -fname-mangling-version-    		
+  -fnew-abi                   		[disabled]
+  -fnew-inheriting-ctors      		[available in C++, ObjC++]
+  -fnew-ttp-matching          		[available in C++, ObjC++]
+  -fnonansi-builtins          		[available in C++, ObjC++]
+  -fnonnull-objects           		[disabled]
+  -fnothrow-opt               		[available in C++, ObjC++]
+  -fopenacc                   		[disabled]
+  -fopenacc-dim=              		
+  -fopenmp                    		[disabled]
+  -fopenmp-simd               		[disabled]
+  -foperator-names            		[disabled]
+  -foptional-diags            		[ignored]
+  -fpch-deps                  		
+  -fpch-preprocess            		
+  -fpermissive                		[disabled]
+  -fpreprocessed              		
+  -fpretty-templates          		[available in C++, ObjC++]
+  -fprintf-return-value       		[enabled]
+  -frange-for-ext-temps       		[available in C++, ObjC++]
+  -freflection                		[available in C++, ObjC++]
+  -frepo                      		[disabled]
+  -frtti                      		[available in C++, D, ObjC++]
+  -fsearch-include-path       		
+  -fsearch-include-path=      		
+  -fshort-enums               		[disabled]
+  -fshort-wchar               		[disabled]
+  -fsigned-bitfields          		[enabled]
+  -fsigned-char               		[enabled]
+  -fsized-deallocation        		[available in C++, ObjC++]
+  -fsquangle                  		[disabled]
+  -fstats                     		[available in C++, ObjC++]
+  -fstrict-enums              		[available in C++, ObjC++]
+  -fstrict-flex-arrays        		-fstrict-flex-arrays=3
+  -fstrict-flex-arrays=<0,3>  		0
+  -fstrict-prototype          		[disabled]
+  -fstrong-eval-order         		-fstrong-eval-order=all
+  -fstrong-eval-order=        		[available in C++, ObjC++]
+  -ftemplate-backtrace-limit= 		[available in C++, ObjC++]
+  -ftemplate-depth-           		
+  -ftemplate-depth=<number>   		
+  -fthis-is-variable          		[disabled]
+  -fno-threadsafe-statics     		[available in C++, ObjC++]
+  -ftrack-macro-expansion     		
+  -ftrack-macro-expansion=<0|1|2> 	
+  -funsigned-bitfields        		[disabled]
+  -funsigned-char             		[disabled]
+  -fuse-cxa-atexit            		[available in C++, ObjC++]
+  -fuse-cxa-get-exception-ptr 		[available in C++, ObjC++]
+  -fvisibility-inlines-hidden 		[disabled]
+  -fvisibility-ms-compat      		[available in C++, ObjC++]
+  -fvtable-gc                 		[disabled]
+  -fvtable-thunks             		[disabled]
+  -fweak                      		[available in C++, ObjC++]
+  -fwide-exec-charset=<cset>  		
+  -fworking-directory         		
+  -fxref                      		[disabled]
+  -idirafter <dir>            		
+  -iframework <dir>           		
+  -imacros <file>             		
+  -imultilib <dir>            		
+  -include <file>             		
+  -iprefix <path>             		
+  -iquote <dir>               		
+  -isysroot <dir>             		
+  -isystem <dir>              		
+  -iwithprefix <dir>          		
+  -iwithprefixbefore <dir>    		
+  -nostdinc                   		
+  -nostdinc++                 		[disabled]
+  -o <file>                   		/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/
+                              T//ccvsqG07.s
+  -pedantic                   		-Wpedantic
+  -remap                      		
+  -std=c++03                  		-std=c++98
+  -std=c++0x                  		-std=c++11
+  -std=c++11                  		[disabled]
+  -std=c++14                  		[disabled]
+  -std=c++17                  		[disabled]
+  -std=c++1y                  		-std=c++14
+  -std=c++1z                  		-std=c++17
+  -std=c++20                  		[disabled]
+  -std=c++23                  		[disabled]
+  -std=c++26                  		[disabled]
+  -std=c++2a                  		-std=c++20
+  -std=c++2b                  		-std=c++23
+  -std=c++2c                  		-std=c++26
+  -std=c++98                  		[disabled]
+  -std=gnu++03                		-std=gnu++98
+  -std=gnu++0x                		-std=gnu++11
+  -std=gnu++11                		[disabled]
+  -std=gnu++14                		[disabled]
+  -std=gnu++17                		[disabled]
+  -std=gnu++1y                		-std=gnu++14
+  -std=gnu++1z                		-std=gnu++17
+  -std=gnu++20                		[disabled]
+  -std=gnu++23                		[disabled]
+  -std=gnu++26                		[disabled]
+  -std=gnu++2a                		-std=gnu++20
+  -std=gnu++2b                		-std=gnu++23
+  -std=gnu++2c                		-std=gnu++26
+  -std=gnu++98                		[disabled]
+  -stdlib=[libstdc++|libc++]  		[available in C++, ObjC++]
+  -traditional-cpp            		
+  -trigraphs                  		
+  -undef                      		[disabled]
+  -v                          		[disabled]
+  -w                          		[disabled]
+

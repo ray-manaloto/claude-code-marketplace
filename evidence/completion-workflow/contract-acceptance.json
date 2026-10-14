@@ -1,0 +1,65 @@
+{
+  "scope": "approved execution contract and completed document review; no remaining-product runtime qualification",
+  "approved_at_recorded_utc": "2026-10-13T06:24:10.664000+00:00",
+  "human_answers": {
+    "Q1": "Yes, per lane and dependencies",
+    "Q2": "Q2 yes"
+  },
+  "reviewed_contract_sha256": "98283e1be1f724c08d19086fbe7dc4188b231d5ce2582930879455d263a8eb59",
+  "canonical_copy_sha256": "15773cac88226d70e62e0eaad1c83c327e4919cef1f0e2790aff7b6b4970775d",
+  "canonical_copy_edits": "title, confirmation status, completed interview step, evidence-link resolution; execution requirements preserved",
+  "original_review": {
+    "run_id": "6afa64a3935d44b68edc5455ec97d4b3",
+    "status": "completed",
+    "native_rc": 0,
+    "schema": "passed",
+    "lead_model": "claude-fable-5-1",
+    "verified_child_models": [
+      "claude-fable-5-1",
+      "claude-fable-5-1"
+    ],
+    "findings": {
+      "high": 7,
+      "medium": 7,
+      "low": 2
+    },
+    "verdict": "REQUEST_CHANGES",
+    "participation": "native qualified and sidecar verification passed"
+  },
+  "followup_reviews": [
+    {
+      "run_id": "3bb8f61031254c3093872ea1d4deb887",
+      "native_rc": 0,
+      "schema": "passed",
+      "verdict": "PASS; all original findings resolved; one low handoff note"
+    },
+    {
+      "run_id": "fea54475de2f4e41a6743e51c28d76c5",
+      "native_rc": 0,
+      "schema": "passed",
+      "verdict": "PASS; handoff note corrected; zero actionable findings"
+    }
+  ],
+  "saved_verifier": {
+    "exit_code": 0,
+    "sha256": "711c12d5ffeff44eb85746ea3cffb148b73c4aea04edafc5c835e79860aa3c97",
+    "bound_files": 40
+  },
+  "research": {
+    "request_id": "01a133aa-ecbe-7b51-b397-a43480577775",
+    "manifest_sha256": "665060bcbecd7e5409ffd2737a2579d4a32355509906b7d16452054aeecff1ef",
+    "native_rc": 1,
+    "verdict": "RESEARCH INCOMPLETE",
+    "blockers": [
+      "Last30Days schema 1.4 youtube=no-results rejected by all-statuses-ok validator",
+      "Firecrawl Search HTTP 402; Serper fallback provisional"
+    ],
+    "raw_hash_bindings_verified": 10
+  },
+  "private_evidence_root": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-completion-workflow-qbj4yn5d",
+  "retained_git_identity": {
+    "source_head_before_policy_import": "eb82e2144f6b7c674a18e69b5f9f01b86683d780",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "stage": "grill complete; existing spec/tickets reused; A06 and remainder implementation outstanding"
+}

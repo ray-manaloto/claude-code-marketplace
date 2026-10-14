@@ -1,0 +1,40 @@
+[
+  {
+    "case": "lsan",
+    "argv": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "-###",
+      "-std=c++26",
+      "-fsanitize=leak",
+      "-x",
+      "c++",
+      "/dev/null",
+      "-o",
+      "/dev/null"
+    ],
+    "returncode": 0,
+    "stderr_sha256": "d6de28102c9c6ba4e63e358520c2e5e3cae47484928ca5a39d04b2926ab15008",
+    "mentions_lsan_runtime": true,
+    "mentions_ubsan_runtime": false,
+    "mentions_asan_runtime": false
+  },
+  {
+    "case": "lsan-ubsan",
+    "argv": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "-###",
+      "-std=c++26",
+      "-fsanitize=leak,undefined",
+      "-x",
+      "c++",
+      "/dev/null",
+      "-o",
+      "/dev/null"
+    ],
+    "returncode": 0,
+    "stderr_sha256": "4205a369a2f772b84e22eaa2f67bb1b50de0c4248057bb1e9ccdd8bf8221aba8",
+    "mentions_lsan_runtime": true,
+    "mentions_ubsan_runtime": false,
+    "mentions_asan_runtime": false
+  }
+]

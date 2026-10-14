@@ -1,0 +1,45 @@
+{
+  "reviewer": "/root/config_inspector",
+  "scope": "Read-only classification of supplied private check task; no project writes or commands run",
+  "result": "No direct four-bottle overlap in inspected source; runtime disjointness UNVERIFIED",
+  "no_exemption_added": true,
+  "observed_absent": [
+    {
+      "pid": 21391,
+      "at": "2026-10-11T02:00:10.511Z"
+    },
+    {
+      "pid": 31399,
+      "at": "2026-10-11T02:01:48.083Z"
+    }
+  ],
+  "facts": [
+    "mise check runs hk check --all with no task dependency",
+    "Cached hk mise check invokes mise fmt --check",
+    "Offline doctor invokes mise doctor --json and writes project telemetry",
+    "CBM adapter invokes a resolved binary with project cache directory",
+    "uv run may update Python environments or caches; exited process resolution/environment unverified"
+  ],
+  "source_receipts": [
+    {
+      "path": "<TR>/mise.toml",
+      "sha256": "b79f05b363e0f9fd7265d999a34dd512e694240044dea01e12dae0857229404e"
+    },
+    {
+      "path": "<TR>/hk.pkl",
+      "sha256": "8e7c2ac283d7600f72e9b5955e2bdfd779bead5bf601812e64fb412eac47d0aa"
+    },
+    {
+      "identity": "cached hk 2.5.0 builtins/mise.pkl",
+      "sha256": "2521f1bf316b90746cf21824103e74d4f1591a908b905938d92895abe8fbf03d"
+    },
+    {
+      "path": "<TR>/src/doc_generator/doctor.py",
+      "sha256": "5ab7b95ce024677fbc1bf55381977469749759e3b94bfbbe280ee4827268e5b8"
+    },
+    {
+      "path": "<TR>/src/tr_module/blast_radius/cbm_adapter.py",
+      "sha256": "8bed0e66297461ff151d15e077dcb8562748225b2f683bc71ba7653fbc423c1a"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-12T02:57:48.726222+00:00",
+  "commands": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "result": "All 2 tasks validated"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "result": {
+        "baseline": 19,
+        "json": 2127,
+        "python": 152,
+        "shell": 6,
+        "toml": 16,
+        "status": "pass"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": ""
+    }
+  ],
+  "scope": "Post-native static checks; no fresh Claude or OCI acceptance"
+}

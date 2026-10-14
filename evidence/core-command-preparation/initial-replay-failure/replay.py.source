@@ -1,0 +1,75 @@
+from pathlib import Path
+import copy,json,sys,shlex,hashlib
+root=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+sys.dont_write_bytecode=True
+sys.path.insert(0,str(root/'dev/toolchains'))
+from core_commands import CoreCommands,CONFIGS,numbered_commands
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+load=lambda p:json.loads(p.read_text())
+report={'state':'running','validator_sha256':sha(root/'dev/toolchains/core_commands.py'),'positive':[],'negative':[],'inputs':[],'native_builds':0}
+q=load(root/'evidence/core-skeleton/qualification.json')
+assert sha(root/'evidence/core-skeleton/qualification.json')=='b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159'
+contract=load(root/'evidence/core-command-preparation/harness-contract.json')
+for row in contract['prerequisite_references']+contract['selected_recorded_log_references']:
+ assert sha(Path(row['path']))==row['sha256'];report['inputs'].append(row)
+cmake=q['tools']['cmake']['path'];sdk=contract['lane_specs']['gcc16']['compile_common'][4]
+assert sdk=='-isysroot'
+sdk='/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk'
+def validator(shared,lane='gcc16'):
+ spec=contract['lane_specs'][lane]
+ rows=q[('shared' if shared else 'static')+'_compile_commands']
+ return CoreCommands(root,rows[0]['directory'],lane,spec['prefix'],sdk,cmake,'/usr/bin/ar','/usr/bin/ranlib',shared)
+def reject(label,operation):
+ try: operation()
+ except AssertionError: report['negative'].append(label)
+ else: raise AssertionError('mutation was accepted: '+label)
+try:
+ for shared in (False,True):
+  kind='shared' if shared else 'static';v=validator(shared);rows=q[kind+'_compile_commands']
+  assert len(v.compile_database(rows))==8
+  for config in CONFIGS:
+   p=root/'evidence/core-skeleton/logs'/('build-'+kind+'-'+config+'.stdout')
+   log=next(row for row in q['commands'] if row['case']=='build-'+kind+'-'+config)['logs'][0]
+   assert sha(p)==log['sha256'];report['inputs'].append({'path':str(p),'sha256':sha(p)})
+   actions=numbered_commands(p.read_text());v.actions(actions,config)
+   report['positive'].append({'kind':'recorded-gcc-native-commands','linkage':kind,'config':config,'commands':len(actions)})
+  reject(kind+'-missing-action',lambda:v.actions(actions[:-1],config))
+  changed=copy.deepcopy(actions);changed[0][0]='/usr/bin/clang++'
+  reject(kind+'-wrong-driver',lambda:v.actions(changed,config))
+  changed=copy.deepcopy(actions);changed[-1].insert(-2,'-lUNADMITTED')
+  reject(kind+'-extra-library',lambda:v.actions(changed,config))
+  reject(kind+'-actual-command-drift',lambda:v.actual_matches(actions,changed))
+  changed=copy.deepcopy(rows);changed[4]['output']=rows[0]['output']
+  reject(kind+'-output-collision',lambda:validator(shared).compile_database(changed))
+  changed=copy.deepcopy(rows);changed[4]['command']=changed[4]['command'].replace(' -std=c++26',' -freflection -std=c++26')
+  reject(kind+'-reflection-leak',lambda:validator(shared).compile_database(changed))
+  changed=copy.deepcopy(rows);changed[0]['command']=changed[0]['command'].replace(' -arch arm64',' -arch x86_64')
+  reject(kind+'-wrong-arch',lambda:validator(shared).compile_database(changed))
+  changed=copy.deepcopy(rows);changed[0]['command']=changed[0]['command'].replace(' -std=c++26',' @unadmitted.rsp -std=c++26')
+  reject(kind+'-response-file',lambda:validator(shared).compile_database(changed))
+  if not shared:
+   changed=copy.deepcopy(actions);archive=next(a for a in changed if '/usr/bin/ar' in a);archive[archive.index('/usr/bin/ar')]='/tmp/ar'
+   reject('unadmitted-archive-tool',lambda:v.actions(changed,config))
+  else:
+   changed=copy.deepcopy(actions);link=next(a for a in changed if '-install_name' in a);link[link.index('-install_name')+1]='@rpath/other.dylib'
+   reject('wrong-install-name',lambda:v.actions(changed,config))
+ p=root/'evidence/p2996-cmake/operation/qualification.json';p2996=load(p)
+ report['inputs'].append({'path':str(p),'sha256':sha(p)})
+ v=validator(True,'p2996')
+ for row in p2996['compile_commands']:
+  v.flags(shlex.split(row['command']),reflection=True,standard=True)
+ for config in CONFIGS:
+  p=root/'evidence/p2996-cmake/operation'/('build-'+config+'.stdout')
+  log=next(row for row in p2996['commands'] if row['case']=='build-'+config)['logs'][0]
+  assert sha(p)==log['sha256'];report['inputs'].append({'path':str(p),'sha256':sha(p)})
+  link=numbered_commands(p.read_text())[-1];v.flags(link,linking=True)
+  report['positive'].append({'kind':'recorded-p2996-fixture-flags','config':config})
+  candidate=link[:-2]+['-dynamiclib','-install_name','@rpath/libresearch_core.dylib']+link[-2:]
+  v.flags(candidate,linking=True)
+  report['positive'].append({'kind':'synthetic-p2996-install-name-parser-only','config':config})
+  candidate.insert(-2,'@unadmitted.rsp')
+  reject('p2996-shared-response-file-'+config,lambda:v.flags(candidate,linking=True))
+ report['state']='PASS: recorded-command replay and parser rejection controls; new native core matrix unverified'
+finally:
+ (Path(__file__).parent/'replay.json').write_text(json.dumps(report,indent=2)+'\n')
+ print(json.dumps({'state':report['state'],'positive':len(report['positive']),'negative':len(report['negative'])}))

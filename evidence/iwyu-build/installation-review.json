@@ -1,0 +1,556 @@
+{
+  "result": "Historical native IWYU build/install artifact review PASS; current environment qualification blocked by live mise drift",
+  "review_kind": "Independent bounded task 09b final artifact review",
+  "created_at": "2026-10-11T15:08:43.037982+00:00",
+  "git_identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "ec1b5353ec9ab684d5a3668675778ca503923d4a",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "ownership": "Parent sole implementation writer; reviewer owns no maintained files and preserved all shared edits.",
+  "scope": [
+    "dev/toolchains/iwyu_build.py",
+    "docs/iwyu-toolchain.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+    "evidence/iwyu-build immutable native operation and referenced private artifacts"
+  ],
+  "helper_sha256": "48b95b5252fef0cfed97c1b45d99678c771a54f9262c5361d68f3fb6a2c34c6c",
+  "operation_sha256": "5a6b8c9927210afc8ca11e1e29d2b517eeb8cf9b27b8282e5fdbab3852c3461e",
+  "proposal_sha256": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8",
+  "historical_operation_result": "PASS",
+  "current_environment_result": "LIVE_DRIFT: not qualified",
+  "implementation_findings": [],
+  "findings": [
+    {
+      "id": "LIVE-01",
+      "kind": "live_environment_drift",
+      "priority": "P1 for current qualification; not attributed to the IWYU implementation",
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "validation_location": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py:76",
+      "summary": "The live mise executable was replaced after the recorded native IWYU operation and after two independent protected-state checks.",
+      "expected_sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014",
+      "expected_bytes": 127277984,
+      "observed_sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+      "observed_bytes": 127303648,
+      "observed_mtime": "2026-10-11T15:02:19.755950+00:00",
+      "first_failure_audit_started_at": "2026-10-11T15:02:51.177466+00:00",
+      "first_failure_recorded_at": "2026-10-11T15:02:52.202913+00:00",
+      "first_failing_assertion": "digest(p) == row[\"sha256\"] and p.stat().st_size == row[\"bytes\"] for protected inventory record /Users/rmanaloto/.local/bin/mise",
+      "earlier_protected_checks": [
+        {
+          "started_at": "2026-10-11T15:01:21.486205+00:00",
+          "completed_at": "2026-10-11T15:01:24.275470+00:00",
+          "protected_before": {
+            "global_files": 9,
+            "packages": 8,
+            "glib_files": 2,
+            "directories": {
+              "/Users/rmanaloto/.local/share/mise/shims": 835,
+              "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+            },
+            "install_entries": 2200,
+            "source_build_records": 159,
+            "prefix_entries": 6411
+          }
+        },
+        {
+          "started_at": "2026-10-11T15:02:01.237499+00:00",
+          "completed_at": "2026-10-11T15:02:03.437583+00:00",
+          "protected_before": {
+            "global_files": 9,
+            "packages": 8,
+            "glib_files": 2,
+            "directories": {
+              "/Users/rmanaloto/.local/share/mise/shims": 835,
+              "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+            },
+            "install_entries": 2200,
+            "source_build_records": 159,
+            "prefix_entries": 6411
+          }
+        }
+      ],
+      "attribution": "Unknown. No reviewer source, prefix, library, global tool or configuration mutation occurred. Historical native operation receipts remain unchanged.",
+      "impact": "Current protected-environment preservation does not pass. The original tool fingerprint cannot support new dependent operations. Immutable native IWYU artifacts and historical operation qualification remain verified.",
+      "action": "Preserve the replacement and settle runtime provenance and reattestation in a separately admitted unit before claiming current environment qualification.",
+      "bounded_inspection": {
+        "checks": 10588,
+        "mismatching_references": 2,
+        "distinct_changed_paths": [
+          "/Users/rmanaloto/.local/bin/mise"
+        ],
+        "all_other_records_matched": true
+      },
+      "evidence": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/protected-file-drift.json",
+          "sha256": "f5dfeb7b0d79f0242fde7ab39f23721acad46b7ce1239c95e34cb6ac147def0c",
+          "bytes": 1157
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/third-artifact-audit.json",
+          "sha256": "2634827591c0e6385b780e996c85e491f6779ae426950ae899e6b0e483d80768",
+          "bytes": 624
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/third-audit-invocation.json",
+          "sha256": "58cf647c068a50ecb4aa5d2e6b2720458effe112fccfa6a82c953820120e8e1f",
+          "bytes": 892
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-preservation.json",
+          "sha256": "2114883c19e26b635f4c372e29f6d2365fe1bf10663aee8687633d229472071c",
+          "bytes": 2106997
+        }
+      ]
+    }
+  ],
+  "maintained_file_hashes": {
+    "dev/toolchains/iwyu_build.py": "48b95b5252fef0cfed97c1b45d99678c771a54f9262c5361d68f3fb6a2c34c6c",
+    "docs/iwyu-toolchain.md": "4061ed63527d396310447a79cc7e8dfb045e7ab9ff9ae3af82eac63c9768a28d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "eedefc56976b5e75a65d05a0173b91b8043de211b5cd99b5ed2d8e8b54d9cd9a",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "56216b885fc3e1e7d6b49542571e0e845c17891bf8b52b94157d6d99401167f2"
+  },
+  "prerequisite_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/pre-run-review.json",
+    "sha256": "cc6ffbc80c2e7184677b02180ce7be796d4c109dbc26ad9f2c0c74d1566a901f",
+    "bytes": 9970
+  },
+  "admission": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/admission.json",
+    "sha256": "0527bdb4493bd0b9a105216d2f426f1d580a4887b67df928deba5a8fdebcf2a0",
+    "bytes": 1127
+  },
+  "operation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/qualification.json",
+    "sha256": "5a6b8c9927210afc8ca11e1e29d2b517eeb8cf9b27b8282e5fdbab3852c3461e",
+    "bytes": 58865
+  },
+  "evidence_manifest": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation-manifest.json",
+    "sha256": "61b50ea3e22e6470f61985a2f189d369d7d8dabcfc6c189b4d39bfa2306af231",
+    "bytes": 46196
+  },
+  "executed_by_reviewer": {
+    "artifact_inspection": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/audit-invocation.json",
+      "sha256": "e22793a0376d34d471f8ef70532b52bcfb91af0227546caad9da23ba21f56c66",
+      "bytes": 892
+    },
+    "current_state_inspection": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-invocation.json",
+      "sha256": "5d694dc0f2b1758494d4b71190ca36a5a1cef50e3ac8e168f12aea6f3fec7cc1",
+      "bytes": 877
+    },
+    "returncodes": [
+      0,
+      0
+    ],
+    "operations": "Pure file/hash/data inspection only. No product or compiler invocation, native profile command, lease acquisition, service, container or network activity."
+  },
+  "observed_historical_runtime": {
+    "outer_wrapper_returncode": 0,
+    "commands": [
+      {
+        "case": "before-iwyu-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.012540041003376245
+      },
+      {
+        "case": "before-iwyu-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.011235542013309896
+      },
+      {
+        "case": "before-iwyu-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.021497457986697555
+      },
+      {
+        "case": "before-iwyu-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.011774417012929916
+      },
+      {
+        "case": "before-llvm-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.010967542068101466
+      },
+      {
+        "case": "before-llvm-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.011485458933748305
+      },
+      {
+        "case": "before-llvm-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.9453789159888402
+      },
+      {
+        "case": "before-llvm-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.23534925002604723
+      },
+      {
+        "case": "default-before",
+        "returncode": 0,
+        "elapsed_seconds": 0.09288912499323487
+      },
+      {
+        "case": "named-profile",
+        "returncode": 0,
+        "elapsed_seconds": 0.08326550002675503
+      },
+      {
+        "case": "project-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.012886874959804118
+      },
+      {
+        "case": "capacity-processes",
+        "returncode": 0,
+        "elapsed_seconds": 0.04611066693905741
+      },
+      {
+        "case": "docker-context",
+        "returncode": 0,
+        "elapsed_seconds": 0.017830625060014427
+      },
+      {
+        "case": "docker-census",
+        "returncode": 0,
+        "elapsed_seconds": 0.029577167006209493
+      },
+      {
+        "case": "docker-stats",
+        "returncode": 0,
+        "elapsed_seconds": 1.0423603330273181
+      },
+      {
+        "case": "immediate-iwyu-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.01262770895846188
+      },
+      {
+        "case": "immediate-iwyu-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.011234916979447007
+      },
+      {
+        "case": "immediate-iwyu-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.015051833004690707
+      },
+      {
+        "case": "immediate-iwyu-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.011006750050000846
+      },
+      {
+        "case": "immediate-llvm-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.009950082981958985
+      },
+      {
+        "case": "immediate-llvm-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.010666374932043254
+      },
+      {
+        "case": "immediate-llvm-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.7400874169543386
+      },
+      {
+        "case": "immediate-llvm-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.35266350000165403
+      },
+      {
+        "case": "configure",
+        "returncode": 0,
+        "elapsed_seconds": 2.789154459023848
+      },
+      {
+        "case": "build-commands",
+        "returncode": 0,
+        "elapsed_seconds": 0.07642066606786102
+      },
+      {
+        "case": "build",
+        "returncode": 0,
+        "elapsed_seconds": 40.79712520795874
+      },
+      {
+        "case": "install",
+        "returncode": 0,
+        "elapsed_seconds": 0.07451970793772489
+      },
+      {
+        "case": "architecture",
+        "returncode": 0,
+        "elapsed_seconds": 0.019351416965946555
+      },
+      {
+        "case": "libraries",
+        "returncode": 0,
+        "elapsed_seconds": 0.024629667052067816
+      },
+      {
+        "case": "rpaths",
+        "returncode": 0,
+        "elapsed_seconds": 0.011553667020052671
+      },
+      {
+        "case": "version",
+        "returncode": 0,
+        "elapsed_seconds": 0.3034317080164328
+      },
+      {
+        "case": "default-after",
+        "returncode": 0,
+        "elapsed_seconds": 0.08231258392333984
+      },
+      {
+        "case": "after-iwyu-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.012379541993141174
+      },
+      {
+        "case": "after-iwyu-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.011215457925572991
+      },
+      {
+        "case": "after-iwyu-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.01715637499000877
+      },
+      {
+        "case": "after-iwyu-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.011998708941973746
+      },
+      {
+        "case": "after-llvm-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.01073237496893853
+      },
+      {
+        "case": "after-llvm-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.011854375014081597
+      },
+      {
+        "case": "after-llvm-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.7897373749874532
+      },
+      {
+        "case": "after-llvm-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.2177158750128001
+      }
+    ],
+    "all_40_returncodes_zero": true,
+    "exact_native_logs_checked": 80,
+    "original_text_copy_pairs": 104,
+    "private_artifact_references": 41,
+    "fresh_capacity_admission_bound": true,
+    "capacity": {
+      "active": [],
+      "load": [
+        2.09716796875,
+        2.9794921875,
+        3.26025390625
+      ],
+      "cpus": 12,
+      "free_bytes": 60891934720,
+      "total_cpu_percent": 186.2,
+      "container_cpu_percent": 4.22
+    },
+    "compiled_translation_units": 15,
+    "link_commands": 1,
+    "CMakeCache_CDB_generated_Ninja_and_execution_match": true,
+    "install_manifest_files": 17,
+    "additional_license_notices": 3,
+    "installed_inventory_entries": 27,
+    "installed_binary": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/include-what-you-use",
+      "sha256": "f208df5478aee2bfe831d6c22d6cf5110c3321af724ce093359419a61c7b5730",
+      "bytes": 3606648
+    },
+    "macho": {
+      "architecture": "arm64",
+      "cpu_subtype": 0,
+      "filetype": "MH_EXECUTE",
+      "dylibs": [
+        "@rpath/libclang-cpp.dylib",
+        "@rpath/libLLVM.dylib",
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "rpaths": [
+        "@loader_path/../lib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib"
+      ],
+      "platform": 1,
+      "minimum_macos": [
+        27,
+        0,
+        0
+      ],
+      "sdk": [
+        27,
+        0,
+        0
+      ]
+    },
+    "version": "include-what-you-use 0.25 (git:791e69e) based on clang version 21.0.0git (https://github.com/bloomberg/clang-p2996.git f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e)\n",
+    "dyld_images": 548,
+    "dyld_delayed_system_notices": 157,
+    "dyld_non_system_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/include-what-you-use",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libclang-cpp.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libLLVM.dylib"
+    ],
+    "source_before_immediate_after_baseline_matches": 24,
+    "recorded_default_environment_before_after_matches": true,
+    "recorded_named_profile_matches_proposal": true,
+    "historical_final_protection_pass": true,
+    "historical_lease_released_flag": true,
+    "current_lease_probe": "SKIPPED per parent after protected executable drift; no lock held"
+  },
+  "static_assertions": {
+    "source_scope": "Guard/failure handling settled in exact-hash pre-run review; no duplicate failure batteries.",
+    "fresh_session_scope": "Inspected recorded fresh environment/native command receipts; no new profile session executed.",
+    "native_command_scope": "Parsed all fifteen CDB commands and all sixteen generated/executed Ninja command lines, including exact dependency-token normalization and link inputs.",
+    "binary_scope": "Independently decoded installed Mach-O architecture, LC_LOAD_DYLIB, LC_RPATH and LC_BUILD_VERSION and matched recorded lipo/otool witnesses."
+  },
+  "warning_dispositions": [
+    {
+      "kind": "build",
+      "count": 11,
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039",
+      "message": "EnumeratorSpec is not handled in one switch, instantiated eleven times. Native build succeeded; reflection analysis remains unqualified."
+    },
+    {
+      "kind": "configure",
+      "count": 1,
+      "message": "CMake CMP0219 policy warning in imported HandleLLVMOptions.cmake:915. Native compatibility behavior applied and configure completed; no policy/source change made."
+    }
+  ],
+  "current_preservation": {
+    "receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-preservation.json",
+      "sha256": "2114883c19e26b635f4c372e29f6d2365fe1bf10663aee8687633d229472071c",
+      "bytes": 2106997
+    },
+    "inspection_started_at": "2026-10-11T15:06:39.393474+00:00",
+    "inspection_completed_at": "2026-10-11T15:06:43.055495+00:00",
+    "category_counts": {
+      "glib": {
+        "checked": 2,
+        "matched": 2
+      },
+      "global_file": {
+        "checked": 9,
+        "matched": 9
+      },
+      "iwyu_source": {
+        "checked": 854,
+        "matched": 854
+      },
+      "mise_directory_entry": {
+        "checked": 835,
+        "matched": 835
+      },
+      "mise_install_entry": {
+        "checked": 2200,
+        "matched": 2200
+      },
+      "new_iwyu_prefix": {
+        "checked": 27,
+        "matched": 27
+      },
+      "original_Claude_file": {
+        "checked": 19,
+        "matched": 19
+      },
+      "package": {
+        "checked": 8,
+        "matched": 8
+      },
+      "proposal_input": {
+        "checked": 52,
+        "matched": 52
+      },
+      "proposal_tool": {
+        "checked": 11,
+        "matched": 10
+      },
+      "qualified_llvm_prefix": {
+        "checked": 6411,
+        "matched": 6411
+      },
+      "sdk": {
+        "checked": 1,
+        "matched": 1
+      },
+      "source_build_record": {
+        "checked": 159,
+        "matched": 158
+      }
+    },
+    "checks_completed": 10588,
+    "distinct_changed_paths": [
+      "/Users/rmanaloto/.local/bin/mise"
+    ],
+    "original_Claude_files_matched": 19,
+    "default_configuration_files_matched": 9,
+    "default_runtime_status": "UNVERIFIED with replacement mise; no new invocation authorized."
+  },
+  "reviewer_reader_corrections": [
+    {
+      "attempt": "initial",
+      "returncode": 1,
+      "disposition": "Private reader used a nonexistent map files subdirectory. Corrected to observed upstream root paths; original reader/logs retained. No candidate invocation."
+    },
+    {
+      "attempt": "second",
+      "returncode": 1,
+      "disposition": "Private reader expected only per-image dyld rows. Corrected to separately recognize retained move-loaded-to-delayed notices; original reader/logs retained. No candidate invocation."
+    },
+    {
+      "attempt": "third",
+      "returncode": 1,
+      "disposition": "Actual protected executable drift detected, reported immediately, and retained as LIVE-01. Historical artifact checks and individual current-state inspection then completed separately."
+    }
+  ],
+  "not_run": [
+    "Reconfigure, rebuild or reinstall",
+    "New IWYU/compiler/version/resource/analysis invocation",
+    "New default or named-profile invocation",
+    "Canonical lease probe after drift",
+    "Old guard batteries",
+    "Reflection recommendation/fixer application and rebuild/run",
+    "IWYU relocation or global registration",
+    "Full upstream tests or Claude OCI acceptance",
+    "Final lightweight baseline; parent owns its separately scoped disposition"
+  ],
+  "checks": {
+    "artifact_audit": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/artifact-audit.json",
+      "sha256": "37b32e023fe81fc321374ecb62a718b031455df844e256dc256095f9e4d0bd75",
+      "bytes": 11919
+    },
+    "current_preservation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-preservation.json",
+      "sha256": "2114883c19e26b635f4c372e29f6d2365fe1bf10663aee8687633d229472071c",
+      "bytes": 2106997
+    }
+  },
+  "status": "Review complete with one live-environment finding; no implementation regression found. Native semantic IWYU qualification remains a later gate."
+}

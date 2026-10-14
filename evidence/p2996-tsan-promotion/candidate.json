@@ -1,0 +1,21 @@
+{
+  "unit": "14b2b",
+  "revision": "retry after zero-command NameError",
+  "base_head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "files": [
+    "dev/toolchains/p2996_tsan_promote.py",
+    "docs/sanitizers.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "evidence": {
+    "contract.json": "f7a4bae70a2437c667435040877b2e7da90d83249982e707ee6dfcc6d3e5b0fb",
+    "derive.py.source": "000a3a86f0444ca213855b099521bc977f53344387ebe1a9d37f98b250cc0dde",
+    "candidate-inputs.json": "48a04b572d1a92455db8083efc3efb4d3ac79467369faf86a8f21020f52ee189",
+    "retry-static.json": "312a936541001ed78378ebebd393854d5f54491d3dd31bbec9e313c1bdc72445",
+    "initial-failure/closure.json": "6692731380c1b30650f90b9881bbc31bdc7eef42a570449cd2cba8dae5cc83f9",
+    "command-binding-control.json": "84ed3259347c317111ac3e5e030ac300336414f5fa60fea0739b3747268ce947"
+  },
+  "previous_candidate_sha256": "86d503cf678ff84bc47d952bcafcea6bb583d045e3a1fa9b2fc6c2e8de34cc3d",
+  "intent": "Retry guarded installed TSan promotion after no-write command wrapper failure; fresh review and admission required"
+}

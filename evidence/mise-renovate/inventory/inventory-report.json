@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "kind": "shared-state-reattest-prerequisite-inventory",
+  "recorded_at": "2026-10-11T18:15:59.667Z",
+  "status": "OBSERVATION_ONLY_NOT_ACCEPTANCE",
+  "identity": {
+    "initial": {
+      "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "branch": "codex/marketplace-native-onboarding",
+      "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+      "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+      "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace"
+    },
+    "closing": {
+      "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "branch": "codex/marketplace-native-onboarding",
+      "head": "e66a60c3e7fe76be39169986b1eb3aed6bccc2c6",
+      "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+      "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace"
+    },
+    "parent_reported_change": "Parent committed task 12c1 closure at e66a60c3e7fe76be39169986b1eb3aed6bccc2c6 during observation; parent reported no global writes."
+  },
+  "baseline": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+    "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+    "bytes": 296002
+  },
+  "prior_drift": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/native-hold/config-drift-inventory.json",
+    "sha256": "261a38aa0484c2eba8d25c43de194f3fc19f3ad638582b26cf1ae203a511c5ec",
+    "bytes": 4807
+  },
+  "accepted_mise_contract": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/contract.json",
+    "sha256": "c56618b021993665015b8f40c448504a666cb121076a88fb6217df2611434ff5",
+    "bytes": 3622
+  },
+  "updater_provenance": {
+    "receipt": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/updater-provenance.json",
+      "sha256": "811a5dcfde488ce4d18c45e25d486cfb4db7f4181fc8a6a810f31e772f2bd4b7",
+      "bytes": 6114
+    },
+    "verified_source_receipts": [
+      {
+        "path": "/Users/rmanaloto/.config/mise/update-evidence/run-20261011T165514Z-56050-55264000/run.json",
+        "sha256": "6dd91db63f2a490670d94a35f33bc44635e80e73bd33c5c63fde713df58c851f",
+        "expected_sha256": "6dd91db63f2a490670d94a35f33bc44635e80e73bd33c5c63fde713df58c851f",
+        "bytes": 3561,
+        "pass": true,
+        "run_id": "run-20261011T165514Z-56050-55264000",
+        "started_at": "2026-10-11T16:55:14.056160000+00:00",
+        "finished_at": "2026-10-11T16:59:31.181363000+00:00",
+        "exit_code": 2,
+        "outcome": "INCOMPLETE"
+      },
+      {
+        "path": "/Users/rmanaloto/.config/mise/update-evidence/mise-phases/run-20261011T165743Z-72755-732549000.json",
+        "sha256": "4cf3a7ec5345e0fbcaeb10843aa78185c821f48a5b66ac083e49023aa94104b1",
+        "expected_sha256": "4cf3a7ec5345e0fbcaeb10843aa78185c821f48a5b66ac083e49023aa94104b1",
+        "bytes": 10453,
+        "pass": true,
+        "run_id": "run-20261011T165743Z-72755-732549000",
+        "started_at": "2026-10-11T16:57:43.737028000+00:00",
+        "finished_at": "2026-10-11T16:59:30.461319000+00:00",
+        "exit_code": 0,
+        "outcome": "SUCCEEDED"
+      }
+    ],
+    "attribution_limit": "The receipts bind updater outcomes and times; this inventory does not infer that every added alias was created by that specific updater run."
+  },
+  "findings": {
+    "global_files": {
+      "checked": 9,
+      "unchanged": 7,
+      "changed": [
+        "config.toml",
+        "mise.lock"
+      ],
+      "all_modes_match": true,
+      "all_files_regular_not_symlinks": true,
+      "semantic_change_count": 3,
+      "semantic_changes": {
+        "config.toml": {
+          "backup": {
+            "bytes": 37611,
+            "exists": true,
+            "lexists": true,
+            "lstat_mode": "0o600",
+            "mode": "0o600",
+            "modified_at": "2026-10-11T04:30:00.773659+00:00",
+            "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-registration-preparation-20261011T0440/backups/config.toml",
+            "realpath": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-registration-preparation-20261011T0440/backups/config.toml",
+            "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+            "symlink": null
+          },
+          "change_count": 1,
+          "changes": [
+            {
+              "before": {
+                "semantic_sha256": "a71ad5f1a6181673ac10113d1fea76c8012760c603e1b3d2c463705b19ca0aa1",
+                "type": "str",
+                "version": "44.149.3"
+              },
+              "current": {
+                "semantic_sha256": "bddbcd8f9dc24258fd8b465330fd842903ae55b1211c49b77a4ad07aba7f8a6d",
+                "type": "str",
+                "version": "44.150.1"
+              },
+              "key_path": [
+                "tools",
+                "npm:renovate",
+                "version"
+              ],
+              "kind": "changed"
+            }
+          ],
+          "current_sha256": "b5d4d239f988005afa0db6ca805bdc0bac705b63f1139436e56c786e1049775f"
+        },
+        "mise.lock": {
+          "backup": {
+            "bytes": 288427,
+            "exists": true,
+            "lexists": true,
+            "lstat_mode": "0o600",
+            "mode": "0o600",
+            "modified_at": "2026-10-11T04:30:00.774082+00:00",
+            "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-registration-preparation-20261011T0440/backups/mise.lock",
+            "realpath": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-registration-preparation-20261011T0440/backups/mise.lock",
+            "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+            "symlink": null
+          },
+          "change_count": 2,
+          "changes": [
+            {
+              "before": {
+                "semantic_sha256": "a71ad5f1a6181673ac10113d1fea76c8012760c603e1b3d2c463705b19ca0aa1",
+                "type": "str"
+              },
+              "current": {
+                "semantic_sha256": "bddbcd8f9dc24258fd8b465330fd842903ae55b1211c49b77a4ad07aba7f8a6d",
+                "type": "str"
+              },
+              "key_path": [
+                "tools",
+                "npm:renovate",
+                0,
+                "specifiers",
+                0
+              ],
+              "kind": "changed"
+            },
+            {
+              "before": {
+                "semantic_sha256": "a71ad5f1a6181673ac10113d1fea76c8012760c603e1b3d2c463705b19ca0aa1",
+                "type": "str",
+                "version": "44.149.3"
+              },
+              "current": {
+                "semantic_sha256": "bddbcd8f9dc24258fd8b465330fd842903ae55b1211c49b77a4ad07aba7f8a6d",
+                "type": "str",
+                "version": "44.150.1"
+              },
+              "key_path": [
+                "tools",
+                "npm:renovate",
+                0,
+                "version"
+              ],
+              "kind": "changed"
+            }
+          ],
+          "current_sha256": "c6a616dc8a808502c3ab44e0e2ed499a15b7c72862851facfbfac07640acb285"
+        }
+      },
+      "stability_between_two_observations": [
+        {
+          "path": "/Users/rmanaloto/.config/mise/config.toml",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/mise.lock",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/config.cpp-build.toml",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/mise.cpp-build.lock",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/mise.gcc16.lock",
+          "pass": true
+        },
+        {
+          "path": "/Users/rmanaloto/.config/mise/mise.p2996.lock",
+          "pass": true
+        }
+      ]
+    },
+    "install_entries": {
+      "baseline_count": 2200,
+      "current_count": 2330,
+      "unchanged_count": 2198,
+      "added_count": 130,
+      "removed_count": 0,
+      "changed_count": 2,
+      "classification": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/install-entry-classification.json",
+        "sha256": "088de06188b9dda47a2de3a2fef5d1a68575753d266c81b96bc8606600c6bd3b",
+        "bytes": 28283
+      },
+      "summary": [
+        "127 new per-tool global symlinks; 126 target entries already existed in the baseline.",
+        "New npm-renovate/44.150 symlink targets ./44.150.1.",
+        "New npm-renovate/44.150.0 and npm-renovate/44.150.1 directories.",
+        "Existing npm-renovate/44 and npm-renovate/latest symlinks changed from ./44.149.3 to ./44.150.1.",
+        "All added entry modes are 0o755; changed aliases retain 0o755; no removed entries."
+      ]
+    },
+    "directories": {
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": {
+        "added": {},
+        "baseline_count": 0,
+        "changed": {},
+        "current_count": 0,
+        "removed": {},
+        "unchanged_count": 0
+      },
+      "/Users/rmanaloto/.local/share/mise/shims": {
+        "added": {},
+        "baseline_count": 835,
+        "changed": {},
+        "current_count": 835,
+        "removed": {},
+        "unchanged_count": 835
+      }
+    },
+    "mise": {
+      "accepted_bytes": 127303648,
+      "accepted_recorded_version": "2026.10.8 macos-arm64 (2026-10-11)",
+      "accepted_sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+      "bytes": 127303648,
+      "exists": true,
+      "lexists": true,
+      "lstat_mode": "0o755",
+      "matches_accepted_digest": true,
+      "matches_accepted_size": true,
+      "mode": "0o755",
+      "modified_at": "2026-10-11T15:02:19.755950+00:00",
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "realpath": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+      "symlink": null,
+      "version_executed": false
+    }
+  },
+  "complete_sanitized_artifacts": {
+    "comparison": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/comparison.json",
+      "sha256": "0753aacfed6acb684cf645de031612bb9ad23a25984b8ec9366a11dc56b0462a",
+      "bytes": 23531
+    },
+    "current_metadata": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/current-metadata.json",
+      "sha256": "2785808fa5dd623738c419069ec9df2b35ad2df94b52281f100a68600ad99bd2",
+      "bytes": 309497
+    },
+    "install_entry_classification": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/install-entry-classification.json",
+      "sha256": "088de06188b9dda47a2de3a2fef5d1a68575753d266c81b96bc8606600c6bd3b",
+      "bytes": 28283
+    }
+  },
+  "method": {
+    "snapshot_function": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py",
+      "sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "bytes": 8435,
+      "function": "snapshot",
+      "lines": [
+        18,
+        22
+      ],
+      "scope": "Exact AST-extracted function; recursive metadata/hash snapshot of the two named shim/wrapper roots, without following directory symlinks."
+    },
+    "install_entries_function": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "bytes": 12651,
+      "function": "install_entries",
+      "lines": [
+        52,
+        56
+      ],
+      "scope": "Exact AST-extracted function; install-root entries and one level of children only, recording modes and symlink targets."
+    },
+    "global_files": "Hash/mode/symlink metadata only for the nine baseline paths; no global contents copied or printed.",
+    "semantic_comparison": "Parsed TOML diff of only config.toml and mise.lock against exact recorded private backups whose SHA-256 values match the registration baseline. Non-version values are represented only by type and semantic digest.",
+    "lock_specifier_version": "The lock specifier change has the same before/after semantic digests as the explicitly parsed Renovate versions 44.149.3 and 44.150.1.",
+    "python": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17",
+      "bytes": 33816,
+      "accepted_input_digest_match": true
+    },
+    "command": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-I",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/inventory.py"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf",
+      "environment": {
+        "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+        "TMPDIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf",
+        "LC_ALL": "C",
+        "LANG": "C"
+      },
+      "timeout_ms": 55000,
+      "returncode": 0,
+      "signal": null,
+      "killed": false,
+      "error": null,
+      "duration_ms": 288,
+      "stdout_artifact": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/inventory.stdout",
+        "sha256": "2cc0ab284e07725e1b9ea487f99a770c719a68d3f0e1be696856320a41489d87",
+        "bytes": 461
+      },
+      "stderr_artifact": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/shared-state-inventory-SwV3Qf/inventory.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  "limits": {
+    "native_mise_calls": 0,
+    "native_vcpkg_calls": 0,
+    "native_compiler_calls": 0,
+    "sandbox_calls": 0,
+    "lease_or_capacity_admissions": 0,
+    "protected_calls": 0,
+    "full_llvm_prefix_scans": 0,
+    "external_update_or_repair_calls": 0,
+    "shared_writes": 0,
+    "global_content_copies": 0,
+    "scope_exclusions": [
+      "No package payload or full prefix integrity verification.",
+      "No profile execution, compiler parity, permission for native retry, or acceptance of any newly observed state.",
+      "Snapshots are observations at recorded times, not a lock-protected atomic transaction."
+    ]
+  },
+  "failed_routes": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-private/native-hold/updater-provenance.json",
+      "result": "ENOENT",
+      "resolution": "Read the parent-confirmed adjacent evidence/vcpkg-private/updater-provenance.json."
+    },
+    {
+      "route": "Source lookup for digest in gcc_install.py",
+      "result": "Definition is imported from another module.",
+      "resolution": "Used a local streaming SHA-256 function; only snapshot and install_entries were AST-extracted."
+    }
+  ],
+  "handoff": "Parent status probe answered. The native hold remains in effect; changed state needs its own separately authorized reattestation."
+}

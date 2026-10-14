@@ -1,0 +1,64 @@
+{
+  "recorded_at": "2026-10-11T03:59:44.332351+00:00",
+  "commands": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n"
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "checks": {
+        "baseline": 19,
+        "json": 219,
+        "python": 8,
+        "shell": 6,
+        "toml": 14
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check"
+      ],
+      "returncode": 0,
+      "checks": {
+        "baseline": 0,
+        "json": 221,
+        "python": 8,
+        "shell": 6,
+        "toml": 14
+      }
+    }
+  ],
+  "scope": "Parent lightweight static validation; no bootstrap, dependency build or global registration."
+}

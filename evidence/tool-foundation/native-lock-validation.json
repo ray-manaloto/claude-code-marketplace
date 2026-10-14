@@ -1,0 +1,91 @@
+{
+  "recorded_at": "2026-10-10T23:40:10.625413+00:00",
+  "result": "PASS - three native named lockfiles; default config and lock unchanged",
+  "files": [
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.cpp-build.lock",
+      "project_path": "dev/global-mise/mise.cpp-build.lock",
+      "destination": "/Users/rmanaloto/.config/mise/mise.cpp-build.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "bytes": 1327,
+      "lockfile_version": 3
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.p2996.lock",
+      "project_path": "dev/global-mise/mise.p2996.lock",
+      "destination": "/Users/rmanaloto/.config/mise/mise.p2996.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "bytes": 1327,
+      "lockfile_version": 3
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.gcc16.lock",
+      "project_path": "dev/global-mise/mise.gcc16.lock",
+      "destination": "/Users/rmanaloto/.config/mise/mise.gcc16.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "bytes": 1327,
+      "lockfile_version": 3
+    }
+  ],
+  "additional_native_commands": [
+    {
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/empty-cwd",
+        "-E",
+        "p2996",
+        "lock",
+        "--global",
+        "--platform",
+        "macos-arm64",
+        "--jobs",
+        "1",
+        "cmake@4.4.4",
+        "ninja@1.13.2",
+        "sccache@0.18.0"
+      ],
+      "returncode": 0,
+      "offline": true,
+      "metadata_prefix": "/__marketplace_lock_metadata_only__/p2996",
+      "stdout": "\u2192 Targeting 1 platform(s) for ~/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.p2996.lock: macos-arm64\n\u2192 Processing 3 tool(s): cmake@4.4.4, ninja@1.13.2, sccache@0.18.0\n\u2713 Updated 3 platform entries (0 skipped)\n\u2713 Lockfile written to ~/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.p2996.lock\n",
+      "stderr": "mise lock                                cmake@4.4.4 macos-arm64\nmise lock                                ninja@1.13.2 macos-arm64\nmise lock                                sccache@0.18.0 macos-arm64\nmise lock                              \u2713 3 platform entries\n"
+    },
+    {
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/empty-cwd",
+        "-E",
+        "gcc16",
+        "lock",
+        "--global",
+        "--platform",
+        "macos-arm64",
+        "--jobs",
+        "1",
+        "cmake@4.4.4",
+        "ninja@1.13.2",
+        "sccache@0.18.0"
+      ],
+      "returncode": 0,
+      "offline": true,
+      "metadata_prefix": "/__marketplace_lock_metadata_only__/gcc16",
+      "stdout": "\u2192 Targeting 1 platform(s) for ~/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.gcc16.lock: macos-arm64\n\u2192 Processing 3 tool(s): cmake@4.4.4, ninja@1.13.2, sccache@0.18.0\n\u2713 Updated 3 platform entries (0 skipped)\n\u2713 Lockfile written to ~/.local/state/marketplace-tool-foundation/native-lock-20261010T233821Z/mise.gcc16.lock\n",
+      "stderr": "mise lock                                cmake@4.4.4 macos-arm64\nmise lock                                ninja@1.13.2 macos-arm64\nmise lock                                sccache@0.18.0 macos-arm64\nmise lock                              \u2713 3 platform entries\n"
+    }
+  ],
+  "first_native_lock_receipt": "native-lock-candidate.json",
+  "prior_launch_failure": {
+    "path": "/Users/rmanaloto/.local/bin/fnox",
+    "returncode": 127,
+    "reason": "Wrong executable path; no research process launched. Located fnox 1.39.0 via command -v/type -a and reran successfully using its installed executable."
+  },
+  "first_successful_route": "native fnox 1.39.0 codex_research --no-defaults --no-daemon --non-interactive exec -> existing Python -> native mise 2026.10.7 lock; private fixture only",
+  "default_lock_unchanged": true,
+  "global_files_unchanged": true,
+  "tools_installed": false,
+  "native_compiler_execution": false
+}

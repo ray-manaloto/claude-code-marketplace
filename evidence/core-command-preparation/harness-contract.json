@@ -1,0 +1,520 @@
+{
+  "schema_version": 1,
+  "task": "03b2 bounded native-core harness planning",
+  "created_at": "2026-10-11T12:40:31.243Z",
+  "result": "SOURCE PLAN COMPLETE; native 03b2 execution UNVERIFIED",
+  "reviewer": "/root/config_inspector",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "df5c430f6a34da5a565b675a0bc2a42b889ba620",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "method": "Read Git administrative branch-ref text; no cleanliness inference",
+    "closing_head_supplied_by_parent": "fd7c9cdf54ddf702c0e48348302d73cc6853346b",
+    "closing_head_verification": "Parent-supplied after initial administrative-file observation; no additional Git read was made after the no-further-exploration instruction."
+  },
+  "scope": {
+    "mode": "Read-only preparation; parent sole implementation writer",
+    "inputs": "Settled task10a2 helper/review, 03b1 source contract, GCC core/cmake/runtime receipts and current toolchains; four exact GCC logs referenced by core receipt",
+    "writes": "One new private planning JSON only",
+    "not_run": [
+      "Compiler, CMake, CTest, Ninja, archive, nm or loader processes",
+      "Historical guard batteries",
+      "Network, installers, global/configuration edits or shared-file edits"
+    ]
+  },
+  "prerequisite_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_cmake.py",
+      "sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/cmake-review.json",
+      "sha256": "062210037e50131b0178ea5de4b8b3f7cf5b82bb46c3f4512a2b48c0544fd36d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/source-contract.json",
+      "sha256": "0f098eb998ba2ed5c485568553387c42d233ea89c991a84425df71c9afc1fe4f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+      "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/runtime-review.json",
+      "sha256": "1f56fa2bf3e8a69cb826247ac79b22bd8e6189fab5a43b6beed3f8c2e1098c02"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification.json",
+      "sha256": "1dc4c5559821952dfcafd542278bfc8c0ee8d9c97562f44a1ebe772b3345bc9c"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/cmake-review.json",
+      "sha256": "5731f4d97e1c1b80d0778344457852eef803f6578a488901973ca4a1ebc6ac2f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification.json",
+      "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "sha256": "ed7506e63892baa5e1eacfa0040f1ea04b546ee390671535c64e1ec67f1a3f28"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+      "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+      "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab"
+    }
+  ],
+  "selected_recorded_log_references": [
+    {
+      "label": "build-static-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Debug.stdout",
+      "sha256": "91e03ea90532a9fbfbe10dac69c71d1300ad744ae037d202a34d4f92f01e207d"
+    },
+    {
+      "label": "build-shared-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Debug.stdout",
+      "sha256": "9120401bec7aa5de57fd1883ddeb1a9151760149bdf9de6e17d85256dd0214f7"
+    },
+    {
+      "label": "build-shared-MinSizeRel",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-MinSizeRel.stdout",
+      "sha256": "9c3a1cc1fd0e5b5c6537f111290255defbb9ec08e0c3158c90bc1d1a0c9ae316"
+    },
+    {
+      "label": "runtime-shared-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stderr",
+      "sha256": "3756e27377f552b5653ecfb9b9d1f34c76e608a9e65aaf0880167b8f1f8402bf"
+    }
+  ],
+  "source_input_contract": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "original_sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+      "patched_sha256": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "original_sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+      "patched_sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "original_sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+      "patched_sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a"
+    }
+  ],
+  "admission": {
+    "required": "Bind the settled 03b1 source review and its final Git HEAD, unchanged task10a2 closure/helper, this plan, all current source/toolchain bytes, one exact fresh run directory, compiler/runtime/SDK identities, all native tool hashes and the new helper hash before execution.",
+    "settled_03b1_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/preparation-review.json",
+      "sha256": "066dbb351c09878ef4f6d4a1b8874fc71c6b9ba39e58ef7d39c57f1c0cb92fe9",
+      "final_head": "fd7c9cdf54ddf702c0e48348302d73cc6853346b",
+      "reported_state": "Closed, clean, post-commit baseline rc0, all three candidate hashes unchanged",
+      "verification": "Supplied directly by parent; do not represent this as an independent reread in this brief. New helper admission must verify the exact binding."
+    },
+    "existing_native_tools": {
+      "cmake": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+      },
+      "ninja": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "ctest": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+      }
+    },
+    "global_state": "Reuse the task10a2 normal-environment snapshot, no-auto-install/offline environment, canonical nonblocking heavy lease, capacity check, per-command bounds, process-group cleanup and finally preservation; append GCC receipt identities to before/after checks."
+  },
+  "reuse": {
+    "task10a2_helper": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_cmake.py",
+      "sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72"
+    },
+    "p2996_flags": {
+      "lines": [
+        170,
+        189
+      ],
+      "action": "Extract only flags() from the exact helper hash with the existing AST function loader. Retain closure bindings prefix, configuration, libraries and Path; do not execute main or edit the qualified helper.",
+      "delta": "Add core/smoke strict-diagnostic, PIC, private-reflection, per-config and linkage predicates outside the frozen function."
+    },
+    "gnu_validator": {
+      "standalone_function_present": false,
+      "preferred_block": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+        "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+        "lines": [
+          112,
+          120
+        ]
+      },
+      "weaker_subset": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+        "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2",
+        "lines": [
+          92,
+          98
+        ]
+      },
+      "action": "Keep the core block predicates as the small GNU-specific delta. Use token-level checks and distinct target/config/output grouping; no standalone GNU flags function can be imported from either receipt. Do not run or refactor either old harness."
+    }
+  },
+  "matrix": {
+    "trees": [
+      "p2996/static",
+      "p2996/shared",
+      "gcc16/static",
+      "gcc16/shared"
+    ],
+    "configurations": [
+      "Debug",
+      "Release",
+      "RelWithDebInfo",
+      "MinSizeRel"
+    ],
+    "cells": 16,
+    "configure_common": [
+      "--debug-trycompile",
+      "-S",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "-B",
+      "<new per-lane/linkage tree>",
+      "-G",
+      "Ninja Multi-Config",
+      "-DCMAKE_MAKE_PROGRAM=<pinned Ninja>",
+      "-DCMAKE_TOOLCHAIN_FILE=<exact lane toolchain>",
+      "-DCMAKE_TRY_COMPILE_CONFIGURATION=Debug",
+      "-DBUILD_SHARED_LIBS=<OFF static or ON shared>"
+    ],
+    "build_common": [
+      "<pinned cmake>",
+      "--build",
+      "<tree>",
+      "--config",
+      "<config>",
+      "--parallel",
+      "1",
+      "--verbose"
+    ],
+    "root_probe_delta": "Root project enables CXX only. Immediately retain one fresh CXX ABI try_compile object/executable, command/text evidence, compiler ABI metadata and COPY_FILE hash before another CMake call. Preserve the corrected task10a2 confined-output proof; do not claim the fixture C and custom CXX probes ran.",
+    "cdb": "Exactly 8 rows per tree, one for each (research_core/core.cpp or research_core_smoke/smoke.cpp, config); 32 overall. Require one CMAKE_INTDIR token identifying the correct config, exact source, exact compiler token first after only the accepted CXX wrapper, one -o, distinct normalized output confined to that tree/config and matching CDB output. Compare semantic flags with actual compiler actions, not whole strings: GNU module scanning adds intermediate flags."
+  },
+  "lane_specs": {
+    "p2996": {
+      "profile": "p2996",
+      "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+      "cxx": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "compiler_id_version": [
+        "Clang",
+        "21.0.0"
+      ],
+      "toolchain": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "common_compile_tokens": [
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-std=c++26",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0"
+      ],
+      "link_only_tokens": [
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib"
+      ],
+      "scan": "CXX_SCAN_FOR_MODULES OFF for core and smoke; no clang-scan-deps or GNU module flags",
+      "reflection": "Only core compile has -freflection. Neither smoke compile nor CXX link has it.",
+      "library": "Private libc++ headers/resource tree and absolute libc++/libc++abi/libunwind link inputs retained by frozen flags(); static archive creation is a separate action.",
+      "runtime": "Use frozen task10a2 exact private-image checks for all three libraries, canonicalized. Shared additionally requires its exact fresh per-cell core dylib; static has no core dylib."
+    },
+    "gcc16": {
+      "profile": "gcc16",
+      "prefix": "/opt/homebrew/Cellar/gcc/16.2.0",
+      "cxx": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "cxx_sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363",
+      "compiler_id_version": [
+        "GNU",
+        "16.2.0"
+      ],
+      "toolchain": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "configure_extra": [
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0"
+      ],
+      "compile_common": [
+        "-std=c++26",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0"
+      ],
+      "compile_only": [
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "core_only": [
+        "-freflection",
+        "-fPIC"
+      ],
+      "min_size_rel_both_targets": [
+        "-fno-declone-ctor-dtor"
+      ],
+      "preserve_scanning": [
+        "-fmodules-ts",
+        "-fmodule-mapper=<confined target/config .o.modmap>",
+        "-MD",
+        "-fdeps-format=p1689r5",
+        "-x",
+        "c++"
+      ],
+      "scan_command": "Generated dependency scans use the same driver with -E and no -c, plus -fdeps-file=<.ddi>, -fdeps-target=<object> and -o <.ddi.i>. Classify as preprocess/scan before testing for link actions. CMake dyndep helper actions are separate, never CXX links.",
+      "link_common": [
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0"
+      ],
+      "link_expectation": "Recorded GNU CXX links omit -std=c++26, -freflection, strict-warning, PIC and declone flags. Require those only for compile actions. Accept driver-selected libstdc++ from the qualified GCC prefix; do not inject Clang -stdlib/-nostdinc++/-nostdlib++, private P2996 paths or custom GNU CXX standard-library flags.",
+      "runtime_identities": {
+        "libstdcxx": {
+          "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+          "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+          "sha256": "d4d4cbc6f9d797bd64b6e88a62111b5d206c41d030b5d764a72558146da4d2ee"
+        },
+        "libgcc": {
+          "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+          "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+          "sha256": "18b55070e058297b9653a0da11f30d48363fe2002371f07fb53e88936cfec6c9"
+        }
+      },
+      "direct_dependencies": "Require the direct executable and shared-core load commands to resolve their expected libstdc++ to the qualified GCC prefix, using canonical resolution of the recorded /opt/homebrew/opt/gcc alias. Reject direct libc++/P2996 runtime linkage. Verify core-dylib dependency present only for shared smoke.",
+      "actual_loaded_images": "Require canonical qualified GCC libstdc++ and libgcc images. The accepted original runtime also loaded OS libc++/libc++abi and core logs show system libunwind; retain/allow these exact OS paths instead of a blanket libc++ rejection.",
+      "allowed_recorded_os_cxx_images": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ]
+    }
+  },
+  "profile_switch": "Use native mise --no-hooks -C <private cwd> -E <lane> exec --fresh-env --no-deps -- with the literal lane prefix supplied only for that lane. Remove the other MARKETPLACE_*_PREFIX before switching. Compare the same selected profile/flag fields and path evidence with the exact admitted predecessor snapshots. GNU receipt explicitly records homebrew_llvm_on_path=true; literal compiler/header/library identity is required and a blanket LLVM-on-PATH rejection is wrong. Do not silently weaken historical whole-snapshot comparison if values drift; resolve a real mismatch in admission.",
+  "common_target_flags": {
+    "strict": [
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror"
+    ],
+    "config": {
+      "Debug": [
+        "-g"
+      ],
+      "Release": [
+        "-O3",
+        "-DNDEBUG"
+      ],
+      "RelWithDebInfo": [
+        "-O2",
+        "-g",
+        "-DNDEBUG"
+      ],
+      "MinSizeRel": [
+        "-Os",
+        "-DNDEBUG"
+      ]
+    },
+    "reflection_private": true,
+    "core_pic": true,
+    "smoke_pic": "Not required by current root project"
+  },
+  "command_classification": {
+    "compiler": "shlex-tokenize captured generated or verbose commands; never execute parsed strings. Accept direct exact driver or only the frozen : && DRIVER ... && : wrapper; retain frozen response-file/shell-metacharacter rejection. Classify -E as scan, -c as compile, remaining exact-driver actions as candidate links only when they have the exact expected -o and input target(s).",
+    "gcc_archive_chain": [
+      ":",
+      "&&",
+      "<pinned CMake> -E rm -f <cfg/libresearch_core.a>",
+      "&&",
+      "/usr/bin/ar qc <cfg/libresearch_core.a> <research_core object>",
+      "&&",
+      "/usr/bin/ranlib <cfg/libresearch_core.a>",
+      "&&",
+      "<pinned CMake> -E touch <cfg/libresearch_core.a>",
+      "&&",
+      ":"
+    ],
+    "archive_validation": "Handle this finite chain independently of CXX flags(). Require exact stage count/order, pinned tools, sole core object, archive path shared by all stages and every output confined to the fresh tree. No arbitrary shell operators, response files or additional sources. Retain actual commands and object/archive hashes.",
+    "p2996_archive_selection": {
+      "recorded_metadata_reference": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake",
+      "metadata_sha256": "a5548f3b61290b41d81165e99dca31a7c578dc79284a450f0461248743297587",
+      "metadata_lines": [
+        29,
+        35
+      ],
+      "CMAKE_AR": "/usr/bin/ar",
+      "CMAKE_CXX_COMPILER_AR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ar",
+      "CMAKE_RANLIB": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib",
+      "note": "Actual P2996 static archive command has not run in task10a2. Bind tools named in generated CMake archive rules before build; do not assume CMAKE_CXX_COMPILER_AR is the command used and do not apply CXX runtime flags to archive actions."
+    },
+    "arm64_proof": {
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "<core .a or .dylib>"
+      ],
+      "expected_stdout_trimmed": "arm64",
+      "basis": "Prior settled core-skeleton helper lines 101-102 and recorded successful static/shared library-architecture commands",
+      "executable": "Retain task10a2 /usr/bin/file proof and binary hash; no universal x86_64 slice acceptance."
+    }
+  },
+  "shared_identity": {
+    "outputs": "<tree>/<config>/libresearch_core.dylib and research_core_smoke; summary paths must resolve exactly to these fresh outputs, with correct library type and nonempty hashes.",
+    "recorded_gnu_link_shape": "Exact GCC driver/config+SDK flags; -dynamiclib -Wl,-headerpad_max_install_names -o <core dylib> -install_name @rpath/libresearch_core.dylib <core object>. Smoke uses <smoke object> -o <smoke> -Wl,-rpath,<absolute tree/config> <core dylib>. Static smoke instead links the .a and needs no core-library rpath.",
+    "p2996_delta": "Same native Darwin shared/executable roles, plus frozen task10a2 common compiler and private CXX link flags; core dylib must inherit the private runtime rpath. Check actual generated commands rather than copying the GNU argv string.",
+    "metadata_commands": [
+      [
+        "/usr/bin/otool",
+        "-D",
+        "<core dylib>"
+      ],
+      [
+        "/usr/bin/otool",
+        "-L",
+        "<core dylib or smoke>"
+      ],
+      [
+        "/usr/bin/otool",
+        "-l",
+        "<core dylib or smoke>"
+      ]
+    ],
+    "install_name": "@rpath/libresearch_core.dylib",
+    "loader": "Require exact canonical per-cell core dylib in shared runtime and no core dylib in static runtime, in addition to lane stdlib rules; substring-only libresearch_core checks are insufficient.",
+    "exports": {
+      "function": "aggregated_research::reflection_probe()",
+      "public_header_sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+      "source_derived_macho_itanium_name": "__ZN19aggregated_research16reflection_probeEv",
+      "native_symbol_spelling": "UNVERIFIED until the fresh built binary is inspected; do not assert an exact-one-export API.",
+      "inventory_command_proposal": [
+        "/usr/bin/nm",
+        "-gU",
+        "<core dylib>"
+      ],
+      "consumer_binding_command": [
+        "/usr/bin/nm",
+        "-m",
+        "-u",
+        "<shared smoke>"
+      ],
+      "requirement": "Retain defined-global inventory, identify/demangle the public callable symbol and show the shared smoke undefined reference is bound to its core dylib. The /usr/bin/nm -m -u route is already recorded in GCC runtime; -gU and the available demangler must be hash/argv-bound in new admission before native use."
+    }
+  },
+  "cell_gates": {
+    "ctest": "Pinned CTest rc 0, exactly one research_core_smoke test; no PASS_REGULAR_EXPRESSION substitutes for exit status.",
+    "native_exit": 0,
+    "exact_stdout": "reflection value=43, members=1\n",
+    "remaining": "Actual compile/link or archive evidence; binary/library ARM64 and hashes; summary/CDB identities; runtime/direct-library/export checks; preserved input/source/global/prefix state and lease release in finally."
+  },
+  "private_controls": [
+    {
+      "case": "original-core-guard-on-p2996",
+      "source_sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection must be enabled in the compiler and standard library.",
+      "action": "Compile an exact private byte copy with the admitted P2996 common flags, -freflection, include root/include and -c to a fresh private output."
+    },
+    {
+      "case": "updated-core-without-reflection",
+      "candidate_sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection requires the qualified P2996 compiler and libc++.",
+      "action": "Compile the candidate private copy without -freflection under the admitted P2996 lane."
+    },
+    {
+      "case": "original-smoke-leak-comparison",
+      "source_sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+      "expected_native_returncode": 0,
+      "action": "Compile an exact private original smoke copy with P2996 -freflection and -c only."
+    },
+    {
+      "case": "updated-smoke-rejects-reflection",
+      "candidate_sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a",
+      "expected_native_returncode": 1,
+      "expected_diagnostic": "Reflection implementation flags must not leak through the public interface.",
+      "action": "Compile the patched smoke copy with -freflection under each admitted compiler lane; require the explicit leakage diagnostic and no successful object."
+    },
+    {
+      "case": "ctest-old-regex-comparison",
+      "expected_ctest_returncode": 0,
+      "child_returncode": 1,
+      "private_CTestTestfile_contents": "add_test(nonzero \"/bin/sh\" \"-c\" [=[printf 'reflection value=43, members=1\\n'; exit 1]=])\nset_tests_properties(nonzero PROPERTIES TIMEOUT 10 PASS_REGULAR_EXPRESSION \"reflection value=43, members=1\")\n"
+    },
+    {
+      "case": "ctest-corrected-exit-contract",
+      "expected_ctest_returncode": 8,
+      "child_returncode": 1,
+      "private_CTestTestfile_contents": "add_test(nonzero \"/bin/sh\" \"-c\" [=[printf 'reflection value=43, members=1\\n'; exit 1]=])\nset_tests_properties(nonzero PROPERTIES TIMEOUT 10)\n"
+    }
+  ],
+  "control_rules": [
+    "Use exact original_content and content byte strings from the hash-bound 03b1 source contract; hash each private copy before invoking the selected lane. Do not obtain originals from current shared files after the patch.",
+    "Use -c with an explicit fresh private object path, include root/include, exact lane SDK/compiler flags and strict target flags. For negative controls require the exact #error text, rc 1 and object absence; original smoke deliberately succeeds with P2996 -freflection and must produce a fresh nonempty object. Updated smoke rejects reflection under BOTH lanes.",
+    "CTest comparison uses the same private child output and exit 1 under old regex and timeout-only definitions. Record actual CTest argv/rc/stdout/stderr for expected 0 versus 8. These are required future native expectations, not prior observed successes.",
+    "Use the parent-supplied settled 03b1 review and exact final HEAD in the new admission; the source contract remains the preserved original/patched-byte authority."
+  ],
+  "compact_helper": {
+    "target": "Approximately 300 maintained lines; keep data in this hash-bound plan/source contract and receipt references, not duplicated source bodies.",
+    "sections": [
+      "Existing frozen loader/run/protected helpers, admission/profile/preservation and finally, unchanged except receipt bindings and both-lane data",
+      "Extracted P2996 flags(); one small GNU predicate function and finite archive validator; shared CDB grouping and link classification",
+      "Nested lane/linkage/config loops for four configure captures and sixteen cells, with small lane-spec dictionaries",
+      "Table-driven original/patched macro and private CTest controls; retain artifacts and save actual exits"
+    ],
+    "omit": "No replays of old declone, wrong-profile, dirty-flags, wrong-compiler, forced-compiler, analyzer or coverage batteries. No refactoring qualified helper modules."
+  },
+  "genuine_unknowns": [
+    "P2996 static archive tool chain and P2996 shared-core strict-warning/link/runtime/export behavior are not qualified by task10a2; fresh 03b2 execution must establish them.",
+    "No prior core export/demangler receipt exists among inspected inputs. Bind the exact already-installed nm/demangler identity and supported argv before accepting that new observation.",
+    "All private control outcomes and sixteen new cell results remain UNVERIFIED."
+  ],
+  "actual_routes": {
+    "read_tools": [
+      "mcp__node_repl__js using node:fs/promises and node:crypto"
+    ],
+    "shell_or_native_processes": 0,
+    "network_calls": 0,
+    "shared_writes": 0,
+    "private_json_files": 1,
+    "scope_failures": [],
+    "status_probe_answered": "Confirmed to parent: read-only admitted inputs; zero native processes and no new native exit codes, zero maintained/repository/global/source writes; one private JSON now being saved. Historical exit codes come from previously hash-checked receipts. Parent requested no further exploration."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "prior_staged_check": {
+    "returncode": null,
+    "observed_diagnostic_files": [
+      "conflicting-shadowed-cache.stderr",
+      "conflicting-variable.stderr",
+      "missing-environment.stderr",
+      "wrong-environment.stderr"
+    ],
+    "reason": "The earlier command batch showed four blank-at-EOF diagnostics but did not capture the individual command return code. Exact raw log bytes remain unchanged."
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "check-attr",
+        "whitespace",
+        "--",
+        "evidence/vcpkg-abi-inputs/controls/missing-environment.stderr",
+        "triplets/common/macos-arm64.cmake"
+      ],
+      "returncode": 0,
+      "stdout": "evidence/vcpkg-abi-inputs/controls/missing-environment.stderr: whitespace: -blank-at-eof\ntriplets/common/macos-arm64.cmake: whitespace: unspecified\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "attribute_sha256": "dca09211326a748b0b60b0aeb4f41d4b4389d02307bf88131ea82500ab79f7c6",
+  "unchanged_stderr_files": 8,
+  "scope": "Only blank-at-EOF warnings in this unit retained stderr files; other whitespace diagnostics remain enabled"
+}

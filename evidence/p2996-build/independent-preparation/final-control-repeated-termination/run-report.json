@@ -1,0 +1,28 @@
+{
+  "commands": [
+    {
+      "case": "repeated-termination",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import signal,os,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(0.7);os.kill(os.getppid(),signal.SIGTERM);os.kill(os.getppid(),signal.SIGHUP);os.kill(os.getppid(),signal.SIGINT);time.sleep(60)"
+      ],
+      "started_at": "2026-10-11T05:44:15.101268+00:00",
+      "pid": 50946,
+      "interrupted": true,
+      "returncode": -9,
+      "elapsed_seconds": 5.457544875098392,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-repeated-termination/repeated-termination.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-repeated-termination/repeated-termination.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ]
+}

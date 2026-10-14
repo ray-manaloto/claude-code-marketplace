@@ -1,0 +1,116 @@
+{
+  "recorded_at": "2026-10-10T23:46:02.272482+00:00",
+  "result": "PASS for isolated native profile semantics only",
+  "cases": 35,
+  "expected_successes": 8,
+  "expected_rejections": 27,
+  "actual_returncodes": {
+    "default-config-list": 0,
+    "default-polluted": 0,
+    "tools-config-list": 0,
+    "tools-polluted": 0,
+    "p2996-missing": 1,
+    "p2996-empty": 1,
+    "p2996-whitespace": 1,
+    "p2996-relative": 1,
+    "p2996-root": 1,
+    "p2996-padded": 1,
+    "p2996-tab": 1,
+    "p2996-sentinel": 0,
+    "p2996-root-alias-double": 1,
+    "p2996-root-alias-dot": 1,
+    "p2996-root-alias-parent": 1,
+    "p2996-dot-component": 1,
+    "p2996-double-slash": 1,
+    "p2996-trailing-slash": 1,
+    "p2996-space-path": 0,
+    "gcc16-missing": 1,
+    "gcc16-empty": 1,
+    "gcc16-whitespace": 1,
+    "gcc16-relative": 1,
+    "gcc16-root": 1,
+    "gcc16-padded": 1,
+    "gcc16-tab": 1,
+    "gcc16-sentinel": 0,
+    "gcc16-root-alias-double": 1,
+    "gcc16-root-alias-dot": 1,
+    "gcc16-root-alias-parent": 1,
+    "gcc16-dot-component": 1,
+    "gcc16-double-slash": 1,
+    "gcc16-trailing-slash": 1,
+    "gcc16-space-path": 0,
+    "missing-include": 1
+  },
+  "proposal_hashes": {
+    "dev/global-mise/config.gcc16.toml": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+    "dev/global-mise/config.p2996.toml": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+    "dev/global-mise/config.cpp-build.toml": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+    "dev/global-mise/cpp-foundation/common.toml": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1"
+  },
+  "selected_environment_and_paths_asserted": true,
+  "normal_compiler_values_match_base_config": true,
+  "inherited_parallelism_preserved": true,
+  "homebrew_llvm_path_entry_remains": true,
+  "dyld_removal_attribution": "UNPROVEN: DYLD variables also absent in default mise exec control; configuration parses, but this boundary does not attribute removal to common.toml. Direct installed-Python child retained both sentinel values (rc0).",
+  "global_snapshot": {
+    "config.toml": {
+      "exists": true,
+      "symlink": false,
+      "sha256": "4148d61f02fd825ebdcb5abcb8071fac7495f77084865f16b1c7f200fd12c4ec",
+      "mode": "0o600"
+    },
+    "mise.lock": {
+      "exists": true,
+      "symlink": false,
+      "sha256": "9aa33b733369222fe6c62650bba32d4c846b3d223b3017aac6fc9b0fcce818b0",
+      "mode": "0o600"
+    },
+    "config.cpp-build.toml": {
+      "exists": false,
+      "symlink": false,
+      "sha256": null,
+      "mode": null
+    },
+    "config.p2996.toml": {
+      "exists": false,
+      "symlink": false,
+      "sha256": null,
+      "mode": null
+    },
+    "config.gcc16.toml": {
+      "exists": false,
+      "symlink": false,
+      "sha256": null,
+      "mode": null
+    },
+    "cpp-foundation/common.toml": {
+      "exists": false,
+      "symlink": false,
+      "sha256": null,
+      "mode": null
+    }
+  },
+  "historical_failures": [
+    {
+      "receipt": "native-profile-check-initial.json",
+      "reason": "Explicit MISE_GLOBAL_CONFIG_FILE suppressed named profile discovery; not qualified."
+    },
+    {
+      "receipt": "native-profile-check-discovery-fixed.json",
+      "reason": "Native required guard accepted empty prefix and produced /bin compiler paths; corrected."
+    },
+    {
+      "receipt": "native-profile-check-guards.json",
+      "reason": "Tera v2 requires named pat argument for starting_with; positive controls failed; corrected."
+    },
+    {
+      "receipt": "native-profile-check-final.json",
+      "reason": "Initially passed 21 controls but independent review identified root-equivalent prefixes; six targeted controls reproduced the gap before repair."
+    }
+  ],
+  "no_tools_installed": true,
+  "no_compiler_executed": true,
+  "native_receipt": "native-profile-check-reviewed.json",
+  "reviewer_root_alias_controls": "reviewer-root-alias-controls.json",
+  "root_alias_repair": "Reject empty, dot and parent path components after the leading slash; reject trailing slash; positive path with internal spaces remains intact."
+}

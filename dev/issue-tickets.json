@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "repo": "ray-manaloto/claude-code-marketplace",
+  "parent_number": 11,
+  "tickets": [
+    {
+      "local_id": "A01",
+      "title": "A01 — Portable locked task bootstrap",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: none. Named tasks `tools:prepare`, `deps:lock` and `deps:sync` prepare the declared tools, create/refresh the reviewed lock and synchronize project dependencies. Humans and CI then run the same lightweight checks with user/global mise configuration excluded. Lock GitHubKit; normal tasks refuse missing/stale environments and never silently sync. Demonstrate lock-drift refusal and unrelated-cwd invocation without changing global settings. Record latest-stable discovery and locked tool identities, use `com.rsm` package conventions, and preserve all 19 baseline hashes plus root OCI mise files. A12a owns hosted fast-check CI qualification (research-fast run 38320574468 passed); A12b owns later CI expansion and migration of old operational calls. Full Claude/container acceptance remains pending.\n\nSource: approved W5 automation amendment, A01.\n",
+      "body_sha256": "d7ecff7948187548831acb5e89b7740858833ef4cf351aff7818ce46d6cc0ffd",
+      "labels": []
+    },
+    {
+      "local_id": "A02",
+      "title": "A02 — One-page GitHubKit search receipt",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A01. A named task makes one bounded code-search request and equivalent offline fixture and retains raw plus normalized output. Include effective query, safe credential handling, stable item identities, SDK missing/UNSET fields and honest partial or error status. Verify one request on a simulated 5xx with SDK retries off, credential-route presence and one bounded real capture. A one-page result is not automatically exhaustive. This research/ops task adds no plugin verb and does not replace the native Issues schema/transport decisions in #26/#27/#30.\n\nSource: approved W5 automation amendment, A02.\n",
+      "body_sha256": "1e74eca02de5bcd2b0a56aac368130be4781225e6ceabeca9e9251ff68bb610b",
+      "labels": []
+    },
+    {
+      "local_id": "A03a",
+      "title": "A03a — Bounded collection and attempt recording",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A04. The same named task collects within explicit page/item/time limits and records every page, retry, truncation, timeout, primary/secondary limit and HTTP error. Each attempt retains A02 status, allowlisted response headers and exact body bytes/hash through the SDK boundary. Public offline 5xx and redirect controls verify one request per attempt; API caps, drifting totals and duplicate pages stay incomplete. Settle test/review/retro before controls.\n\nSource: approved W5 automation amendment, A03a.\n",
+      "body_sha256": "ffad21580722826eef4b2cdec86a51834d418b8f48b2f3a7a5bfc1275578bcb2",
+      "labels": []
+    },
+    {
+      "local_id": "A03b",
+      "title": "A03b — Controlled empty and completeness verdicts",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A03a. Unexpected empties use the agreed same-capability known-result check. Catalog controls bind scope and expected minimum; record passed, failed or not-run with reason and charge them to the same request/time budget. Fixtures prove failed controls yield unverified results, exhausted budgets remain visible, and incomplete runs cannot become full successes. Reuse A03a's private-result withholding, HTTP envelope capture and post-capture timeout behavior for each control. Keep control/verdict logic in a separate module. The public task retains control HTTP envelopes and makes no NEW/GONE comparison yet.\n\nSource: approved W5 automation amendment, A03b.\n",
+      "body_sha256": "77aa805eb1d320d2cf8ac329d8d30b7078754f0411e124255990d2826636e4f0",
+      "labels": []
+    },
+    {
+      "local_id": "A04",
+      "title": "A04 — Validated catalog and immutable recording",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A02. A saved query catalog can be validated and recorded through a named task. Reject malformed, path-unsafe/case-colliding IDs and invalid selected records before auth/network; own query/control definitions and fingerprint encoding. Publish hash-bound manifests last with collision-safe run IDs. Include the explicit append-only quarantine path above. Concurrent/interrupted fixtures preserve old bytes and produce deterministic baseline selection.\n\nSource: approved W5 automation amendment, A04.\n",
+      "body_sha256": "88590a638c7cfa62b7026253b31665d84fff475303585ae3778810180718e257",
+      "labels": []
+    },
+    {
+      "local_id": "A05a",
+      "title": "A05a — Compatible baseline and pure comparison",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A03b, A04. Select each query's latest complete compatible observation without rewriting old runs. Verify hashes again after A04's selected-record preflight; honor the quarantine reset barrier, exact fingerprint and a new A03b normalization version. Only final `complete` or `empty_verified` status with passed controls is eligible; an A03a collection candidate is insufficient. First observations establish a baseline without NEW/GONE. Partial, corrupt or incompatible observations suppress deltas. Test transitions, limits and unrelated catalog additions with scratch immutable records before public rerun wiring.\n\nSource: approved W5 automation amendment, A05a.\n",
+      "body_sha256": "37e4259d3bbf62117f36030ee9467ef25b40e3cac549677d163ad529dc59e094",
+      "labels": []
+    },
+    {
+      "local_id": "A05b",
+      "title": "A05b — Public rerun and comparison receipt",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A05a. Rerun all or selected saved queries through named tasks and deterministic offline fixtures without rewriting the catalog or old runs. Bind comparisons to the selected baseline and new immutable observation. Qualify concurrent writers with a per-query lock shared by reruns and quarantine, covering preflight, collection, record and comparison publication. Exercise two writers and a quarantine race; drift yields unresolved, never a stale delta. Each row of an all-query rerun is admitted independently: a later invalid row is unresolved before its own credential lookup or network call, while earlier successful row receipts remain immutable. An invalid selected baseline refuses before its live credentials/network; diagnostic replay may describe corrupt data but emits no comparison. Verify subset reruns keep other queries' last-good observations and that the public output/exit/artifact contract distinguishes baseline, compared, suppressed and unresolved states.\n\nSource: approved W5 automation amendment, A05b.\n",
+      "body_sha256": "81b32714b0b64b8f135420787b9f8395fc4072fbd0dd8b07ad404999113c4574",
+      "labels": []
+    },
+    {
+      "local_id": "A06",
+      "title": "A06 — Codex release-schema example receipt",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A05b. Saved GitHubKit queries capture actual usage examples; exact-release official config schemas and installed hook contracts resolve validity. Record pinned source identities, limits and failed/empty routes. Fetch bounded full blobs by SHA and the exact official release schema asset; record their digests, repository/path/blob identities, fork provenance and duplicate blobs. The retained codex-schema live search is partial (10 of reported 898 with `item_limit`): identified blobs may be examined, but example coverage is provisional and no full-inventory or NEW/GONE claim follows from it. Classify fetched examples with the actual validation/inspection method; unavailable validators yield UNVERIFIED, never inferred validity. SDK blob retrieval here is a research helper, separate from native operation #35. New validator tooling belongs to A12b; no global Codex configuration changes.\n\nSource: approved W5 automation amendment, A06.\n",
+      "body_sha256": "540fa3d200b78e6bb4817c9453b00bfaa49325816b22b820a68d96b27cf28401",
+      "labels": []
+    },
+    {
+      "local_id": "A07a",
+      "title": "A07a — Qualify one-issue amendment operations",
+      "body": "Tracking: the A07a helper and offline controls were published at a8ecd40b; A08b must reconcile receipts and dependencies before closure.\n\nBlocked by: A04. A named GitHubKit task previews, applies and verifies an exact body/label update using recorded preimages, allowlisted fields and write-ahead intent. Offline controls cover drift, 5xx/timeout after application, process death after send, exact normalization and verify-only recovery with no second write. Reject state/close operations. Add only the qualified edit-task guidance.\n\nSource: approved W5 automation amendment, A07a.\n",
+      "body_sha256": "abc36b0206732af13f47ba9d9e7c83e2278594bdf2189c8e99d7df632661a415",
+      "labels": []
+    },
+    {
+      "local_id": "A07b",
+      "title": "A07b — Apply the approved spec #11 amendment",
+      "body": "Tracking: the approved #11 amendment was applied and verified; A08b must reconcile the ticket after publication.\n\nBlocked by: A07a. Freeze the approved body and labels, obtain a fresh preview and apply through the qualified task; retain postimage verification or unresolved status. Preserve the original spec/receipts and do not close #11. No extra production mutation is required merely as a rehearsal; a read permission is not write acceptance.\n\nSource: approved W5 automation amendment, A07b.\n",
+      "body_sha256": "fbef14f27e4feff654a3b567253b1df650781333c87013e3736087a71191219e",
+      "labels": []
+    },
+    {
+      "local_id": "A08a",
+      "title": "A08a — Publish and bind ticket identities",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A07b. A named task creates the approved sub-issues with stable markers and local-ID mapping, parent links and planned-state labels. Verify locked SDK endpoint support, numeric IDs versus issue numbers and native limits before applying. Test ambiguous creation before/after parent attachment and interrupted resumption; never automatically repeat a POST. Withhold ready labels until A08b verifies the graph; preserve original issues and existing local-ID bindings.\n\nSource: approved W5 automation amendment, A08a.\n",
+      "body_sha256": "6871e9dee49455049ffe82792ac7170e0a18156d43fa286a657117b493972680",
+      "labels": []
+    },
+    {
+      "local_id": "A08b",
+      "title": "A08b — Verify and publish dependency relationships",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A08a. Apply approved blocker/label relationships for new and waiting existing tickets, verify the full map and replace create/edge guidance with qualified tasks. Partial graph publication remains explicit and resumable. Reconcile actual local/remote implementation state from receipts; no automatic closure follows from issue creation or a push. A12b owns any additional close workflow needed for #12/#24/#25, gated by their acceptance and A09's publication receipt.\n\nSource: approved W5 automation amendment, A08b.\n",
+      "body_sha256": "a831e878c614fec1e0499d8c0c5e352c665a614cc862847637634599d77b4ac9",
+      "labels": []
+    },
+    {
+      "local_id": "A09",
+      "title": "A09 — Reviewed commit and branch publication",
+      "body": "Tracking: implementation was published on the automation branch at 93bb798b; A08b must reconcile receipts and dependency state before closure.\n\nBlocked by: A01. Named tasks verify selected changes, checks and Git identity, create a local commit and push the exact authorized branch. Secret scanning covers the complete outbound commits/blobs and evidence, including a secret added then deleted. Derive the set from fresh remote refs; for an absent branch scan all target ancestry unless remote presence is proved. Bind HEAD, reviewed tree, remote identity, explicit SHA/refspec and active writer root; reject detached HEAD, drift, unexpected hook edits, failing checks and force-push. Keep Git secrets out of argv/logs and reject unsafe tracing. Scan failure stops for owner resolution without rewriting history. Verify the exact remote commit.\n\nSource: approved W5 automation amendment, A09.\n",
+      "body_sha256": "f6f58ecb80f77d0b9fa8585376a6cc446666889511881f0b3e3a56293d9bb373",
+      "labels": []
+    },
+    {
+      "local_id": "A10",
+      "title": "A10 — Reviewable checkout-transfer plan",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A09. A named task inventories exact source/worktree preimages, approved untracked handoffs, retained ignored artifacts, collisions and branch ownership. It emits an apply/recovery plan bound to the pushed commit without switching checkouts. Declare the post-transfer writer root and prove the session can execute there. Collision checks include target tracked paths against ignored and untracked files, symlinks and parent directories. Classify path-dependent retained artifacts and current guidance; do not rewrite historical receipts or silently rebuild missing artifacts. Scratch controls prove refusal.\n\nSource: approved W5 automation amendment, A10.\n",
+      "body_sha256": "263d632ea6c4f4d4d2962d3ae162cd7bf81617c16f7b3134ac6cfd5c57cf5a83",
+      "labels": []
+    },
+    {
+      "local_id": "A11",
+      "title": "A11 — Apply and verify source-checkout transfer",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A10. The named task rechecks the approved plan, detaches the retained old worktree and switches the source checkout to the published branch. Verify exact preimage preservation, non-destructive recovery, refreshed handoffs and actual subsequent named checks and an A09 handoff-update commit from the source root, including all 19 baseline hashes. Reject later mutation from the inactive/detached worktree. If source-root operation cannot be proved, retain or recover the prior binding and report transfer incomplete; never delete/reset either checkout. App navigation alone is not execution proof.\n\nSource: approved W5 automation amendment, A11.\n",
+      "body_sha256": "0cd0d5afbdda12a080a1dffa4507eed79f3d6428bdfe7e309d92502b7d4158c1",
+      "labels": []
+    },
+    {
+      "local_id": "A12a",
+      "title": "A12a — Qualify the portable fast-check and hosted CI route",
+      "body": "Tracking: the A12a fast-check/CI route was published at a8ecd40b, and research-fast run 38320574468 passed; A08b must reconcile receipts and dependencies before closure.\n\nBlocked by: A01, A02, A09. `check:research` is the local fast check and already exits 0 with bootstrap, offline SDK/catalog controls and the 19 original hashes. Inspect `.github/workflows/acceptance.yml` and the host/container admission before wiring a separate lightweight job on the published branch; qualify a fresh host with explicit prepare/sync and no global mise or secret assumptions. Retain CI run/exit evidence. The lightweight research-fast hosted job passed at run 38320574468; full Claude/container acceptance remains pending.\n\nSource: approved W5 automation amendment, A12a.\n",
+      "body_sha256": "c0bc1311ed43f859bee5c0ab83a2c95fa16d088517936d6d86fd6006dc65f30f",
+      "labels": []
+    },
+    {
+      "local_id": "A12b",
+      "title": "A12b — Assemble the remainder amendment",
+      "body": "Tracking: A08b will reconcile implementation state and dependencies; issue creation does not mark work complete.\n\nBlocked by: A06, A08b, A12a. Using bounded saved-search receipts and the settled requirements, draft the remaining graph changes for portable C++ builds, latest locked tools and packslip skills, hk checks, schemas, diagnostic matrices, caches, profiling, structured/redacted telemetry defaults, shared collector integration and host enforcement. Explicitly route versioned baseline transitions (#28), existing Python/CMake call migration, CI expansion beyond A12a, evidence migration, issue closure/state reconciliation and per-unit handoff refresh. Map the ops contract to future native reuse without repurposing the Issues schema. This is assembly/review only: no new implementation or host mutation. Reuse existing tickets and preserve completed receipts and original issue IDs.\n\nSource: approved W5 automation amendment, A12b.\n",
+      "body_sha256": "73318e5e4eee921414b779525b165773ef4a6bf7d462606373e6219296c0234d",
+      "labels": []
+    }
+  ]
+}

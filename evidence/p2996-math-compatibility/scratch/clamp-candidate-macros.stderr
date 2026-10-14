@@ -1,0 +1,22 @@
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:4:2: error: MISSING_INFINITY
+    4 | #error MISSING_INFINITY
+      |  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:7:2: error: MISSING_NAN
+    7 | #error MISSING_NAN
+      |  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:9:34: error: use of undeclared identifier 'INFINITY'
+    9 | static_assert(__is_same(decltype(INFINITY), float));
+      |                                  ^~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:10:34: error: use of undeclared identifier 'NAN'
+   10 | static_assert(__is_same(decltype(NAN), float));
+      |                                  ^~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:11:31: error: use of undeclared identifier 'INFINITY'
+   11 | static_assert(__builtin_isinf(INFINITY) && INFINITY > 0);
+      |                               ^~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:11:44: error: use of undeclared identifier 'INFINITY'
+   11 | static_assert(__builtin_isinf(INFINITY) && INFINITY > 0);
+      |                                            ^~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-probe-20261011T0743/macros.cpp:12:31: error: use of undeclared identifier 'NAN'
+   12 | static_assert(__builtin_isnan(NAN));
+      |                               ^~~
+7 errors generated.

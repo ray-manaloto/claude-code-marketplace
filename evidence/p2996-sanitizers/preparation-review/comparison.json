@@ -1,0 +1,115 @@
+{
+  "result": "PASS: bounded source and receipt comparison",
+  "checks": {
+    "frozen_snapshot_byte_pairs": 7,
+    "source_prerequisite_copy_pair": true,
+    "sanitizer_matrix": [
+      {
+        "mode": "asan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "asan",
+        "argv": "memory",
+        "expected_exit": 86
+      },
+      {
+        "mode": "ubsan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "ubsan",
+        "argv": "overflow",
+        "expected_exit": 86
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "clean",
+        "expected_exit": 0
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "memory",
+        "expected_exit": 86
+      },
+      {
+        "mode": "asan-ubsan",
+        "argv": "overflow",
+        "expected_exit": 86
+      }
+    ],
+    "inputs_retained_bindings": 87,
+    "inputs_added_bindings": 14,
+    "tools_retained_bindings": 18,
+    "tools_added_bindings": 2,
+    "source_inputs_retained_bindings": 19,
+    "source_inputs_added_bindings": 26,
+    "unchanged_abi_lists": 4,
+    "source_binding_table_matches": 32,
+    "new_runtime_binding_table_matches": 2,
+    "identical_nested_functions": [
+      "save",
+      "guard",
+      "interrupted"
+    ],
+    "unchanged_admission_capacity_census_default_failure_finally_structure": true,
+    "finally_only_removed_retained_fmt_inventory_if": true,
+    "selected_baseline_flags": [
+      "--no-default-config",
+      "-fno-blocks",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "-fPIC"
+    ],
+    "parent_receipts": {
+      "static_returncodes": [
+        0,
+        0
+      ],
+      "baseline_hashes_recorded": 19,
+      "postcommit_head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+      "postcommit_all_zero_and_clean": true,
+      "scan_file_bindings": 12,
+      "scan_raw_returncode": 1,
+      "scan_transformed_returncode": 0,
+      "verified_public_digest_dispositions": 3,
+      "complete_token_findings": 0
+    }
+  },
+  "read_file_hashes": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/candidate.json": "f55b7ef0bd02259d0bdb048f0b52c46cb01b0e5dbfd1f52f226af77d2a0277d6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/contract.json": "29c2f25e6c245d1dfc2399093ca39b9a335286e73d2b169412d5ec0290c2c954",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/source-prerequisite.json": "f0a8c7c73fc0fa6991873661f9c15b4af81e539520daec374cd7be66fb1d9d32",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/contract.json": "c687bf04041e379c279df6ae5759d5076ccd2ffa8b1e4f149fd3554f2bcd77d7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py": "06412f62a5a0fb04c6f42515dad5ef1863b28501feb5c4d766bb3f0861d0fc7b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/sanitizer_witness.cpp": "8918bd5638f2c97a165f1edc946745e94f6ffea8ef9ac960a10f10587e92a0b3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "753531ad2b210d06766c38c904ed70657c1403d02b1e0aa47791be269fbf5b2f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "356a833b0c3fad1ccb3c3c813af51ad17292231ccde3f0ca5320c97268fa393d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "fd5eb218d7f5f071f98ef74178b5eeb4e5539faa5d4cdce6d1cc37beb0159a4c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/candidate-inputs.json": "786dc1adc5f092cbe2cf4943874ee77daa5defbf0f1598bf3e172fcf6e0aece2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/source-copy-manifest.json": "cc541602f1b2a3d64e979a160d2b0110f25192922a0da97f5ebc2d674642aef7",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-prerequisite-YiHPif/prerequisite.json": "f0a8c7c73fc0fa6991873661f9c15b4af81e539520daec374cd7be66fb1d9d32",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/baseline.py": "64aaff09faa8b625e6dc63503b9727a6ad69e8fe2010c9763b301ff55f7c3266",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/operation/qualification.json": "b0a50b11252a6fad2a204603c0f40bec57a1333a9b85a5896e659ec50c65d83c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/pre-review-static.json": "cfb72d7a7f9cc96772ff0ef5a7573c57f0ceb7e534d936247c0947036a7c8ad0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/baseline-postcommit.json": "8cbfc372dc9df7fec3b57f4f4c1d5705bc8ec1e2e6ec2863c98ff121ef5d04d1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/pre-review-secret-scan.json": "c600e979565bbf70debbe658357bfdf008f99a06bb351448a6087bd3aa5760df",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/closure-secret-scan.json": "3746338913f2a29715b5f532cfe31bda80d9934ac89fd5b7f5c60be487d79727",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-presets/closure-secret-scan.json": "15c6fe78d3addfaaa154c10007aa0466b1918ec513899fbfb283ab218af8d106",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-abi-inputs/closure-secret-scan.json": "f2d86fc409fe1401c61ad69053ca45e57921537dd63221686a2fb4804671a699"
+  },
+  "candidate_code_imported_or_executed": false,
+  "native_operations_executed": 0,
+  "installed_binary_content_reads": 0,
+  "source_inventory_reads": 0,
+  "limits": [
+    "32 prerequisite bindings and two runtime hashes compared as retained metadata; old source and binary graphs not rehashed.",
+    "Manual source reasoning remains distinct from native sanitizer execution, which has not run."
+  ]
+}

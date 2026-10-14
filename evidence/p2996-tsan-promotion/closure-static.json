@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-12T04:24:47.086467+00:00",
+  "head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "checks": [
+    {
+      "argv": "./dev/mise tasks validate",
+      "returncode": 0,
+      "result": "2 tasks validated"
+    },
+    {
+      "argv": "./dev/mise run check",
+      "returncode": 0,
+      "result": {
+        "json": 2204,
+        "python": 160,
+        "shell": 6,
+        "toml": 16,
+        "baseline": 0
+      }
+    },
+    {
+      "argv": "./dev/mise run check:acceptance-baseline",
+      "returncode": 0,
+      "result": {
+        "original_hashes": 19,
+        "json": 2204,
+        "python": 160,
+        "shell": 6,
+        "toml": 16
+      }
+    },
+    {
+      "argv": "git diff --check",
+      "returncode": 0
+    }
+  ]
+}

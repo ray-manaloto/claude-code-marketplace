@@ -1,0 +1,111 @@
+{
+  "skill_name": "ticket-frontier",
+  "notes": "Fixture graph: evals/fixtures/graph-12.json. Each eval runs against a scratch plan dir that copies .planning/<PLAN_ID>/frontier.toml and the fixture; `scripts/frontier.py --repo <scratch> --plan-id test-plan`. Expectations are checkable from stdout and the files under frontier/.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "frontier-with-blockers",
+      "prompt": "I'm inside /implement-spec for the takeover spec. Using the ticket graph at evals/fixtures/graph-12.json (CT-05's ledger isn't built yet), tell me which tickets are ready right now, in what order we should start them, and which ones are still blocked and by what. Lane records: none.",
+      "expected_output": "Runs `frontier.py plan --graph evals/fixtures/graph-12.json` (not a hand computation), reports ready order CT-15, #16, #21, #17, #20 with critical-path and unblocks scores, says #22 waits on #21, #18 on #16, CT-17 on CT-15, CT-19 on CT-17, CT-25 on CT-15/CT-17/CT-19, #23 on six tickets, and names CT-05 as done (closed).",
+      "files": ["evals/fixtures/graph-12.json"],
+      "expectations": [
+        "The transcript runs scripts/frontier.py plan with --graph rather than computing the frontier by hand",
+        "The answer lists exactly CT-15, #16, #21, #17, #20 as ready, in that order",
+        "The answer says #22 is blocked by #21 and CT-17 by CT-15",
+        "The answer states that CT-05 counts as done because the tracker says closed",
+        "The answer mentions that ticket-ledger.json (CT-05) is not available yet and that --graph is the fallback"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "cxx-slot-without-admission",
+      "prompt": "Give me the next three lanes for the spec with one C++ lane always active. I have not admitted any heavy run today. Graph: evals/fixtures/graph-12.json.",
+      "expected_output": "Plan shows the cxx slot taking the offline portion of #21 as unit 21-offline (heavy order #21 first), then CT-15 as the second lane; #16/#17/#20 are skipped as heavy-not-admitted so only two lanes dispatch; the parent asks the user the admission question once in plain text and does not assume a yes.",
+      "files": ["evals/fixtures/graph-12.json"],
+      "expectations": [
+        "The first chosen unit is 21-offline with split offline-portion",
+        "The receipt or answer contains 'offline-portion of #21; heavy run not admitted'",
+        "The parent asks the user one plain-text admission question for #21 before dispatching",
+        "The answer explains that #16, #17 and #20 wait for their own admission (one heavy run at a time)",
+        "No Agent dispatch happens before the user answers"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "max-parallel-saturation",
+      "prompt": "Three implementer lanes are already claimed (units a→CT-11, b→#17, c→#20) and one reviewer (r1→#17). What can I dispatch next? Graph: evals/fixtures/graph-12.json.",
+      "expected_output": "After reproducing the claims with `frontier.py claim`, `plan` reports writers 3/3 saturated, live 4/8, chosen empty; `next` exits 2 naming max_parallel; the answer says to wait for a release (or a reviewer slot stays available since reviewers are uncounted) and does not dispatch.",
+      "files": ["evals/fixtures/graph-12.json"],
+      "expectations": [
+        "frontier.py next exits 2 with 'max_parallel' in its output",
+        "The answer states writers 3/3 and live agents 4/8",
+        "The answer says reviewers and retro-writers do not count against max_parallel",
+        "No new implementer or doc-writer is dispatched"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "ceiling-refusal",
+      "prompt": "Lane l21 (ticket #21) died at 541K tokens; its CT-19 journal is at /tmp/l21.jsonl with the last usage line {\"usage\": {\"input\": 540000, \"output\": 1000, \"total\": 541000}}. Can I just resume it?",
+      "expected_output": "`frontier.py release l21 --from-journal /tmp/l21.jsonl --resume` exits 2 with split-required (541000 >= ceiling 500000); the answer says no resume, carve a continuation unit l21-2 from the lane's commits and ledger with a fresh brief and the CTX-CEILING line, state travels through the branch not the transcript.",
+      "files": [],
+      "expectations": [
+        "release --resume exits 2 and the output contains 'split-required'",
+        "The answer names the ceiling 500000 and the observed usage 541000",
+        "The answer proposes a continuation unit from commits and ledger rather than resuming the agent",
+        "The answer says the continuation brief carries a CTX-CEILING line"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "executor-gate-failure",
+      "prompt": "Switch the executor to claude-agent so the Codex-side protocol dispatches the lanes instead of the Agent tool.",
+      "expected_output": "Runs `frontier.py executor-gate --executor claude-agent --write`; on today's tree it exits 2 with G1–G6 FAIL (no probe configured / G2–G5 by construction) and G7 SKIP; the answer refuses the switch, names the failing items with their meaning from references/executor-gate.md, says the skill runs native, and does not edit frontier.toml.",
+      "files": [],
+      "expectations": [
+        "executor-gate exits 2 and names each failing item G1..G6",
+        "G7 is reported SKIP because team mode was not requested",
+        "The answer says the executor stays native until the items pass",
+        "frontier.toml is not edited (executor switches are propose items)"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "degraded-mode",
+      "prompt": "What is the frontier status in this checkout? None of CT-05, CT-15, CT-17, CT-19, CT-22 or CT-24 has landed.",
+      "expected_output": "`frontier.py status` exits 0 and prints six 'not available yet: CT-nn (<artifact>) -> <fallback>' lines; the answer explains the fallback per ticket (--graph, manual plan:log line, manual allocation/integration, brief-templates.md, ceiling from frontier.toml, --admitted after asking) and that the loop keeps running.",
+      "files": [],
+      "expectations": [
+        "status exits 0 (no crash)",
+        "Six lines of the form 'not available yet: CT-nn (<artifact>)' are printed, one per CT-05, CT-15, CT-17, CT-19, CT-22, CT-24",
+        "The answer names the fallback for each missing prerequisite",
+        "The answer does not claim any of the six artifacts exists"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "threshold-mismatch",
+      "prompt": "dev/doctor/budget.py just landed with fork_deny = 450_000. Plan the frontier.",
+      "expected_output": "`frontier.py plan` exits 2 with 'threshold mismatch' naming 450000 and 500000; the answer says there is one threshold source, asks the user which value is right, and proposes the frontier.toml hunk (fraction 0.45) or the budget.py change as a propose item rather than editing silently.",
+      "files": [],
+      "expectations": [
+        "plan exits 2 and the output contains 'threshold mismatch', 450000 and 500000",
+        "The answer asks the user before changing either file",
+        "A change to frontier.toml is presented as a propose hunk"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "ledger-and-retro-automation",
+      "prompt": "The retro-writer for lane ct11-check-lock applied finding F2 (a new dev/check.py rule, verified by ./dev/mise run check rc 0) and found F3 wants a hook in .claude/settings.json. Record both and tell me what I still have to approve.",
+      "expected_output": "Two `frontier.py ledger append` rows: F2 kind mechanical, destination dev/check.py, mode auto, verification rc 0, retro_row retros/ct11-check-lock.md#F2; F3 kind hook, destination .claude/settings.json, mode propose, applied_by parent, verification rc null with the owner; the answer presents F3 as the one propose item the user must approve and shows `ledger list --by destination`.",
+      "files": [],
+      "expectations": [
+        "Two ledger rows are appended with the documented keys and the script exits 0 for each",
+        "F3 is mode propose because .claude/settings.json is always propose",
+        "The user is asked to approve F3 before it is applied",
+        "ledger list --by destination is shown"
+      ]
+    }
+  ]
+}

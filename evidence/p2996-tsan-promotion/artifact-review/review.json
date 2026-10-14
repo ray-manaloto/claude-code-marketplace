@@ -1,0 +1,628 @@
+{
+  "Claude_acceptance_limit": "The retained pre-run review reports the earlier static gate preserving all 19 original Claude acceptance hashes. This post-native review did not rerun that gate, fresh Claude/Codex sessions, hooks/providers or OCI acceptance; it does not expand that acceptance claim.",
+  "admission_sha256": "5f37626870c746e8fab3b0c4530bcce584ce1e9072b4130c0e080769507d4755",
+  "artifact_conclusions": {
+    "installed_runtime": "Matches the qualified private TSan candidate digest at installed mode 0755.",
+    "private_candidate": "Matches its reviewed digest and retains mode 0700.",
+    "retained_original_backup": "Matches the exact original installed digest, byte length and mode 0755.",
+    "scope": "Exactly five binary files were read once each, totaling 3399104 bytes. All were stable canonical regular owned single-link arm64 Mach-O files. No other binary or staged copy was read.",
+    "witnesses": "Both named binaries match the frozen hashes and sizes; exactly one current read of each."
+  },
+  "artifact_identities": [
+    {
+      "bytes": 1103504,
+      "kind": "installed-runtime",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "mode_observed": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+      ]
+    },
+    {
+      "bytes": 1104608,
+      "kind": "original-backup",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "mode_observed": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-retry-20261012T041200Z/original.dylib",
+      "reads": 1,
+      "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "C87B1C75-0AFA-365D-AAC2-AB401E9E6D94"
+      ]
+    },
+    {
+      "bytes": 1103504,
+      "kind": "qualified-private-runtime",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o700",
+      "mode_observed": "0o700",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+      ]
+    },
+    {
+      "bytes": 35336,
+      "kind": "tsan-binary",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 2,
+      "mode_observed": "0o700",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+      "reads": 1,
+      "sha256": "98bbddbab90890197bebfe79f451d7e5ad6384bd3ad340dc5f47c3b93ad0f018",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "ACE514CB-41B5-37BF-89E7-5BC5272265A7"
+      ]
+    },
+    {
+      "bytes": 52152,
+      "kind": "tsan-ubsan-binary",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 2,
+      "mode_observed": "0o700",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+      "reads": 1,
+      "sha256": "7ddfb29def4c0293f50876a9139429a64bf6ea9d6adcaf02ce62e07c994e3f99",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "81AB6210-25B1-302F-A34E-D434E6180D1E"
+      ]
+    }
+  ],
+  "artifact_inventory_sha256": "37ba9e1a136f67695f51229fa1ffd4811b3c09896b68f97bd8d99f5a621c655c",
+  "branch": "codex/marketplace-native-onboarding",
+  "candidate_sha256": "fee7bb9cb6679586df72223db0471f01bc63a7a2f7caf18e522e08156a8fe587",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "closure_sha256": "bd40d4c91b9fca30d752a594fba3435833dffb14364b65731bf203cfcebabaec",
+  "contract_sha256": "f7a4bae70a2437c667435040877b2e7da90d83249982e707ee6dfcc6d3e5b0fb",
+  "executed_reviewer_checks": {
+    "binary_bytes_read": 3399104,
+    "binary_reads": 5,
+    "comparator_runs": 1,
+    "elapsed_seconds": 0.10729187494143844,
+    "final_git_checks": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "codex/marketplace-native-onboarding\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "a3de6bc78da3d5717c5c1367585f396908977e9d\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n"
+      }
+    ],
+    "finished_at": "2026-10-12T04:20:27.990536+00:00",
+    "initial_git_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "live_lease_probe": {
+      "contents_sha256": "e332e8b1d47ad1843481f72be7918101a49ec8bb1e9cf15a7ca553732eb0e659",
+      "contents_unchanged": true,
+      "elapsed_seconds": 1.0541873052716255e-05,
+      "free": true,
+      "inode_unchanged": true,
+      "operation": "O_RDONLY|O_NOFOLLOW and LOCK_EX|LOCK_NB, immediately unlocked; no writes",
+      "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+      "probed_at": "2026-10-12T04:20:27.985099+00:00"
+    },
+    "live_process_probes": [
+      {
+        "case": "native-helper",
+        "pid": 4895,
+        "state": "absent"
+      },
+      {
+        "case": "project-head",
+        "pid": 5005,
+        "state": "absent"
+      },
+      {
+        "case": "default-before",
+        "pid": 5006,
+        "state": "absent"
+      },
+      {
+        "case": "capacity-processes",
+        "pid": 5007,
+        "state": "absent"
+      },
+      {
+        "case": "editor-identities",
+        "pid": 5008,
+        "state": "absent"
+      },
+      {
+        "case": "editor-cwd",
+        "pid": 5016,
+        "state": "absent"
+      },
+      {
+        "case": "editor-identities-after",
+        "pid": 5018,
+        "state": "absent"
+      },
+      {
+        "case": "docker-context",
+        "pid": 5038,
+        "state": "absent"
+      },
+      {
+        "case": "docker-census",
+        "pid": 5050,
+        "state": "absent"
+      },
+      {
+        "case": "docker-stats",
+        "pid": 5053,
+        "state": "absent"
+      },
+      {
+        "case": "source-before-head",
+        "pid": 5101,
+        "state": "absent"
+      },
+      {
+        "case": "source-before-tree",
+        "pid": 5102,
+        "state": "absent"
+      },
+      {
+        "case": "source-before-diff",
+        "pid": 5103,
+        "state": "absent"
+      },
+      {
+        "case": "source-before-status",
+        "pid": 5104,
+        "state": "absent"
+      },
+      {
+        "case": "promote",
+        "pid": 5116,
+        "state": "absent"
+      },
+      {
+        "case": "tsan-clean",
+        "pid": 6052,
+        "state": "absent"
+      },
+      {
+        "case": "tsan-race",
+        "pid": 6053,
+        "state": "absent"
+      },
+      {
+        "case": "tsan-ubsan-clean",
+        "pid": 6054,
+        "state": "absent"
+      },
+      {
+        "case": "tsan-ubsan-race",
+        "pid": 6056,
+        "state": "absent"
+      },
+      {
+        "case": "tsan-ubsan-overflow",
+        "pid": 6102,
+        "state": "absent"
+      },
+      {
+        "case": "source-after-head",
+        "pid": 6103,
+        "state": "absent"
+      },
+      {
+        "case": "source-after-tree",
+        "pid": 6104,
+        "state": "absent"
+      },
+      {
+        "case": "source-after-diff",
+        "pid": 6105,
+        "state": "absent"
+      },
+      {
+        "case": "source-after-status",
+        "pid": 6106,
+        "state": "absent"
+      },
+      {
+        "case": "default-after",
+        "pid": 6107,
+        "state": "absent"
+      }
+    ],
+    "returncode": 0,
+    "script_sha256": "3277711fb650b2a84e8d6621fe6681487ec9762e8dc29b0539921579cb45f34f",
+    "stable_scoped_text_bindings": 78,
+    "started_at": "2026-10-12T04:20:27.883133+00:00",
+    "stderr": "",
+    "timeout_seconds": 30,
+    "verified_command_logs": 48,
+    "verified_command_outcomes": 24,
+    "verified_copy_pairs": 8,
+    "verified_text_receipts": 55
+  },
+  "findings": [],
+  "git_common_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "helper_sha256": "9d4e73dab0c4884349c7fc166a0b09a0d01dbf1573de50777341ac5144867af4",
+  "inspection_errors": [
+    "One initial metadata display was too large and truncated; required fields were subsequently inspected through bounded derived summaries.",
+    "One exploratory summary command had an unmatched-parenthesis SyntaxError before executing; the corrected read-only summary succeeded. The actual comparator ran exactly once with rc 0."
+  ],
+  "loader_findings": {
+    "installed_and_private_runtime_UUIDs_match_loader_records": true,
+    "limit": "Additional system libraries, including system C++ libraries, also appear in the loader records. The review establishes the selected library paths were present and the installed TSan library was the sole libclang_rt origin; it does not claim exclusivity of every C++ library.",
+    "runtime_uuid": [
+      "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+    ],
+    "selected_prefix_libcxx_libcxxabi_libunwind_present_in_all_five_cases": true,
+    "sole_libclang_rt_origin": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib"
+  },
+  "memory_context": "MEMORY.md line 74 was used only for workspace routing earlier in this lane. Current files, receipts, identity and live checks were independently inspected.",
+  "native_execution_sha256": "bf5f4ea00e82db881149acfaa55d4d522a307a0aac9006888ea0f67c09058aba",
+  "native_receipts_independently_checked": {
+    "admission_after_review_and_before_native_dispatch": true,
+    "command_exit_counts": {
+      "intentional_86": 3,
+      "zero": 21
+    },
+    "command_outcomes": [
+      {
+        "case": "project-head",
+        "elapsed_seconds": 0.01296262489631772,
+        "expected_returncode": 0,
+        "pid": 5005,
+        "returncode": 0
+      },
+      {
+        "case": "default-before",
+        "elapsed_seconds": 0.09421516582369804,
+        "expected_returncode": 0,
+        "pid": 5006,
+        "returncode": 0
+      },
+      {
+        "case": "capacity-processes",
+        "elapsed_seconds": 0.059044583002105355,
+        "expected_returncode": 0,
+        "pid": 5007,
+        "returncode": 0
+      },
+      {
+        "case": "editor-identities",
+        "elapsed_seconds": 0.041906749829649925,
+        "expected_returncode": 0,
+        "pid": 5008,
+        "returncode": 0
+      },
+      {
+        "case": "editor-cwd",
+        "elapsed_seconds": 0.08963691699318588,
+        "expected_returncode": 0,
+        "pid": 5016,
+        "returncode": 0
+      },
+      {
+        "case": "editor-identities-after",
+        "elapsed_seconds": 0.050681082997471094,
+        "expected_returncode": 0,
+        "pid": 5018,
+        "returncode": 0
+      },
+      {
+        "case": "docker-context",
+        "elapsed_seconds": 0.028964624973013997,
+        "expected_returncode": 0,
+        "pid": 5038,
+        "returncode": 0
+      },
+      {
+        "case": "docker-census",
+        "elapsed_seconds": 0.06799637479707599,
+        "expected_returncode": 0,
+        "pid": 5050,
+        "returncode": 0
+      },
+      {
+        "case": "docker-stats",
+        "elapsed_seconds": 1.072876957943663,
+        "expected_returncode": 0,
+        "pid": 5053,
+        "returncode": 0
+      },
+      {
+        "case": "source-before-head",
+        "elapsed_seconds": 0.01382562518119812,
+        "expected_returncode": 0,
+        "pid": 5101,
+        "returncode": 0
+      },
+      {
+        "case": "source-before-tree",
+        "elapsed_seconds": 0.014240457909181714,
+        "expected_returncode": 0,
+        "pid": 5102,
+        "returncode": 0
+      },
+      {
+        "case": "source-before-diff",
+        "elapsed_seconds": 0.4476878340356052,
+        "expected_returncode": 0,
+        "pid": 5103,
+        "returncode": 0
+      },
+      {
+        "case": "source-before-status",
+        "elapsed_seconds": 1.031881167087704,
+        "expected_returncode": 0,
+        "pid": 5104,
+        "returncode": 0
+      },
+      {
+        "case": "promote",
+        "elapsed_seconds": 0.11211008299142122,
+        "expected_returncode": 0,
+        "pid": 5116,
+        "returncode": 0
+      },
+      {
+        "case": "tsan-clean",
+        "elapsed_seconds": 0.5280843751970679,
+        "expected_returncode": 0,
+        "pid": 6052,
+        "returncode": 0
+      },
+      {
+        "case": "tsan-race",
+        "elapsed_seconds": 0.31504479120485485,
+        "expected_returncode": 86,
+        "pid": 6053,
+        "returncode": 86
+      },
+      {
+        "case": "tsan-ubsan-clean",
+        "elapsed_seconds": 0.3211374171078205,
+        "expected_returncode": 0,
+        "pid": 6054,
+        "returncode": 0
+      },
+      {
+        "case": "tsan-ubsan-race",
+        "elapsed_seconds": 0.3315469999797642,
+        "expected_returncode": 86,
+        "pid": 6056,
+        "returncode": 86
+      },
+      {
+        "case": "tsan-ubsan-overflow",
+        "elapsed_seconds": 0.34299045894294977,
+        "expected_returncode": 86,
+        "pid": 6102,
+        "returncode": 86
+      },
+      {
+        "case": "source-after-head",
+        "elapsed_seconds": 0.012217374984174967,
+        "expected_returncode": 0,
+        "pid": 6103,
+        "returncode": 0
+      },
+      {
+        "case": "source-after-tree",
+        "elapsed_seconds": 0.01174725010059774,
+        "expected_returncode": 0,
+        "pid": 6104,
+        "returncode": 0
+      },
+      {
+        "case": "source-after-diff",
+        "elapsed_seconds": 0.43051979201845825,
+        "expected_returncode": 0,
+        "pid": 6105,
+        "returncode": 0
+      },
+      {
+        "case": "source-after-status",
+        "elapsed_seconds": 0.7814295419957489,
+        "expected_returncode": 0,
+        "pid": 6106,
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "elapsed_seconds": 0.09451604192145169,
+        "expected_returncode": 0,
+        "pid": 6107,
+        "returncode": 0
+      }
+    ],
+    "helper_review_admission_contract_bindings": true,
+    "launch_and_execution_agree": true,
+    "lease_released": true,
+    "mutation_started": true,
+    "native_dispatch_elapsed_seconds": 21.90814254200086,
+    "native_dispatch_returncode": 0,
+    "native_stderr_empty": true,
+    "native_stdout_matches_24_outcomes_and_final_PASS": true,
+    "no_recorded_recovery_or_preservation_failure": true,
+    "protected_state_matches_expected_reported_by_runner": true,
+    "qualification_state": "PASS: installed TSan promotion and five sanitizer witnesses"
+  },
+  "not_run": [
+    "Native commands and sanitizer witnesses were not rerun. Actual native exit claims derive from verified retained execution and command receipts.",
+    "No broad 190-input/881-source/28-tool/ABI inventory rehash, installed guard rerun, compiler, build, install, service, container, network, model session or global configuration changes.",
+    "Current reads cover exactly five inventory binaries, once each. No staged-runtime, ASan, compiler or other library binary read.",
+    "PID zero-signal probes report present/absent at the recorded time; a present PID would need ownership/reuse investigation. Lease probe is nonblocking and read-only; no lease contents were written.",
+    "Recovery/rollback was not exercised on this successful run. No larger sanitizer matrix, fresh Claude/Codex session or full OCI acceptance was performed.",
+    "No raw diagnostic logs or environment contents are included in this private comparison output."
+  ],
+  "ownership": "Parent is the sole implementation writer. Reviewer preserved all repository, installed-prefix, source/build and shared files. Review artifacts were written only to this new /private/tmp directory. The explicitly requested live lease check used a read-only descriptor, nonblocking acquisition and immediate release, with no file writes.",
+  "pre_run_review_sha256": "b51b89494746d98bf271454e8de5d9bcf829be72e67012a6d8cf7670e82387d1",
+  "preservation_and_closure": {
+    "capacity_limit": "Inspected recorded native process totals, admitted editor identity/cwd outputs, container context/census/CPU and declared load/free-space thresholds. No new capacity operation was run.",
+    "capacity_receipt_checks": {
+      "active": [
+        "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+        "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+      ],
+      "admitted_editor_services": [
+        "73356",
+        "73398"
+      ],
+      "container_cpu_percent": 5.39,
+      "cpus": 12,
+      "free_bytes": 71087644672,
+      "load": [
+        7.4638671875,
+        7.2490234375,
+        7.267578125
+      ],
+      "total_cpu_percent": 196.6
+    },
+    "collector_limit": "Collector source and all eight declared copy pairs were inspected and matched. The collector was not rerun, and its standalone exit-code claim was not separately reconstructed from an execution receipt.",
+    "confinement": "Both actual sandbox profile files match the reviewed private-root write allowance, network denial and single installed target mutation allowance. Promotion argv binds staged path, target and exact before/after identities; witness argv has no DYLD_LIBRARY_PATH override.",
+    "historical_collector_lease_free": true,
+    "historical_collector_processes": 25,
+    "independent_current_lease_contents_unchanged": true,
+    "independent_current_lease_free": true,
+    "independent_current_processes_absent": 25,
+    "live_scope": "Only the 25 recorded owned PIDs were probed with signal zero. The lock file was opened read-only with no-follow, tested with nonblocking flock and immediately unlocked. No lsof, broad process census, waiting, process termination or lease-file write occurred.",
+    "source_default_before_after_verified": true,
+    "source_receipt_checks": "Before/after source HEAD and tree match the contract; diff digest and status bytes match the fixed provenance receipts. Before/after default-profile outputs match the bound original bytes. No live source Git command was run by this reviewer."
+  },
+  "qualification_sha256": "2bd8b15fcef454acebde5f57248c9cbbb0742a43940456437cf87d92efc5a379",
+  "recorded_at": "2026-10-12T04:21:48.665344+00:00",
+  "result": "PASS: bounded installed TSan promotion artifacts and closure",
+  "return_channel": "native collaboration to /root",
+  "reviewer": "/root/cold_bottle_review",
+  "sanitizer_case_results": [
+    {
+      "case": "tsan-clean",
+      "diagnostic": {},
+      "other_system_libraries_also_loaded": true,
+      "reflection_stdout_exact": true,
+      "returncode": 0,
+      "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "selected_cxx_libraries_present": true
+    },
+    {
+      "case": "tsan-race",
+      "diagnostic": {
+        "race_reports": 1,
+        "same_address_writes": 2,
+        "threads": [
+          "main thread",
+          "T1"
+        ],
+        "witness_arm64_frames": true
+      },
+      "other_system_libraries_also_loaded": true,
+      "reflection_stdout_exact": true,
+      "returncode": 86,
+      "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "selected_cxx_libraries_present": true
+    },
+    {
+      "case": "tsan-ubsan-clean",
+      "diagnostic": {},
+      "other_system_libraries_also_loaded": true,
+      "reflection_stdout_exact": true,
+      "returncode": 0,
+      "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "selected_cxx_libraries_present": true
+    },
+    {
+      "case": "tsan-ubsan-race",
+      "diagnostic": {
+        "race_reports": 1,
+        "same_address_writes": 2,
+        "threads": [
+          "main thread",
+          "T1"
+        ],
+        "witness_arm64_frames": true
+      },
+      "other_system_libraries_also_loaded": true,
+      "reflection_stdout_exact": true,
+      "returncode": 86,
+      "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "selected_cxx_libraries_present": true
+    },
+    {
+      "case": "tsan-ubsan-overflow",
+      "diagnostic": {
+        "signed_overflow_reports": 1,
+        "witness_source_line": "tsan_witness.cpp:40:37"
+      },
+      "other_system_libraries_also_loaded": true,
+      "reflection_stdout_exact": true,
+      "returncode": 86,
+      "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "selected_cxx_libraries_present": true
+    }
+  ],
+  "schema_version": 1,
+  "static_vs_runtime": "The reviewer executed one bounded stdlib comparison, exact binary reads, four final Git identity calls, 25 signal-zero PID probes and one read-only nonblocking lease probe. Native witness/transition outcomes are verified retained parent execution records, not reviewer reruns. Prior source review covers the unchanged implementation; runtime rollback was not exercised on this successful native run.",
+  "supporting_files": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ],
+  "unit": "Task 14b2b POST-NATIVE installed TSan artifact review"
+}

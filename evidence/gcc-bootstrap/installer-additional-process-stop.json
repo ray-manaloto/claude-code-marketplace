@@ -1,0 +1,120 @@
+{
+  "state": "FAIL",
+  "script_sha256": "b52ced100d9b907593819ea372b62d61864dbc4d714814f360aa18ab894da4de",
+  "apply_requested": false,
+  "commands": [
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/cwd",
+        "version"
+      ],
+      "started_at": "2026-10-11T02:00:36.407112+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/version.stdout",
+          "sha256": "92044869ea358c0fb7a4fd3f7f7262160292ee6bdb8d6b45d3df580fccfb7988"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "captured-plan",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "started_at": "2026-10-11T02:00:36.695326+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/captured-plan.stdout",
+          "sha256": "028b44f72eb288698521581aee4022362c367fd505249a67a1d158dd5488ae79"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/captured-plan.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:00:36.732361+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-dry-20261011T0201-final/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/formula/gcc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/zstd.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/mpfr.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/libmpc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/isl.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gmp.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/xz.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/lz4.json",
+      "status": 200
+    }
+  ],
+  "normal_context_sha256": "87fc7475ddc4c7b388496b5c6da2c347f1926893dfd1bbd76bf92ed993c476d0",
+  "error": "AssertionError({'pid': 31399, 'ppid': 21017, 'executable': 'mise', 'known_task': None})",
+  "loopback_server_stopped": true
+}

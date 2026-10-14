@@ -1,0 +1,77 @@
+--- initial-attempt/mise_renovate.py.source
++++ dev/toolchains/mise_renovate.py
+@@ -3,6 +3,7 @@
+ import argparse
+ import copy
+ from datetime import datetime, timezone
++import hashlib
+ import json
+ import os
+ from pathlib import Path
+@@ -17,7 +18,7 @@
+ from mise_runtime import function, load
+ 
+ EVIDENCE = ROOT / "evidence/mise-renovate"
+-CONTRACT_SHA = "72d537a4857e431afab0f1127114107cbc54facc83db20da7deb84f182ea80f1"
++CONTRACT_SHA = "5f4294e02fb2999b264ec660ef409c100d3928f5a13dc7066dba139483fe8d1b"
+ BASELINE = "evidence/p2996-registration/independent-registration/post-state.json"
+ 
+ 
+@@ -91,6 +92,20 @@
+     return function(Path(previous.__file__), "protected", vars(previous) | {"load": accepted_load})()
+ 
+ 
++def path_transition(value, old, new):
++    parts = value.split(os.pathsep)
++    assert old != new and parts.count(new) == 1
++    prior = os.pathsep.join(old if part == new else part for part in parts)
++    return {"path_sha256": hashlib.sha256(value.encode()).hexdigest(),
++            "previous_path_sha256": hashlib.sha256(prior.encode()).hexdigest(), "replacements": 1}
++
++
++def compare_profile(observed, expected, proof):
++    assert proof == {"path_sha256": observed["path_sha256"],
++                     "previous_path_sha256": expected["path_sha256"], "replacements": 1}
++    assert observed | {"path_sha256": expected["path_sha256"]} == expected
++
++
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--run-dir", type=Path, required=True)
+@@ -136,6 +151,10 @@
+         inherited = previous.contract()
+         assert run("version", [current["path"], "--version"]).strip() == current["version"]
+         probe = "import json,os,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))"
++        path_probe = ("import json,os,sys;sys.path.insert(0," + repr(str(Path(__file__).parent))
++                      + ");from mise_renovate import path_transition;"
++                      "print(json.dumps(path_transition(os.environ['PATH'],sys.argv[1],sys.argv[2])))")
++        report["path_transitions"] = {}
+         for lane, expected in inherited["profiles"].items():
+             for key in ("MARKETPLACE_P2996_PREFIX", "MARKETPLACE_GCC16_PREFIX"):
+                 env.pop(key, None)
+@@ -148,16 +167,22 @@
+                 base += ["-E", lane]
+             base += ["exec", "--fresh-env", "--no-deps", "--"]
+             observed = run(lane + "-profile", base + normal_argv[-2:])
+-            assert observed == (ROOT / expected).read_text(), lane
++            proof = json.loads(run(lane + "-path-transition", base + [sys.executable, "-B", "-c", path_probe,
++                               data["path_transition"]["previous"], data["path_transition"]["current"]]))
++            compare_profile(json.loads(observed), load(ROOT / expected), proof)
++            report["path_transitions"][lane] = proof
++            if lane == "default":
++                default_view = observed
+             isolated = run(lane + "-isolation", base + [sys.executable, "-B", "-c", probe, *inherited["isolation_keys"]])
+-            assert all((directory / (lane + suffix + ".stderr")).read_text() == "" for suffix in ("-profile", "-isolation"))
++            assert all((directory / (lane + suffix + ".stderr")).read_text() == ""
++                       for suffix in ("-profile", "-path-transition", "-isolation"))
+             expected_isolation = {key: json.loads(observed)["selected"].get(key) for key in inherited["isolation_keys"]}
+             assert json.loads(isolated) == expected_isolation, lane
+             if lane != "default":
+                 assert expected_isolation == dict.fromkeys(inherited["isolation_keys"]), lane
+         env.pop("MARKETPLACE_P2996_PREFIX", None)
+         env.pop("MARKETPLACE_GCC16_PREFIX", None)
+-        assert run("default-after", normal_argv) == (ROOT / inherited["profiles"]["default"]).read_text()
++        assert run("default-after", normal_argv) == default_view
+         report["writer_census_after"] = census()
+         report["state"] = "PASS: observed mise metadata and existing profile parity; shared state unchanged"
+     except BaseException as error:

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "task": "03b2b CLT nm and c++filt prerequisite check",
+  "created_at": "2026-10-11T12:55:42.550Z",
+  "result": "PASS for bounded installed-tool identity, option documentation and known-string demangling only",
+  "reviewer": "/root/config_inspector",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "fd7c9cdf54ddf702c0e48348302d73cc6853346b",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "method": "Read exact Git administrative files; no working-tree cleanliness inference"
+  },
+  "tools": {
+    "nm": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/nm",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+      "sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+      "bytes": 16367008,
+      "mode": "755",
+      "is_symbolic_link": true,
+      "header_hex": "cffaedfe0c0000010000000002000000",
+      "macho": {
+        "format": "64-bit little-endian Mach-O",
+        "magic": "0xfeedfacf",
+        "cpu_type": "0x0100000c",
+        "architecture": "arm64",
+        "file_type": "0x00000002 (MH_EXECUTE)"
+      },
+      "selection": "Direct CLT path is a symbolic link to the hashed native Mach-O executable, not an xcrun launcher. Invocation path and resolved executable are both bound."
+    },
+    "cxxfilt": {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-cxxfilt",
+      "sha256": "19636f9056610385daeb17604aa247f193fa660d1f6ad48ec3e161ac7595c924",
+      "bytes": 466416,
+      "mode": "755",
+      "is_symbolic_link": true,
+      "header_hex": "cffaedfe0c0000010000000002000000",
+      "macho": {
+        "format": "64-bit little-endian Mach-O",
+        "magic": "0xfeedfacf",
+        "cpu_type": "0x0100000c",
+        "architecture": "arm64",
+        "file_type": "0x00000002 (MH_EXECUTE)"
+      },
+      "selection": "Direct CLT path is a symbolic link to the hashed native Mach-O executable, not an xcrun launcher. Invocation path and resolved executable are both bound."
+    }
+  },
+  "manuals": {
+    "nm_man": {
+      "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/nm.1",
+      "resolved": "/Library/Developer/CommandLineTools/usr/share/man/man1/nm.1",
+      "sha256": "b8dc0f61148a7fb5023f7ae0f37c9bb18908193f2d10d7b8c94360326eecb1df",
+      "bytes": 6087,
+      "mode": "644",
+      "is_symbolic_link": false,
+      "header_hex": "2e5448204e4d20312022446563656d62",
+      "line_ranges": [
+        [
+          141,
+          142
+        ],
+        [
+          157,
+          161
+        ],
+        [
+          163,
+          182
+        ]
+      ],
+      "excerpt": "141: .B  \\-g\n142: Display only global (external) symbols.\n143: .TP\n144: .B \\-n\n145: Sort numerically rather than alphabetically.\n146: .TP\n147: .B  \\-o\n148: Prepend file or archive element name to each output line,\n149: rather than only once.\n150: .TP\n151: .B  \\-p\n152: Don't sort; display in symbol-table order.\n153: .TP\n154: .B  \\-r\n155: Sort in reverse order.\n156: .TP\n157: .B  \\-u\n158: Display only undefined symbols.\n159: .TP\n160: .B  \\-U\n161: Don't display undefined symbols.\n162: .TP\n163: .B  \\-m\n164: Display the N_SECT type symbols (Mach-O symbols) as\n165: .RI ( \"segment_name, section_name\" )\n166: followed by either\n167: .I external\n168: or\n169: .I non-external\n170: and then the symbol name.\n171: Undefined, common, absolute and indirect symbols get displayed as\n172: .IR (undefined) ,\n173: .IR (common) ,\n174: .IR (absolute) ,\n175: and\n176: .IR (indirect) ,\n177: respectively. Other symbol details are displayed in a human-friendly manner,\n178: such as \"[no dead strip]\".\n179: .IR nm\n180: will display the referenced symbol for indirect symbols and will display the\n181: name of the library expected to provide an undefined symbol. See\n182: .IR nlist (3)"
+    },
+    "cxxfilt_man": {
+      "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/c++filt.1",
+      "resolved": "/Library/Developer/CommandLineTools/usr/share/man/man1/llvm-cxxfilt.1",
+      "sha256": "598c82c77d450e9176187557c09dfd5f5547ffbc0c21af5b399f3793c8b9556f",
+      "bytes": 3266,
+      "mode": "755",
+      "is_symbolic_link": true,
+      "header_hex": "2e5c22204d616e20706167652067656e",
+      "line_ranges": [
+        [
+          85,
+          98
+        ],
+        [
+          107,
+          118
+        ]
+      ],
+      "excerpt": "85: .B \\-\\-no\\-strip\\-underscore, \\-n\n86: Do not strip a leading underscore. This is the default for all platforms\n87: except Mach\\-O based hosts.\n88: .UNINDENT\n89: .INDENT 0.0\n90: .TP\n91: .B \\-\\-quote\n92: Add \\fI\\(dq\\fP \\fI\\(dq\\fP around demangled names. Do not quote already quoted names.\n93: .UNINDENT\n94: .INDENT 0.0\n95: .TP\n96: .B \\-\\-strip\\-underscore, \\-_\n97: Strip a single leading underscore, if present, from each input name before\n98: demangling. On by default on Mach\\-O based platforms.\n99: .UNINDENT\n100: .INDENT 0.0\n101: .TP\n102: .B \\-\\-types, \\-t\n103: Attempt to demangle names as type names as well as symbol names.\n104: .UNINDENT\n105: .INDENT 0.0\n106: .TP\n107: .B \\-\\-version\n108: Display the version of the \\fBllvm\\-cxxfilt\\fP executable.\n109: .UNINDENT\n110: .INDENT 0.0\n111: .TP\n112: .B @<FILE>\n113: Read command\\-line options from response file \\fI<FILE>\\fP\\&.\n114: .UNINDENT\n115: .SH EXIT STATUS\n116: .sp\n117: \\fBllvm\\-cxxfilt\\fP returns 0 unless it encounters a usage error, in which\n118: case a non\\-zero exit code is returned."
+    }
+  },
+  "execution": {
+    "native_command_limit": 4,
+    "native_commands_run": 4,
+    "commands": [
+      {
+        "case": "nm-version",
+        "argv": [
+          "/Library/Developer/CommandLineTools/usr/bin/nm",
+          "--version"
+        ],
+        "resolved_executable": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+        "executable_sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+        "started_at": "2026-10-11T12:54:26.686Z",
+        "finished_at": "2026-10-11T12:54:26.700Z",
+        "timeout_ms": 10000,
+        "returncode": 0,
+        "signal": null,
+        "killed": false,
+        "stdout": "llvm-nm, compatible with GNU nm\nApple LLVM version 21.0.0\n  Optimized build.\n",
+        "stderr": ""
+      },
+      {
+        "case": "nm-help",
+        "argv": [
+          "/Library/Developer/CommandLineTools/usr/bin/nm",
+          "--help"
+        ],
+        "resolved_executable": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm",
+        "executable_sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+        "started_at": "2026-10-11T12:54:26.709Z",
+        "finished_at": "2026-10-11T12:54:26.712Z",
+        "timeout_ms": 10000,
+        "returncode": 0,
+        "signal": null,
+        "killed": false,
+        "stdout": "OVERVIEW: LLVM symbol table dumper\n\nUSAGE: /Library/Developer/CommandLineTools/usr/bin/nm [options] <input object files>\n\nOPTIONS:\n  -A                Alias for --print-file-name\n  -a                Alias for --debug-syms\n  -B                Alias for --format=bsd\n  -C                Alias for --demangle\n  --debug-syms      Show all symbols, even debugger only\n  --defined-only    Show only defined symbols\n  --demangle        Demangle C++ symbol names\n  --dynamic         Display dynamic symbols instead of normal symbols\n  -D                Alias for --dynamic\n  --export-symbols  Export symbol list for all inputs\n  --extern-only     Show only external symbols\n  --format=<format> Specify output format: bsd (default), posix, sysv, darwin, just-symbols\n  -f <format>       Alias for --format\n  -g                Alias for --extern-only\n  --help            Display this help\n  -h                Alias for --help\n  -j                Alias for --format=just-symbols\n  --line-numbers    Use debugging information to print symbols' filenames and line numbers\n  -l                Alias for --line-numbers\n  -m                Alias for --format=darwin\n  --no-demangle     Don't demangle symbol names\n  --no-llvm-bc      Disable LLVM bitcode reader\n  --no-sort         Show symbols in order encountered\n  --no-weak         Show only non-weak symbols\n  --numeric-sort    Sort symbols by address\n  -n                Alias for --numeric-sort\n  -o                Alias for --print-file-name\n  --portability     Alias for --format=posix\n  --print-armap     Print the archive map\n  --print-file-name Precede each symbol with the object file it came from\n  --print-size      Show symbol size as well as address\n  -P                Alias for --format=posix\n  -p                Alias for --no-sort\n  --quiet           Suppress 'no symbols' diagnostic\n  --radix=<radix>   Radix (o/d/x) for printing symbol Values\n  --reverse-sort    Sort in reverse order\n  -r                Alias for --reverse-sort\n  --size-sort       Sort symbols by size\n  --special-syms    Do not filter special symbols from the output\n  -S                Alias for --print-size\n  -t <radix>        Alias for --radix\n  --undefined-only  Show only undefined symbols\n  -U                Alias for --defined-only\n  -u                Alias for --undefined-only\n  --version         Display the version\n  -V                Alias for --version\n  -v                Alias for --numeric-sort\n  -W                Alias for --no-weak\n  -X <value>        Specifies the type of ELF, XCOFF, or IR object file to examine. The value must be one of: 32, 64, 32_64, any (default)\n\nllvm-nm Mach-O Specific Options:\n  --add-dyldinfo    Add symbols from the dyldinfo not already in the symbol table\n  --add-inlinedinfo Add symbols from the inlined libraries, TBD only\n  --arch=<value>    architecture(s) from a Mach-O file to dump\n  --dyldinfo-only   Show only symbols from the dyldinfo\n  --no-dyldinfo     Don't add any symbols from the dyldinfo\n  -s                Dump only symbols from this segment and section name\n  -x                Print symbol entry in hex\n\nllvm-nm XCOFF Specific Options:\n  --no-rsrc Exclude resource file symbols (__rsrc) from the export symbol list.\n\nPass @FILE as argument to read options from FILE.\n",
+        "stderr": ""
+      },
+      {
+        "case": "cxxfilt-version",
+        "argv": [
+          "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+          "--version"
+        ],
+        "resolved_executable": "/Library/Developer/CommandLineTools/usr/bin/llvm-cxxfilt",
+        "executable_sha256": "19636f9056610385daeb17604aa247f193fa660d1f6ad48ec3e161ac7595c924",
+        "started_at": "2026-10-11T12:54:26.714Z",
+        "finished_at": "2026-10-11T12:54:26.832Z",
+        "timeout_ms": 10000,
+        "returncode": 0,
+        "signal": null,
+        "killed": false,
+        "stdout": "/Library/Developer/CommandLineTools/usr/bin/c++filt\nApple LLVM version 21.0.0\n  Optimized build.\n",
+        "stderr": ""
+      },
+      {
+        "case": "demangle-source-symbol",
+        "argv": [
+          "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+          "--strip-underscore",
+          "__ZN19aggregated_research16reflection_probeEv"
+        ],
+        "resolved_executable": "/Library/Developer/CommandLineTools/usr/bin/llvm-cxxfilt",
+        "executable_sha256": "19636f9056610385daeb17604aa247f193fa660d1f6ad48ec3e161ac7595c924",
+        "started_at": "2026-10-11T12:54:26.833Z",
+        "finished_at": "2026-10-11T12:54:26.835Z",
+        "timeout_ms": 10000,
+        "returncode": 0,
+        "signal": null,
+        "killed": false,
+        "stdout": "aggregated_research::reflection_probe()\n",
+        "stderr": ""
+      }
+    ],
+    "process_control": {
+      "api": "Node child_process.execFile, no shell",
+      "timeout_ms_per_command": 10000,
+      "max_output_buffer_bytes": 262144,
+      "cwd": "/private/tmp",
+      "environment": {
+        "PATH": "/usr/bin:/bin",
+        "LC_ALL": "C",
+        "LANG": "C"
+      }
+    },
+    "binding_checks": "Each command first checked invocation-path realpath and actual resolved-file SHA256 against the initial tool record.",
+    "outcome": "All four commands rc0, no signal or timeout, stderr empty for all commands.",
+    "xcrun": "Not needed or invoked; both requested direct CLT paths resolve to native executables."
+  },
+  "observed_known_string": {
+    "argv": [
+      "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+      "--strip-underscore",
+      "__ZN19aggregated_research16reflection_probeEv"
+    ],
+    "returncode": 0,
+    "stdout": "aggregated_research::reflection_probe()\n",
+    "stderr": "",
+    "meaning": "Confirms explicit stripping of one Mach-O prefix underscore and demangling of the supplied known source-derived string. No built library or executable was inspected."
+  },
+  "future_native_invocations": {
+    "defined_external_inventory": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/nm",
+        "-g",
+        "-U",
+        "-m",
+        "--no-demangle",
+        "<absolute fresh libresearch_core.dylib>"
+      ],
+      "support": "Local nm manual and observed nm --help: -g external, -U defined-only, -m Darwin format, --no-demangle preserves the raw symbol.",
+      "acceptance": "Record the complete defined-global inventory; identify the raw public symbol and demangle it explicitly. Require a defined external public function, not an undefined or private-external record. Do not claim the library exports exactly one symbol."
+    },
+    "undefined_consumer_binding": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/nm",
+        "-g",
+        "-u",
+        "-m",
+        "--no-demangle",
+        "<absolute fresh research_core_smoke>"
+      ],
+      "support": "Local nm manual lines 157-182 plus observed help: -u undefined-only and Darwin -m includes the expected supplying library.",
+      "acceptance": "Identify the same raw public symbol and expected core-library supplier. This link metadata does not replace actual per-cell DYLD canonical-path proof."
+    },
+    "demangle_public_symbol": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+        "--strip-underscore",
+        "__ZN19aggregated_research16reflection_probeEv"
+      ],
+      "expected_stdout": "aggregated_research::reflection_probe()\n",
+      "support": "Local c++filt manual lines 95-98 and the recorded successful native known-string command."
+    },
+    "preflight": "Before any future use, recheck the exact invocation alias realpath and chosen native SHA256. Execute argv directly through the admitted bounded runner; do not form or execute shell pipelines."
+  },
+  "limitations": [
+    "No core source, object, archive, dylib or smoke executable was read or executed in this brief.",
+    "No shared-core export, consumer binding or runtime loader behavior has been observed here. Those remain UNVERIFIED until the fresh 03b2 cells run.",
+    "The nm inventory route establishes defined external symbol evidence; it is not itself a complete ABI/export-policy guarantee. Pair it with fresh consumer binding and runtime checks as planned.",
+    "The parent requested no further exploration after the status update; the receipt uses already collected evidence only."
+  ],
+  "actual_routes": {
+    "tools": [
+      "mcp__node_repl__js: filesystem identity/manual reads, SHA256 hashing, four child_process.execFile native commands, one private JSON write/readback"
+    ],
+    "native_returncodes": [
+      {
+        "case": "nm-version",
+        "returncode": 0
+      },
+      {
+        "case": "nm-help",
+        "returncode": 0
+      },
+      {
+        "case": "cxxfilt-version",
+        "returncode": 0
+      },
+      {
+        "case": "demangle-source-symbol",
+        "returncode": 0
+      }
+    ],
+    "network_calls": 0,
+    "compiler_or_build_commands": 0,
+    "xcrun_commands": 0,
+    "failed_routes": [],
+    "maintained_or_project_writes": 0,
+    "global_or_source_writes": 0,
+    "private_json_files": 1,
+    "status_probe": "ACK and explicit bounded-work status delivered to parent before finalization."
+  }
+}

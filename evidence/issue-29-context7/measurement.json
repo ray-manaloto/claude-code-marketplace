@@ -1,0 +1,163 @@
+{
+  "candidate": {
+    "api_sha256": "28546e960ad4b120ad71253487164162792868342ee9e325279796c93c624aef",
+    "entry_sha256": "f81dc7d90245406e4dd1115d78d9f1e0452d7a4a5622ac27d18b50920446bbe4",
+    "name": "@upstash/context7-mcp",
+    "node_version": "v26.8.1",
+    "package_sha256": "b834957b86d131317eae38cbc972c6b5bbb7a3cdddc7f0fa377aee1dddba352c",
+    "version": "4.3.0"
+  },
+  "fixture": {
+    "http_quota": 429,
+    "http_search": 200,
+    "mode": "loopback-only",
+    "request_count": 10
+  },
+  "mcp_classification": {
+    "query_quota": "error",
+    "resolve_quota": "non_success",
+    "search": [
+      "success",
+      "success",
+      "success"
+    ]
+  },
+  "median_ms": {
+    "direct_search": 102.675,
+    "mcp_search": 183.628
+  },
+  "runs": {
+    "direct_quota": [
+      {
+        "elapsed_ms": 100.889,
+        "exit_code": 0,
+        "result": {
+          "data": "fixture quota exceeded",
+          "outcome": "error"
+        }
+      }
+    ],
+    "direct_resolve_quota": [
+      {
+        "elapsed_ms": 98.834,
+        "exit_code": 0,
+        "result": {
+          "error": "fixture quota exceeded",
+          "results": []
+        }
+      }
+    ],
+    "direct_search": [
+      {
+        "elapsed_ms": 112.079,
+        "exit_code": 0,
+        "result": {
+          "results": [
+            {
+              "description": "offline",
+              "id": "/fixture/docs",
+              "title": "Fixture"
+            }
+          ]
+        }
+      },
+      {
+        "elapsed_ms": 102.266,
+        "exit_code": 0,
+        "result": {
+          "results": [
+            {
+              "description": "offline",
+              "id": "/fixture/docs",
+              "title": "Fixture"
+            }
+          ]
+        }
+      },
+      {
+        "elapsed_ms": 102.675,
+        "exit_code": 0,
+        "result": {
+          "results": [
+            {
+              "description": "offline",
+              "id": "/fixture/docs",
+              "title": "Fixture"
+            }
+          ]
+        }
+      }
+    ],
+    "mcp_quota": [
+      {
+        "content": [
+          {
+            "text": "fixture quota exceeded",
+            "type": "text"
+          }
+        ],
+        "elapsed_ms": 184.57,
+        "is_error": true,
+        "is_error_present": true,
+        "protocol_error": null,
+        "server_version": "4.3.0"
+      }
+    ],
+    "mcp_resolve_quota": [
+      {
+        "content": [
+          {
+            "text": "fixture quota exceeded",
+            "type": "text"
+          }
+        ],
+        "elapsed_ms": 187.772,
+        "is_error": false,
+        "is_error_present": false,
+        "protocol_error": null,
+        "server_version": "4.3.0"
+      }
+    ],
+    "mcp_search": [
+      {
+        "content": [
+          {
+            "text": "Available Libraries:\n\n- Title: Fixture\n- Context7-compatible library ID: /fixture/docs\n- Description: offline\n- Source Reputation: Unknown",
+            "type": "text"
+          }
+        ],
+        "elapsed_ms": 183.628,
+        "is_error": false,
+        "is_error_present": false,
+        "protocol_error": null,
+        "server_version": "4.3.0"
+      },
+      {
+        "content": [
+          {
+            "text": "Available Libraries:\n\n- Title: Fixture\n- Context7-compatible library ID: /fixture/docs\n- Description: offline\n- Source Reputation: Unknown",
+            "type": "text"
+          }
+        ],
+        "elapsed_ms": 183.071,
+        "is_error": false,
+        "is_error_present": false,
+        "protocol_error": null,
+        "server_version": "4.3.0"
+      },
+      {
+        "content": [
+          {
+            "text": "Available Libraries:\n\n- Title: Fixture\n- Context7-compatible library ID: /fixture/docs\n- Description: offline\n- Source Reputation: Unknown",
+            "type": "text"
+          }
+        ],
+        "elapsed_ms": 186.301,
+        "is_error": false,
+        "is_error_present": false,
+        "protocol_error": null,
+        "server_version": "4.3.0"
+      }
+    ]
+  }
+}

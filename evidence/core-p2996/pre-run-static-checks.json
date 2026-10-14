@@ -1,0 +1,26 @@
+{
+  "helper_sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+  "proposal_sha256": "abd022fd8d214e5c174c693f5b9e711af6e41bd0db75fcc99a419726d8a158b4",
+  "checks": [
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 871, \"python\": 48, \"shell\": 6, \"toml\": 14}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    }
+  ]
+}

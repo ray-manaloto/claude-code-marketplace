@@ -1,0 +1,121 @@
+{
+  "result": "PASS: Task 14b1 independent preparation review",
+  "findings": [],
+  "reviewed_at": "2026-10-12T02:52:03.916969+00:00",
+  "reviewer": "/root/cold_bottle_review",
+  "return_channel": "native collaboration to /root",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "b90a5d5703d538fd146de87d0656132bc820044b",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "role": "Read-only independent reviewer; parent sole implementation writer; no repository or shared-state writes.",
+  "first_action": "Verified Git checkout, branch, HEAD and common directory, acknowledged assignment and read actual project instructions and bounded decisions/plan sections.",
+  "parent_status_probe_answered": true,
+  "scope": "Frozen Task 14b1 private TSan original/patched preparation. Four maintained files. No native admission or repair effectiveness is established.",
+  "candidate_sha256": "fb849fe0298e2b0e621e57e5d70cda74f66618434adc60a8b3f2425ecf4556c6",
+  "helper_sha256": "7ef53903f191daa1b5295db99c4ad9ed3d130be62fc732e359ff7c791d33bd22",
+  "contract_sha256": "06f44aa7f1a3fd2627b4bbd69bea1360b7c07cf1f6790023265cdab69855b8fc",
+  "recipe_sha256": "6e9e548885bd19e83b2318d20620ea48f8ae79e060b70f13c6889516ffc3e68b",
+  "candidate_inputs_sha256": "c1612f0b9a51b76e05108c7780a1288f93b62e5430a2f1ea7ae79876ba27660d",
+  "prior_preparation_review_sha256": "7ba2da9494bbf9631c184225de58fe4a1d8be6e16590f357eaff6248d812b01f",
+  "prior_failure_review_sha256": "0f59ac94d9e46439d8604b7f6533015f1114b8eac2a54b1aeb725ceb2e1b842b",
+  "asan_artifact_review_sha256": "d24aa966165b11cc6ad7b2c0dc9a1e9af12d1d5738859193ebda0c27b7c27675",
+  "maintained_files": {
+    "dev/toolchains/p2996_tsan_repair.py": "7ef53903f191daa1b5295db99c4ad9ed3d130be62fc732e359ff7c791d33bd22",
+    "docs/sanitizers.md": "c6b70a136c9e44aa3e24a488c02f4616d62059b532b4e2ad738953538554e74d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "cedf2569d2492dfc4ef3fbcef1ced51457b7f6ecffdf43397569f9f40cdc5287",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "74ad8216de39aa1e250b1dfaff792c0cc4cab9dc49045fe0326df5cf9f9894e6"
+  },
+  "reviewer_executed": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "-E",
+      "-B",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/compare.py"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 0.20037991693243384,
+    "timeout_seconds": 30,
+    "started_at": "2026-10-12T02:50:39.648590+00:00",
+    "finished_at": "2026-10-12T02:50:39.849208+00:00",
+    "script_sha256": "28858f97fc31e2d40ea65dade9aef65ba3e8006fe45ef95360f0ddd8add3e5a2",
+    "comparison_sha256": "33a26211caa4747b82f34d06011d910837b8d330b326c7bbe4a8ab1ad6132ce4",
+    "execution_sha256": "497326f3d5518a882036629a1ba6631d24b45dec32c6fc6feace8073c2e576dd",
+    "git_identity_commands": 4,
+    "git_identity_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "binary_reads": "Exactly 38 allowed files hashed once, 6173224 bytes: 35 new TSan objects, two ASan-qualified mapping objects, one preserved TSan witness. Stable owned canonical regular single-link identities and arm64 Mach-O types checked. No native tool executed."
+  },
+  "verified_bindings": {
+    "snapshots": 8,
+    "candidate_receipt_bindings": 10,
+    "prepared_launcher_pairs": 2,
+    "project_inputs": "All 172 inherited entries remain unchanged; nine new paths produce 181 entries. The derivation lists ten additions, one already inherited. No full project-input guard replay.",
+    "source_inputs": "All 846 inherited entries remain unchanged; precisely 35 new TSan object paths produce 881 entries. The 93 shared recipe objects match prior SHA256 and size metadata. No inherited-object or source-tree rehash.",
+    "tools": "All 28 inherited tool bindings unchanged. Build-tree compiler and codesign remain bound; compiler bytes not reread.",
+    "recipe": "Captured rc0 Ninja commands receipt and 129 raw lines bind 128 compilation commands plus one link/sign command. Parsed all 128 ordered link inputs. Exact captured argv agrees with the selected current Ninja edge/rule excerpts. No Ninja execution or whole Ninja-file hash.",
+    "mapping_objects": "Original and patched mapping paths/hashes match the accepted ASan qualification and independently reviewed artifact inventory. Both binaries were hashed once in this comparison.",
+    "witness": "The preserved TSan witness matches the prior failure inventory and newly derived contract. The previous operation remains a correctly closed failure with no qualified TSan mode."
+  },
+  "static_review": {
+    "private_relink": "Helper copies all objects beneath the new private directory and verifies each copy. Each variant substitutes only the qualified mapping object, preserves all remaining TSan link tokens and order, redirects -o to its private runtime, and signs only that absolute private output. Original/patched planned link arguments differ only in mapping/output paths.",
+    "mandatory_cases": "Original clean must return -SIGSEGV with empty stdout, its original runtime path in the loader trace and no reflection marker. Patched TSan and combined clean cases must return 0; both deliberate races and combined signed overflow must return 86 with required diagnostic tokens and exact reflection output. Unexpected negative-control success fails.",
+    "loader": "Patched cases require the exact private patched TSan image as the only loaded libclang_rt image, plus selected libc++, libc++abi and libunwind paths. Fresh build environment rejects inherited DYLD settings, then explicitly selects the private original/patched directory for witnesses.",
+    "guards": "The reviewed save/run/source-state/interruption ASTs are unchanged. Guard adds recipe, qualified-ASan-receipt and preserved-witness checks; inherited tools, ABI, source inputs, installed runtime protection and current default/source checks remain. Recorded failure propagation and final preservation handling remain fail-closed.",
+    "ownership_and_confinement": "Canonical zero-wait host lease, exact admission/preparation review bindings, writer census and under-lease capacity/editor/container checks remain. Native subprocess profile permits writes only under the private run directory and /dev/null, denies network, and inherits only the recorded lease descriptor plus standard descriptors. This was inspected, not executed.",
+    "launchers": "Actual capacity and dispatch source copies match frozen hashes and differ from the accepted predecessor only in candidate paths/hashes and launch prefix. Prepared source was not imported or run.",
+    "claims": "Documentation and plan accurately describe preparation with review/native work pending and preserve the preceding closed TSan failure. No installed promotion, new source patch, dependency instrumentation or full matrix qualification is claimed.",
+    "claude_acceptance": "Three recorded pre-review static commands returned 0; baseline receipt reports all 19 original acceptance hashes. Review does not establish fresh Claude/model/provider/hook-runtime or OCI acceptance.",
+    "fresh_session": "Static launcher/environment behavior and inherited guard provenance inspected. No fresh model session or native TSan process was started."
+  },
+  "recorded_static_scan": {
+    "static_returncodes": [
+      0,
+      0,
+      0
+    ],
+    "baseline_original_hashes": 19,
+    "scan_files": 16,
+    "raw_returncode": 1,
+    "verified_file_digest_dispositions": 5,
+    "prior_dispositions_reused": 4,
+    "new_object_disposition_hashed": 1,
+    "transformed_returncode": 0,
+    "complete_token_files": [],
+    "scanner_source_inspected": true,
+    "scanner_or_baseline_replayed": false
+  },
+  "not_executed": [
+    "Candidate/helper import or execution, compiler/linker/Ninja/witness/lipo/codesign execution",
+    "Capacity/census/current PID probes or lease acquisition",
+    "Full 881-input guard or source traversal; 93 inherited objects and compiler binaries not rehashed",
+    "Scanners/baseline rerun, network/credentials/global changes, fresh model/Claude/OCI sessions",
+    "Native A/B, repair effectiveness, installed promotion or expanded sanitizer qualification"
+  ],
+  "unverified": "Native original/patched A/B results, repair effectiveness, fresh admission/lease state, installed promotion, dependency instrumentation, remaining sanitizer matrix and fresh Claude/OCI acceptance.",
+  "supporting_files": [
+    {
+      "filename": "compare.py",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/compare.py",
+      "sha256": "28858f97fc31e2d40ea65dade9aef65ba3e8006fe45ef95360f0ddd8add3e5a2",
+      "bytes": 18425
+    },
+    {
+      "filename": "comparison.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/comparison.json",
+      "sha256": "33a26211caa4747b82f34d06011d910837b8d330b326c7bbe4a8ab1ad6132ce4",
+      "bytes": 75727
+    },
+    {
+      "filename": "execution.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-preparation-review-1itusida/execution.json",
+      "sha256": "497326f3d5518a882036629a1ba6631d24b45dec32c6fc6feace8073c2e576dd",
+      "bytes": 742
+    }
+  ],
+  "copy_permission": "Only review.json, supporting-manifest.json and the three explicitly listed supporting files. No directory discovery permission."
+}

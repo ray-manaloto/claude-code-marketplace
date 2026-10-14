@@ -1,0 +1,152 @@
+{
+  "acceptance_preservation": {
+    "baseline_hashes_reported": 19,
+    "fresh_Claude_or_OCI_acceptance": "UNVERIFIED; no new Claude/model session or OCI acceptance operation was run.",
+    "independent_static_task_rerun": false,
+    "post_native_static_receipt": "Three recorded commands returned 0: dev task validation, check:acceptance-baseline and git diff --check.",
+    "static_result": {
+      "baseline": 19,
+      "json": 2127,
+      "python": 152,
+      "shell": 6,
+      "status": "pass",
+      "toml": 16
+    }
+  },
+  "branch": "codex/marketplace-native-onboarding",
+  "candidate_sha256": "aceb18e950b0d24a49067e64ceff0c6d03777483c5397ecb9b9844c4ee09cfb5",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "closure_inputs_sha256": "62077638ae202123e7a858b6ea6c3ca3c6bb67ed1b90d7dd828610eed5ffd5c1",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "contract_sha256": "06f44aa7f1a3fd2627b4bbd69bea1360b7c07cf1f6790023265cdab69855b8fc",
+  "copy_allowlist": [
+    "review.json",
+    "supporting-manifest.json",
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ],
+  "copy_scope": "Copy only the five exact filenames in copy_allowlist from this private directory. No directory discovery or additional files.",
+  "findings": [],
+  "first_actions": "Verified actual checkout/branch/HEAD/common Git directory and acknowledged the assigned scope. Read actual AGENTS.md, docs/onboarding.md, accepted decisions lines 29-43 and selected Task14b1 plan/progress sections before inspecting current evidence.",
+  "head": "b90a5d5703d538fd146de87d0656132bc820044b",
+  "helper_sha256": "7ef53903f191daa1b5295db99c4ad9ed3d130be62fc732e359ff7c791d33bd22",
+  "inspected_parent_runtime_receipts": {
+    "capacity_and_ownership": "The preflight receipt records rc0 in 2.264600208 seconds with seven commands, followed by admission and the helper under-lease recheck. Frozen editor identities, parent chains, start times, cwd and CPU admission match the actual retained logs; the writer census and container identity remain consistent in those receipts. No independent current capacity, census or Docker operation was run.",
+    "command_count": 36,
+    "command_returncode_counts": {
+      "-11": 1,
+      "0": 32,
+      "86": 3
+    },
+    "historical_cleanup": {
+      "collector_elapsed_seconds": null,
+      "collector_recorded_at": "2026-10-12T02:56:27.480790+00:00",
+      "collector_returncode_recorded": 0,
+      "independent_live_reprobe": false,
+      "lease_free_and_contents_unchanged_reported": true,
+      "processes_absent_reported": 37,
+      "qualification": "These are collector-reported historical cleanup observations checked against the actual collector source, closure contents and exact recorded main/child PID set. The reviewer did not independently probe current PIDs or the lease. The collection-execution receipt explicitly does not reconstruct elapsed time."
+    },
+    "loader_identity": "The original trace names and UUID-binds the private original TSan dylib. All five patched traces name and UUID-bind the private patched TSan dylib as their sole libclang_rt entry and include the selected prefix libc++, libc++abi and libunwind. Other system C++ libraries are also present; exclusivity of all C++ libraries is not claimed.",
+    "native_elapsed_seconds": 21.532358665950596,
+    "native_returncode": 0,
+    "nonfatal_linker_warning": "Both original-runtime-link and patched-runtime-link returned 0 with the nonfatal warning: argument unused during compilation: -stdlib=libc++ [-Wunused-command-line-argument]. The combined witness compile and link stderr logs are empty. No warning-free runtime-link claim.",
+    "original_control": {
+      "case": "original-clean",
+      "observation": "Original startup failure is reproduced before the reflection output marker; no fresh OS crash trace is inferred.",
+      "returncode": -11,
+      "sanitizer_runtime": "private original runtime",
+      "stdout": "empty"
+    },
+    "patched_cases": {
+      "tsan-clean": 0,
+      "tsan-race": 86,
+      "tsan-ubsan-clean": 0,
+      "tsan-ubsan-overflow": 86,
+      "tsan-ubsan-race": 86
+    },
+    "patched_diagnostics": "Each of the five patched stdout logs is exactly reflection value=43, members=1 followed by newline. Both race logs contain the required ThreadSanitizer data-race warning and summary, with size-4 writes to the same address by main and T1. The overflow log identifies tsan_witness.cpp:40:37 and signed INT_MAX + 1. Both clean logs contain only dyld output on stderr.",
+    "protected_state": "Source HEAD/tree/diff/status before/after and normal default profile bytes agree and bind to the frozen expected hashes. The helper reports protected_state_unchanged and lease_released. The 881 inherited guards were not replayed by the reviewer."
+  },
+  "limitations": [
+    "PASS applies only to this private original/patched TSan trial and its reviewed artifacts/closure evidence.",
+    "Installed runtime promotion is UNVERIFIED and was not performed. The installed TSan dylib remains unchanged.",
+    "General TSan, combined sanitizer, compiler/configuration and larger dependency matrices are UNVERIFIED beyond the six specific witnessed cases.",
+    "No native build/compiler/linker/codesign/lipo/sanitizer/witness execution, live PID/lease/capacity check, service/container/OCI/model session, network or install was performed by the reviewer.",
+    "No compiler, 128 link-object inventory, full source tree or 881 inherited source-guard hashes were reread. Prior independently reviewed preparation and actual current parent runtime receipts are identified separately.",
+    "Secret scan is the actual 37-file receipt scope: raw rc1 with seven file-content-digest dispositions, transformed rc0, and no complete token files. It does not include post-native-static.json, collection-execution.json or itself from the 40 frozen files; no wider coverage claim."
+  ],
+  "qualification_sha256": "99444de48ba10fc4dab6a6e66662fb585e77204d1a53cb7eb0376b468c923ecb",
+  "recipe_sha256": "6e9e548885bd19e83b2318d20620ea48f8ae79e060b70f13c6889516ffc3e68b",
+  "recorded_at": "2026-10-12T03:13:01.091260+00:00",
+  "result": "PASS: Task 14b1 private TSan repair artifact and closure review",
+  "return_channel": "Native collaboration to /root; no messages to other chats.",
+  "reviewer": "/root/cold_bottle_review",
+  "reviewer_executed": {
+    "binary_artifacts": "Exactly six files, 3,439,056 bytes total, each content-hashed once in this artifact comparison after all text assertions. Stable regular owned single-link canonical files, arm64 Mach-O types checked; both runtime LC_UUID values bind to the corresponding dyld trace.",
+    "bounded_stdlib_comparison": "40 frozen file bindings; 78 exact retained text/private-source bindings; 14 capacity logs; all 36 recorded native outcomes, six witness argv/loader/diagnostic checks; prepared link/sign argv; admission/launch/capacity/collector hashes and retained historical cleanup bindings.",
+    "command": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "-E",
+      "-B",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-artifact-review-p5e41g8z/compare.py"
+    ],
+    "elapsed_seconds": 0.1576252079103142,
+    "git_identity": "All four focused identity reads returned 0 at the assigned checkout, branch, HEAD and common Git directory.",
+    "git_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "inspection_notes": "Three earlier display-only schema/path probes returned 1 (an assumed snapshot field, an incorrect preparation subdirectory, and a nested comparison key); they read no binary artifacts, changed no shared state and were corrected. The recorded bounded comparator itself ran once and returned 0.",
+    "returncode": 0,
+    "timeout_seconds": 30
+  },
+  "scope": "Independent review of the frozen Task 14b1 native private original/patched TSan A/B result and ownership closure. The parent is the sole implementation writer. Reviewer writes are limited to these five private review files.",
+  "secret_scan": {
+    "bound_scanned_files": 37,
+    "complete_token_files": [],
+    "digest_dispositions": 7,
+    "frozen_files_outside_scan": [
+      "evidence/p2996-tsan-repair/operation/collection-execution.json",
+      "evidence/p2996-tsan-repair/post-native-static.json",
+      "evidence/p2996-tsan-repair/pre-artifact-secret-scan.json"
+    ],
+    "new_text_digest_dispositions_checked": 2,
+    "prior_dispositions_reused_without_guard_or_object_rehash": 5,
+    "raw_rc": 1,
+    "scan_reexecuted": false,
+    "transformed_rc": 0
+  },
+  "static_source_assessment": {
+    "confinement": "The actual 220-byte profile allows writes only in the operation directory and /dev/null and denies network access. The recorded inherited descriptor allowlist is [0,1,2,3]. The exact compiler/link/sign argv stays within the prepared private adaptation.",
+    "failure_propagation": "The unchanged helper checks command return codes, distinguishes intentional original -11 and diagnostic 86 exits from required zero exits, requires exact reflection output and runtime loader identities, and retains finally-based preservation checks. These are source assertions and inspected runtime receipts, not a new reviewer execution of the helper.",
+    "fresh_process_behavior": "Native receipt argv uses explicit Python -E -B, checked helper/contract/review/admission identities, a per-operation private directory, explicit runtime options and DYLD paths, core dumps disabled in each witness launcher, and the private sandbox. The five patched command receipts show separate PIDs. No fresh model session or general host environment qualification is inferred.",
+    "preparation_review_sha256": "849a085c26d69f1cca301a04aabd99eeebcc9e64ca2dc3a9e9e67f0d8ed3ef7c",
+    "preserved_preparation": "Current helper, contract, recipes and prepared launchers match the independently reviewed preparation. Six preparation-copy pairs were byte-compared to the original private reviewer files. The three maintained document deltas record native PASS and pending artifact review, with installed promotion still absent.",
+    "scope_and_preservation": "Four maintained candidate files and 36 evidence files are bound by the frozen closure-input manifest. No repository, source/build/prefix or global-state writes were performed by this reviewer. Installed TSan content was independently rehashed as one of the six expressly allowed artifacts and matches its retained baseline digest.",
+    "source_review": "Read the actual collector source and current supporting receipts. Prior full helper and launcher source review remains applicable to the identical helper/contract/recipe. The prepared exact private link/sign argument plans match the native command receipts after replacing only the virtual private run root."
+  },
+  "supporting_files": [
+    {
+      "bytes": 24825,
+      "filename": "compare.py",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-artifact-review-p5e41g8z/compare.py",
+      "sha256": "1477b5f9b0d782c9941c2d4da32ac1ed526ae736e014042985ef6d3032cafd2d"
+    },
+    {
+      "bytes": 53249,
+      "filename": "comparison.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-artifact-review-p5e41g8z/comparison.json",
+      "sha256": "e27ddbbf5567e6fcc02ebc181a817c399f7cafa852f4621d59cb1d2635c1b150"
+    },
+    {
+      "bytes": 824,
+      "filename": "execution.json",
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-artifact-review-p5e41g8z/execution.json",
+      "sha256": "7b169617edf2018d276f7c5ffc5c314b96cf2360a7ac35c5261334066396f21a"
+    }
+  ]
+}

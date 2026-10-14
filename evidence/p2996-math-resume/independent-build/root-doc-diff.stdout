@@ -1,0 +1,67 @@
+diff --git a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
+index 3e254df..09ce8f9 100644
+--- a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
++++ b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md
+@@ -663,3 +663,17 @@ independent drift controls precede separate build admission.
+   seven successful commands, 44 new guard controls, exact proposal matching and
+   unchanged prior control logic. Scoped inventories, static checks and all 19
+   original Claude files passed. Build admission remains a separate operation.
++
++Task 07b8 is committed at `db9c16cb860eedb6f1f472773f488b365413d839`;
++its post-commit baseline passed with a clean worktree. Operation 07b9 admits only
++the reviewed math-adapted incremental build. Fresh preflight found no builders,
++75% free memory, 55.6 GiB disk available and the same Docker workload. The helper
++must acquire the canonical lease and repeat all live checks before compiling.
++Four jobs per native build, six-hour deadline and disk reserve remain enforced.
++Installation, compiler qualification and global registration remain later work.
++- The native incremental build exited 0; all 22 operation commands passed.
++  Both generated math headers match the source postimages and all eight required
++  tool paths exist. Source/protected/default state checks passed, the prefix is
++  absent and the lease is released. Exact logs and operation inputs are retained.
++  The late process observer captured outer `-j 4` only; nested child limits were
++  not observed during this short restart. Independent artifact closure is next.
+diff --git a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
+index 929ddc6..a2a3d25 100644
+--- a/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
++++ b/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md
+@@ -52,6 +52,7 @@ acceptance before expanding it; parent writes, workers inspect and review.
+ | 07b6 | Guarded math source application preparation | Exact two-header patch; prior source/build preservation; independent review | Complete |
+ | 07b7 | Guarded math source application | Exact seven-file source state; reverse check; retained build state; independent closure | Complete |
+ | 07b8 | Guarded math-adapted restart preparation | Both source adaptations; child build/history bindings; independent drift review | Complete |
++| 07b9 | Native math-adapted LLVM restart | Fresh capacity and lease; final native exit; runtime and artifact review | In progress |
+ 
+ Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.
+ Its post-commit baseline check exited 0 and the worktree was clean.
+diff --git a/docs/p2996-toolchain.md b/docs/p2996-toolchain.md
+index 5581a48..657bab7 100644
+--- a/docs/p2996-toolchain.md
++++ b/docs/p2996-toolchain.md
+@@ -217,3 +217,11 @@ Independent [preparation review](../evidence/p2996-math-resume/preparation-revie
+ passed: seven native commands, 44 new guard controls, preserved scoped inventory
+ and all original acceptance files. Old control tests were verified by hash and
+ unchanged AST; compilation awaits separate live admission.
++
++Operation 07b9's [native build](../evidence/p2996-math-resume/operation/qualification.json)
++exited 0 after 84.93 seconds; all 22 commands passed. Both generated math headers
++match their source postimages. The eight required tools and both child caches
++are recorded, source/protected/default state checks pass, and the lease is
++released. The short restart finished its nested builds before the observer
++started, so this run directly observed only the outer `-j 4` limit. Independent
++artifact closure precedes installation and actual compiler/runtime acceptance.
+diff --git a/docs/status.md b/docs/status.md
+index eaeefa8..948e8f4 100644
+--- a/docs/status.md
++++ b/docs/status.md
+@@ -180,3 +180,12 @@ source diff and retained child build state. Native preparation and independent
+ review passed, including all 44 new guard controls and preserved inventories.
+ The fresh read-only capacity snapshot reports no observed blocker; actual build
+ admission must repeat checks under the lease.
++
++Task 07b8 is committed at `db9c16cb860eedb6f1f472773f488b365413d839`.
++Operation 07b9 has a separate scoped admission after fresh process, memory and
++Docker checks. The bounded incremental build must produce its native final exit
++and independently reviewed artifacts before installation or runtime acceptance.
++The native build has now exited 0 and all 22 commands passed. The repaired
++runtime sources compiled, both generated headers refreshed, required tool paths
++exist and the lease is released. Independent artifact review is pending; no
++installation or compiler/runtime qualification has run.

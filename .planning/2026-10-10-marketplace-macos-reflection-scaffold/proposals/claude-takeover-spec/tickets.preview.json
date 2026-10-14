@@ -1,0 +1,84 @@
+{
+ "version": 2,
+ "repo": "ray-manaloto/claude-code-marketplace",
+ "parent_number": 999999,
+ "tickets": [
+  {
+   "local_id": "CT-01",
+   "title": "CT-01: Retro gate task",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** `./dev/mise run retro:gate -- --unit <unit>` refuses (exit 2, one reason per line) a unit whose retro record is missing, skips any of the seven categories, binds no verification, or leaves a finding open without an owner or blocker; exits 0 otherwise. Humans, Claude and Codex run the same command.\n\n## Acceptance criteria\n\n- [ ] Fixture retro records (complete, missing category, open finding, no evidence, open-with-owner) drive the gate's exit codes and reason lines through its public CLI.\n- [ ] The suite is discovered by the existing development check runner like every other development test; `check`, `check:acceptance-baseline` and `git diff --check` stay rc 0.\n- [ ] The unit's own retro record passes the gate; receipts name the selector environment (`VIRTUAL_ENV`, `UV_PROJECT_ENVIRONMENT`, `MARKETPLACE_PYTHON`) present when checks ran.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-01. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "194025d759fd8db94fb3535ba2c12d7b659fbe8638b800993635f3c3913de56a",
+   "labels": []
+  },
+  {
+   "local_id": "CT-02",
+   "title": "CT-02: Hook wiring for the retro gate",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** a merge into the integration branch, a push, or the publication task is refused by git (`hk` `pre-merge-commit` and `pre-push` steps) and by Claude Code (`PreToolUse` deny on `git merge`/`git push`/`delivery:publish`, `SubagentStop`/`Stop` block keyed to a lane record) whenever the retro gate fails; hooks live in committed project settings.\n\n## Acceptance criteria\n\n- [ ] Hook scripts fed Claude Code's stdin JSON shapes emit the exact deny/block/allow decisions; a `stop_hook_active` continuation ends the turn after one block.\n- [ ] An `hk` run in a scratch repository refuses a merge commit and a push for a unit without a retro record and allows one with a passing record; `hk install` writes only the repository's own hook directory.\n- [ ] Project settings carry the hooks with `onFailure: block`; `check` and the baseline stay rc 0; user-specific settings remain in the ignored local file.\n\n## Blocked by\n\n- CT-01\n\nLocal ID: CT-02. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "c4c83834d5d1bf3ea0b56239982735e11335189f931a57bbabba42d30406a098",
+   "labels": []
+  },
+  {
+   "local_id": "CT-03",
+   "title": "CT-03: Team roles, rules and workflow vocabulary",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** project agent definitions for implementer, documentation writer, reviewer, retro writer and extractor (model, effort, permission mode, tool limits), path-scoped rules, a team guide, the glossary's Workflow section (unit, lane, gate, frontier, merger, integration tip, retro barrier, receipt, admission) and ADR 0001 for the takeover and the mechanical gate.\n\n## Acceptance criteria\n\n- [ ] Each agent file loads in Claude Code with the intended model and reads its lane record before editing; the reviewer and extractor cannot write.\n- [ ] Glossary terms are used verbatim in lane records, retro records and tickets; the ADR states context, decision and consequences.\n- [ ] `check` and the baseline stay rc 0; no restated environment facts in the guide.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-03. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "90db4a7a936ccaf088a202effed608191ccc5d8d6b661ddf216d5205322cb72a",
+   "labels": []
+  },
+  {
+   "local_id": "CT-04",
+   "title": "CT-04: Guidance hierarchy",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** the root guidance file becomes a short navigation pointer; `dev/`, `docs/`, `evidence/`, `.planning/` and `.claude/` each carry their own guidance file plus a thin importer so both agent families read the same text; judgement-only standards live in a reviewer-facing standards file.\n\n## Acceptance criteria\n\n- [ ] An agent that touches a file under `dev/` loads `dev/`'s guidance and nothing from the other directories; the root file is under sixty lines.\n- [ ] Every pointer resolves to an existing file; `check` and the baseline stay rc 0.\n- [ ] The standards file contains only judgement rules; each mechanical rule it would have held is named with the check that enforces it.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-04. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "07761359b2de18412fef82ff43f6c1e1df81985d330644933d086c8ebd327c74",
+   "labels": []
+  },
+  {
+   "local_id": "CT-05",
+   "title": "CT-05: Ticket ledger generator",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** one mise task regenerates the ticket ledger from the tracker's parent and blocking relationships plus the lane records, preserving the hand-maintained local-state column, and validates every lane record against its schema.\n\n## Acceptance criteria\n\n- [ ] Running the task twice without tracker changes yields a byte-identical ledger; a lane record missing a required field fails validation with the field named.\n- [ ] Frontier and blocker columns match a live `gh api graphql` read for the same snapshot; the task makes no tracker mutation.\n- [ ] `check` and the baseline stay rc 0.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-05. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "d5939f72c3ba3e20006362dc06d05def4517fc8ecc752b5ce4711576762049c7",
+   "labels": []
+  },
+  {
+   "local_id": "CT-06",
+   "title": "CT-06: Lane retrospective command",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** a user-invoked skill `/lane-retro <unit>` that spawns the retro writer with the lane's diff, exits and review disposition, applies every actionable finding to its destination by kind, reruns the affected checks and the gate, repeats until no actionable finding remains, and files the record.\n\n## Acceptance criteria\n\n- [ ] On a lane with a known navigation defect the command produces a record whose finding is applied to the nearest directory guidance file and the gate passes.\n- [ ] Cross-scope findings are listed for the parent with the exact edit instead of being applied outside the lane's allowlist.\n- [ ] The command makes no tracker or publication mutation.\n\n## Blocked by\n\n- CT-01\n- CT-03\n\nLocal ID: CT-06. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "9ffe1d441dbc8e8361de95a73abf2f7f064992b3c35b3af45de7600fa0d7eda0",
+   "labels": []
+  },
+  {
+   "local_id": "CT-07",
+   "title": "CT-07: Codex compatibility",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** the project's Codex role definitions and configuration name the same roles, lanes and gate as the Claude side, and the cross-agent skill directory mirrors the Claude skill directory byte for byte under a test, so Codex can take a lane after its limit resets.\n\n## Acceptance criteria\n\n- [ ] Codex's native configuration validation accepts the updated roles; each role's instructions point at the lane record and the retro gate.\n- [ ] The mirror test fails on a one-byte drift between the two skill directories and passes on identical trees.\n- [ ] `check` and the baseline stay rc 0.\n\n## Blocked by\n\n- CT-02\n- CT-03\n\nLocal ID: CT-07. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "09f9f202fc03c201039447fb99136d783f6501170110ac9f1ca18f87d263c899",
+   "labels": []
+  },
+  {
+   "local_id": "CT-08",
+   "title": "CT-08: Baseline transition v2",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** a reviewed, versioned baseline transition that adds the lane worktree directory and the local settings file to `.gitignore`, keeps the original nineteen hashes as historical evidence, and makes the baseline check verify the versioned successor.\n\n## Acceptance criteria\n\n- [ ] The baseline check reports the transition version and passes on the new `.gitignore`; the original hash record is unchanged and still cited.\n- [ ] The container acceptance inputs other than `.gitignore` are byte-identical to the original record.\n- [ ] The transition has an independent review disposition before it is integrated.\n\n## Blocked by\n\n- CT-02\n\nLocal ID: CT-08. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "2a311ab96b500d5b825cf7c26fa9106a0d32f43c7eb7b4da96f680adec10b271",
+   "labels": []
+  },
+  {
+   "local_id": "CT-09",
+   "title": "CT-09: Plugin, skill and tool evaluation",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** an evidence-based evaluation of candidate additions — `gh-stack` for stacked lane pull requests, AgentsView recall, a status-band mod built with `/plugin-authoring`, version control for the agent-protocol package — recorded as a decision table with adopted items ticketed and rejected items reasoned.\n\n## Acceptance criteria\n\n- [ ] Each candidate has a tried-or-read evidence note, a cost (context load, install footprint) and a decision; nothing is installed as a side effect of evaluating it.\n- [ ] Adopted items appear as new tickets with blocking edges; rejected items carry an evidence-backed reason.\n- [ ] `check` and the baseline stay rc 0.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-09. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "86e3e310199368ab1681518151361d4fa40535f7ad1d3c9cced4a00ba6be7d1a",
+   "labels": []
+  },
+  {
+   "local_id": "CT-10",
+   "title": "CT-10: codex-session-history coverage and evaluation",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** hermetic tests for the thread-history, log and child-thread subcommands, a stub daemon for the AgentsView wrapper and a fixture for the OTel export, plus one run of the skill-creator evaluation loop with recorded pass rates.\n\n## Acceptance criteria\n\n- [ ] Every script under the skill has at least one fixture-backed test under a temporary `CODEX_HOME`; the real record stores are never read in tests.\n- [ ] The evaluation loop's with-skill and baseline runs are recorded with their assertions and pass rates in the skill workspace.\n- [ ] `check` and the baseline stay rc 0.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-10. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "d74256c2115cf4e46c254d5486d8653d75f9e12e332333d01d543fefa3b7ca31",
+   "labels": []
+  },
+  {
+   "local_id": "CT-11",
+   "title": "CT-11: Serialize named checks across worktrees",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** concurrent `./dev/mise run check` / `check:research` invocations from different lane worktrees no longer race on shared tool state: the named checks take a repository-wide lock (bounded wait, deterministic refusal with the holder's identity on timeout) and the retro gate records the lock outcome, so a raced run can never be mistaken for a pass.\n\n## Acceptance criteria\n\n- [ ] Two concurrent `check:research` runs from two worktrees serialize; the second waits or refuses with a reason naming the holder, and neither leaves test scratch directories in a checkout.\n- [ ] The lock is exercised by a hermetic test with two subprocesses; a stale lock from a dead process is reclaimed deterministically.\n- [ ] `check`, `check:acceptance-baseline` and `git diff --check` stay rc 0; the two observed races on 2026-10-13 (fifteen `test:collect` errors; a transient `mise ERROR`) are cited as the motivating evidence.\n\n## Blocked by\n\n- CT-01\n\nLocal ID: CT-11. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "dfb2f0c6332ef296d804d370325feb2dae1b11620454165a5fc277238b2c93cf",
+   "labels": []
+  }
+ ]
+}

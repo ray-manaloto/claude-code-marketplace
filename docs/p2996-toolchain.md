@@ -1,0 +1,277 @@
+# Pinned P2996 compiler foundation
+
+Task 06a prepares source and a native bootstrap recipe. Configuration, compilation,
+installation, runtime acceptance and mise registration are separate operations.
+The existing GCC core skeleton is independently qualified at `28c4e52`.
+The [source/cache review](../evidence/p2996-source/source-review.json) passed
+after correcting compiler-rt SDK pinning and leaving builtin staging to LLVM.
+Its script-mode controls reproduced the expected exits; no configure or compiler
+ran. Actual generated runtime commands and SDK use remain subsequent gates.
+
+The accepted [LLVM fork](https://github.com/bloomberg/clang-p2996/tree/f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e)
+is pinned to `f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e`, tree
+`9899759f9004a7df8442ec57000a17e53e6ad5f6`. The fork's Apache-2.0/LLVM-exception
+license and exact primary build inputs are retained in
+[source evidence](../evidence/p2996-source/inputs/acquisition.json). The fork is
+experimental; this lane qualifies development fixtures only.
+
+## Acquire source
+
+Run the repository helper with an existing Python through the native research
+credential profile, using a new absolute private directory outside this checkout:
+
+```sh
+fnox --config ~/.config/fnox/config.toml --profile codex_research \
+  --no-defaults --no-daemon --non-interactive exec -- \
+  python3 -B dev/toolchains/p2996_source.py --directory /absolute/new/private/directory
+```
+
+The helper uses `/usr/bin/git`, fetches one exact commit, checks the tree against
+the primary API receipt, verifies object connectivity and compares retained
+source hashes. Git subprocesses ignore global/system Git configuration and use
+an empty initialization template. Existing checkouts are never reused or reset.
+Command exit codes and log hashes are saved beside the new source directory.
+No injected environment values are recorded. HTTP acquisition and Git are the
+routes used here; this does not replace the inherited incomplete strict-five sweep.
+
+## Prepared bootstrap
+
+[The initial cache](../dev/toolchains/p2996-bootstrap.cmake) selects Release Ninja
+for the compiler build, Clang plus its extra tools, the native AArch64 backend,
+and matching libc++, libc++abi, libunwind and compiler-rt from the same source.
+Upstream's `LLVM_ENABLE_RUNTIMES` route builds these with the new fork compiler.
+Four compile jobs, one link job and one TableGen job bound each native pool;
+the later operation must also bound the top-level Ninja job count.
+
+Use the isolated `cpp-build` profile from an empty cwd. Attest and supply absolute
+`MARKETPLACE_BOOTSTRAP_CC`, `CXX`, `SDK`, `NINJA`, `PYTHON` and `PREFIX` variables
+(each has that full prefix). The prefix must be new and private. The cache keeps
+LLVM/Clang headers, libraries and exports for the separately pinned IWYU build.
+It excludes extra platform runtimes, optional external dependencies and upstream
+test suites; our reflection, runtime, analysis and instrumentation gates remain.
+Application configurations continue to use Ninja Multi-Config.
+
+Before configure, record exact tool/SDK hashes, clean source identity, empty
+build/install locations, unchanged protected defaults and current shared capacity.
+Retain the configure command/cache and inspect the generated runtime commands.
+Build resumption must reuse those exact inputs and retain every final exit code.
+The cold build requires a fresh host/container census and the shared heavy lease.
+Do not infer compiler/tool support from this prepared cache or from source presence.
+
+## Guarded outer configuration
+
+Task 06b's [operation helper](../dev/toolchains/p2996_configure.py) defaults to
+preparation. It compares the final reviewed cache, clean source, native tools,
+SDK and protected shared state, and records the proposed configure command.
+`--configure` additionally requires a matching independent review and admission
+receipt, the shared heavy lease, an inherited-descriptor check and a fresh bounded
+host/container census. It runs only the outer configure, with a 600-second timeout
+and process-group cleanup. No LLVM build or install target is selected.
+
+The [exact CMake source inspection](../evidence/p2996-configure/probe-concurrency-source-review.json)
+shows that try-compile does not pass the build parallel-level setting to Ninja.
+The operation therefore admits feature probes without claiming a one-job limit.
+Generated builtin/runtime configure commands and caches require separate review
+for the new compiler, exact SDK, ARM64 architecture and matching runtime options.
+Calling their configure targets can trigger compiler builds and belongs to task 07.
+
+The first [outer configure](../evidence/p2996-configure/operation/qualification.json)
+passed all 14 commands with exit 0, including fresh capacity and lease checks.
+Its exact generated files are retained with hashes. Defaults and protected shared
+state are unchanged; no prefix or LLVM compiler was installed. Independent
+[runtime-graph review](../evidence/p2996-configure/generated-review.json) and
+[operation review](../evidence/p2996-configure/operation-review.json) passed.
+The optional `ld-classic` fallback and CMP0219 compatibility probe are resolved.
+Task 07 must bound nested runtime builds as well as the outer Ninja invocation.
+
+## Bounded build preparation
+
+Task 07a prepares the [build helper](../dev/toolchains/p2996_build.py) against the
+reviewed outer configuration. Its default mode checks source/tool/generated-file
+identity, the actual profile environment and protected shared state without
+building. `--build` requires a matching independent review and admission, then
+acquires the shared heavy lease and checks current host/container capacity.
+`--resume` explicitly selects an existing incremental build history.
+
+The outer command selects four jobs. `CMAKE_BUILD_PARALLEL_LEVEL=4` is set after
+mise selection so nested CMake build commands inherit it. Capacity planning
+allows eight outer/child job slots; this is not an aggregate process limit and
+does not bound nested configure probes. The operation requires 32 GiB free at
+start, checks an 8 GiB reserve every fifteen seconds, and stops its own process
+group on timeout, interruption or reserve failure. Logs and actual final exits
+are retained; the six-hour deadline does not imply success.
+
+The build writes the existing private build tree. Later installation must
+record separate root, builtins and runtime install exits because the upstream
+outer wrapper ignores child install failures. Reflection and installed-runtime
+witnesses remain separate gates.
+The [independent preparation review](../evidence/p2996-build/preparation-review.json)
+passed after two cleanup repairs: six native preparation commands, eight inert
+subprocess controls and eleven admission controls.
+
+The first [cold build](../evidence/p2996-build/failed-cold-build/qualification.json)
+exited 1 after 363.49 seconds. SDK libc++ rejects the pinned RDF comparator's
+stateful `std::less<RegisterRef>` specialization. The full logs and incremental
+tree are retained. Independent [failure closure](../evidence/p2996-build/failure-closure-review.json)
+confirms a free lease, no surviving build processes, unchanged protected state
+and a byte-identical default environment. A bounded compatibility repair is
+required before the build can resume; installation and acceptance remain pending.
+
+## SDK comparator adaptation
+
+Task 07b1 keeps the pinned base commit and qualifies a separate five-file patch.
+A named `llvm::rdf::RegisterRefLess` retains the existing pointer-backed ordering
+function, avoiding SDK libc++'s substitution of exact `std::less<T>` types.
+The related aliases, maps and sort callers use that explicit type.
+
+The [scratch controls](../evidence/p2996-sdk-compatibility/scratch/qualification.json)
+reproduce the original failure and pass all three patched translation units.
+The [application helper](../dev/toolchains/p2996_sdk_compat.py) defaults to
+preparation. `--apply` requires exact source preimages, reviewed patch/helper
+receipts, a matching admission and the canonical lease. It checks the five
+postimages and reverse applicability, while preserving protected shared state.
+The [independent preparation review](../evidence/p2996-sdk-compatibility/preparation-review.json)
+passed after adding the canonical lock-path guard: one syntax reproduction,
+six preparation commands, 22 guard controls and four subprocess controls.
+Operation 07b2 applied the exact patch with all eleven commands exiting 0.
+The [application receipt](../evidence/p2996-sdk-compatibility/operation/qualification.json)
+records the five postimages, native reverse check and source diff hash.
+Independent closure confirms those identities, unchanged build/Ninja state,
+preserved protected files and a free canonical lease. The compiler now has a
+pinned base plus a separately hashed adaptation; build acceptance is pending.
+
+Task 07b3 prepares incremental restart with `--resume --sdk-compatibility`.
+The build helper binds the successful application, independent closure, exact
+patch and both retained Ninja state hashes into a new proposal. It verifies the
+base commit/tree, exact five-file status, postimages and Git diff before
+preparation, immediately under the canonical lease, and after the native build.
+Any extra source edit or changed receipt fails the operation. Restart receipts
+use `evidence/p2996-resume/`; the first failed build remains immutable.
+The existing subprocess cleanup, capacity limits and disk monitoring remain in
+force. Independent restart preparation review passed: all seven native
+preparation commands and 24 drift controls passed. Prior cleanup and capacity
+controls were retained after AST and receipt verification.
+
+The [incremental restart](../evidence/p2996-resume/failed-incremental-build/qualification.json)
+exited 1 after 1365.16 seconds. The prior RDF repair compiled; the new failure is
+libc++ `__random/clamp_to_integral.h` using an unavailable `INFINITY` macro while
+building `random_shuffle.cpp`. Exact logs and the incremental tree are retained.
+The bounded process observer captured both builtin and runtime Ninja children
+with `-j 4`; two configure-probe Ninja invocations had no visible job limit.
+Independent [failure closure](../evidence/p2996-resume/failure-closure-review.json)
+passed: cleanup, protected/default state, original files and partial inventory
+are verified. Three required tool names exist and five are absent; the prefix
+and runtime completion stamp are absent. A small header repair still needs
+scratch controls and independent review. No compiler or runtime is qualified.
+
+## SDK math request adaptation
+
+Task 07b5's [scratch probe](../dev/toolchains/p2996_math_probe.py) reproduces the
+missing macros in strict C++23. The candidate adds partial-request handling to
+Clang's resource `float.h` and forwarding to libc++'s wrapper, outside both full
+header guards. Their existing bodies and the clamping algorithm are unchanged.
+The separately considered one-line clamp workaround compiles that translation
+unit but leaves public math macros missing, so it is not the selected patch.
+
+Native VFS overlays preserve the real include search order without modifying
+source, generated headers or the SDK. All sixteen command outcomes match:
+two expected failures, the repaired translation unit, C++17/23/26 public macro
+checks, both request/include orders and the unchanged upstream boundary test.
+The latter builds without a C++ runtime and runs successfully; this qualifies
+the header behavior only. Source/build/protected state is unchanged.
+The [independent scratch review](../evidence/p2996-math-compatibility/preparation-review.json)
+passed after one reproduction and preservation/static checks. The tiny-link
+missing-libLTO warning is retained; full compiler/runtime acceptance is pending.
+[Generated-rule inspection](../evidence/p2996-math-compatibility/header-refresh-rules.json)
+confirms normal incremental copies from both source headers. No manual stamp
+deletion or reconfiguration is needed; automatic child configuration may recur.
+Guarded source application and another restart are separate operations.
+
+Task 07b6's [application helper](../dev/toolchains/p2996_math_apply.py) defaults
+to read-only preparation. It binds the exact scratch patch/review, verifies the
+prior five source edits and retained build inventory, and checks native patch
+applicability. Applying requires an independent preparation review, matching
+admission and immediate rechecks under the canonical lease. Only the two source
+headers may change; generated headers wait for the separately admitted restart.
+The [preparation review](../evidence/p2996-math-application/preparation-review.json)
+passed one native reproduction, 34 private guard controls and static/baseline
+checks without findings. No real source application ran during preparation.
+
+Operation 07b7 applied the exact reviewed two-header patch. All eighteen native
+commands passed; the seven-file source state and reverse applicability match.
+The [operation receipt](../evidence/p2996-math-application/operation/qualification.json)
+records the cumulative diff, unchanged generated/build/protected state and
+released lease. Independent [application closure](../evidence/p2996-math-application/application-review.json)
+passed: exact operation/source identities, unchanged retained inventories,
+free lease, default consumer and original files all match. Restart preparation
+must now bind both adaptations and the retained child build state.
+
+Task 07b8 adds `--math-compatibility` alongside `--resume --sdk-compatibility`.
+The build helper binds both applied/reviewed patches and the exact seven-file
+source diff. Expected retained build hashes include all six Ninja states and
+both child configurations; preparation and immediate lease checks reject drift.
+After successful compilation, both generated math headers must match their source
+postimages. New receipts use `evidence/p2996-math-resume/`; earlier failures stay
+immutable. Subprocess cleanup, capacity checks and job/disk limits are unchanged.
+Independent [preparation review](../evidence/p2996-math-resume/preparation-review.json)
+passed: seven native commands, 44 new guard controls, preserved scoped inventory
+and all original acceptance files. Old control tests were verified by hash and
+unchanged AST; compilation awaits separate live admission.
+
+Operation 07b9's [native build](../evidence/p2996-math-resume/operation/qualification.json)
+exited 0 after 84.93 seconds; all 22 commands passed. Both generated math headers
+match their source postimages. The eight required tools and both child caches
+are recorded, source/protected/default state checks pass, and the lease is
+released. The short restart finished its nested builds before the observer
+started, so this run directly observed only the outer `-j 4` limit. Independent
+[artifact closure](../evidence/p2996-math-resume/build-review.json) passed without
+findings: all operation records, source/postimages, selected ARM64 tools/runtime
+artifacts, free lease, default consumer and original-file checks match. Build
+acceptance is complete. Installation and compiler/runtime acceptance remain.
+
+Task 07c1's [installer](../dev/toolchains/p2996_install.py) defaults to preparation.
+Its [static contract](../evidence/p2996-install/static-contract.json) binds 427
+generated scripts and the three ordered native installs. It clears destination,
+copy-mode and parallel-install environment overrides, requires an absent prefix
+and manifests, and rechecks source/build inputs under the shared lease before
+installation. Success must reconcile every installed leaf with the three
+manifests and 17 explicit aliases. Post-copy tool statuses are not propagated
+upstream, so installed artifact and runtime checks remain separate gates.
+Independent [preparation review](../evidence/p2996-install/preparation-review.json)
+passed one native reproduction, all 48 new guard cases and preservation/static
+checks. The valid chained-alias comparison was repaired before installation;
+the original failure is retained. The private prefix remains absent.
+
+Operation 07c2's [native installs](../evidence/p2996-install/operation/qualification.json)
+all exited 0. All twenty commands passed, and 6,411 prefix entries reconciled
+with the three manifests and explicit aliases. Source/build/protected/default
+checks passed and the lease is released. The outer install retains one
+GNUInstallDirs script-mode author warning; installed paths are checked directly.
+Independent [installation review](../evidence/p2996-install/installation-review.json)
+passed complete inventory, metadata/RPATH, seven archive-table and preservation
+checks. The fat builtins archive was verified through its exact private ARM64
+slice after native ar rejected the wrapper. Compiler/runtime qualification remains.
+
+## Registration preparation
+
+Task 07d qualified the installed fork and private runtimes with reflection,
+string/stream and exception handling; independent reproduction passed.
+`dev/toolchains/p2996_register.py --run-dir /absolute/new/private/directory`
+prepares `asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e` using the
+previously qualified native link contract. The version denotes the base fork
+commit; the installation and reflection receipts also bind the seven SDK
+adaptations. The proposed global change is one absent install namespace linking
+to the existing qualified prefix. `--apply` requires the preparation review,
+exact admission, immediate writer census and protected preimages.
+Preparation, promotion and global discovery are separate recorded results.
+The [preparation review](../evidence/p2996-registration/preparation-review.json)
+passed the native staging trial, sixteen guard controls and preservation checks.
+No global promotion occurred during preparation.
+
+Task 07e2's [registration operation](../evidence/p2996-registration/operation/qualification.json)
+promoted the reviewed namespace and passed all thirteen native commands.
+[Independent closure](../evidence/p2996-registration/registration-review.json)
+verified fresh global discovery, compiler identity and exact preservation, with
+only the namespace directory and pinned symlink added to the install inventory.
+Build, installation, reflection/runtime qualification and registration have now
+passed. LLVM tool fixtures, CMake application use and IWYU remain separate gates.

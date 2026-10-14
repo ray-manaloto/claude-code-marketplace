@@ -1,0 +1,789 @@
+{
+  "result": "PASS: Task 07b3 guarded incremental restart preparation only",
+  "private_directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "HEAD": "333e5379f888b1ac292ceca0162fe6a64f851ddd",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+  "prior_helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+  "unchanged_ast": {
+    "save": true,
+    "run": true,
+    "protected": true,
+    "interrupted": true,
+    "admission_and_canonical_lease_guards": true,
+    "held_capacity_descriptor_and_artifact_logic": true
+  },
+  "prior_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/preparation-review.json",
+    "sha256": "3860076852e14583ce41baedbfba8e8d3c757acdc6b1fe6762fe33f62bfd16ab",
+    "result": "PASS for task 07a preparation and guarded build helper only; actual build remains unexecuted"
+  },
+  "application_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/application-review.json",
+    "sha256": "065d11649a8ded63e074195d796feea976a50122d59430f533e117e7696d8220"
+  },
+  "parent_preparation": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-resume-preparation-20261011T0638/qualification.json",
+    "sha256": "78d08dd369598195e8bcc0e0f087140f0cd83dd5e15cb6d8320d5baa85e8f755",
+    "commands": [
+      {
+        "case": "source-head",
+        "returncode": 0
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0
+      },
+      {
+        "case": "source-status",
+        "returncode": 0
+      },
+      {
+        "case": "source-diff",
+        "returncode": 0
+      },
+      {
+        "case": "default-before",
+        "returncode": 0
+      },
+      {
+        "case": "build-environment",
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "returncode": 0
+      }
+    ],
+    "all_14_original_and_retained_logs_verified": true
+  },
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": true,
+    "sdk_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+        "files": [
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+            "before_sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888",
+            "after_sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e"
+          },
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+            "before_sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d",
+            "after_sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb"
+          },
+          {
+            "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+            "before_sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269",
+            "after_sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+            "before_sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308",
+            "after_sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+            "before_sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a",
+            "after_sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857"
+          }
+        ],
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "receipts": {
+        "operation/qualification.json": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b",
+        "application-review.json": "065d11649a8ded63e074195d796feea976a50122d59430f533e117e7696d8220",
+        "scratch/proposal.json": "62dbb270e2171c40c90ab400ae49cf37ccd1f868cb1ddece869168c7922c8f79",
+        "scratch/rdf-comparator.patch": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e"
+      }
+    },
+    "incremental_state": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log": "3ef99ce817f6e2e536af95267886c66603e7bc629dd03beb003ab2ea6f936e54",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps": "afa83b2142858557cb09918234dc83caee79e4efcc6127f550370fb34c785b72"
+    },
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "1cd4a1c8ebb2bc16ff81bd2707893659dc8ed86838b9efaf09503e5b47433c28",
+      "operation/qualification.json": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59",
+      "operation-review.json": "bb1b78935ea078f599b7bbe3024f1ad0ce683c9ec465ecec39242f4755526cb0",
+      "generated-review.json": "5aaffce97a6a8fa7e5176db6773baa3bafbae0eea37faefb4ea35bae20eecf90"
+    },
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294"
+    }
+  },
+  "native_preparation_invocations": 1,
+  "native_preparation_invocation": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "--run-dir",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/native-preparation",
+      "--resume",
+      "--sdk-compatibility"
+    ],
+    "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/unrelated-cwd",
+    "environment_keys": [
+      "HOME",
+      "LOGNAME",
+      "PATH",
+      "PYTHONDONTWRITEBYTECODE",
+      "USER"
+    ],
+    "state": "EXITED",
+    "returncode": 0,
+    "elapsed_seconds": 1.9548316670116037
+  },
+  "reviewer": "/root/cold_bottle_review",
+  "reviewed_at": "2026-10-11T06:48:06.156727+00:00",
+  "identity_commands": [
+    {
+      "case": "HEAD",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "333e5379f888b1ac292ceca0162fe6a64f851ddd\n",
+      "stderr": ""
+    },
+    {
+      "case": "branch",
+      "argv": [
+        "/usr/bin/git",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "codex/marketplace-native-onboarding\n",
+      "stderr": ""
+    },
+    {
+      "case": "common_git_directory",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "--git-common-dir"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    }
+  ],
+  "findings": [],
+  "native_preparation": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/native-preparation/qualification.json",
+    "sha256": "090cf5354952b57364a8bb15d5324ebaa06fc07ed9f32078bf590e18d7402bf2",
+    "invocations": 1,
+    "process_returncode": 0,
+    "from_unrelated_cwd": true,
+    "build_requested": false,
+    "commands": [
+      {
+        "case": "source-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.024056999944150448
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.01283341704402119
+      },
+      {
+        "case": "source-status",
+        "returncode": 0,
+        "elapsed_seconds": 0.8002472079824656
+      },
+      {
+        "case": "source-diff",
+        "returncode": 0,
+        "elapsed_seconds": 0.2566155419917777
+      },
+      {
+        "case": "default-before",
+        "returncode": 0,
+        "elapsed_seconds": 0.09063841705210507
+      },
+      {
+        "case": "build-environment",
+        "returncode": 0,
+        "elapsed_seconds": 0.13028120796661824
+      },
+      {
+        "case": "default-after",
+        "returncode": 0,
+        "elapsed_seconds": 0.09058695798739791
+      }
+    ],
+    "all_14_log_hashes_verified": true,
+    "proposal_matches_parent_native_preparation": true,
+    "default_environment_matches_parent_before_and_after": true,
+    "build_environment_matches_parent": true
+  },
+  "new_guard_controls": {
+    "result": "PASS",
+    "helper_sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+    "scope": "Exact new guard AST with copied receipts/source/history and inert responses; no lease or native build/apply/helper invocation",
+    "controls": [
+      {
+        "case": "sdk-compatibility-without-resume-rejected-before-writes",
+        "result": "PASS",
+        "observed_exception": "SystemExit"
+      },
+      {
+        "case": "valid-closed-application",
+        "result": "PASS",
+        "observed_exception": null
+      },
+      {
+        "case": "application-not-applied",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "application-review-failed",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "application-review-has-finding",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "application-receipt-byte-drift",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "patch-byte-drift",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "valid-at-all-three-stages",
+        "result": "PASS",
+        "observed_exception": null
+      },
+      {
+        "case": "changed-source-head",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "changed-base-tree",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "extra-untracked-source",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "staged-approved-change",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "changed-postimage",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "source-symlink-escape",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "changed-reviewed-receipt",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "changed-native-diff",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "legacy-clean-source",
+        "result": "PASS",
+        "observed_exception": null
+      },
+      {
+        "case": "legacy-dirty-source",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "unchanged-history-immediately-before-build",
+        "result": "PASS",
+        "observed_exception": null
+      },
+      {
+        "case": ".ninja_log-drift-after-snapshot-rejected",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": ".ninja_deps-drift-after-snapshot-rejected",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      },
+      {
+        "case": "missing-history-rejected",
+        "result": "PASS",
+        "observed_exception": "FileNotFoundError"
+      },
+      {
+        "case": "matching-resume-admission",
+        "result": "PASS",
+        "observed_exception": null
+      },
+      {
+        "case": "history-drift-since-preparation-rejected-by-admission",
+        "result": "PASS",
+        "observed_exception": "AssertionError"
+      }
+    ],
+    "static_held_order": {
+      "source-immediate": 20,
+      "history-guard": 21,
+      "llvm-build": 24,
+      "source-after": 25
+    }
+  },
+  "static_checks": {
+    "result": "PASS",
+    "commands": [
+      {
+        "case": "tasks-validate",
+        "argv": [
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+          "tasks",
+          "validate"
+        ],
+        "returncode": 0,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/tasks-validate.stdout",
+            "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/tasks-validate.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      {
+        "case": "acceptance-baseline",
+        "argv": [
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+          "run",
+          "check:acceptance-baseline"
+        ],
+        "returncode": 0,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/acceptance-baseline.stdout",
+            "sha256": "e2d88946e72740b29452e54b989a2bd7ec5da1d7e3921ab6f437ed5d4512fb5d"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/acceptance-baseline.stderr",
+            "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+          }
+        ]
+      },
+      {
+        "case": "diff-check",
+        "argv": [
+          "/usr/bin/git",
+          "diff",
+          "--check"
+        ],
+        "returncode": 0,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/diff-check.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/diff-check.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    ]
+  },
+  "prior_coverage_reused": {
+    "old_helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+    "old_review_sha256": "3860076852e14583ce41baedbfba8e8d3c757acdc6b1fe6762fe33f62bfd16ab",
+    "exact_ast_comparison": {
+      "result": "PASS",
+      "helper_sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+      "prior_helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "equal_ast_sections": {
+        "save": true,
+        "run": true,
+        "protected": true,
+        "interrupted": true,
+        "admission_and_canonical_lease_guards": true,
+        "held_capacity_descriptor_and_artifact_logic": true
+      },
+      "new_held_guard_statement_count": 3
+    },
+    "native_control_receipts": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/final-runtime-controls.json",
+        "sha256": "1b484f8cd99f9770621a4ff21d1d66d69135007a28e3620388188756a2eb9603"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/guard-controls.json",
+        "sha256": "17215316a6514bc77685b375975a9653b64d8bf124da4d0bb2bd33aa68a42ea0"
+      }
+    ],
+    "runtime_case_count": 8,
+    "admission_control_count": 11,
+    "prior_original_logs_hash_verified": 16,
+    "rerun": false
+  },
+  "preservation": {
+    "source_postimages": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h",
+        "sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e",
+        "bytes": 10694
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFGraph.h",
+        "sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb",
+        "bytes": 33973
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFLiveness.cpp",
+        "sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479",
+        "bytes": 43605
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Target/Hexagon/RDFCopy.h",
+        "sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a",
+        "bytes": 1877
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Target/Hexagon/RDFCopy.cpp",
+        "sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857",
+        "bytes": 7588
+      }
+    ],
+    "source_diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+    "generated_files_unchanged": 8,
+    "ninja_state_unchanged": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log": "3ef99ce817f6e2e536af95267886c66603e7bc629dd03beb003ab2ea6f936e54",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps": "afa83b2142858557cb09918234dc83caee79e4efcc6127f550370fb34c785b72"
+    },
+    "recorded_outputs_still_present": 1347,
+    "prefix_absent": true,
+    "inputs_sdk_and_bootstrap_hashes_match": true,
+    "protected_state_unchanged": true,
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shim_entries": 835,
+    "wrapper_entries": 0,
+    "install_entries": 2198,
+    "original_Claude_baseline_files": 19
+  },
+  "parent_preparation_manifest": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-resume/preparation-manifest.json",
+    "sha256": "ea0733c49611389c54415a25303bd9950e6f1507388fa291f48524273e376e6e",
+    "entries_verified": 15,
+    "process_returncode": 0
+  },
+  "static_review": [
+    "New SDK route requires --resume before directory creation and selects evidence/p2996-resume. Legacy clean-source mode still rejects the patched checkout.",
+    "Closed application/result/findings, helper, patch, operation, diff and exact five-file source identities are checked before proposal creation. Source base/status, receipts, postimages and diff are checked initially, immediately before the build under the lease, and after successful build.",
+    "Ninja log/deps digests become proposal data. Drift since reviewed preparation changes the proposal and fails admission; later drift fails the immediate history check. The files are not incorrectly required to retain pre-build hashes after compilation.",
+    "Save/run/protected/signal functions and preexisting admission/canonical-lease/capacity/descriptor/artifact logic are AST-identical to ef179 after accounting for exactly three inserted held-phase guard statements. Existing runtime controls were inspected and hash-verified, not rerun."
+  ],
+  "not_run": [
+    "No --build invocation, LLVM compilation, CMake reconfigure, install, source patch application/reversal, or source/build/global writes",
+    "No canonical lease acquisition, new capacity/container census or repeated subprocess runtime controls by this reviewer",
+    "No provider, Claude hook, OCI/container or fresh model-session acceptance; native metadata/environment preparation is not compiler qualification"
+  ],
+  "next_operation_requirement": "Parent must bind this exact helper, proposal, review and new run directory in a separate restart admission; the helper still requires current host/container capacity and canonical lease before any build.",
+  "maintained_scope": [
+    {
+      "path": "dev/toolchains/p2996_build.py",
+      "sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f"
+    },
+    {
+      "path": "docs/p2996-toolchain.md",
+      "sha256": "5908589282c3169c16710e8b7b4c9033f1c90e9ccae4776f080b51fb75fad49a"
+    },
+    {
+      "path": "docs/status.md",
+      "sha256": "bf5e61a06a94196d73be40f6dfe4e27b8c27b0763e419a592790b66c978091de"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "b5b31500bb05b336e2fb3d42a9cb035c36cb1ee5043c20c57aff0e2f3a7301f9"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "cc331da0cb30ae4015d8035fd4c269e2e764db2616ad507c53ba06ea2155b3cb"
+    }
+  ],
+  "supporting_receipts": [
+    {
+      "relative_path": "acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9",
+      "bytes": 87
+    },
+    {
+      "relative_path": "acceptance-baseline.stdout",
+      "sha256": "e2d88946e72740b29452e54b989a2bd7ec5da1d7e3921ab6f437ed5d4512fb5d",
+      "bytes": 172
+    },
+    {
+      "relative_path": "ast-comparison.json",
+      "sha256": "3e364eb4a76ac1d5964aad7d9e10277275f9f33e16230c9e7c3dcaacd115d045",
+      "bytes": 462
+    },
+    {
+      "relative_path": "diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "drift-controls.json",
+      "sha256": "638a8f8e65d290c3fcaa30c65d1b05a97b699e65f2beb161ad14c8aa4cc49c9d",
+      "bytes": 3389
+    },
+    {
+      "relative_path": "drift_controls.py",
+      "sha256": "079c0a76485d0b4625d520300b7b217a143f623813c153a9238794da6cefbddc",
+      "bytes": 10439
+    },
+    {
+      "relative_path": "native-preparation/build-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/build-environment.stdout",
+      "sha256": "42b3516b16c4140bdb9cf660cefaf6966e89a49db7ae547ce4398043c996f6a8",
+      "bytes": 176
+    },
+    {
+      "relative_path": "native-preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "relative_path": "native-preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "relative_path": "native-preparation/qualification.json",
+      "sha256": "090cf5354952b57364a8bb15d5324ebaa06fc07ed9f32078bf590e18d7402bf2",
+      "bytes": 23978
+    },
+    {
+      "relative_path": "native-preparation/source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-diff.stdout",
+      "sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "bytes": 4795
+    },
+    {
+      "relative_path": "native-preparation/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "relative_path": "native-preparation/source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-status.stdout",
+      "sha256": "4452cf42c428d0e838e7e279781563e20d3344fefcbc4e612d0c9612d0759563",
+      "bytes": 196
+    },
+    {
+      "relative_path": "native-preparation/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    },
+    {
+      "relative_path": "native-preparation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation.stdout",
+      "sha256": "5dac5079d31b80c435d6b239d893ffe8bdc658eefe7d24fddd2211e77184c2c1",
+      "bytes": 486
+    },
+    {
+      "relative_path": "review-progress.json",
+      "sha256": "d6f58314c247d7136abea30a667a771d3f3b7d0d4ea8a19444ac4eb0d963c7c8",
+      "bytes": 12169
+    },
+    {
+      "relative_path": "reviewed-helper.py.source",
+      "sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+      "bytes": 18518
+    },
+    {
+      "relative_path": "static-checks.json",
+      "sha256": "a0df871ca0cf13e06c2c13e22db313a0654c3bdd942e6fdce0b0e8c10dfe5cc2",
+      "bytes": 2199
+    },
+    {
+      "relative_path": "tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+      "bytes": 41
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "state": "PASS: permitted static checks and original acceptance baseline",
+  "commands": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T11:45:43.707907+00:00",
+      "pid": 60020,
+      "returncode": 0,
+      "elapsed_seconds": 0.13815654104109854,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T11:45:43.846883+00:00",
+      "pid": 60029,
+      "returncode": 0,
+      "elapsed_seconds": 0.5938900420442224,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/acceptance-baseline.stdout",
+          "sha256": "f5dc5095bff7facb3fa98a38411987172041b1f88fe61593b36a59933136b6be"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    },
+    {
+      "case": "root-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "status",
+        "--porcelain",
+        "--untracked-files=normal"
+      ],
+      "started_at": "2026-10-11T11:45:44.441584+00:00",
+      "pid": 60046,
+      "returncode": 0,
+      "elapsed_seconds": 0.04876083298586309,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/root-status.stdout",
+          "sha256": "34d439e7824f912580edde873f249edc12ae7c259b0eeb8eb5dcc3f8071679e3"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-preparation-review-vzcien5b/root-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "scope": "Source/static checks only; no CMake/compiler/configure/build invocation",
+  "started_at": "2026-10-11T11:45:43.702247+00:00",
+  "static_counts": {
+    "baseline": 19,
+    "json": 778,
+    "python": 35,
+    "shell": 6,
+    "toml": 14
+  },
+  "root_status_within_unit": true,
+  "all_maintained_and_referenced_sources_unchanged": true,
+  "finished_at": "2026-10-11T11:45:44.492497+00:00"
+}

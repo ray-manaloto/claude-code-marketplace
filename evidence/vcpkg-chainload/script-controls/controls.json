@@ -1,0 +1,858 @@
+{
+  "results": [
+    {
+      "case": "p2996-reentry",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-reentry.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "CMP0210=NEW",
+      "passed": true
+    },
+    {
+      "case": "p2996-paired-flags-reentry",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-paired-flags-reentry.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "MARKETPLACE_CXX_RELEASE=1",
+      "passed": true
+    },
+    {
+      "case": "p2996-missing-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-missing-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-empty-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-empty-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-missing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-missing-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-empty-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-empty-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-other-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-other-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-cc",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-cc.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-cxx",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-cxx.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-polluted-cxxflags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-polluted-cxxflags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-old-policy",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-old-policy.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-old-default",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-old-default.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-triplet",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-triplet.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-sdk",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-sdk.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-deployment",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-deployment.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-arch",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-arch.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-processor",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-processor.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-vcpkg-arch",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-vcpkg-arch.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-forced-c",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-forced-c.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-forced-cxx",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-forced-cxx.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-no-platform-vars",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-no-platform-vars.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-static-try-compile",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-static-try-compile.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-no-compiler-tracking",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-no-compiler-tracking.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-c-compiler",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-c-compiler.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-cxx-compiler",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-cxx-compiler.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-c-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-c-flags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-wrong-cxx-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-wrong-cxx-flags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-C",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-C.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-CXX",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-CXX.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-C_DEBUG",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-C_DEBUG.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-CXX_DEBUG",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-CXX_DEBUG.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-C_RELEASE",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-C_RELEASE.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-unpaired-CXX_RELEASE",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-unpaired-CXX_RELEASE.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "p2996-precomposed-osx",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/p2996-precomposed-osx.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Compose vcpkg",
+      "passed": true
+    },
+    {
+      "case": "gcc16-reentry",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-reentry.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "CMP0210=NEW",
+      "passed": true
+    },
+    {
+      "case": "gcc16-paired-flags-reentry",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-paired-flags-reentry.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "MARKETPLACE_CXX_RELEASE=1",
+      "passed": true
+    },
+    {
+      "case": "gcc16-missing-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-missing-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-empty-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-empty-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-missing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-missing-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-empty-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-empty-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-other-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-other-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-cc",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-cc.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-cxx",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-cxx.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-polluted-cxxflags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-polluted-cxxflags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-old-policy",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-old-policy.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-old-default",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-old-default.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-triplet",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-triplet.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-sdk",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-sdk.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-deployment",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-deployment.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-arch",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-arch.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-processor",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-processor.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-vcpkg-arch",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-vcpkg-arch.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-forced-c",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-forced-c.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-forced-cxx",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-forced-cxx.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-no-platform-vars",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-no-platform-vars.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-static-try-compile",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-static-try-compile.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-no-compiler-tracking",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-no-compiler-tracking.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-c-compiler",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-c-compiler.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-cxx-compiler",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-cxx-compiler.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-c-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-c-flags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-wrong-cxx-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-wrong-cxx-flags.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "CMake Error",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-C",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-C.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-CXX",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-CXX.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-C_DEBUG",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-C_DEBUG.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-CXX_DEBUG",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-CXX_DEBUG.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-C_RELEASE",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-C_RELEASE.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    },
+    {
+      "case": "gcc16-unpaired-CXX_RELEASE",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-chainload-controls-20261011T163915Z/gcc16-unpaired-CXX_RELEASE.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "Set both VCPKG",
+      "passed": true
+    }
+  ],
+  "compiler_commands": 0,
+  "mode": "CMake -P only"
+}

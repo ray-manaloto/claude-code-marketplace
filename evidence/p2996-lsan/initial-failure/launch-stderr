@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py", line 210, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py", line 105, in main
+    report["writer_census_before"] = census()
+                                     ~~~~~~^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py", line 73, in census
+    assert name == "mise" and row["known_task"], row
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'pid': 86703, 'ppid': 1, 'executable': '/Users/rmanaloto/.local/bin/mise', 'known_task': None}

@@ -1,0 +1,49 @@
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:8:2: error: Reflection requires the qualified P2996 compiler and libc++.
+    8 | #error Reflection requires the qualified P2996 compiler and libc++.
+      |  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:17:30: error: no member named 'meta' in namespace 'std'
+   17 | constexpr auto member = std::meta::nonstatic_data_members_of(
+      |                         ~~~~~^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:18:6: error: type name requires a specifier or qualifier
+   18 |     ^^Record, std::meta::access_context::current())[0];
+      |      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:18:6: error: blocks support disabled - compile with -fblocks or pick a deployment target that supports them
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:18:7: error: block pointer to non-function type is invalid
+   18 |     ^^Record, std::meta::access_context::current())[0];
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:18:7: error: expected expression
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:18:20: error: no member named 'meta' in namespace 'std'
+   18 |     ^^Record, std::meta::access_context::current())[0];
+      |               ~~~~~^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:19:36: error: no member named 'meta' in namespace 'std'
+   19 | constexpr auto member_count = std::meta::nonstatic_data_members_of(
+      |                               ~~~~~^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:20:6: error: type name requires a specifier or qualifier
+   20 |     ^^Record, std::meta::access_context::current()).size();
+      |      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:20:6: error: blocks support disabled - compile with -fblocks or pick a deployment target that supports them
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:20:7: error: block pointer to non-function type is invalid
+   20 |     ^^Record, std::meta::access_context::current()).size();
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:20:7: error: expected expression
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:20:20: error: no member named 'meta' in namespace 'std'
+   20 |     ^^Record, std::meta::access_context::current()).size();
+      |               ~~~~~^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:22:20: error: no member named 'meta' in namespace 'std'
+   22 | static_assert(std::meta::identifier_of(member) == "value");
+      |               ~~~~~^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:23:40: error: not parsing token '[:'; use '-freflection' to enable reflection features [-Werror,-Wunparsed-reflection-token]
+   23 | static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);
+      |                                        ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:23:39: error: expected a qualified name after 'typename'
+   23 | static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);
+      |                                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:23:39: error: type name requires a specifier or qualifier
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:23:40: error: expected expression
+   23 | static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);
+      |                                        ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-updated-core-without-reflection.cpp:23:67: error: not parsing token ':]'; use '-freflection' to enable reflection features [-Werror,-Wunparsed-reflection-token]
+   23 | static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);
+      |                                                                   ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.

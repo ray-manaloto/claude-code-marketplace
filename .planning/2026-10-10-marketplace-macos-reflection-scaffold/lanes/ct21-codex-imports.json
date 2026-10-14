@@ -1,0 +1,113 @@
+{
+  "unit": "ct21-codex-imports",
+  "tickets": [
+    "CT-21 (preview: proposals/claude-takeover-spec/ticket-CT-21.preview.json; GitHub issue pending to-tickets approval)"
+  ],
+  "title": "CT-21: Import Codex worktree inputs and cited evidence; fail closed on missing inputs",
+  "owner": "implementer",
+  "writer_model": "opus",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/ct21-codex-imports",
+  "branch": "claude/ct21-codex-imports",
+  "base_sha": "TBD-at-cut (the integration tip when the lane is cut in plan Phase 4b wave 0b)",
+  "allocated_from": "TBD-at-cut (parent of the allocation commit)",
+  "import_source": {
+    "snapshot": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/imports/codex-worktrees-20261013/",
+    "manifest": "MANIFEST.json",
+    "manifest_sha256": "259f9fae40ecf99cad4cb26c4f9a6dad4243f5b02746c6fd01bc388f95329c32",
+    "import_plan": "T2-import-plan.json",
+    "import_plan_sha256": "d53fc6222d00fea02f4109f4b43de7b14cd290d8b07417088983b96fceec2e65",
+    "private_mirror": "/Users/rmanaloto/.local/state/marketplace-imports/codex-worktrees-20261013 (read-only for this lane)",
+    "worktree_heads": {
+      "2a14": "48027d2d333611d162cdff8cabb7bc1eecf944da",
+      "c658": "6130ab5e9298e4c70d8c39a0ebd3c6857458c5c5"
+    }
+  },
+  "context": [
+    "reviews/ccm-20261013/T2-import-lane-design.md (this lane's design: classification, diffs, sequencing)",
+    "reviews/ccm-20261013/T2-ct21-brief.md",
+    "reviews/ccm-20261013/codex-sweeps/A-private-evidence-inventory.md and A-inventory.json (dispositions)",
+    "imports/codex-worktrees-20261013/T1-snapshot-report.md, MANIFEST.json, T1-dependency-scan.json, T2-import-plan.json",
+    "reviews/ccm-20261013/R3-codex-coverage.md (P1-1, P1-2)",
+    ".claude/rules/evidence.md, .claude/rules/dev-tests.md, docs/agents/codex-task-orchestration.md#ownership"
+  ],
+  "owned_paths": [
+    "evidence/codex-examples/ (new files from the snapshot only; no .lock files)",
+    "evidence/saved-searches/ (new files from the snapshot only; no .writer.lock or locks/*.lock)",
+    "evidence/github-search-one-page/ (new files from the snapshot only)",
+    "evidence/git-delivery/a09-history-scan-triage.md",
+    "evidence/git-delivery/a09-scan-adjudication.json",
+    "evidence/issue-publication-private/graph-audit.json",
+    "evidence/issue-publication-private/edges/local-edge-receipt.json",
+    "evidence/core-p2996/**, evidence/mise-runtime/**, evidence/p2996-cmake/**, evidence/vcpkg-fmt-build/** : exactly the 61 *.log paths with disposition import in T2-import-plan.json (git add -f; new files only)",
+    "evidence/codex-imports/ (new receipts: copy verification, gitleaks scan)",
+    "docs/agents/automation-amendment-review.md",
+    "docs/agents/github-search-reuse.md",
+    "docs/agents/workflow-reconciliation.md",
+    "docs/agents/codex-example-classification.md (exit-code paragraph only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/spec-11-amendment-candidate.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/spec-11-amendment-candidate.json",
+    "dev/codex_examples.py",
+    "dev/test_codex_examples.py",
+    "dev/checkout_transfer.py",
+    "dev/test_checkout_transfer.py",
+    "dev/check_inputs.py",
+    "dev/test_check_inputs.py",
+    "dev/cited-inputs.json",
+    "dev/fixtures/inputs/",
+    "mise/tasks/ct21.toml",
+    ".github/workflows/development.yml (one check:inputs step only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/ct21-codex-imports.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/lanes/ct21-codex-imports.log.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml (parent hunk at integration: check:inputs in the depends of check, check:acceptance-baseline and check:research)",
+    "dev/check.py (CT-11 owns it in wave 1; the one-line call lands with CT-12 or a later owner)",
+    "hk.pkl (pre-commit step proposed in the handoff; CT-02b/parent)",
+    "docs/accepted-decisions.md (parent docs commit, Runbook step 7: the 2a14 'Automation and observability clarification (2026-10-12)' hunk)",
+    ".gitignore and the other 18 baseline files",
+    ".claude/settings.json",
+    ".claude/rules/",
+    ".claude/agents/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/findings.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ticket-ledger.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/imports/ (read-only source; never modified or committed by the lane)",
+    "evidence/claude-amendment-review/, evidence/issue-publication-private/*.intent.json*, evidence/git-delivery/initial-outbound-gitleaks-redacted.json, evidence/iwyu-build/operation/build/ (keep-private or mirror; never added)"
+  ],
+  "required_checks": [
+    "python3 -I .planning/2026-10-10-marketplace-macos-reflection-scaffold/imports/codex-worktrees-20261013/verify.py (rc 0 before copying)",
+    "python3 -I -m unittest discover -s dev -p test_check_inputs.py",
+    "python3 -I -m unittest discover -s dev -p test_checkout_transfer.py",
+    "./dev/mise run test:examples",
+    "./dev/mise run check:inputs",
+    "/Users/rmanaloto/.local/share/mise/installs/gitleaks/8.30.1/gitleaks dir <worktree>/evidence --no-banner --redact=100 --report-format json (0 findings, receipt under evidence/codex-imports/)",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- ct21-codex-imports"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none; research:examples (live GitHub) is not run; codex --version is read only by the retrieval path, which the tests patch",
+    "network": "none",
+    "git": "git add -f for the 61 listed *.log files only; no .gitignore edit; no push, publish or merge",
+    "private_mirror": "read-only; verify.py --mirror may be run, nothing written under ~/.local/state"
+  },
+  "integration_notes": {
+    "wave": "plan Phase 4b wave 0b, beside w0-doctor-records and the #21 heavy run",
+    "parent_hunks": [
+      "mise.dev.toml: depends += check:inputs on check, check:acceptance-baseline, check:research",
+      "docs/accepted-decisions.md hunk (step 7)",
+      "task_plan.md:322, docs/status.md:10, docs/agents/claude-takeover.md:26, docs/agents/codex-task-orchestration.md:6 path rewrites after integration"
+    ],
+    "split_point": "ct21-check-inputs (dev/check_inputs.py, its test, dev/cited-inputs.json) if the unit passes 300 handwritten lines"
+  },
+  "status": "allocated (designed by T2 on 2026-10-13; not cut; cut in plan Phase 4b wave 0b after the w0-doctor integration, base_sha set at cut)",
+  "retro": "pending",
+  "created_at": "2026-10-13T23:25:03Z"
+}

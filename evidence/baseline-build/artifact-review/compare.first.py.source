@@ -1,0 +1,154 @@
+from pathlib import Path
+from hashlib import sha256
+from datetime import datetime
+import json, re, shlex, stat, xml.etree.ElementTree as ET
+R=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace'); E=R/'evidence/baseline-build'; D=Path(__file__).parent
+watched={}
+def H(p):
+    p=Path(p); digest=sha256(p.read_bytes()).hexdigest(); watched[str(p)]=digest; return digest
+def J(p): H(p); return json.loads(Path(p).read_text())
+a=J(E/'artifact-candidate.json'); prepared=J(E/'candidate.json'); contract=J(E/'contract.json')
+assert H(E/'artifact-candidate.json')=='e12597996f255d9854cf5877c7c3b1cb1f4540d4da10e588e191d2ed894730d8'
+assert H(E/'candidate.json')==a['prepared_candidate_sha256']=='6359c361dc76a140890aad0a2190c9a405db47e74e4e046ddf54b982dd22ab23'
+assert H(E/'contract.json')==prepared['contract_sha256']=='c687bf04041e379c279df6ae5759d5076ccd2ffa8b1e4f149fd3554f2bcd77d7'
+assert a['head']==prepared['head']==contract['base_head']=='1696238f7df32b75834f5738da0cdd7025c98b4d'
+for p,h in a['files'].items(): assert H(R/p)==h,p
+assert a['files']['dev/toolchains/baseline.py']==prepared['files']['dev/toolchains/baseline.py']=='64aaff09faa8b625e6dc63503b9727a6ad69e8fe2010c9763b301ff55f7c3266'
+assert a['files']['CMakeLists.txt']==prepared['files']['CMakeLists.txt']
+snapshot=J(E/'candidate-inputs.json')['files']; assert len(snapshot)==7
+old_expected={str(R/p):h for p,h in prepared['files'].items()}|{str(E/'contract.json'):prepared['contract_sha256'],str(E/'candidate.json'):a['prepared_candidate_sha256']}
+assert {row['source'] for row in snapshot}==set(old_expected)
+for row in snapshot:
+    encoded=row['text'].encode(); assert len(encoded)==row['bytes'] and sha256(encoded).hexdigest()==row['sha256']==old_expected[row['source']]
+    if not row['source'].endswith(('docs/baseline-presets.md','task_plan.md','progress.md')): assert encoded==Path(row['source']).read_bytes()
+review=J(E/'pre-run-review.json'); assert H(E/'pre-run-review.json')=='7ebb0e0847984ce8c15efe93e7a375215be2d6fab8774da34822ee375e111528' and review['result']=='PASS' and review['findings']==[]
+admission=J(E/'admission.json'); native=J(E/'native-execution.json'); launch=J(E/'native-launch.json'); closure=J(E/'native-closure.json'); q=J(E/'operation/qualification.json')
+assert H(E/'operation/qualification.json')==a['qualification_sha256']==closure['qualification_sha256']=='b0a50b11252a6fad2a204603c0f40bec57a1333a9b85a5896e659ec50c65d83c'
+assert H(E/'native-closure.json')=='4fcf42a5b8dee0f539b0a0f8096118fadf3b311d9ace38e4d2c03526fa0f85be'
+assert closure['native_execution_sha256']==H(E/'native-execution.json') and native['returncode']==closure['native_returncode']==0
+assert native['helper_sha256']==q['helper_sha256']==admission['helper_sha256']==review['helper_sha256']==a['files']['dev/toolchains/baseline.py']
+assert admission['contract_sha256']==review['contract_sha256']==prepared['contract_sha256']
+assert admission['review_sha256']==H(E/'pre-run-review.json') and admission['candidate_sha256']==a['prepared_candidate_sha256']
+assert native['admission_sha256']==q['admission_sha256']==H(E/'admission.json') and all(native[k]==v for k,v in launch.items())
+OP=Path(admission['run_directory']); LP=Path(native['private_launch_directory']); assert H(OP/'qualification.json')==a['qualification_sha256']
+assert native['argv']==[native['argv'][0],'-E','-B',str(R/'dev/toolchains/baseline.py'),'--run-dir',str(OP),'--build']
+assert native['argv'][0] in contract['tools'] and admission['python_flags']==['-E','-B']
+assert 83<native['elapsed_seconds']<84 and abs((datetime.fromisoformat(native['finished_at'])-datetime.fromisoformat(native['started_at'])).total_seconds()-native['elapsed_seconds'])<1
+texts=J(E/'operation/text-receipts.json')['files']; assert len(texts)==579 and len({row['source'] for row in texts})==579
+assert H(E/'operation/text-receipts.json')==a['text_receipts_sha256']==closure['text_receipts_sha256']=='ff55b987ee39e7a12b41414510f0ada714a21cf3d85ac945a583a0138e7eb143'
+T={}; text_index=[]
+for row in texts:
+    p=Path(row['source']); b=row['text'].encode(); assert p.is_relative_to(OP) or p.is_relative_to(LP)
+    assert len(b)==row['bytes'] and sha256(b).hexdigest()==row['sha256'] and p.read_bytes()==b,p
+    T[str(p)]=row['text']; text_index.append((str(p),row['sha256'],row['bytes']))
+def TX(p): return T[str(p)]
+assert json.loads(TX(LP/'execution.json'))==native and json.loads(TX(LP/'launch.json'))==launch
+assert sha256(TX(LP/'stdout').encode()).hexdigest()==native['stdout_sha256'] and sha256(TX(LP/'stderr').encode()).hexdigest()==native['stderr_sha256'] and TX(LP/'stderr')==''
+assert json.loads(TX(LP/'stdout'))=={'state':q['state'],'receipt':str(OP/'qualification.json')}
+commands={row['case']:row for row in q['commands']}; assert len(commands)==len(q['commands'])==175
+for row in q['commands']:
+    assert row['returncode']==row['expected_returncode']==0 and 0<=row['elapsed_seconds']<row['timeout_seconds']
+    assert datetime.fromisoformat(native['started_at'])<=datetime.fromisoformat(row['started_at'])<=datetime.fromisoformat(native['finished_at'])
+    assert row['logs']==[{'path':str(OP/(row['case']+'.'+suffix)),'sha256':sha256(TX(OP/(row['case']+'.'+suffix)).encode()).hexdigest()} for suffix in ('stdout','stderr')]
+assert closure['processes']==[{'case':row['case'],'pid':row['pid'],'absent':True} for row in q['commands']]
+assert closure['lease_probe']=={'free':True,'contents_unchanged':True} and closure['default_profiles_equal'] and closure['all_command_outcomes_expected']
+assert q['lease_released'] and q['protected_state_unchanged'] and q['state'].startswith('PASS: 32 ARM64')
+assert all(not q[k]['lock_holders'] and all(row['known_task'] for row in q[k]['processes']) for k in ('writer_census_before','writer_census_after'))
+assert TX(OP/'default-before.stdout')==TX(OP/'default-after.stdout') and sha256(TX(OP/'default-before.stdout').encode()).hexdigest()==contract['inputs'][contract['default_profile']]
+assert TX(OP/'project-head.stdout').strip()==a['head']
+assert sha256(TX(OP/'private.sb').encode()).hexdigest()==q['confinement']['profile_sha256'] and '(deny network*)' in TX(OP/'private.sb') and '(deny file-write*)' in TX(OP/'private.sb')
+first=J(E/'attempt-1/qualification.json'); first_exec=J(E/'attempt-1/native-execution.json'); first_adm=J(E/'attempt-1/admission.json'); first_close=J(E/'attempt-1/closure.json'); first_launch=J(E/'attempt-1/native-launch.json')
+assert first['state']=='FAIL' and first['commands']==[] and first['cells']=={} and first_exec['returncode']==first_close['native_returncode']==1
+assert '30352' in first['error'] and "'known_task': None" in first['error'] and first['protected_state_unchanged'] and first_close['native_commands']==first_close['cells']==0
+assert first_close['process_probe']['returncode']==1 and first_close['process_probe']['stdout']==first_close['process_probe']['stderr']==''
+assert first_close['lease_free'] and first_close['lease_contents_unchanged'] and first_close['protected_state_unchanged']
+assert first['helper_sha256']==first_exec['helper_sha256']==first_close['helper_sha256']==q['helper_sha256'] and first_close['contract_sha256']==admission['contract_sha256']
+assert first_adm['contract_sha256']==admission['contract_sha256'] and first_adm['run_directory']!=admission['run_directory']
+assert first_exec['admission_sha256']==first['admission_sha256']==H(E/'attempt-1/admission.json')
+assert H(E/'attempt-1/closure.json')==admission['previous_attempt_closure_sha256']
+for row in J(E/'attempt-1/copy-manifest.json')['files']:
+    assert H(R/row['destination'])==row['sha256']
+    if not Path(row['source']).is_relative_to(R): assert Path(row['source']).read_bytes()==(R/row['destination']).read_bytes()
+first_texts=J(E/'attempt-1/launch-texts.json')['files']; assert len(first_texts)==4
+FT={}
+for row in first_texts:
+    b=row['text'].encode(); assert len(b)==row['bytes'] and sha256(b).hexdigest()==row['sha256'] and Path(row['source']).read_bytes()==b
+    FT[Path(row['source']).name]=row['text']
+assert json.loads(FT['execution.json'])==first_exec and json.loads(FT['launch.json'])==first_launch
+assert 'line 103, in main' in FT['stderr'] and 'writer_census_before' in FT['stderr'] and '30352' in FT['stderr']
+assert sha256(FT['stdout'].encode()).hexdigest()==first_exec['stdout_sha256'] and sha256(FT['stderr'].encode()).hexdigest()==first_exec['stderr_sha256']
+capacity=J(E/'retry-capacity/capacity.json'); assert H(E/'retry-capacity/capacity.json')==admission['capacity_sha256'] and capacity['state']=='PASS'
+assert J(E/'retry-capacity/execution.json')['returncode']==0 and all(row['returncode']==0 for row in capacity['commands'])
+assert not capacity['active_build_processes'] and not capacity['held_lease'] and not capacity['native_operation_started']
+assert datetime.fromisoformat(first_close['recorded_at'])<datetime.fromisoformat(capacity['recorded_at'])<datetime.fromisoformat(admission['recorded_at'])<datetime.fromisoformat(native['started_at'])
+assert capacity['docker_context']==admission['docker_context'] and capacity['containers']==admission['containers']
+cmake=contract['managed_tools']['cmake']['path']; ctest=contract['managed_tools']['ctest']['path']; ninja=contract['managed_tools']['ninja']['path']; sdk='/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk'
+sandbox=['/usr/bin/sandbox-exec','-f',str(OP/'private.sb')]; launcher=sandbox+[native['argv'][0],'-B','-c','import os,sys;os.chdir(sys.argv[1]);os.execv(sys.argv[2],sys.argv[2:])',str(R)]
+expected_cases=['project-head','default-before','capacity-processes','docker-context','docker-census','docker-stats']; binaries=[]; witnesses=[]
+expected_tails={lane+'-core-'+core+'-fmt-'+linkage for lane in ('p2996','gcc16') for core in ('static','shared') for linkage in ('static','dynamic')}
+assert set(q['cells'])==expected_tails and closure['baseline_cells']==32 and closure['arm64_artifacts']==64
+for tail,cell in q['cells'].items():
+    lane,_,core,_,linkage=tail.split('-'); preset='configure-'+tail; build=OP/'trees'/preset; triplet='arm64-osx-'+lane+'-'+linkage; installed=Path(contract['fmt_root'])/triplet/'installed'/triplet
+    expected_cases.append(preset); assert commands[preset]['argv']==launcher+[cmake,'--preset',preset] and cell['triplet']==triplet and cell['configure_preset']==preset
+    cache=dict(re.findall(r'^([^#/:\r\n][^:=\r\n]*):[^=\r\n]+=(.*)$',TX(build/'CMakeCache.txt'),re.MULTILINE)); assert cache==cell['cache']
+    compiler=dict(re.findall(r'^set\((CMAKE_CXX_COMPILER(?:_ID|_VERSION)?) "([^"\n]*)"\)$',TX(build/'CMakeFiles/4.4.4/CMakeCXXCompiler.cmake'),re.MULTILINE))
+    comp=contract['compilers'][lane]; assert compiler==cell['compiler']=={'CMAKE_CXX_COMPILER':comp['CXX'],'CMAKE_CXX_COMPILER_ID':comp['id'],'CMAKE_CXX_COMPILER_VERSION':comp['version']}
+    values={'BUILD_SHARED_LIBS':'ON' if core=='shared' else 'OFF','RESEARCH_CORE_WITH_FMT':'ON','CMAKE_OSX_SYSROOT':sdk,'CMAKE_OSX_ARCHITECTURES':'arm64','CMAKE_OSX_DEPLOYMENT_TARGET':'27.0','CMAKE_MAKE_PROGRAM':ninja,'VCPKG_TARGET_TRIPLET':triplet,'VCPKG_INSTALLED_DIR':str(installed.parent),'fmt_DIR':str(installed/'share/fmt'),'CMAKE_CONFIGURATION_TYPES':';'.join(contract['configurations'])}
+    values.update({k:'OFF' for k in ('VCPKG_MANIFEST_MODE','VCPKG_MANIFEST_INSTALL','VCPKG_APPLOCAL_DEPS','CMAKE_FIND_USE_PACKAGE_REGISTRY','CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY')})
+    assert all(cache[k]==v for k,v in values.items()),tail
+    compile_text=TX(build/'compile_commands.json'); assert sha256(compile_text.encode()).hexdigest()==cell['compile_commands_sha256']; cc=json.loads(compile_text); assert len(cc)==8
+    assert set(cell['runs'])==set(contract['configurations'])
+    for configuration,run in cell['runs'].items():
+        label=tail+'-'+configuration; expected_cases.extend(label+'-'+x for x in ('build','test','arch-binary','arch-library','run'))
+        assert commands[label+'-build']['argv']==launcher+[cmake,'--build','--preset','build-'+configuration+'-'+tail,'--verbose']
+        assert commands[label+'-test']['argv']==launcher+[ctest,'--preset','test-'+configuration+'-'+tail,'--output-junit',str(build/(configuration+'-tests.xml'))]
+        core_meta=dict(line.split('=',1) for line in TX(build/('core-'+configuration+'.txt')).splitlines()); fmt_meta=dict(line.split('=',1) for line in TX(build/('fmt-'+configuration+'.txt')).splitlines())
+        assert core_meta=={k:run[k] for k in ('library','kind','binary','configuration','shared')} and fmt_meta==run['fmt']
+        suffix='d' if configuration=='Debug' else ''; fmt_path=installed/('debug/lib' if configuration=='Debug' else 'lib')/('libfmt'+suffix+('.12.2.0.dylib' if linkage=='dynamic' else '.a'))
+        assert fmt_meta=={'library':str(fmt_path),'kind':'SHARED_LIBRARY' if linkage=='dynamic' else 'STATIC_LIBRARY'}
+        assert core_meta=={'library':str(build/configuration/('libresearch_core.dylib' if core=='shared' else 'libresearch_core.a')),'kind':'SHARED_LIBRARY' if core=='shared' else 'STATIC_LIBRARY','binary':str(build/configuration/'research_core_smoke'),'configuration':configuration,'shared':values['BUILD_SHARED_LIBS']}
+        log=TX(OP/(label+'-build.stdout')); assert ninja+' -v -j 1 -f build-'+configuration+'.ninja' in log and str(fmt_path) in log
+        for source in ('core.cpp','smoke.cpp'):
+            selected=[row for row in cc if Path(row['file']).name==source and '/'+configuration+'/' in row['output']]; assert len(selected)==1
+            actual=[line for line in log.splitlines() if ' -c '+str(R/'src'/source) in line]; assert len(actual)==1
+            for line in (selected[0]['command'],actual[0].split('] ',1)[1]):
+                args=shlex.split(line); assert args[0]==comp['CXX'] and '-std=c++26' in args and ('-freflection' in args)==(source=='core.cpp')
+                assert args[args.index('-isysroot')+1]==sdk and args[args.index('-arch')+1]=='arm64' and '-mmacosx-version-min=27.0' in args
+                assert '-fPIC' in args and '-DFMT_HEADER_ONLY' not in args
+                flags={'Debug':['-g'],'Release':['-O3','-DNDEBUG'],'RelWithDebInfo':['-O2','-g','-DNDEBUG'],'MinSizeRel':['-Os','-DNDEBUG']}[configuration]
+                assert all(flag in args for flag in flags) and ('-DNDEBUG' in args)==(configuration!='Debug')
+                if lane=='p2996': assert '--no-default-config' in args and '-nostdinc++' in args and str(Path(contract['prefixes'][lane])/'include/c++/v1') in args
+                if lane=='gcc16': assert ('-fno-declone-ctor-dtor' in args)==(configuration=='MinSizeRel')
+        xml=TX(build/(configuration+'-tests.xml')); assert sha256(xml.encode()).hexdigest()==run['ctest_junit_sha256']; suite=ET.fromstring(xml)
+        assert suite.attrib['tests']=='1' and all(suite.attrib[k]=='0' for k in ('failures','disabled','skipped')); cases=suite.findall('testcase'); assert len(cases)==1
+        case=cases[0]; assert case.attrib['name']=='research_core_smoke' and case.attrib['status']=='run' and case.find('failure') is None and case.find('skipped') is None and case.findtext('system-out')=='reflection value=43, members=1\n'
+        assert '100% tests passed out of 1' in TX(OP/(label+'-test.stdout')) and TX(OP/(label+'-test.stderr'))==''
+        for kind in ('binary','library'):
+            assert commands[label+'-arch-'+kind]['argv']==sandbox+['/usr/bin/lipo','-archs',run[kind]] and TX(OP/(label+'-arch-'+kind+'.stdout')).strip()=='arm64'
+            binaries.append({'path':run[kind],'sha256':run['sha256'][kind],'kind':kind})
+        assert commands[label+'-run']['argv']==sandbox+[native['argv'][0],'-B','-c',"import os,sys;os.execve(sys.argv[1],sys.argv[1:],dict(os.environ,DYLD_PRINT_LIBRARIES='1'))",run['binary']]
+        assert TX(OP/(label+'-run.stdout'))=='reflection value=43, members=1\n'; trace=TX(OP/(label+'-run.stderr'))
+        lines=[line for line in trace.splitlines() if line.startswith('dyld[') and '/' in line]; assert lines and all(line.startswith('dyld['+str(commands[label+'-run']['pid'])+']:') for line in lines)
+        loaded={str(Path(line[line.index('/'):]).resolve()) for line in lines}; assert loaded==set(run['loaded'])
+        for prefix,path,dynamic in [('libfmt',fmt_path,linkage=='dynamic'),('libresearch_core',Path(run['library']),core=='shared')]: assert {p for p in loaded if Path(p).name.startswith(prefix)}==({str(path.resolve())} if dynamic else set())
+        runtimes=['lib/libc++.dylib','lib/libc++abi.dylib','lib/libunwind.dylib'] if lane=='p2996' else ['lib/gcc/current/libstdc++.6.dylib']
+        assert all(str((Path(contract['prefixes'][lane])/p).resolve()) in loaded for p in runtimes)
+        system=sorted(p for p in loaded if p.startswith('/usr/lib/') and ('libc++' in p or 'libunwind' in p)); assert system
+        witnesses.append({'cell':label,'dependency_configuration':'Debug' if configuration=='Debug' else 'Release','system_cpp_runtimes':system})
+expected_cases.append('default-after'); assert list(commands)==expected_cases and len(witnesses)==32
+static=J(E/'artifact-static.json'); assert [row['returncode'] for row in static['commands']]==[0,0] and json.loads(static['commands'][1]['stdout'])['checks']['baseline']==19
+scan=J(E/'artifact-secret-scan.json'); assert scan['raw']['returncode']==1 and len(scan['dispositions'])==5 and scan['transformed']['returncode']==0 and scan['supplemental_complete_token_files']==[]
+for row in scan['dispositions']: assert row['reason']=='Verified exact file-content digest' and H(row['path'])==row['sha256']
+scan_checked=0
+for path,h in list(watched.items()):
+    p=Path(path)
+    if p.is_relative_to(R) and str(p.relative_to(R)) in scan['files']: assert scan['files'][str(p.relative_to(R))]==h;scan_checked+=1
+for path,h in watched.items(): assert sha256(Path(path).read_bytes()).hexdigest()==h,path
+assert len(binaries)==len({row['path'] for row in binaries})==64
+for row in binaries:
+    p=Path(row['path']); assert p.is_relative_to(OP/'trees') and not p.is_symlink() and stat.S_ISREG(p.stat().st_mode)
+    b=p.read_bytes(); assert len(b)>0 and sha256(b).hexdigest()==row['sha256']; row['bytes']=len(b); row['path']=str(p.relative_to(OP))
+    if row['kind']=='binary': assert p.stat().st_mode&0o111
+out={'result':'PASS','candidate_sha256':H(E/'artifact-candidate.json'),'helper_sha256':q['helper_sha256'],'contract_sha256':prepared['contract_sha256'],'qualification_sha256':a['qualification_sha256'],'operation_directory':str(OP),'first_attempt':{'returncode':1,'commands':0,'cells':0,'failure':'unknown mise process 30352 in writer census before lease','later_process_absence_recorded':True},'retry':{'returncode':0,'elapsed_seconds':native['elapsed_seconds'],'command_outcomes':175,'configure_trees':8,'build_test_runtime_cells':32,'arm64_artifacts':64},'exact_retry_text_source_pairs':579,'text_pair_index_sha256':sha256(json.dumps(text_index,separators=(',',':')).encode()).hexdigest(),'exact_first_launch_source_pairs':4,'original_frozen_snapshots':7,'new_binary_file_reads_and_hashes':64,'new_binary_artifacts':binaries,'cell_witnesses':witnesses,'parent_closure_pid_absences':175,'source_and_install_preservation':'attested by reviewed runner; inventories not repeated','parent_static_returncodes':[0,0],'parent_baseline_original_hashes':19,'parent_scan_raw_returncode':1,'parent_scan_verified_digest_dispositions':5,'parent_scan_transformed_returncode':0,'parent_scan_current_review_bindings_checked':scan_checked,'reviewer_native_execution':False,'watched_text_hashes':watched}
+(D/'comparison.json').write_text(json.dumps(out,indent=2)+'\n')
+print(json.dumps({k:v for k,v in out.items() if k not in ('watched_text_hashes','new_binary_artifacts','cell_witnesses')}))

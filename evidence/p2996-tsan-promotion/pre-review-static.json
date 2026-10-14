@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "command": "./dev/mise tasks validate",
+      "returncode": 0,
+      "observed": "All 2 task(s) validated successfully"
+    },
+    {
+      "command": "./dev/mise run check",
+      "returncode": 0,
+      "observed": "status pass; baseline 0, json 2148, python 156, shell 6, toml 16"
+    },
+    {
+      "command": "./dev/mise run check:acceptance-baseline",
+      "returncode": 0,
+      "observed": "status pass; original baseline 19"
+    },
+    {
+      "command": "git diff --check",
+      "returncode": 0,
+      "observed": "empty output"
+    }
+  ],
+  "scope": "Static checks only; no installed mutation or native TSan witness"
+}

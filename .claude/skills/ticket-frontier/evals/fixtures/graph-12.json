@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "source": "fixture: tickets.preview.json edges plus the GitHub #11 frontier (2026-10-13)",
+  "tickets": [
+    {"id": "#21", "title": "10: Relocated CMake Config consumers (Task 18)", "state": "open", "parent": "#11", "blockedBy": []},
+    {"id": "#20", "title": "09: Reflection-core analysis commands (Task 17)", "state": "open", "parent": "#11", "blockedBy": []},
+    {"id": "#17", "title": "06: P2996 admitted-family coverage (Task 16)", "state": "open", "parent": "#11", "blockedBy": []},
+    {"id": "#16", "title": "05: GCC sanitizer witnesses (Task 15)", "state": "open", "parent": "#11", "blockedBy": []},
+    {"id": "#22", "title": "11: Native CPS consumers (Task 19)", "state": "open", "parent": "#11", "blockedBy": ["#21"]},
+    {"id": "#18", "title": "07: GCC coverage cells (Task 16)", "state": "open", "parent": "#11", "blockedBy": ["#16"]},
+    {"id": "#23", "title": "12: Native foundation acceptance (Task 20)", "state": "open", "parent": "#11", "blockedBy": ["#21", "#16", "#22", "#17", "#20", "#18"]},
+    {"id": "CT-05", "title": "Lane-record validator and ticket ledger generator", "state": "closed", "parent": "CT-spec", "blockedBy": []},
+    {"id": "CT-15", "title": "plan:log and plan:handoff", "state": "open", "parent": "CT-spec", "blockedBy": []},
+    {"id": "CT-17", "title": "lane:allocate, lane:integrate, lane:status", "state": "open", "parent": "CT-spec", "blockedBy": ["CT-05", "CT-15"]},
+    {"id": "CT-19", "title": "lane:brief and the receipt journal", "state": "open", "parent": "CT-spec", "blockedBy": ["CT-17"]},
+    {"id": "CT-25", "title": "ticket-frontier orchestrator skill", "state": "open", "parent": "CT-spec", "blockedBy": ["CT-05", "CT-15", "CT-17", "CT-19"]}
+  ]
+}

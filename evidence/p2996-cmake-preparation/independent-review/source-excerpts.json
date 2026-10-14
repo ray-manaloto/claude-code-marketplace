@@ -1,0 +1,200 @@
+[
+  {
+    "id": "abi-libraries-cleared",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake",
+    "fact_to_check": "Non-MSVC ABI try_compile explicitly empties STANDARD_LIBRARIES, so INIT alone does not keep the private runtime link.",
+    "actual_source_excerpts": [
+      "82:     if(lang STREQUAL \"CXX\")\n83:       set(CMAKE_${lang}_SCAN_FOR_MODULES OFF)\n84:     endif()\n85:     if(NOT \"x${CMAKE_${lang}_COMPILER_ID}\" STREQUAL \"xMSVC\")\n86:       # Avoid adding our own platform standard libraries for compilers\n87:       # from which we might detect implicit link libraries.\n88:       list(APPEND CMAKE_FLAGS \"-DCMAKE_${lang}_STANDARD_LIBRARIES=\")\n89:     endif()\n90:     list(JOIN LINK_OPTIONS \" \" LINK_OPTIONS)\n91:     list(APPEND CMAKE_FLAGS \"-DEXE_LINKER_FLAGS=${LINK_OPTIONS}\")\n92: \n93:     __TestCompiler_setTryCompileTargetType()",
+      "123:     try_compile(CMAKE_${lang}_ABI_COMPILED\n124:       SOURCES ${src}\n125:       CMAKE_FLAGS ${CMAKE_FLAGS}\n126:                   # Ignore unused flags when we are just determining the ABI.\n127:                   \"--no-warn-unused-cli\"\n128:       COMPILE_DEFINITIONS ${COMPILE_DEFINITIONS}\n129:       NO_CACHE\n130:       OUTPUT_VARIABLE OUTPUT\n131:       COPY_FILE \"${BIN}\"\n132:       COPY_FILE_ERROR _copy_error\n133:       __CMAKE_INTERNAL ABI\n134:       )"
+    ]
+  },
+  {
+    "id": "cxx-init-and-launchers",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXInformation.cmake",
+    "fact_to_check": "CXXFLAGS is prepended; standard libraries are cache initialized; launcher environments are consumed; native compile/link rules are separate.",
+    "actual_source_excerpts": [
+      "94: # add the flags to the cache based\n95: # on the initial values computed in the platform/*.cmake files\n96: # use _INIT variables so that this only happens the first time\n97: # and you can set these flags in the cmake cache\n98: set(CMAKE_CXX_FLAGS_INIT \"$ENV{CXXFLAGS} ${CMAKE_CXX_FLAGS_INIT}\")\n99: \n100: cmake_initialize_per_config_variable(CMAKE_CXX_FLAGS \"Flags used by the CXX compiler\")\n101: \n102: if(CMAKE_CXX_STANDARD_LIBRARIES_INIT)\n103:   set(CMAKE_CXX_STANDARD_LIBRARIES \"${CMAKE_CXX_STANDARD_LIBRARIES_INIT}\"\n104:     CACHE STRING \"Libraries linked by default with all C++ applications.\")\n105:   mark_as_advanced(CMAKE_CXX_STANDARD_LIBRARIES)\n106: endif()\n107: \n108: if(NOT CMAKE_CXX_COMPILER_LAUNCHER AND DEFINED ENV{CMAKE_CXX_COMPILER_LAUNCHER})\n109:   set(CMAKE_CXX_COMPILER_LAUNCHER \"$ENV{CMAKE_CXX_COMPILER_LAUNCHER}\"\n110:     CACHE STRING \"Compiler launcher for CXX.\")\n111: endif()\n112: \n113: if(NOT CMAKE_CXX_LINKER_LAUNCHER AND DEFINED ENV{CMAKE_CXX_LINKER_LAUNCHER})\n114:   set(CMAKE_CXX_LINKER_LAUNCHER \"$ENV{CMAKE_CXX_LINKER_LAUNCHER}\"\n115:     CACHE STRING \"Linker launcher for CXX.\")",
+      "144: # create a shared C++ library\n145: if(NOT CMAKE_CXX_CREATE_SHARED_LIBRARY)\n146:   set(CMAKE_CXX_CREATE_SHARED_LIBRARY\n147:       \"<CMAKE_CXX_COMPILER> <CMAKE_SHARED_LIBRARY_CXX_FLAGS> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> <SONAME_FLAG><TARGET_SONAME> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>\")\n148: endif()\n149: \n150: # create a c++ shared module copy the shared library rule by default\n151: if(NOT CMAKE_CXX_CREATE_SHARED_MODULE)\n152:   set(CMAKE_CXX_CREATE_SHARED_MODULE ${CMAKE_CXX_CREATE_SHARED_LIBRARY})\n153: endif()\n154: \n155: \n156: # Create a static archive incrementally for large object file counts.\n157: # If CMAKE_CXX_CREATE_STATIC_LIBRARY is set it will override these.\n158: if(NOT DEFINED CMAKE_CXX_ARCHIVE_CREATE)\n159:   set(CMAKE_CXX_ARCHIVE_CREATE \"<CMAKE_AR> qc <TARGET> <LINK_FLAGS> <OBJECTS>\")\n160: endif()\n161: if(NOT DEFINED CMAKE_CXX_ARCHIVE_APPEND)\n162:   set(CMAKE_CXX_ARCHIVE_APPEND \"<CMAKE_AR> q <TARGET> <LINK_FLAGS> <OBJECTS>\")\n163: endif()\n164: if(NOT DEFINED CMAKE_CXX_ARCHIVE_FINISH)\n165:   set(CMAKE_CXX_ARCHIVE_FINISH \"<CMAKE_RANLIB> <TARGET>\")\n166: endif()\n167: \n168: # compile a C++ file into an object file\n169: if(NOT CMAKE_CXX_COMPILE_OBJECT)\n170:   set(CMAKE_CXX_COMPILE_OBJECT\n171:     \"<CMAKE_CXX_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT> -c <SOURCE>\")\n172: endif()\n173: \n174: if(NOT CMAKE_CXX_LINK_EXECUTABLE)\n175:   set(CMAKE_CXX_LINK_EXECUTABLE\n176:     \"<CMAKE_CXX_COMPILER> <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>\")"
+    ]
+  },
+  {
+    "id": "c-init-and-launchers",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCInformation.cmake",
+    "fact_to_check": "C initialization consumes CFLAGS and has independent C launchers.",
+    "actual_source_excerpts": [
+      "94: set(CMAKE_C_FLAGS_INIT \"$ENV{CFLAGS} ${CMAKE_C_FLAGS_INIT}\")\n95: \n96: cmake_initialize_per_config_variable(CMAKE_C_FLAGS \"Flags used by the C compiler\")\n97: \n98: if(CMAKE_C_STANDARD_LIBRARIES_INIT)\n99:   set(CMAKE_C_STANDARD_LIBRARIES \"${CMAKE_C_STANDARD_LIBRARIES_INIT}\"\n100:     CACHE STRING \"Libraries linked by default with all C applications.\")\n101:   mark_as_advanced(CMAKE_C_STANDARD_LIBRARIES)\n102: endif()\n103: \n104: if(NOT CMAKE_C_COMPILER_LAUNCHER AND DEFINED ENV{CMAKE_C_COMPILER_LAUNCHER})\n105:   set(CMAKE_C_COMPILER_LAUNCHER \"$ENV{CMAKE_C_COMPILER_LAUNCHER}\"\n106:     CACHE STRING \"Compiler launcher for C.\")\n107: endif()\n108: \n109: if(NOT CMAKE_C_LINKER_LAUNCHER AND DEFINED ENV{CMAKE_C_LINKER_LAUNCHER})\n110:   set(CMAKE_C_LINKER_LAUNCHER \"$ENV{CMAKE_C_LINKER_LAUNCHER}\"\n111:     CACHE STRING \"Linker launcher for C.\")"
+    ]
+  },
+  {
+    "id": "ldflags-environment",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCommonLanguageInclude.cmake",
+    "fact_to_check": "LDFLAGS is appended to executable, shared and module linker flags.",
+    "actual_source_excerpts": [
+      "9: string(APPEND CMAKE_EXE_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\n10: string(APPEND CMAKE_SHARED_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\n11: string(APPEND CMAKE_MODULE_LINKER_FLAGS_INIT \" $ENV{LDFLAGS}\")\n12: \n13: cmake_initialize_per_config_variable(CMAKE_EXE_LINKER_FLAGS    \"Flags used by the linker\")\n14: cmake_initialize_per_config_variable(CMAKE_SHARED_LINKER_FLAGS \"Flags used by the linker during the creation of shared libraries\")\n15: cmake_initialize_per_config_variable(CMAKE_MODULE_LINKER_FLAGS \"Flags used by the linker during the creation of modules\")\n16: cmake_initialize_per_config_variable(CMAKE_STATIC_LINKER_FLAGS \"Flags used by the archiver during the creation of static libraries\")"
+    ]
+  },
+  {
+    "id": "native-cxx-link-flags",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINK_FLAGS.rst",
+    "fact_to_check": "Language-wide link flags apply only to compiler invocations driving links, with CMP0210 NEW; contents are parsed and requoted.",
+    "actual_source_excerpts": [
+      "4: .. versionadded:: 4.3\n5: \n6: Language-wide flags for language ``<LANG>`` used when linking for all\n7: configurations. These flags will be passed to all invocations of the compiler\n8: which drive linking.\n9: \n10: The flags in this variable will obey the following behavior with respect to\n11: ordering of flags from other variables.\n12: \n13: * They will be passed after those added by :variable:`CMAKE_<LANG>_FLAGS` and\n14:   :variable:`CMAKE_<LANG>_FLAGS_<CONFIG>`.\n15: * They will be passed after those added by :variable:`CMAKE_EXE_LINKER_FLAGS`,\n16:   :variable:`CMAKE_EXE_LINKER_FLAGS_<CONFIG>`,\n17:   :variable:`CMAKE_SHARED_LINKER_FLAGS`,\n18:   :variable:`CMAKE_SHARED_LINKER_FLAGS_<CONFIG>`,\n19:   :variable:`CMAKE_MODULE_LINKER_FLAGS`,\n20:   and :variable:`CMAKE_MODULE_LINKER_FLAGS_<CONFIG>` depending on the given\n21:   target type.\n22: * They will be passed before those added by\n23:   :variable:`CMAKE_<LANG>_LINK_FLAGS_<CONFIG>`.\n24: * They will be passed before those added by commands such\n25:   as :command:`add_link_options` and :command:`target_link_options`.\n26: \n27: Use of this variable is enabled when policy :policy:`CMP0210` is ``NEW``.\n28: \n29: .. include:: ../command/include/LINK_LIBRARIES_LINKER.rst\n30: \n31: This support implies to parse and re-quote the content of the variable."
+    ]
+  },
+  {
+    "id": "cmp0210",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/policy/CMP0210.rst",
+    "fact_to_check": "NEW extends per-language link flags to executable, shared and module libraries.",
+    "actual_source_excerpts": [
+      "6: :variable:`CMAKE_<LANG>_LINK_FLAGS` adds link flags to all target types.\n7: \n8: In CMake 4.2 and below, :variable:`CMAKE_<LANG>_LINK_FLAGS` held flags\n9: relevant to target creation and applied when linking executables only. It was\n10: undocumented and originally intended for internal use only, but still\n11: available for projects and users to set in order to control linking behavior.\n12: \n13: CMake 4.3 and above repurpose this variable to add per-language link flags for\n14: all target types that link (executables, shared libraries, and module\n15: libraries).\n16: \n17: This policy provides compatibility with projects that relied on this variable\n18: and have not been updated to be aware of the change.\n19: \n20: The ``OLD`` behavior for this policy is to apply\n21: :variable:`CMAKE_<LANG>_LINK_FLAGS` to invocations of the compiler which drive\n22: linking for executables only. The ``NEW`` behavior is to apply the flags to\n23: all target types."
+    ]
+  },
+  {
+    "id": "try-compile-propagation",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/try_compile.rst",
+    "fact_to_check": "Source-content executable try_compile is supported; link flags and CMP0210 are propagated.",
+    "actual_source_excerpts": [
+      "72:   try_compile(<compileResultVar>\n73:               [SOURCES_TYPE <type>]\n74:               {SOURCES <srcfile>...                 |\n75:                SOURCE_FROM_CONTENT <name> <content> |\n76:                SOURCE_FROM_VAR <name> <var>         |\n77:                SOURCE_FROM_FILE <name> <path>       }...\n78:               [LOG_DESCRIPTION <text>]\n79:               [NO_CACHE]\n80:               [NO_LOG]\n81:               [CMAKE_FLAGS <flags>...]\n82:               [COMPILE_DEFINITIONS <defs>...]\n83:               [LINK_OPTIONS <options>...]\n84:               [LINK_LIBRARIES <libs>...]\n85:               [LINKER_LANGUAGE <lang>]\n86:               [OUTPUT_VARIABLE <var>]\n87:               [COPY_FILE <fileName> [COPY_FILE_ERROR <var>]]\n88:               [<LANG>_STANDARD <std>]\n89:               [<LANG>_STANDARD_REQUIRED <bool>]\n90:               [<LANG>_EXTENSIONS <bool>]\n91:               )\n92: \n93: .. versionadded:: 3.25\n94: \n95: Try building an executable or static library from one or more source files.\n96: The binary type is determined by variable\n97: :variable:`CMAKE_TRY_COMPILE_TARGET_TYPE`.\n98: Build success returns boolean ``true`` and build failure returns boolean\n99: ``false`` in ``<compileResultVar>`` (cached unless ``NO_CACHE`` is specified).\n100: \n101: In this form, one or more source files must be provided. Additionally, one of\n102: ``SOURCES`` and/or ``SOURCE_FROM_*`` must precede other keywords.\n103: \n104: If :variable:`CMAKE_TRY_COMPILE_TARGET_TYPE` is unset or is set to\n105: ``EXECUTABLE``, the sources must include a definition for ``main`` and CMake\n106: will create a ``CMakeLists.txt`` file to build the source(s) as an executable.",
+      "121: CMake automatically generates, for each ``try_compile`` operation, a\n122: unique directory under ``${CMAKE_BINARY_DIR}/CMakeFiles/CMakeScratch``\n123: with an unspecified name.  These directories are cleaned automatically unless\n124: :option:`--debug-trycompile <cmake --debug-trycompile>` is passed to :program:`cmake`.\n125: Such directories from previous runs are also unconditionally cleaned at the\n126: beginning of any :program:`cmake` execution.\n127: \n128: This command supports an alternate signature for CMake older than 3.25.\n129: The signature above is recommended for clarity.",
+      "317:   If set, the following variables are passed in to the generated\n318:   try_compile CMakeLists.txt to initialize compile target properties with\n319:   default values:\n320: \n321:   * :variable:`CMAKE_CUDA_RUNTIME_LIBRARY`\n322:   * :variable:`CMAKE_ENABLE_EXPORTS`\n323:   * :variable:`CMAKE_EXECUTABLE_ENABLE_EXPORTS`\n324:   * :variable:`CMAKE_SHARED_LIBRARY_ENABLE_EXPORTS`\n325:   * :variable:`CMAKE_EXE_LINKER_FLAGS`, unless using CMake versions\n326:     prior to 4.0 without policy :policy:`CMP0056` set to ``NEW``\n327:   * :variable:`CMAKE_<LANG>_LINK_FLAGS`, unless using CMake versions\n328:     prior to 4.3 without policy :policy:`CMP0210` set to ``NEW``",
+      "341: Some policies are set automatically in the generated test project\n342: as needed to honor the state of the calling project:\n343: \n344: * :policy:`CMP0065` (in CMake versions prior to 4.0)\n345: * :policy:`CMP0083`\n346: * :policy:`CMP0091`\n347: * :policy:`CMP0104`\n348: * :policy:`CMP0123`\n349: * :policy:`CMP0126`\n350: * :policy:`CMP0128`\n351: * :policy:`CMP0136`\n352: * :policy:`CMP0141`\n353: * :policy:`CMP0155`\n354: * :policy:`CMP0157`\n355: * :policy:`CMP0181`\n356: * :policy:`CMP0184`\n357: * :policy:`CMP0210`",
+      "427: .. versionadded:: 4.3\n428:   If :policy:`CMP0210` is set to ``NEW``, :variable:`CMAKE_<LANG>_LINK_FLAGS`\n429:   and :variable:`CMAKE_<LANG>_LINK_FLAGS_<CONFIG>` are propagated into the\n430:   test project's build configuration."
+    ]
+  },
+  {
+    "id": "darwin-native-link-rules",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin.cmake",
+    "fact_to_check": "Under CMP0210 NEW Darwin does not overwrite CXX_LINK_FLAGS and retains native executable/shared/module creation behavior.",
+    "actual_source_excerpts": [
+      "42: cmake_policy(GET CMP0210 _CMP0210)\n43: foreach(lang C CXX OBJC OBJCXX)\n44:   set(CMAKE_${lang}_OSX_COMPATIBILITY_VERSION_FLAG \"-compatibility_version \")\n45:   set(CMAKE_${lang}_OSX_CURRENT_VERSION_FLAG \"-current_version \")\n46: \n47:   set(CMAKE_EXECUTABLE_CREATE_${lang}_FLAGS \"-Wl,-search_paths_first -Wl,-headerpad_max_install_names\")\n48:   if (NOT _CMP0210 STREQUAL \"NEW\")\n49:     set(CMAKE_${lang}_LINK_FLAGS \"${CMAKE_EXECUTABLE_CREATE_${lang}_FLAGS}\")\n50:   endif()\n51: \n52:   set(CMAKE_SHARED_LIBRARY_CREATE_${lang}_FLAGS \"-dynamiclib -Wl,-headerpad_max_install_names\")\n53:   set(CMAKE_SHARED_MODULE_CREATE_${lang}_FLAGS \"-bundle -Wl,-headerpad_max_install_names\")\n54:   set(CMAKE_SHARED_MODULE_LOADER_${lang}_FLAG \"-Wl,-bundle_loader,\")\n55: endforeach()",
+      "81: foreach(lang C CXX Fortran OBJC OBJCXX)\n82:   # Xcode does not support -isystem yet.\n83:   if(XCODE)\n84:     set(CMAKE_INCLUDE_SYSTEM_FLAG_${lang})\n85:   endif()\n86: \n87:   set(CMAKE_${lang}_CREATE_SHARED_LIBRARY\n88:     \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <SONAME_FLAG> <TARGET_INSTALLNAME_DIR><TARGET_SONAME> <OBJECTS> <LINK_LIBRARIES>\")\n89: \n90:   set(CMAKE_${lang}_CREATE_SHARED_MODULE\n91:       \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <OBJECTS> <LINK_LIBRARIES>\")\n92: \n93:   set(CMAKE_${lang}_CREATE_MACOSX_FRAMEWORK\n94:       \"<CMAKE_${lang}_COMPILER> <LANGUAGE_COMPILE_FLAGS> <LINK_FLAGS> -o <TARGET> <SONAME_FLAG> <TARGET_INSTALLNAME_DIR><TARGET_SONAME> <OBJECTS> <LINK_LIBRARIES>\")\n95: \n96:   # Set default framework search path flag for languages known to use a\n97:   # preprocessor that may find headers in frameworks.\n98:   set(CMAKE_${lang}_FRAMEWORK_SEARCH_FLAG -F)"
+    ]
+  },
+  {
+    "id": "apple-clang-flags",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Apple-Clang.cmake",
+    "fact_to_check": "Apple-Clang owns dynamiclib/bundle flags, SDK flag and deployment target flag.",
+    "actual_source_excerpts": [
+      "8: macro(__apple_compiler_clang lang)\n9:   set(CMAKE_${lang}_VERBOSE_FLAG \"-v -Wl,-v\") # also tell linker to print verbose output\n10:   set(CMAKE_SHARED_LIBRARY_CREATE_${lang}_FLAGS \"-dynamiclib -Wl,-headerpad_max_install_names\")\n11:   set(CMAKE_SHARED_MODULE_CREATE_${lang}_FLAGS \"-bundle -Wl,-headerpad_max_install_names\")\n12:   set(CMAKE_${lang}_SYSROOT_FLAG \"-isysroot\")\n13:   set(CMAKE_${lang}_OSX_DEPLOYMENT_TARGET_FLAG \"-mmacosx-version-min=\")\n14:   if(NOT CMAKE_${lang}_COMPILER_VERSION VERSION_LESS 3.2)\n15:     set(CMAKE_${lang}_SYSTEM_FRAMEWORK_SEARCH_FLAG \"-iframework \")"
+    ]
+  },
+  {
+    "id": "darwin-platform-selection",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Platform/Darwin-Initialize.cmake",
+    "fact_to_check": "Darwin chooses Apple compiler modules and can otherwise inherit architecture/SDK environment.",
+    "actual_source_excerpts": [
+      "18: # Save CMAKE_OSX_ARCHITECTURES from the environment.\n19: set(CMAKE_OSX_ARCHITECTURES \"$ENV{CMAKE_OSX_ARCHITECTURES}\" CACHE STRING\n20:   \"Build architectures for OSX\")",
+      "42: # macOS, iOS, tvOS, visionOS, and watchOS should lookup compilers from\n43: # Platform/Apple-${CMAKE_CXX_COMPILER_ID}-<LANG>\n44: set(CMAKE_EFFECTIVE_SYSTEM_NAME \"Apple\")\n45: \n46: #----------------------------------------------------------------------------\n47: # CMAKE_OSX_SYSROOT\n48: \n49: if(CMAKE_OSX_SYSROOT)\n50:   # Use the existing value without further computation to choose a default.\n51:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"${CMAKE_OSX_SYSROOT}\")\n52: elseif(NOT \"x$ENV{SDKROOT}\" STREQUAL \"x\" AND\n53:         (NOT \"x$ENV{SDKROOT}\" MATCHES \"/\" OR IS_DIRECTORY \"$ENV{SDKROOT}\"))\n54:   # Use the value of SDKROOT from the environment.\n55:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"$ENV{SDKROOT}\")\n56: elseif(CMAKE_SYSTEM_NAME STREQUAL iOS)\n57:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"iphoneos\")\n58: elseif(CMAKE_SYSTEM_NAME STREQUAL tvOS)\n59:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"appletvos\")\n60: elseif(CMAKE_SYSTEM_NAME STREQUAL visionOS)\n61:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"xros\")\n62: elseif(CMAKE_SYSTEM_NAME STREQUAL watchOS)\n63:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"watchos\")\n64: else()\n65:   set(_CMAKE_OSX_SYSROOT_DEFAULT \"\")\n66: endif()\n67: \n68: # Set cache variable - end user may change this during ccmake or cmake-gui configure.\n69: # Choose the type based on the current value.\n70: set(_CMAKE_OSX_SYSROOT_TYPE STRING)\n71: foreach(_v CMAKE_OSX_SYSROOT _CMAKE_OSX_SYSROOT_DEFAULT)\n72:   if(\"x${${_v}}\" MATCHES \"/\")\n73:     set(_CMAKE_OSX_SYSROOT_TYPE PATH)\n74:     break()\n75:   endif()\n76: endforeach()\n77: set(CMAKE_OSX_SYSROOT \"${_CMAKE_OSX_SYSROOT_DEFAULT}\" CACHE ${_CMAKE_OSX_SYSROOT_TYPE}\n78:   \"The product will be built against the headers and libraries located inside the indicated SDK.\")"
+    ]
+  },
+  {
+    "id": "flags-init-contract",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS_INIT.rst",
+    "fact_to_check": "INIT fills a new language flags cache entry only once; inherited language flags prepend; use quoted command fragments.",
+    "actual_source_excerpts": [
+      "6: Value used to initialize the :variable:`CMAKE_<LANG>_FLAGS` cache entry\n7: the first time a build tree is configured for language ``<LANG>``.\n8: This variable is meant to be set by a :variable:`toolchain file\n9: <CMAKE_TOOLCHAIN_FILE>`.  CMake may prepend or append content to\n10: the value based on the environment and target platform.  For example,\n11: the contents of a ``xxxFLAGS`` environment variable will be prepended,\n12: where ``xxx`` will be language-specific but not necessarily the same as\n13: ``<LANG>`` (e.g. :envvar:`CXXFLAGS` for ``CXX``, :envvar:`FFLAGS` for\n14: ``Fortran``, and so on).\n15: This value is a command-line string fragment. Therefore, multiple options\n16: should be separated by spaces, and options with spaces should be quoted."
+    ]
+  },
+  {
+    "id": "flags-compile-and-link",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_FLAGS.rst",
+    "fact_to_check": "Language flags reach both compile and link invocations; C and CXX initialization are independent.",
+    "actual_source_excerpts": [
+      "4: Language-wide flags for language ``<LANG>`` used when building for\n5: all configurations.  These flags will be passed to all invocations\n6: of the compiler.  This includes invocations that drive compiling\n7: and those that drive linking.\n8: \n9: For each language, if this variable is not defined, it is initialized\n10: and stored in the cache using values from environment variables in\n11: combination with CMake's builtin defaults for the toolchain:\n12: \n13: * ``CMAKE_C_FLAGS``:\n14:   Initialized by the :envvar:`CFLAGS` environment variable.\n15: * ``CMAKE_CXX_FLAGS``:\n16:   Initialized by the :envvar:`CXXFLAGS` environment variable.",
+      "32: This value is a command-line string fragment. Therefore, multiple options\n33: should be separated by spaces, and options with spaces should be quoted.\n34: \n35: The flags in this variable will be passed before those in the\n36: per-configuration :variable:`CMAKE_<LANG>_FLAGS_<CONFIG>` variable.\n37: On invocations driving compiling, flags from both variables will be passed\n38: before flags added by commands such as :command:`add_compile_options` and\n39: :command:`target_compile_options`. On invocations driving linking,\n40: they will be passed before flags added by commands such as\n41: :command:`add_link_options` and :command:`target_link_options`."
+    ]
+  },
+  {
+    "id": "standard-libraries-contract",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_STANDARD_LIBRARIES.rst",
+    "fact_to_check": "Standard libraries are for language platform libraries in all executable/shared links, but the ABI module intentionally clears this route.",
+    "actual_source_excerpts": [
+      "6: Libraries linked into every executable and shared library linked\n7: for language ``<LANG>``.  This is meant for specification of system\n8: libraries needed by the language for the current platform.\n9: \n10: This variable should not be set by project code.  It is meant to be set by\n11: CMake's platform information modules for the current toolchain, or by a\n12: toolchain file when used with :variable:`CMAKE_TOOLCHAIN_FILE`."
+    ]
+  },
+  {
+    "id": "sdk-contract",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_SYSROOT.rst",
+    "fact_to_check": "An explicit absolute SDK avoids environment/default SDK resolution.",
+    "actual_source_excerpts": [
+      "4: Specify the location or name of the macOS platform SDK to be used.\n5: \n6: If not set explicitly, the value is initialized by the ``SDKROOT``\n7: environment variable, if set.  Otherwise, the value defaults to empty,\n8: and the compiler is expected to choose a default macOS SDK on its own.\n9: \n10: .. versionchanged:: 4.0\n11:   The default is now empty.  Previously a default was computed based on\n12:   the :variable:`CMAKE_OSX_DEPLOYMENT_TARGET` or the host platform.\n13: \n14: In order to pass an explicit macOS SDK via the compiler's ``-isysroot`` flag,\n15: users may configure their build tree with ``-DCMAKE_OSX_SYSROOT=macosx``,\n16: or ``export SDKROOT=\"$(xcrun --sdk macosx --show-sdk-path)\"`` in their",
+      "27: * Some Clang compilers have no default macOS SDK selection.  For these,\n28:   if :variable:`CMAKE_OSX_SYSROOT` is empty, CMake will automatically pass\n29:   ``-isysroot`` with the macOS SDK printed by ``xcrun --show-sdk-path``.\n30: \n31: .. include:: include/CMAKE_OSX_VARIABLE.rst"
+    ]
+  },
+  {
+    "id": "deployment-contract",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_DEPLOYMENT_TARGET.rst",
+    "fact_to_check": "An explicit deployment value prevents MACOSX_DEPLOYMENT_TARGET/default inheritance.",
+    "actual_source_excerpts": [
+      "7: For builds targeting macOS (:variable:`CMAKE_SYSTEM_NAME` is ``Darwin``), if\n8: ``CMAKE_OSX_DEPLOYMENT_TARGET`` is not explicitly set, a default is set:\n9: \n10: * If the ``MACOSX_DEPLOYMENT_TARGET`` environment variable is non-empty,\n11:   its value is the default.\n12: \n13: * Otherwise, if using the :generator:`Xcode` generator, and the host's\n14:   macOS version is older than the macOS SDK (:variable:`CMAKE_OSX_SYSROOT`,\n15:   if set, or Xcode's default SDK), the host's macOS version is the default.\n16: \n17:   .. versionchanged:: 4.0\n18: \n19:     Previously this was done for all generators, not just Xcode.\n20: \n21: * Otherwise, the default is empty.",
+      "32: Other Generators\n33: \n34:   If ``CMAKE_OSX_DEPLOYMENT_TARGET`` is set to a non-empty value, it is passed\n35:   to the compiler via the ``-mmacosx-version-min`` flag or equivalent.\n36:   Otherwise, no such flag is added, so the compiler's default deployment\n37:   target is used.\n38: \n39: .. include:: include/CMAKE_OSX_VARIABLE.rst"
+    ]
+  },
+  {
+    "id": "architecture-contract",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_OSX_ARCHITECTURES.rst",
+    "fact_to_check": "The architecture variable initializes targets; otherwise compiler defaults apply.",
+    "actual_source_excerpts": [
+      "4: Target specific architectures for macOS and iOS.\n5: \n6: This variable is used to initialize the :prop_tgt:`OSX_ARCHITECTURES`\n7: property on each target as it is created.  See that target property\n8: for additional information.\n9: \n10: If ``CMAKE_OSX_ARCHITECTURES`` is not set, the compiler's default target\n11: architecture is used.  For compilers provided by Xcode, this is the host\n12: machine's architecture.\n13: \n14: .. include:: include/CMAKE_OSX_VARIABLE.rst"
+    ]
+  },
+  {
+    "id": "cpp26-standard-switch",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/Compiler/Clang.cmake",
+    "fact_to_check": "For the recorded Clang 21 compiler, CXX_STANDARD 26 with extensions disabled selects -std=c++26.",
+    "actual_source_excerpts": [
+      "198:     set(_clang_version_std23 17.0)\n199:     if(CMAKE_SYSTEM_NAME STREQUAL \"Android\")\n200:       set(_clang_version_std23 18.0)\n201:     endif()\n202: \n203:     if(NOT CMAKE_${lang}_COMPILER_VERSION VERSION_LESS \"${_clang_version_std23}\")\n204:       set(CMAKE_${lang}23_STANDARD_COMPILE_OPTION \"-std=c++23\")\n205:       set(CMAKE_${lang}23_EXTENSION_COMPILE_OPTION \"-std=gnu++23\")\n206:       set(CMAKE_${lang}26_STANDARD_COMPILE_OPTION \"-std=c++26\")\n207:       set(CMAKE_${lang}26_EXTENSION_COMPILE_OPTION \"-std=gnu++26\")\n208:       set(CMAKE_${lang}_STANDARD_LATEST 26)"
+    ]
+  },
+  {
+    "id": "private-reflection-option",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/target_compile_options.rst",
+    "fact_to_check": "PRIVATE compile options apply to the owning target and do not become interface options or link flags.",
+    "actual_source_excerpts": [
+      "12: Adds options to the :prop_tgt:`COMPILE_OPTIONS` or\n13: :prop_tgt:`INTERFACE_COMPILE_OPTIONS` target properties. These options\n14: are used when compiling the given ``<target>``, which must have been\n15: created by a command such as :command:`add_executable` or\n16: :command:`add_library` and must not be an :ref:`ALIAS target <Alias Targets>`.\n17: \n18: .. note::\n19: \n20:   These options are not used when linking the target.\n21:   See the :command:`target_link_options` command for that.",
+      "30: The ``INTERFACE``, ``PUBLIC`` and ``PRIVATE`` keywords are required to\n31: specify the :ref:`scope <Target Command Scope>` of the following arguments.\n32: ``PRIVATE`` and ``PUBLIC`` items will populate the :prop_tgt:`COMPILE_OPTIONS`\n33: property of ``<target>``.  ``PUBLIC`` and ``INTERFACE`` items will populate the\n34: :prop_tgt:`INTERFACE_COMPILE_OPTIONS` property of ``<target>``.\n35: The following arguments specify compile options.  Repeated calls for the same"
+    ]
+  },
+  {
+    "id": "disable-unneeded-module-scan",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_tgt/CXX_SCAN_FOR_MODULES.rst",
+    "fact_to_check": "OFF avoids a clang-scan-deps build invocation for the ordinary translation unit.",
+    "actual_source_excerpts": [
+      "12: This property is initialized by the value of the\n13: :variable:`CMAKE_CXX_SCAN_FOR_MODULES` variable if it is set when a target is\n14: created.\n15: \n16: When this property is set ``ON`` or unset, CMake will scan the target's\n17: ``CXX`` sources at build time and add module dependency information to the\n18: compile line as necessary.  When this property is set ``OFF``, CMake will not\n19: scan the target's ``CXX`` sources at build time.\n20: \n21: Note that scanning is only performed if C++20 or higher is enabled for the\n22: target.  Scanning for modules in the target's sources belonging to file sets\n23: of type ``CXX_MODULES`` is always performed."
+    ]
+  },
+  {
+    "id": "four-configurations",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/generator/Ninja Multi-Config.rst",
+    "fact_to_check": "Multi-Config uses CONFIGURATION_TYPES; the default omits MinSizeRel, so the candidate names all four.",
+    "actual_source_excerpts": [
+      "12: Unlike the :generator:`Ninja` generator, ``Ninja Multi-Config`` generates\n13: multiple configurations at once with :variable:`CMAKE_CONFIGURATION_TYPES`\n14: instead of only one configuration with :variable:`CMAKE_BUILD_TYPE`. One\n15: ``build-<Config>.ninja`` file will be generated for each of these\n16: configurations (with ``<Config>`` being the configuration name.) These files\n17: are intended to be run with ``ninja -f build-<Config>.ninja``. A\n18: ``build.ninja`` file is also generated, using the configuration from either\n19: :variable:`CMAKE_DEFAULT_BUILD_TYPE` or the first item from\n20: :variable:`CMAKE_CONFIGURATION_TYPES`.\n21: \n22: ``cmake --build . --config <Config>`` will always use ``build-<Config>.ninja``\n23: to build. If no :option:`--config <cmake--build --config>` argument is\n24: specified, :option:`cmake --build . <cmake --build>` will use ``build.ninja``.",
+      "36: :variable:`CMAKE_CONFIGURATION_TYPES`\n37:   Specifies the total set of configurations to build. Unlike with other\n38:   multi-config generators, this variable has a value of\n39:   ``Debug;Release;RelWithDebInfo`` by default."
+    ]
+  },
+  {
+    "id": "do-not-skip-link-checks",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_TARGET_TYPE.rst",
+    "fact_to_check": "EXECUTABLE performs a link while STATIC_LIBRARY skips the linker.",
+    "actual_source_excerpts": [
+      "6: Type of target generated for :command:`try_compile` calls using the\n7: source file signature.  Valid values are:\n8: \n9: ``EXECUTABLE``\n10:   Use :command:`add_executable` to name the source file in the\n11:   generated project.  This is the default if no value is given.\n12: \n13: ``STATIC_LIBRARY``\n14:   Use :command:`add_library` with the ``STATIC`` option to name the\n15:   source file in the generated project.  This avoids running the\n16:   linker and is intended for use with cross-compiling toolchains\n17:   that cannot link without custom flags or linker scripts."
+    ]
+  },
+  {
+    "id": "do-not-copy-pass-regex",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/prop_test/PASS_REGULAR_EXPRESSION.rst",
+    "fact_to_check": "PASS_REGULAR_EXPRESSION ignores ordinary process exit status; use normal CTest exit status and separately require exact stdout.",
+    "actual_source_excerpts": [
+      "4: The test output (stdout or stderr) must match this regular expression\n5: for the test to pass. The process exit code is ignored. Tests that exceed\n6: the timeout specified by :prop_test:`TIMEOUT` still fail regardless of\n7: ``PASS_REGULAR_EXPRESSION``. System-level test failures including\n8: segmentation faults, signal abort, or heap errors may fail the test even\n9: if ``PASS_REGULAR_EXPRESSION`` is matched."
+    ]
+  },
+  {
+    "id": "config-cache-initialization",
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeInitializeConfigs.cmake",
+    "fact_to_check": "Language/config flags use existing cache entries if present; fresh private trees and explicit checks are required.",
+    "actual_source_excerpts": [
+      "8: function(cmake_initialize_per_config_variable _PREFIX _DOCSTRING)\n9:   string(STRIP \"${${_PREFIX}_INIT}\" _INIT)\n10:   set(\"${_PREFIX}\" \"${_INIT}\"\n11:     CACHE STRING \"${_DOCSTRING} during all build types.\")\n12:   mark_as_advanced(\"${_PREFIX}\")",
+      "14:   if (NOT CMAKE_NOT_USING_CONFIG_FLAGS)\n15:     set(_CONFIGS Debug Release MinSizeRel RelWithDebInfo)\n16: \n17:     get_property(_GENERATOR_IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)\n18:     if (_GENERATOR_IS_MULTI_CONFIG)\n19:       list(APPEND _CONFIGS ${CMAKE_CONFIGURATION_TYPES})\n20:     else()\n21:       if (NOT CMAKE_NO_BUILD_TYPE)\n22:         set(CMAKE_BUILD_TYPE \"${CMAKE_BUILD_TYPE_INIT}\" CACHE STRING\n23:           \"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ...\")\n24:       endif()\n25:       list(APPEND _CONFIGS ${CMAKE_BUILD_TYPE})\n26:     endif()\n27: \n28:     list(REMOVE_DUPLICATES _CONFIGS)\n29:     foreach(_BUILD_TYPE IN LISTS _CONFIGS)\n30:       if (NOT \"${_BUILD_TYPE}\" STREQUAL \"\")\n31:         string(TOUPPER \"${_BUILD_TYPE}\" _BUILD_TYPE)\n32:         string(STRIP \"${${_PREFIX}_${_BUILD_TYPE}_INIT}\" _INIT)\n33:         set(\"${_PREFIX}_${_BUILD_TYPE}\" \"${_INIT}\"\n34:           CACHE STRING \"${_DOCSTRING} during ${_BUILD_TYPE} builds.\")"
+    ]
+  }
+]

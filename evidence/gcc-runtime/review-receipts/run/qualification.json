@@ -1,0 +1,787 @@
+{
+  "state": "PASS: GCC16 reflection compile/link/run",
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:30:36.201745+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "named-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:30:36.324509+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stdout",
+          "sha256": "89e5c3c05754b9d210647d9bda31af5fb41f0f7cf893c98ef169b34d3ad6d5c9"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/named-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "c-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+        "-dumpfullversion"
+      ],
+      "started_at": "2026-10-11T02:30:36.505508+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stdout",
+          "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/c-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cxx-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-dumpfullversion"
+      ],
+      "started_at": "2026-10-11T02:30:36.747825+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stdout",
+          "sha256": "e9f8839c742db21d285464b01dfb2e572f802c366729873cdc4a296c8c3a01ea"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "compiler-configuration",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-v"
+      ],
+      "started_at": "2026-10-11T02:30:36.872742+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/compiler-configuration.stderr",
+          "sha256": "85fe6d52a399cd3fb120bd1441f71ed05c3fb8d790c8351e752f3828f4691805"
+        }
+      ]
+    },
+    {
+      "case": "sdk-path",
+      "argv": [
+        "/usr/bin/xcrun",
+        "--sdk",
+        "macosx",
+        "--show-sdk-path"
+      ],
+      "started_at": "2026-10-11T02:30:36.995900+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stdout",
+          "sha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-path.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "sdk-version",
+      "argv": [
+        "/usr/bin/xcrun",
+        "--sdk",
+        "macosx",
+        "--show-sdk-version"
+      ],
+      "started_at": "2026-10-11T02:30:37.008407+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stdout",
+          "sha256": "7b01c549928398a045692f24bcac7803b348524cdd76f21265b02984b2ba556a"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/sdk-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cc1plus-path",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-print-prog-name=cc1plus"
+      ],
+      "started_at": "2026-10-11T02:30:37.020663+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stdout",
+          "sha256": "986216123ef4fe59309fa072072c7e56c9e8484fea0fd0f8bec9f1837aac44a5"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-path.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libstdcpp-path",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-print-file-name=libstdc++.6.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.148099+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stdout",
+          "sha256": "ab361a48f3e791e8f5446ee68b454fe8b9e3cf6df848066d11f02a621d6467ff"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-path.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libgcc-path",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-print-file-name=libgcc_s.1.1.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.276106+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stdout",
+          "sha256": "37ddd6d0c393d836bd6a82da7abdf679f47140aa5e220a3bcb8e38e521908c8b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-path.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cxx-architecture",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16"
+      ],
+      "started_at": "2026-10-11T02:30:37.429845+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-architecture.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cxx-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16"
+      ],
+      "started_at": "2026-10-11T02:30:37.436697+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stdout",
+          "sha256": "1f40b74a6411c6976376cdfd26e3246ede26bbda16cbac309c8b23364767f476"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cxx-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cc1plus-architecture",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus"
+      ],
+      "started_at": "2026-10-11T02:30:37.457351+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-architecture.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cc1plus-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus"
+      ],
+      "started_at": "2026-10-11T02:30:37.463875+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stdout",
+          "sha256": "f41d67c96a5ef51d81ae6a37ab476d3a180ff385f2093f21abf4ce8ecc452c07"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cc1plus-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libstdcpp-architecture",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.483094+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stdout",
+          "sha256": "f31727034b4f715eb79d8b4961bf28151cac23cf1cafe61000840420699049f2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-architecture.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libstdcpp-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.489889+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stdout",
+          "sha256": "cd32b930fef5095eab52293adcc3b5b67f66c57a9d9c2d3abf9c1a9d91d8e686"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libstdcpp-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libgcc-architecture",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.510719+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stdout",
+          "sha256": "48b5e46aaad1f813680562b1cd4fdb022339fc40f2c61ba9d1575eeb267f819d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-architecture.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "libgcc-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib"
+      ],
+      "started_at": "2026-10-11T02:30:37.517565+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stdout",
+          "sha256": "0041feb3b89dd73f1b76f7a52606c251b14acf38134ea738ad98e2a525b7b01e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/libgcc-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "feature-macros",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-freflection",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-dM",
+        "-E",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/empty.cpp"
+      ],
+      "started_at": "2026-10-11T02:30:37.538854+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stdout",
+          "sha256": "e14b925216fe73b35fb1c33cb58b5be1bbb32e66769909f8807667a572c54451"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/feature-macros.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "header-dependencies",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-freflection",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-M",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp"
+      ],
+      "started_at": "2026-10-11T02:30:37.667999+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stdout",
+          "sha256": "802eb11893a2876fafb14764bc79fd0f2478a7da752ad523048cdad9cb39cd05"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/header-dependencies.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "reflection-build",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-freflection",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-g",
+        "-v",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection"
+      ],
+      "started_at": "2026-10-11T02:30:38.015587+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-build.stderr",
+          "sha256": "44a8df4d590eeffadacd30ca68fe50281345062e266d217023698a474dbf7193"
+        }
+      ]
+    },
+    {
+      "case": "reflection-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection"
+      ],
+      "started_at": "2026-10-11T02:30:39.984379+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stdout",
+          "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection-run.stderr",
+          "sha256": "c0f4185583c0ac520008e9ca772495e55a6ba7ad94ac651711dc265aabbffc2e"
+        }
+      ]
+    },
+    {
+      "case": "witness-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection"
+      ],
+      "started_at": "2026-10-11T02:30:40.274846+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stdout",
+          "sha256": "5511630a1c125aafc18521e6043a0849f289b47c78c23ccfcadf0a50de1ce121"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "witness-symbols",
+      "argv": [
+        "/usr/bin/nm",
+        "-m",
+        "-u",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection"
+      ],
+      "started_at": "2026-10-11T02:30:40.300429+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stdout",
+          "sha256": "8151264383ec25b1ff08f554064fe82a562e7806d6c078102f9fc8f46a1a8498"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/witness-symbols.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "without-reflection",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-fmax-errors=2",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection"
+      ],
+      "started_at": "2026-10-11T02:30:40.324069+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/without-reflection.stderr",
+          "sha256": "986102ce737678746483311163a46feaf9a92fb3bf0c1e78c7a93ce3490f1be3"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:30:40.934241+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "script_sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b",
+  "source_sha256": "2dc8709cc3a8ba2140eb357b092bfb4dd6283a3001ae7515bbd7c76c80553ec7",
+  "admission": {
+    "owner": "/root",
+    "scope": "Sequential tiny compiler probes only; 60 seconds each",
+    "at": "2026-10-11T02:30:36.201531+00:00",
+    "census_returncode": 0,
+    "load_average": [
+      13.4306640625,
+      15.31494140625,
+      21.30224609375
+    ],
+    "cpu_count": 12,
+    "active_builds": []
+  },
+  "selected_environment": {
+    "selected": {
+      "CC": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+      "CXX": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "CFLAGS": null,
+      "CXXFLAGS": null,
+      "CPPFLAGS": null,
+      "LDFLAGS": null,
+      "AR": null,
+      "RANLIB": null,
+      "LD": null,
+      "AS": null,
+      "CPATH": null,
+      "C_INCLUDE_PATH": null,
+      "CPLUS_INCLUDE_PATH": null,
+      "OBJC_INCLUDE_PATH": null,
+      "LIBRARY_PATH": null,
+      "COMPILER_PATH": null,
+      "PKG_CONFIG_PATH": null,
+      "PKG_CONFIG_LIBDIR": null,
+      "CMAKE_PREFIX_PATH": null,
+      "CMAKE_TOOLCHAIN_FILE": null,
+      "CMAKE_GENERATOR": null,
+      "CMAKE_C_COMPILER_LAUNCHER": null,
+      "CMAKE_CXX_COMPILER_LAUNCHER": null,
+      "SDKROOT": null,
+      "MACOSX_DEPLOYMENT_TARGET": null,
+      "DYLD_LIBRARY_PATH": null,
+      "DYLD_FALLBACK_LIBRARY_PATH": null,
+      "MARKETPLACE_CPP_LANE": "gcc16",
+      "MARKETPLACE_P2996_PREFIX": null,
+      "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0",
+      "MAKEFLAGS": "-j2",
+      "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+    },
+    "path_sha256": "6899194f726297bb709c28c349e12340b341c8549e2dd5ce2b1d3767e8c3bf43",
+    "homebrew_llvm_on_path": true
+  },
+  "sdk": {
+    "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+  },
+  "identities": {
+    "cc": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/bin/gcc-16",
+      "sha256": "406040ac6e22d01468e601a5aaa548e60af1c151efb056aa45d485d6804f0cd4"
+    },
+    "cxx": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363"
+    },
+    "meta": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/meta",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/include/c++/16/meta",
+      "sha256": "d368e49966e65a0bce3cdcf38bbd0430b57100d21a09e40ba2e460c2db26b3f5"
+    },
+    "cc1plus": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/libexec/gcc/aarch64-apple-darwin25/16/cc1plus",
+      "sha256": "d1105933191bc5c1713714b6da8480fe9cacb3bd802ec3a97a1bc4c07d3b753a"
+    },
+    "libstdc++": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib",
+      "sha256": "d4d4cbc6f9d797bd64b6e88a62111b5d206c41d030b5d764a72558146da4d2ee"
+    },
+    "libgcc": {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libgcc_s.1.1.dylib",
+      "sha256": "18b55070e058297b9653a0da11f30d48363fe2002371f07fb53e88936cfec6c9"
+    }
+  },
+  "feature_macros": {
+    "__cplusplus": "202400L",
+    "__GLIBCXX__": "20260807",
+    "__cpp_lib_reflection": "202603L",
+    "__cpp_impl_reflection": "202603L",
+    "_GLIBCXX_RELEASE": "16"
+  },
+  "system_cxx_images": [
+    "dyld[28258]: <A21743EE-6E1C-3E74-97EA-7AF793DE4BDF> /usr/lib/libc++abi.dylib",
+    "dyld[28258]: <1E9BA4AA-B5DA-3CF3-80AC-4B880049573F> /usr/lib/libc++.1.dylib"
+  ],
+  "witness": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-runtime-review-vwt_xsbm/run/reflection",
+    "sha256": "621f57d144a40425ba632f7c3a787ef5e206c56163896e8e1fbe2cc1a745bbee",
+    "output": "reflection value=43\n"
+  },
+  "protected_state_unchanged": true
+}

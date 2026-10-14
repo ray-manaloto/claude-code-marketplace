@@ -1,0 +1,47 @@
+Using built-in specs.
+COLLECT_GCC=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16
+COLLECT_LTO_WRAPPER=/opt/homebrew/Cellar/gcc/16.2.0/bin/../libexec/gcc/aarch64-apple-darwin25/16/lto-wrapper
+Target: aarch64-apple-darwin25
+Configured with: ../configure --prefix=/opt/homebrew/opt/gcc --libdir=/opt/homebrew/opt/gcc/lib/gcc/current --disable-nls --enable-checking=release --with-gcc-major-version-only --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-16 --with-gmp=/opt/homebrew/opt/gmp --with-mpfr=/opt/homebrew/opt/mpfr --with-mpc=/opt/homebrew/opt/libmpc --with-isl=/opt/homebrew/opt/isl --with-zstd=/opt/homebrew/opt/zstd --with-pkgversion='Homebrew GCC 16.2.0' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues --with-system-zlib --build=aarch64-apple-darwin25 --with-sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 16.2.0 (Homebrew GCC 16.2.0) 
+COLLECT_GCC_OPTIONS='-std=c++26' '-freflection' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk' '-pedantic-errors' '-Wall' '-Wextra' '-Werror' '-O0' '-g' '-v' '-o' '/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0230/reflection' '-mmacosx-version-min=27.0.0' '-asm_macosx_version_min=27.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' '/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0230/'
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../libexec/gcc/aarch64-apple-darwin25/16/cc1plus -quiet -v -iprefix /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/ -D__DYNAMIC__ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp -fPIC -quiet -dumpdir /Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0230/ -dumpbase reflection.cpp -dumpbase-ext .cpp -mmacosx-version-min=27.0.0 -mcpu=apple-m1 -mlittle-endian -mabi=lp64 -g -O0 -pedantic-errors -Wall -Wextra -Werror -std=c++26 -version -freflection -o /var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T//ccpFOOVU.s
+GNU C++26 (Homebrew GCC 16.2.0) version 16.2.0 (aarch64-apple-darwin25)
+	compiled by GNU C version 16.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.28-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../aarch64-apple-darwin25/include"
+ignoring duplicate directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16"
+ignoring duplicate directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16/aarch64-apple-darwin25"
+ignoring duplicate directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16/backward"
+ignoring duplicate directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/local/include"
+ignoring duplicate directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed"
+ignoring nonexistent directory "/opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/../../../../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../aarch64-apple-darwin25/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16/aarch64-apple-darwin25
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/../../../../../../include/c++/16/backward
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/include
+ /opt/homebrew/Cellar/gcc/16.2.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/16/include-fixed
+ /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include
+ /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/System/Library/Frameworks
+End of search list.
+Compiler executable checksum: fc28a644106e80956b06ae5bf65dffd2
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp:14:32: error: expected a reflection of an expression
+   14 | static_assert(std::is_same_v<[:std::meta::type_of(member):], int>);
+      |                              ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp:14:58: note: but 'int' is a type
+   14 | static_assert(std::is_same_v<[:std::meta::type_of(member):], int>);
+      |                                                          ^~
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp:14:30: note: add 'typename' to denote a type outside a type-only context
+   14 | static_assert(std::is_same_v<[:std::meta::type_of(member):], int>);
+      |                              ^
+      |                              typename
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp:14:65: error: template argument 1 is invalid
+   14 | static_assert(std::is_same_v<[:std::meta::type_of(member):], int>);
+      |                                                                 ^

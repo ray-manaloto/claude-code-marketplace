@@ -1,0 +1,66 @@
+{
+  "result": "FAIL: R1 exact-mode identity contract bypass",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "title": "Preserve special permission bits in exact file identities",
+      "path": "dev/toolchains/p2996_asan_runtime.py",
+      "line": 86,
+      "problem": "identity() reports oct(info.st_mode & 0o777), discarding setuid, setgid and sticky bits. replace_exact therefore accepts a file with mode 0o4755 against expected 0o755. Its postcondition reports 0o755 even when the promoted inode still has mode 0o4755.",
+      "evidence": "The independent two-fixture control extracted only the frozen identity and replace_exact functions. A staged 0o4755 fixture was accepted and promoted with actual mode 0o4755; the helper reported 0o755. A destination preimage at 0o4755 was also accepted against expected 0o755. Both checks completed without assertion; no installed paths were modified.",
+      "reproduction": "mode-control.py and mode-control.json; actual Python exit 0 recorded in mode-execution.json.",
+      "requested_fix": "Use stat.S_IMODE(info.st_mode), or explicitly reject special permission bits, and add source/destination setuid, setgid and sticky-bit rejection controls. The proposed protected() target-identity entry check should also prevent full-mode or hard-link drift from being hidden by the preserved legacy inventory masks.",
+      "disposition": "Parent accepted R1; correction has not been reviewed in this receipt."
+    }
+  ],
+  "reviewed_at": "2026-10-12T01:08:07.565066+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": "Original four-file Task14a2 preparation freeze only; parent sole implementation writer; reviewer changed no maintained files.",
+  "candidate_sha256": "a5d7cd984515fcd8f4ba677fd62544c8927cbff0ab272145ef07169ee0bda9eb",
+  "helper_sha256": "c390c4615eeb2a023dc9bd255b18e2a9425a69f38712c79c126f327825e8c40c",
+  "contract_sha256": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+  "controls_sha256": "e86093782f95543e0697e47302fffaee5ce9aac5350d3b5b361d95739889737f",
+  "checks": {
+    "identity": "Actual checkout, branch, HEAD and common Git commands exited 0.",
+    "source": "Read all 96 helper lines, documentation/plan deltas and the relevant inherited guard bodies. The exact two inventory paths and SHA/bytes-only deep-copy overlays preserve the mise metadata and executable overlays and full recorded reflection/prefix checks. No automatic old/new digest selection is added.",
+    "bindings": "Independent read-only comparison exited 0: six exact snapshots, 19 small project input hashes, 26 private text copy pairs and 38 scan text bindings matched. Qualification/review references select the exact previously reviewed patched runtime; no 14a1 artifact rehash.",
+    "controls": "Inspected driver and all 11 command outcomes/logs: replace and restore rc 0; nine rejections rc 1, including PermissionError outside the sandbox allowlist. The 32 checks include a real wrapper-composition check with terminal reflection guard, semantic and digest checks explicitly stubbed; it is not a live shared-state audit.",
+    "metadata": "Read only metadata for the two named target/replacement files: canonical owned regular single-link paths; installed target mode 0755 and qualified private replacement mode 0700. No contents read or hashed for either file.",
+    "static": "Inspected three recorded rc 0 checks including all 19 original Claude acceptance hashes. Scanner receipt records 38 files, raw rc 0 and empty complete-token list. Neither was rerun.",
+    "independent_finding": "Two tiny new private fixture controls confirmed R1; Python exit 0 in 0.030 s. Receipt comparison exited 0 in 0.053 s."
+  },
+  "existing_acceptance": "No plugin, CLI/data-path, OCI, native project configuration, hook, or runtime changes are part of this unit. Recorded baseline preservation is static evidence only.",
+  "not_run": [
+    "Current full shared-state guard",
+    "Installed promotion, recovery or sanitizer witnesses",
+    "Compiler, linker or other native toolchain/runtime operations",
+    "Capacity, census, lease or PID probes",
+    "Scanner or baseline replay",
+    "Old compiler trees, source inventories or 14a1 artifact hashing",
+    "Network, credentials, global changes, services, containers or fresh model sessions"
+  ],
+  "future_caller_responsibilities": [
+    "Whole-source/build provenance and staging permissions",
+    "Exact backup, fresh capacity and ownership/lease admission",
+    "Scoped installed mutation and recovery",
+    "Seven witnesses through the installed runtime path"
+  ],
+  "supporting_files": [
+    "original-candidate.json",
+    "original-candidate-inputs.json",
+    "original-contract.json",
+    "original-controls-execution.json",
+    "original-pre-review-static.json",
+    "original-pre-review-secret-scan.json",
+    "compare.py",
+    "comparison.json",
+    "execution.json",
+    "mode-control.py",
+    "mode-control.json",
+    "mode-execution.json"
+  ]
+}

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py", line 210, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py", line 171, in main
+    output = run(label, launcher + [binary, name, json.dumps(contract["runtime_environment"])],
+                 timeout=20, descriptor=fd, expected=expected)
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py", line 71, in run
+    result = native(label, argv, timeout=timeout, descriptor=descriptor, monitor=monitor)
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source", line 88, in run
+    raise subprocess.TimeoutExpired(argv, timeout)
+subprocess.TimeoutExpired: Command '['/usr/bin/sandbox-exec', '-f', '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-native-retry-20261012T044830Z/private.sb', '/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3', '-E', '-B', '-c', "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))", '/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-native-retry-20261012T044830Z/lsan/witness', 'clean', '{"LSAN_OPTIONS": "detect_leaks=1:exitcode=86:symbolize=0", "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1"}']' timed out after 20 seconds

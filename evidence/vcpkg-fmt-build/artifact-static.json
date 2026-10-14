@@ -1,0 +1,30 @@
+{
+  "prior_sha256": "88f1c1ecb9ab0d9c433c9b0e0913d562627dbb57537382abd3bfddd2d74e219b",
+  "prior_tasks_validate_returncode": 0,
+  "correction": "Preserve generated Ninja final blank lines in the same narrow native-evidence pattern.",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "add",
+        "--",
+        ".gitattributes"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.017097125062718987,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.3102559170220047,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1649, \"python\": 120, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    }
+  ]
+}

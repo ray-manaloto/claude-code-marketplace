@@ -1,0 +1,90 @@
+{
+  "result": "PASS",
+  "created_at": "2026-10-11T18:27:43.207693+00:00",
+  "helper_sha256": "55dc72e3f26baf26a6c250c9aa652d30a06873f6f3c4efb0a70be93f788ef468",
+  "contract_sha256": "72d537a4857e431afab0f1127114107cbc54facc83db20da7deb84f182ea80f1",
+  "candidate_sha256": "4d0ffcfa2b72bcdf494fded9ea9778c550c31366c62fbac276ce698c0c0805d0",
+  "cases": [
+    {
+      "case": "exact-overlay-and-output-mutation-isolation",
+      "pass": true
+    },
+    {
+      "case": "wrong-existing-renovate-preimage",
+      "pass": true,
+      "observed": "rejected"
+    },
+    {
+      "case": "missing-global-alias",
+      "pass": true,
+      "observed": "rejected"
+    },
+    {
+      "case": "semantic-exact",
+      "pass": true,
+      "observed": "accepted"
+    },
+    {
+      "case": "semantic-lock-specifier",
+      "pass": true,
+      "observed": "rejected"
+    },
+    {
+      "case": "semantic-current-symlink",
+      "pass": true,
+      "observed": "rejected"
+    },
+    {
+      "case": "semantic-current-hash-drift",
+      "pass": true,
+      "observed": "rejected"
+    },
+    {
+      "case": "delegation-exact",
+      "pass": true,
+      "stages": [
+        "contract",
+        "semantic",
+        "function",
+        "delegate"
+      ],
+      "failure_propagated_unchanged": null
+    },
+    {
+      "case": "contract-failure",
+      "pass": true,
+      "stages": [
+        "contract"
+      ],
+      "failure_propagated_unchanged": true
+    },
+    {
+      "case": "semantic-failure",
+      "pass": true,
+      "stages": [
+        "contract",
+        "semantic"
+      ],
+      "failure_propagated_unchanged": true
+    },
+    {
+      "case": "legacy-failure",
+      "pass": true,
+      "stages": [
+        "contract",
+        "semantic",
+        "function",
+        "delegate"
+      ],
+      "failure_propagated_unchanged": true
+    }
+  ],
+  "case_count": 11,
+  "frozen_inputs_unchanged": 17,
+  "actual_legacy_protected_calls": 0,
+  "mocked_adapter_calls": 4,
+  "main_calls": 0,
+  "native_tool_commands": 0,
+  "live_shared_inventory_calls": 0,
+  "method": "Actual AST-extracted overlay and semantic_check with private toy files; actual AST-extracted protected adapter with contract/semantic/legacy delegation mocked. No main or real protection calls."
+}

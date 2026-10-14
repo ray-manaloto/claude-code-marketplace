@@ -1,0 +1,525 @@
+Change Dir: '/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/build'
+
+Run Build Command(s): /Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja -v -j 1 include-what-you-use
+[1/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:112:
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:127:1: note: expanded from here
+  127 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:412:18: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseStmt' requested here
+  412 |     return Base::TraverseStmt(stmt);
+      |                  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:533:12: note: in instantiation of member function 'include_what_you_use::BaseAstVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseStmt' requested here
+  533 |     TRY_TO(TraverseStmt(IDC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseTypeConstraint' requested here
+ 2052 |     TRY_TO(TraverseTypeConstraint(TC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:770:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseTemplateTypeParamDeclConstraints' requested here
+  770 |         return TraverseTemplateTypeParamDeclConstraints(TTPD);
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:398:18: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseDecl' requested here
+  398 |     return Base::TraverseDecl(decl);
+      |                  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:991:7: note: in instantiation of member function 'include_what_you_use::BaseAstVisitor<include_what_you_use::AstFlattenerVisitor>::TraverseDecl' requested here
+  991 |       TraverseDecl(decl);
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::InstantiatedTemplateVisitor>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:127:1: note: expanded from here
+  127 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::InstantiatedTemplateVisitor>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2758:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::InstantiatedTemplateVisitor>::TraverseStmt' requested here
+ 2758 | DEF_TRAVERSE_STMT(UnaryExprOrTypeTraitExpr, {
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2471:9: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2471 |         TRY_TO_TRAVERSE_OR_ENQUEUE_STMT(SubStmt);                              \
+      |         ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:367:10: note: expanded from macro 'TRY_TO_TRAVERSE_OR_ENQUEUE_STMT'
+  367 |     if (!TRAVERSE_STMT_BASE(Stmt, Stmt, S, Queue))                             \
+      |          ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:359:15: note: expanded from macro 'TRAVERSE_STMT_BASE'
+  359 |              .Traverse##NAME(static_cast<CLASS *>(VAR), QUEUE)                 \
+      |               ^
+<scratch space>:89:1: note: expanded from here
+   89 | TraverseStmt
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:3846:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::InstantiatedTemplateVisitor>::TraverseUnaryExprOrTypeTraitExpr' requested here
+ 3846 |     if (!Base::TraverseUnaryExprOrTypeTraitExpr(expr))
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:127:1: note: expanded from here
+  127 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:412:18: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::TraverseStmt' requested here
+  412 |     return Base::TraverseStmt(stmt);
+      |                  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:533:12: note: in instantiation of member function 'include_what_you_use::BaseAstVisitor<include_what_you_use::IwyuAstConsumer>::TraverseStmt' requested here
+  533 |     TRY_TO(TraverseStmt(IDC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::TraverseTypeConstraint' requested here
+ 2052 |     TRY_TO(TraverseTypeConstraint(TC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:770:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::TraverseTemplateTypeParamDeclConstraints' requested here
+  770 |         return TraverseTemplateTypeParamDeclConstraints(TTPD);
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:398:18: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::IwyuAstConsumer>::TraverseDecl' requested here
+  398 |     return Base::TraverseDecl(decl);
+      |                  ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:4588:5: note: in instantiation of member function 'include_what_you_use::BaseAstVisitor<include_what_you_use::IwyuAstConsumer>::TraverseDecl' requested here
+ 4588 |     TraverseDecl(tu_decl);
+      |     ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:127:1: note: expanded from here
+  127 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:533:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseStmt' requested here
+  533 |     TRY_TO(TraverseStmt(IDC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseTypeConstraint' requested here
+ 2052 |     TRY_TO(TraverseTypeConstraint(TC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:770:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseTemplateTypeParamDeclConstraints' requested here
+  770 |         return TraverseTemplateTypeParamDeclConstraints(TTPD);
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu.cc:4689:7: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseDecl' requested here
+ 4689 |     v.TraverseDecl(tu_decl);
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+5 warnings generated.
+[2/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_ast_util.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_ast_util.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_ast_util.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:30:
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::SugaredTypeEnumerator>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:39:1: note: expanded from here
+   39 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::SugaredTypeEnumerator>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:925:25: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::SugaredTypeEnumerator>::TraverseStmt' requested here
+  925 |     return getDerived().TraverseStmt(Arg.getAsExpr());
+      |                         ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:621:5: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::SugaredTypeEnumerator>::TraverseTemplateArgument' requested here
+  621 |     TraverseTemplateArgument(tpl_arg);
+      |     ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::TypeEnumeratorWithoutSubstituted>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:39:1: note: expanded from here
+   39 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::TypeEnumeratorWithoutSubstituted>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:1052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::TypeEnumeratorWithoutSubstituted>::TraverseStmt' requested here
+ 1052 |     TRY_TO(TraverseStmt(const_cast<Expr*>(T->getSizeExpr())));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:1016:7: note: expanded from macro 'DEF_TRAVERSE_TYPE'
+ 1016 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/TypeNodes.inc:25:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::TypeEnumeratorWithoutSubstituted>::TraverseConstantArrayType' requested here
+   25 | TYPE(ConstantArray, ArrayType)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:728:25: note: expanded from macro 'TYPE'
+  728 |     return getDerived().Traverse##CLASS##Type(                                 \
+      |                         ^
+<scratch space>:54:1: note: expanded from here
+   54 | TraverseConstantArrayType
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:675:20: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::TypeEnumeratorWithoutSubstituted>::TraverseType' requested here
+  675 |       return Base::TraverseType(type);
+      |                    ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::CanonicalTypeEnumerator>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:39:1: note: expanded from here
+   39 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::CanonicalTypeEnumerator>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:1052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::CanonicalTypeEnumerator>::TraverseStmt' requested here
+ 1052 |     TRY_TO(TraverseStmt(const_cast<Expr*>(T->getSizeExpr())));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:1016:7: note: expanded from macro 'DEF_TRAVERSE_TYPE'
+ 1016 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/TypeNodes.inc:25:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::CanonicalTypeEnumerator>::TraverseConstantArrayType' requested here
+   25 | TYPE(ConstantArray, ArrayType)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:728:25: note: expanded from macro 'TYPE'
+  728 |     return getDerived().Traverse##CLASS##Type(                                 \
+      |                         ^
+<scratch space>:54:1: note: expanded from here
+   54 | TraverseConstantArrayType
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:717:20: note: in instantiation of member function 'clang::RecursiveASTVisitor<include_what_you_use::CanonicalTypeEnumerator>::TraverseType' requested here
+  717 |       return Base::TraverseType(type);
+      |                    ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:39:1: note: expanded from here
+   39 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:533:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseStmt' requested here
+  533 |     TRY_TO(TraverseStmt(IDC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2052:12: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseTypeConstraint' requested here
+ 2052 |     TRY_TO(TraverseTypeConstraint(TC));
+      |            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:770:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseTemplateTypeParamDeclConstraints' requested here
+  770 |         return TraverseTemplateTypeParamDeclConstraints(TTPD);
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:886:5: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseDecl' requested here
+  886 |   v.TraverseDecl(decl);
+      |     ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]
+ 3039 |     switch (RV.getReflectionKind()) {
+      |             ~~~^~~~~~~~~~~~~~~~~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^~~~
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:712:1: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseCXXReflectExpr' requested here
+  712 | CXXREFLECTEXPR(CXXReflectExpr, Expr)
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:710:38: note: expanded from macro 'CXXREFLECTEXPR'
+  710 | #  define CXXREFLECTEXPR(Type, Base) EXPR(Type, Base)
+      |                                      ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:38:28: note: expanded from macro 'EXPR'
+   38 | #  define EXPR(Type, Base) VALUESTMT(Type, Base)
+      |                            ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/StmtNodes.inc:28:33: note: expanded from macro 'VALUESTMT'
+   28 | #  define VALUESTMT(Type, Base) STMT(Type, Base)
+      |                                 ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:652:61: note: expanded from macro 'STMT'
+  652 |     if (::clang::detail::isSameMethod(&RecursiveASTVisitor::Traverse##CLASS,   \
+      |                                                             ^
+<scratch space>:39:1: note: expanded from here
+   39 | TraverseCXXReflectExpr
+      | ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:700:16: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::PostVisitStmt' requested here
+  700 |         TRY_TO(PostVisitStmt(CurrS));
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:68:23: note: expanded from macro 'TRY_TO'
+   68 |     if (!getDerived().CALL_EXPR)                                               \
+      |                       ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_ast_util.cc:981:5: note: in instantiation of member function 'clang::RecursiveASTVisitor<Visitor>::TraverseStmt' requested here
+  981 |   v.TraverseStmt(const_cast<Expr*>(expr));
+      |     ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: note: add missing switch cases
+ 3039 |     switch (RV.getReflectionKind()) {
+      |                ^
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:2468:7: note: expanded from macro 'DEF_TRAVERSE_STMT'
+ 2468 |     { CODE; }                                                                  \
+      |       ^
+6 warnings generated.
+[3/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_cache.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_cache.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_cache.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_cache.cc
+[4/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_driver.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_driver.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_driver.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_driver.cc
+[5/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_getopt.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_getopt.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_getopt.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_getopt.cc
+[6/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_globals.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_globals.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_globals.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_globals.cc
+[7/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_include_picker.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_include_picker.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_include_picker.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_include_picker.cc
+[8/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_lexer_utils.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_lexer_utils.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_lexer_utils.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_lexer_utils.cc
+[9/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_location_util.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_location_util.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_location_util.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_location_util.cc
+[10/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_output.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_output.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_output.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_output.cc
+[11/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_path_util.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_path_util.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_path_util.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_path_util.cc
+[12/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_port.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_port.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_port.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_port.cc
+[13/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_preprocessor.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_preprocessor.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_preprocessor.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_preprocessor.cc
+[14/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_regex.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_regex.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_regex.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_regex.cc
+[15/16] /Library/Developer/CommandLineTools/usr/bin/clang++ -DGTEST_HAS_RTTI=0 -DIWYU_GIT_REV=\"791e69e\" -DIWYU_RESOURCE_BINARY_PATH=\"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21\" -DIWYU_RESOURCE_DIR=\"\" -D_DEBUG -D_GLIBCXX_ASSERTIONS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0  -fno-exceptions -funwind-tables -fno-rtti -UNDEBUG -MD -MT CMakeFiles/include-what-you-use.dir/iwyu_verrs.cc.o -MF CMakeFiles/include-what-you-use.dir/iwyu_verrs.cc.o.d -o CMakeFiles/include-what-you-use.dir/iwyu_verrs.cc.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source/iwyu_verrs.cc
+[16/16] : && /Library/Developer/CommandLineTools/usr/bin/clang++ -fPIC -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -O3 -DNDEBUG -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -Wl,-dead_strip -Wl,-no_warn_duplicate_libraries CMakeFiles/include-what-you-use.dir/iwyu.cc.o CMakeFiles/include-what-you-use.dir/iwyu_ast_util.cc.o CMakeFiles/include-what-you-use.dir/iwyu_cache.cc.o CMakeFiles/include-what-you-use.dir/iwyu_driver.cc.o CMakeFiles/include-what-you-use.dir/iwyu_getopt.cc.o CMakeFiles/include-what-you-use.dir/iwyu_globals.cc.o CMakeFiles/include-what-you-use.dir/iwyu_include_picker.cc.o CMakeFiles/include-what-you-use.dir/iwyu_lexer_utils.cc.o CMakeFiles/include-what-you-use.dir/iwyu_location_util.cc.o CMakeFiles/include-what-you-use.dir/iwyu_output.cc.o CMakeFiles/include-what-you-use.dir/iwyu_path_util.cc.o CMakeFiles/include-what-you-use.dir/iwyu_port.cc.o CMakeFiles/include-what-you-use.dir/iwyu_preprocessor.cc.o CMakeFiles/include-what-you-use.dir/iwyu_regex.cc.o CMakeFiles/include-what-you-use.dir/iwyu_verrs.cc.o -o bin/include-what-you-use  -Wl,-rpath,@loader_path/../lib -Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib  /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libclang-cpp.dylib  /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libLLVM.dylib && :
+

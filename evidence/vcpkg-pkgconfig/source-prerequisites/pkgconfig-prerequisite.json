@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "kind": "task12c2-pkgconfig-read-only-prerequisite",
+  "recorded_at": "2026-10-11T18:46:00.729Z",
+  "reviewer": "/root/config_inspector",
+  "status": "BOUNDED_INVENTORY_COMPLETE_REQUIRED_TOOL_AVAILABILITY_UNRESOLVED",
+  "acceptance": false,
+  "summary": "No pkg-config executable was identified at the four fixed searched paths, and no pkgconf executable, Homebrew pkg-config/pkgconf package path, or managed alternative was identified in the explicitly inspected sources. This is a bounded absence finding, not host-wide absence or native selection evidence.",
+  "project_identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "initial_head": "e66a60c3e7fe76be39169986b1eb3aed6bccc2c6",
+    "closing_head": "e66a60c3e7fe76be39169986b1eb3aed6bccc2c6",
+    "head_unchanged": true,
+    "method": "Direct filesystem reads of exact Git administrative text files; no Git executable"
+  },
+  "prerequisite": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/prerequisite.json",
+    "sha256": "fe1ca643e97ce091ee5f54c3541e922659c332bd0906fa073ae959b574d57243",
+    "expected_sha256": "fe1ca643e97ce091ee5f54c3541e922659c332bd0906fa073ae959b574d57243",
+    "matches": true,
+    "prior_source_manifest": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/source-manifest.json",
+      "sha256": "b8577d5b4813ab5837d5af3d571e02144415e2c819a889556c2f25b65ac2bf53"
+    }
+  },
+  "source_manifest": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12c2-pkgconfig-prereq-ZOtdAJ/source-manifest.json",
+    "relative_path": "source-manifest.json",
+    "sha256": "631cdbc7c0747eed73b64512a3bd35a3ada61d305bdf100067cc53a7221938e5",
+    "size": 9599,
+    "mode": "0600",
+    "readback_matches": true
+  },
+  "inventory": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12c2-pkgconfig-prereq-ZOtdAJ/inventory.json",
+    "relative_path": "inventory.json",
+    "sha256": "72cc6bffc82b3581ff53e0a5c96d1d504d2675ade365d8bd37ec0d1b53999e00",
+    "size": 4715,
+    "mode": "0600",
+    "readback_matches": true
+  },
+  "source_contract": [
+    {
+      "fact": "The exact fmt port calls vcpkg_fixup_pkgconfig() after installation without SKIP_CHECK.",
+      "refs": [
+        {
+          "source_id": "ports/fmt/portfile.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/fmt/portfile.cmake",
+          "sha256": "041c48f80df5d0a2ba4d1334d5887e723cfd231b0e18bf18d25480658e4b6231",
+          "lines": [
+            25,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "fact": "The fixup helper acquires PKGCONFIG for each enabled configuration before iterating its corrected .pc files. Each derived package name is checked with the selected PKGCONFIG executable using --print-errors --exists after setting the configuration-specific pkg-config search path.",
+      "refs": [
+        {
+          "source_id": "scripts/cmake/vcpkg_fixup_pkgconfig.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_fixup_pkgconfig.cmake",
+          "sha256": "1a15f6c6d8e2b244d83a7514a0412d339127d2217d1df60ad1388b546c85f777",
+          "lines": [
+            115,
+            136
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_fixup_pkgconfig.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_fixup_pkgconfig.cmake",
+          "sha256": "1a15f6c6d8e2b244d83a7514a0412d339127d2217d1df60ad1388b546c85f777",
+          "lines": [
+            171,
+            198
+          ]
+        }
+      ]
+    },
+    {
+      "fact": "Selection first returns for an already-truthy PKGCONFIG value. Otherwise the PKGCONFIG-specific include immediately accepts ENV{PKG_CONFIG} when defined, without validating existence or version; this branch also applies to a defined empty value.",
+      "refs": [
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            120,
+            144
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+          "lines": [
+            19,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "fact": "For the non-Windows branch when VCPKG_HOST_IS_OSX is true, the declared fixed directory order is /opt/homebrew/bin, /bin, /usr/bin, /usr/local/bin, and the only declared search name is pkg-config. A differently named pkgconf binary alone would require an admitted explicit override or pkg-config entry.",
+      "refs": [
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+          "lines": [
+            19,
+            19
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+          "lines": [
+            59,
+            66
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            165,
+            166
+          ]
+        }
+      ]
+    },
+    {
+      "fact": "The generic helper first searches the declared paths with find_program(... NO_DEFAULT_PATH), using cached values when present. Only if no program is found does it try default find_program discovery. Presence on a presumed PATH would not prove selection.",
+      "refs": [
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            72,
+            82
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            169,
+            191
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            29,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "fact": "The non-Windows pkg-config branch declares no download URL or version command. If local discovery fails, the generic helper emits a fatal package-manager suggestion. The external discovery path assumes the version is acceptable when version_command is empty; this is not a runtime version qualification.",
+      "refs": [
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            125,
+            140
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+          "sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+          "lines": [
+            59,
+            66
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            52,
+            61
+          ]
+        },
+        {
+          "source_id": "scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+          "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+          "lines": [
+            194,
+            203
+          ]
+        }
+      ]
+    }
+  ],
+  "observations": {
+    "fixed_candidates_absent": [
+      "/opt/homebrew/bin/pkg-config",
+      "/bin/pkg-config",
+      "/usr/bin/pkg-config",
+      "/usr/local/bin/pkg-config"
+    ],
+    "pkgconf_entries_absent": [
+      "/opt/homebrew/bin/pkgconf",
+      "/bin/pkgconf",
+      "/usr/bin/pkgconf",
+      "/usr/local/bin/pkgconf"
+    ],
+    "homebrew_package_entries_absent": [
+      "/opt/homebrew/opt/pkgconf",
+      "/opt/homebrew/opt/pkg-config",
+      "/opt/homebrew/Cellar/pkgconf",
+      "/opt/homebrew/Cellar/pkg-config",
+      "/usr/local/opt/pkgconf",
+      "/usr/local/opt/pkg-config",
+      "/usr/local/Cellar/pkgconf",
+      "/usr/local/Cellar/pkg-config"
+    ],
+    "all_16_lstat_results": "ENOENT on initial and handoff checks",
+    "sanitized_metadata": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-renovate/inventory/current-metadata.json",
+      "sha256": "2785808fa5dd623738c419069ec9df2b35ad2df94b52281f100a68600ad99bd2",
+      "size": 309497,
+      "pkgconfig_pkgconf_matches": 0
+    },
+    "symlink_chains": [],
+    "executable_modes_sizes_sha256": [],
+    "package_receipts": [],
+    "reason_identity_fields_are_empty": "No inspected candidate or package path exists; no executable or package receipt was available to hash. Do not infer a version or source identity from an absent path."
+  },
+  "missing_prerequisites": [
+    {
+      "item": "Identified and admitted local pkg-config-compatible executable",
+      "state": "UNRESOLVED",
+      "detail": "No candidate was identified within the authorized fixed-path, package-specific Homebrew, and sanitized managed-installation-metadata scope. Uninspected paths and future explicit overrides remain unknown."
+    },
+    {
+      "item": "Runtime version, architecture, dependencies, selected path and fmt pkg-config behavior",
+      "state": "UNVERIFIED",
+      "detail": "All native execution was prohibited for this prerequisite."
+    }
+  ],
+  "later_native_probe_requirements": [
+    {
+      "check": "Resolve the executable prerequisite before the later native install operation.",
+      "detail": "Use an independently identified existing binary or a separately admitted provisioning step. Do not assume vcpkg will download pkg-config on macOS or silently install a global package."
+    },
+    {
+      "check": "Capture actual native selection in a controlled environment and fresh relevant cache.",
+      "detail": "Record the exact selected PKGCONFIG value, whether an explicit PKG_CONFIG override is defined, the relevant cache state, VCPKG_HOST_IS_OSX, and the source branch taken. Do not dump raw environments or unrelated global configuration. A defined empty override or stale truthy cache requires explicit handling."
+    },
+    {
+      "check": "Qualify the selected local file identity.",
+      "detail": "Resolve and hash the actual symlink chain and executable, record file modes and sizes, bind any package receipt and source/version metadata, then run bounded version and architecture/runtime-dependency checks under the later admission. Record exact argv, exit codes, stdout/stderr, and hashes; package metadata alone does not prove executable version or successful launch."
+    },
+    {
+      "check": "Verify fmt package lookup in both enabled Debug and Release contexts.",
+      "detail": "Exercise the pinned helper with its configuration-specific search setup and generated corrected .pc files. Verify that the exact selected binary returns zero for --print-errors --exists for each derived package name, and that lookup uses the intended private package/install roots without system or unrelated package fallback."
+    },
+    {
+      "check": "Demonstrate offline and confinement behavior independently.",
+      "detail": "Use the later operation's admitted network and filesystem controls and retain process evidence. Source-level absence of a macOS pkg-config download branch, filesystem presence, or a successful --version alone does not establish offline fmt installation or current-unit acceptance."
+    }
+  ],
+  "execution": {
+    "tool_used": "mcp__node_repl__js",
+    "allowed_operations": [
+      "read exact source and receipt files",
+      "inspect 16 exact candidate/package paths",
+      "hash bound inputs",
+      "read exact Git administrative files",
+      "write new private artifacts"
+    ],
+    "native_commands_executed": 0,
+    "pkg_config_executed": false,
+    "pkgconf_executed": false,
+    "cmake_executed": false,
+    "mise_executed": false,
+    "compilers_executed": false,
+    "installers_executed": false,
+    "network_used": false,
+    "global_configuration_read": false,
+    "raw_environment_read": false,
+    "global_or_project_writes": false,
+    "capacity_or_lease_operations": false,
+    "failed_execution_routes": [],
+    "expected_filesystem_absence_probes": 16,
+    "write_scope": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12c2-pkgconfig-prereq-ZOtdAJ"
+  },
+  "retained_input_integrity": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/prerequisite.json",
+      "expected_sha256": "fe1ca643e97ce091ee5f54c3541e922659c332bd0906fa073ae959b574d57243",
+      "sha256": "fe1ca643e97ce091ee5f54c3541e922659c332bd0906fa073ae959b574d57243",
+      "size": 46453,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-fmt-native-prereq-E0boBP/source-manifest.json",
+      "expected_sha256": "b8577d5b4813ab5837d5af3d571e02144415e2c819a889556c2f25b65ac2bf53",
+      "sha256": "b8577d5b4813ab5837d5af3d571e02144415e2c819a889556c2f25b65ac2bf53",
+      "size": 19499,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-renovate/inventory/current-metadata.json",
+      "expected_sha256": "2785808fa5dd623738c419069ec9df2b35ad2df94b52281f100a68600ad99bd2",
+      "sha256": "2785808fa5dd623738c419069ec9df2b35ad2df94b52281f100a68600ad99bd2",
+      "size": 309497,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/fmt/portfile.cmake",
+      "expected_sha256": "041c48f80df5d0a2ba4d1334d5887e723cfd231b0e18bf18d25480658e4b6231",
+      "sha256": "041c48f80df5d0a2ba4d1334d5887e723cfd231b0e18bf18d25480658e4b6231",
+      "size": 1149,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_fixup_pkgconfig.cmake",
+      "expected_sha256": "1a15f6c6d8e2b244d83a7514a0412d339127d2217d1df60ad1388b546c85f777",
+      "sha256": "1a15f6c6d8e2b244d83a7514a0412d339127d2217d1df60ad1388b546c85f777",
+      "size": 9223,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program(PKGCONFIG).cmake",
+      "expected_sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+      "sha256": "f12d6376a3906997c80f20de0ead255a9932644569d61a8921e2c858987d903e",
+      "size": 3139,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_find_acquire_program.cmake",
+      "expected_sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+      "sha256": "83a58ea75c11455b76b92c0ef780fa754719c92d522ee323089f95a51f248713",
+      "size": 10266,
+      "unchanged": true
+    }
+  ],
+  "limitations": [
+    "This report is a prerequisite inventory, not task 12c2 admission or current unit acceptance.",
+    "No claim of actual vcpkg/CMake tool selection, offline success, native version, architecture, runtime dependency resolution, or fmt installation is made.",
+    "No unrelated trees, raw environments, global configurations, secret values, or whole compiler prefixes were scanned.",
+    "The sanitized metadata is a hash-bound recorded inventory; its lack of entries is not a complete live host-wide search."
+  ],
+  "coordination": {
+    "parent_remains_sole_implementation_writer": true,
+    "acknowledgment_sent": true,
+    "parent_status_probe_answered_before_final": true,
+    "existing_evidence_unchanged": true
+  }
+}

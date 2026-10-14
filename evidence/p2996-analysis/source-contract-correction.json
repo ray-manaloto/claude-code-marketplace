@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "result": "PASS: bounded static correction review; native retry UNVERIFIED",
+  "task": "08b analyzer-output driver spelling correction",
+  "reviewer": "/root/config_inspector",
+  "started_at": "2026-10-11T10:49:30.299Z",
+  "recorded_at": "2026-10-11T10:52:23.097Z",
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "source_pin_supplied_by_parent": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "original_contract": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json",
+    "sha256": "5e9d2c3932914f40da022e87bd89de50e23e9cc613e5c2f432cbfaa4f6be8297",
+    "unchanged": true,
+    "incorrect_field": "clang_analyzer.argv contained --analyzer-output=plist",
+    "scope": "This correction supersedes that single driver-output argv token. Preserve the original proposal and failed operation as evidence."
+  },
+  "initial_failure": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/qualification.json",
+    "sha256": "096cf5b84dd51fa9fe2b1c20d65eb1112414c5e036823ad2a81bbdea3cad56c4",
+    "state": "FAIL",
+    "error": "AssertionError()",
+    "helper_sha256": "8f8a8cb1c8e200f676685b5d8705fb594ab301d333c1b78a232e8b2f5b647bed",
+    "protected_state_unchanged": true,
+    "observed_command_exits": {
+      "tidy-bad": 1,
+      "tidy-clean": 0,
+      "analyzer-bad": 1
+    },
+    "analyzer_stderr": "error: invalid value '=plist' in '-analyzer-output =plist'\n",
+    "analyzer_stderr_sha256": "221e5028af63364d2ebf91c1a62b41d201bcc23a99b2322c4cc0fdd5bc3fa9bd",
+    "analyzer_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "retained_copy_bindings": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/p2996_analysis.py.source",
+        "sha256": "8f8a8cb1c8e200f676685b5d8705fb594ab301d333c1b78a232e8b2f5b647bed",
+        "bytes": 14757
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/analyzer-bad.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/analyzer-bad.stderr",
+        "sha256": "221e5028af63364d2ebf91c1a62b41d201bcc23a99b2322c4cc0fdd5bc3fa9bd",
+        "bytes": 59
+      }
+    ],
+    "qualification": "The analyzer rc1 was a malformed-option failure, not the intended null diagnostic. The existing required-plist guard prevented qualification; the failure receipt reports protected state unchanged. No analyzer control was credited."
+  },
+  "correction": {
+    "bad_driver_argv_tokens": [
+      "--analyzer-output=plist"
+    ],
+    "correct_driver_argv_tokens": [
+      "--analyzer-output",
+      "plist"
+    ],
+    "forwarded_cc1_tokens": [
+      "-analyzer-output",
+      "plist"
+    ],
+    "source_reason": "The double-dash driver option is JoinedOrSeparate with the literal name analyzer-output (no trailing equals sign). In the joined bad spelling, the parsed value is =plist; the driver forwards getValue() unchanged. Two separate tokens provide the intended value plist.",
+    "distinct_cc1_alias": "Options.td separately defines the single-dash cc1 -analyzer-output= alias. The local plist-output.m test uses %clang_analyze_cc1 with that alias; it does not validate the double-dash driver spelling. The original proposal conflated these option surfaces.",
+    "corrected_recorded_command_example": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/cwd",
+      "-E",
+      "p2996",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-resource-dir",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+      "--analyze",
+      "--analyzer-no-default-checks",
+      "-Xclang",
+      "-analyzer-checker=core.NullDereference",
+      "-Xclang",
+      "-analyzer-werror",
+      "--analyzer-output",
+      "plist",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/analyzer-bad.cpp",
+      "-o",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/analyzer-bad.plist"
+    ],
+    "example_limit": "This reconstructed argv refers to the original failed run paths only to show the exact token replacement; the parent must use a new admitted private run directory for the retry. No command was run by this reviewer."
+  },
+  "helper_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+    "previous_sha256": "8f8a8cb1c8e200f676685b5d8705fb594ab301d333c1b78a232e8b2f5b647bed",
+    "sha256": "7f20a3ca624477bb1130075e1ae0ea678084409036ef579f839f6ab57ddb0f67",
+    "lines": 221,
+    "changed_line": 184,
+    "old_token_occurrences": 1,
+    "sole_change_verified": true,
+    "uses": "One corrected shared argv in the loop serves analyzer-bad, analyzer-clean and analyzer-reflection.",
+    "matching_source": "--analyzer-output and plist now occupy separate list elements; no = prefix is passed as the value.",
+    "findings": [],
+    "preserved_guards": "No other helper bytes changed. Expected-returncode, fresh nonempty plist, parsed diagnostic identity/location, clean empty diagnostics, no-fix and source-hash assertions remain as previously reviewed.",
+    "scope": "Reviewed only this spelling correction; no old guard/control suite or native fixture was rerun."
+  },
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+      "bytes": 546344,
+      "line_ranges": [
+        [
+          6242,
+          6248
+        ],
+        [
+          7391,
+          7394
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 6242,
+          "end": 6248,
+          "text": "def _analyzer_no_default_checks : Flag<[\"--\"], \"analyzer-no-default-checks\">,\n  Flags<[NoXarchOption]>;\ndef _analyzer_output : JoinedOrSeparate<[\"--\"], \"analyzer-output\">,\n  Flags<[NoXarchOption]>,\n  HelpText<\"Static analyzer report output format (html|plist|plist-multi-file|plist-html|sarif|sarif-html|text).\">;\ndef _analyze : Flag<[\"--\"], \"analyze\">, Flags<[NoXarchOption]>,\n  Visibility<[ClangOption, CLOption]>,"
+        },
+        {
+          "start": 7391,
+          "end": 7394,
+          "text": "def analyzer_output : Separate<[\"-\"], \"analyzer-output\">,\n  HelpText<\"Source Code Analysis - Output Options\">;\ndef analyzer_output_EQ : Joined<[\"-\"], \"analyzer-output=\">,\n  Alias<analyzer_output>;"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp",
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b",
+      "bytes": 375382,
+      "line_ranges": [
+        [
+          3491,
+          3496
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 3491,
+          "end": 3496,
+          "text": "  // Set the output format. The default is plist, for (lame) historical reasons.\n  CmdArgs.push_back(\"-analyzer-output\");\n  if (Arg *A = Args.getLastArg(options::OPT__analyzer_output))\n    CmdArgs.push_back(A->getValue());\n  else\n    CmdArgs.push_back(\"plist\");"
+        }
+      ]
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-output.m",
+      "sha256": "c56291eb09cea6784cebab0bae7701332afb3cff716aa8fe12d31fc6163806e4",
+      "bytes": 3447,
+      "line_ranges": [
+        [
+          1,
+          1
+        ]
+      ],
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 1,
+          "text": "// RUN: %clang_analyze_cc1 -analyzer-config eagerly-assume=false %s -analyzer-checker=osx.cocoa.RetainCount,deadcode.DeadStores,core -analyzer-output=plist -analyzer-config deadcode.DeadStores:ShowFixIts=true -o %t.plist"
+        }
+      ]
+    }
+  ],
+  "local_test_scope": {
+    "supporting_test": "clang/test/Analysis/plist-output.m line 1 proves the distinct single-dash cc1 alias in actual test usage.",
+    "selected_driver_tests": "analyze.c, analyzer-target-enabled-checkers.cpp and ps4-ps5-analyzer-defaults.cpp were read but contain no explicit --analyzer-output spelling. No direct driver-format test result is claimed.",
+    "separate_driver_form_basis": "Options.td driver definition plus unchanged-value forwarding in Clang.cpp."
+  },
+  "actual_tools": {
+    "filesystem_reads": "mcp__node_repl__js using node:fs/promises",
+    "hashing": "node:crypto SHA-256",
+    "native_invocations": 0,
+    "network_calls": 0,
+    "repository_writes": 0,
+    "global_writes": 0,
+    "private_receipt_writes": 1
+  },
+  "actual_read_routes": [
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp",
+      "bytes": 375382,
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+      "bytes": 546344,
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/qualification.json",
+      "bytes": 15722,
+      "sha256": "096cf5b84dd51fa9fe2b1c20d65eb1112414c5e036823ad2a81bbdea3cad56c4",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Driver",
+      "result": "read",
+      "entries": 1237
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Driver/analyze.c",
+      "bytes": 327,
+      "sha256": "14c90668f760d84a66992aa20abae47d2d9ea4dd6db7241a5c2f9d24856c23f1",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Driver/analyzer-target-enabled-checkers.cpp",
+      "bytes": 3368,
+      "sha256": "9a0747b0736e3f39ee2802a27e92d437443c447e1f2156e2661256bb74ac1b26",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Driver/ps4-ps5-analyzer-defaults.cpp",
+      "bytes": 1556,
+      "sha256": "cc61626d89a26be0603f8976368d67e9350d8d7e7680188c04ffa77ca7f755bd",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/analyzer-bad.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-analysis-20261011T104749Z/analyzer-bad.stderr",
+      "bytes": 59,
+      "sha256": "221e5028af63364d2ebf91c1a62b41d201bcc23a99b2322c4cc0fdd5bc3fa9bd",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json",
+      "bytes": 15610,
+      "sha256": "5e9d2c3932914f40da022e87bd89de50e23e9cc613e5c2f432cbfaa4f6be8297",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis",
+      "result": "read",
+      "entries": 830
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/diagnostics",
+      "result": "read",
+      "entries": 30
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/html-diag-singlefile.c",
+      "bytes": 488,
+      "sha256": "e276f0d74e86273eece29b2b6f01f2a319d4795faee26ba51d18338591a2e449",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-output.m",
+      "bytes": 3447,
+      "sha256": "c56291eb09cea6784cebab0bae7701332afb3cff716aa8fe12d31fc6163806e4",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/html-diags.c",
+      "bytes": 937,
+      "sha256": "e6f11e77e6dfe6b54230b1d0f128ba5d5afff28791a9a65a7b303a2eeb9ccf75",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-output-alternate.m",
+      "bytes": 1873,
+      "sha256": "2e8257c99c7f91cd74095391ef0c877ae3f4674862bb5e0d2dd204476a7de723",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/html-diags-multifile.c",
+      "bytes": 371,
+      "sha256": "53c926389e69ecbf7a0dd31b82ea539cc0f89da607f32a19796c125f7cfba7e4",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-html-macros.c",
+      "bytes": 888,
+      "sha256": "f37f11b05ba6f35c96ee25b7a9e95806fb222c2e55717ce785886d7b1350adc3",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-stats-output.c",
+      "bytes": 472,
+      "sha256": "21d1dc10bb49bc1fa5322965d8f48fea967555b570bfc2c74cf3adeb211462e3",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+      "bytes": 14760,
+      "sha256": "7f20a3ca624477bb1130075e1ae0ea678084409036ef579f839f6ab57ddb0f67",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure",
+      "result": "read",
+      "entries": 30
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/p2996_analysis.py.source",
+      "bytes": 14757,
+      "sha256": "8f8a8cb1c8e200f676685b5d8705fb594ab301d333c1b78a232e8b2f5b647bed",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/analyzer-bad.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/analyzer-bad.stderr",
+      "bytes": 59,
+      "sha256": "221e5028af63364d2ebf91c1a62b41d201bcc23a99b2322c4cc0fdd5bc3fa9bd",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+      "bytes": 546344,
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp",
+      "bytes": 375382,
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/test/Analysis/plist-output.m",
+      "bytes": 3447,
+      "sha256": "c56291eb09cea6784cebab0bae7701332afb3cff716aa8fe12d31fc6163806e4",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/source-contract.json",
+      "bytes": 15610,
+      "sha256": "5e9d2c3932914f40da022e87bd89de50e23e9cc613e5c2f432cbfaa4f6be8297",
+      "result": "read"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+      "bytes": 14760,
+      "sha256": "7f20a3ca624477bb1130075e1ae0ea678084409036ef579f839f6ab57ddb0f67",
+      "result": "read"
+    }
+  ],
+  "limitations": [
+    "Corrected native analyzer parsing and all remaining 08b runtime controls await the parent admitted retry.",
+    "This source-level disposition cannot convert the original failed run or incorrect original proposal into a runtime pass."
+  ]
+}

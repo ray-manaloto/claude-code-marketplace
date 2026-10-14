@@ -1,0 +1,25 @@
+# Set the prefix only from task 07's qualified managed-install receipt.
+include = ["cpp-foundation/common.toml"]
+
+[env]
+MARKETPLACE_CPP_LANE = "p2996"
+CC = """\
+{% set prefix = env.MARKETPLACE_P2996_PREFIX | default(value='') %}\
+{% set clean = prefix | trim %}\
+{% if prefix != clean or not (prefix is starting_with(pat='/')) or prefix == '/' %}\
+{{ throw(message='Set MARKETPLACE_P2996_PREFIX to the qualified absolute managed prefix from task 07.') }}\
+{% endif %}\
+{% for part in prefix | split(pat='/') %}\
+{% if not loop.first and (part == '' or part == '.' or part == '..') %}\
+{{ throw(message='Use a normalized managed prefix without empty or dot path components.') }}\
+{% endif %}{% endfor %}{{ prefix }}/bin/clang"""
+CXX = """\
+{% set prefix = env.MARKETPLACE_P2996_PREFIX | default(value='') %}\
+{% set clean = prefix | trim %}\
+{% if prefix != clean or not (prefix is starting_with(pat='/')) or prefix == '/' %}\
+{{ throw(message='Set MARKETPLACE_P2996_PREFIX to the qualified absolute managed prefix from task 07.') }}\
+{% endif %}\
+{% for part in prefix | split(pat='/') %}\
+{% if not loop.first and (part == '' or part == '.' or part == '..') %}\
+{{ throw(message='Use a normalized managed prefix without empty or dot path components.') }}\
+{% endif %}{% endfor %}{{ prefix }}/bin/clang++"""

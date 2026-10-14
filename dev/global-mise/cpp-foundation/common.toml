@@ -1,0 +1,37 @@
+# Prepared for ~/.config/mise/cpp-foundation/common.toml. Not active yet.
+# Native registry routes: aqua:Kitware/CMake, aqua:ninja-build/ninja,
+# aqua:mozilla/sccache. Keep the existing default global configuration intact.
+[tools]
+cmake = "4.4.4"
+ninja = "1.13.2"
+sccache = "0.18.0"
+
+# Selected compiler lanes must not inherit the host's Homebrew LLVM policy.
+[env]
+CC = false
+CXX = false
+CFLAGS = false
+CXXFLAGS = false
+CPPFLAGS = false
+LDFLAGS = false
+AR = false
+RANLIB = false
+LD = false
+AS = false
+CPATH = false
+C_INCLUDE_PATH = false
+CPLUS_INCLUDE_PATH = false
+OBJC_INCLUDE_PATH = false
+LIBRARY_PATH = false
+COMPILER_PATH = false
+PKG_CONFIG_PATH = false
+PKG_CONFIG_LIBDIR = false
+CMAKE_PREFIX_PATH = false
+CMAKE_TOOLCHAIN_FILE = false
+CMAKE_GENERATOR = false
+CMAKE_C_COMPILER_LAUNCHER = false
+CMAKE_CXX_COMPILER_LAUNCHER = false
+SDKROOT = false
+MACOSX_DEPLOYMENT_TARGET = false
+DYLD_LIBRARY_PATH = false
+DYLD_FALLBACK_LIBRARY_PATH = false

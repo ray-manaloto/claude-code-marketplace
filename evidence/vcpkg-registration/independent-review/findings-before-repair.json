@@ -1,0 +1,31 @@
+{
+  "helper_sha256": "36c727904ea7e99365d9e93e51786ef5c8f6c650acb6e54c12e0b2b83ecbc797",
+  "findings": [
+    {
+      "id": "namespace-preservation",
+      "priority": "P2",
+      "path": "dev/toolchains/vcpkg_register.py",
+      "lines": [
+        123,
+        127
+      ],
+      "evidence": "The protected() inventory unconditionally drops asdf-vcpkg; before promotion and during preparation that target must instead remain absent. On later failure the receipt lacks a recorded promotion result or observed target state.",
+      "requested_fix": "Track promotion, assert target absence before mutation or during preparation, verify the exact expected snapshot afterward, and preserve observed promotion/target state on failure.",
+      "verification": "static only; no apply or failure injection",
+      "disposition": "returned to parent"
+    },
+    {
+      "id": "backup-preimage",
+      "priority": "P2",
+      "path": "dev/toolchains/vcpkg_register.py",
+      "lines": [
+        76,
+        79
+      ],
+      "evidence": "shutil.copyfile is followed by hashing the live file, but the copied backup is never compared. An intervening concurrent config update can bind a recorded preimage to different backup bytes.",
+      "requested_fix": "Compare each backup hash against the captured live preimage and stop on mismatch.",
+      "verification": "static only; no race injection",
+      "disposition": "returned to parent"
+    }
+  ]
+}

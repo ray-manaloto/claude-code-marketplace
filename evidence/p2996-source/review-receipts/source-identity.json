@@ -1,0 +1,68 @@
+[
+  {
+    "case": "source-head",
+    "argv": [
+      "/usr/bin/git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e\n",
+    "stderr": ""
+  },
+  {
+    "case": "source-tree",
+    "argv": [
+      "/usr/bin/git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "rev-parse",
+      "HEAD^{tree}"
+    ],
+    "returncode": 0,
+    "stdout": "9899759f9004a7df8442ec57000a17e53e6ad5f6\n",
+    "stderr": ""
+  },
+  {
+    "case": "source-status",
+    "argv": [
+      "/usr/bin/git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "status",
+      "--porcelain",
+      "--untracked-files=all"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "case": "source-detached",
+    "argv": [
+      "/usr/bin/git",
+      "--no-optional-locks",
+      "-c",
+      "core.fsmonitor=false",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "symbolic-ref",
+      "-q",
+      "HEAD"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+]

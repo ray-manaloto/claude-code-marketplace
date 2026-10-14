@@ -1,0 +1,51 @@
+import fcntl,hashlib,json,os,shutil,subprocess,time
+from datetime import datetime,timezone
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace');EV=ROOT/'evidence/p2996-tsan';PRIVATE=Path(__file__).parent
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def load(p):return json.loads(p.read_text())
+def save(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+c=load(EV/'contract.json');admission=load(EV/'admission.json');execution=load(EV/'native-execution.json');directory=Path(admission['run_directory']);q=load(directory/'qualification.json')
+assert execution['returncode']==1 and q['state']=='FAIL' and q['protected_state_unchanged'] and not q.get('preservation_error')
+assert q['helper_sha256']==admission['helper_sha256']==sha(ROOT/'dev/toolchains/p2996_tsan.py')
+assert admission['contract_sha256']==sha(EV/'contract.json') and q['admission_sha256']==sha(EV/'admission.json')
+assert len(q['commands'])==18 and q['commands'][-1]['case']=='tsan-clean' and q['commands'][-1]['returncode']==-11
+assert all(row['returncode']==0 for row in q['commands'][:-1]);assert (directory/'tsan-clean.stdout').read_bytes()==b''
+for row in q['commands']:
+ for log in row['logs']:assert sha(Path(log['path']))==log['sha256']
+assert set(q['cells'])=={'tsan'} and not q['cells']['tsan']['runs']
+post=[]
+for case in ('source-before-head','source-before-tree','source-before-diff','source-before-status','default-before'):
+ row=next(r for r in q['commands'] if r['case']==case);label=case.replace('before','after');start=time.monotonic()
+ env=dict(os.environ,GIT_CONFIG_GLOBAL='/dev/null',GIT_CONFIG_SYSTEM='/dev/null',GIT_TERMINAL_PROMPT='0',GIT_OPTIONAL_LOCKS='0')
+ p=subprocess.run(row['argv'],cwd=ROOT,env=env,text=True,capture_output=True,timeout=30);logs=[]
+ for suffix,value in (('stdout',p.stdout),('stderr',p.stderr)):
+  path=PRIVATE/(label+'.'+suffix);path.write_text(value);logs.append({'path':str(path),'sha256':sha(path)})
+ post.append({'case':label,'argv':row['argv'],'returncode':p.returncode,'elapsed_seconds':time.monotonic()-start,'timeout_seconds':30,'logs':logs});save(PRIVATE/'post-failure-checks.json',{'commands':post})
+ assert p.returncode==0 and (PRIVATE/(label+'.stdout')).read_bytes()==(directory/(case+'.stdout')).read_bytes(),label
+artifacts=[]
+for kind,row in q['cells']['tsan']['artifacts'].items():
+ p=Path(row['path']);assert p.parent==directory/'tsan' and p==p.resolve(strict=True);assert sha(p)==row['sha256'];artifacts.append({'kind':'tsan-'+kind,'path':str(p),'sha256':row['sha256'],'bytes':p.stat().st_size})
+p=Path(c['prefixes']['p2996'])/'lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib';assert sha(p)==c['tools'][str(p)];artifacts.append({'kind':'installed-tsan','path':str(p),'sha256':c['tools'][str(p)],'bytes':p.stat().st_size})
+processes=[]
+for case,pid in [('native-helper',execution['pid'])]+[(r['case'],r['pid']) for r in q['commands']]:
+ try:os.kill(pid,0);absent=False
+ except ProcessLookupError:absent=True
+ processes.append({'case':case,'pid':pid,'absent':absent});assert absent,(case,pid)
+lock=Path.home()/'.local/state/dotfiles/heavy-gate.lock';before=lock.read_bytes()
+with lock.open('rb') as f:
+ fcntl.flock(f.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB);fcntl.flock(f.fileno(),fcntl.LOCK_UN)
+assert lock.read_bytes()==before
+texts=[directory/name for name in ('qualification.json','private.sb')]+[Path(log['path']) for r in q['commands'] for log in r['logs']]
+launch=Path(execution['private_launch_directory']);texts += [launch/name for name in ('launch.json','execution.json','stdout','stderr')]
+texts += [Path(log['path']) for r in post for log in r['logs']]
+assert len(set(texts))==len(texts);rows=[{'source':str(p),'sha256':sha(p),'bytes':p.stat().st_size,'text':p.read_text()} for p in texts];save(PRIVATE/'text-receipts.json',{'encoding':'UTF-8, exact bytes','files':rows})
+closure={'recorded_at':datetime.now(timezone.utc).isoformat(),'state':'CLOSED FAIL: TSan clean startup signal 11 before main; remaining witnesses unexecuted','native_returncode':1,'native_execution_sha256':sha(EV/'native-execution.json'),'qualification_sha256':sha(directory/'qualification.json'),'retained_text_files':len(texts),'text_receipts_sha256':sha(PRIVATE/'text-receipts.json'),'command_count':len(q['commands']),'command_outcomes':[{'case':r['case'],'returncode':r['returncode']} for r in q['commands']],'processes':processes,'lease_probe':{'free':True,'contents_unchanged':True},'protected_state_unchanged':True,'post_failure_checks_sha256':sha(PRIVATE/'post-failure-checks.json'),'post_failure_read_commands':len(post),'source_and_default_outputs_match':True,'runtime_result':'No TSan mode qualified; core/link/architecture checks passed, clean witness crashed before main'}
+save(PRIVATE/'closure.json',closure);save(PRIVATE/'artifact-inventory.json',{'artifacts':artifacts,'qualification_sha256':sha(directory/'qualification.json'),'state':'Retained failed-operation artifacts; no sanitizer runtime qualification'})
+operation=EV/'operation';operation.mkdir();pairs=[]
+for source,name in [(directory/'qualification.json','qualification.json'),(PRIVATE/'text-receipts.json','text-receipts.json'),(PRIVATE/'closure.json','closure.json'),(PRIVATE/'post-failure-checks.json','post-failure-checks.json'),(EV/'admission.json','admission.json'),(EV/'native-launch.json','native-launch.json'),(EV/'native-execution.json','native-execution.json')]:
+ target=operation/name;shutil.copyfile(source,target);pairs.append({'source':str(source),'destination':str(target),'sha256':sha(target)})
+for source,target in [(PRIVATE/'artifact-inventory.json',EV/'artifact-inventory.json'),(Path(__file__),operation/'collect.py.source')]:
+ shutil.copyfile(source,target);pairs.append({'source':str(source),'destination':str(target),'sha256':sha(target)})
+save(operation/'copy-manifest.json',{'files':pairs});print(json.dumps({'state':closure['state'],'commands':len(q['commands']),'post_failure_commands':len(post),'text_files':len(texts),'artifacts':len(artifacts),'closure_sha256':sha(PRIVATE/'closure.json')}))

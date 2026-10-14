@@ -1,0 +1,60 @@
+{
+  "script_sha256": "b52ced100d9b907593819ea372b62d61864dbc4d714814f360aa18ab894da4de",
+  "checks": [
+    {
+      "case": "Real reviewed preflight is read-only and passes",
+      "result": "PASS"
+    },
+    {
+      "case": "Changed global preimage rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Changed native control preimage rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Non-absent public leaf baseline rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Changed materialization staging preimage rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Synthetic known MCP task passes census",
+      "result": "PASS"
+    },
+    {
+      "case": "Synthetic unclassified mise task rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Synthetic mutating verb rejects even with known task text",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Synthetic Ruby process rejects",
+      "result": "PASS",
+      "expected_rejection": "AssertionError"
+    },
+    {
+      "case": "Python optimization rejects before CLI/main",
+      "result": "PASS",
+      "returncode": 1
+    },
+    {
+      "case": "Both owned process-group test PIDs are gone",
+      "result": "PASS",
+      "ps_returncode": 1
+    }
+  ],
+  "main_called": false,
+  "installer_or_services_or_compiler_or_network": false
+}

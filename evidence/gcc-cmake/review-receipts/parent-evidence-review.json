@@ -1,0 +1,368 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T02:44:32.321068+00:00",
+  "result": "PASS: retained CMake evidence and prerun protection",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "8f006a72ed03ce7e5e35b9b79fc94f8c69ee8302",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "maintained_inputs": [
+    {
+      "path": "cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+    },
+    {
+      "path": "scratch/gcc-toolchain/CMakeLists.txt",
+      "sha256": "b1be8ede864896b6e099f747285006b53f3345a6ce9510ab90fb9421dc3f78b5"
+    },
+    {
+      "path": "scratch/gcc-toolchain/README.md",
+      "sha256": "e9214864ecf40369c58d11f91a6ffd0f3f1671820b018106615f785d1ccedf46"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "db93750763798f13d0fde8e705b2e76ef89a839456de5dbded39d0322610d1dc"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "4403be33b9fb480c4e607bf1ae09c6350a4aec27c2bacac16a07b2d5142099bd"
+    }
+  ],
+  "harness": {
+    "private_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/harnesses/qualify-gcc-cmake.py",
+    "retained_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+    "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2"
+  },
+  "parent_receipt": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification.json",
+    "sha256": "1dc4c5559821952dfcafd542278bfc8c0ee8d9c97562f44a1ebe772b3345bc9c"
+  },
+  "verified_logs": [
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/default-before.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-before.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/default-before.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/ctest-version.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/ctest-version.stdout",
+      "sha256": "21710b282175af2534f38143fae98bb3de9762a1ffcce63fda137c2a1a177ece"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/ctest-version.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/ctest-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/configure.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/configure.stdout",
+      "sha256": "ccb1b0849bac1062fa9ab18206b0567279071a968ad543ec3dc646826e4e048f"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/configure.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/configure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-Debug.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Debug.stdout",
+      "sha256": "54b1ea54ea0ab94c2224715c80100466d8fd4659e4c53762b55b6930f637a62e"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-Debug.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-Debug.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Debug.stdout",
+      "sha256": "baa036d6fba4fe818c2890f1e888fea9817d10a97973d40275e4ab3a29d84712"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-Debug.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-Debug.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Debug.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-Debug.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-Debug.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Debug.stdout",
+      "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-Debug.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Debug.stderr",
+      "sha256": "59bea0cafbed0b50df658943f3d40d78dea2913f9c0bfc411558b0ccf208b4fb"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-Debug.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Debug.stdout",
+      "sha256": "ee26a3b6c897d073a8b0a92afccdd49007476ac810267e8eadd0070b7448f601"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-Debug.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-Release.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Release.stdout",
+      "sha256": "51b2df3fef541870df62cef249a6b9851834999de3b056d37d129dbad1a06e43"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-Release.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-Release.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Release.stdout",
+      "sha256": "07391ba9dceab1256a33ababd12a17d6fa57e87081a62f2684bf2767128878de"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-Release.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-Release.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Release.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-Release.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-Release.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Release.stdout",
+      "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-Release.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Release.stderr",
+      "sha256": "f02f0f84e30e0ec64aad66200e80fad3528c9006bef4dc3afca022c1bbb92ca0"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-Release.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Release.stdout",
+      "sha256": "3299fa98aa2a41d4da6f3c150fee6e4b1607289252dbaac2158f32b9d4c682b9"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-Release.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-RelWithDebInfo.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-RelWithDebInfo.stdout",
+      "sha256": "0599c12ae00e7d113cc1ba33042af2908a001017e56d008c1bbaa16e67aaeb84"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-RelWithDebInfo.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-RelWithDebInfo.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-RelWithDebInfo.stdout",
+      "sha256": "07391ba9dceab1256a33ababd12a17d6fa57e87081a62f2684bf2767128878de"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-RelWithDebInfo.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-RelWithDebInfo.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-RelWithDebInfo.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-RelWithDebInfo.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-RelWithDebInfo.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-RelWithDebInfo.stdout",
+      "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-RelWithDebInfo.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-RelWithDebInfo.stderr",
+      "sha256": "0bd660506389b55d362093a451eb7b3ebe2e9a4c9347139926adac00326320f7"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-RelWithDebInfo.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-RelWithDebInfo.stdout",
+      "sha256": "cab913092a0f8fd8f2ba5647f18e17d741b112011962c23cccea6d05bed31901"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-RelWithDebInfo.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-RelWithDebInfo.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-MinSizeRel.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-MinSizeRel.stdout",
+      "sha256": "cef0fa06d33d287b93148a0c367e3a45ef63345e387f81b0bbc9631d8dc6a171"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/build-MinSizeRel.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-MinSizeRel.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-MinSizeRel.stdout",
+      "sha256": "0ae3d157272712814567dbd108d529f2bdc6973fbbb159bb61c55aae74a491b2"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/test-MinSizeRel.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-MinSizeRel.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-MinSizeRel.stdout",
+      "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/architecture-MinSizeRel.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-MinSizeRel.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-MinSizeRel.stdout",
+      "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/runtime-MinSizeRel.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-MinSizeRel.stderr",
+      "sha256": "6133e54e7f3474cddc1ecf632aeb2257f8bb7d544df0987a872ed58971313e2d"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-MinSizeRel.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-MinSizeRel.stdout",
+      "sha256": "21881d6f4870c4f327ccfc58390bc8a39af58dfe01e459c89e9d1fb0a7b5d52c"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/libraries-MinSizeRel.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-MinSizeRel.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-profile.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-profile.stdout",
+      "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-profile.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-profile.stderr",
+      "sha256": "ce92007e819ae0ffcd40e6d4206f28ba390ad7b7e5e5282742d1483d2aa337d7"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/dirty-flags.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/dirty-flags.stdout",
+      "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/dirty-flags.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/dirty-flags.stderr",
+      "sha256": "1a7df3924b41191bbd338b39eafa0b2b6059dce154ec9f5938a5f4b61772a948"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-architecture.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-architecture.stdout",
+      "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-architecture.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-architecture.stderr",
+      "sha256": "729f14d49527a77349e0da14d5da4afbb7648ecd6bbc98e03b8b3675dc1c3004"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-compiler.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-compiler.stdout",
+      "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/wrong-compiler.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-compiler.stderr",
+      "sha256": "922924dd05375a8a2d2b1617bc02e9b0786073a49c3ec91f796731d649170117"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/default-after.stdout",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-after.stdout",
+      "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+    },
+    {
+      "retained": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/logs/default-after.stderr",
+      "original": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "configurations": {
+    "Debug": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection",
+      "sha256": "dfa6f458e5144bd2255e662b9936495e056ff737348dab02b3f9bb053a8eb10f",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=Debug\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection\n"
+    },
+    "Release": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection",
+      "sha256": "24ffeee02bc35f97604aa8a359af3a7fa894a872fb51434c75482d31a284046f",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=Release\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection\n"
+    },
+    "RelWithDebInfo": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection",
+      "sha256": "8ebb37d1466c02e833d5e5fda99a43081f8d31e80b0e55263877f4481e27262d",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=RelWithDebInfo\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection\n"
+    },
+    "MinSizeRel": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection",
+      "sha256": "28d16ed79275c85e751597fdfff5f1d6549c1537290977a65be747d04b95de65",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=MinSizeRel\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection\n"
+    }
+  },
+  "tools": {
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    "ninja": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+    },
+    "ctest": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+      "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+    }
+  },
+  "protected_counts": {
+    "globals": 9,
+    "packages": 8,
+    "glib": 2,
+    "public_links": 1791,
+    "runtime_identities": 6,
+    "build_tools": 3,
+    "sdk": 1
+  },
+  "independent_harness_invocations_started": 0
+}

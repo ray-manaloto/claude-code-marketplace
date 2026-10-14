@@ -1,0 +1,112 @@
+{
+  "cmake": {
+    "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+    "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+  },
+  "environment": {
+    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "TMPDIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o",
+    "MARKETPLACE_CPP_LANE": "gcc16",
+    "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0"
+  },
+  "commands": [
+    {
+      "case": "static-extraction",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/static-extraction.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "GCC_TRIPLET_PASS:static",
+      "passed": true
+    },
+    {
+      "case": "static-adapter",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/static-adapter.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "GCC_ADAPTER_PASS",
+      "passed": true
+    },
+    {
+      "case": "dynamic-extraction",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/dynamic-extraction.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "GCC_TRIPLET_PASS:dynamic",
+      "passed": true
+    },
+    {
+      "case": "dynamic-adapter",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/dynamic-adapter.cmake"
+      ],
+      "returncode": 0,
+      "expected": 0,
+      "marker": "GCC_ADAPTER_PASS",
+      "passed": true
+    },
+    {
+      "case": "missing-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/missing-lane.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "The triplet lane and qualified environment must agree.",
+      "passed": true
+    },
+    {
+      "case": "missing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/missing-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "The triplet lane and qualified environment must agree.",
+      "passed": true
+    },
+    {
+      "case": "wrong-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/wrong-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "The triplet lane and qualified environment must agree.",
+      "passed": true
+    },
+    {
+      "case": "opposite-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc16-triplet-controls-0lbj17_o/opposite-prefix.cmake"
+      ],
+      "returncode": 1,
+      "expected": 1,
+      "marker": "The triplet lane and qualified environment must agree.",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "encoding": "UTF-8, exact bytes",
+  "files": [
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165/launch.json",
+      "sha256": "320d07693be6521e72411cd10681beb24880be08ec71813d8b4de96538b801c5",
+      "bytes": 801,
+      "text": "{\n  \"argv\": [\n    \"/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3\",\n    \"-E\",\n    \"-B\",\n    \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py\",\n    \"--run-dir\",\n    \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-20261011T234245Z\",\n    \"--build\"\n  ],\n  \"helper_sha256\": \"d6ab78097ac7cb12705d97de750f8f11d919fb006a7ff4de9b2407f829411918\",\n  \"admission_sha256\": \"1def3213ac359d0815ff73e648436992e5c080dd33ac4af900d4f7d6229a7733\",\n  \"started_at\": \"2026-10-11T23:42:55.689178+00:00\",\n  \"private_launch_directory\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165\",\n  \"dispatch_sha256\": \"92be06211b634146c9ab2f9a8253b6a84e5e7440089accceb8ad3ec981eaac73\"\n}\n"
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165/execution.json",
+      "sha256": "f1baf87fff1b399cedda4e364e8bf9035954dd6735bb175ad5863620a45ca98b",
+      "bytes": 1103,
+      "text": "{\n  \"argv\": [\n    \"/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3\",\n    \"-E\",\n    \"-B\",\n    \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py\",\n    \"--run-dir\",\n    \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-20261011T234245Z\",\n    \"--build\"\n  ],\n  \"helper_sha256\": \"d6ab78097ac7cb12705d97de750f8f11d919fb006a7ff4de9b2407f829411918\",\n  \"admission_sha256\": \"1def3213ac359d0815ff73e648436992e5c080dd33ac4af900d4f7d6229a7733\",\n  \"started_at\": \"2026-10-11T23:42:55.689178+00:00\",\n  \"private_launch_directory\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165\",\n  \"dispatch_sha256\": \"92be06211b634146c9ab2f9a8253b6a84e5e7440089accceb8ad3ec981eaac73\",\n  \"pid\": 18236,\n  \"returncode\": 1,\n  \"elapsed_seconds\": 6.046898041851819,\n  \"finished_at\": \"2026-10-11T23:43:01.736379+00:00\",\n  \"stdout_sha256\": \"93ce8f4ad99e50ff154c9208ed7e89aeb4a187cafba637d0a23daa89fabffe49\",\n  \"stderr_sha256\": \"d24a661229855bd1c925c3445513becfc158cc2a700e5c25e68cfdd8a352412b\"\n}\n"
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165/stdout",
+      "sha256": "93ce8f4ad99e50ff154c9208ed7e89aeb4a187cafba637d0a23daa89fabffe49",
+      "bytes": 143,
+      "text": "{\"state\": \"FAIL\", \"receipt\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-20261011T234245Z/qualification.json\"}\n"
+    },
+    {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-native-launch-d9yr2165/stderr",
+      "sha256": "d24a661229855bd1c925c3445513becfc158cc2a700e5c25e68cfdd8a352412b",
+      "bytes": 740,
+      "text": "Traceback (most recent call last):\n  File \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py\", line 222, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py\", line 121, in main\n    report[\"writer_census_before\"] = census()\n                                     ~~~~~~^^\n  File \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py\", line 73, in census\n    assert name == \"mise\" and row[\"known_task\"], row\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'pid': 18457, 'ppid': 1, 'executable': '/Users/rmanaloto/.local/bin/mise', 'known_task': None}\n"
+    }
+  ]
+}

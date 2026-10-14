@@ -1,0 +1,44 @@
+{
+  "result": "PASS",
+  "helper_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+  "method": "AST-extracted current protected(), backup-copy/check block and final-save block executed only with private scratch paths and isolated callbacks; main/apply never invoked",
+  "cases": [
+    {
+      "case": "target-absent-before-promotion",
+      "result": "PASS"
+    },
+    {
+      "case": "unexpected-target-during-preparation",
+      "result": "PASS: assertion rejected the private fixture"
+    },
+    {
+      "case": "dangling-target-during-preparation",
+      "result": "PASS: assertion rejected the private fixture"
+    },
+    {
+      "case": "exact-promoted-target",
+      "result": "PASS"
+    },
+    {
+      "case": "changed-promoted-target",
+      "result": "PASS: assertion rejected the private fixture"
+    },
+    {
+      "case": "matching-backup-preimage",
+      "result": "PASS"
+    },
+    {
+      "case": "changed-live-file-after-copy",
+      "result": "PASS: mismatched backup rejected"
+    },
+    {
+      "case": "observation-failure-still-saves",
+      "result": "PASS"
+    },
+    {
+      "case": "observation-does-not-mask-protection-error",
+      "result": "PASS"
+    }
+  ],
+  "global_paths_mutated": []
+}

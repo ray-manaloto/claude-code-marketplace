@@ -1,0 +1,32 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "add",
+        "--",
+        ".gitattributes",
+        "dev/toolchains/vcpkg_fmt.py",
+        "docs/vcpkg-toolchains.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "evidence/vcpkg-fmt-build"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.02882129210047424,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.2604254158213735,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1657, \"python\": 121, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    }
+  ]
+}

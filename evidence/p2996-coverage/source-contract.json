@@ -1,0 +1,779 @@
+{
+  "schema_version": 1,
+  "result": "SOURCE_ONLY_RUNTIME_UNVERIFIED",
+  "task": "08c source-based coverage fixture proposal",
+  "started_at": "2026-10-11T10:33:31.501Z",
+  "finished_at": "2026-10-11T10:39:16.678Z",
+  "reviewer": "/root/config_inspector",
+  "project_root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "source_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "source_identity_scope": "Parent-supplied retained source pin and recorded SDK adaptations; bounded files hashed before and after. No Git or installed binary invocation.",
+  "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+  "blockers": [],
+  "runtime_inventory": {
+    "result": "PRESENT_IN_RECORDED_INSTALLED_INVENTORY",
+    "inventory_sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+    "records": [
+      {
+        "path": "bin/llvm-cov",
+        "mode": "0o700",
+        "kind": "file",
+        "sha256": "9e589e1bfaa5d485b73f2d949c6266113fa542106983a273a6c093ceeb8ece17",
+        "bytes": 592248
+      },
+      {
+        "path": "bin/llvm-profdata",
+        "mode": "0o700",
+        "kind": "file",
+        "sha256": "f519159620c2e507aba686149ef1ea8ffbafaececec10b1e266aabb9384490e0",
+        "bytes": 518960
+      },
+      {
+        "path": "lib/clang/21/lib/darwin/libclang_rt.profile_osx.a",
+        "mode": "0o644",
+        "kind": "file",
+        "sha256": "48dd00286225897919bf6fb6a6630245d9489ac8a6544acb55b9350486f3d31b",
+        "bytes": 113832
+      }
+    ],
+    "qualification": "The inventory records real files with nonzero sizes and SHA-256 hashes. This task does not freshly inventory or execute the installed prefix; parent must preserve the existing inventory/admission checks."
+  },
+  "darwin_selection": {
+    "trigger": "-fprofile-instr-generate makes needsProfileRT true; do not pass -noprofilelib.",
+    "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.profile_osx.a",
+    "reason": "Darwin::addProfileRTLibs uses profile with RLO_AlwaysLink. Darwin::getCompilerRT builds ResourceDir/lib/darwin/libclang_rt.profile_<OS>.a; macOS suffix is osx. The retained explicit -resource-dir selects this private archive.",
+    "static_library": "compiler-rt profile CMake declares STATIC; AddCompilerRT names the Darwin target clang_rt.profile_osx and installs the archive.",
+    "runtime_proof_limit": "The profile archive is static and will not appear in DYLD_PRINT_LIBRARIES. Fresh valid profile data plus coverage counts proves functioning instrumentation; this source lookup alone proves neither archive contents nor native linkage."
+  },
+  "fixture": {
+    "directory": "W is a fresh normalized private directory outside source, project, build, installed prefix and global configuration. Every proposed output must be absent first; avoid percent characters in W because LLVM_PROFILE_FILE interprets pattern substitutions.",
+    "private_witness_copy": {
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "destination": "{W}/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "requirement": "Copy exact bytes and verify the source and copy are unchanged after the run."
+    },
+    "wrapper": {
+      "path": "{W}/coverage.cpp",
+      "text": "#define main coverage_reflection_main\n#include \"p2996_reflection.cpp\"\n#undef main\n\nextern \"C\" int coverage_branch(bool take) {\n  if (take)\n    return 7;\n  return 9;\n}\n\nint main() {\n  return coverage_reflection_main()\n       + coverage_branch(true) + coverage_branch(false) - 16;\n}\n",
+      "sha256": "1b0a991f9b9c5677d5fb3f82eb6c891856bda81d2095427590171546db9d44e7",
+      "lines": 14,
+      "notes": "The macro renames only the included witness main for this translation unit. The wrapper main calls it once and exercises both outcomes of the non-constant bool parameter. C linkage gives coverage_branch a stable unmangled function name. -O0 keeps this tiny control simple."
+    },
+    "expected_stdout": "reflection value=43 exception=ok\n",
+    "expected_exit": 0,
+    "expected_counts": {
+      "main": 1,
+      "coverage_branch": 2,
+      "coverage_branch_true": 1,
+      "coverage_branch_false": 1,
+      "coverage_branch_condition_line": 6
+    }
+  },
+  "proposed_not_run": {
+    "runner": "Use the existing admitted named profile, bounded frozen runner, shared host lease and preservation gates for each actual native step. No installation or promotion is proposed.",
+    "compile_and_link": {
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-O0",
+        "-fprofile-instr-generate",
+        "-fcoverage-mapping",
+        "{W}/coverage.cpp",
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "{W}/coverage"
+      ],
+      "expected_exit": 0,
+      "required_output": "{W}/coverage",
+      "notes": "All 07d compiler/SDK/private-libc++ flags are preserved verbatim. Add only -O0 and source-based coverage flags. Use the same three absolute runtime libraries and rpath as 07d."
+    },
+    "run": {
+      "argv": [
+        "{W}/coverage"
+      ],
+      "environment_additions": {
+        "LLVM_PROFILE_FILE": "{W}/coverage.profraw",
+        "DYLD_PRINT_LIBRARIES": "1"
+      },
+      "expected_exit": 0,
+      "expected_stdout": "reflection value=43 exception=ok\n",
+      "required_files": [
+        "{W}/coverage.profraw"
+      ],
+      "required_loader_images": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+      ]
+    },
+    "merge": {
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-profdata",
+        "merge",
+        "-sparse",
+        "--num-threads=1",
+        "--failure-mode=any",
+        "{W}/coverage.profraw",
+        "-o",
+        "{W}/coverage.profdata"
+      ],
+      "expected_exit": 0,
+      "required_files": [
+        "{W}/coverage.profdata"
+      ]
+    },
+    "export": {
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-cov",
+        "export",
+        "{W}/coverage",
+        "--instr-profile={W}/coverage.profdata",
+        "--format=text",
+        "--num-threads=1",
+        "--debuginfod=false",
+        "{W}/coverage.cpp",
+        "{W}/p2996_reflection.cpp"
+      ],
+      "expected_exit": 0,
+      "stdout_json": "{W}/coverage.json",
+      "notes": "--format=text is the JSON export selector in this pin; --format=json is not a listed format. Do not request summary-only or skip-functions. Source file arguments restrict files/totals, while functions may still include other mapped functions; select the exact target names and filenames."
+    },
+    "absent_data_negative": {
+      "precondition": "{W}/absent.profdata is absent and remains absent",
+      "argv": [
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-cov",
+        "export",
+        "{W}/coverage",
+        "--instr-profile={W}/absent.profdata",
+        "--format=text",
+        "--num-threads=1",
+        "--debuginfod=false",
+        "{W}/coverage.cpp",
+        "{W}/p2996_reflection.cpp"
+      ],
+      "expected_exit": 1,
+      "required_stderr_substrings": [
+        "could not read profile data!",
+        "{W}/absent.profdata"
+      ],
+      "expected_stdout": "",
+      "reason": "doExport stats the supplied profile file and returns 1 on failure before CoverageMapping load or JSON export. This avoids assuming that mismatched data always returns nonzero."
+    }
+  },
+  "acceptance": {
+    "artifact_freshness": [
+      "Fresh absent outputs before invocation; after successful run require coverage.profraw to be a nonempty regular file inside W. Retain its bytes/size/hash and the native run logs.",
+      "After merge require coverage.profdata to be a fresh nonempty regular file. A successful export must then parse it; do not equate merge rc0 alone with valid output.",
+      "Retain command argv, actual return codes, stdout/stderr, JSON, binary and source hashes on every success or failure. Never overwrite the valid profile for the negative control."
+    ],
+    "json_root": {
+      "type": "llvm.coverage.json.export",
+      "version": "3.0.0",
+      "data_length": 1
+    },
+    "functions": [
+      "Find exactly one function with name main and count == 1, whose filenames include W/coverage.cpp.",
+      "Find exactly one function named coverage_branch with count == 2, whose filenames include W/coverage.cpp. Require its branches array to contain exactly one condition record.",
+      "A branch record is [lineStart,columnStart,lineEnd,columnEnd,trueCount,falseCount,fileID,expandedFileID,regionKind]. Require length 9, start/end line 6, trueCount == 1 and falseCount == 1; resolve fileID through the function filenames array and require W/coverage.cpp.",
+      "Require an executed function belonging to W/p2996_reflection.cpp and the exact retained witness stdout. The included witness name is C++ mangled; do not incorrectly require a second function literally named main."
+    ],
+    "files_and_totals": [
+      "Require files entries for both exact private source paths. Select the wrapper file by filename; require its summary.branches count == 2, covered == 2, notcovered == 0, percent == 100.",
+      "Require positive integer totals for lines, regions and functions, with covered > 0 and covered <= count. Require totals.functions.covered >= 3 and totals.branches.covered >= 2.",
+      "For totals.branches and totals.regions require count == covered + notcovered; percentages must be finite and within [0,100]. Do not require total coverage 100 percent: the witness intentionally leaves failure paths unexecuted."
+    ],
+    "fail_closed": [
+      "Any positive-step nonzero return code, missing/empty required artifact, malformed JSON, missing target, wrong count or failed preservation assertion fails qualification.",
+      "Reject positive export stderr containing functions have mismatched data or profile data may be out of date. CoverageMapping treats a function hash mismatch as a recorded mismatch and unknown function data as zeros; CodeCoverage warns then can still export with rc0.",
+      "Runtime atexit registration calls writeFileWithoutReturn, which discards the profile write return code. A normal program exit does not establish that a raw profile was written.",
+      "llvm-profdata writeInstrProfile may warn on Writer.write failures. The fresh nonempty merged-file requirement plus successfully parsed structured export is mandatory."
+    ]
+  },
+  "references": [
+    {
+      "root": "pinned_source",
+      "path": "compiler-rt/lib/profile/CMakeLists.txt",
+      "sha256": "16e6c96139e0ffe7f636a40b7643a7c579981194897e18d407e16685a14c5e0d",
+      "bytes": 4013,
+      "line_ranges": [
+        [
+          64,
+          83
+        ],
+        [
+          157,
+          166
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "compiler-rt/cmake/Modules/AddCompilerRT.cmake",
+      "sha256": "532cf218131bad739898f0e9c6044171ef158510b6e6b5742317c05e3ceec1e9",
+      "bytes": 33149,
+      "line_ranges": [
+        [
+          215,
+          236
+        ],
+        [
+          358,
+          376
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "clang/lib/Driver/ToolChain.cpp",
+      "sha256": "3298ec16bcf91eb8be53b900502042bcd3b726b574169f6a7b4666971619f0c5",
+      "bytes": 66454,
+      "line_ranges": [
+        [
+          1027,
+          1039
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "clang/lib/Driver/ToolChains/Darwin.cpp",
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589",
+      "bytes": 147884,
+      "line_ranges": [
+        [
+          733,
+          733
+        ],
+        [
+          1314,
+          1326
+        ],
+        [
+          1366,
+          1382
+        ],
+        [
+          1417,
+          1423
+        ],
+        [
+          1475,
+          1481
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "compiler-rt/lib/profile/InstrProfilingFile.c",
+      "sha256": "174fe3ad6a4dddd16d214c39bde59bd65d042e54f71774e7018e5abf8980e0c0",
+      "bytes": 48581,
+      "line_ranges": [
+        [
+          1038,
+          1045
+        ],
+        [
+          1104,
+          1135
+        ],
+        [
+          1172,
+          1194
+        ],
+        [
+          1215,
+          1227
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "clang/docs/SourceBasedCodeCoverage.rst",
+      "sha256": "14e9e700695d890ca20c52c2f84b48adad27e03b1afb1c3c4603686db4e1b525",
+      "bytes": 25042,
+      "line_ranges": [
+        [
+          53,
+          79
+        ],
+        [
+          150,
+          159
+        ],
+        [
+          297,
+          303
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "clang/lib/CodeGen/CoverageMappingGen.cpp",
+      "sha256": "c4b57709b6e229750be9e2e042479564fcf3188c11fa5899712f57b1f88b1b9e",
+      "bytes": 100640,
+      "line_ranges": [
+        [
+          1140,
+          1144
+        ],
+        [
+          1153,
+          1176
+        ],
+        [
+          2049,
+          2055
+        ],
+        [
+          2113,
+          2115
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/tools/llvm-profdata/llvm-profdata.cpp",
+      "sha256": "dc7cb40b5ee31c544dfa3f65c613c5628d644bd54b5869a1745b46d4d3f64a9e",
+      "bytes": 140113,
+      "line_ranges": [
+        [
+          96,
+          112
+        ],
+        [
+          282,
+          299
+        ],
+        [
+          517,
+          525
+        ],
+        [
+          944,
+          962
+        ],
+        [
+          1077,
+          1092
+        ],
+        [
+          1718,
+          1732
+        ],
+        [
+          1780,
+          1811
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/tools/llvm-cov/CodeCoverage.cpp",
+      "sha256": "0593622fb00694106a4a6cd8b9e7d5f3e717a13b143f8c643e5a89c08c8a30fb",
+      "bytes": 49938,
+      "line_ranges": [
+        [
+          457,
+          493
+        ],
+        [
+          673,
+          705
+        ],
+        [
+          786,
+          794
+        ],
+        [
+          804,
+          822
+        ],
+        [
+          1289,
+          1362
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/tools/llvm-cov/CoverageExporterJson.cpp",
+      "sha256": "62dbad7517b0bf764abd6cc5342d20feea26ea2fd64886f95a9c4fc211ff77a4",
+      "bytes": 15893,
+      "line_ranges": [
+        [
+          64,
+          68
+        ],
+        [
+          96,
+          102
+        ],
+        [
+          127,
+          132
+        ],
+        [
+          178,
+          215
+        ],
+        [
+          251,
+          268
+        ],
+        [
+          301,
+          311
+        ],
+        [
+          326,
+          351
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/lib/ProfileData/Coverage/CoverageMapping.cpp",
+      "sha256": "a358d7841f7da4be534802a2b3c7ecd417d93ab0004d137a3510f103c0efa1db",
+      "bytes": 61645,
+      "line_ranges": [
+        [
+          841,
+          855
+        ],
+        [
+          1051,
+          1062
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/test/tools/llvm-cov/branch-export-json.test",
+      "sha256": "d696057c8e41e657e910a2469db2a786b1a56e1f6fdef2f9218548ba0601dd6a",
+      "bytes": 1761,
+      "line_ranges": [
+        [
+          2,
+          21
+        ]
+      ]
+    },
+    {
+      "root": "pinned_source",
+      "path": "llvm/test/tools/llvm-cov/export_functions.test",
+      "sha256": "e1b0259089c8f91e86854246deb99d9f335715db5e94243080b80750bab948ae",
+      "bytes": 431,
+      "line_ranges": [
+        [
+          1,
+          8
+        ]
+      ]
+    }
+  ],
+  "local_receipt_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211,
+      "scope": "Recorded installed paths, kinds, lengths and hashes; installed files were not opened."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77",
+      "bytes": 32143,
+      "scope": "Exact retained 07d flags, prefix and witness output."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+      "scope": "Existing 31-line reflection/exception witness; preserve exact private copy.",
+      "bytes": 991
+    }
+  ],
+  "reference_hash_rechecks": {
+    "source_files": 13,
+    "local_files": 3,
+    "all_match": true
+  },
+  "actual_tools": {
+    "filesystem_reader": "mcp__node_repl__js with node:fs/promises",
+    "hashing": "node:crypto SHA-256",
+    "native_subprocesses": 0,
+    "installed_tool_invocations": 0,
+    "compiler_or_coverage_runs": 0,
+    "network_or_research_providers": 0,
+    "repository_or_global_writes": 0,
+    "private_json_writes": 1
+  },
+  "read_routes": [
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "result": "read",
+      "bytes": 1285211,
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "result": "read",
+      "bytes": 991,
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov/export.test",
+      "result": "failed",
+      "code": "ENOENT"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/profile/CMakeLists.txt",
+      "result": "read",
+      "bytes": 4013,
+      "sha256": "16e6c96139e0ffe7f636a40b7643a7c579981194897e18d407e16685a14c5e0d"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-cov/CodeCoverage.cpp",
+      "result": "read",
+      "bytes": 49938,
+      "sha256": "0593622fb00694106a4a6cd8b9e7d5f3e717a13b143f8c643e5a89c08c8a30fb"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-cov/CoverageExporterJson.cpp",
+      "result": "read",
+      "bytes": 15893,
+      "sha256": "62dbad7517b0bf764abd6cc5342d20feea26ea2fd64886f95a9c4fc211ff77a4"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "result": "read",
+      "bytes": 147884,
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/profile/InstrProfilingFile.c",
+      "result": "read",
+      "bytes": 48581,
+      "sha256": "174fe3ad6a4dddd16d214c39bde59bd65d042e54f71774e7018e5abf8980e0c0"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/docs/SourceBasedCodeCoverage.rst",
+      "result": "read",
+      "bytes": 25042,
+      "sha256": "14e9e700695d890ca20c52c2f84b48adad27e03b1afb1c3c4603686db4e1b525"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-profdata/llvm-profdata.cpp",
+      "result": "read",
+      "bytes": 140113,
+      "sha256": "dc7cb40b5ee31c544dfa3f65c613c5628d644bd54b5869a1745b46d4d3f64a9e"
+    },
+    {
+      "route": "node:fs/promises.readdir",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov",
+      "result": "read",
+      "entries": 70
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov/export_functions.test",
+      "result": "read",
+      "bytes": 431,
+      "sha256": "e1b0259089c8f91e86854246deb99d9f335715db5e94243080b80750bab948ae"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/CompilerRTUtils.cmake",
+      "result": "read",
+      "bytes": 27080,
+      "sha256": "b1b098ee5090c7aba272bd66f057c07d467a7e033e2ddd6e605f7d301ac706b0"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChain.cpp",
+      "result": "read",
+      "bytes": 66454,
+      "sha256": "3298ec16bcf91eb8be53b900502042bcd3b726b574169f6a7b4666971619f0c5"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/ProfileData/Coverage/CoverageMapping.cpp",
+      "result": "read",
+      "bytes": 61645,
+      "sha256": "a358d7841f7da4be534802a2b3c7ecd417d93ab0004d137a3510f103c0efa1db"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov/branch-export-json.test",
+      "result": "read",
+      "bytes": 1761,
+      "sha256": "d696057c8e41e657e910a2469db2a786b1a56e1f6fdef2f9218548ba0601dd6a"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/AddCompilerRT.cmake",
+      "result": "read",
+      "bytes": 33149,
+      "sha256": "532cf218131bad739898f0e9c6044171ef158510b6e6b5742317c05e3ceec1e9"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/CodeGen/CoverageMappingGen.cpp",
+      "result": "read",
+      "bytes": 100640,
+      "sha256": "c4b57709b6e229750be9e2e042479564fcf3188c11fa5899712f57b1f88b1b9e"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "result": "read",
+      "bytes": 32143,
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/AddCompilerRT.cmake",
+      "result": "read",
+      "bytes": 33149,
+      "sha256": "532cf218131bad739898f0e9c6044171ef158510b6e6b5742317c05e3ceec1e9"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/profile/CMakeLists.txt",
+      "result": "read",
+      "bytes": 4013,
+      "sha256": "16e6c96139e0ffe7f636a40b7643a7c579981194897e18d407e16685a14c5e0d"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChain.cpp",
+      "result": "read",
+      "bytes": 66454,
+      "sha256": "3298ec16bcf91eb8be53b900502042bcd3b726b574169f6a7b4666971619f0c5"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "result": "read",
+      "bytes": 147884,
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/docs/SourceBasedCodeCoverage.rst",
+      "result": "read",
+      "bytes": 25042,
+      "sha256": "14e9e700695d890ca20c52c2f84b48adad27e03b1afb1c3c4603686db4e1b525"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/profile/InstrProfilingFile.c",
+      "result": "read",
+      "bytes": 48581,
+      "sha256": "174fe3ad6a4dddd16d214c39bde59bd65d042e54f71774e7018e5abf8980e0c0"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/CodeGen/CoverageMappingGen.cpp",
+      "result": "read",
+      "bytes": 100640,
+      "sha256": "c4b57709b6e229750be9e2e042479564fcf3188c11fa5899712f57b1f88b1b9e"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-cov/CoverageExporterJson.cpp",
+      "result": "read",
+      "bytes": 15893,
+      "sha256": "62dbad7517b0bf764abd6cc5342d20feea26ea2fd64886f95a9c4fc211ff77a4"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-profdata/llvm-profdata.cpp",
+      "result": "read",
+      "bytes": 140113,
+      "sha256": "dc7cb40b5ee31c544dfa3f65c613c5628d644bd54b5869a1745b46d4d3f64a9e"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/tools/llvm-cov/CodeCoverage.cpp",
+      "result": "read",
+      "bytes": 49938,
+      "sha256": "0593622fb00694106a4a6cd8b9e7d5f3e717a13b143f8c643e5a89c08c8a30fb"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov/branch-export-json.test",
+      "result": "read",
+      "bytes": 1761,
+      "sha256": "d696057c8e41e657e910a2469db2a786b1a56e1f6fdef2f9218548ba0601dd6a"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/test/tools/llvm-cov/export_functions.test",
+      "result": "read",
+      "bytes": 431,
+      "sha256": "e1b0259089c8f91e86854246deb99d9f335715db5e94243080b80750bab948ae"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/ProfileData/Coverage/CoverageMapping.cpp",
+      "result": "read",
+      "bytes": 61645,
+      "sha256": "a358d7841f7da4be534802a2b3c7ecd417d93ab0004d137a3510f103c0efa1db"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "result": "read",
+      "bytes": 1285211,
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "result": "read",
+      "bytes": 32143,
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77"
+    },
+    {
+      "route": "node:fs/promises.readFile",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+      "result": "read",
+      "bytes": 991,
+      "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    }
+  ],
+  "limits": [
+    "All proposed compile/link/run, profile generation, merge, export, counter values, loader origins and negative-control exits remain UNVERIFIED at runtime.",
+    "No new sanitizers, MC/DC, cross-product, Docker, services, installations, native probes or provider research.",
+    "The recorded installed profile runtime is present; actual architecture/linkability and compatibility await the admitted fixture."
+  ]
+}

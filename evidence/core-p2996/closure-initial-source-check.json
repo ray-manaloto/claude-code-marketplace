@@ -1,0 +1,44 @@
+{
+  "returncode": 1,
+  "failure": "Closure script required every historical private source to remain unchanged, beyond the immutable retained copy contract. Mismatches to investigate below.",
+  "mismatches": [
+    {
+      "manifest": "attempt-1/manifest.json",
+      "copy": "evidence/core-p2996/attempt-1/proposal.json",
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/proposal.json",
+      "expected": "abd022fd8d214e5c174c693f5b9e711af6e41bd0db75fcc99a419726d8a158b4",
+      "copy_sha256": "abd022fd8d214e5c174c693f5b9e711af6e41bd0db75fcc99a419726d8a158b4",
+      "current_source_sha256": "da265185e7540877c78677ecd2108a240046d3acb2716a310996e3418a74d2c3"
+    },
+    {
+      "manifest": "attempt-1/manifest.json",
+      "copy": "evidence/core-p2996/attempt-1/admission.json",
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/admission.json",
+      "expected": "d124e20d7e6e322fec3842a65d935f737636b653193b71b6dafc32751c22e3cd",
+      "copy_sha256": "d124e20d7e6e322fec3842a65d935f737636b653193b71b6dafc32751c22e3cd",
+      "current_source_sha256": "2d2cc8cd18ef9a5fc3f87aa44ec952d55dca217f570e4b7fceac60d3982dba71"
+    },
+    {
+      "manifest": "attempt-1/manifest.json",
+      "copy": "evidence/core-p2996/attempt-1/pre-run-review.json",
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/pre-run-review.json",
+      "expected": "b4bfe6e53281024a022e3113a4b2edef021cfe6f55774d743dfdc5deb7c72e7a",
+      "copy_sha256": "b4bfe6e53281024a022e3113a4b2edef021cfe6f55774d743dfdc5deb7c72e7a",
+      "current_source_sha256": "01943a177d394118813d14db10115fc6059f644fabe4aca8246e578d100df23c"
+    },
+    {
+      "manifest": "attempt-1/manifest.json",
+      "copy": "evidence/core-p2996/attempt-1/preflight.json",
+      "source": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/preflight.json",
+      "expected": "58daa01c6fa90af2d9fd82de664b531bb4c9faac74a6f50ffcd288f2933d2a74",
+      "copy_sha256": "58daa01c6fa90af2d9fd82de664b531bb4c9faac74a6f50ffcd288f2933d2a74",
+      "current_source_sha256": "4c0262f3d35474d3bb842e3aa8f5c9b24569b97ba03733e8bcb08ccaa2b31334"
+    }
+  ],
+  "disposition": "PASS: four historical JSON snapshots retain their original hashes. Their project source paths were intentionally replaced for attempt 2. Every raw native text source still matches its exact retained copy; no acceptance data changed.",
+  "second_closure_attempt": {
+    "returncode": 1,
+    "reason": "Suffix classifier omitted exact native CMake InstallScripts.json whitespace.",
+    "disposition": "Admit JSON whitespace only inside manifest-bound configured-evidence; preserve exact source bytes."
+  }
+}

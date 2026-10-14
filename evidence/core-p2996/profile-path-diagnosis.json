@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "task": "03b2b failed GCC profile PATH comparison: bounded source and receipt diagnosis",
+  "created_at": "2026-10-11T13:36:31.263Z",
+  "reviewer": "/root/config_inspector",
+  "result": "PASS for proposed minimal guarded comparison correction; failed attempt remains FAIL and native retry is UNVERIFIED",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "verification": "Read Git administrative files; no Git subprocess or cleanliness inference"
+  },
+  "failure": {
+    "run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z",
+    "qualification": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/qualification.json",
+      "sha256": "5a5d356794f0b176b513833a63755b23e0db2bd8d623c8b5ebfcc29962820112",
+      "bytes": 285497
+    },
+    "helper": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source",
+      "sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+      "bytes": 25137
+    },
+    "line": 164,
+    "state": "FAIL",
+    "error": "AssertionError()",
+    "last_native_case": "gcc16-profile",
+    "last_native_returncode": 0,
+    "parent_reported_wrapper_exit": 1,
+    "cell_records": [
+      "p2996-static-Debug",
+      "p2996-static-Release",
+      "p2996-static-RelWithDebInfo",
+      "p2996-static-MinSizeRel",
+      "p2996-shared-Debug",
+      "p2996-shared-Release",
+      "p2996-shared-RelWithDebInfo",
+      "p2996-shared-MinSizeRel"
+    ],
+    "control_record_count": 4,
+    "protected_state_unchanged": true,
+    "retention": "Frozen attempt-1 helper independently read and verified byte-identical to the failed helper; original proposal/admission/review remain parent-retained. No evolving candidate was read.",
+    "original_read_source": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+      "sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+      "bytes": 25137
+    }
+  },
+  "comparison": {
+    "keys": [
+      "selected",
+      "path_sha256",
+      "homebrew_llvm_on_path"
+    ],
+    "selected_key_count": 32,
+    "selected_dictionary_equal": true,
+    "homebrew_llvm_on_path_equal": true,
+    "old_gcc_path_sha256": "6899194f726297bb709c28c349e12340b341c8549e2dd5ce2b1d3767e8c3bf43",
+    "actual_gcc_path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+    "accepted_p2996_runtime_path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+    "current_p2996_path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+    "rebased_expected_equals_entire_actual_dictionary": true
+  },
+  "source_contract": {
+    "probe": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+      "sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e",
+      "lines": [
+        1,
+        3
+      ],
+      "behavior": "Outputs selected allowlist fields, SHA256 of the entire PATH string and the Homebrew LLVM PATH-membership Boolean. No raw PATH or unallowlisted environment is emitted."
+    },
+    "same_probe_argv_suffix": true,
+    "old_named_profile_argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-reflection-20261011T0237/cwd",
+      "-E",
+      "gcc16",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+    ],
+    "actual_named_profile_argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/cwd",
+      "-E",
+      "gcc16",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+    ],
+    "profile_files": [
+      {
+        "path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+        "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+        "equals_old_gcc_preimage": true,
+        "equals_p2996_registration_preimage": true,
+        "has_direct_PATH_assignment": false
+      },
+      {
+        "path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+        "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+        "equals_old_gcc_preimage": true,
+        "equals_p2996_registration_preimage": true,
+        "has_direct_PATH_assignment": false
+      },
+      {
+        "path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+        "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+        "equals_old_gcc_preimage": true,
+        "equals_p2996_registration_preimage": true,
+        "has_direct_PATH_assignment": false
+      }
+    ],
+    "source_line_references": [
+      {
+        "path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+        "lines": [
+          1,
+          25
+        ],
+        "supports": "Includes common.toml; sets gcc16 lane and validated literal-prefix CC/CXX. No PATH assignment or tools table."
+      },
+      {
+        "path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+        "lines": [
+          1,
+          25
+        ],
+        "supports": "Includes the same common.toml; sets p2996 lane and validated literal-prefix CC/CXX. No PATH assignment or tools table."
+      },
+      {
+        "path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+        "lines": [
+          4,
+          7
+        ],
+        "supports": "Shared tools are CMake 4.4.4, Ninja 1.13.2, sccache 0.18.0; shared environment isolation follows at lines 10 onward."
+      }
+    ],
+    "existing_helper_guards": {
+      "inputs": [
+        95,
+        96
+      ],
+      "runtime_binding": [
+        64,
+        66
+      ],
+      "gcc_compiler_and_runtime_identity_hashes": [
+        117,
+        118
+      ],
+      "sdk_hash": [
+        119,
+        119
+      ],
+      "protected_state": [
+        120,
+        120
+      ],
+      "normal_environment": [
+        128,
+        130
+      ],
+      "registration_review_and_baseline": [
+        112,
+        115
+      ],
+      "lane_prefix_reset_and_profile": [
+        158,
+        164
+      ]
+    }
+  },
+  "diagnosis": {
+    "confirmed": "The full-profile assertion compares current GCC against an earlier whole-PATH fingerprint even though every compiler/environment field matches. Its current PATH hash exactly matches the admission-bound accepted P2996 runtime and current P2996 named profile. Both named profiles share the same unchanged common configuration.",
+    "chronology": [
+      {
+        "at": "2026-10-11T02:26:21.487992+00:00",
+        "event": "Accepted GCC runtime records old 6899194f... fingerprint."
+      },
+      {
+        "at": "2026-10-11T05:28:39.992709+00:00",
+        "event": "Vcpkg promotion review records only two added asdf-vcpkg installation namespace entries and unchanged nine global files."
+      },
+      {
+        "at": "2026-10-11T09:37:34.008514+00:00",
+        "event": "Accepted P2996 runtime begins; its named-profile record already has current f829d625... fingerprint."
+      },
+      {
+        "at": "2026-10-11T10:13:08.804338+00:00",
+        "event": "P2996 registration begins after the new fingerprint was already recorded."
+      },
+      {
+        "at": "2026-10-11T13:28:58.444459+00:00",
+        "event": "Failed attempt observes the same accepted current fingerprint in GCC."
+      }
+    ],
+    "p2996_registration": "Ruled out as the cause of the first old-to-new transition: the new hash predates registration. Its receipt also preserves global configuration preimages.",
+    "vcpkg_registration": "Causality is not established. The reviewed change added its install namespace/link and preserved all nine global files; no exact raw PATH delta is available here. Chronology alone does not prove it changed PATH.",
+    "earlier_transition": "The change occurred after the old GCC profile observation and by the accepted P2996 runtime observation. Its exact entry/order change remains unverified; no live probe is needed for the bounded shared-profile correction."
+  },
+  "minimal_correction": {
+    "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+    "replace_line": 164,
+    "code": "expected_profile = (runtime if lane == \"p2996\" else gcc)[\"selected_environment\"].copy()\nexpected_profile[\"path_sha256\"] = runtime[\"selected_environment\"][\"path_sha256\"]\nassert json.loads(run(lane + \"-profile\", base + normal_argv[-2:], fd)) == expected_profile",
+    "implementation_status": "Proposal only; reviewer made no maintained edits.",
+    "effect": "Replace exactly path_sha256 with the already accepted, immutable common named-profile hash. Keep whole-dictionary equality; do not drop PATH checking, derive an expected value from the failing output, or relax compiler/SDK/stdlib checks.",
+    "unchanged": [
+      "Full selected dictionary from each lane original receipt, including literal compiler paths, prefixes, lane and inherited flag/header/library/SDK isolation",
+      "Original per-lane Homebrew LLVM PATH-membership Boolean",
+      "Exact full output key set and accepted whole-PATH hash",
+      "Global common/profile file hashes and protected-state checks",
+      "Both compiler/runtime identities, SDK hash, frozen command validation and final preservation"
+    ],
+    "immutable_runtime": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77",
+      "matches_failed_run_inputs": true
+    },
+    "retry": "Preserve attempt-1 as FAIL. Bind corrected helper, review, proposal and admission to a new fresh run. The historical eight P2996 cells do not complete the sixteen-cell unit.",
+    "failed_source_reference": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source"
+  },
+  "read_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.git",
+      "sha256": "c14070ba93d40162e5c6ebe6db6e6ca5d3e028587ba6a164806a8a7ab00bb034",
+      "bytes": 112
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/HEAD",
+      "sha256": "6295a329d994bad0131b3f9feee3c9f0e299552ffaf9e637ed8f5bb25831d6a2",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace/commondir",
+      "sha256": "340ddcb67a6204f742cd1e28e5b462622dde7daaa8ee36001897196aacdc6d47",
+      "bytes": 6
+    },
+    {
+      "path": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/refs/heads/codex/marketplace-native-onboarding",
+      "sha256": "672ef9350bc3b96064ba6c9e5e9649553968c316d9caa7d2376ae8381ccb66bf",
+      "bytes": 41
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+      "sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+      "bytes": 25137
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/qualification.json",
+      "sha256": "5a5d356794f0b176b513833a63755b23e0db2bd8d623c8b5ebfcc29962820112",
+      "bytes": 285497
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/gcc16-profile.stdout",
+      "sha256": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+      "bytes": 999
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+      "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192",
+      "bytes": 29416
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+      "sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "bytes": 14282
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/registration-review.json",
+      "sha256": "c8a131ad9dfcd8657eb51c8ea19b7cbfba473d120aac29d848e198645edb526f",
+      "bytes": 21042
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/operation/qualification.json",
+      "sha256": "28c9be5e8e0325eacc3de0625a31b4ba442b0ecc00f99cd7dbbb40f2ebe9a954",
+      "bytes": 21197
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+      "sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e",
+      "bytes": 836
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_bottles.py",
+      "sha256": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "bytes": 8991
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-bootstrap/install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276",
+      "bytes": 7699
+    },
+    {
+      "path": "/Users/rmanaloto/.config/mise/config.gcc16.toml",
+      "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+      "bytes": 1308
+    },
+    {
+      "path": "/Users/rmanaloto/.config/mise/config.p2996.toml",
+      "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+      "bytes": 1308
+    },
+    {
+      "path": "/Users/rmanaloto/.config/mise/cpp-foundation/common.toml",
+      "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+      "bytes": 944
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-review.json",
+      "sha256": "db7da46409d7bb95c19449f2c9900639335d4df7a534397efffb7dc3271bb6ea",
+      "bytes": 13823
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+      "sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b",
+      "bytes": 10175
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77",
+      "bytes": 32143
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T132822Z/p2996-profile.stdout",
+      "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+      "bytes": 1197
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source",
+      "sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+      "bytes": 25137
+    }
+  ],
+  "actual_routes": {
+    "tools": [
+      "mcp__node_repl__js: bounded node:fs/promises reads and node:crypto SHA256"
+    ],
+    "native_processes": 0,
+    "new_native_exit_codes": [],
+    "environment_probes": 0,
+    "network_calls": 0,
+    "project_global_source_writes": 0,
+    "private_json_files": 1,
+    "failed_routes": [
+      {
+        "route": "Receipt assembly in JavaScript",
+        "error": "Syntax parse error Expected closing brace before evaluation",
+        "effect": "No code ran and no file was written; corrected assembly uses separate property assignments."
+      }
+    ],
+    "status_probes_answered": true,
+    "no_raw_environment_or_secret_output": true,
+    "private_json_write_operations": 2
+  },
+  "limitations": [
+    "The exact earlier raw PATH insertion/reordering remains unverified.",
+    "The proposed correction was evaluated against recorded dictionaries only, with no new profile/compiler/build run.",
+    "No failed qualification is converted into a pass."
+  ],
+  "superseded_unpublished_draft_sha256": "0e1d0d3b0fda90c0e4a1e0ebe4e148a016312b7a71f6654905145a06f481d2d3"
+}

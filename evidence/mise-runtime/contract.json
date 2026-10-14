@@ -1,0 +1,67 @@
+{
+  "purpose": "09b1 read-only reattestation of one observed external runtime replacement",
+  "source_attribution": "Unknown; no claim of release download provenance",
+  "previous_record": {
+    "path": "/Users/rmanaloto/.local/bin/mise",
+    "lexists": true,
+    "exists": true,
+    "lstat_mode": "0o755",
+    "resolved_path": "/Users/rmanaloto/.local/bin/mise",
+    "mode": "0o755",
+    "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014",
+    "bytes": 127277984,
+    "macho": {
+      "cpu_type": 16777228,
+      "cpu_subtype": 0,
+      "file_type": 2
+    },
+    "categories": [
+      "bootstrap_input"
+    ],
+    "required": true
+  },
+  "current_mise": {
+    "path": "/Users/rmanaloto/.local/bin/mise",
+    "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+    "bytes": 127303648,
+    "version": "2026.10.8 macos-arm64 (2026-10-11)"
+  },
+  "inputs": {
+    "evidence/p2996-registration/independent-registration/post-state.json": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+    "evidence/p2996-install/independent-installation/post-install-inventory.json": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103",
+    "evidence/p2996-install/operation/prefix-inventory.json": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+    "evidence/iwyu-build/proposal.json": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8",
+    "evidence/iwyu-build/installation-review.json": "99aa4745c22f5e4309d4c9bfcb6055dda1d5f67a991957c64f800fc8d75dd1f8",
+    "evidence/gcc-bootstrap/install-preimages.json": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276",
+    "evidence/p2996-math-resume/operation/p2996_build.py.source": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "dev/toolchains/p2996_reflection.py": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff",
+    "evidence/iwyu-build/operation/default-after.stdout": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+    "evidence/iwyu-build/operation/named-profile.stdout": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473",
+    "evidence/core-p2996/operation/p2996-profile.stdout": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+    "evidence/core-p2996/operation/gcc16-profile.stdout": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/context.json": "87fc7475ddc4c7b388496b5c6da2c347f1926893dfd1bbd76bf92ed993c476d0",
+    "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+  },
+  "profiles": {
+    "default": "evidence/iwyu-build/operation/default-after.stdout",
+    "cpp-build": "evidence/iwyu-build/operation/named-profile.stdout",
+    "p2996": "evidence/core-p2996/operation/p2996-profile.stdout",
+    "gcc16": "evidence/core-p2996/operation/gcc16-profile.stdout"
+  },
+  "p2996_prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+  "isolation_keys": [
+    "CFLAGS",
+    "CXXFLAGS",
+    "CPPFLAGS",
+    "LDFLAGS",
+    "CPATH",
+    "CPLUS_INCLUDE_PATH",
+    "LIBRARY_PATH",
+    "COMPILER_PATH",
+    "SDKROOT",
+    "DYLD_LIBRARY_PATH",
+    "DYLD_FALLBACK_LIBRARY_PATH",
+    "DYLD_INSERT_LIBRARIES"
+  ]
+}

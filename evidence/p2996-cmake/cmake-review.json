@@ -1,0 +1,614 @@
+{
+  "at": "2026-10-11T12:24:43.178292+00:00",
+  "reviewer": "/root/cold_bottle_review",
+  "unit": "10a2",
+  "result": "PASS: independent cold source, receipt and one fresh native CMake review",
+  "findings": [],
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "a99c7900115128108a3a525de687a2a1f137b07c",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "helper_sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72",
+  "operation_sha256": "e61702be845f1602d267789d8ab78ce5601a59ab9cd78ef0435cbebe365081b6",
+  "final_maintained_files": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_cmake.py",
+      "sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72",
+      "bytes": 22667
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/README.md",
+      "sha256": "de42fd3567a8f31061b812023b5c203c11ce0fa6469e71adac55131260aeb879",
+      "bytes": 1622
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+      "sha256": "1a577daf40e1d143813b2672f3dc12ebaff65db1d4ddf66e0ba90b71596c5d73",
+      "bytes": 16615
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "364cbf7e455d76e70bcddb390d9cd899c290d9623cb5106544216671cca660d7",
+      "bytes": 11862
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "d5f1e4ca06decbcdbdc9a7996c743aaec92d523ba9b9d6e8a09af8da0ce8e9fd",
+      "bytes": 63520
+    }
+  ],
+  "parent_evidence": {
+    "verification": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/parent-evidence-verification.json",
+      "sha256": "cbd1ade1ec0bd8e03f77cb80b85ef094be3424537b9dd8123d39a1c517d3f709",
+      "bytes": 84562
+    },
+    "text_records_verified_against_both_original_and_copy": 179,
+    "private_binary_records_hashed": 12,
+    "parent_command_count": 51,
+    "parent_wrapper_returncode": 0,
+    "all_eight_expected_failures": true,
+    "all_23_source_reference_hashes_verified": true,
+    "three_initial_findings_closed": true
+  },
+  "static_review": {
+    "source_scope": "Frozen 310-line helper; unchanged committed toolchain, fixture and reflection witness; final four closure documents.",
+    "failure_propagation": "Reviewed frozen runner, exact expected-exit adapter, per-command timeout of 45 or 60 seconds, process-group TERM/KILL cleanup on exceptional exit, shared lease descriptor propagation and final protected-state verification. No active timeout/signal test was repeated.",
+    "probe_evidence": "All three generated Debug compile/link pairs exactly match uncached configure-log native stdout (exitCode 0), using the documented application-level backslash encoding. All fresh nonempty object/executable/ABI copies were retained before further CMake execution; ABI copies match executable hashes.",
+    "log_encoding_source": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/manual/cmake-configure-log.7.rst",
+      "sha256": "2ee402079e709eec6c2b3f201dfad9d6dd5d7f6f4511f635f212c5d2305e03a7",
+      "bytes": 21188,
+      "lines": [
+        94,
+        103
+      ]
+    },
+    "compile_database": "Exactly four rows, one per named configuration, four distinct confined outputs. Native compiles match the CDB after verifying and removing precisely -MD -MT <object> -MF <object>.d metadata. C commands have no C++ standard/header/runtime flags; reflection stays target-private.",
+    "fresh_session_scope": "Existing named p2996 environment selected with --fresh-env from a fresh private cwd. Default consumer before/after is byte-identical to registration. No Codex/Claude model session was started."
+  },
+  "executed_checks": {
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/invocation.json",
+      "sha256": "44bf5495e35b44e4ddc6cd471330ca5356015c6fa784feb4ef8edf716acd4f59",
+      "bytes": 1122
+    },
+    "native_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/native-checks.json",
+      "sha256": "33f4c7e53006bc57e5c323fc26fc9d8f5fd311ac474620e8517991deaf0c7873",
+      "bytes": 122889
+    },
+    "reproduction_count": 1,
+    "commands": 55,
+    "returncode_0": 47,
+    "intended_returncode_1": 8,
+    "maximum_command_elapsed_seconds": 1.9231433339882642,
+    "per_native_command_timeout_limit_seconds": 60,
+    "probes": {
+      "private_runtime.cpp": {
+        "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-E6jb0l",
+        "configure_event_exit": 0,
+        "cached": false,
+        "generated_and_executed_commands_equal_after_log_escaping": true,
+        "commands": [
+          [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "-DCMAKE_INTDIR=\"Debug\"",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-g",
+            "-std=c++26",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-MD",
+            "-MT",
+            "CMakeFiles/cmTC_2d6e4.dir/Debug/private_runtime.cpp.o",
+            "-MF",
+            "CMakeFiles/cmTC_2d6e4.dir/Debug/private_runtime.cpp.o.d",
+            "-o",
+            "CMakeFiles/cmTC_2d6e4.dir/Debug/private_runtime.cpp.o",
+            "-c",
+            "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-E6jb0l/private_runtime.cpp"
+          ],
+          [
+            ":",
+            "&&",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-g",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-Wl,-search_paths_first",
+            "-Wl,-headerpad_max_install_names",
+            "-nostdlib++",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+            "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+            "CMakeFiles/cmTC_2d6e4.dir/Debug/private_runtime.cpp.o",
+            "-o",
+            "Debug/cmTC_2d6e4",
+            "&&",
+            ":"
+          ]
+        ]
+      },
+      "CMakeCCompilerABI.c": {
+        "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-lE7iki",
+        "configure_event_exit": 0,
+        "cached": false,
+        "generated_and_executed_commands_equal_after_log_escaping": true,
+        "commands": [
+          [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+            "-DCMAKE_INTDIR=\"Debug\"",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-g",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-v",
+            "-Wl,-v",
+            "-MD",
+            "-MT",
+            "CMakeFiles/cmTC_e632a.dir/Debug/CMakeCCompilerABI.c.o",
+            "-MF",
+            "CMakeFiles/cmTC_e632a.dir/Debug/CMakeCCompilerABI.c.o.d",
+            "-o",
+            "CMakeFiles/cmTC_e632a.dir/Debug/CMakeCCompilerABI.c.o",
+            "-c",
+            "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCCompilerABI.c"
+          ],
+          [
+            ":",
+            "&&",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-g",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-Wl,-search_paths_first",
+            "-Wl,-headerpad_max_install_names",
+            "-v",
+            "-Wl,-v",
+            "CMakeFiles/cmTC_e632a.dir/Debug/CMakeCCompilerABI.c.o",
+            "-o",
+            "Debug/cmTC_e632a",
+            "&&",
+            ":"
+          ]
+        ]
+      },
+      "CMakeCXXCompilerABI.cpp": {
+        "directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-pbG69P",
+        "configure_event_exit": 0,
+        "cached": false,
+        "generated_and_executed_commands_equal_after_log_escaping": true,
+        "commands": [
+          [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "-DCMAKE_INTDIR=\"Debug\"",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-g",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-v",
+            "-Wl,-v",
+            "-MD",
+            "-MT",
+            "CMakeFiles/cmTC_68173.dir/Debug/CMakeCXXCompilerABI.cpp.o",
+            "-MF",
+            "CMakeFiles/cmTC_68173.dir/Debug/CMakeCXXCompilerABI.cpp.o.d",
+            "-o",
+            "CMakeFiles/cmTC_68173.dir/Debug/CMakeCXXCompilerABI.cpp.o",
+            "-c",
+            "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXCompilerABI.cpp"
+          ],
+          [
+            ":",
+            "&&",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+            "--no-default-config",
+            "-fno-blocks",
+            "-resource-dir",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+            "-stdlib=libc++",
+            "-nostdinc++",
+            "-isystem",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+            "-g",
+            "-arch",
+            "arm64",
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+            "-mmacosx-version-min=27.0",
+            "-Wl,-search_paths_first",
+            "-Wl,-headerpad_max_install_names",
+            "-v",
+            "-Wl,-v",
+            "-nostdlib++",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+            "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+            "CMakeFiles/cmTC_68173.dir/Debug/CMakeCXXCompilerABI.cpp.o",
+            "-o",
+            "Debug/cmTC_68173",
+            "&&",
+            ":"
+          ]
+        ]
+      }
+    },
+    "probe_artifacts": {
+      "private_runtime.cpp": {
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/private_runtime.cpp/object.bin",
+          "sha256": "9350fe84a662ec86a9a3177ae592e775502395e7e094d9865f992ad4c25a1f2b",
+          "bytes": 57528,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-E6jb0l/CMakeFiles/cmTC_2d6e4.dir/Debug/private_runtime.cpp.o",
+          "fresh_after_configure": true
+        },
+        "executable": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/private_runtime.cpp/executable.bin",
+          "sha256": "e984a8b560471672909138147092d3919a604b2d15f94de8d2bb7f30fea5373e",
+          "bytes": 36040,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-E6jb0l/Debug/cmTC_2d6e4",
+          "fresh_after_configure": true
+        }
+      },
+      "CMakeCCompilerABI.c": {
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCCompilerABI.c/object.bin",
+          "sha256": "a0b5e2d73b066bd758bb7c6c447768e73a0448fdd835ee92fb79e50826bb181d",
+          "bytes": 4072,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-lE7iki/CMakeFiles/cmTC_e632a.dir/Debug/CMakeCCompilerABI.c.o",
+          "fresh_after_configure": true
+        },
+        "executable": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCCompilerABI.c/executable.bin",
+          "sha256": "b78f7576e83b62e76bd19f72886839db5aeaabacc1d909cabb592c2f411bd50e",
+          "bytes": 34152,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-lE7iki/Debug/cmTC_e632a",
+          "fresh_after_configure": true
+        },
+        "abi-copy": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCCompilerABI.c/abi-copy.bin",
+          "sha256": "b78f7576e83b62e76bd19f72886839db5aeaabacc1d909cabb592c2f411bd50e",
+          "bytes": 34152,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/4.4.4/CMakeDetermineCompilerABI_C.bin",
+          "same_bytes_as_executable": true
+        }
+      },
+      "CMakeCXXCompilerABI.cpp": {
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCXXCompilerABI.cpp/object.bin",
+          "sha256": "6798cf2f1ae0bea158177698fa19c3cd5cdf433291498f7cb467e343fdf24305",
+          "bytes": 4288,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-pbG69P/CMakeFiles/cmTC_68173.dir/Debug/CMakeCXXCompilerABI.cpp.o",
+          "fresh_after_configure": true
+        },
+        "executable": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCXXCompilerABI.cpp/executable.bin",
+          "sha256": "24612abe9aa401ad3f19a69f02c9f1ea304852333c322ae4e70b9be52b838a0b",
+          "bytes": 34152,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/CMakeScratch/TryCompile-pbG69P/Debug/cmTC_68173",
+          "fresh_after_configure": true
+        },
+        "abi-copy": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/probe-artifacts/CMakeCXXCompilerABI.cpp/abi-copy.bin",
+          "sha256": "24612abe9aa401ad3f19a69f02c9f1ea304852333c322ae4e70b9be52b838a0b",
+          "bytes": 34152,
+          "source": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/4.4.4/CMakeDetermineCompilerABI_CXX.bin",
+          "same_bytes_as_executable": true
+        }
+      }
+    },
+    "compile_database_outputs": {
+      "Debug": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+      "Release": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+      "RelWithDebInfo": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+      "MinSizeRel": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o"
+    },
+    "configurations": {
+      "Debug": {
+        "binary": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/Debug/reflection",
+          "sha256": "25029ac98bf3b657812845695f45f5279c4a755dc968e961d5484e349efc025a",
+          "bytes": 46504
+        },
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+          "sha256": "7926d445f2cef7c94d02e63a5be45341e5b5c5f590e976275d498e16377e175e",
+          "bytes": 120872
+        },
+        "summary": {
+          "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+          "version": "21.0.0",
+          "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+          "architecture": "arm64",
+          "configuration": "Debug",
+          "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/Debug/reflection"
+        },
+        "loaded_private_images": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "actual_compile_and_cdb_equal_except_verified_dependency_metadata": true
+      },
+      "Release": {
+        "binary": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/Release/reflection",
+          "sha256": "f6e0a705a2c6306e2c4d5181c726df90dd999bc00b8209738445d7344e818b5c",
+          "bytes": 36776
+        },
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+          "sha256": "7705ec17deb2a33fe4f68f3abb51eaa9ae0560522559bd3e5f4e540d9ba8a3f8",
+          "bytes": 6168
+        },
+        "summary": {
+          "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+          "version": "21.0.0",
+          "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+          "architecture": "arm64",
+          "configuration": "Release",
+          "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/Release/reflection"
+        },
+        "loaded_private_images": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "actual_compile_and_cdb_equal_except_verified_dependency_metadata": true
+      },
+      "RelWithDebInfo": {
+        "binary": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/RelWithDebInfo/reflection",
+          "sha256": "0acea11e87502f9c81502b918faceea8150be29db7dc488e65c910e8dc78488c",
+          "bytes": 37880
+        },
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+          "sha256": "151e14a4df53a7543d57912cdbd3c1e39814cec6e66f1b0fcb9b5654a3c32265",
+          "bytes": 127344
+        },
+        "summary": {
+          "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+          "version": "21.0.0",
+          "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+          "architecture": "arm64",
+          "configuration": "RelWithDebInfo",
+          "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/RelWithDebInfo/reflection"
+        },
+        "loaded_private_images": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "actual_compile_and_cdb_equal_except_verified_dependency_metadata": true
+      },
+      "MinSizeRel": {
+        "binary": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/MinSizeRel/reflection",
+          "sha256": "036e2f0180b446ab0782899776735f9829301b0e992cbd5904bbbbb6a3ef833c",
+          "bytes": 36952
+        },
+        "object": {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp.o",
+          "sha256": "a2e3f8268bedffeba09df73bf87959efed2062fb0d8f0175ee2fa54ac9f4272e",
+          "bytes": 6248
+        },
+        "summary": {
+          "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+          "version": "21.0.0",
+          "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+          "architecture": "arm64",
+          "configuration": "MinSizeRel",
+          "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/build/MinSizeRel/reflection"
+        },
+        "loaded_private_images": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+        ],
+        "actual_compile_and_cdb_equal_except_verified_dependency_metadata": true
+      }
+    },
+    "negative_controls": [
+      {
+        "case": "wrong-lane",
+        "returncode": 1,
+        "diagnostic": "Select the task-07d qualified",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "dirty-flags",
+        "returncode": 1,
+        "diagnostic": "Unexpected CXXFLAGS",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "wrong-compiler",
+        "returncode": 1,
+        "diagnostic": "Conflicting CXX compiler",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "wrong-architecture",
+        "returncode": 1,
+        "diagnostic": "SDK, deployment target and architecture",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "launcher",
+        "returncode": 1,
+        "diagnostic": "Compiler and linker launchers",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "extra-libraries",
+        "returncode": 1,
+        "diagnostic": "Unexpected extra C++ standard libraries",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "forced-compiler",
+        "returncode": 1,
+        "diagnostic": "Compiler and try_compile link checks",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      },
+      {
+        "case": "static-probe",
+        "returncode": 1,
+        "diagnostic": "Compiler and try_compile link checks",
+        "no_generated_build_ninja_or_fixture_artifact": true
+      }
+    ],
+    "one_job_builds": true,
+    "all_four_ctest_runs": true,
+    "all_four_exact_runtime_stdout_checks": true,
+    "all_four_exact_three_private_runtime_origins": true,
+    "static_counts": {
+      "baseline": 19,
+      "json": 808,
+      "python": 38,
+      "shell": 6,
+      "toml": 14
+    },
+    "all_19_original_acceptance_hashes_passed": true
+  },
+  "preservation": {
+    "all_protected_state_unchanged": true,
+    "checked_before_and_after": true,
+    "registered_post_state_sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+    "counts": {
+      "prefix_entries": 6411,
+      "retained_source_build_records": 159,
+      "global_files": 9,
+      "packages": 8,
+      "glib_files": 2,
+      "directory_entries": {
+        "/Users/rmanaloto/.local/share/mise/shims": 835,
+        "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+      },
+      "install_entries": 2200
+    },
+    "source_seven_file_delta_unchanged": [
+      " M clang/lib/Headers/float.h",
+      " M libcxx/include/float.h",
+      " M llvm/include/llvm/CodeGen/RDFGraph.h",
+      " M llvm/include/llvm/CodeGen/RDFRegisters.h",
+      " M llvm/lib/CodeGen/RDFLiveness.cpp",
+      " M llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      " M llvm/lib/Target/Hexagon/RDFCopy.h"
+    ],
+    "source_head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "source_tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "source_before_after_hashes_equal": true,
+    "default_before_after_registration_equal": true,
+    "mise_sdk_and_fixture_inputs_unchanged": true,
+    "lease": {
+      "module": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+      "module_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+      "wait_seconds": 0,
+      "acquired": true,
+      "released": true,
+      "acquired_at": "2026-10-11T12:20:31.907375+00:00",
+      "descriptor": 3,
+      "holder": "46297\tmarketplace-p2996-cmake-cold-review\t2026-10-11T12:20:31Z",
+      "released_at": "2026-10-11T12:20:40.843515+00:00",
+      "free_after_release": true
+    },
+    "capacity": {
+      "observed_at": "2026-10-11T12:20:31.959689+00:00",
+      "blockers": [],
+      "free_disk_bytes": 56177917952,
+      "required_free_disk_bytes": 8589934592,
+      "native_process_check_returncode": 0
+    },
+    "parent_closure_doc_delta": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/closure-doc-review.json",
+      "sha256": "6155d8b4320a23112687cd587e16260aae17f271bf071b35c486b89064acae65",
+      "bytes": 4773
+    },
+    "no_project_or_protected_global_config_install_writes_by_reviewer": true,
+    "admitted_shared_state_operation": "Canonical host-wide heavy lease metadata was acquired/released; all other reviewer writes stayed in private scratch."
+  },
+  "supporting_records": {
+    "all_110_native_log_hashes_rechecked_after_completion": true,
+    "all_configured_text_capture_hashes_rechecked": 73,
+    "all_private_probe_and_final_binary_hashes_rechecked": true
+  },
+  "reviewer_bookkeeping": {
+    "initial_nonexistent_read_paths": "Two initial read bundles returned 1 due to guessed documentation/old private-driver filenames; correct existing paths were subsequently read. No candidate files changed.",
+    "initial_verifier_failure": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/initial-verifier-failure.json",
+      "sha256": "621408d3d72059c1e999f574338b445dcf6c0bcbf61bc473950d6c8f3efd6b16",
+      "bytes": 363
+    },
+    "pure_io_driver_preflight_correction": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/driver-preflight.json",
+      "sha256": "125d10d353c67df772ceb487ffb4e56c5b373ba6a6d7fed6efb3ef4570f7cdf0",
+      "bytes": 1138
+    },
+    "post_runtime_document_change_guard": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-cmake-review-x8xhd54x/closure-doc-review.json",
+      "sha256": "6155d8b4320a23112687cd587e16260aae17f271bf071b35c486b89064acae65",
+      "bytes": 4773
+    },
+    "no_native_fixture_rerun": true
+  },
+  "not_run": [
+    "No installers, compiler or dependency builds, global/mise edits, cache server, services, containers, network or research.",
+    "No old guard/timeout/signal battery or model sessions.",
+    "No shared/module/dependency linkage, sanitizer/coverage permutations or application matrix qualification.",
+    "No full Claude SessionStart/provider/OCI acceptance; preserved original 19 files only establish byte preservation.",
+    "No claim of binary reproducibility across different private build paths.",
+    "Final closure wording was reviewed statically after the independent static gate; parent final static/secret checks and receipt import remain delivery steps."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "skill_name": "session-resume",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/session-resume ccm-20261014",
+      "expected_output": "Reads the HANDOFF pointer from the plan's `## Next Step`, runs the doctor session-start surface (root or w0-doctor worktree), runs `dev/handoff.py check --agents-done`, dispatches one extractor with the fixed brief, rewrites the owner line with `dev/handoff.py owner --session ccm-20261014`, then prints the first three actions, the pending-user list and the slash commands the user must type from HANDOFF §2(j).",
+      "files": [],
+      "expectations": [
+        "Runs the doctor session-start surface and quotes its P1/P2/P3 counts",
+        "Runs dev/handoff.py check and reports its exit code",
+        "Dispatches exactly one extractor agent with the brief from references/extractor-brief.md",
+        "Runs dev/handoff.py owner --session ccm-20261014",
+        "Lists the first three actions, the pending-user items and the user-typed slash commands"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I just restarted the terminal and started claude without -n. Resume the marketplace plan.",
+      "expected_output": "Follows the same steps; because the session has no name it asks the user to type `/rename <name>` before rewriting the owner line, and uses the newest transcript id for the owner line's session id.",
+      "files": [],
+      "expectations": [
+        "Asks the user to /rename when the session has no name",
+        "Does not skip the check or the extractor",
+        "Prints the pending-user list and the slash commands to type"
+      ]
+    }
+  ]
+}

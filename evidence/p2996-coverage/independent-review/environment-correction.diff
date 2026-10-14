@@ -1,0 +1,19 @@
+--- retained-initial-helper
++++ frozen-final-helper
+@@ -162,11 +162,12 @@
+                 "-fprofile-instr-generate", "-fcoverage-mapping", wrapper, "-nostdlib++", *libraries,
+                 "-Wl,-rpath," + str(prefix / "lib"), "-o", binary], timeout=60, descriptor=fd)
+             assert binary.is_file() and binary.stat().st_size > 0
+-            output = run("coverage-run", base + [binary], descriptor=fd,
+-                         environment=env | {"LLVM_PROFILE_FILE": str(raw), "DYLD_PRINT_LIBRARIES": "1"})
++            output = run("coverage-run", base + ["/usr/bin/env", "LLVM_PROFILE_FILE=" + str(raw),
++                         "DYLD_PRINT_LIBRARIES=1", binary], descriptor=fd)
+             assert output == "reflection value=43 exception=ok\n" and raw.is_file() and raw.stat().st_size > 0
+-            loaded = (directory / "coverage-run.stderr").read_text()
+-            assert all(str(p.resolve()) in loaded for p in libraries)
++            loaded = [line[line.find(str(prefix)):].strip() for line in (directory / "coverage-run.stderr").read_text().splitlines() if str(prefix) in line]
++            assert all(any(Path(p).resolve() == lib.resolve() for p in loaded) for lib in libraries)
++            report["loaded_private_images"] = loaded
+             run("coverage-merge", base + [prefix / "bin/llvm-profdata", "merge", "-sparse", "--num-threads=1",
+                 "--failure-mode=any", raw, "-o", merged], descriptor=fd)
+             assert merged.is_file() and merged.stat().st_size > 0

@@ -1,0 +1,51 @@
+{
+  "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+  "commands": [
+    {
+      "case": "identity",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "10d6b62f10a03cfef4559314912ede54bef25311d2a14a8d945d2aa6c513d948",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+        "ls-tree",
+        "-r",
+        "-z",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "613d4dbb15781efac52d91fc5901b51a3d199847a94dc49ac1c18f9a8ed0838f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "state": "PASS",
+  "identity": [
+    "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "6b25d118fef8953f62969191719e0197d646d36d"
+  ],
+  "tracked_files": 14337,
+  "extra_files": [
+    "vcpkg",
+    "vcpkg.disable-metrics"
+  ],
+  "inventory_records": 17644,
+  "inventory_files": 14348,
+  "source_unchanged": true
+}

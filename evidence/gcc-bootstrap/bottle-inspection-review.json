@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-11T01:42:24.673251+00:00",
+  "reviewer": "/root/config_inspector",
+  "reviewed_head": "694db529ebc4c3fab995a32c2c582b27874f09a9",
+  "result": "PASS for bounded inspection; final admission remains separate",
+  "archive_count": 4,
+  "public_links": 1791,
+  "missing_parent_directories": 80,
+  "materializations": [
+    "/opt/homebrew/share/gdb",
+    "/opt/homebrew/share/gdb/auto-load"
+  ],
+  "partial_commit_behavior": "Native rollback does not revert directory materializations or previously installed dependencies. No coordination with native Homebrew formula locks established.",
+  "census": {
+    "recorded_at": "2026-10-11T01:38:14Z",
+    "updater_pids_absent": [
+      41704,
+      41711,
+      41712
+    ],
+    "remaining_classified_mise_processes": [
+      56524,
+      56526,
+      56528
+    ],
+    "remaining_process_purpose": "Previously classified PDF MCP services",
+    "homebrew_lock_holders": []
+  },
+  "scope_findings": [
+    "PDF dependency updater current source can run untargeted mise install; its manager.py changed after the exited process, so historical effects are unproven.",
+    "Global drift writer remains unproven; current semantic changes are unrelated to compiler selection.",
+    "Archive roots/types/duplicates and no-descendants-under-symlink constraints verified independently."
+  ],
+  "writes_by_reviewer": false,
+  "network_or_installer_or_compiler_executed": false
+}

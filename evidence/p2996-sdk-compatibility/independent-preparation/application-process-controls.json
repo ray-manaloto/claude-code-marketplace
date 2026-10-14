@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "helper_sha256": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+  "scope": "Exact nested run AST with real private inert subprocesses; accelerated timeout only; no compiler, lease, source apply, or global changes",
+  "controls": [
+    {
+      "case": "success",
+      "result": "PASS",
+      "error": null,
+      "child_returncode": 0,
+      "child_reaped": true,
+      "timeout_accelerated_to_seconds": null
+    },
+    {
+      "case": "nonzero",
+      "result": "PASS",
+      "error": "AssertionError('nonzero')",
+      "child_returncode": 1,
+      "child_reaped": true,
+      "timeout_accelerated_to_seconds": null
+    },
+    {
+      "case": "timeout",
+      "result": "PASS",
+      "error": "TimeoutExpired(['/bin/sleep', '5'], 0.02)",
+      "child_returncode": -15,
+      "child_reaped": true,
+      "timeout_accelerated_to_seconds": 0.02
+    },
+    {
+      "case": "post-spawn-save-error",
+      "result": "PASS",
+      "error": "OSError(28, 'controlled ENOSPC after spawn')",
+      "child_returncode": -15,
+      "child_reaped": true,
+      "timeout_accelerated_to_seconds": null
+    }
+  ]
+}

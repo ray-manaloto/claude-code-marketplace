@@ -1,0 +1,65 @@
+{
+  "helper_sha256": "54110064e07f11daa4e22a0347d95146bbfe8bfd98424d645f8f2a2c79aec4f4",
+  "contract_sha256": "508d230c9857f0620853f91eab842f0809f387d2ce3b24c7f7c8da91ca3a26a6",
+  "candidate_sha256": "db3791bc8335c1ce50e0234dd6684ecb89e50c9aebb5aa29ebc13573505bed58",
+  "qualification_sha256": "aa4005ee513a2ad29b058588994f0ba69f88aa32b7298d362c0bc5893e20837e",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "b3f1adfe6bc634e08b47f1b2912ee94c09f405ba",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "result": "PASS",
+  "findings": [],
+  "scope": "Task 12c3c final native artifact review: four fresh consumer trees and eight Debug/Release executions, static research core with static/shared fmt across P2996 and GCC16.",
+  "observed_native_evidence": {
+    "native_returncode": 0,
+    "native_elapsed_seconds": 43.67532533290796,
+    "commands": 35,
+    "all_command_returncodes": 0,
+    "configure_trees": 4,
+    "consumer_cells": 8,
+    "text_source_pairs_verified": 169,
+    "pre_run_candidate_snapshots_verified": 7,
+    "executables_matching_qualification": 8,
+    "executable_file_reads": 8,
+    "all_lipo_outputs": "arm64",
+    "all_run_outputs": "reflection value=43, members=1\n",
+    "compiler_and_sdk": "Generated compiler files, caches and actual compile/link commands match each retained dependency lane: Clang 21.0.0 or GNU 16.2.0, macOS SDK/deployment 27.0, ARM64, C++26. Reflection is enabled on the real core; fmt is a compiled imported target.",
+    "fmt_selection": "Exact retained configuration-specific target path and kind; four dynamic consumers load precisely the selected fmt dylib, and four static consumers load no fmt dylib.",
+    "runtime_selection": "P2996 commands explicitly link the fork libc++/libc++abi/libunwind and all four P2996 traces contain their qualified paths. All four GCC traces contain the qualified libstdc++ path. System libc++, libc++abi and libunwind also appear in every trace.",
+    "recorded_preservation": {
+      "absent_pids": 35,
+      "lease_free_and_unchanged": true,
+      "default_profiles_equal": true,
+      "protected_state_unchanged": true
+    }
+  },
+  "static_artifact_review": {
+    "prepared_code_unchanged": true,
+    "five_current_files_match_artifact_candidate": true,
+    "admission_review_candidate_contract_links": "PASS",
+    "three_documentation_deltas": "Accurately report native success and retain final review as pending.",
+    "parent_acceptance_baseline_returncode": 0,
+    "parent_original_hashes_reported": 19,
+    "parent_secret_scan": {
+      "raw_returncode": 1,
+      "disposition_returncode": 0,
+      "verified_file_content_digest_findings": 2,
+      "complete_token_matches": 0
+    }
+  },
+  "reviewer_checks": {
+    "execution_receipt": "execution.json",
+    "returncode": 0,
+    "elapsed_seconds": 0.10468012490309775,
+    "activity": "One filesystem/text comparison with AST literal reading; no candidate function or native tool execution.",
+    "frozen_inputs_unchanged_at_packaging": 18
+  },
+  "limits": [
+    "Loader evidence proves selected lane runtime presence and successful witness behavior; it does not prove absence of system C++ runtimes or symbol-level binding exclusivity.",
+    "Only Debug/Release, static core and the four retained fmt triplets are exercised; broader presets, instrumentation, export/relocation and later tasks are outside this gate.",
+    "Native runs, lipo, dependency/tool binaries, source inventories, guards, PID/lease/default-profile/capacity checks, baseline tests and scanner were not rerun. Closure preservation is supported by the bound native report and retained parent closure.",
+    "Fresh model sessions, providers and full Claude/container acceptance were not run."
+  ],
+  "maintained_writes": 0,
+  "shared_writes": 0
+}

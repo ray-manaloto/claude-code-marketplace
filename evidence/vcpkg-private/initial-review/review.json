@@ -1,0 +1,89 @@
+{
+  "result": "FAIL",
+  "unit": "12c1 pre-run",
+  "created_at": "2026-10-11T17:48:04.223377+00:00",
+  "reviewer": "independent cold reviewer /root/cold_bottle_review",
+  "parent_return_channel": "native collaboration /root",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+  "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "344ee0a9668f3c3dcdd24931d49c20e3ffda5517ef967fa157b3d4ab72b82f3e",
+  "contract_sha256": "4f44f8f25d346f16c1ed69835e5f27630a710a04c135bed64e30ddd26ebd78ee",
+  "candidate_sha256": "5f0b78a5659e35ee28cfee4865cdb1352f5934945b350e0179a45420387e2253",
+  "findings": [
+    {
+      "id": "12C1-01",
+      "severity": "P2",
+      "status": "OPEN",
+      "path": "dev/toolchains/vcpkg_private.py",
+      "line_start": 43,
+      "line_end": 50,
+      "title": "Validate copied source contents against the admitted Git snapshot before copying",
+      "description": "prepare() inventories the current live source and checks only that its private copy equals those current bytes. The subsequent copied-vcpkg-identity command at lines 185-187 resolves HEAD and HEAD^{tree}, which do not attest working-tree bytes, executable modes, or extra untracked/ignored inputs. The frozen contract protects the vcpkg executable but contains no complete admitted source inventory, and the reused preservation inventory has no vcpkg source records. A fresh invocation can therefore accept a changed source tree while reporting the pinned commit/tree.",
+      "executed_evidence": "The actual AST-extracted prepare() and prefix_inventory() accepted all three drift variants: changed tracked-file bytes, changed tracked executable mode, and an unexpected untracked file. All retained the same valid loose Git commit/tree objects and bootstrap binary SHA256, and the copied sources preserved each drift. A clean control also passed. No Git or vcpkg subprocess was invoked.",
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-private-prerun-review-c684gwoy/control-results.json",
+      "requested_change": "Bind a complete admitted source inventory in the contract and compare the fresh inventory before copy. Derive its tracked file contents and executable modes from the pinned Git tree; allow only explicitly qualified bootstrap outputs, including the hash-bound vcpkg binary and empty disable-metrics marker. Preserve the existing no-symlink, alternates and common-dir rejections, copy equality and final source preservation."
+    }
+  ],
+  "executed_checks": {
+    "focused_controls": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-private-prerun-review-c684gwoy/controls-run.json",
+      "returncode": 0,
+      "elapsed_seconds": 0.12486504192929715,
+      "source_cases": 4,
+      "mock_expected_return_cases": 8,
+      "native_callbacks": "mocked; no real child tool",
+      "preservation": "all 10 frozen unit inputs unchanged before and after controls and at packaging"
+    },
+    "input_audit": {
+      "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-private-prerun-review-c684gwoy/input-audit.json",
+      "returncode": 0,
+      "contract_input_hashes": 30,
+      "tool_hashes": 5,
+      "exact_source_copy_pairs": 28,
+      "actual_fmt_archives_sha512": 2,
+      "installed_Apple_primary_sources_compared": 4,
+      "original_Claude_files": 19,
+      "scan_bound_hashes": 36
+    }
+  },
+  "static_review": [
+    "Reviewed the actual four maintained unit files and frozen receipts, root onboarding/AGENTS guidance and the applicable accepted decisions and plan status.",
+    "Reviewed private roots, command arguments, unchanged HOME check, selected exact host tools and named environment probes; the command scope is fetch cmake/ninja only, with no configure, dependency build or compiler invocation.",
+    "The sandbox profile denies writes except the private operation root and /dev/null, and denies network. The positive write and outside-write/symlink/network denial controls precede vcpkg fetch. DENIED controls accept only EPERM/EACCES, with explicit return code 73; connection refusal or timeout would propagate.",
+    "The reused native runner is hash-bound and passes the explicit lease descriptor; documented inherited descriptors are 0, 1, 2 and the lease. Canonical lease/census and existing runner cleanup contracts were reviewed by reference, not re-executed.",
+    "The new wrapper preserves unexpected failures and the outer BaseException/finally paths save FAIL state and preservation receipts. The eight new wrapper mocks passed.",
+    "Original Claude marketplace acceptance bytes match all 19 baseline records; this is static preservation evidence only."
+  ],
+  "retained_parent_receipts": {
+    "pre_review_static_returncodes": [
+      0,
+      0
+    ],
+    "pre_review_secret_scan_returncode": 0,
+    "preparation_case_count": 5,
+    "embedded_script_syntax": [
+      "positive",
+      "negative"
+    ],
+    "independently_rerun": false
+  },
+  "not_run": [
+    "native sandbox-exec controls",
+    "vcpkg commands",
+    "mise/profile commands",
+    "network or provider requests",
+    "shared lease or capacity operations",
+    "full protected() or global snapshot",
+    "compiler/build/install operations",
+    "fresh Claude/model session",
+    "full OCI acceptance",
+    "earlier triplet or cleanup test batteries"
+  ],
+  "limitations": [
+    "This is a preparation review. Native macOS confinement and the intended vcpkg tool-selection operation remain UNVERIFIED.",
+    "The source controls use private synthetic sources and decoded Git objects; they do not assert that the current real source checkout is dirty."
+  ],
+  "ownership": "No maintained, global or real source files were changed. Reviewer writes are confined to the private review directory."
+}

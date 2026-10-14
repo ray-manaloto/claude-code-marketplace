@@ -1,0 +1,143 @@
+{
+  "state": "FAIL",
+  "helper_sha256": "7d7a36633d63f4fd7a55277b031f7282514d69089dc53f21cf9eaf6dcbd53f7f",
+  "contract_sha256": "5f4294e02fb2999b264ec660ef409c100d3928f5a13dc7066dba139483fe8d1b",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T18:47:45.000565+00:00",
+      "pid": 39997,
+      "returncode": 0,
+      "elapsed_seconds": 0.012946792063303292,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/project-head.stdout",
+          "sha256": "8acf30d14511ee047e83b9ef4c7e54fc9c58f774ea9122e88b8e14fcef83d085"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--version"
+      ],
+      "started_at": "2026-10-11T18:47:45.016019+00:00",
+      "pid": 39998,
+      "returncode": 0,
+      "elapsed_seconds": 0.013006708002649248,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/version.stdout",
+          "sha256": "aafc9ea40926d1caedd237951384706dbdbe597b3904890d65c79846459bea0e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T18:47:45.029997+00:00",
+      "pid": 40000,
+      "returncode": 0,
+      "elapsed_seconds": 0.08565725001972169,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/default-profile.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/default-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-path-transition",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import json,os,sys;sys.path.insert(0,'/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains');from mise_renovate import path_transition;print(json.dumps(path_transition(os.environ['PATH'],sys.argv[1],sys.argv[2])))",
+        "/Users/rmanaloto/.local/share/mise/installs/npm-renovate/44.149.3/bin",
+        "/Users/rmanaloto/.local/share/mise/installs/npm-renovate/44.150.1/bin"
+      ],
+      "started_at": "2026-10-11T18:47:45.116568+00:00",
+      "pid": 40003,
+      "returncode": 0,
+      "elapsed_seconds": 0.14762158296070993,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/default-path-transition.stdout",
+          "sha256": "09da0f1fa35e7fca73bbebb062e5bcfa80e6abb657ab92522a9a859017e47ca5"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-repair-20261011T184736Z/default-path-transition.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "admission_sha256": "c92fbd5c49a8640baa991b066d309e87bd1e382cc36e0fea0b9f96178ccfcd47",
+  "writer_census_before": {
+    "at": "2026-10-11T18:47:44.995702+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "path_transitions": {},
+  "error": "AssertionError()",
+  "protected_state_unchanged": true
+}

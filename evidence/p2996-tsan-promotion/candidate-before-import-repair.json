@@ -1,0 +1,20 @@
+{
+  "unit": "14b2b",
+  "base_head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "files": [
+    "dev/toolchains/p2996_tsan_promote.py",
+    "docs/sanitizers.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "evidence": {
+    "contract.json": "f7a4bae70a2437c667435040877b2e7da90d83249982e707ee6dfcc6d3e5b0fb",
+    "derive.py.source": "000a3a86f0444ca213855b099521bc977f53344387ebe1a9d37f98b250cc0dde",
+    "candidate-inputs.json": "ce61b5cf507c9e871b637743cbcf4b2dabff81b2677534f3a1012f99267e6dbb",
+    "corrected-static.json": "b01b94f9bea6954c791dd050e3e3c94df7831a9f27fc0d6adaa52a5ce1ccbd57",
+    "preparation-review-initial/review.json": "a6dd3eedd1ee1f66fec66a6b1a90644ed29bf82269192caf110bf1c6af0ce356"
+  },
+  "initial_candidate_sha256": "f77746133fe079eaf308e4b707bba41944dcc07bc52bbe5fa27a88c20b11c29f",
+  "fix": "Guard rechecks both witness SHA-256 digests and byte lengths before mutation, after promotion and during preservation",
+  "intent": "Corrected guarded installed TSan promotion; no installed write or native execution yet"
+}

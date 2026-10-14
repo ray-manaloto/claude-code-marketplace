@@ -1,0 +1,94 @@
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:11:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFGraph.h:227:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h:12:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/ADT/BitVector.h:17:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/ADT/Hashing.h:47:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/ADT/ADL.h:13:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/iterator:755:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/variant:225:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__functional/operations.h:20:
+[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__type_traits/make_transparent.h:46:17: [0m[0;1;31merror: [0m[1mstatic assertion failed due to requirement 'is_empty<std::less<llvm::rdf::RegisterRef>>::value'[0m
+   46 |   [0;34mstatic_assert[0m(is_empty<_Comparator>::value);[0m
+      | [0;1;32m                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1861:42: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__as_transparent<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, 0>' requested here[0m
+ 1861 |   [0;34mauto[0m&& __transparent            = std::__as_transparent<_Key>(value_comp());[0m
+      | [0;1;32m                                         ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1039:38: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__find_equal<llvm::rdf::RegisterRef>' requested here[0m
+ 1039 |           [0;34mauto[0m [__parent, __child] = __find_equal(__key);[0m
+      | [0;1;32m                                     ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/set:741:93: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__emplace_unique<const llvm::rdf::RegisterRef &>' requested here[0m
+  741 |   _LIBCPP_HIDE_FROM_ABI pair<iterator, [0;34mbool[0m> insert([0;34mconst[0m value_type& __v) { [0;34mreturn[0m __tree_.__emplace_unique(__v); }[0m
+      | [0;1;32m                                                                                            ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1601:10: [0m[0;1;36mnote: [0min instantiation of member function 'std::set<llvm::rdf::RegisterRef>::insert' requested here[0m
+ 1601 |     Defs.insert(RR);[0m
+      | [0;1;32m         ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1646:7: [0m[0;1;36mnote: [0min instantiation of function template specialization 'llvm::rdf::DataFlowGraph::linkStmtRefs<bool (*)(llvm::rdf::NodeAddr<llvm::rdf::NodeBase *>)>' requested here[0m
+ 1646 |       linkStmtRefs(DefM, IA, IsUse);[0m
+      | [0;1;32m      ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__type_traits/make_transparent.h:46:17: [0m[0;1;36mnote: [0m'std::less<llvm::rdf::RegisterRef>' is not empty[0m
+   46 |   [0;34mstatic_assert[0m(is_empty<_Comparator>::value);[0m
+      | [0;1;32m                ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__type_traits/make_transparent.h:46:17: [0m[0;1;36mnote: [0mbecause it has a non-static data member 'PRI' of type 'const llvm::rdf::PhysicalRegisterInfo *'[0m
+[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h:356:20: [0m[0;1;36mnote: [0m'less<llvm::rdf::RegisterRef>' defined here[0m
+  356 | [0;34mtemplate[0m <> [0;34mstruct[0m less<llvm::rdf::RegisterRef> {[0m
+      | [0;1;32m                   ^
+[0mIn file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:11:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFGraph.h:227:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h:20:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/map:602:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:42:
+[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__utility/lazy_synth_three_way_comparator.h:45:21: [0m[0;1;31merror: [0m[1mno matching function for call to object of type 'const std::less<void>'[0m
+   45 |     [0;34mbool[0m __result = __comp_(__lhs_, __rhs_);[0m
+      | [0;1;32m                    ^~~~~~~
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1868:20: [0m[0;1;36mnote: [0min instantiation of member function 'std::__lazy_compare_result<std::less<void>, llvm::rdf::RegisterRef, llvm::rdf::RegisterRef>::__less' requested here[0m
+ 1868 |     [0;34mif[0m (__comp_res.__less()) {[0m
+      | [0;1;32m                   ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1039:38: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__find_equal<llvm::rdf::RegisterRef>' requested here[0m
+ 1039 |           [0;34mauto[0m [__parent, __child] = __find_equal(__key);[0m
+      | [0;1;32m                                     ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/set:741:93: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__emplace_unique<const llvm::rdf::RegisterRef &>' requested here[0m
+  741 |   _LIBCPP_HIDE_FROM_ABI pair<iterator, [0;34mbool[0m> insert([0;34mconst[0m value_type& __v) { [0;34mreturn[0m __tree_.__emplace_unique(__v); }[0m
+      | [0;1;32m                                                                                            ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1601:10: [0m[0;1;36mnote: [0min instantiation of member function 'std::set<llvm::rdf::RegisterRef>::insert' requested here[0m
+ 1601 |     Defs.insert(RR);[0m
+      | [0;1;32m         ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1646:7: [0m[0;1;36mnote: [0min instantiation of function template specialization 'llvm::rdf::DataFlowGraph::linkStmtRefs<bool (*)(llvm::rdf::NodeAddr<llvm::rdf::NodeBase *>)>' requested here[0m
+ 1646 |       linkStmtRefs(DefM, IA, IsUse);[0m
+      | [0;1;32m      ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__functional/operations.h:374:60: [0m[0;1;36mnote: [0mcandidate template ignored: substitution failure [with _T1 = const llvm::rdf::RegisterRef &, _T2 = const llvm::rdf::RegisterRef &]: overload resolution selected deleted operator '<'[0m
+  374 |   _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI [0;34mauto[0m [0;34moperator[0m()(_T1&& __t, _T2&& __u) [0;34mconst[0m
+      | [0;1;32m                                                           ^
+[0m  375 |       [0;34mnoexcept[0m([0;34mnoexcept[0m(std::forward<_T1>(__t) < std::forward<_T2>(__u))) [0;33m//[0m
+  376 |       -> [0;34mdecltype[0m(std::forward<_T1>(__t) < std::forward<_T2>(__u)) {[0m
+      | [0;1;32m                                         ~
+[0mIn file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:11:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFGraph.h:227:
+In file included from /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h:20:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/map:602:
+In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:42:
+[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__utility/lazy_synth_three_way_comparator.h:52:21: [0m[0;1;31merror: [0m[1mno matching function for call to object of type 'const std::less<void>'[0m
+   52 |     [0;34mbool[0m __result = __comp_(__rhs_, __lhs_);[0m
+      | [0;1;32m                    ^~~~~~~
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1874:27: [0m[0;1;36mnote: [0min instantiation of member function 'std::__lazy_compare_result<std::less<void>, llvm::rdf::RegisterRef, llvm::rdf::RegisterRef>::__greater' requested here[0m
+ 1874 |     } [0;34melse[0m [0;34mif[0m (__comp_res.__greater()) {[0m
+      | [0;1;32m                          ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__tree:1039:38: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__find_equal<llvm::rdf::RegisterRef>' requested here[0m
+ 1039 |           [0;34mauto[0m [__parent, __child] = __find_equal(__key);[0m
+      | [0;1;32m                                     ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/set:741:93: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__tree<llvm::rdf::RegisterRef, std::less<llvm::rdf::RegisterRef>, std::allocator<llvm::rdf::RegisterRef>>::__emplace_unique<const llvm::rdf::RegisterRef &>' requested here[0m
+  741 |   _LIBCPP_HIDE_FROM_ABI pair<iterator, [0;34mbool[0m> insert([0;34mconst[0m value_type& __v) { [0;34mreturn[0m __tree_.__emplace_unique(__v); }[0m
+      | [0;1;32m                                                                                            ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1601:10: [0m[0;1;36mnote: [0min instantiation of member function 'std::set<llvm::rdf::RegisterRef>::insert' requested here[0m
+ 1601 |     Defs.insert(RR);[0m
+      | [0;1;32m         ^
+[0m[1m/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFGraph.cpp:1646:7: [0m[0;1;36mnote: [0min instantiation of function template specialization 'llvm::rdf::DataFlowGraph::linkStmtRefs<bool (*)(llvm::rdf::NodeAddr<llvm::rdf::NodeBase *>)>' requested here[0m
+ 1646 |       linkStmtRefs(DefM, IA, IsUse);[0m
+      | [0;1;32m      ^
+[0m[1m/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1/__functional/operations.h:374:60: [0m[0;1;36mnote: [0mcandidate template ignored: substitution failure [with _T1 = const llvm::rdf::RegisterRef &, _T2 = const llvm::rdf::RegisterRef &]: overload resolution selected deleted operator '<'[0m
+  374 |   _LIBCPP_CONSTEXPR_SINCE_CXX14 _LIBCPP_HIDE_FROM_ABI [0;34mauto[0m [0;34moperator[0m()(_T1&& __t, _T2&& __u) [0;34mconst[0m
+      | [0;1;32m                                                           ^
+[0m  375 |       [0;34mnoexcept[0m([0;34mnoexcept[0m(std::forward<_T1>(__t) < std::forward<_T2>(__u))) [0;33m//[0m
+  376 |       -> [0;34mdecltype[0m(std::forward<_T1>(__t) < std::forward<_T2>(__u)) {[0m
+      | [0;1;32m                                         ~
+[0m3 errors generated.

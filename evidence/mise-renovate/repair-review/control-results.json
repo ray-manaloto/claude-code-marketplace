@@ -1,0 +1,120 @@
+{
+  "result": "PASS",
+  "at": "2026-10-11T18:45:27.208323+00:00",
+  "helper_sha256": "7d7a36633d63f4fd7a55277b031f7282514d69089dc53f21cf9eaf6dcbd53f7f",
+  "contract_sha256": "5f4294e02fb2999b264ec660ef409c100d3928f5a13dc7066dba139483fe8d1b",
+  "candidate_sha256": "7b34417346c0d718e1bb8798b559480da94cb1630f37833d509961a387024079",
+  "cases": [
+    {
+      "case": "four-lanes-bind-separate-proof-and-new-final-default",
+      "pass": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition",
+        "default-isolation",
+        "cpp-build-profile",
+        "cpp-build-path-transition",
+        "cpp-build-isolation",
+        "p2996-profile",
+        "p2996-path-transition",
+        "p2996-isolation",
+        "gcc16-profile",
+        "gcc16-path-transition",
+        "gcc16-isolation",
+        "default-after"
+      ]
+    },
+    {
+      "case": "disagreeing-proof",
+      "pass": true,
+      "rejected": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition"
+      ]
+    },
+    {
+      "case": "other-profile-value",
+      "pass": true,
+      "rejected": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition"
+      ]
+    },
+    {
+      "case": "proof-stderr",
+      "pass": true,
+      "rejected": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition",
+        "default-isolation"
+      ]
+    },
+    {
+      "case": "old-final-default",
+      "pass": true,
+      "rejected": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition",
+        "default-isolation",
+        "cpp-build-profile",
+        "cpp-build-path-transition",
+        "cpp-build-isolation",
+        "p2996-profile",
+        "p2996-path-transition",
+        "p2996-isolation",
+        "gcc16-profile",
+        "gcc16-path-transition",
+        "gcc16-isolation",
+        "default-after"
+      ]
+    },
+    {
+      "case": "changed-final-default",
+      "pass": true,
+      "rejected": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition",
+        "default-isolation",
+        "cpp-build-profile",
+        "cpp-build-path-transition",
+        "cpp-build-isolation",
+        "p2996-profile",
+        "p2996-path-transition",
+        "p2996-isolation",
+        "gcc16-profile",
+        "gcc16-path-transition",
+        "gcc16-isolation",
+        "default-after"
+      ]
+    },
+    {
+      "case": "proof-child-error",
+      "pass": true,
+      "exception_identity_preserved": true,
+      "mock_calls": [
+        "default-profile",
+        "default-path-transition"
+      ]
+    },
+    {
+      "case": "leading-trailing-and-consecutive-empty-PATH-components-preserved",
+      "pass": true
+    },
+    {
+      "case": "additional-empty-PATH-component-rejected",
+      "pass": true
+    }
+  ],
+  "native_commands": 0,
+  "main_calls": 0,
+  "protected_calls": 0,
+  "candidate_imports": 0,
+  "mock_loop_cases": 7,
+  "pure_path_cases": 2,
+  "unchanged_watched_files": 17
+}

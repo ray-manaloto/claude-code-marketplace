@@ -1,0 +1,55 @@
+--- 
++++ 
+@@ -18,7 +18,7 @@
+ from mise_runtime import function, load
+ 
+ EVIDENCE = ROOT / "evidence/mise-renovate"
+-CONTRACT_SHA = "5f4294e02fb2999b264ec660ef409c100d3928f5a13dc7066dba139483fe8d1b"
++CONTRACT_SHA = "617b0b1f30c4011ddc1d8b6995365eab1e349054e8487afc6636a331ef452cb6"
+ BASELINE = "evidence/p2996-registration/independent-registration/post-state.json"
+ 
+ 
+@@ -92,17 +92,20 @@
+     return function(Path(previous.__file__), "protected", vars(previous) | {"load": accepted_load})()
+ 
+ 
+-def path_transition(value, old, new):
++def path_transition(value, changes):
+     parts = value.split(os.pathsep)
+-    assert old != new and parts.count(new) == 1
+-    prior = os.pathsep.join(old if part == new else part for part in parts)
++    assert len(changes) == len(set(changes.values())) == 2
++    assert not set(changes).intersection(changes.values())
++    assert all(parts.count(new) == 1 for new in changes.values())
++    previous = {new: old for old, new in changes.items()}
++    prior = os.pathsep.join(previous.get(part, part) for part in parts)
+     return {"path_sha256": hashlib.sha256(value.encode()).hexdigest(),
+-            "previous_path_sha256": hashlib.sha256(prior.encode()).hexdigest(), "replacements": 1}
++            "previous_path_sha256": hashlib.sha256(prior.encode()).hexdigest(), "replacements": 2}
+ 
+ 
+ def compare_profile(observed, expected, proof):
+     assert proof == {"path_sha256": observed["path_sha256"],
+-                     "previous_path_sha256": expected["path_sha256"], "replacements": 1}
++                     "previous_path_sha256": expected["path_sha256"], "replacements": 2}
+     assert observed | {"path_sha256": expected["path_sha256"]} == expected
+ 
+ 
+@@ -153,7 +156,7 @@
+         probe = "import json,os,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))"
+         path_probe = ("import json,os,sys;sys.path.insert(0," + repr(str(Path(__file__).parent))
+                       + ");from mise_renovate import path_transition;"
+-                      "print(json.dumps(path_transition(os.environ['PATH'],sys.argv[1],sys.argv[2])))")
++                      "print(json.dumps(path_transition(os.environ['PATH'],json.loads(sys.argv[1]))))")
+         report["path_transitions"] = {}
+         for lane, expected in inherited["profiles"].items():
+             for key in ("MARKETPLACE_P2996_PREFIX", "MARKETPLACE_GCC16_PREFIX"):
+@@ -168,7 +171,7 @@
+             base += ["exec", "--fresh-env", "--no-deps", "--"]
+             observed = run(lane + "-profile", base + normal_argv[-2:])
+             proof = json.loads(run(lane + "-path-transition", base + [sys.executable, "-B", "-c", path_probe,
+-                               data["path_transition"]["previous"], data["path_transition"]["current"]]))
++                               json.dumps(data["path_transition"])]))
+             compare_profile(json.loads(observed), load(ROOT / expected), proof)
+             report["path_transitions"][lane] = proof
+             if lane == "default":

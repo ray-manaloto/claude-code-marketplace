@@ -1,0 +1,184 @@
+{
+  "recorded_at": "2026-10-11T01:42:24.673807+00:00",
+  "status": "prepared; apply waits for independent review and immediate no-overlap/preimage checks",
+  "owner_agent": "/root",
+  "owner_thread": "01a127db-2e65-70d1-8855-9bf2bc7bb46e",
+  "authority": "Accepted later global toolchain phase; scoped installation after inventory, private preimages and review. No broad global exclusivity claimed.",
+  "native_mise": {
+    "path": "/Users/rmanaloto/.local/bin/mise",
+    "version": "2026.10.7",
+    "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+  },
+  "bottles": [
+    {
+      "name": "isl",
+      "version": "0.28",
+      "tag": "arm64_tahoe",
+      "url": "https://ghcr.io/v2/homebrew/core/isl/blobs/sha256:9adc3d36bfaa7652e75d63fa7a61942ef9a9d1c5e857e8e38a578a78636bf4c2",
+      "sha256": "9adc3d36bfaa7652e75d63fa7a61942ef9a9d1c5e857e8e38a578a78636bf4c2",
+      "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-bottles-20261011T0100/cache/system-brew/bottles/isl-0.28.tar.gz",
+      "bytes": 1705237
+    },
+    {
+      "name": "mpfr",
+      "version": "4.2.2",
+      "tag": "arm64_tahoe",
+      "url": "https://ghcr.io/v2/homebrew/core/mpfr/blobs/sha256:495b04c82ef8638368a5cc62141e7ac195377d292503f5b30e5915b1ff478dda",
+      "sha256": "495b04c82ef8638368a5cc62141e7ac195377d292503f5b30e5915b1ff478dda",
+      "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-bottles-20261011T0100/cache/system-brew/bottles/mpfr-4.2.2.tar.gz",
+      "bytes": 1069432
+    },
+    {
+      "name": "libmpc",
+      "version": "1.4.1",
+      "tag": "arm64_tahoe",
+      "url": "https://ghcr.io/v2/homebrew/core/libmpc/blobs/sha256:5be7168564102d2666af5a9cc06622e4f9abe8f585b63cfe79d5043bff6a7f50",
+      "sha256": "5be7168564102d2666af5a9cc06622e4f9abe8f585b63cfe79d5043bff6a7f50",
+      "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-bottles-20261011T0100/cache/system-brew/bottles/libmpc-1.4.1.tar.gz",
+      "bytes": 156187
+    },
+    {
+      "name": "gcc",
+      "version": "16.2.0",
+      "tag": "arm64_tahoe",
+      "url": "https://ghcr.io/v2/homebrew/core/gcc/blobs/sha256:add0ca0614da1d0047af8a71be683be40957096851f4c98ccd89e95b0c4f4fde",
+      "sha256": "add0ca0614da1d0047af8a71be683be40957096851f4c98ccd89e95b0c4f4fde",
+      "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-bottles-20261011T0100/cache/system-brew/bottles/gcc-16.2.0.tar.gz",
+      "bytes": 164217795
+    }
+  ],
+  "native_apply_argv": [
+    "/Users/rmanaloto/.local/bin/mise",
+    "--no-hooks",
+    "-C",
+    "<private-empty-cwd>",
+    "bootstrap",
+    "packages",
+    "apply",
+    "--manager",
+    "brew"
+  ],
+  "environment_contract": {
+    "MISE_JOBS": "1",
+    "native_config": "private bootstrap brew:gcc latest plus URL replacements for all eight captured metadata records",
+    "state_cache_data": "private; cache contains verified four bottles",
+    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "auto_install": "disabled",
+    "inherited_secrets": "not passed to installer"
+  },
+  "write_scope": {
+    "new_formula_racks": [
+      "isl",
+      "mpfr",
+      "libmpc",
+      "gcc"
+    ],
+    "exact_public_links": "bottles.json prefix_writes",
+    "parent_creation": "bottles.json parent_preimages marked absent",
+    "directory_materializations": {
+      "/opt/homebrew/share/gdb": {
+        "source_directory": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb",
+        "before": {
+          "kind": "symlink",
+          "target": "../Cellar/glib/2.90.1/share/gdb"
+        },
+        "staging": "/opt/homebrew/share/.mise-materialize-gdb",
+        "staging_preimage": {
+          "kind": "absent"
+        },
+        "preserved_children": {
+          "auto-load": {
+            "source": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load",
+            "state": {
+              "kind": "directory",
+              "uid": 501,
+              "mode": "0o755"
+            }
+          }
+        }
+      },
+      "/opt/homebrew/share/gdb/auto-load": {
+        "source_directory": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load",
+        "before": {
+          "kind": "directory",
+          "uid": 501,
+          "mode": "0o755"
+        },
+        "staging": "/opt/homebrew/share/gdb/.mise-materialize-auto-load",
+        "staging_preimage": {
+          "kind": "absent"
+        },
+        "preserved_children": {
+          "opt": {
+            "source": "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt",
+            "state": {
+              "kind": "directory",
+              "uid": 501,
+              "mode": "0o755"
+            }
+          }
+        }
+      }
+    },
+    "native_additional_writes": [
+      "/opt/homebrew/Cellar/<four-formulae>/.mise-staging.lock",
+      "/opt/homebrew/Cellar/<four-formulae>/.mise-extract-<version>-<random>/",
+      "/opt/homebrew/Cellar/<four-formulae>/<version>/",
+      "/opt/homebrew/var/homebrew/locks/mise-bootstrap.lock",
+      "Missing parent directories for the listed prefix links",
+      "Private native mise state/cache/data directories"
+    ],
+    "native_control_paths": "bottles.json control_preimages: canonical prefix, all bootstrap directories, commit lock and four rack staging locks"
+  },
+  "pre_apply_guards": [
+    "Native version and binary hash unchanged",
+    "Recheck all nine global file hashes against fresh protected preimages",
+    "Four target racks and all 1791 public leaves still absent; all parent, control, materialization and staging preimages unchanged",
+    "Four existing dependency receipts/links and both GLib file hashes unchanged",
+    "Fresh sanitized package-writer census: no brew/ruby updater or native mise install/use/upgrade/lock process; existing MCP processes only",
+    "Native captured-metadata dry run reproduces exactly the four planned pours with no build, mkdir or chown",
+    "One installer job; no source fallback, existing-package upgrade, sudo or chown"
+  ],
+  "post_apply_gates": [
+    "Actual native exit code and retained logs",
+    "All four package receipts and exact opt/linked/public destinations match captured plan",
+    "Both materialized directories preserve GLib opt subtree and original files",
+    "Existing dependencies and all nine global files unchanged",
+    "Fresh default allowlisted compiler environment and PATH match install-preimages.json",
+    "No temporary loopback server remains"
+  ],
+  "partial_failure_policy": "Record successful kegs and materialized directories; stop expansion, inspect the actual state, preserve preimages. Do not claim atomic rollback or delete unrelated content.",
+  "excluded": [
+    "Global config/lock writes",
+    "Default compiler changes",
+    "Source compiler build",
+    "GCC reflection acceptance until a later focused fixture",
+    "Containers, cold LLVM, full matrix, daemons, publication"
+  ],
+  "evidence_receipts": [
+    {
+      "path": "bottles.json",
+      "sha256": "fbb7e13b15aa993b844ca31ee50993dcae3b1621a90b4f249ba385431f8ddeb1"
+    },
+    {
+      "path": "install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+    },
+    {
+      "path": "homebrew-provenance.json",
+      "sha256": "0fb26227ae020b5dd27b7266ed910c6d0a28438273ae09257dbd18873dfc2857"
+    },
+    {
+      "path": "global-drift-keys.json",
+      "sha256": "4cea1fe07801dc6f4e8296882e6a7ac4e33c6420ed74d662eb9c46379e6a3764"
+    },
+    {
+      "path": "bottle-inspection-review.json",
+      "sha256": "976212cbdf94d7ddea452720c896287527380e82ee695f00544ee84b128dc35d"
+    },
+    {
+      "path": "snapshot-plan.json",
+      "sha256": "9075951babdbf726d532337f065b0859da9afd356c72cc0e8ea6c78c3139ae49"
+    }
+  ]
+}

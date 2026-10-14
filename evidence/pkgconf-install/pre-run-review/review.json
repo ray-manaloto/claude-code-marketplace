@@ -1,0 +1,96 @@
+{
+  "result": "PASS: R1 repaired; no remaining findings in the bounded delta",
+  "findings": [],
+  "unit": "12c2b pre-install R1 delta",
+  "reviewer": "cold_bottle_review",
+  "created_at": "2026-10-11T20:17:45.352378+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "318c671f5c6a781b29af399d7f6005fe8a917bb5",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "4a1d7e799a02a97961d3275bba35c25ef5440390e82ec624675e6cafc75e64a0",
+  "contract_sha256": "3ed141c4d99903d28b41c2cf180ad0cc780fee2444daebf49f70a45b008dc217",
+  "candidate_sha256": "c17ae9411d1c40024ff5aca7c9863b3b23600095d62c51f80518a2fb613ae588",
+  "scope": "Only the root type/mode assertions, movement of pkg-config runtime after the full Mach-O loop, prior evidence bindings and three progress lines. Prior broader review remains retained. This is preparation acceptance only.",
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "disposition": "Resolved",
+      "path": "dev/toolchains/pkgconf_install.py",
+      "line_start": 83,
+      "line_end": 85,
+      "evidence": "The root must be a real directory with the exact archive mode. The authorized positive 0755 and negative 0777 scratch AST controls produced the required outcomes."
+    }
+  ],
+  "static_review": {
+    "exact_helper_delta_verified": true,
+    "unchanged_contract_sha256": "3ed141c4d99903d28b41c2cf180ad0cc780fee2444daebf49f70a45b008dc217",
+    "unchanged_code": "Whole helper text equals the frozen original after exactly the root-check substitution and movement of one version assertion. All other guards, failure handling, environment/default checks and postimages remain unchanged.",
+    "runtime_order": {
+      "unchanged_full_macho_loop": true,
+      "files": 5,
+      "loop_end_line": 243,
+      "pkg_config_version_line": 244,
+      "version_is_immediately_after_loop": true
+    },
+    "copy_bindings": {
+      "original_review_exact_pairs": 14,
+      "original_candidate_exact_copies": 2,
+      "prior_review_sha256": "24cd8efb6ade0ebfe204312a3a36bfeeff9f62c7c4977778dbbcf78ca35ceaf5"
+    },
+    "candidate_files_checked": 4,
+    "progress_append_lines": 3,
+    "existing_claude_acceptance": "The original broader audit verified 19 baseline files; the repaired parent baseline receipt reports 19/rc 0. That full audit was not replayed in this delta review."
+  },
+  "executed_checks": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "-B",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-pkgconf-r1-review-01jx6_ec/delta_check.py"
+    ],
+    "returncode": 0,
+    "duration_seconds": 0.07424283400177956,
+    "script_sha256": "b3f658dcfe0c7a5efd5d6e43cef031237709bfe9b294fcc5954029014e69e669",
+    "validation_calls": 2,
+    "controls": [
+      {
+        "root_mode": "0o755",
+        "expected_mode": "0o755",
+        "required_acceptance": true,
+        "actual_acceptance": true
+      },
+      {
+        "root_mode": "0o777",
+        "expected_mode": "0o755",
+        "required_acceptance": false,
+        "actual_acceptance": false
+      }
+    ],
+    "method": "AST extraction of validate_keg only, with private synthetic root directories and explicit descendant rows. No recursive fixture inventory.",
+    "reviewer_harness_error": {
+      "first_returncode": 1,
+      "reason": "Private delta script had a quoting SyntaxError before execution. Retained in execution-first.json and delta_check.first.py.source.",
+      "first_validation_calls": 0,
+      "corrected_returncode": 0
+    }
+  },
+  "retained_checks_not_replayed": {
+    "repaired_static_returncodes": [
+      0,
+      0
+    ],
+    "original_12_controls": "Not replayed",
+    "original_99_input_167_file_audit": "Not replayed"
+  },
+  "checks_not_run": [
+    "native installation or admission",
+    "protected/main/census/profile/native tools/Docker/network/lease",
+    "full prefix or source inventories",
+    "archive/postimage audit replay",
+    "extra root validators beyond the two authorized calls"
+  ],
+  "maintained_files_written": 0,
+  "shared_mutations": 0,
+  "frozen_files_verified_at_packaging": 40,
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-pkgconf-r1-review-01jx6_ec/supporting-manifest.json"
+}

@@ -1,0 +1,529 @@
+{
+  "Claude_acceptance_limit": "Inspected the actual pre-review-static receipt reporting five rc-0 checks, including all 19 original Claude acceptance hashes. Reviewer did not rerun those checks, and neither static receipt nor this preparation establishes fresh-session or full OCI acceptance.",
+  "branch": "codex/marketplace-native-onboarding",
+  "candidate_inputs_sha256": "42648d73344b91cce996f05d865fa0f1b67f3f4bd752c1024e3ac060dc8553d8",
+  "candidate_sha256": "d4e0bf96931cc4c180da3c78c0dbc1bec45339e974009ba622a80ee8cdfce45a",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "contract_derivation": {
+    "all_source_input_entries_unchanged": true,
+    "current_counts": [
+      191,
+      881,
+      29
+    ],
+    "direct_inputs_added": [
+      "dev/toolchains/lsan_witness.cpp"
+    ],
+    "full_inventory_files_rehashed": false,
+    "prior_counts": [
+      190,
+      881,
+      28
+    ],
+    "prior_direct_inputs_unchanged": true,
+    "remaining_fields_match_exact_derivation": true,
+    "tool_digests_changed": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib"
+    ],
+    "tool_paths_added": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+    ]
+  },
+  "contract_sha256": "cfafed1f9ba63cb65cba2cab852b44c2a49d4ee03a4b0472a286d5e36ecd42d3",
+  "driver_receipt": {
+    "cases": [
+      {
+        "case": "lsan",
+        "cc1_sanitizers": [
+          "leak"
+        ],
+        "default_probe_triple": "arm64-apple-macosx28.0.0",
+        "dynamic_runtime_paths": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+        ],
+        "reported_returncode": 0
+      },
+      {
+        "case": "lsan-ubsan",
+        "cc1_sanitizers": [
+          "leak",
+          "alignment",
+          "array-bounds",
+          "bool",
+          "builtin",
+          "enum",
+          "float-cast-overflow",
+          "function",
+          "integer-divide-by-zero",
+          "nonnull-attribute",
+          "null",
+          "pointer-overflow",
+          "return",
+          "returns-nonnull-attribute",
+          "shift-base",
+          "shift-exponent",
+          "signed-integer-overflow",
+          "unreachable",
+          "vla-bound"
+        ],
+        "default_probe_triple": "arm64-apple-macosx28.0.0",
+        "dynamic_runtime_paths": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+        ],
+        "reported_returncode": 0
+      }
+    ],
+    "copies": [
+      {
+        "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/summary.json",
+        "sha256": "1f963f5c95980a4ee169601d3e505f32743b4a18851a5a174037ff191e64eb54",
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/summary.json"
+      },
+      {
+        "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stderr",
+        "sha256": "d6de28102c9c6ba4e63e358520c2e5e3cae47484928ca5a39d04b2926ab15008",
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stderr"
+      },
+      {
+        "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan.stdout"
+      },
+      {
+        "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stderr",
+        "sha256": "4205a369a2f772b84e22eaa2f67bb1b50de0c4248057bb1e9ccdd8bf8221aba8",
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stderr"
+      },
+      {
+        "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-lsan/driver-probe/lsan-ubsan.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z/lsan-ubsan.stdout"
+      }
+    ],
+    "limit": "Stored -### output and reported rc 0 establish retained driver-selection evidence only; no compile/link/witness execution, timing or PID independently reconstructed.",
+    "reviewer_reexecuted_driver": false
+  },
+  "executed_reviewer_checks": {
+    "binary_bytes_read": 1586464,
+    "binary_reads": 2,
+    "bounded_comparison": {
+      "elapsed_seconds": 0.1637007910758257,
+      "finished_at": "2026-10-12T04:43:02.431579+00:00",
+      "python": "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "returncode": 0,
+      "runs": 1,
+      "started_at": "2026-10-12T04:43:02.267761+00:00",
+      "stderr": "",
+      "timeout_seconds": 30
+    },
+    "candidate_evidence_bindings": 7,
+    "driver_copy_pairs": 5,
+    "file_stability": "Compared all frozen text bytes again before the two final binary reads; each binary identity includes stable before/after metadata.",
+    "final_git_identity": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "branch",
+          "--show-current"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "codex/marketplace-native-onboarding"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "6b31a44455de2da2e204a3d02040b21bb7dc72c1"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--git-common-dir"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+      }
+    ],
+    "frozen_texts_verified": 42,
+    "initial_git_read_calls": 3,
+    "initial_git_returncodes": [
+      0,
+      0,
+      0
+    ],
+    "maintained_file_bindings": 5,
+    "python_syntax": "Compiled helper and derivation ASTs in memory only. Extracted native run bytecode was inspected for LOAD_GLOBAL bindings without executing the function."
+  },
+  "findings": [],
+  "git_common_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "head": "6b31a44455de2da2e204a3d02040b21bb7dc72c1",
+  "helper_sha256": "594cbab175138f6c8aba936ebdcf2e09a0bc1fecc55863258d27be09f81249f6",
+  "inspection_errors": "No reviewer command or bounded comparison failed. Large exploratory output was truncated twice and relevant sections were subsequently read with narrower selections. No native attempt occurred.",
+  "installed_artifact_identities": [
+    {
+      "bytes": 482960,
+      "kind": "installed-lsan",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "1f79e1baa872d675f27ab0a140662f08a9368c6ac0277100d4f8c1c7df9763e6",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "9912E3A9-7CEC-3952-9749-72B257BA6EEF"
+      ]
+    },
+    {
+      "bytes": 1103504,
+      "kind": "installed-tsan",
+      "mach_o_cpu": "arm64",
+      "mach_o_type": 6,
+      "mode": "0o755",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+      "reads": 1,
+      "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+      "stable_canonical_owned_regular_single_link": true,
+      "uuid": [
+        "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+      ]
+    }
+  ],
+  "memory_context": "MEMORY.md line 74 was used only for routing; candidate, identity and evidence were verified from current files.",
+  "native_execution_must_prove": [
+    "Fresh admission binds this exact helper/contract/candidate/review and current capacity; acquire the canonical zero-wait lease under the actual Python/environment.",
+    "Both private core/public-witness builds and architecture checks complete with the planned SDK, flags and exact selected compiler/libraries.",
+    "Both clean runs return 0; each deliberate leak returns 86 with its actual leak diagnostic; combined signed overflow returns 86 with the specified diagnostic; all five emit exact reflection stdout and load the declared runtime.",
+    "Actual source/default/protected state stays unchanged, command records retain failures, owned processes close and lease closure is collected.",
+    "Independent post-native artifact review verifies the produced binaries, logs and closure. This preparation does not qualify the wider sanitizer matrix."
+  ],
+  "not_run": [
+    "No compiler, linker, driver, lipo, sanitizer witness or other native command was executed.",
+    "No helper import, guard, derivation, scanner, dependency/runtime install, model session, network, service or container operation was executed.",
+    "No lease read/probe/acquisition, live process census, PID signal or capacity check was performed.",
+    "No broad 191-input/881-source/29-tool/ABI inventory scan or rehash; no compiler/ASan/private-runtime/object/witness binary was read.",
+    "No fault injection, timeout/signal control, runtime replacement or rollback, fresh Claude/Codex session, hooks/providers, OCI acceptance or larger matrix was run."
+  ],
+  "ownership": "Parent is sole implementation writer. Reviewer changed no repository, installed, source, build or global files; all reviewer output is in this private /private/tmp directory.",
+  "parent_static_receipt": {
+    "reported_checks": [
+      {
+        "command": "./dev/mise tasks validate",
+        "returncode": 0,
+        "tasks": 2
+      },
+      {
+        "command": "./dev/mise run check",
+        "json": 2209,
+        "python": 161,
+        "returncode": 0,
+        "shell": 6,
+        "toml": 16
+      },
+      {
+        "command": "./dev/mise run check:acceptance-baseline",
+        "original_hashes": 19,
+        "returncode": 0
+      },
+      {
+        "command": "git diff --check",
+        "returncode": 0
+      },
+      {
+        "abi_groups": 4,
+        "command": "read-only contract and installed guard",
+        "driver_logs": 3,
+        "inputs": 191,
+        "returncode": 0,
+        "source_inputs": 881,
+        "tools": 29
+      }
+    ],
+    "reviewer_reran_checks": false,
+    "sha256": "f50b3464f1c4692faa30ceb8adbf86221fa105468efd18dbaa239240c208a882"
+  },
+  "prior_installed_tsan_review_sha256": "d3a699562b974f63af50e6af61408cfae57e368144a4f29654b0e32eefd20dc3",
+  "recorded_at": "2026-10-12T04:44:33.661367+00:00",
+  "result": "PASS: bounded Task 14c LSan preparation review; native qualification remains pending",
+  "return_channel": "Native collaboration to /root only.",
+  "reviewer": "/root/cold_bottle_review",
+  "schema_version": 1,
+  "scope": {
+    "binary_scope": "Exactly installed LSan and installed TSan, once each; no other binary contents read.",
+    "guidance": "Read actual AGENTS.md, onboarding, accepted-decisions toolchain/sanitizer section, Task 14c plan/progress and the three maintained documentation diffs.",
+    "maintained_files": [
+      {
+        "bytes": 13064,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_lsan.py",
+        "sha256": "594cbab175138f6c8aba936ebdcf2e09a0bc1fecc55863258d27be09f81249f6"
+      },
+      {
+        "bytes": 1171,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/lsan_witness.cpp",
+        "sha256": "f6b9432ea5cc84eec9ca2bc4c06e3343c719368401e53d09971cd5699a30a1b7"
+      },
+      {
+        "bytes": 12004,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md",
+        "sha256": "8489ec235046ce4a7350345a0d1b3aa84d3ca7ab0984de091c675da7a358c5ee"
+      },
+      {
+        "bytes": 27656,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        "sha256": "1be8711290074f104bdff61cbeb5ff18ca6159eb0a62637a45a7cd1fd6736eab"
+      },
+      {
+        "bytes": 116410,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "sha256": "42e493ad3f6eff6cff58659c73f9126390bd1af9b7fa2b3d1787f7c88a34244e"
+      }
+    ],
+    "supplemental_text": "Named candidate/evidence/predecessor receipts, five exact retained driver-probe copy pairs, eight bound helper/cache dependencies, actual predecessor runner and ten named local sanitizer source files used to trace flag and Darwin exit behavior."
+  },
+  "secret_scan_receipt": {
+    "bound_files": 15,
+    "limit": "Only the supplied receipt and its 15 text-file bindings were verified. Six digest dispositions match inherited contract metadata; SDK/object/source disposition targets were not rehashed. Scanner execution and raw reports were not re-audited.",
+    "raw_or_transformed_report_files_read": false,
+    "reported_complete_token_files": [],
+    "reported_dispositions": [
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o",
+        "sha256": "516d3a62a7119b2ad624a68d55957e4cd4a9013dd281dbc97aeca6ef73d161f6"
+      },
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/appleapiopts.h",
+        "sha256": "efd9793f56c08917cf1ddf5108b78240ede88a5bbc8977d6fdaf1684b6b01c1c"
+      },
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/final-secret-scan.json",
+        "sha256": "854cc337721a3527ee6ce6b21c1bc0b2d71b5b90c315df82982c993b80e19f8c"
+      },
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/closure-secret-scan.json",
+        "sha256": "3746338913f2a29715b5f532cfe31bda80d9934ac89fd5b7f5c60be487d79727"
+      },
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-presets/closure-secret-scan.json",
+        "sha256": "15c6fe78d3addfaaa154c10007aa0466b1918ec513899fbfb283ab218af8d106"
+      },
+      {
+        "disposition_target_read": false,
+        "matches_inherited_contract_entry": true,
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-abi-inputs/closure-secret-scan.json",
+        "sha256": "f2d86fc409fe1401c61ad69053ca45e57921537dd63221686a2fb4804671a699"
+      }
+    ],
+    "reported_raw_returncode": 1,
+    "reported_transformed_returncode": 0,
+    "scan_rerun": false,
+    "scanner_script_read": false,
+    "script_sha256_recorded": "48e31ded63bc8e3fe7a3170931424ab6483fac8a56ca2e7c5a973c6f3f6cb50b",
+    "sha256": "d5d964755fc38d6afa37dc0d7dbfa1525ee42a71ba6777e4d81e75c928aa6e49"
+  },
+  "source_backed_lsan_flags": {
+    "conclusion": "LSAN_OPTIONS registers common flags; enabled at-exit leak check records leaks; Darwin HandleLeaks is empty and _exit interceptor replaces successful exit status with configured exitcode. Runtime behavior remains unexecuted.",
+    "files": [
+      {
+        "bound_in_contract": false,
+        "bytes": 3188,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan.cpp",
+        "sha256": "fa8c94f45fe1211d03974035aacdd82cf6434768e07a31b1affff5847d2c53e9"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 41742,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.cpp",
+        "sha256": "326dd4c044fda36be4083dbb1e2649176b78dc93f42a82161525faef9b7cbd62"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 2545,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_flags.inc",
+        "sha256": "1c12b9dd36a3b6c926456a44e0303cb203172400240a32fe0fa391178b254713"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 6948,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_mac.cpp",
+        "sha256": "83a8932d534e52d1cb0338d93c0e5f344b140e06cca8799d6de0813966f0c4b7"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 8434,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common_mac.cpp",
+        "sha256": "09b086853e9cb29b552c2f0c5b54e465bd46b8e960b0786588cf0509746b0997"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 11993,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_common.h",
+        "sha256": "d931f7b913a4bd677cc4129955518e236dddd8b359dff56b6203e20eea92dfc9"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 3861,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_posix.cpp",
+        "sha256": "573dfdabc386649c6489f22ecba9763f75e6a65cbcce972e1aeefb4ed1ac052b"
+      },
+      {
+        "bound_in_contract": false,
+        "bytes": 19149,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/lsan/lsan_interceptors.cpp",
+        "sha256": "98d78365dd32872fe856173b77a98374848df3891a924b73e8c9348dc52293ff"
+      },
+      {
+        "bound_in_contract": true,
+        "bytes": 14872,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_flags.inc",
+        "sha256": "694b3494a98237cb8f3029a6f3f572c4a27fdbbddbedafcb42ec44364234127b"
+      },
+      {
+        "bound_in_contract": true,
+        "bytes": 3047,
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_termination.cpp",
+        "sha256": "7ed073063b646b64b77beaf8b29200510fefd02a11ec4b9f7d4300d3a6120146"
+      }
+    ],
+    "limit": "These are exact scoped source text observations. Files absent from the inherited 881-entry map were independently hashed here but are not newly added to that contract.",
+    "source_git_identity_rechecked": false
+  },
+  "static_review": {
+    "build_and_link": {
+      "argument_plans": "Full non-executed argument lists using /REVIEW_STATIC_PATH_ONLY/task14c are in comparison.json.",
+      "assessment": "Both modes compile one reflection-enabled core object with the pinned P2996 compiler, arm64/C++26/O1/debug/frame-pointer flags and warnings as errors. Public witness links without -freflection, uses -nostdlib++ and explicit selected libc++/libc++abi/libunwind paths with selected-prefix rpath. The inherited cache disables default config/default C++ includes and pins resource headers, SDK 27 and minimum macOS 27. lipo checks are planned for each object/binary.",
+      "lines": "147-167",
+      "probe_limit": "Retained -### probes select macOS 28 by default and do not exercise the runner's full SDK/minimum-version/diagnostic flags. Actual compile/link acceptance remains native work."
+    },
+    "capacity_and_lease": {
+      "assessment": "Retains canonical heavy-gate path and inherited-lease refusal; wait_s=0; rejects unadmitted build processes and validates narrowly admitted editor identities/cwd/CPU. Requires at least 8 GiB free, bounded host load/CPU, admitted Docker context/container list and bounded container CPU before the second guard.",
+      "limit": "No live capacity, Docker, process census or lease probe/acquisition was performed. Fresh parent admission remains required.",
+      "lines": "109-132"
+    },
+    "confinement_and_environment": {
+      "assessment": "Native children receive a private-root write allowance plus /dev/null with network denied. Build environment is reconstructed from private paths; sanitizer variables are removed before per-run explicit options, and inherited DYLD variables are rejected. The launcher disables core dumps, uses execve and enables only loader tracing; no runtime search-path override is added. Only standard descriptors plus admitted lease descriptor are passed.",
+      "lines": "134-155"
+    },
+    "failure_closure": {
+      "assessment": "The retained run helper records real return codes/log hashes and kills/reaps the process group on timeout/interruption. Only the specified intentional nonzero exit is accepted; an unexpected zero fails. BaseException records FAIL and is re-raised, final preservation failure also re-raises, and the JSON receipt is saved/printed in finally. No installed-file mutation or rollback exists in this unit.",
+      "limit": "Failure and interruption behavior was inspected statically; no controls or signals were injected.",
+      "lines": "68-80, 91-95, 194-206"
+    },
+    "loader_and_diagnostics": {
+      "assessment": "Five cases require exact reflection stdout, exact return codes (clean 0; two leak cases and combined overflow 86), selected C++ library presence and exactly the installed LSan image among libclang_rt dylibs. Clean cases reject LeakSanitizer errors/fatals, UB diagnostics and sanitizer CHECK failures; negative cases require their specific leak/overflow messages. Presence of selected C++ paths is not a claim excluding all system C++ libraries.",
+      "lines": "169-185",
+      "native_expected_cases": [
+        {
+          "cases": {
+            "clean": 0,
+            "leak": 86
+          },
+          "mode": "lsan"
+        },
+        {
+          "cases": {
+            "clean": 0,
+            "leak": 86,
+            "overflow": 86
+          },
+          "mode": "lsan-ubsan"
+        }
+      ]
+    },
+    "preservation": {
+      "assessment": "Guard checks 191 direct inputs, 881 source entries, 29 tools, ABI rows, probe bytes, LSan identity, own helper and lock module. Existing protected() validates current installed ASan/TSan via their reviewed overlay chain. Source HEAD/tree/diff/status and normal compiler profile are compared before/after the planned operation. Final guard runs on success and failure and a preservation error forces FAIL.",
+      "guard_lines": "52-63, 97-103, 132-133, 188-205",
+      "limit": "Reviewer checked derivation metadata and scoped actual dependencies only; the whole inventory/protected guard was not executed."
+    },
+    "runner_adaptation": {
+      "assessment": "Exact reconstruction from the actual TSan runner requires only ten reviewed replacements. save/run/source_state/interrupted ASTs are identical. Added guards bind all three driver receipts and exact LSan bytes/mode/size, and the imported TSan guard composes existing ASan preservation.",
+      "dynamic_function_globals": [
+        "datetime",
+        "digest",
+        "directory",
+        "env",
+        "json",
+        "os",
+        "report",
+        "save",
+        "shutil",
+        "signal",
+        "subprocess",
+        "time",
+        "timezone"
+      ],
+      "fresh_session": "The extracted native run receives all required standard-library globals plus explicit directory/report/env/save. The imported function/extractor was not executed. Native dispatch still requires admission/pre-run-review identities, current HEAD, a new normalized run directory and the admitted Python tool.",
+      "line_count": 210,
+      "missing_globals": [],
+      "path": "dev/toolchains/p2996_lsan.py"
+    },
+    "scope": "Five maintained files, with two small new helper/witness files and documentation additions. No public marketplace identity, plugin API/path, OCI acceptance, preset, dependency, installation or runtime-replacement edits are part of the candidate.",
+    "witness": {
+      "assessment": "Public-header consumer rejects reflection compiler flags, calls reflection_probe and requires value 43/member count 1 before flushing a fixed stdout marker. A noinline helper allocates 64 bytes, checks allocation success and makes a volatile write without retaining a global pointer. Clean mode safely computes INT_MAX; combined overflow mode computes volatile INT_MAX + 1. Invalid arguments and failed probe have non-success exits.",
+      "lines": "1-35",
+      "path": "dev/toolchains/lsan_witness.cpp",
+      "runtime_limit": "Native execution must still show that the retained allocation becomes unreachable and produces the intended leak report; static source alone does not establish leak detection."
+    }
+  },
+  "supporting_files": [
+    {
+      "bytes": 22595,
+      "name": "compare.py",
+      "path": "/private/tmp/marketplace-lsan-preparation-review-5gd5gqjg/compare.py",
+      "sha256": "b82ca56d402eb5d8aace0df985eb38fb7cfecd94d07bc76864fcc135f585db40"
+    },
+    {
+      "bytes": 39277,
+      "name": "comparison.json",
+      "path": "/private/tmp/marketplace-lsan-preparation-review-5gd5gqjg/comparison.json",
+      "sha256": "8462a02b78703bdfb4709c8ff01f0dc968b04cb665475a0d291d50608d0e9377"
+    },
+    {
+      "bytes": 677,
+      "name": "execution.json",
+      "path": "/private/tmp/marketplace-lsan-preparation-review-5gd5gqjg/execution.json",
+      "sha256": "8a3d89d2ceb2946e35056a00cc4ba4e653ba0a3fd5621845206042f445626a74"
+    }
+  ],
+  "supporting_manifest": {
+    "bytes": 1005,
+    "name": "supporting-manifest.json",
+    "path": "/private/tmp/marketplace-lsan-preparation-review-5gd5gqjg/supporting-manifest.json",
+    "sha256": "75571d6fb08d35e4739071e402a2d4fad544af96aa69b036af1ad01595d72beb"
+  },
+  "unit": "14c-pre-native-preparation"
+}

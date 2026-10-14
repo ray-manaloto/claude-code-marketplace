@@ -1,0 +1,194 @@
+import copy
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+import types
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+DIRECTORY = Path(__file__).parent
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT / 'dev/toolchains'))
+import p2996_asan_runtime as module
+from mise_runtime import function, load
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+report = {'state': 'running', 'helper_sha256': sha(Path(module.__file__)),
+          'script_sha256': sha(Path(__file__)), 'controls': [], 'commands': []}
+
+def save():
+    (DIRECTORY / 'controls.json').write_text(json.dumps(report, indent=2) + '\n')
+
+def reject(label, call):
+    try:
+        call()
+    except AssertionError:
+        report['controls'].append({'case': label, 'result': 'REJECTED as required'})
+    else:
+        raise AssertionError('unexpected acceptance: ' + label)
+
+try:
+    data = module.contract()
+    report['contract_sha256'] = module.CONTRACT_SHA
+    target_before = module.identity(Path(data['target']))
+    originals = {path: load(ROOT / path) for path in (module.ARTIFACTS, module.PREFIX)}
+    for path, value in originals.items():
+        before = copy.deepcopy(value)
+        result = module.overlay(ROOT / path, value, data)
+        assert value == before
+        expected = copy.deepcopy(value)
+        rows = expected['records'] if path == module.ARTIFACTS else expected
+        key = data['target'] if path == module.ARTIFACTS else module.RUNTIME
+        for row in rows:
+            if row['path'] == key:
+                row.update(sha256=data['current_asan']['sha256'], bytes=data['current_asan']['bytes'])
+        assert result == expected
+        report['controls'].append({'case': 'exact-overlay-' + Path(path).name, 'result': 'PASS; original unchanged'})
+        reject('second-overlay-' + Path(path).name, lambda p=path, r=result: module.overlay(ROOT / p, r, data))
+    sentinel = {'records': [copy.deepcopy(data['previous_record'])]}
+    assert module.overlay(DIRECTORY / 'post-install-inventory.json', sentinel, data) is sentinel
+    report['controls'].append({'case': 'unrelated-same-basename', 'result': 'PASS; exact object unchanged'})
+    for path in (module.ARTIFACTS, module.PREFIX):
+        for change in ('missing', 'duplicate', 'mode', 'digest', 'size'):
+            value = copy.deepcopy(originals[path])
+            rows = value['records'] if path == module.ARTIFACTS else value
+            key = data['target'] if path == module.ARTIFACTS else module.RUNTIME
+            row = next(r for r in rows if r['path'] == key)
+            if change == 'missing': rows.remove(row)
+            if change == 'duplicate': rows.append(copy.deepcopy(row))
+            if change == 'mode': row['mode'] = '0o644'
+            if change == 'digest': row['sha256'] = '0' * 64
+            if change == 'size': row['bytes'] += 1
+            reject(Path(path).name + '-' + change, lambda p=path, v=value: module.overlay(ROOT / p, v, data))
+    alias_inventory = copy.deepcopy(originals[module.ARTIFACTS])
+    alias = copy.deepcopy(data['previous_record']); alias['path'] += '.alias'
+    alias_inventory['records'].append(alias)
+    reject('additional-resolving-alias', lambda: module.overlay(ROOT / module.ARTIFACTS, alias_inventory, data))
+    for key, field, value in [('target', None, data['target'] + '.other'),
+                              ('artifact_inventory', None, 'other.json'),
+                              ('prefix_inventory', None, 'other.json'),
+                              ('current_asan', 'mode', '0o644'),
+                              ('current_asan', 'sha256', '0' * 64),
+                              ('previous_prefix_record', 'kind', 'symlink')]:
+        changed = copy.deepcopy(data)
+        if field: changed[key][field] = value
+        else: changed[key] = value
+        reject('contract-' + key + '-' + str(field), lambda d=changed: module.validate(d))
+
+    # Execute the real three wrapper bodies with only their environment-facing
+    # checks stubbed. This checks loader composition, not live shared-state health.
+    renovate = types.SimpleNamespace(**vars(module.previous))
+    runtime = types.SimpleNamespace(**vars(module.previous.previous))
+    legacy_runtime = load(ROOT / 'evidence/mise-runtime/contract.json')
+    legacy_renovate = load(ROOT / 'evidence/mise-renovate/contract.json')
+    events = []
+    renovate.previous = runtime
+    renovate.contract = lambda: legacy_renovate
+    renovate.semantic_check = lambda value: events.append('renovate-semantic-check-called')
+    runtime.contract = lambda: legacy_runtime
+    proposal = load(ROOT / 'evidence/iwyu-build/proposal.json')
+    expected_digests = {str(ROOT / path): digest for path, digest in proposal['inputs'].items()}
+    expected_digests.update(proposal['tools'])
+    expected_digests[legacy_runtime['current_mise']['path']] = legacy_runtime['current_mise']['sha256']
+    observed_digests = []
+    def fake_digest(path):
+        observed_digests.append(str(path))
+        return expected_digests[str(path)]
+    runtime.digest = fake_digest
+    def bridge(path, name, scope):
+        if path.name == 'p2996_reflection.py':
+            def reflection_check():
+                baseline = load(ROOT / module.previous.BASELINE)
+                assert scope['baseline'] == module.previous.overlay(baseline, legacy_renovate)
+                expected = module.overlay(ROOT / module.ARTIFACTS, originals[module.ARTIFACTS], data)
+                expected = module.previous.previous.overlay(expected, legacy_runtime['previous_record'], legacy_runtime['current_mise'])
+                assert scope['inventory'] == expected
+                assert scope['prefix'] == Path(data['prefix'])
+                assert scope['load'](ROOT / module.PREFIX) == module.overlay(ROOT / module.PREFIX, originals[module.PREFIX], data)
+                events.append('reflection-guard-reached-with-all-three-overlays')
+            return reflection_check
+        return function(path, name, scope)
+    renovate.function = runtime.function = bridge
+    result = function(Path(module.__file__), 'protected', vars(module) | {
+        'previous': renovate, 'function': bridge, 'contract': lambda: data})()
+    assert result == legacy_runtime['current_mise']
+    assert events == ['renovate-semantic-check-called', 'reflection-guard-reached-with-all-three-overlays']
+    assert len(observed_digests) == len(proposal['inputs']) + len(proposal['tools'])
+    report['controls'].append({'case': 'real-wrapper-composition', 'result': 'PASS', 'events': events,
+                               'mocked_digest_calls': len(observed_digests), 'live_shared_guard_executed': False})
+
+    work, targets = DIRECTORY / 'run', DIRECTORY / 'targets'
+    work.mkdir(); targets.mkdir()
+    destination, forbidden = targets / 'allowed.dylib', targets / 'forbidden.dylib'
+    old_bytes, new_bytes = b'original-fixture\n', b'qualified-replacement-fixture\n'
+    def make(path, content, mode=0o755):
+        if os.path.lexists(path): path.unlink()
+        path.write_bytes(content); path.chmod(mode)
+    def expected(content):
+        return {'sha256': hashlib.sha256(content).hexdigest(), 'bytes': len(content), 'mode': '0o755'}
+    before, after = expected(old_bytes), expected(new_bytes)
+    make(destination, old_bytes); make(forbidden, old_bytes)
+    profile = DIRECTORY / 'private.sb'
+    profile.write_text('(version 1)\n(deny default)\n(allow file-read*)\n(allow process*)\n'
+                       '(allow sysctl-read)\n(allow mach-lookup)\n(deny network*)\n'
+                       '(allow file-write* (subpath ' + json.dumps(str(work)) + ') (literal ' + json.dumps(str(destination)) + '))\n')
+    child = DIRECTORY / 'replace.py'
+    child.write_text('import json,sys\nfrom pathlib import Path\nsys.dont_write_bytecode=True\n'
+                     'sys.path.insert(0,' + repr(str(ROOT / 'dev/toolchains')) + ')\n'
+                     'from p2996_asan_runtime import replace_exact\n'
+                     'replace_exact(Path(sys.argv[1]),Path(sys.argv[2]),json.loads(sys.argv[3]),json.loads(sys.argv[4]))\n')
+    def native(label, staged, target, old, new, rc):
+        argv = ['/usr/bin/sandbox-exec', '-f', str(profile), sys.executable, '-E', '-B', str(child),
+                str(staged), str(target), json.dumps(old), json.dumps(new)]
+        started = time.monotonic(); result = subprocess.run(argv, text=True, capture_output=True, timeout=15)
+        (DIRECTORY / (label + '.stdout')).write_text(result.stdout)
+        (DIRECTORY / (label + '.stderr')).write_text(result.stderr)
+        report['commands'].append({'case': label, 'argv': argv, 'returncode': result.returncode,
+                                   'elapsed_seconds': time.monotonic() - started,
+                                   'stdout_sha256': sha(DIRECTORY / (label + '.stdout')),
+                                   'stderr_sha256': sha(DIRECTORY / (label + '.stderr'))})
+        save(); assert result.returncode == rc, (label, result.returncode, result.stderr)
+    staged = work / 'promote.dylib'; make(staged, new_bytes)
+    native('positive-replace', staged, destination, before, after, 0)
+    assert module.identity(destination) == after and not staged.exists()
+    staged = work / 'restore.dylib'; make(staged, old_bytes)
+    native('positive-restore', staged, destination, after, before, 0)
+    assert module.identity(destination) == before
+    for label in ['wrong-source', 'wrong-destination', 'source-symlink', 'destination-symlink',
+                  'source-hardlink', 'destination-hardlink', 'source-mode', 'destination-mode', 'outside-allowlist']:
+        make(destination, old_bytes); staged = work / (label + '.dylib'); make(staged, new_bytes)
+        target = destination
+        if label == 'wrong-source': staged.write_bytes(b'unqualified\n')
+        if label == 'wrong-destination': destination.write_bytes(b'changed-preimage\n')
+        if label == 'source-symlink':
+            real = work / 'symlink-real.dylib'; make(real, new_bytes); staged.unlink(); staged.symlink_to(real)
+        if label == 'destination-symlink': destination.unlink(); destination.symlink_to(forbidden)
+        if label == 'source-hardlink': os.link(staged, work / 'source-alias.dylib')
+        if label == 'destination-hardlink': os.link(destination, targets / 'destination-alias.dylib')
+        if label == 'source-mode': staged.chmod(0o644)
+        if label == 'destination-mode': destination.chmod(0o644)
+        if label == 'outside-allowlist': target = forbidden
+        snapshot = target.read_bytes()
+        native(label, staged, target, before, after, 1)
+        assert target.read_bytes() == snapshot and os.path.lexists(staged)
+        if label == 'outside-allowlist':
+            assert 'PermissionError' in (DIRECTORY / (label + '.stderr')).read_text()
+        report['controls'].append({'case': label, 'result': 'REJECTED; target bytes and staged source preserved'})
+    make(destination, old_bytes)
+    assert module.identity(Path(data['target'])) == target_before
+    assert all(sha(ROOT / path) == digest for path, digest in data['inputs'].items())
+    report.update(state='PASS: pure guard composition and private confined replacement/restore controls',
+                  original_installed_runtime_unchanged=True, historical_inputs_unchanged=True,
+                  qualified_replacement_executed=False)
+except BaseException as error:
+    report.update(state='FAIL', error=repr(error))
+    raise
+finally:
+    save()
+    print(json.dumps({'state': report['state'], 'controls': len(report['controls']),
+                      'commands': len(report['commands']), 'receipt': str(DIRECTORY / 'controls.json')}))

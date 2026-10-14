@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-10-10T23:42:38.410Z",
+  "source": "Native Codex list_threads, bounded read_thread, and wait_threads snapshots",
+  "peers": [
+    {
+      "thread_id": "01a12194-a22b-7211-bd0f-b5568917be7f",
+      "title": "[update-all][20261009] - retro - Find Codex handover instru…",
+      "status": "active",
+      "cursor": "d1911d5c-801e-4d75-935f-9d05bde14f33:359",
+      "reported_activity": "All four locks now have complete v3 graphs, and the focused lock, cache, and writer suites pass. I’m starting the required full lint, pytest, and verification gates. After those, I’ll run the remaining live guest controls and the CI image path before delivery."
+    },
+    {
+      "thread_id": "01a1267f-3eb4-7773-971b-a3f4cf9460b8",
+      "title": "Analyze devcontainer workflow delays",
+      "status": "active",
+      "cursor": "87937cb6-7430-45c0-88d0-34573cdd7b4f:4",
+      "reported_activity": "The shared-lock command now checks the writer’s mise version before allowing a write, protecting the new format from an older running guest. The draft also checks sidecar integrity after a re-lock. Those controls are going through verification now."
+    }
+  ],
+  "bounded_read_findings": "The latest turn's relevant command metadata and the owner's phase-8 plan show repository/staging/guest host/shared-lock migration. This is observed activity, not independent verification of peer gate results. No peer was messaged or modified.",
+  "ownership_plan_path": "/Users/rmanaloto/.codex/worktrees/7267/dotfiles/.planning/2026-10-09-mac-global-mise-ownership-documentation/task_plan.md",
+  "scope_boundary": "Marketplace proposal adds seven previously absent named configuration/lock files. It does not write the live default config, default lock, dotfiles repository files, or any peer's staging files.",
+  "limitations": "This snapshot does not reserve host-heavy capacity. Docker/OCI, compiler builds and full matrices remain unadmitted. An exact target preimage and active-process check must precede the bounded managed binary install."
+}

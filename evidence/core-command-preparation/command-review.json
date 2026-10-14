@@ -1,0 +1,237 @@
+{
+  "result": "PASS: 03b2a source-rule review and recorded-command replay; one finding fixed, no unresolved findings; native core matrix UNVERIFIED",
+  "reviewer": "/root/cold_bottle_review",
+  "at": "2026-10-11T13:03:35.270517+00:00",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "fd7c9cdf54ddf702c0e48348302d73cc6853346b",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "scope": [
+    "dev/toolchains/core_commands.py",
+    "docs/core-qualification.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "maintained_hashes": {
+    "dev/toolchains/core_commands.py": "78aa67e2f39444cfbf4992e30419db000629bdd97bd69e059bb833361bc0179d",
+    "docs/core-qualification.md": "5e64186e35c634d17507f018f3a8f0e70046138eeadcd6e29e9028922e6bb570",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "146d83eaed5f9590dd0485ee193b2fc7aeec13ca56cdf1f0bbfed344eb953b5a",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "c20722feb5fa7dde2fc1e0859468367e5acde70d7bf013b7784fbab2438113b3"
+  },
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "path": "dev/toolchains/core_commands.py",
+      "original_lines": [
+        57,
+        58,
+        104
+      ],
+      "fixed_line": 58,
+      "title": "Reject repeated -isystem before attesting required compiler flags",
+      "original_candidate_sha256": "09d20dcae377be5031f97103db0905cd39fb51439da6d28aff8ad0bb212b344b",
+      "trigger": "A synthetic admitted P2996 CDB row contained a second -isystem directly before -Werror, after the proper private-header pair.",
+      "observed_original_result": "compile_database accepted all eight rows, including the mutation. The whole independent parser process exited 0; the unexpected acceptance is recorded explicitly.",
+      "source_derived_impact": "Pinned Options.td defines isystem as JoinedOrSeparate; pinned Option.cpp consumes the following argv token as its directory operand. Thus token membership could attest -Werror even though it was an operand instead of the warning-as-error switch. No Clang execution was used to establish this.",
+      "initial_proof": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/initial-parser-review.json",
+        "sha256": "8d66b49394550b1082914079ec293d3b40541ee283d1bb15817ca3d551281f52",
+        "bytes": 20217
+      },
+      "option_definition": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+        "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826",
+        "bytes": 546344
+      },
+      "option_parser": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/option-parser-source.json",
+        "sha256": "7f1706f26b50392a88ae7702ea9561761bbb00f2eb774599199f41637ec8922c",
+        "bytes": 1152
+      },
+      "baseline_rows": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/synthetic-baseline-rows.json",
+        "sha256": "738a925aa10ce282e306464b7c89bfb20fbe7c60012fbd830ce7d407329800fc",
+        "bytes": 9345
+      },
+      "mutated_rows": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/synthetic-mutated-rows.json",
+        "sha256": "a1b937f898e945c5352587cac82d6a706c45b4833b01e1ce7e94068da83e35d1",
+        "bytes": 9354
+      },
+      "fix": "Added only assert args.count(\"-isystem\") == 1 before the unchanged inherited P2996 validator.",
+      "final_candidate_sha256": "78aa67e2f39444cfbf4992e30419db000629bdd97bd69e059bb833361bc0179d",
+      "verification": "Both the exact final parent replay and a separate focused check reject the preserved mutation; the baseline remains accepted.",
+      "disposition": "FIXED"
+    }
+  ],
+  "source_assessments": [
+    {
+      "path": "dev/toolchains/core_commands.py",
+      "lines": [
+        28,
+        42
+      ],
+      "assessment": "Constructor pins the qualified P2996 helper and extracts only flags() with explicit closure bindings; it does not execute its main operation. A canonical absolute build root is required. Compiler/runtime selection inputs remain the future caller admission responsibility."
+    },
+    {
+      "path": "dev/toolchains/core_commands.py",
+      "lines": [
+        43,
+        63
+      ],
+      "assessment": "Exact compiler identity, architecture and SDK operands are required. Response files and shell metacharacters are rejected except the specific shared-library install-name operand removed for validation; the corrected P2996 branch requires exactly one private-header pair. Imported gcc_install explicitly refuses optimized Python, preserving assertion enforcement; this is source inspection, not an optimization-mode run."
+    },
+    {
+      "path": "dev/toolchains/core_commands.py",
+      "lines": [
+        69,
+        109
+      ],
+      "assessment": "Eight unique (configuration, target) rows and confined distinct output identities are required, together with standard, strict flags, private reflection, PIC, export macro and scoped GNU MinSizeRel workaround. Actual compiler actions must equal these validated CDB tokens after removal of the one specified dependency-output sequence."
+    },
+    {
+      "path": "dev/toolchains/core_commands.py",
+      "lines": [
+        111,
+        182
+      ],
+      "assessment": "GNU preprocessing scans, compiler actions, CMake dyndep actions and static archive chains are checked separately. Only fixed archive tools/stages/objects/outputs are admitted. P2996 permits the exact chain with or without its optional CMake touch; independent synthetic cases verify both forms. Shared link install name, target/object/library inputs and core rpath are constrained."
+    },
+    {
+      "path": "dev/toolchains/core_commands.py",
+      "lines": [
+        185,
+        187
+      ],
+      "assessment": "Generated/actual comparison requires equality of the complete argv multisets, preserving duplicate counts; it intentionally does not require command scheduling order. Raised validation exceptions propagate. The future native caller and its admission are outside this unit."
+    },
+    {
+      "path": "docs/core-qualification.md",
+      "assessment": "Accurately distinguishes prior native GNU recordings, prior P2996 flag recordings and synthetic parser cases. Fresh ABI/native sixteen-cell results, runtime/export identity and failure controls remain unverified."
+    }
+  ],
+  "evidence_verification": {
+    "harness_contract": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-command-preparation/harness-contract.json",
+      "sha256": "9becd18e6c597a273fa8c4eded3cf5f11bd00c1b3999d78f130797f22ca68dd7",
+      "bytes": 29124
+    },
+    "prerequisite_references": 13,
+    "selected_recorded_log_references": 4,
+    "initial_replay_input_refs": 30,
+    "final_replay_input_refs": 33,
+    "initial_original_and_copied_replay_files": 18,
+    "final_original_and_copied_replay_files": 10,
+    "all_hash_and_size_bindings_match": true,
+    "settled_03b1_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/preparation-review.json",
+      "sha256": "066dbb351c09878ef4f6d4a1b8874fc71c6b9ba39e58ef7d39c57f1c0cb92fe9",
+      "bytes": 21912
+    },
+    "source_preparation_postcommit": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-command-preparation/source-preparation-postcommit.json",
+      "sha256": "3762c564e8fc2ba745a17614cb601bf12fd8995a54481c2c19ee9bbd6ae783ef",
+      "bytes": 3945
+    },
+    "three_current_core_source_hashes_match_contract": true,
+    "initial_parent_replay_failure": "Preserved rc1 is an indexing/assertion error in the private driver before candidate checks; it is not counted as passing validation.",
+    "old_candidate_copy_provenance": "The retained initial-core_commands.py.source was reconstructed by deleting exactly the one added assertion from the final source and matches the original observed SHA256. It was not copied before the parent fix."
+  },
+  "executed_checks": {
+    "initial_parser_wrapper": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/parser-invocation.json",
+      "sha256": "0a95728f1434e181d3edc58fa4857950ff06ecadb0b7d231c4fb3e9912a58427",
+      "bytes": 444
+    },
+    "initial_exact_replay": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/exact-replay-execution.json",
+      "sha256": "0e788fcecdba954a2458736f13fdc3f7e4df1133bf01efa17e4253343c71f1cc",
+      "bytes": 1461
+    },
+    "initial_replay_json": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/exact-parent-replay/replay.json",
+      "sha256": "2b49ad7e8583bf7190ea27052ddec81e93b16ff64f670a25c612466921874618",
+      "bytes": 9721
+    },
+    "initial_replay_positive_groups": 16,
+    "initial_replay_rejection_controls": 22,
+    "final_static_wrapper": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/static-invocation.json",
+      "sha256": "3c7c533d5e8115410319927ed18e55016810ee868f854ee09a9ef80d12c31584",
+      "bytes": 940
+    },
+    "final_command_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/static-checks.json",
+      "sha256": "acd26bdbe1930b2fac454f341595dddb7a92712a779fb128547ea472c7ec720d",
+      "bytes": 56361
+    },
+    "final_exact_replay": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-command-review-lhoeufjx/exact-final-replay/replay.json",
+      "sha256": "49356bc3ada18495c9dc642e95b2431c2ee53069a59f57ad06aad739c7ea01c9",
+      "bytes": 10562
+    },
+    "final_replay_positive_groups": 17,
+    "final_replay_rejection_controls": 23,
+    "final_eight_command_exits": {
+      "identity": 0,
+      "branch": 0,
+      "changed-files": 0,
+      "source-diff": 0,
+      "final-replay": 0,
+      "tasks-validate": 0,
+      "acceptance-baseline": 0,
+      "status": 0
+    },
+    "synthetic_p2996_archive_cases": 8,
+    "focused_rejections": [
+      "duplicate-isystem-consumes-Werror",
+      "archive-touch-other-output-Debug",
+      "archive-touch-other-output-Release",
+      "archive-touch-other-output-RelWithDebInfo",
+      "archive-touch-other-output-MinSizeRel"
+    ],
+    "static_counts": {
+      "baseline": 19,
+      "json": 850,
+      "python": 43,
+      "shell": 6,
+      "toml": 14
+    },
+    "candidate_controls_and_refs_unchanged_through_final_checks": true,
+    "fresh_interpreter_behavior": "Both exact replay scripts ran in new Python processes with -B from private unrelated working directories. No native Codex or Claude model session was started.",
+    "semantics": "Replay executes parser validation over retained or synthetic argv data. It never executes the compiler/archive/CMake command strings."
+  },
+  "reviewer_read_error": {
+    "returncode": 1,
+    "cause": "A receipt-reading bundle attempted the nonexistent evidence/core-command-preparation/source-verification.json. File inventory established the actual receipts; this had no candidate-check or mutation effect."
+  },
+  "preservation": {
+    "reviewer_repository_writes": 0,
+    "reviewer_global_configuration_writes": 0,
+    "reviewer_private_receipt_writes_only": true,
+    "original_claude_acceptance_hashes_passed": 19,
+    "global_or_prefix_full_inventory_rerun": false
+  },
+  "not_run": [
+    "Native 03b2b configure, ABI, compiler, archive, link, CTest, runtime, export or sixteen-cell matrix",
+    "Historical compiler guard batteries or process timeout/cancellation controls",
+    "Full OCI/Claude/provider/hook runtime acceptance or fresh model sessions",
+    "Network, installs, services, daemons, global configuration changes, push/merge/publish"
+  ],
+  "delivery_notes": {
+    "parent_return_channel": "native collaboration to /root",
+    "frozen_implementation_sha256": "78aa67e2f39444cfbf4992e30419db000629bdd97bd69e059bb833361bc0179d",
+    "frozen_final_replay_sha256": "49356bc3ada18495c9dc642e95b2431c2ee53069a59f57ad06aad739c7ea01c9",
+    "anticipated_parent_only_closure": [
+      "Set 03b2a plan row to Complete",
+      "Record review PASS and the 23-rejection fixed disposition in progress.md",
+      "Add the review link and review-pass wording to docs/core-qualification.md"
+    ],
+    "timing": "The completed gates cover the currently frozen four files. Anticipated documentation-only closure/import and final commit gates remain parent-owned; this review does not claim those future bytes were tested.",
+    "no_additional_testing_after_parent_finalization_request": true
+  }
+}

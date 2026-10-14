@@ -1,0 +1,113 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "head": "694db529ebc4c3fab995a32c2c582b27874f09a9",
+  "result": "PASS for task 05b preparation only",
+  "finding_disposition": "Parent/control preimage omission repaired and independently reverified; no remaining actionable findings.",
+  "reviewed_inputs": [
+    {
+      "path": "dev/toolchains/gcc_bottles.py",
+      "sha256": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588"
+    },
+    {
+      "path": "dev/toolchains/README.md",
+      "sha256": "30ad952c4efa49fe8a7844f30284f6434c08f1b2262cb052061bc0aa42c1ced3"
+    },
+    {
+      "path": "docs/status.md",
+      "sha256": "c0760a70964c7fad98318102e927ebbf3d8be1bd53c102681160a953eefe235a"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "c13a036ee7962f55e1574d0c399c184b43da46624810c6e28f5aafd9fe49f84b"
+    },
+    {
+      "path": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "2e7610b70105c2d994461aa90da879a7a6565493b10241da999617ebb5958d39"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/bottles.json",
+      "sha256": "fbb7e13b15aa993b844ca31ee50993dcae3b1621a90b4f249ba385431f8ddeb1"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-proposal.json",
+      "sha256": "5e6f35596b000279fc04a43fca3c909083888ff4ead4a6ac7045c15ace7ca9ec"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/homebrew-provenance.json",
+      "sha256": "0fb26227ae020b5dd27b7266ed910c6d0a28438273ae09257dbd18873dfc2857"
+    },
+    {
+      "path": "evidence/gcc-bootstrap/global-drift-keys.json",
+      "sha256": "4cea1fe07801dc6f4e8296882e6a7ac4e33c6420ed74d662eb9c46379e6a3764"
+    }
+  ],
+  "executed_checks": [
+    {
+      "check": "offline inspector before and after repair via managed uv 0.13.0 and Python 3.13.12 from unrelated cwd",
+      "returncode": 0
+    },
+    {
+      "check": "independent archive scan: SHA-256, member uniqueness/types/root confinement/no descendants beneath symlinks, derived links",
+      "returncode": 0,
+      "members": 1946,
+      "public_links": 1791
+    },
+    {
+      "check": "all 36 retained acquisition records hashes/bytes/blob IDs; 20 mise source blobs against exact retained tree; Homebrew patch/LICENSE metadata bytes; GCC API source checksum",
+      "returncode": 0
+    },
+    {
+      "check": "nine protected global file hashes/modes; eight package states; both GLib backups/files and link; semantic key-only drift comparison",
+      "returncode": 0
+    },
+    {
+      "check": "tasks validate",
+      "returncode": 0
+    },
+    {
+      "check": "post-repair check:acceptance-baseline",
+      "returncode": 0,
+      "counts": {
+        "baseline": 19,
+        "json": 111,
+        "python": 4,
+        "shell": 5,
+        "toml": 14
+      }
+    },
+    {
+      "check": "final manifest equality excluding run_directory; native control scope; all ancestors and current preimages; proposal hash references",
+      "returncode": 0,
+      "parent_preimages": 106,
+      "control_preimages": 25
+    }
+  ],
+  "static_source_review": [
+    "Exact retained native link directories and prefix bootstrap scope match inspector",
+    "Native per-rack staging, commit lock, dependency order and failure propagation inspected",
+    "Materialization preservation and partial-failure claims match retained source; prior completed dependencies/directory conversions are not atomically rolled back",
+    "Documentation leaves installation, compiler/runtime and OCI acceptance pending"
+  ],
+  "not_executed": [
+    "network/download",
+    "archive extraction",
+    "installation or codesigning",
+    "compiler or reflection fixture",
+    "fresh model session",
+    "fresh native captured-metadata server/dry-run",
+    "fault injection into native install/link/materialization",
+    "live provider/hook or full Claude OCI acceptance",
+    "apply-time no-overlap census"
+  ],
+  "required_before_apply": "Fresh no-overlap package-writer census, exact current preimage checks and captured-metadata dry run remain mandatory.",
+  "receipts": {
+    "offline_initial": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cold-review-c3r9wtbs/offline/bottles.json",
+    "offline_final": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cold-review-c3r9wtbs/offline-controls/bottles.json",
+    "driver_final": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cold-review-c3r9wtbs/rerun-controls.json"
+  },
+  "shared_writes_by_reviewer": false
+}

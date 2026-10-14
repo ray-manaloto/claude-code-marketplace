@@ -1,0 +1,77 @@
+{
+  "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+  "cases": [
+    {
+      "case": "fixed-post-spawn-save-failure",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact helper AST with private real inert process; first case injects ENOSPC; second sends two real SIGTERM events",
+      "exception": "OSError(28, 'injected private receipt write failure')",
+      "alive_on_function_exit": false,
+      "row": {
+        "case": "fixed-post-spawn-save-failure",
+        "argv": [
+          "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+          "-B",
+          "-c",
+          "import time;time.sleep(60)"
+        ],
+        "started_at": "2026-10-11T05:40:50.391103+00:00",
+        "pid": 42873,
+        "interrupted": true,
+        "returncode": -15,
+        "elapsed_seconds": 0.0031282498966902494,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/fixed-post-spawn-save-failure/fixed-post-spawn-save-failure.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/fixed-post-spawn-save-failure/fixed-post-spawn-save-failure.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "all_owned_children_reaped": true,
+      "final_child_returncodes": [
+        -15
+      ],
+      "result": "PASS"
+    },
+    {
+      "case": "repeated-termination",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact helper AST with private real inert process; first case injects ENOSPC; second sends two real SIGTERM events",
+      "exception": "KeyboardInterrupt('received signal 15')",
+      "alive_on_function_exit": false,
+      "row": {
+        "case": "repeated-termination",
+        "argv": [
+          "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+          "-B",
+          "-c",
+          "import signal,os,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(60)"
+        ],
+        "started_at": "2026-10-11T05:40:50.395683+00:00",
+        "pid": 42874,
+        "interrupted": true,
+        "returncode": -9,
+        "elapsed_seconds": 5.3393289159284905,
+        "logs": [
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/repeated-termination/repeated-termination.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/repeated-termination/repeated-termination.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "all_owned_children_reaped": true,
+      "final_child_returncodes": [
+        -9
+      ],
+      "result": "PASS"
+    }
+  ]
+}

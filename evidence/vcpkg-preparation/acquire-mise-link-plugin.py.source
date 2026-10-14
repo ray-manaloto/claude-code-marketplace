@@ -1,0 +1,33 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import urllib.request, urllib.error, json, hashlib, os
+os.umask(0o077)
+pin='4599c53b4286ff101de876f8122feec0797b48b2'
+root=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-plugin-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+root.mkdir(exist_ok=False)
+report={'state':'running','started_at':datetime.now(timezone.utc).isoformat(),'pin':pin,'route':'native fnox codex_research; exact previously accepted primary source inputs','records':[]}
+def save(): (root/'acquisition.json').write_text(json.dumps(report,indent=2)+'\n')
+def get(url,name):
+    row={'url':url,'path':str(root/name)}; report['records'].append(row); save()
+    try:
+        request=urllib.request.Request(url,headers={'User-Agent':'marketplace-toolchain-qualification'})
+        with urllib.request.urlopen(request,timeout=30) as response:
+            data=response.read(); row['http_status']=response.status
+        path=root/name; path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(data)
+        row.update({'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}); save()
+        print(json.dumps({'file':name,'status':row['http_status'],'bytes':len(data)}),flush=True)
+        return data
+    except Exception as error:
+        row.update({'error_type':type(error).__name__,'error':str(error)}); save(); raise
+try:
+    prior=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-bootstrap/mise-tree.json')
+    indexed={row['path']:row for row in json.loads(prior.read_text())['tree']}
+    for name in ('src/plugins/asdf_plugin.rs','src/plugins/mise_plugin_toml.rs','src/backend/external_plugin_cache.rs'):
+        data=get('https://raw.githubusercontent.com/jdx/mise/'+pin+'/'+name,name+'.source')
+        assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==indexed[name]['sha']
+        report['records'][-1]['verified_git_blob']=indexed[name]['sha']
+    report['state']='PASS'
+except BaseException as error:
+    report.update(state='FAIL',error=repr(error));raise
+finally:
+    save();print(json.dumps({'state':report['state'],'receipt':str(root/'acquisition.json')}),flush=True)

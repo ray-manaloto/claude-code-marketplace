@@ -1,0 +1,517 @@
+{
+  "additional_default_comparator_types": [
+    {
+      "change": "Remove the redundant alias, since RDFRegisters.h is already included at line 227. A one-header alias change alone would create a conflicting declaration.",
+      "file": "llvm/include/llvm/CodeGen/RDFGraph.h",
+      "line": 450,
+      "text": "using RegisterSet = std::set<RegisterRef>;"
+    },
+    {
+      "change": "Explicitly select RegisterRefLess as the map comparator.",
+      "file": "llvm/lib/Target/Hexagon/RDFCopy.h",
+      "line": 38,
+      "text": "using EqualityMap = std::map<RegisterRef, RegisterRef>;"
+    },
+    {
+      "change": "Explicitly select RegisterRefLess for the outer map; the inner NodeId comparator remains unchanged.",
+      "file": "llvm/lib/Target/Hexagon/RDFCopy.h",
+      "line": 48,
+      "text": "std::map<RegisterRef,std::map<NodeId,NodeId>> RDefMap;"
+    }
+  ],
+  "alternative_candidate": {
+    "mechanism": "A distinct derived type can inherit the current constructor/operator and avoid exact less<T> matching for RegisterSet. Full set/map adaptation additionally needs the two map types changed. A converting constructor from the old std::less type could leave old construction expressions unchanged.",
+    "name": "Derived adapter retaining the std::less specialization",
+    "potential_scope": "Two headers can address the observed set instantiation only. Covering the existing RegisterRef-keyed maps with an implicit base-to-adapter conversion can fit three headers, but leaves old std::less sort uses and the specialization in place.",
+    "status": "Not preferred; not implemented or compiled.",
+    "tradeoffs": [
+      "Preserves behavior when correctly copied and passed, but adds two comparator types plus implicit adaptation.",
+      "The unchanged specialization remains vulnerable wherever a future or unconverted standard container chooses it by default.",
+      "The clean five-file named-comparator change is still small and makes all current ownership of target state explicit."
+    ]
+  },
+  "cause": [
+    {
+      "fact": "The std::less<llvm::rdf::RegisterRef> specialization contains a PhysicalRegisterInfo pointer and calls PRI->less(A,B). It is stateful and not default-constructible.",
+      "source": "llvm/include/llvm/CodeGen/RDFRegisters.h:356-367",
+      "step": 1
+    },
+    {
+      "fact": "RegisterRef deliberately deletes operator<, operator== and operator!=; target-aware ordering cannot be replaced by the raw operators.",
+      "source": "llvm/include/llvm/CodeGen/RDFRegisters.h:134-136",
+      "step": 2
+    },
+    {
+      "fact": "In C++14 and later, the SDK's __make_transparent<T,less<T>> unconditionally selects less<void>; there is no predicate testing whether a user specialization retained the original semantics.",
+      "source": "__functional/operations.h:370-385",
+      "step": 3
+    },
+    {
+      "fact": "std::set insertion enters __emplace_unique, then __find_equal, then __as_transparent<Key>(value_comp()). The conversion path is selected even though the comparator instance carries PRI state.",
+      "source": "__tree:1036-1039,1849-1863",
+      "step": 4
+    },
+    {
+      "fact": "When the comparator type changes, __as_transparent asserts is_empty<Comparator>, ignores the original instance, and default-constructs the transparent comparator. The PRI pointer makes the assertion fail.",
+      "source": "__type_traits/make_transparent.h:42-47",
+      "step": 5
+    },
+    {
+      "fact": "The substituted less<void> calls operator<; RegisterRef's deleted operator produces the two further comparison errors. Removing only the static_assert would not restore PRI-dependent semantics.",
+      "source": "__functional/operations.h:374-377; __utility/lazy_synth_three_way_comparator.h:44-54",
+      "step": 6
+    }
+  ],
+  "comparator_contract": {
+    "behavior": [
+      "If either operand is not a register, compare only the encoded Reg field.",
+      "For equal Reg identifiers, compare lane masks.",
+      "For equal masks, compare Reg identifiers.",
+      "Otherwise compare selected register units lexicographically using MCRegUnitMaskIterator and the target's register information; an exhausted unit range sorts before a non-exhausted range."
+    ],
+    "legal_scope": "This report diagnoses the inspected implementation contract; it makes no independent language-standard conformance ruling about specializing std::less.",
+    "preservation": [
+      "Keep the exact PRI->less(A,B) delegation; do not replace it with tuple(Reg,Mask), raw operator<, global state, or a stateless less<void>.",
+      "Retain the existing non-explicit constexpr constructor taking const PhysicalRegisterInfo&, const call operator, pointer member, and ordinary copy/assignment/swap behavior.",
+      "PhysicalRegisterInfo lifetime remains owned by the existing DataFlowGraph: RDFGraph.h:697 returns its member reference and :894 declares the member. No new ownership mechanism is needed."
+    ],
+    "source": "llvm/lib/CodeGen/RDFRegisters.cpp:216-252"
+  },
+  "disposition": "CAUSE_ESTABLISHED_FROM_LOG_AND_SOURCE; proposed repair NOT_IMPLEMENTED and NOT_COMPILED",
+  "exact_less_inventory": [
+    {
+      "file": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+      "kind": "definition",
+      "line": 356,
+      "text": "template <> struct less<llvm::rdf::RegisterRef> {"
+    },
+    {
+      "file": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+      "kind": "set alias",
+      "line": 372,
+      "text": "using RegisterSet = std::set<RegisterRef, std::less<RegisterRef>>;"
+    },
+    {
+      "file": "llvm/lib/CodeGen/RDFLiveness.cpp",
+      "kind": "sort comparator",
+      "line": 871,
+      "text": "llvm::sort(LV, std::less<RegisterRef>(PRI));"
+    },
+    {
+      "file": "llvm/lib/CodeGen/RDFLiveness.cpp",
+      "kind": "sort comparator",
+      "line": 881,
+      "text": "llvm::sort(LV, std::less<RegisterRef>(PRI));"
+    },
+    {
+      "file": "llvm/lib/Target/Hexagon/RDFCopy.h",
+      "kind": "map comparator constructor",
+      "line": 29,
+      "text": "RDefMap(std::less<RegisterRef>(DFG.getPRI())) {}"
+    },
+    {
+      "file": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      "kind": "map comparator constructor",
+      "line": 111,
+      "text": "EqualityMap EM(std::less<RegisterRef>(DFG.getPRI()));"
+    }
+  ],
+  "failed_operation": {
+    "case": "llvm-build",
+    "command_flags_observed": [
+      "-std=c++17",
+      "-arch arm64",
+      "-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "-DNDEBUG",
+      "-UNDEBUG"
+    ],
+    "elapsed_seconds": 363.49094987497665,
+    "error_count": 3,
+    "failed_object": "lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/RDFGraph.cpp.o",
+    "failed_translation_unit": "llvm/lib/CodeGen/RDFGraph.cpp",
+    "log_lines": [
+      1316,
+      1317,
+      1318,
+      1329,
+      1341,
+      1350,
+      1351,
+      1359,
+      1377,
+      1388,
+      1412,
+      1416
+    ],
+    "note": "The -UNDEBUG flag retains the assertion-enabled Defs set at RDFGraph.cpp:1589-1602. The final log also records successful RDFRegisters.cpp and RDFLiveness.cpp compilations after the failure.",
+    "returncode": 1,
+    "state": "FAIL"
+  },
+  "generated_at": "2026-10-11T06:08:40.112987+00:00",
+  "identity": {
+    "HEAD": "c43021fb998d05f7ca0036bd6da8b6ba8964798a",
+    "branch": "codex/marketplace-native-onboarding",
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head_check_rc": 0
+  },
+  "inventory_scope": {
+    "exact_less_matches": 6,
+    "exact_less_search": "Whole retained source root; std::less unqualified/llvm::rdf::/rdf:: type arguments plus the specialization definition.",
+    "exact_less_search_rc": 0,
+    "excluded_name_collision": "HexagonBlockRanges.h:34-43 defines a separate nested RegisterRef with an actual operator< and its own RegisterSet; it is not llvm::rdf::RegisterRef.",
+    "proposed_name_search": "No RegisterRefLess name or explicitly qualified rdf::RegisterSet use found in the retained source root (rg rc 1).",
+    "register_set_search": "Whole-root RegisterSet file search, then inspect RDF header consumers; the two constructor sites listed are the rdf RegisterSet uses.",
+    "register_set_search_rc": 0
+  },
+  "opt_out": {
+    "applicable_documented_macro_found": false,
+    "documented_scope": "__tree:1250-1317 calls this a compatibility escape hatch for lower/upper bound algorithms with comparators that are not strict weak orderings.",
+    "nearby_documented_macro": "_LIBCPP_ENABLE_LEGACY_TREE_LOWER_UPPER_BOUND",
+    "other_non_fixes": [
+      "Disabling runtime hardening/assertions does not remove the language static_assert or the deleted-operator substitution.",
+      "Adding is_transparent to the existing specialization does not affect the exact __make_transparent<T,less<T>> partial specialization.",
+      "Defining NDEBUG to skip the local debug set would remove desired assertions and leave the comparator mismatch at other container sites.",
+      "Specializing libc++ internal traits or editing SDK headers would depend on undocumented implementation details and is not the proposed source repair."
+    ],
+    "search_scope": "Active SDK headers were read; the installed v1 tree was searched for __make_transparent/__as_transparent and related transparency/legacy-tree macro names. No broader toolchain or network research was performed.",
+    "why_not_a_fix": "It does not guard __find_equal:1849-1885, __as_transparent, or the less<T>-to-less<void> mapping. The failing insertion path remains active."
+  },
+  "recommended_candidate": {
+    "files": [
+      {
+        "action": "Move the current less specialization's constructor, pointer and call operator into a named RegisterRefLess in namespace llvm::rdf after PhysicalRegisterInfo is complete; remove the std::less specialization; use RegisterRefLess in the canonical RegisterSet alias. Update equal_to's comment at line 345 that points to `less below`.",
+        "path": "llvm/include/llvm/CodeGen/RDFRegisters.h"
+      },
+      {
+        "action": "Remove the redundant RegisterSet alias at line 450.",
+        "path": "llvm/include/llvm/CodeGen/RDFGraph.h"
+      },
+      {
+        "action": "Replace the two std::less<RegisterRef>(PRI) comparator constructions at lines 871 and 881 with RegisterRefLess(PRI).",
+        "path": "llvm/lib/CodeGen/RDFLiveness.cpp"
+      },
+      {
+        "action": "Use RegisterRefLess in the RDefMap constructor at line 29 and explicitly in both RegisterRef-keyed map declarations at lines 38 and 48.",
+        "path": "llvm/lib/Target/Hexagon/RDFCopy.h"
+      },
+      {
+        "action": "Use RegisterRefLess for EqualityMap construction at line 111.",
+        "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp"
+      }
+    ],
+    "maintained_file_count": 5,
+    "name": "Independent llvm::rdf::RegisterRefLess with explicit typed uses",
+    "reason": "A non-standard comparator type is retained by the generic __make_transparent mapping. __as_transparent returns the same comparator by reference, preserving PRI state. The SDK map wrapper similarly retains the same underlying comparator type.",
+    "size_assessment": "Bounded: move one small comparator definition, remove one redundant alias, update two map comparator parameters and four comparator construction expressions. Well below 300 handwritten changed lines; exact diff size remains for parent.",
+    "status": "Proposal only; no source edit or compiler verification.",
+    "tradeoffs": [
+      "Uses one domain-specific comparator and explicit call sites; no adapter conversion from std::less is needed.",
+      "Preserves comparison behavior and pointer lifetime by retaining the exact body and construction pattern.",
+      "Changes comparator template types and removes the old std::less specialization; any out-of-tree consumers would need analogous explicit-comparator updates. No such consumers were inspected.",
+      "Hexagon map sites must be included for retained-source consistency even if the current configured target set does not build Hexagon."
+    ]
+  },
+  "register_set_construction_sites": [
+    {
+      "action": "No edit is needed if the new named comparator preserves the existing non-explicit PRI constructor.",
+      "file": "llvm/lib/CodeGen/RDFGraph.cpp",
+      "line": 1590,
+      "text": "RegisterSet Defs(getPRI());"
+    },
+    {
+      "action": "No edit is needed if the new named comparator preserves the existing non-explicit PRI constructor.",
+      "file": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      "line": 80,
+      "text": "RegisterSet RRs(DFG.getPRI());"
+    }
+  ],
+  "roots": {
+    "failed_run": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z",
+    "sdk_headers": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/c++/v1",
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source"
+  },
+  "routes": {
+    "not_run": [
+      "compiler",
+      "CMake",
+      "Ninja",
+      "rebuild",
+      "install",
+      "Exa",
+      "Firecrawl",
+      "Last30Days",
+      "Context7",
+      "GitHub search"
+    ],
+    "notes": [
+      "Initial broad log/qualification/search output was truncated; final conclusions use narrowed inspected ranges.",
+      "An initial combined rev-parse returned branch names without a hash; the separate --verify HEAD command established the expected HEAD.",
+      "No relevant memory registry match was found for this failure."
+    ],
+    "ran": [
+      "functions.exec / exec_command",
+      "native Git rev-parse and read-only retained source identity checks",
+      "rg",
+      "sed/cat/tail",
+      "absolute Python 3.14.8 for bounded source inventory/hash verification and JSON serialization"
+    ]
+  },
+  "schema_version": 1,
+  "scope": {
+    "cmake_ninja_compiler_install_or_rebuild_invocations": 0,
+    "network_acquisitions": 0,
+    "private_diagnostic_json_only": true,
+    "source_repository_sdk_or_global_edits": 0
+  },
+  "source_pin": {
+    "commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "inspected_files_equal_HEAD": true,
+    "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "verification_commands": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+          "rev-parse",
+          "HEAD",
+          "HEAD^{tree}"
+        ],
+        "elapsed_seconds": 0.012,
+        "rc": 0,
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "1bc09be090a1081a3f707c0016d4674e85a40ac44183d2eed53a4d3b368da07a"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "-C",
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+          "ls-tree",
+          "HEAD",
+          "--",
+          "llvm/include/llvm/CodeGen/RDFRegisters.h",
+          "llvm/include/llvm/CodeGen/RDFGraph.h",
+          "llvm/lib/CodeGen/RDFGraph.cpp",
+          "llvm/lib/CodeGen/RDFRegisters.cpp",
+          "llvm/lib/CodeGen/RDFLiveness.cpp",
+          "llvm/lib/Target/Hexagon/RDFCopy.h",
+          "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+          "llvm/lib/Target/Hexagon/HexagonBlockRanges.h",
+          "llvm/include/llvm/ADT/STLExtras.h"
+        ],
+        "elapsed_seconds": 0.017,
+        "rc": 0,
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "576573092aa67a45010c61a7d4a31d58e3cc3b170c5df3aa6b932e7fff944ffa"
+      }
+    ]
+  },
+  "source_references": [
+    {
+      "bytes": 10773,
+      "git_blob_sha1": "4a9a4063c9e83a9e45610c6dce8f826539af207d",
+      "lines": [
+        "134-136",
+        "171-172",
+        "337-372"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+      "root": "source",
+      "sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888"
+    },
+    {
+      "bytes": 34017,
+      "git_blob_sha1": "8a93afbcb54914cc924bd56c43c2f787d3224823",
+      "lines": [
+        "227",
+        "450",
+        "697",
+        "894",
+        "988"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+      "root": "source",
+      "sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d"
+    },
+    {
+      "bytes": 57801,
+      "git_blob_sha1": "bbd3292fd46de75790370e772e052247d94a0ed7",
+      "lines": [
+        "304",
+        "1587-1602",
+        "1646"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/CodeGen/RDFGraph.cpp",
+      "root": "source",
+      "sha256": "cb6a43782a455b5d22f5e1c04d37217863d04d31140721778fbc63fc6019c0cd"
+    },
+    {
+      "bytes": 12245,
+      "git_blob_sha1": "b8d54cadc07f67947261317cd5546522cb53c7da",
+      "lines": [
+        "180-252"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/CodeGen/RDFRegisters.cpp",
+      "root": "source",
+      "sha256": "a9e6e23dcc23be956937d378eb0972544955e7180de6ffc85477d8a99f48c3f5"
+    },
+    {
+      "bytes": 43619,
+      "git_blob_sha1": "318422b46e811f85dff9b5a9ddecebb234bec318",
+      "lines": [
+        "655",
+        "867-886"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+      "root": "source",
+      "sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269"
+    },
+    {
+      "bytes": 1848,
+      "git_blob_sha1": "e4fb89892831de5511a71f3325fa694289ee1fd3",
+      "lines": [
+        "27-50"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+      "root": "source",
+      "sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308"
+    },
+    {
+      "bytes": 7595,
+      "git_blob_sha1": "fafdad08909ddc3938fa0d6774c628f671cf5126",
+      "lines": [
+        "65-116"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      "root": "source",
+      "sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a"
+    },
+    {
+      "bytes": 7251,
+      "git_blob_sha1": "e152dbf764c97672496883c179f0a5dfe76b8ddb",
+      "lines": [
+        "34-43"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/lib/Target/Hexagon/HexagonBlockRanges.h",
+      "root": "source",
+      "sha256": "7fe4a3b96005f281d5ecc0cc1c91f2e2668a9dc5bf70edc042701721082d01a4"
+    },
+    {
+      "bytes": 98879,
+      "git_blob_sha1": "eea06cfb99ba2e12f8d0fff7a9cdcc220b158ebb",
+      "lines": [
+        "1687-1697"
+      ],
+      "matches_pinned_HEAD_blob": true,
+      "path": "llvm/include/llvm/ADT/STLExtras.h",
+      "root": "source",
+      "sha256": "9a6aba85ca62c328d168ddcaa5454277603f550c0ed370d3c8687374b1b44d12"
+    },
+    {
+      "bytes": 1889,
+      "lines": [
+        "23-48"
+      ],
+      "path": "__type_traits/make_transparent.h",
+      "root": "sdk_headers",
+      "sha256": "bc732a384e773cfcd3880ee0281dc3f7c6ad3e7b21933b71791185c3c2801fdf"
+    },
+    {
+      "bytes": 18034,
+      "lines": [
+        "352-399"
+      ],
+      "path": "__functional/operations.h",
+      "root": "sdk_headers",
+      "sha256": "fb15ab77c5b7c2dbf7c3a9f8a7d6b14862ab1c78ebf357d75976d3dc336f09ba"
+    },
+    {
+      "bytes": 97662,
+      "lines": [
+        "1036-1054",
+        "1250-1317",
+        "1849-1885"
+      ],
+      "path": "__tree",
+      "root": "sdk_headers",
+      "sha256": "28619fb6445771353811a857abb8eb9c2200716b677046753029c9e5a2b53f1b"
+    },
+    {
+      "bytes": 5620,
+      "lines": [
+        "23-28",
+        "33-72"
+      ],
+      "path": "__utility/lazy_synth_three_way_comparator.h",
+      "root": "sdk_headers",
+      "sha256": "3bf0e4bdfe6bd8470b2c425b93fa573c5af959e825988bb8efabf11379b07758"
+    },
+    {
+      "bytes": 92957,
+      "lines": [
+        "639-675"
+      ],
+      "path": "map",
+      "root": "sdk_headers",
+      "sha256": "db2a1e8500d60a808557dfb05b244cfa92f1d30160bd97d0a575afa0ddf70cd6"
+    },
+    {
+      "bytes": 27150,
+      "lines": [],
+      "path": "qualification.json",
+      "root": "failed_run",
+      "sha256": "6c1a98385b7d9f8b4f72efafb668ce91d83cf2372098b87858ff4d23c5c64430"
+    },
+    {
+      "bytes": 150421,
+      "lines": [
+        "1316-1416"
+      ],
+      "path": "llvm-build.stdout",
+      "root": "failed_run",
+      "sha256": "fa3a5db44aa61c2fbefc3284237618e2e8e306b7e0c557f5a8905b79f8401cf2"
+    },
+    {
+      "bytes": 41,
+      "lines": [
+        "1"
+      ],
+      "path": "source-head.stdout",
+      "root": "failed_run",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+    },
+    {
+      "bytes": 41,
+      "lines": [
+        "1"
+      ],
+      "path": "source-tree.stdout",
+      "root": "failed_run",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+    }
+  ],
+  "suggested_parent_validation": [
+    "In isolated scratch, reproduce the failure with a stateful comparator and deleted raw comparison under the exact SDK/C++17 flags, then verify a distinct named comparator retains the supplied state.",
+    "Use tiny controls covering two different comparator contexts, set insertion/count/order and map insertion/find; verify comparator copying or swapping retains the relevant context.",
+    "Apply only the reviewed named-comparator patch in the parent's authorized source scope, record the five preimages, patch hash and resulting file hashes separately from the pinned base commit.",
+    "Repeat the focused source inventory to ensure no old RegisterRef std::less construction/default map alias was missed; keep unrelated RegisterRef types untouched.",
+    "Recompile the formerly failing RDFGraph translation unit with assertions retained, and obtain the separately admitted build's final exit code before claiming build completion."
+  ],
+  "task": "07b retained-source diagnosis of SDK libc++ comparator failure"
+}

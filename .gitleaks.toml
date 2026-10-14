@@ -1,0 +1,7 @@
+# Publish guard (D145): gitleaks' default rules plus generic additions. The private-name rule
+# lives outside the repository (D178); every scan merges it at run time (dev/git_delivery.py
+# scan_config, .claude/rules/secret-scanner.md).
+title = "claude-code-marketplace publish guard"
+
+[extend]
+useDefault = true

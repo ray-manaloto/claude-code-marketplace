@@ -1,0 +1,80 @@
+import hashlib,itertools,json,os,subprocess,time
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+DIRECTORY=Path(__file__).parent
+EV=ROOT/'evidence/baseline-presets'
+TCPM=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/bin/tcpm')
+CMAKE=Path('/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake')
+def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+report={'state':'running','directory':str(DIRECTORY),'commands':[],'inputs':{str(p):sha(p) for p in [ROOT/'CMakePresetsVendorTemplate.json',TCPM,CMAKE,Path(__file__)]}}
+def save(): (EV/'generation.json').write_text(json.dumps(report,indent=2)+'\n')
+def run(label,argv):
+ t=time.monotonic(); p=subprocess.run([str(v) for v in argv],cwd=ROOT,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',MARKETPLACE_BUILD_ROOT=str(DIRECTORY/'builds')),capture_output=True,timeout=60)
+ row={'case':label,'argv':[str(v) for v in argv],'returncode':p.returncode,'seconds':time.monotonic()-t,'stdout':p.stdout.decode(),'stderr':p.stderr.decode()}; report['commands'].append(row); save(); assert p.returncode==0,(label,p.returncode); return p.stdout
+try:
+ assert run('head',['/usr/bin/git','rev-parse','HEAD']).decode().strip()=='e81ba5db9621c36334d10a1c6e4ce5cad63ba79c'
+ outputs=[]
+ for i in range(2):
+  folder=DIRECTORY/f'generation-{i+1}';folder.mkdir()
+  output=run(f'generation-{i+1}',[TCPM,'--non-interactive','--no-schema-validation','--presets-version','12','--template-file',ROOT/'CMakePresetsVendorTemplate.json','--presets-file',folder/'CMakePresets.json','--stdout'])
+  (folder/'CMakePresets.json').write_bytes(output);outputs.append(output)
+ assert outputs[0]==outputs[1]
+ data=json.loads(outputs[0]); presets={row['name']:row for row in data['configurePresets']}
+ def resolve(name,seen=()):
+  assert name not in seen
+  row=presets[name]; result={'cacheVariables':{},'environment':{}}
+  parents=row.get('inherits',[]); parents=[parents] if isinstance(parents,str) else parents
+  for parent in reversed(parents):
+   inherited=resolve(parent,seen+(name,))
+   for key,value in inherited.items():
+    if key in ('cacheVariables','environment'): result[key].update(value)
+    else: result[key]=value
+  for key,value in row.items():
+   if key in ('cacheVariables','environment'):result[key].update(value)
+   else:result[key]=value
+  return result
+ configurations=['Debug','Release','RelWithDebInfo','MinSizeRel']
+ tuples=list(itertools.product(['p2996','gcc16'],['static','shared'],['static','dynamic']))
+ def tail(t): return f'{t[0]}-core-{t[1]}-fmt-{t[2]}'
+ expected={'configure-'+tail(t) for t in tuples}
+ assert {r['name'] for r in data['configurePresets'] if not r.get('hidden')}==expected
+ expanded=[]
+ for lane,core,dep in tuples:
+  name=f'configure-{lane}-core-{core}-fmt-{dep}'; row=resolve(name); env=row['environment']; cache=row['cacheVariables']
+  assert env['MARKETPLACE_CPP_LANE']==lane and env['MARKETPLACE_DEPENDENCY_LINKAGE']==dep
+  assert cache['BUILD_SHARED_LIBS']==('ON' if core=='shared' else 'OFF')
+  assert cache['RESEARCH_CORE_WITH_FMT']=='ON' and row['generator']=='Ninja Multi-Config'
+  assert row['binaryDir']=='$env{MARKETPLACE_BUILD_ROOT}/${presetName}'
+  for key in ('VCPKG_MANIFEST_MODE','VCPKG_MANIFEST_INSTALL','VCPKG_APPLOCAL_DEPS','CMAKE_FIND_USE_PACKAGE_REGISTRY','CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY'):assert cache[key]=='OFF',key
+  def expand(value):
+   for key,value2 in env.items():value=value.replace('$env{'+key+'}',value2 or '')
+   return value.replace('${sourceDir}',str(ROOT))
+  triplet=expand(cache['VCPKG_TARGET_TRIPLET']); installed=Path(expand(cache['VCPKG_INSTALLED_DIR']))
+  assert triplet==f'arm64-osx-{lane}-{dep}'
+  assert (installed/triplet/'share/fmt/fmt-config.cmake').is_file()
+  assert Path(expand(cache['CMAKE_TOOLCHAIN_FILE'])).is_file()
+  assert Path(expand(cache['VCPKG_CHAINLOAD_TOOLCHAIN_FILE'])).is_file()
+  expanded.append({'name':name,'compiler':lane,'core_linkage':core,'dependency_linkage':dep,'triplet':triplet,'installed':str(installed),'environment':env})
+ for kind in ('build','test'):
+  rows=data[kind+'Presets'];assert len(rows)==32
+  assert {r['name'] for r in rows}=={f'{kind}-{c}-'+tail(t) for c in configurations for t in tuples}
+  for row in rows:
+   c=row['configuration'];assert row['configurePreset']==row['name'].replace(f'{kind}-{c}','configure',1)
+   if kind=='build':assert row['jobs']==1
+   else:assert row['execution']=={'jobs':1,'noTestsAction':'error'} and row['output']['outputOnFailure']
+ assert len(data['workflowPresets'])==8
+ for row in data['workflowPresets']:
+  tail=row['name'].removeprefix('workflow-');expected_steps=[{'type':'configure','name':'configure-'+tail}]
+  for c in configurations:expected_steps.extend({'type':k,'name':f'{k}-{c}-{tail}'} for k in ('build','test'))
+  assert row['steps']==expected_steps
+ for kind in ('configure','build','test','workflow'):
+  output=run('native-list-'+kind,[CMAKE,'-S',DIRECTORY/'generation-1','--list-presets='+kind]).decode()
+  names={r['name'] for r in data[kind+'Presets'] if not r.get('hidden')}
+  assert all('"'+n+'"' in output for n in names)
+ assert not (DIRECTORY/'builds').exists()
+ assert not (ROOT/'CMakePresets.json').exists()
+ (ROOT/'CMakePresets.json').write_bytes(outputs[0])
+ report.update(state='PASS: deterministic native baseline presets; native configure/build/test pending',two_generations_identical=True,generated_sha256=sha(ROOT/'CMakePresets.json'),configure_trees=8,configuration_cells=32,configurations=configurations,expanded_presets=expanded,compiler_or_configure_or_build_executed=False)
+except BaseException as exc:
+ report.update(state='FAIL',error=type(exc).__name__+': '+str(exc));save();raise
+save();print(json.dumps({'state':report['state'],'generated_sha256':report['generated_sha256'],'commands':len(report['commands'])}))

@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-10-11T03:18:38.946163+00:00",
+  "earlier_recording_attempt": {
+    "wrapper_returncode": 1,
+    "limitation": "The first closure helper raised before saving its report when the staged native/upstream whitespace made the baseline check fail. This repeat records the actual subprocess exit and output."
+  },
+  "commands": [
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\ncheck failed: Command '('git', 'diff', '--cached', '--check')' returned non-zero exit status 2.\n[check:acceptance-baseline] ERROR task failed\n"
+    }
+  ],
+  "disposition": "The staged check rejects preserved evidence whitespace. The exact diagnostics and scoped maintained-source pass are recorded separately. Reviewer baseline passed before staging; repeat the complete baseline after the checkpoint commit."
+}

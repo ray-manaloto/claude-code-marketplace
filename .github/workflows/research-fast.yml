@@ -1,0 +1,50 @@
+name: research-fast
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - codex/marketplace-native-onboarding
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research-fast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      # Install the mise executable only. The root mise.toml defines the
+      # separate OCI image and must not be bootstrapped by this job.
+      - uses: jdx/mise-action@v4.3.0
+        with:
+          version: 2026.10.8
+          install: false
+          cache: false
+          env: false
+          export_path: false
+          add_shims_to_path: false
+
+      - name: Prepare exact project tools and dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import ssl, tomllib'
+          ./dev/mise run tools:prepare
+          MARKETPLACE_PYTHON="$(./dev/mise which python)"
+          export MARKETPLACE_PYTHON
+          ./dev/mise run deps:sync
+
+      - name: Run portable research and preservation checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          MARKETPLACE_PYTHON="$(./dev/mise which python)"
+          export MARKETPLACE_PYTHON
+          ./dev/mise tasks validate
+          ./dev/mise run check:research
+          ./dev/mise run check:acceptance-baseline

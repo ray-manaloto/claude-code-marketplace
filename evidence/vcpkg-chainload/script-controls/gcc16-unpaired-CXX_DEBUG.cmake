@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 4.4)
+cmake_host_system_information(RESULT CMAKE_HOST_SYSTEM_PROCESSOR QUERY OS_PLATFORM)
+set(VCPKG_TARGET_TRIPLET arm64-osx-gcc16-static)
+set(VCPKG_TARGET_ARCHITECTURE arm64)
+set(VCPKG_CXX_FLAGS_DEBUG -DUNPAIRED=1)
+include("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/vcpkg-macos-arm64.cmake")

@@ -1,0 +1,257 @@
+{
+  "state": "ADMITTED: guarded math-adapted incremental LLVM build only",
+  "at": "2026-10-11T08:27:04.751846+00:00",
+  "authority": "Accepted post-onboarding toolchain sequence; parent sole writer; reviewed seven-file source restart 07b9 and fresh shared-capacity preflight",
+  "repository_head": "db9c16cb860eedb6f1f472773f488b365413d839",
+  "helper_sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+  "review_sha256": "a220060ef3fffba11500b78680bfc8cb53fb406df2b7248619e70d90d94bad12",
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": true,
+    "sdk_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+        "files": [
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+            "before_sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888",
+            "after_sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e"
+          },
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+            "before_sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d",
+            "after_sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb"
+          },
+          {
+            "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+            "before_sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269",
+            "after_sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+            "before_sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308",
+            "after_sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+            "before_sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a",
+            "after_sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857"
+          }
+        ],
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "receipts": {
+        "operation/qualification.json": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b",
+        "application-review.json": "065d11649a8ded63e074195d796feea976a50122d59430f533e117e7696d8220",
+        "scratch/proposal.json": "62dbb270e2171c40c90ab400ae49cf37ccd1f868cb1ddece869168c7922c8f79",
+        "scratch/rdf-comparator.patch": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e"
+      }
+    },
+    "math_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+        "files": [
+          {
+            "path": "clang/lib/Headers/float.h",
+            "before_sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+            "after_sha256": "daf8cad2e875f21ca4ce40acc7c88afc38a6362c6adcccfd2896416cd9ac749c"
+          },
+          {
+            "path": "libcxx/include/float.h",
+            "before_sha256": "f40e5d57ecd44f9d55fdf3d2566828997144f4ef88db4a83edcb4fe7b47c0f93",
+            "after_sha256": "9010672848d9cc99ea8f78eadada13e126fa9d6a78b22bbb832f381ccc4dd051"
+          }
+        ],
+        "prior_source_diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+        "failure_closure_sha256": "35e239e9aff25e74e169e2a49cb6346f0640f207bdc70c0c88bf9acc06341ce3",
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "receipts": {
+        "evidence/p2996-math-application/operation/qualification.json": "c15da9519f09bed39aaeccd69d05cc6387861a43b9d26814e970dbb88bd5310c",
+        "evidence/p2996-math-application/application-review.json": "4270cb8167e450e9aabd76ed619d04eb8dab0d5aeadde5be522150409eb87741",
+        "evidence/p2996-math-compatibility/scratch/proposal.json": "b5e7f1620606d8b9fe6aa101bf8a0cd12fb92d46867b2de6d6c8e54060235a2e",
+        "evidence/p2996-math-compatibility/scratch/sdk-math.patch": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+        "evidence/p2996-math-compatibility/independent-scratch/retained-preimages.json": "c6be1e4317ad78d98fce08b8215388c245eafc481ba75e4bae1d1c199a75dc2e",
+        "evidence/p2996-resume/failure-closure-review.json": "35e239e9aff25e74e169e2a49cb6346f0640f207bdc70c0c88bf9acc06341ce3"
+      }
+    },
+    "incremental_state": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/CMakeConfigureLog.yaml": "7e538a524787ef11e1187d3826460d041dd0d41a55530eb3d1fee94fdad7be4b",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/rules.ninja": "560454d66f343db594b6a5ceca5081cb751a01c7794ccf4e77e3719a25022b4e",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja": "d989f17ccf96634b5c81fb0981a32d080049e14cc660453c712d9c0db21a3edf",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cache-Release.cmake": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cfgcmd.txt": "dafc86ce415193fbdb641317b5cdf615027d12f2d1c37bbe7a1bf040cfc7ac64",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cache-Release.cmake": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cfgcmd.txt": "a22c02e8c6c8d94f71bc724b62b0ca34299c4ed4fc249f81c2dd0dd2a4e34d37",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeCache.txt": "b29bcacba2419dc9858dd2602d9c8dbe1a83a9770a7404d70a81a5902237c960",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/build.ninja": "f6d2564bf062cbd371deae6543d667fcf18cd24cf8604ea14f3152bf1d14efc3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/rules.ninja": "f50f8c90b18fd605048a7f4022794cbca402a2920b55520cff19e47ea95b08ae",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/CMakeConfigureLog.yaml": "2fc070ab927ba0e95c5688f6dfae39e6962b9f430930aabfcb5e688c9b61aa69",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/cmake_install.cmake": "1b4ab0e6ab4e5d7fa1efe46f0642801d4695a96feb7698942c843e9b75cd4cb2",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/4.4.4/CMakeASMCompiler.cmake": "831ca807b2249ecfb5ba131669d04826b22864d4f35f6bc1ecd8c9fa417178c3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/CMakeFiles/4.4.4/CMakeCCompiler.cmake": "50e0783efe93ec753898ccbe649e6f018a6bcfba83e74bf7e6c0bd94e7b18adf",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeCache.txt": "a36ec0a70a606e80f241075b27cd2c5ed62840ba2e55619e62f6d990440bebb8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/build.ninja": "3a24513a4a6e7ac11bacd59b426145f9c66be7e2c31582524da1b8c12da2308e",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/rules.ninja": "d0c61804a15f8fe1df19cb3c54e0d66c4d7c3898e4e745cbbe41289896670579",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/CMakeConfigureLog.yaml": "4a5ff8a191bb3b3b4a63c8667c9aeffdf014d7ecb181f7a322f5e962877daacc",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/cmake_install.cmake": "aa65f91abd0a08b189b92c2a7fd36dbebf1e48583aafbf4a8c6dd9b7f7acfad8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeASMCompiler.cmake": "831ca807b2249ecfb5ba131669d04826b22864d4f35f6bc1ecd8c9fa417178c3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeCCompiler.cmake": "95bc5b378f408b6b85456042d51d50251f6776497f012c398c42a28a1b6ac00c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake": "4edd9d5a0000934c571f79fb9990fcee348321d5a7dacee915403ac32f9ca7c6",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log": "79abe4c3694f75572cefb25dc849d67ece14dda65bb512420299ea1f05528271",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps": "1a64ef4e6ae15c994c72809512b0ce898ceaab11deb54e590b3d4a68cba24488",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/.ninja_log": "392fd22243830d0a8b3706d3a867eac569b4d53aa9a61133558342c3f7b7478f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/builtins-bins/.ninja_deps": "e254816903836369522aebb03ac401102269d37ea3db93159c5c36d9515db257",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/.ninja_log": "c416a96a0473c7a8a292554cd6b8988d368fffe587e9dd841bb22e1c538e3501",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins/.ninja_deps": "8ccc0522c956089437c221cc004312a62be37aeae192c7e8bf35fb9173139e3c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-config": "83a4034dec2aba58b2746e601a14868f54d217c1667dcccb8b98ab87a91559d8",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang-21": "ad3a5ab6fe7c357fde6fb4fc1500bb25db9bc4ff11e007073ac881ae3c285c85",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-ar": "28b3ba5d2ce769ce744fd81c274baddc22d7c5458fc22548d8df98b449d89989",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/llvm-ranlib": "28b3ba5d2ce769ce744fd81c274baddc22d7c5458fc22548d8df98b449d89989",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libLLVM.dylib": "d3ece5608a10345451a654e486900b7efeeba4a295e1e59f5284073b22297bb1",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libclang-cpp.dylib": "1ecb4ee45a3edff161806bc92f216cf926f9591a7e9c1dfa9bb27c02870b1e4f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libclang.dylib": "c03ced7e1b00b9e961ee9289ba75e123b7402044d32afa454c581be6823d077c",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.1.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libc++abi.1.0.dylib": "aeadb944a753b6c04047856c3031f8b38871ce08e3987aa5fbfd051bf74334c7",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.1.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/libunwind.1.0.dylib": "5d4811787fa9e2092c37487f43169b31b54eedb035f6092392720440ca85a04f",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.osx.a": "34b7673c200629e66de59f61d8baf2947d4f623a1d774f41a816441e64c48d80",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.cc_kext.a": "1cc03c5de921522fdb00266cb1b949cd155f9824c3af7b04667119117b31bd26"
+    },
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "1cd4a1c8ebb2bc16ff81bd2707893659dc8ed86838b9efaf09503e5b47433c28",
+      "operation/qualification.json": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59",
+      "operation-review.json": "bb1b78935ea078f599b7bbe3024f1ad0ce683c9ec465ecec39242f4755526cb0",
+      "generated-review.json": "5aaffce97a6a8fa7e5176db6773baa3bafbae0eea37faefb4ea35bae20eecf90"
+    },
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+      "p2996_math_apply.py": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2"
+    }
+  },
+  "run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-math-resume-20261011T082704Z",
+  "docker_context": "desktop-linux",
+  "containers": [
+    "79f1f7ab1130\t5023df74acf7"
+  ],
+  "capacity_receipt_sha256": "6957a976c50996977eb217a994dfe4883e314071d8eaa33fc84be56e62a40668",
+  "fresh_preflight_sha256": "98fd8a53f7554013d738f623cfe0266302397c0e536912082cadef53d09feca9",
+  "scope": [
+    "Build the existing private LLVM tree with both reviewed source repairs and exact retained build history",
+    "Acquire canonical heavy lease and repeat live capacity, Docker and immediate source/input/history checks",
+    "Retain durable logs, deadline cleanup and disk reserve monitor"
+  ],
+  "excluded": [
+    "Installation",
+    "Global registration",
+    "Source edits",
+    "SDK edits",
+    "Remote publication"
+  ]
+}

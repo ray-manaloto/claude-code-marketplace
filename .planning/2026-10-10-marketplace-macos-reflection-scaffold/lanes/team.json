@@ -1,0 +1,54 @@
+{
+  "unit": "team",
+  "tickets": [
+    "CT-03 (spec 'Claude team takeover and self-improving workflow', publication pending user approval)"
+  ],
+  "title": "Team roles, path-scoped rules, team guide, workflow vocabulary and ADR 0001",
+  "owner": "doc-writer",
+  "writer_model": "sonnet",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/team",
+  "branch": "claude/team-roles-rules",
+  "base_sha": "361688e",
+  "import_source": {
+    "drafts": "/private/tmp/claude-501/-Users-rmanaloto-dev-github-ray-manaloto-claude-code-marketplace/464a2816-4b5d-4665-b39a-8303cb014efb/scratchpad/drafts/",
+    "note": "parent-authored drafts: agents/{implementer,doc-writer,reviewer,retro-writer,extractor}.md, adr-0001-claude-takeover-and-retro-gate.md, glossary-workflow-section.md"
+  },
+  "owned_paths": [
+    ".claude/agents/",
+    ".claude/rules/",
+    "docs/agents/claude-team.md",
+    "docs/adr/0001-claude-takeover-and-retro-gate.md",
+    "GLOSSARY.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/agents/codex-task-orchestration.md",
+    "docs/agents/ticket-retro.md",
+    "mise.dev.toml",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "required_checks": [
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check",
+    "every cited path exists (rg --files)"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none"
+  },
+  "status": "integrated into codex/marketplace-native-onboarding (re-review PASS); published 28fedf1",
+  "created_at": "2026-10-13T20:03:11Z",
+  "lane_commit": "5107322 + sync 9103931, 5becfc0 + repairs ea8c8c9",
+  "merged_head": "ea8c8c9",
+  "integration_merge": "7e22d13",
+  "published": "28fedf1",
+  "review": "fable cold review PASS-with-P2: P2-1 gate invocation form (answered: the retro:gate task takes a positional unit, lane record corrected), P2-2 duplicated retro-record shape; five P3s; repair cycle dispatched",
+  "retro": "passed"
+}

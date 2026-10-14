@@ -1,0 +1,41 @@
+{
+  "skill_name": "session-handoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Context is getting full; prepare for /clear. All my subagents have returned.",
+      "expected_output": "Asks or records that no agent is running, runs `python3 -I dev/handoff.py write --agents-done` (dry-run first when the template changed), then `check --agents-done --json`, reports go/no-go with the finding list and prints the `claude -n <name> \"...\"` start command; never edits task_plan.md by hand.",
+      "files": [],
+      "expectations": [
+        "Runs dev/handoff.py write before check and reports both exit codes",
+        "Reports go only when check exits 0 and lists every P1/P2 finding otherwise",
+        "Prints the start command from dev/handoff.py start-command",
+        "Tells the user to type /session-resume <name> only after /clear, never after the start command",
+        "Does not hand-edit task_plan.md, progress.md or the HANDOFF file"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Checkpoint the session: a merge is still in progress and I have one implementer still running.",
+      "expected_output": "Reports no-go: refuses to assert --agents-done while an agent runs, runs check without the flag, shows H.git-op-in-progress and H.agents-unconfirmed with their fix hints, and tells the user what to finish before /clear.",
+      "files": [],
+      "expectations": [
+        "Does not pass --agents-done while an agent is running",
+        "Names H.git-op-in-progress and H.agents-unconfirmed with fix hints",
+        "Returns no-go and does not tell the user to /clear"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "handoff: the next session should start as ccm-20261015 and the pending-user list gained D59.",
+      "expected_output": "Edits references/handoff-template.md (owner and pending-user sections), copies it to the .agents mirror, runs write --dry-run to show the diff, then write and check, and prints the start command naming ccm-20261015.",
+      "files": [],
+      "expectations": [
+        "Changes the template rather than the generated block",
+        "Syncs the .agents/skills/session-handoff mirror after the template edit",
+        "Shows the write --dry-run diff before writing",
+        "The start command names ccm-20261015"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+from pathlib import Path
+import ast,hashlib,json
+R=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace'); E=R/'evidence/vcpkg-fmt-build'; D=Path(__file__).parent
+hashes={}
+def read(p):
+ p=Path(p);b=p.read_bytes();hashes[str(p)]=hashlib.sha256(b).hexdigest();return b
+def load(p):return json.loads(read(p))
+def sha(p):read(p);return hashes[str(Path(p))]
+old=E/'original-candidate';original=load(old/'candidate.json');candidate=load(E/'candidate.json')
+expected={'head':'de913727bd6d41c1d7d2c11b52a384902dbd6eec','helper':'1d1f90acbbbd5d9b1bc83d908203efd206f5cba9a191209cbf5fc6c90e4e1843','contract':'3dc53024966ce96e09f3d17252ee978ed7c0254fc784ba9f32cd62acca0905a8','candidate':'75156294bd1efc2ab3a7e0f5a2d3001c39b8e6f1b15fbbe4541ab814a17b13cc','original_review':'335c53c146cbd0d3c467cb1b9ea0c82becf54ace5bb65ddf38cea192679f6d97'}
+gd=Path((R/'.git').read_text().strip().removeprefix('gitdir: '));cg=(gd/(gd/'commondir').read_text().strip()).resolve();ref=(gd/'HEAD').read_text().strip().removeprefix('ref: ')
+assert ref=='refs/heads/codex/marketplace-native-onboarding' and (cg/ref).read_text().strip()==expected['head']
+assert sha(old/'candidate.json')=='93440686a88c73a7ff4cad0c167bc7c969de01a5b6e7772b2beca2fe6fdfb2b0'
+assert sha(old/'contract.json')=='a0f5650383836e1087703200e135824f946620ef7c5fc0f7eb376a83a67c6212'
+assert sha(E/'candidate.json')==expected['candidate'] and sha(E/'contract.json')==expected['contract']
+assert candidate['head']==original['head']==expected['head'] and len(candidate['files'])==4
+for p,h in candidate['files'].items():assert sha(R/p)==h,p
+mapping={'dev/toolchains/vcpkg_fmt.py':'vcpkg_fmt.py.source','docs/vcpkg-toolchains.md':'vcpkg-toolchains.md','.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md':'task_plan.md','.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md':'progress.md'}
+for p,name in mapping.items():assert sha(old/name)==original['files'][p]
+copy=load(old/'copy-manifest.json');assert len(copy['copies'])==6
+for row in copy['copies']:assert sha(R/row['copy'])==row['sha256']
+old_helper=read(old/'vcpkg_fmt.py.source').decode();new_helper=read(R/'dev/toolchains/vcpkg_fmt.py').decode()
+old_contract=original['contract_sha256'];new_contract=expected['contract']
+assert old_helper.count(old_contract)==1
+assert new_helper==old_helper.replace(old_contract,new_contract)
+a,b=ast.parse(old_helper),ast.parse(new_helper)
+assignment=next(n for n in a.body if isinstance(n,ast.Assign) and any(isinstance(x,ast.Name) and x.id=='CONTRACT_SHA' for x in n.targets));assignment.value.value=new_contract
+assert ast.dump(a)==ast.dump(b)
+a,b=load(old/'contract.json'),load(E/'contract.json')
+changes=sorted(k for k in set(a)|set(b) if a.get(k)!=b.get(k))
+assert changes==['configure_limit_basis','max_concurrent_configure_processes','scope']
+assert a['jobs_per_build']==b['jobs_per_build']==1 and b['max_concurrent_configure_processes']==2
+assert b['configure_limit_basis']=='Pinned vcpkg_cmake_configure creates at most the two Debug/Release tasks. VCPKG_MAX_CONCURRENCY limits build jobs, not this configure phase.'
+assert 'one job per dependency build and up to two concurrent Debug/Release CMake configure processes including compiler probes, within one leased operation' in b['scope']
+oldtext=read(old/'vcpkg-toolchains.md').decode();newtext=read(R/'docs/vcpkg-toolchains.md').decode()
+previous='Task 12c3b prepares four sequential, one-job private fmt installs, each with\nfresh detector/build/package/installed roots and both dependency configurations.\n'
+updated='Task 12c3b prepares four sequential private fmt installs, each with fresh\ndetector/build/package/installed roots and both dependency configurations.\nEach dependency build uses one job; the pinned helper may run the two\nDebug/Release CMake configure processes and their compiler probes concurrently.\n'
+assert oldtext.count(previous)==1 and oldtext.replace(previous,updated)==newtext
+plan=R/'.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md'
+oldtext=read(old/'task_plan.md').decode();newtext=read(plan).decode()
+replacements={'Reviewed one-job recipe; fresh capacity; native exits, detector and ABI receipts':'Reviewed build/configure limits; fresh capacity; native exits, detector and ABI receipts','per-triplet state, one-job limits and confinement before fresh capacity admission.\n':'per-triplet state and confinement before fresh capacity admission. Allow one job\nper dependency build and up to two concurrent Debug/Release CMake configure\nprocesses, including their compiler probes, within the single leased operation.\n'}
+for before,after in replacements.items():assert oldtext.count(before)==1;oldtext=oldtext.replace(before,after)
+assert oldtext==newtext
+progress=R/'.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md'
+oldtext=read(old/'progress.md').decode();newtext=read(progress).decode()
+for before,after in [('constrained environments and one-job limits. Native execution awaits review','constrained environments and one-job build limits. Native execution awaits review'),('Retained source confirms one-job propagation;','Retained source confirms one-job build propagation;')]:
+ assert oldtext.count(before)==1;oldtext=oldtext.replace(before,after)
+addition='- Independent review found one resource-description issue: the pinned helper\n  permits two concurrent Debug/Release configure processes and compiler probes.\n  The contract now explicitly allows that bound with one job per dependency\n  build. All six new synthetic receipt controls passed; the narrow correction\n  awaits review before native admission.\n'
+assert oldtext+addition==newtext
+review=load(E/'original-review/review.json');assert sha(E/'original-review/review.json')==expected['original_review']
+assert review['result'].startswith('FINDINGS') and len(review['findings'])==1 and review['findings'][0]['id']=='R1'
+manifest=load(E/'original-review/supporting-manifest.json');assert sha(E/'original-review/supporting-manifest.json')=='cd90da4922bd834cff80e29e54afd5ce028570eb0f29575f48707066cf70a248'
+assert len(manifest['files'])==7
+for row in manifest['files']:
+ assert sha(row['path'])==row['sha256']==sha(E/'original-review'/row['name'])
+ assert read(row['path'])==read(E/'original-review'/row['name'])
+review_copies=load(E/'original-review/copy-manifest.json');assert len(review_copies['copies'])==9
+for row in review_copies['copies']:
+ assert sha(row['source'])==row['sha256']==sha(R/row['copy'])
+ assert read(row['source'])==read(R/row['copy'])
+repair=load(E/'repair-scope.json');assert sha(E/'repair-scope.json')==candidate['repair_scope_sha256']
+assert repair['original_review_sha256']==expected['original_review'] and repair['helper_sha256']==expected['helper'] and repair['contract_sha256']==expected['contract']
+assert repair['changed_contract_keys']==changes and repair['all_helper_ast_except_contract_digest_unchanged'] and repair['old_controls_replayed']==0
+assert candidate['controls_sha256']==original['controls_sha256']=='b8b0b7424ca8be87adf1adb1b50f16f28339a62a28a5fb29502083fe8ec03160'
+assert sha(E/'preparation-controls/controls.json')==candidate['controls_sha256']
+static=load(E/'repair-static.json');assert [r['returncode'] for r in static['commands']]==[0,0]
+assert json.loads(static['commands'][1]['stdout'])['checks']['baseline']==19
+scan=load(E/'repair-secret-scan.json');assert len(scan['files'])==48
+assert scan['raw']['returncode']==1 and scan['transformed']['returncode']==0 and len(scan['dispositions'])==2 and scan['supplemental_complete_token_files']==[]
+for row in scan['dispositions']:assert row['rule']=='generic-api-key' and sha(R/row['path'])==row['sha256']=='f2d86fc409fe1401c61ad69053ca45e57921537dd63221686a2fb4804671a699'
+matched_scan_rows=0
+for p,h in scan['files'].items():
+ if str(R/p) in hashes:assert hashes[str(R/p)]==h;matched_scan_rows+=1
+report={'result':'PASS bounded R1 delta; no findings','findings':[],'checkout':str(R),'branch':ref.removeprefix('refs/heads/'),'head':expected['head'],'common_git_directory':str(cg),'helper_sha256':expected['helper'],'contract_sha256':expected['contract'],'candidate_sha256':expected['candidate'],'original_review_sha256':expected['original_review'],'R1':'Resolved by explicitly admitting one job per dependency build and up to two concurrent Debug/Release configure processes and compiler probes in one leased operation.','helper_delta':'Exact whole-file contract SHA substitution; entire AST otherwise identical.','contract_changed_keys':changes,'retained_original_candidate_files':6,'retained_review_copy_pairs':9,'retained_original_support_files':7,'factual_doc_deltas':3,'parent_static_returncodes':[0,0],'parent_baseline_original_files':19,'scan':{'recorded_files':48,'raw_returncode':1,'disposition_returncode':0,'verified_content_digest_findings':2,'supplemental_complete_token_files':0,'already_in_scope_hash_rows_matched':matched_scan_rows,'capacity_and_unrelated_scan_paths_reaudited':False},'new_control_calls':0,'native_commands':0,'binding_battery_reaudits':0,'scope':'Only frozen revision comparison, original artifact retention and repair receipts; no input/source/tool binding re-audit.','maintained_writes':0,'shared_writes':0}
+(D/'delta.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'result':report['result'],'original_files':6,'review_copy_pairs':9,'controls':0,'native_commands':0}))

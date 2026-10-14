@@ -1,0 +1,103 @@
+import ast, errno, hashlib, json, os, shutil, signal, subprocess, time, types
+from datetime import datetime, timezone
+from pathlib import Path
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+PRIVATE = Path(__file__).parent
+HELPER = ROOT / 'dev/toolchains/p2996_build.py'
+PYTHON = '/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3'
+HELPER_SHA = 'ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd'
+sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
+assert sha(HELPER) == HELPER_SHA
+main = next(n for n in ast.parse(HELPER.read_text()).body if isinstance(n, ast.FunctionDef) and n.name == 'main')
+functions = [n for n in main.body if isinstance(n, ast.FunctionDef) and n.name in ('run', 'interrupted')]
+results = []
+for label in ('success', 'nonzero', 'timeout-descendant', 'reserve', 'signal', 'repeated-termination', 'post-spawn-save-failure', 'descriptor'):
+    directory = PRIVATE / ('final-control-' + label)
+    directory.mkdir(mode=0o700)
+    report = {'commands': []}
+    spawned = []
+    save_calls = 0
+    def save():
+        global save_calls
+        save_calls += 1
+        if label == 'post-spawn-save-failure' and save_calls == 2:
+            raise OSError(errno.ENOSPC, 'injected private receipt write failure')
+        (directory / 'run-report.json').write_text(json.dumps(report, indent=2) + '\n')
+    class Subprocess:
+        DEVNULL = subprocess.DEVNULL
+        TimeoutExpired = subprocess.TimeoutExpired
+        def Popen(self, *a, **k):
+            p = subprocess.Popen(*a, **k)
+            spawned.append(p)
+            if label == 'reserve':
+                original_wait = p.wait
+                def wait(timeout=None):
+                    return original_wait(timeout=min(timeout, 0.12) if timeout is not None else None)
+                p.wait = wait
+            return p
+    ns = {'datetime': datetime, 'timezone': timezone, 'report': report, 'directory': directory, 'save': save,
+          'subprocess': Subprocess(), 'env': {'PATH': '/usr/bin:/bin'}, 'time': time, 'signal': signal, 'os': os,
+          'json': json, 'shutil': types.SimpleNamespace(disk_usage=lambda p: types.SimpleNamespace(free=8*1024**3-1)) if label == 'reserve' else shutil,
+          'digest': sha}
+    exec(compile(ast.Module(body=functions, type_ignores=[]), str(HELPER), 'exec'), ns)
+    originals = {s: signal.getsignal(s) for s in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT)}
+    original_mask = signal.pthread_sigmask(signal.SIG_BLOCK, [])
+    for s in originals:
+        signal.signal(s, ns['interrupted'])
+    descriptor = None
+    marker = directory / 'descendant.pid'
+    if label == 'success':
+        code = 'print("inert-success")'
+    elif label == 'nonzero':
+        code = 'import sys;print("inert-failure");sys.exit(23)'
+    elif label == 'timeout-descendant':
+        child = 'import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)'
+        code = 'import subprocess,time;from pathlib import Path;p=subprocess.Popen('+repr([PYTHON,'-B','-c',child])+');Path('+repr(str(marker))+').write_text(str(p.pid));time.sleep(60)'
+    elif label == 'signal':
+        code = 'import os,signal,time;time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(60)'
+    elif label == 'repeated-termination':
+        code = 'import signal,os,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(0.7);os.kill(os.getppid(),signal.SIGTERM);os.kill(os.getppid(),signal.SIGHUP);os.kill(os.getppid(),signal.SIGINT);time.sleep(60)'
+    elif label == 'descriptor':
+        descriptor = os.open(directory / 'private-descriptor', os.O_WRONLY | os.O_CREAT | os.O_CLOEXEC, 0o600)
+        stat = os.fstat(descriptor)
+        code = 'import json,os;s=os.fstat('+str(descriptor)+');print(json.dumps([s.st_dev,s.st_ino]))'
+    else:
+        code = 'import time;time.sleep(60)'
+    row = {'case': label, 'helper_sha256': HELPER_SHA, 'method': 'Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named'}
+    started = time.monotonic()
+    try:
+        row['stdout'] = ns['run'](label, [PYTHON, '-B', '-c', code], timeout=0.4 if label == 'timeout-descendant' else 8, descriptor=descriptor, monitor=label == 'reserve')
+        row['exception'] = None
+    except BaseException as error:
+        row['exception'] = repr(error)
+    finally:
+        for s, value in originals.items():
+            signal.signal(s, value)
+        signal.pthread_sigmask(signal.SIG_SETMASK, original_mask)
+        if descriptor is not None:
+            os.close(descriptor)
+        row['elapsed_seconds'] = time.monotonic() - started
+        row['helper_returncodes'] = [p.returncode for p in spawned]
+        row['rows'] = report['commands']
+        row['alive_leaders_on_function_exit'] = [p.pid for p in spawned if p.poll() is None]
+        if marker.exists():
+            status = subprocess.run(['/bin/ps', '-p', marker.read_text(), '-o', 'stat='], capture_output=True, text=True)
+            row['descendant_status_after_helper'] = status.stdout.strip()
+            row['descendant_ps_returncode'] = status.returncode
+            row['descendant_still_executing'] = bool(status.stdout.strip()) and not status.stdout.strip().startswith('Z')
+        for p in spawned:
+            try:
+                os.killpg(p.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            p.wait(timeout=5)
+        row['all_owned_leaders_reaped'] = all(p.returncode is not None for p in spawned)
+    kind, code = {'success': (None,0), 'nonzero': ('AssertionError',23), 'timeout-descendant': ('TimeoutExpired',-15), 'reserve': ('AssertionError',-15), 'signal': ('KeyboardInterrupt',-15), 'repeated-termination': ('KeyboardInterrupt',-9), 'post-spawn-save-failure': ('OSError',-15), 'descriptor': (None,0)}[label]
+    row['pass'] = (row['exception'] is None if kind is None else kind in row['exception']) and row['helper_returncodes'] == [code] and not row['alive_leaders_on_function_exit'] and not row.get('descendant_still_executing',False)
+    if label == 'descriptor':
+        row['pass'] = row['pass'] and json.loads(row['stdout']) == [stat.st_dev,stat.st_ino]
+    results.append(row)
+receipt = {'result':'PASS' if all(x['pass'] for x in results) else 'FAIL', 'helper_sha256':HELPER_SHA, 'cases':results, 'real_builds':0, 'canonical_lease_acquisitions':0}
+(PRIVATE/'final-runtime-controls.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps({'result':receipt['result'],'helper_sha256':HELPER_SHA,'cases':[{k:r[k] for k in ('case','exception','helper_returncodes','pass')} for r in results]},indent=2))
+assert receipt['result'] == 'PASS'

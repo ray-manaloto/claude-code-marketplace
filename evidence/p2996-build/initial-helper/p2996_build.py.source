@@ -1,0 +1,238 @@
+"""Prepare or run the reviewed LLVM build; installation is a separate operation."""
+
+import argparse
+from datetime import datetime, timezone
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import time
+
+from gcc_install import ROOT, digest, package_state, preserved, read
+from mise_link_probe import snapshot
+from p2996_configure import LOCK_MODULE, LOCK_SHA
+from vcpkg_register import install_entries
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    parser.add_argument("--build", action="store_true")
+    parser.add_argument("--resume", action="store_true")
+    args = parser.parse_args()
+    directory = args.run_dir
+    if not directory.is_absolute() or directory != directory.resolve() or directory.is_relative_to(ROOT):
+        parser.error("use a new normalized absolute private directory outside this worktree")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    (directory / "cwd").mkdir()
+    report = {"state": "running", "build_requested": args.build, "resume": args.resume,
+              "helper_sha256": digest(Path(__file__)), "commands": []}
+    load = lambda path: json.loads(path.read_text())
+    evidence = ROOT / "evidence/p2996-build"
+    historical = read("install-preimages.json")
+    before = {name: historical[name] for name in ("global_files", "packages", "glib_files")}
+    normal_argv = historical["normal_environment"]["argv"]
+    for name in before["global_files"]:
+        p = Path.home() / ".config/mise" / name
+        assert not p.is_symlink()
+        before["global_files"][name] = {"sha256": digest(p), "mode": oct(p.stat().st_mode & 0o777)}
+    before["packages"] = {name: package_state(name) for name in before["packages"]}
+    before["glib_files"] = {name: {"sha256": digest(Path(name))} for name in before["glib_files"]}
+    report["protected_before"] = before
+    data = Path.home() / ".local/share/mise"
+    dirs = {str(data / name): snapshot(data / name) for name in ("shims", "command-wrappers")}
+    installs = install_entries(data / "installs")
+    env = load(Path(normal_argv[-1]).parent / "context.json")["environment"] | {
+        "MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0", "MISE_EXEC_AUTO_INSTALL": "0",
+        "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null", "GIT_TERMINAL_PROMPT": "0"}
+
+    def save():
+        temporary = directory / "qualification.json.tmp"
+        temporary.write_text(json.dumps(report, indent=2) + "\n")
+        temporary.replace(directory / "qualification.json")
+
+    def run(label, argv, timeout=35, descriptor=None, monitor=False):
+        argv = list(map(str, argv))
+        row = {"case": label, "argv": argv, "started_at": datetime.now(timezone.utc).isoformat()}
+        report["commands"].append(row)
+        paths = [directory / (label + suffix) for suffix in (".stdout", ".stderr")]
+        save()
+        with paths[0].open("wb") as out, paths[1].open("wb") as err:
+            p = subprocess.Popen(argv, env=env, cwd=directory, stdin=subprocess.DEVNULL,
+                                 stdout=out, stderr=err, start_new_session=True,
+                                 pass_fds=() if descriptor is None else (descriptor,))
+            row["pid"] = p.pid
+            started = time.monotonic()
+            save()
+            try:
+                while p.poll() is None:
+                    remaining = timeout - (time.monotonic() - started)
+                    if remaining <= 0:
+                        raise subprocess.TimeoutExpired(argv, timeout)
+                    try:
+                        p.wait(timeout=min(15, remaining))
+                    except subprocess.TimeoutExpired:
+                        if monitor:
+                            row["last_monitor"] = {"at": datetime.now(timezone.utc).isoformat(),
+                                                   "free_bytes": shutil.disk_usage(directory).free}
+                            save()
+                            assert row["last_monitor"]["free_bytes"] >= 8 * 1024**3, "disk reserve exhausted"
+            except BaseException:
+                row["interrupted"] = True
+                for sig in (signal.SIGTERM, signal.SIGKILL):
+                    try:
+                        os.killpg(p.pid, sig)
+                    except ProcessLookupError:
+                        pass
+                    if sig == signal.SIGTERM:
+                        try:
+                            p.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            pass
+                p.wait()
+                raise
+            finally:
+                row.update(returncode=p.returncode, elapsed_seconds=time.monotonic() - started,
+                           logs=[{"path": str(f), "sha256": digest(f)} for f in paths])
+                save()
+        print(json.dumps({"case": label, "returncode": p.returncode}), flush=True)
+        assert p.returncode == 0, label
+        return paths[0].read_text()
+
+    def protected():
+        preserved(before)
+        assert all(snapshot(Path(path)) == value for path, value in dirs.items())
+        assert install_entries(data / "installs") == installs
+
+    def interrupted(signum, frame):
+        raise KeyboardInterrupt("received signal " + str(signum))
+
+    for signum in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(signum, interrupted)
+    try:
+        configured = ROOT / "evidence/p2996-configure"
+        qualification = load(configured / "operation/qualification.json")
+        assert qualification["state"].startswith("PASS") and qualification["protected_state_unchanged"]
+        assert load(configured / "operation-review.json")["result"].startswith("PASS")
+        assert load(configured / "generated-review.json")["disposition"].startswith("PASS")
+        configuration = qualification["proposal"]
+        workspace = Path(load(configured / "admission.json")["run_directory"])
+        build, prefix = workspace / "build", workspace / "prefix"
+        assert directory.stat().st_dev == build.stat().st_dev, "disk checks require the build filesystem"
+        source = Path(configuration["source"])
+        for row in qualification["generated"]:
+            assert digest(Path(row["path"])) == row["sha256"], row["path"]
+        assert not os.path.lexists(prefix)
+        assert args.resume or not (build / ".ninja_log").exists(), "existing build requires --resume"
+        git = ["/usr/bin/git", "-c", "core.fsmonitor=false", "-C", source]
+        assert run("source-head", git + ["rev-parse", "HEAD"]).strip() == configuration["pin"]
+        assert run("source-tree", git + ["rev-parse", "HEAD^{tree}"]).strip() == configuration["tree"]
+        assert run("source-clean", git + ["status", "--porcelain", "--untracked-files=all"]) == ""
+        inputs = configuration["inputs"] | {"CMAKE": configuration["cmake"], "MISE": configuration["mise"]}
+        for row in inputs.values():
+            assert digest(Path(row.get("resolved_path", row.get("path")))) == row["sha256"]
+        sdk = configuration["sdk"]
+        assert digest(Path(sdk["path"]) / "SDKSettings.json") == sdk["settings_sha256"]
+        assert digest(ROOT / "dev/toolchains/p2996-bootstrap.cmake") == configuration["cache_sha256"]
+        values = {name: row["path"] for name, row in configuration["inputs"].items()}
+        values.update(SDK=sdk["path"], PREFIX=str(prefix))
+        base = [configuration["mise"]["path"], "--no-hooks", "-C", directory / "cwd", "-E", "cpp-build",
+                "exec", "--fresh-env", "--no-deps", "--", "/usr/bin/env", "MAKEFLAGS=-j4",
+                "CMAKE_BUILD_PARALLEL_LEVEL=4", "NINJA_STATUS=[%f/%t %es] ",
+                *["MARKETPLACE_BOOTSTRAP_" + name + "=" + value for name, value in values.items()]]
+        command = base + [configuration["cmake"]["resolved_path"], "--build", build, "--parallel", "4"]
+        normal = run("default-before", normal_argv)
+        keys = ["CC", "CXX", "CFLAGS", "CXXFLAGS", "CPPFLAGS", "LDFLAGS", "MARKETPLACE_CPP_LANE",
+                "MAKEFLAGS", "CMAKE_BUILD_PARALLEL_LEVEL"]
+        probe = "import os,json,sys;print(json.dumps({k:os.environ.get(k,'') for k in sys.argv[1:]}))"
+        observed = json.loads(run("build-environment", base + [sys.executable, "-B", "-c", probe, *keys]))
+        assert observed == dict.fromkeys(keys[:6], "") | {
+            "MARKETPLACE_CPP_LANE": "tools-only", "MAKEFLAGS": "-j4", "CMAKE_BUILD_PARALLEL_LEVEL": "4"}
+        proposal = {"configuration": configuration, "workspace": str(workspace), "resume": args.resume,
+                    "jobs_per_build": 4, "capacity_job_allowance": 8, "timeout_seconds": 21600,
+                    "minimum_start_free_bytes": 32 * 1024**3, "disk_reserve_bytes": 8 * 1024**3,
+                    "host_lock_sha256": LOCK_SHA, "inputs": inputs,
+                    "receipts": {name: digest(configured / name) for name in
+                                 ("admission.json", "operation/qualification.json", "operation-review.json", "generated-review.json")},
+                    "helpers": {name: digest(Path(__file__).with_name(name)) for name in
+                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py", "p2996_configure.py")}}
+        report.update(proposal=proposal, build_argv=list(map(str, command)), observed_environment=observed)
+        protected()
+        if args.build:
+            admission = load(evidence / "admission.json")
+            review = evidence / "preparation-review.json"
+            assert admission["helper_sha256"] == digest(Path(__file__))
+            assert admission["proposal"] == proposal and admission["run_directory"] == str(directory)
+            assert admission["review_sha256"] == digest(review) and load(review)["result"].startswith("PASS")
+            assert digest(LOCK_MODULE) == LOCK_SHA
+            spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+            lease = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(lease)
+            assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / ".local/state/dotfiles/heavy-gate.lock"
+            assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE)) and not os.environ.get(lease.LOCK_FD_ENV)
+            with lease.held(lease.HEAVY_GATE, "marketplace-p2996-build", wait_s=0, out=io.StringIO()) as fd:
+                assert fd is not None
+                processes = run("capacity-processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="])
+                active = [line for line in processes.splitlines() if Path(line.split(maxsplit=2)[-1]).name
+                          in {"ninja", "cmake", "make", "gmake", "clang", "clang++", "clang-21",
+                              "gcc-16", "g++-16", "cc", "c++", "cc1", "cc1plus", "ld", "ld.lld"}]
+                memory = run("capacity-memory", ["/usr/bin/memory_pressure", "-Q"])
+                capacity = {"load": os.getloadavg(), "cpus": os.cpu_count(), "active_builds": active,
+                            "free_bytes": shutil.disk_usage(directory).free,
+                            "memory_free_percent": int(re.search(r"free percentage: (\d+)%", memory)[1]),
+                            "total_cpu_percent": sum(float(line.split()[1]) for line in processes.splitlines())}
+                report["capacity"] = capacity
+                assert not active and capacity["free_bytes"] >= proposal["minimum_start_free_bytes"]
+                assert capacity["memory_free_percent"] >= 50 and capacity["cpus"] >= 8
+                assert capacity["load"][0] <= capacity["cpus"] and capacity["total_cpu_percent"] <= 50 * capacity["cpus"]
+                docker = "/Applications/Docker.app/Contents/Resources/bin/docker"
+                assert run("docker-context", [docker, "context", "show"], timeout=15).strip() == admission["docker_context"]
+                running = run("docker-census", [docker, "ps", "--format", "{{.ID}}\t{{.Image}}"], timeout=15)
+                assert sorted(running.splitlines()) == admission["containers"]
+                if running.strip():
+                    stats = [json.loads(line) for line in run("docker-stats", [docker, "stats", "--no-stream", "--format", "{{json .}}"], timeout=20).splitlines()]
+                    assert sorted(row["ID"] for row in stats) == sorted(line.split()[0] for line in running.splitlines())
+                    capacity["container_cpu_percent"] = sum(float(row["CPUPerc"].removesuffix("%")) for row in stats)
+                    assert capacity["container_cpu_percent"] <= 100
+                expected = lease.lock_path(lease.HEAVY_GATE).stat()
+                fd_probe = "import os,json,sys;s=os.fstat(int(sys.argv[1]));print(json.dumps([s.st_dev,s.st_ino]))"
+                assert json.loads(run("lease-descriptor", base + [sys.executable, "-B", "-c", fd_probe, str(fd)], descriptor=fd)) == [expected.st_dev, expected.st_ino]
+                protected()
+                for row in inputs.values():
+                    assert digest(Path(row.get("resolved_path", row.get("path")))) == row["sha256"]
+                for row in qualification["generated"]:
+                    assert digest(Path(row["path"])) == row["sha256"]
+                assert not os.path.lexists(prefix)
+                report["lease"] = {"path": str(lease.lock_path(lease.HEAVY_GATE)), "held": True}
+                run("llvm-build", command, timeout=proposal["timeout_seconds"], descriptor=fd, monitor=True)
+                assert not os.path.lexists(prefix)
+                required = [build / "bin" / name for name in ("clang", "clang++", "llvm-config", "clangd", "clang-format", "clang-tidy", "llvm-cov", "llvm-profdata")]
+                required += [build / "runtimes" / child / "CMakeCache.txt" for child in ("builtins-bins", "runtimes-bins")]
+                report["artifacts"] = [{"path": str(p), "resolved_path": str(p.resolve()), "sha256": digest(p), "bytes": p.stat().st_size} for p in required]
+            report["lease"]["released_after_operation"] = True
+        assert run("default-after", normal_argv) == normal
+        report["state"] = "PASS: build only; artifacts require review" if args.build else "PASS: preparation only"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            protected()
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

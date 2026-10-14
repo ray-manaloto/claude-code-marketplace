@@ -1,0 +1,143 @@
+{
+  "unit": "Task 14a failure closure",
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-12T00:09:15.455064+00:00",
+  "result": "PASS: honest failure closure only",
+  "findings": [],
+  "runtime_qualification": "FAIL / INCOMPLETE; zero completed sanitizer runtime cases; UBSan and combined mode unreached",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "ad2880bf4fedf9222cdcdff52cc4ec49d412b95e",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "identity_checks": {
+    "commands": [
+      "git -c core.fsmonitor=false rev-parse --show-toplevel --git-common-dir HEAD",
+      "git -c core.fsmonitor=false symbolic-ref --short HEAD"
+    ],
+    "returncodes": [
+      0,
+      0
+    ]
+  },
+  "candidate_sha256": "9e0b4fe319b07589ea749de5d9a729a309d0808b1e749a17e99c7d50858d307b",
+  "helper_sha256": "d6ab78097ac7cb12705d97de750f8f11d919fb006a7ff4de9b2407f829411918",
+  "contract_sha256": "2648e54bfee09d9bbb325a4495adab6f919fd3d0df83dbadebd9d29376a3f571",
+  "pre_run_review_sha256": "0ea5b9c86789e5747045743131884d74a545f98e16c5c50845c0c4af8e55e586",
+  "native_preparation_candidate_sha256": "4d77208177306252c61b56de167bcb99ef79d3b9f70f4c7388c6c0e4e1131217",
+  "diagnosis_sha256": "563ceea4bd1288d0e6335729db5665ceba6a254b40262f5a36027e889b8b2af0",
+  "sample_sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840",
+  "static_review": [
+    "Read AGENTS.md, relevant accepted decisions, unit plan/progress, actual five-file candidate and all current failure snapshots. Helper and witness bytes equal the R1-reviewed preparation; only three Markdown files add accurate failure status.",
+    "Read dispatch and both sampler drivers. Native exit 1 propagates and retained reports remain FAIL. The sampler repair strips the recorded trailing newline while retaining exact witness PID, helper parent PID, process group and executable path checks.",
+    "Attempt 4 sample argv uses the same private sandbox and the owned ASan process for one second; sample rc 0 and the native 20-second timeout are separately preserved.",
+    "The actual retained sample shows outer ASan initialization entering shadow mapping and dyld shared-cache enumeration, allocation re-entering AsanInitFromRtl, and StaticSpinMutex waiting. No delivered 13-source-file inspector receipt was available or treated as evidence."
+  ],
+  "reviewer_execution": {
+    "kind": "Bounded read-only Python file/JSON comparison; no candidate functions invoked",
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+      "-E",
+      "-B",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-failure-review-5lqlqejl/compare.py"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 0.06772504188120365,
+    "timeout_seconds": 30,
+    "comparison_sha256": "1901388541858f9cc6a25cfea138a9d2d5e3f1e7a463dc88328f1ba59fc9722a",
+    "script_sha256": "5cf4f2831b434ce45872ccb27037a0bf19356b55f6c77643d1de5bc4ad03e54e",
+    "execution_sha256": "d8160796c1e116ef49ea6805b75b9ead0bded785c464c264bee613601460a07c",
+    "first_attempt": {
+      "returncode": 1,
+      "cause": "Reviewer assumed all capacity manifests use destination; the two retry manifests use copy. Actual schemas inspected; only this field selection was corrected. Failure occurred before any new artifact was read.",
+      "script_sha256": "9cbb4754ae3100d4e3d23e103916b62f8abcb2bea26fd4c874f00bfe1d33ec3a",
+      "source": "compare.first.py.source",
+      "execution": "execution-first.json"
+    }
+  },
+  "file_checks": {
+    "current_snapshots": 8,
+    "startup_preparation_copies": 12,
+    "native_private_text_pairs": 115,
+    "bound_native_command_logs": 84,
+    "capacity_receipt_copy_pairs": 68,
+    "new_artifacts_hashed_once": 6,
+    "watched_text_files": 323,
+    "scan_current_scope_bindings_verified": 130
+  },
+  "recorded_native_attempts": [
+    {
+      "attempt": 1,
+      "returncode": 1,
+      "qualification_sha256": "9de3faa23b71f303b674ecc80d151d5ea1bea1d05c52b90d273945576eaff5de",
+      "closure_sha256": "647e36c30b4992ca24ec049f18b2ef7594b4276e6e8a19634128ed3e36a7e025",
+      "commands": 0,
+      "successful_commands": 0,
+      "elapsed_seconds": 6.046898041851819,
+      "text_pairs": 4
+    },
+    {
+      "attempt": 2,
+      "returncode": 1,
+      "qualification_sha256": "1cf9271fc6af991804b4996b7066ecb5b1d169f8509335547a5e9f7c9635b168",
+      "closure_sha256": "a64bf32fd46b6b9627e8c7c32ef63bc6dc070e10fc756edba524ac86d06596e1",
+      "commands": 14,
+      "successful_commands": 13,
+      "elapsed_seconds": 30.558505666907877,
+      "text_pairs": 33
+    },
+    {
+      "attempt": 3,
+      "returncode": 1,
+      "qualification_sha256": "3fbea6310e9092e40c8b34d4424735835307de1b5343dc6ed33f7ed3ed476036",
+      "closure_sha256": "82ede4494099fdc463ae6bf13e79b5e964b5b609e4fdaca6c2cd5c6e48f39d9e",
+      "commands": 14,
+      "successful_commands": 13,
+      "elapsed_seconds": 31.95507604116574,
+      "text_pairs": 38
+    },
+    {
+      "attempt": 4,
+      "returncode": 1,
+      "qualification_sha256": "b0d6a4aff808279caa44917f205c47c759749b3be5753d3014742b2cf5864be1",
+      "closure_sha256": "043574882c1288046c02adbd5d099dba34fdbe2137194c8dbcd089dc98a56134",
+      "commands": 14,
+      "successful_commands": 13,
+      "elapsed_seconds": 30.456433500163257,
+      "text_pairs": 40
+    }
+  ],
+  "recorded_outcomes": [
+    "Attempt 1 rc 1: census rejected the unknown transient mise PID before commands or lease acquisition; later recorded process probe found neither it nor the helper.",
+    "Attempts 2, 3 and 4 rc 1: each has 13 successful commands, two recorded ARM64 artifacts, then ASan clean termination -15 after the unchanged 20-second timeout; main stdout is empty and no runtime case completed.",
+    "Attempt 3 diagnostic failure and sample_attempted=false are preserved. Attempt 4 sample rc 0 captures the recursive initialization stack.",
+    "Closure records bind absent owned command PIDs, a free unchanged canonical lease and protected_state_unchanged=true. These are retained observations, not a fresh live-state probe.",
+    "Default-before outputs agree; default-after was not reached. This review does not claim a completed before/after runtime parity check.",
+    "All three link stderr logs retain warning: input verification failed; link return codes are 0. Successful compilation/linking is not sanitizer runtime acceptance."
+  ],
+  "recorded_static_checks": {
+    "returncodes": [
+      0,
+      0
+    ],
+    "baseline_original_file_hashes": 19,
+    "reexecuted_by_reviewer": false
+  },
+  "recorded_scan": {
+    "files": 204,
+    "raw_returncode": 1,
+    "dispositions": 32,
+    "distinct_exact_file_digests": 6,
+    "transformed_returncode": 0,
+    "supplemental_complete_token_files": [],
+    "reexecuted_by_reviewer": false,
+    "scope": "Verified all 32 file-digest dispositions and 130 current-scope scan bindings; did not replay the historical evidence graph."
+  },
+  "not_run": [
+    "Compilers, failed runtime cases, sample, lipo or native harness",
+    "Capacity, census, lease or Docker probes",
+    "Static gate, secret scanner, previous test batteries or installed tool binary hashes",
+    "Fresh model sessions, full Claude/OCI/provider acceptance",
+    "Source repair or repaired-runtime qualification"
+  ],
+  "mutations": "Private review output only; no repository, global configuration or toolchain changes."
+}

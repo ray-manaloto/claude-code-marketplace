@@ -1,0 +1,47 @@
+# ticket-frontier configuration (parent-owned; K1 §2, user answers Q1–Q15, 2026-10-13).
+# Read by .claude/skills/ticket-frontier/scripts/frontier.py with tomllib. Edits here are
+# `propose` items in a retro (K1 §6): the retro-writer lists the hunk, the parent applies it
+# after the user says so.
+
+schema = 1
+max_parallel = 3                    # writer lanes (implementer, doc-writer) at once; reviewers,
+                                    # retro-writers, the scheduler and the extractor are not counted (Q4)
+max_live_agents = 8                 # hard cap on every live agent this skill has claimed (Q4)
+always_active = ["cxx"]             # one max_parallel slot is reserved for this class while a member is ready
+context_ceiling_fraction = 0.5      # lane ceiling = windows[model] × fraction; `plan` refuses when
+                                    # dev/doctor/budget.py's fork_deny (CT-22) differs from it (Q3)
+executor = "native"                 # native | claude-agent | codex-agent; non-native needs executor-gate (K1 §7)
+retro_apply = "auto"                # auto | propose; K1 §6 lists what stays propose regardless (Q5)
+publish_batch = "per-integration"   # per-integration | per-wave (Q11)
+check_lock = true                   # refuse to dispatch a merger while CT-11's check lock is held
+
+[classes.cxx]                       # the native C++26 P2996 core under spec #11 (docs/accepted-decisions.md)
+spec = "#11"
+include = ["#13", "#14", "#15", "#16", "#17", "#18", "#19", "#20", "#21", "#22", "#23", "#30-#61"]
+heavy = true                        # every member needs a per-run admission (claude-team.md §Concurrency)
+order = ["#21", "#20", "#17", "#16"] # heavy order from task_plan.md (#21 → #20 → #17 → #16 → L1 …)
+offline_split = true                # without an admission the slot takes the ticket's offline portion (Q2)
+
+[windows]                           # tokens; platform.claude.com models overview (fetched 2026-10-13)
+fable = 1000000
+opus = 1000000
+sonnet = 1000000
+haiku = 1000000
+
+[model_policy]                      # step kind → model/effort (K1 §2); the Agent tool's overrides carry them
+implement = { model = "opus", effort = "high" }
+docs = { model = "sonnet", effort = "high" }
+review = { model = "fable", effort = "high" }
+retro = { model = "fable", effort = "high" }
+synthesis = { model = "fable", effort = "high" }
+design = { model = "fable", effort = "high" }
+schedule = { model = "opus", effort = "high" }
+extraction = { model = "haiku", effort = "low" }
+escalate_after_partial = 1          # Opus implementer attempts ending partial/blocked with reason
+                                    # `reasoning` before the next attempt runs on Fable (Q9); reasons
+                                    # admission, conflict and ceiling never escalate
+
+[hot_paths]                         # R8 §Conflict analysis: one owner per wave; a candidate may touch at most one
+paths = ["dev/check.py", "dev/hooks/", "dev/lane.py", "docs/agents/claude-team.md", ".claude/settings.json", "AGENTS.md"]
+
+[waves]                             # optional priority tie-break (rule 4); ticket id → wave number

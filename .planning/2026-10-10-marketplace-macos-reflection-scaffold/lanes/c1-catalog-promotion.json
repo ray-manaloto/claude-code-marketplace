@@ -1,0 +1,60 @@
+{
+  "unit": "c1-catalog-promotion",
+  "tickets": [
+    "#94"
+  ],
+  "title": "C1: qualify affected queries without accepting an incomplete baseline (catalog promotion at the runner boundary)",
+  "owner": "implementer",
+  "writer_model": "opus",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/c1-catalog-promotion",
+  "branch": "claude/c1-catalog-promotion",
+  "base_sha": "ca60871",
+  "allocated_from": "447110a",
+  "context": [
+    "docs/research-feedback-retro/specs/*.md",
+    "docs/research-feedback-retro/tickets/*.md",
+    "docs/research-feedback-retro/portable-workflow.md",
+    "dev/research_refresh/README.md",
+    "docs/research-feedback.md",
+    "GitHub issue #94 body"
+  ],
+  "owned_paths": [
+    "dev/research_refresh/refresh.py",
+    "dev/research_refresh/test_refresh.py",
+    "dev/research_refresh/examples/",
+    "dev/research_refresh/README.md",
+    "docs/research-feedback.md"
+  ],
+  "excluded_shared_paths": [
+    "dev/research_refresh/runtime_preflight.py",
+    "dev/research_refresh/configuration.py",
+    "dev/check.py",
+    "mise.dev.toml",
+    "dev/research_outcomes.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "required_checks": [
+    "python3 -B -m unittest discover -s dev/research_refresh -p 'test_*.py'",
+    "check:research",
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check",
+    "retro:gate once CT-01 integrates"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none \u2014 offline fixtures only; no live GitHub search",
+    "network": "none"
+  },
+  "status": "integrated into codex/marketplace-native-onboarding; published 28fedf1; #94 closure pending",
+  "created_at": "2026-10-13T20:18:21Z",
+  "lane_commit": "52ce420 + 6c09b7f",
+  "merged_head": "6c09b7f (7295463 = merge of 2d1f60e)",
+  "integration_merge": "4c1ea6b",
+  "published": "28fedf1",
+  "review": "fable cold review PASS-with-P3 (empty-regression decision upheld); focused re-review PASS",
+  "retro": "passed"
+}

@@ -1,0 +1,59 @@
+{
+  "result": "Observed upstream warning retained; semantic qualification pending",
+  "log": {
+    "path": "evidence/iwyu-build/operation/build.stdout",
+    "sha256": "c9c5151fd7beb28751ba49fcd0c377639db59e12d50784c18f30a2ad1840ce4c"
+  },
+  "warnings": [
+    {
+      "line": 6,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 18,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 78,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 132,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 192,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 249,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 261,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 303,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 360,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 417,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    },
+    {
+      "line": 471,
+      "text": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/clang/AST/RecursiveASTVisitor.h:3039:16: warning: enumeration value 'EnumeratorSpec' not handled in switch [-Wswitch]"
+    }
+  ],
+  "disposition": "All eleven warnings instantiate the same qualified fork RecursiveASTVisitor.h switch without an EnumeratorSpec case. The native build exit is zero; no source patch or blanket P2996 language-coverage claim is made. Later bounded reflection analysis and advice/rebuild acceptance remain required.",
+  "configure_warning": {
+    "path": "evidence/iwyu-build/operation/configure.stderr",
+    "sha256": "d520697679958889ec5b6d653673c24cb9fd68f88bfa4b7d48864e316c312f64",
+    "disposition": "Native CMake 4.4.4 warns that CMP0219 is unset when imported HandleLLVMOptions.cmake invokes CHECK_C_SOURCE_COMPILES with backslashes; native compatibility behavior interprets escape sequences. Configure exited0, generated commands are retained, and no policy/source mutation was introduced."
+  }
+}

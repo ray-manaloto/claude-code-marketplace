@@ -1,0 +1,83 @@
+{
+  "script_sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+  "synthetic_census_checks": [
+    {
+      "case": "/Users/rmanaloto/.local/bin/mise run -q mcp:graphify",
+      "expected": "accept",
+      "result": "PASS"
+    },
+    {
+      "case": "/Users/rmanaloto/.local/bin/mise run -q mcp:cbm",
+      "expected": "accept",
+      "result": "PASS"
+    },
+    {
+      "case": "/Users/rmanaloto/.local/bin/mise run -q mcp:tr",
+      "expected": "accept",
+      "result": "PASS"
+    },
+    {
+      "case": "mise run check ::: mcp:cbm",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise run -q mcp:cbm ::: check",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise run -q mcp:cbm extra",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise install mcp:cbm",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise run check",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise run -q mcp:cbm-other",
+      "expected": "reject",
+      "result": "PASS"
+    },
+    {
+      "case": "mise x -- mcp:cbm",
+      "expected": "reject",
+      "result": "PASS"
+    }
+  ],
+  "actual_preflight": "PASS",
+  "actual_sanitized_census": {
+    "at": "2026-10-11T02:09:38.362065+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "main_called": false,
+  "installer_or_services_or_compiler_or_network": false
+}

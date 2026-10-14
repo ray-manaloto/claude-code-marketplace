@@ -1,0 +1,59 @@
+"""Extend the last guarded TSan contract for a private runtime comparison."""
+
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+
+ROOT = Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace")
+EV = ROOT / "evidence/p2996-tsan-repair"
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+prior = json.loads((ROOT / "evidence/p2996-tsan/contract.json").read_text())
+recipe = json.loads((EV / "recipes.json").read_text())
+inventory = json.loads((ROOT / "evidence/p2996-tsan/artifact-inventory.json").read_text())
+head = subprocess.run(["/usr/bin/git", "-C", str(ROOT), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+assert head == "b90a5d5703d538fd146de87d0656132bc820044b"
+assert all(sha(ROOT / name) == digest for name, digest in prior["inputs"].items())
+assert all(sha(Path(name)) == digest for name, digest in prior["tools"].items())
+assert recipe["shared_asan_objects"] == 93 and recipe["tsan_only_objects"] == 35
+assert len(recipe["objects"]) == 128
+witness = next(row for row in inventory["artifacts"] if row["kind"] == "tsan-binary")
+assert sha(Path(witness["path"])) == witness["sha256"]
+new = json.loads(json.dumps(prior))
+new["base_head"] = head
+for name in (
+    "evidence/p2996-tsan/contract.json",
+    "evidence/p2996-tsan/operation/qualification.json",
+    "evidence/p2996-tsan/operation/closure.json",
+    "evidence/p2996-tsan/failure-review/review.json",
+    "evidence/p2996-tsan/artifact-inventory.json",
+    "evidence/p2996-sanitizer-repair/operation/qualification.json",
+    "evidence/p2996-tsan-repair/recipe-capture.py.source",
+    "evidence/p2996-tsan-repair/ninja-commands.stdout.source",
+    "evidence/p2996-tsan-repair/ninja-commands.receipt.json",
+    "evidence/p2996-tsan-repair/recipes.json",
+):
+    new["inputs"][name] = sha(ROOT / name)
+for name, row in recipe["objects"].items():
+    path = str(Path(recipe["build"]) / name)
+    if path in new["source_inputs"]:
+        assert new["source_inputs"][path] == row["sha256"]
+    new["source_inputs"][path] = row["sha256"]
+for row in recipe["qualified_mapping_objects"].values():
+    if row["path"] in new["source_inputs"]:
+        assert new["source_inputs"][row["path"]] == row["sha256"]
+    new["source_inputs"][row["path"]] = row["sha256"]
+new["witness"] = {"path": witness["path"], "sha256": witness["sha256"], "bytes": witness["bytes"]}
+new["recipe_sha256"] = sha(EV / "recipes.json")
+new["asan_qualification_sha256"] = recipe["asan_qualification_sha256"]
+new["original_failure"] = {"case": "tsan-clean", "returncode": -11, "before_main": True,
+                           "receipt_sha256": sha(ROOT / "evidence/p2996-tsan/operation/qualification.json")}
+new["scope"] = "Private original/patched TSan relink and witnessed startup/race/overflow; no installed runtime write"
+(EV / "contract.json").write_text(json.dumps(new, indent=2) + "\n")
+print(json.dumps({"inputs": len(new["inputs"]), "source_inputs": len(new["source_inputs"]),
+                  "witness_sha256": witness["sha256"], "contract_sha256": sha(EV / "contract.json")}))

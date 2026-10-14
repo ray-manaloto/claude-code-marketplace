@@ -1,0 +1,493 @@
+{
+  "result": "PASS: exact five-file source application and preservation closure only",
+  "reviewer": "/root/cold_bottle_review",
+  "operation_sha256": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b",
+  "helper_sha256": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+  "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+  "diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+  "operation_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sdk-compat-apply-20261011T062921Z",
+  "private_directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i",
+  "commands": [
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-status.stdout",
+          "sha256": "4452cf42c428d0e838e7e279781563e20d3344fefcbc4e612d0c9612d0759563"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "patch-reverse-check",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "apply",
+        "--reverse",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/scratch/rdf-comparator.patch"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/patch-reverse-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/patch-reverse-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-diff.stdout",
+          "sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/source-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "canonical-lease-status",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/lease_status_probe.py"
+      ],
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/canonical-lease-status.stdout",
+          "sha256": "0cf9340d8bc2f1f7836e0ce6e2178d5fd382bde7fc50dc845dbf228dee3713b4"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/canonical-lease-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "process-census",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,ppid=,pgid=,comm="
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/process-census.stdout",
+          "sha256": "e801366b629338760dcd4a1263bf18e3bf54dab3c283f0608b89dd338601981c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sdk-application-review-0yukpd0i/process-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "operation_commands": [
+    {
+      "case": "source-head",
+      "returncode": 0,
+      "pid": 80577,
+      "elapsed_seconds": 0.016529749962501228
+    },
+    {
+      "case": "source-tree",
+      "returncode": 0,
+      "pid": 80578,
+      "elapsed_seconds": 0.012849707971327007
+    },
+    {
+      "case": "source-clean",
+      "returncode": 0,
+      "pid": 80580,
+      "elapsed_seconds": 0.7807372499955818
+    },
+    {
+      "case": "patch-check",
+      "returncode": 0,
+      "pid": 80582,
+      "elapsed_seconds": 0.012767582898959517
+    },
+    {
+      "case": "default-before",
+      "returncode": 0,
+      "pid": 80583,
+      "elapsed_seconds": 0.07552129100076854
+    },
+    {
+      "case": "source-clean-immediate",
+      "returncode": 0,
+      "pid": 80584,
+      "elapsed_seconds": 0.7576899999985471
+    },
+    {
+      "case": "patch-apply",
+      "returncode": 0,
+      "pid": 80585,
+      "elapsed_seconds": 0.014656832907348871
+    },
+    {
+      "case": "source-patched",
+      "returncode": 0,
+      "pid": 80586,
+      "elapsed_seconds": 0.6562943339813501
+    },
+    {
+      "case": "patch-reverse-check",
+      "returncode": 0,
+      "pid": 80587,
+      "elapsed_seconds": 0.01403775007929653
+    },
+    {
+      "case": "source-diff",
+      "returncode": 0,
+      "pid": 80588,
+      "elapsed_seconds": 0.2313695839839056
+    },
+    {
+      "case": "default-after",
+      "returncode": 0,
+      "pid": 80591,
+      "elapsed_seconds": 0.19223154208157212
+    }
+  ],
+  "receipts": {
+    "operation": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sdk-compat-apply-20261011T062921Z/qualification.json",
+      "sha256": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b"
+    },
+    "admission": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/admission.json",
+      "sha256": "a2922a5d549a167c93b97723d28cd0090ed01e753bca7c7c27df83bab94774be"
+    },
+    "invocation": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/operation-invocation.json",
+      "sha256": "c30cfa514535e1d247cbfaf1b9f5e9fe3104a4d8173f129fa15091388eb80d4b"
+    },
+    "preparation_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/preparation-review.json",
+      "sha256": "c0db482516c2f4555b977bf314638f184d09aa547a1812a15904f4a6b6b8837e"
+    },
+    "operation_manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/operation-manifest.json",
+      "sha256": "4ca1ab9fc5cb5038903eef43dcb18342933aa8371ea13eded65dd746311a38fb"
+    },
+    "failure_closure": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/failure-closure-review.json",
+      "sha256": "4d46d4f01a57352bee550c700ad8abc469baccdd20ac2b4ecb9dac337f5a9f72"
+    },
+    "configured_artifacts": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-configure/operation/qualification.json",
+      "sha256": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59"
+    }
+  },
+  "operation_manifest_entries_verified": 23,
+  "operation_log_pairs_verified": 11,
+  "source_postimages": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFRegisters.h",
+      "sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e",
+      "bytes": 10694
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/include/llvm/CodeGen/RDFGraph.h",
+      "sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb",
+      "bytes": 33973
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/CodeGen/RDFLiveness.cpp",
+      "sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479",
+      "bytes": 43605
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Target/Hexagon/RDFCopy.h",
+      "sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a",
+      "bytes": 1877
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/lib/Target/Hexagon/RDFCopy.cpp",
+      "sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857",
+      "bytes": 7588
+    }
+  ],
+  "default_environment": {
+    "before_sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+    "after_sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+    "matches_independent_preparation": true,
+    "method": "Actual native operation receipt outputs compared byte for byte; no helper or environment probe rerun"
+  },
+  "source_base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "source_base_tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+  "source_status": " M llvm/include/llvm/CodeGen/RDFGraph.h\n M llvm/include/llvm/CodeGen/RDFRegisters.h\n M llvm/lib/CodeGen/RDFLiveness.cpp\n M llvm/lib/Target/Hexagon/RDFCopy.cpp\n M llvm/lib/Target/Hexagon/RDFCopy.h\n",
+  "incremental_tree": {
+    "generated_files_unchanged": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeCache.txt",
+        "sha256": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a",
+        "bytes": 85173
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/CMakeConfigureLog.yaml",
+        "sha256": "7e538a524787ef11e1187d3826460d041dd0d41a55530eb3d1fee94fdad7be4b",
+        "bytes": 1118627
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/CMakeFiles/rules.ninja",
+        "sha256": "560454d66f343db594b6a5ceca5081cb751a01c7794ccf4e77e3719a25022b4e",
+        "bytes": 251034
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/build.ninja",
+        "sha256": "d989f17ccf96634b5c81fb0981a32d080049e14cc660453c712d9c0db21a3edf",
+        "bytes": 21509559
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cache-Release.cmake",
+        "sha256": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+        "bytes": 129
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/builtins/tmp/builtins-cfgcmd.txt",
+        "sha256": "dafc86ce415193fbdb641317b5cdf615027d12f2d1c37bbe7a1bf040cfc7ac64",
+        "bytes": 4056
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cache-Release.cmake",
+        "sha256": "52c5d431287aa25e22b71f76fea94e94de9a40770683542bc0439731814bd6d4",
+        "bytes": 129
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/projects/runtimes/tmp/runtimes-cfgcmd.txt",
+        "sha256": "a22c02e8c6c8d94f71bc724b62b0ca34299c4ed4fc249f81c2dd0dd2a4e34d37",
+        "bytes": 4396
+      }
+    ],
+    "ninja_state_unchanged": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log",
+        "sha256": "3ef99ce817f6e2e536af95267886c66603e7bc629dd03beb003ab2ea6f936e54",
+        "bytes": 156809
+      },
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps",
+        "sha256": "afa83b2142858557cb09918234dc83caee79e4efcc6127f550370fb34c785b72",
+        "bytes": 5368064
+      }
+    ],
+    "ninja_records": 1347,
+    "recorded_outputs_present": 1347,
+    "prefix_absent": true
+  },
+  "preservation": {
+    "matches_failed_build_closure_and_operation_prestate": true,
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shim_entries": 835,
+    "wrapper_entries": 0,
+    "install_entries": 2198,
+    "original_Claude_files": 19,
+    "method": "Direct current hashes, modes, symlinks, receipts and directory inventories; no task runner rerun"
+  },
+  "canonical_lease": {
+    "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+    "status": "free",
+    "returncode": 1,
+    "status_semantics": "Pinned native status exits 1 when free, 0 when busy",
+    "probe_count": 1,
+    "owner_record_sha256": "662f7d7dfbf78616b369a6e4690e0c0dbdda493d0d75681ea0b562236c6677db",
+    "owner_record_unchanged": true,
+    "probe_releases_lock_immediately": true
+  },
+  "process_cleanup": {
+    "active_native_builders": [],
+    "surviving_operation_child_pids": [],
+    "method": "Current pid/ppid/pgid/executable census without process argument capture; eleven operation child PIDs absent"
+  },
+  "verified_at": "2026-10-11T06:33:20.129535+00:00",
+  "findings": [],
+  "not_run": [
+    "No helper rerun, source apply/reverse apply, syntax probe, compilation, CMake/Ninja target, install, provider or container acceptance",
+    "No fresh environment probe; compared the actual before/after operation outputs and current protected configuration",
+    "No native compiler/runtime qualification or resumed build; separate reviewed admission remains required"
+  ],
+  "support_files": [
+    {
+      "path": "canonical-lease-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "canonical-lease-status.stdout",
+      "sha256": "0cf9340d8bc2f1f7836e0ce6e2178d5fd382bde7fc50dc845dbf228dee3713b4",
+      "bytes": 5
+    },
+    {
+      "path": "lease_status_probe.py",
+      "sha256": "b8a4820ea548ebd84cc72bd029399e4dc5ffa3ab9b23794f6fb5f699ca0a8db8",
+      "bytes": 389
+    },
+    {
+      "path": "patch-reverse-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "patch-reverse-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "process-census.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "process-census.stdout",
+      "sha256": "e801366b629338760dcd4a1263bf18e3bf54dab3c283f0608b89dd338601981c",
+      "bytes": 97969
+    },
+    {
+      "path": "source-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "source-diff.stdout",
+      "sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "bytes": 4795
+    },
+    {
+      "path": "source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "path": "source-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "source-status.stdout",
+      "sha256": "4452cf42c428d0e838e7e279781563e20d3344fefcbc4e612d0c9612d0759563",
+      "bytes": 196
+    },
+    {
+      "path": "source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    }
+  ],
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "HEAD": "99e95a3f9ca49b3c25bd3fecf7d76b9e82d05450",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "verification": "Native Git identity output inspected at review entry; matches operation admission"
+  },
+  "static_assertions": [
+    "Final helper and its imported helpers, patch, preparation review, operation admission and proposal bindings match exact reviewed bytes.",
+    "Original and retained receipt/log hashes and sizes match; exact five current source postimages match proposal.",
+    "Eight generated files, Ninja log/deps, protected state and 19 original acceptance files match recorded bytes; the 1347 recorded outputs remain present."
+  ],
+  "executed_runtime_checks": [
+    "Five non-mutating native Git commands: source HEAD, base tree, exact status, reverse applicability check and diff, each exit 0.",
+    "One pinned native canonical-lease status probe exits 1 and prints free; owner record unchanged and probe descriptor released immediately.",
+    "Current process census exits 0 and shows no native builders or surviving operation child PIDs."
+  ],
+  "closure_documentation_note": "Parent should update docs/p2996-toolchain.md preparation-era sentence that source remains unmodified when closing Task 07b2; communicated separately, no implementation finding."
+}
+

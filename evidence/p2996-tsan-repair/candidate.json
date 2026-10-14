@@ -1,0 +1,32 @@
+{
+  "base_head": "b90a5d5703d538fd146de87d0656132bc820044b",
+  "scope": "Task 14b1 private TSan A/B repair preparation; no native execution",
+  "files": {
+    "dev/toolchains/p2996_tsan_repair.py": "7ef53903f191daa1b5295db99c4ad9ed3d130be62fc732e359ff7c791d33bd22",
+    "docs/sanitizers.md": "c6b70a136c9e44aa3e24a488c02f4616d62059b532b4e2ad738953538554e74d",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "cedf2569d2492dfc4ef3fbcef1ced51457b7f6ecffdf43397569f9f40cdc5287",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "74ad8216de39aa1e250b1dfaff792c0cc4cab9dc49045fe0326df5cf9f9894e6"
+  },
+  "receipts": {
+    "evidence/p2996-tsan-repair/contract.json": "06f44aa7f1a3fd2627b4bbd69bea1360b7c07cf1f6790023265cdab69855b8fc",
+    "evidence/p2996-tsan-repair/recipes.json": "6e9e548885bd19e83b2318d20620ea48f8ae79e060b70f13c6889516ffc3e68b",
+    "evidence/p2996-tsan-repair/recipe-capture.py.source": "25df54ccd73c10bae21e518a0c7f79305f23909a2bab98319d38075e54289c4f",
+    "evidence/p2996-tsan-repair/contract-derive.py.source": "216eae2cd8a5c73b97fa06e2cd03719cbc241b0c564a032db436073f4b5f5834",
+    "evidence/p2996-tsan-repair/ninja-commands.receipt.json": "b28697a3ca601a781ba098ad9c60f87ee868d5aa2a8be930173a890986d86dab",
+    "evidence/p2996-tsan-repair/ninja-commands.stdout.source": "04ba6ce3ff01e0a508c59b58b151b860b9976f558d518368a78e19b794d90e60",
+    "evidence/p2996-tsan-repair/prepared-launchers.json": "b81dd8dce1e556982a198c7b7032d2e0b93f0736900733782ba8142175b9b5b1",
+    "evidence/p2996-tsan-repair/capacity.py.source": "0d8859b4f2eb87bd207fcef70aae489b1d0369d324d53d8e94a5d5db271282c7",
+    "evidence/p2996-tsan-repair/dispatch.py.source": "a619c31b6a45c69593da945a933174057458581f0ba16558db323ec67c07488c",
+    "evidence/p2996-tsan/failure-review/review.json": "0f59ac94d9e46439d8604b7f6533015f1114b8eac2a54b1aeb725ceb2e1b842b"
+  },
+  "recipe_objects": 128,
+  "source_inputs": 881,
+  "expected_cases": [
+    "original-clean:-11",
+    "tsan-clean:0",
+    "tsan-race:86",
+    "tsan-ubsan-clean:0",
+    "tsan-ubsan-race:86",
+    "tsan-ubsan-overflow:86"
+  ]
+}

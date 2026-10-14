@@ -1,0 +1,88 @@
+{
+  "unit": "N3",
+  "mise_version": "2026.10.7 macos-arm64 (2026-10-09)",
+  "config_inventory": {
+    "command": "./dev/mise config ls --json",
+    "exit_code": 0,
+    "files": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.dev.toml",
+        "tools": []
+      }
+    ]
+  },
+  "task_validation": {
+    "command": "./dev/mise tasks validate",
+    "exit_code": 0,
+    "validated_tasks": 2
+  },
+  "probes": [
+    {
+      "label": "acceptance_baseline",
+      "cmd": "./dev/mise run check:acceptance-baseline",
+      "workdir": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "e9cf19",
+          "wall_time_seconds": 3.1647285,
+          "exit_code": 0,
+          "original_token_count": 64,
+          "output": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n{\"checks\": {\"baseline\": 19, \"json\": 15, \"python\": 1, \"shell\": 5, \"toml\": 9}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n"
+        }
+      }
+    },
+    {
+      "label": "unrelated_cwd",
+      "cmd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise run check",
+      "workdir": "/private/tmp",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "e4515b",
+          "wall_time_seconds": 3.36465275,
+          "exit_code": 0,
+          "original_token_count": 56,
+          "output": "[check] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py\n{\"checks\": {\"baseline\": 0, \"json\": 15, \"python\": 1, \"shell\": 5, \"toml\": 9}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n"
+        }
+      }
+    },
+    {
+      "label": "failure_propagation",
+      "cmd": "MARKETPLACE_PYTHON=/usr/bin/false ./dev/mise run check",
+      "workdir": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "750d09",
+          "wall_time_seconds": 2.3608605,
+          "exit_code": 1,
+          "original_token_count": 21,
+          "output": "[check] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py\n[check] ERROR task failed\n"
+        }
+      }
+    },
+    {
+      "label": "task_sources",
+      "cmd": "./dev/mise tasks ls --json",
+      "workdir": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "ad7e82",
+          "wall_time_seconds": 1.108599166,
+          "exit_code": 0,
+          "original_token_count": 455,
+          "output": "[\n  {\n    \"name\": \"check\",\n    \"aliases\": [],\n    \"description\": \"Parse project manifests and scripts without installation or network access\",\n    \"source\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.dev.toml\",\n    \"config_sources\": [\n      \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.dev.toml\"\n    ],\n    \"depends\": [],\n    \"daemons\": null,\n    \"secrets\": [],\n    \"depends_post\": [],\n    \"wait_for\": [],\n    \"env\": [],\n    \"dir\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\",\n    \"hide\": false,\n    \"global\": true,\n    \"raw\": false,\n    \"interactive\": false,\n    \"sources\": [],\n    \"outputs\": [],\n    \"shell\": null,\n    \"quiet\": false,\n    \"silent\": false,\n    \"tools\": {},\n    \"usage\": \"\",\n    \"timeout\": null,\n    \"run\": [\n      \"\\\"${MARKETPLACE_PYTHON:-python3}\\\" dev/check.py\"\n    ],\n    \"args\": [],\n    \"file\": null\n  },\n  {\n    \"name\": \"check:acceptance-baseline\",\n    \"aliases\": [],\n    \"description\": \"Also verify the 19 original files against the onboarding baseline\",\n    \"source\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.dev.toml\",\n    \"config_sources\": [\n      \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.dev.toml\"\n    ],\n    \"depends\": [],\n    \"daemons\": null,\n    \"secrets\": [],\n    \"depends_post\": [],\n    \"wait_for\": [],\n    \"env\": [],\n    \"dir\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\",\n    \"hide\": false,\n    \"global\": true,\n    \"raw\": false,\n    \"interactive\": false,\n    \"sources\": [],\n    \"outputs\": [],\n    \"shell\": null,\n    \"quiet\": false,\n    \"silent\": false,\n    \"tools\": {},\n    \"usage\": \"\",\n    \"timeout\": null,\n    \"run\": [\n      \"\\\"${MARKETPLACE_PYTHON:-python3}\\\" dev/check.py --baseline\"\n    ],\n    \"args\": [],\n    \"file\": null\n  }\n]\n"
+        }
+      }
+    }
+  ],
+  "interpretation": {
+    "acceptance_baseline": "19 original file hashes matched; static checks only",
+    "unrelated_cwd": "wrapper selected the intended root from /private/tmp",
+    "failure_propagation": "expected failure: existing /usr/bin/false yielded exit 1",
+    "task_sources": "both task definitions came only from mise.dev.toml",
+    "full_oci_acceptance": "not run"
+  }
+}

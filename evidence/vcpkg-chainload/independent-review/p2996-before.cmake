@@ -1,0 +1,88 @@
+# Current task-07d prefix; changing it requires a new runtime qualification.
+if(CMAKE_VERSION VERSION_LESS "4.4" OR
+   NOT CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin" OR
+   NOT CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "arm64")
+  message(FATAL_ERROR "Use CMake 4.4+ on native macOS ARM64.")
+endif()
+cmake_policy(GET CMP0210 _p2996_link_policy)
+if(NOT _p2996_link_policy STREQUAL "NEW")
+  message(FATAL_ERROR "Set cmake_minimum_required(VERSION 4.4) before project().")
+endif()
+set(_p2996_prefix "$ENV{MARKETPLACE_P2996_PREFIX}")
+if(NOT "$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "p2996" OR
+   NOT _p2996_prefix STREQUAL "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix")
+  message(FATAL_ERROR "Select the task-07d qualified global mise p2996 environment.")
+endif()
+foreach(_variable CFLAGS CXXFLAGS CPPFLAGS LDFLAGS CPATH C_INCLUDE_PATH
+    CPLUS_INCLUDE_PATH OBJC_INCLUDE_PATH LIBRARY_PATH COMPILER_PATH SDKROOT
+    MACOSX_DEPLOYMENT_TARGET CMAKE_OSX_ARCHITECTURES DYLD_LIBRARY_PATH
+    DYLD_FALLBACK_LIBRARY_PATH DYLD_FRAMEWORK_PATH DYLD_INSERT_LIBRARIES
+    CCC_OVERRIDE_OPTIONS)
+  if(NOT "$ENV{${_variable}}" STREQUAL "")
+    message(FATAL_ERROR "Unexpected ${_variable}; use the isolated p2996 environment.")
+  endif()
+endforeach()
+foreach(_entry bin/clang bin/clang++ lib/clang/21/include/stddef.h
+    include/c++/v1/meta lib/libc++.dylib lib/libc++abi.dylib lib/libunwind.dylib)
+  if(NOT EXISTS "${_p2996_prefix}/${_entry}")
+    message(FATAL_ERROR "Missing qualified prefix entry: ${_entry}")
+  endif()
+endforeach()
+foreach(_language C CXX)
+  if(_language STREQUAL "C")
+    set(_compiler "${_p2996_prefix}/bin/clang")
+    set(_environment_compiler "$ENV{CC}")
+  else()
+    set(_compiler "${_p2996_prefix}/bin/clang++")
+    set(_environment_compiler "$ENV{CXX}")
+  endif()
+  if((DEFINED CMAKE_${_language}_COMPILER AND
+      NOT CMAKE_${_language}_COMPILER STREQUAL _compiler) OR
+     (NOT _environment_compiler STREQUAL "" AND
+      NOT _environment_compiler STREQUAL _compiler))
+    message(FATAL_ERROR "Conflicting ${_language} compiler; use a fresh build directory.")
+  endif()
+  set(CMAKE_${_language}_COMPILER "${_compiler}")
+  foreach(_kind COMPILER_LAUNCHER LINKER_LAUNCHER)
+    if(NOT "${CMAKE_${_language}_${_kind}}" STREQUAL "" OR
+       NOT "$ENV{CMAKE_${_language}_${_kind}}" STREQUAL "")
+      message(FATAL_ERROR "Compiler and linker launchers are not admitted.")
+    endif()
+  endforeach()
+endforeach()
+set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk" CACHE PATH "Task-07d SDK")
+set(CMAKE_OSX_DEPLOYMENT_TARGET "27.0" CACHE STRING "Task-07d deployment target")
+set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "Task-07d architecture")
+if(NOT CMAKE_OSX_SYSROOT STREQUAL "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk" OR
+   NOT EXISTS "${CMAKE_OSX_SYSROOT}/SDKSettings.json" OR
+   NOT CMAKE_OSX_DEPLOYMENT_TARGET STREQUAL "27.0" OR
+   NOT CMAKE_OSX_ARCHITECTURES STREQUAL "arm64")
+  message(FATAL_ERROR "SDK, deployment target and architecture must match task 07d.")
+endif()
+set(CMAKE_C_FLAGS_INIT "--no-default-config -fno-blocks -resource-dir \"${_p2996_prefix}/lib/clang/21\"")
+set(CMAKE_CXX_FLAGS_INIT "${CMAKE_C_FLAGS_INIT} -stdlib=libc++ -nostdinc++ -isystem \"${_p2996_prefix}/include/c++/v1\"")
+# Native per-language link flags survive the ABI check's STANDARD_LIBRARIES reset.
+set(_p2996_link "-nostdlib++ \"${_p2996_prefix}/lib/libc++.dylib\" \"${_p2996_prefix}/lib/libc++abi.dylib\" \"${_p2996_prefix}/lib/libunwind.dylib\" -Wl,-rpath,\"${_p2996_prefix}/lib\"")
+if(DEFINED CMAKE_CXX_LINK_FLAGS AND NOT CMAKE_CXX_LINK_FLAGS STREQUAL _p2996_link)
+  message(FATAL_ERROR "Conflicting C++ link flags; use a fresh build directory.")
+endif()
+set(CMAKE_CXX_LINK_FLAGS "${_p2996_link}")
+if(CMAKE_CXX_STANDARD_LIBRARIES OR CMAKE_CXX_STANDARD_LIBRARIES_INIT)
+  message(FATAL_ERROR "Unexpected extra C++ standard libraries.")
+endif()
+set(CMAKE_CXX_STANDARD_LIBRARIES_INIT "")
+foreach(_language C CXX)
+  if(DEFINED CMAKE_${_language}_FLAGS)
+    string(STRIP "${CMAKE_${_language}_FLAGS}" _existing_flags)
+    if(NOT _existing_flags STREQUAL CMAKE_${_language}_FLAGS_INIT)
+      message(FATAL_ERROR "Conflicting ${_language} flags; use a fresh build directory.")
+    endif()
+  endif()
+endforeach()
+if(CMAKE_C_COMPILER_FORCED OR CMAKE_CXX_COMPILER_FORCED OR
+   CMAKE_TRY_COMPILE_NO_PLATFORM_VARIABLES OR
+   (DEFINED CMAKE_TRY_COMPILE_TARGET_TYPE AND
+    NOT CMAKE_TRY_COMPILE_TARGET_TYPE STREQUAL "EXECUTABLE"))
+  message(FATAL_ERROR "Compiler and try_compile link checks must remain enabled.")
+endif()
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "EXECUTABLE")

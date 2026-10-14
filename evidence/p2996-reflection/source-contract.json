@@ -1,0 +1,603 @@
+{
+  "evidence_class": "SOURCE_ONLY_NOT_EXECUTED",
+  "feature_contract": {
+    "baseline_default": "Reflection and ReflectionLatest default to false in LangOptions.def and have explicit positive/negative driver flags.",
+    "baseline_flags": [
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks"
+    ],
+    "feature_test": "__has_feature(reflection)",
+    "latest_behavior": "Driver adds reflection, parameter-reflection, attribute-reflection, annotation-attributes and expansion-statements when reflection-latest is true.",
+    "library_gate": "libcxx/include/meta exposes its reflection implementation only within #if __has_feature(reflection).",
+    "macos_blocks_detail": "Darwin BlocksDefault is computed from an explicit OPT_freflection argument. Using baseline -freflection with -fno-blocks makes both positive and negative witness controls deterministic; latest alone does not satisfy that explicit argument test.",
+    "macro_absence_scope": "No __cpp_impl_reflection or __cpp_lib_reflection text was found in the searched clang/include and clang/lib implementation extensions or libcxx/include and the feature-test generator. This is source search, not a preprocessor result.",
+    "optional_latest_feature_test": "__has_feature(reflection_latest)",
+    "optional_latest_flag": "-freflection-latest",
+    "source_versions": {
+      "LLVM": "21.0.0git",
+      "cplusplus_for_CPlusPlus26": "202400L",
+      "libcxx_macro_name": "_LIBCPP_VERSION",
+      "libcxx_macro_value": 210000
+    }
+  },
+  "fixture_adaptation": {
+    "cleaner_negative_control_shape": "Place the feature guard before includes and put the witness body in its #else branch to make omission of reflection produce the deliberate gate diagnostic without cascading missing-API diagnostics.",
+    "core_future_scope": "src/core.cpp uses the same GCC-only guard. A future Clang integration would need its own guard. src/smoke.cpp's no-reflection leakage check currently only tests the GCC macro; a Clang consumer check would also need __has_feature(reflection). The root CMake file deliberately admits only its existing GCC toolchain and is outside this private witness.",
+    "existing_fixture": "dev/toolchains/reflection.cpp",
+    "expected_exit_code": 0,
+    "expected_stdout": "reflection value=43\n",
+    "gcc_helper_limit": "Do not weaken gcc_reflection.py's GCC 16/libstdc++ acceptance checks. It has different macro and runtime provenance contracts.",
+    "guard_for_known_clang": [
+      "#if !__has_feature(reflection)",
+      "#error \"P2996 reflection requires -freflection\"",
+      "#endif"
+    ],
+    "minimal_change": "Make a private fork-specific copy; replace the GCC macro guard at lines 6-8 with the Clang reflection feature guard, and change the libstdc++ provenance comment. The existing member query, access context, identifier assertion, type splice and member splice can remain.",
+    "optional_version_check": [
+      "#if !defined(_LIBCPP_VERSION) || _LIBCPP_VERSION != 210000",
+      "#error \"Expected pinned LLVM 21 libc++ headers\"",
+      "#endif"
+    ],
+    "retained_runtime_work": "Keep std::string, std::to_string and std::cout so this remains a compile/link/run witness with runtime library work.",
+    "version_check_limit": "_LIBCPP_VERSION identifies family/version, not filesystem origin or the reflection fork."
+  },
+  "identity_limit": "Current Git identity and installed artifacts were not rechecked in this narrow source-only brief.",
+  "limits": [
+    "No compiler, preprocessor, CMake, Ninja, test, lease, container, network, provider or install command was run.",
+    "No installed-file metadata, Mach-O load commands, dynamic loader trace, prefix closure or build-tree runtime path was inspected; another reviewer owns those checks.",
+    "No source, repository, build, prefix, global configuration or profile was modified.",
+    "Only this private JSON receipt is written; no witness source or executable is created.",
+    "Successful compile/link/run, actual macro expansion and actual runtime origin are UNVERIFIED.",
+    "Absolute header/library input selection does not by itself prove transitive dylib resolution or exclude every injected environment path; use the parent-reviewed process environment and its existing runtime provenance gate.",
+    "Exact current source hashes and line pointers are evidence. The parent-supplied source commit is context and was not reattested with Git in this brief."
+  ],
+  "negative_control": {
+    "companion_positive": "Use the same syntax-only command with -freflection to establish that the isolated flag change controls this gate, then use the proposed link/run invocation.",
+    "compile_only_argv": [
+      "{P}/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "{SDK}",
+      "-resource-dir",
+      "{P}/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "{P}/include/c++/v1",
+      "-fsyntax-only",
+      "{PRIVATE}/reflection.cpp"
+    ],
+    "expected": "Nonzero exit with the deliberate reflection gate diagnostic. A failure caused only by a missing header/library would not establish the negative control.",
+    "mutation": "Remove only -freflection from the positive compile flags; do not add -freflection-latest. Keep -fno-blocks, standard, architecture, SDK, resource and C++ header selection fixed.",
+    "source": "Same private adapted witness with a deliberate feature guard",
+    "status": "PROPOSED_NOT_RUN"
+  },
+  "observed_at_utc": "2026-10-11T09:26:43.226444+00:00",
+  "project_root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "proposed_witness_invocation": {
+    "argv": [
+      "{P}/bin/clang++",
+      "--no-default-config",
+      "-std=c++26",
+      "-freflection",
+      "-fno-blocks",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=27.0",
+      "-isysroot",
+      "{SDK}",
+      "-resource-dir",
+      "{P}/lib/clang/21",
+      "-stdlib=libc++",
+      "-nostdinc++",
+      "-isystem",
+      "{P}/include/c++/v1",
+      "-nostdlib++",
+      "{PRIVATE}/reflection.cpp",
+      "{P}/lib/libc++.dylib",
+      "{P}/lib/libc++abi.dylib",
+      "{P}/lib/libunwind.dylib",
+      "-Wl,-rpath,{P}/lib",
+      "-o",
+      "{PRIVATE}/reflection"
+    ],
+    "rationale": {
+      "default_config": "--no-default-config prevents automatic driver configuration loading.",
+      "headers": "Darwin suppresses automatic C++ include selection under -nostdinc++; explicit -isystem points to the private installed include/c++/v1.",
+      "libraries": "Darwin normally adds -lc++; -nostdlib++ makes ShouldLinkCXXStdlib false. Absolute dylib inputs select the intended link inputs without library-name search.",
+      "platform": "arm64 and macOS deployment 27.0 match the existing project bootstrap contract, not a newly probed host or SDK.",
+      "resource": "-resource-dir selects the private builtin headers/resources. The source default is lib/clang/<major> and the pin's major is 21.",
+      "rpath": "Private-prefix rpath is a proposed runtime lookup path. Actual LC_ID_DYLIB/LC_LOAD_DYLIB and transitive resolution remain a separate installed-metadata/runtime gate.",
+      "runtimes": "libc++ source links the ABI shared target unless embedded; libc++abi can link LLVM unwind_shared. The project bootstrap enables the shared LLVM runtimes. Explicit private inputs make this proposed witness's input intent clear."
+    },
+    "status": "PROPOSED_NOT_RUN",
+    "substitutions": {
+      "P": "Already admitted absolute private installation prefix",
+      "PRIVATE": "Already admitted private witness output directory",
+      "SDK": "Already reviewed absolute macOS SDK path"
+    }
+  },
+  "references": [
+    {
+      "bytes": 26871,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          39,
+          54
+        ]
+      ],
+      "lines": 235,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/P2996.md",
+      "relative_path": "P2996.md",
+      "sha256": "56a1e8869dc1f5e035b7dc661be06591c667254a05abc840824e25fa9b64b141"
+    },
+    {
+      "bytes": 329,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          1,
+          14
+        ]
+      ],
+      "lines": 15,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/cmake/Modules/LLVMVersion.cmake",
+      "relative_path": "cmake/Modules/LLVMVersion.cmake",
+      "sha256": "9b66c4b3e2bbba31005384604ba22297496b39cdbb3a9ad2ced81543f1843169"
+    },
+    {
+      "bytes": 10047,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          177,
+          188
+        ]
+      ],
+      "lines": 265,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangStandards.def",
+      "relative_path": "clang/include/clang/Basic/LangStandards.def",
+      "sha256": "adacbf867da135d19bc54d7ffe7e9f0ea122251b3511c17bcda8f1a6c8b54761"
+    },
+    {
+      "bytes": 15720,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          320,
+          333
+        ]
+      ],
+      "lines": 337,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/Features.def",
+      "relative_path": "clang/include/clang/Basic/Features.def",
+      "sha256": "7e6cf9759a0aaf730b222fd3c7334576bdf628bee7501de6de16b97f9a89d596"
+    },
+    {
+      "bytes": 34247,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          310,
+          319
+        ]
+      ],
+      "lines": 553,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangOptions.def",
+      "relative_path": "clang/include/clang/Basic/LangOptions.def",
+      "sha256": "2d0c4d4c2c01e2bbe075b5b59f309ade6b918676b7637d26928e2a5216a166a2"
+    },
+    {
+      "bytes": 546344,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          1113,
+          1115
+        ],
+        [
+          3590,
+          3630
+        ],
+        [
+          5865,
+          5883
+        ],
+        [
+          5985,
+          5992
+        ]
+      ],
+      "lines": 9426,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Driver/Options.td",
+      "relative_path": "clang/include/clang/Driver/Options.td",
+      "sha256": "4f5e65d6cc038b47163fef4a1da4e1237f19ed702be015d77858618ebde3e826"
+    },
+    {
+      "bytes": 375382,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          7060,
+          7088
+        ],
+        [
+          7403,
+          7428
+        ]
+      ],
+      "lines": 9360,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Clang.cpp",
+      "relative_path": "clang/lib/Driver/ToolChains/Clang.cpp",
+      "sha256": "845369276cbec30d0ca0932b13e37f0eb45a907a9273c839c83744febb501e9b"
+    },
+    {
+      "bytes": 73757,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          470,
+          482
+        ]
+      ],
+      "lines": 1655,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/InitPreprocessor.cpp",
+      "relative_path": "clang/lib/Frontend/InitPreprocessor.cpp",
+      "sha256": "52c88f096dffee38426eeb2233cd703b4764c662e3601e9a047dc37e51ba3069"
+    },
+    {
+      "bytes": 53390,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          20,
+          34
+        ]
+      ],
+      "lines": 1185,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/__config",
+      "relative_path": "libcxx/include/__config",
+      "sha256": "512dca2562d807fb023b83c6921dd762d999dbe7e93371de4cb04f93d1181be8"
+    },
+    {
+      "bytes": 115034,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          414,
+          445
+        ],
+        [
+          865,
+          875
+        ],
+        [
+          939,
+          942
+        ],
+        [
+          1058,
+          1085
+        ],
+        [
+          1143,
+          1160
+        ]
+      ],
+      "lines": 3349,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/meta",
+      "relative_path": "libcxx/include/meta",
+      "sha256": "fa840f9f8553d2534fac9acb72ce23c17444424bb9d028f0ce461ff05611e0f2"
+    },
+    {
+      "bytes": 147884,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          743,
+          744
+        ],
+        [
+          2730,
+          2785
+        ],
+        [
+          2835,
+          2873
+        ]
+      ],
+      "lines": 3769,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+      "relative_path": "clang/lib/Driver/ToolChains/Darwin.cpp",
+      "sha256": "3aa17cfe22f13f96249875642b1f4a8990620df49d9713022d33efb5ab28d589"
+    },
+    {
+      "bytes": 66454,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          1490,
+          1512
+        ]
+      ],
+      "lines": 1859,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChain.cpp",
+      "relative_path": "clang/lib/Driver/ToolChain.cpp",
+      "sha256": "3298ec16bcf91eb8be53b900502042bcd3b726b574169f6a7b4666971619f0c5"
+    },
+    {
+      "bytes": 290031,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          178,
+          208
+        ],
+        [
+          206,
+          214
+        ],
+        [
+          1397,
+          1405
+        ],
+        [
+          1658,
+          1659
+        ]
+      ],
+      "lines": 7353,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/Driver.cpp",
+      "relative_path": "clang/lib/Driver/Driver.cpp",
+      "sha256": "60df002fc310c0716e2c8e8a636990ceb95e9698891cf676061e3802b962d009"
+    },
+    {
+      "bytes": 40749,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          404,
+          447
+        ]
+      ],
+      "lines": 854,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/CMakeLists.txt",
+      "relative_path": "libcxx/CMakeLists.txt",
+      "sha256": "fb020a3ec72a50964f137b12a4e6de54d84e3a97868f1ca4fc485d09227bfe94"
+    },
+    {
+      "bytes": 14585,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          165,
+          240
+        ],
+        [
+          203,
+          217
+        ],
+        [
+          350,
+          370
+        ]
+      ],
+      "lines": 413,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/src/CMakeLists.txt",
+      "relative_path": "libcxx/src/CMakeLists.txt",
+      "sha256": "38a74444821f5d958f556f98324878d663d56668ebd971f7853fe0c3114f123a"
+    },
+    {
+      "bytes": 13824,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          140,
+          178
+        ],
+        [
+          230,
+          257
+        ]
+      ],
+      "lines": 356,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxxabi/src/CMakeLists.txt",
+      "relative_path": "libcxxabi/src/CMakeLists.txt",
+      "sha256": "e332b0e43a951631ecb12869068be8e165de35f7d6674041cc93c9e29c4d31be"
+    },
+    {
+      "bytes": 8412,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          127,
+          178
+        ]
+      ],
+      "lines": 239,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libunwind/src/CMakeLists.txt",
+      "relative_path": "libunwind/src/CMakeLists.txt",
+      "sha256": "ac3467763e64638de5f2f3695353a2f45b3a4d890cf284ed22706d116d1e9a64"
+    },
+    {
+      "bytes": 885,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          1,
+          80
+        ]
+      ],
+      "lines": 25,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "relative_path": "dev/toolchains/reflection.cpp",
+      "sha256": "2dc8709cc3a8ba2140eb357b092bfb4dd6283a3001ae7515bbd7c76c80553ec7"
+    },
+    {
+      "bytes": 10175,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          116,
+          150
+        ]
+      ],
+      "lines": 170,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+      "relative_path": "dev/toolchains/gcc_reflection.py",
+      "sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b"
+    },
+    {
+      "bytes": 4404,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          21,
+          60
+        ]
+      ],
+      "lines": 60,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996-bootstrap.cmake",
+      "relative_path": "dev/toolchains/p2996-bootstrap.cmake",
+      "sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f"
+    },
+    {
+      "bytes": 1162,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          1,
+          45
+        ]
+      ],
+      "lines": 30,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "relative_path": "src/core.cpp",
+      "sha256": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840"
+    },
+    {
+      "bytes": 450,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          1,
+          25
+        ]
+      ],
+      "lines": 14,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "relative_path": "src/smoke.cpp",
+      "sha256": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8"
+    },
+    {
+      "bytes": 2294,
+      "kind": "existing_project_file",
+      "line_ranges": [
+        [
+          1,
+          30
+        ]
+      ],
+      "lines": 43,
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "relative_path": "CMakeLists.txt",
+      "sha256": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0"
+    },
+    {
+      "bytes": 885,
+      "kind": "pinned_source",
+      "line_ranges": [
+        [
+          9,
+          29
+        ]
+      ],
+      "lines": 30,
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/cmake/Modules/GetClangResourceDir.cmake",
+      "relative_path": "cmake/Modules/GetClangResourceDir.cmake",
+      "sha256": "3639507e87228be3bd291bb231dea5a862d51ba887a49e872a66253bf763c344"
+    }
+  ],
+  "route_accounting": {
+    "current_final_read_commands": [
+      {
+        "rc": 0,
+        "tool_result_chunk": "cb793a"
+      },
+      {
+        "rc": 0,
+        "tool_result_chunk": "aed3fb"
+      },
+      {
+        "rc": 0,
+        "tool_result_chunk": "0c450e"
+      }
+    ],
+    "executed": [
+      "Local source text searches with rg",
+      "Local source/hash extraction with native Python standard library; final reads and receipt creation use /usr/bin/python3 -B"
+    ],
+    "literal_macro_searches": [
+      {
+        "command": "rg -n --glob '*.{cpp,h,def,td}' '__cpp_impl_reflection|__cpp_lib_reflection' clang/include clang/lib",
+        "cwd": "SOURCE_ROOT",
+        "meaning": "No matches, not an execution failure.",
+        "output_bytes": 0,
+        "rc": 1
+      },
+      {
+        "command": "rg -n '__cpp_impl_reflection|__cpp_lib_reflection' libcxx/include libcxx/utils/generate_feature_test_macro_components.py",
+        "cwd": "SOURCE_ROOT",
+        "meaning": "No matches, not an execution failure.",
+        "output_bytes": 0,
+        "rc": 1
+      }
+    ],
+    "not_used": [
+      "Exa",
+      "Firecrawl",
+      "Last30Days",
+      "Context7",
+      "GitHub/network search",
+      "compiler or build tools"
+    ],
+    "reason": "The parent explicitly confined this brief to the already pinned source and existing project witness/core files.",
+    "unsuccessful_text_lookups": [
+      {
+        "outcome": "Missing paths; corrected with repository file listing and actual gcc_reflection.py.",
+        "rc": 2,
+        "route": "Initial project path guesses including gcc_runtime.py and gcc_cmake.py"
+      },
+      {
+        "outcome": "Missing guessed path; corrected to cmake/Modules/LLVMVersion.cmake.",
+        "rc": 2,
+        "route": "llvm/cmake/modules/LLVMVersion.cmake"
+      },
+      {
+        "outcome": "Missing guessed path; actual version is in libcxx/include/__config.",
+        "rc": 2,
+        "route": "libcxx/include/__configuration/version.h"
+      },
+      {
+        "outcome": "Missing guessed path; corrected to cmake/Modules/GetClangResourceDir.cmake.",
+        "rc": 2,
+        "route": "clang/cmake/modules/GetClangResourceDir.cmake"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "source_commit_supplied_by_parent": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "task": "Pinned P2996 fork reflection witness source contract",
+  "verification": {
+    "reference_count": 24,
+    "source_hashes_rechecked_before_write": true
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "result": "FINDINGS: one reproduced keg root-mode gap; pre-install acceptance withheld",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "title": "Validate the keg root mode before excluding it from the member set",
+      "path": "dev/toolchains/pkgconf_install.py",
+      "line_start": 80,
+      "line_end": 84,
+      "evidence": "The bound archive root pkgconf/3.0.8 has mode 0o755. validate_keg builds the expected members then removes the root with expected.pop(\".\"). The imported prefix_inventory checks that the root is canonical but emits only descendants. A new scratch AST call changed only the synthetic keg root to 0o777; validate_keg accepted it.",
+      "impact": "The installation can be reported qualified even though one archive directory has a different, more permissive mode. No later root-mode assertion closes the gap.",
+      "requested_change": "Assert that the keg root is a real directory and its mode matches the bound root member before removing that member. Keep all existing child, receipt, prefix and protected-state checks.",
+      "executed_reproduction": {
+        "receipt": "controls.json",
+        "case": "keg_root_mode_drift",
+        "required_acceptance": false,
+        "actual_acceptance": true,
+        "inventory_scope": "Explicit synthetic descendant rows mirror prefix_inventory root exclusion; no recursive fixture scan or shared prefix inventory."
+      }
+    }
+  ],
+  "unit": "12c2b pre-install candidate",
+  "reviewer": "cold_bottle_review",
+  "created_at": "2026-10-11T20:12:55.699668+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "318c671f5c6a781b29af399d7f6005fe8a917bb5",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "cecdd666b787db46f28020a5cbb6db2b96938beddf9fe9065ea67d88f285b94a",
+  "contract_sha256": "3ed141c4d99903d28b41c2cf180ad0cc780fee2444daebf49f70a45b008dc217",
+  "candidate_sha256": "38a6ffc6954f575a8ec26d85b665cfbc3b92a7d5cd032f18de085cabe0e3ccb9",
+  "scope": "Independent frozen-candidate review only; parent is sole maintained-file writer. No installation or fresh admission reviewed.",
+  "static_review": {
+    "guard": "mise_renovate.protected source remains hash-bound and unchanged at a3f651d40e19e53661769a766b1b17a206614ff19c95dbc0b14dda2419b8bf69. Guard before work, immediately before apply and in finally remains present.",
+    "authority_and_environment": "The source requires admission/review hashes and exact run directory, current HEAD/default output, canonical lease, capacity and writer checks; native apply has private mise state/config/cache and pinned loopback metadata. Actual runtime of those paths is unverified in this review.",
+    "failure_propagation": "The bound native run wrapper records return codes/log digests, asserts nonzero failures and terminates timed-out process groups. main retains FAIL/partial-link evidence and final protected-state failures are re-raised and saved.",
+    "postimage_translation": "All 50 tar member records match. The six changed paths, one exact text projection, five independently reconstructed Mach-O prefixes, field offsets/widths and receipt constants match the bound native sources and contract.",
+    "fresh_session_and_default": "Fresh environment isolation and before/after default-output checks are present in source. No new native session/profile ran.",
+    "preserved_claude_acceptance": "All 19 original files match their retained SHA256 and byte counts. Full OCI acceptance was not run.",
+    "additional_order_observation": "pkg-config --version at line 234 currently runs before the five Mach-O canonical/signature/dependency checks at lines 235-242. This is a static sequencing observation, not a second demonstrated finding; no corrupted executable was run."
+  },
+  "executed_reviewer_checks": {
+    "controls": {
+      "returncode": 0,
+      "duration_seconds": 0.053365041967481375,
+      "validation_calls": 12,
+      "six_macho_cases_matched_required_behavior": true,
+      "six_keg_cases": {
+        "matched": 5,
+        "reproduced_root_mode_gap": 1
+      },
+      "source_sha256": "5e15935ddfa937cb88d6a79bab6f6415d972fc21c90af592cd93817addc8b406",
+      "method": "AST extraction of only validate_macho and validate_keg; six Mach-O values held in memory and six private synthetic keg fixtures with explicit inventory rows."
+    },
+    "filesystem_and_archive_audit": {
+      "result": "PASS",
+      "contract_inputs": 99,
+      "old_inputs_preserved": 69,
+      "tool_files_hashed_not_executed": 6,
+      "candidate_files": 4,
+      "baseline_files": 19,
+      "parent_snapshots": 25,
+      "retained_child_rows": 3632,
+      "live_parent_snapshots_taken": 0,
+      "copy_source_pairs": 21,
+      "native_source_git_blobs": 8,
+      "archive_members_in_memory": 50,
+      "macho_projections_in_memory": [
+        "bin/bomtool",
+        "bin/pccritic",
+        "bin/pkgconf",
+        "bin/spdxtool",
+        "lib/libpkgconf.8.dylib"
+      ],
+      "text_postimages_checked": 1,
+      "retained_prefix_controls_not_rerun": [
+        7,
+        8
+      ],
+      "retained_static_returncodes": [
+        0,
+        0
+      ],
+      "frozen_files": 167,
+      "scope": "File and in-memory archive audit only; no candidate functions executed and no native or shared inventory.",
+      "returncode": 0,
+      "duration_seconds": 0.26885579095687717,
+      "source_sha256": "c1492bba31fe81b86dbec72ba7d707904a490cab8b2e594952ede749e59d4fc0"
+    }
+  },
+  "retained_executions_inspected_not_replayed": {
+    "final_prefix_controls": {
+      "returncode": 0,
+      "cases": 8,
+      "current_helper_bound": true
+    },
+    "earlier_controls": {
+      "returncode": 0,
+      "cases": 7,
+      "historical_only": true
+    },
+    "static_tasks_and_baseline_returncodes": [
+      0,
+      0
+    ],
+    "new_native_source_acquisition_returncodes": [
+      0,
+      0
+    ]
+  },
+  "checks_not_run": [
+    "helper main or any candidate module import",
+    "protected guards or writer census",
+    "live profiles, mise, pkg-config, compilers, vcpkg, codesign/lipo/otool, Docker or sandbox",
+    "fresh capacity or canonical lease",
+    "installation or admission",
+    "full shared prefix/source inventories",
+    "network/provider/model/container tests",
+    "old controls replay",
+    "recursive fixture scans or copies"
+  ],
+  "shared_mutations": 0,
+  "maintained_file_mutations": 0,
+  "frozen_files_verified_at_packaging": 167,
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-pkgconf-install-review-_c_8xtgp/supporting-manifest.json"
+}

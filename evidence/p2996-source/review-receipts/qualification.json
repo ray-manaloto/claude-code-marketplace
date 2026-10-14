@@ -1,0 +1,132 @@
+{
+  "state": "PASS: CMake script-mode cache controls only; no configure or compiler execution",
+  "started_at": "2026-10-11T03:36:28.743933+00:00",
+  "commands": [
+    {
+      "case": "positive",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/positive.cmake"
+      ],
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/positive.stdout",
+          "sha256": "b675a9ce8818c2285dd3d97e9bcbe166cd934e21badfd16ad4fe150f239e2859"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/positive.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "wrong-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/wrong-lane.cmake"
+      ],
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/wrong-lane.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/wrong-lane.stderr",
+          "sha256": "e08a2ed83ed19fda10dff1857888289bac2d7ef89b9d21bc73f67c9855e53f70"
+        }
+      ]
+    },
+    {
+      "case": "dirty-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/dirty-flags.cmake"
+      ],
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/dirty-flags.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/dirty-flags.stderr",
+          "sha256": "85a4954a7e2626104e6e8c5ab76888ad876a5f56e6b5c8ee7f568c8b423dc8cb"
+        }
+      ]
+    },
+    {
+      "case": "missing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/missing-prefix.cmake"
+      ],
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/missing-prefix.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/missing-prefix.stderr",
+          "sha256": "45b65892dc5319fbe8ec498123a3929597914942e7c3d4205b0244cfedb799fc"
+        }
+      ]
+    }
+  ],
+  "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+  "values": {
+    "CC": "/Library/Developer/CommandLineTools/usr/bin/clang",
+    "CXX": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+    "SDK": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "NINJA": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+    "PYTHON": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+    "PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cache-probes-20261011T033628Z/unused-prefix"
+  },
+  "protected_state_unchanged": true
+}

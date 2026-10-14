@@ -1,0 +1,104 @@
+Run a command with mise's tools and environment
+
+Loads the tools and [env] from your config into one child process without
+changing the current shell. Use it in scripts and CI, or to run a tool that is
+not in the config.
+
+TOOL@VERSION arguments add tools or override the configured version of that
+tool only: with `node = "24"` in mise.toml, `mise exec python@3.13 -- python -V`
+still has node 24 on PATH.
+
+Put the command after `--`, or pass a shell command string with `-c`. Missing
+tools are installed first unless the `exec_auto_install` or `auto_install`
+setting is off; when you name tools, only those are installed. The --allow-* and
+--deny-* flags sandbox the command; see https://mise.jdx.dev/sandboxing.html.
+
+Usage: mise exec [FLAGS] [TOOL@VERSION]… [-- COMMAND]…
+
+Arguments:
+  [TOOL@VERSION]…  Tools to add or override, such as `node@24 python@3.13`
+  [-- COMMAND]…    Executable and arguments to run directly, after `--`
+
+Flags:
+  -c, --command <COMMAND>   Command string to run through a shell (supports
+                            pipes and redirection)
+  -j, --jobs <JOBS>         How many tools to install in parallel; defaults to
+                            the `jobs` setting
+
+                            Values below 1 are treated as 1.
+                            [env: MISE_JOBS]
+      --allow-env <VAR>     Pass only VAR through from the environment (implies
+                            --deny-env)
+
+                            Supports wildcards, such as --allow-env='MYAPP_*'.
+      --allow-net <HOST>    Allow network access only to HOST (not supported on
+                            any platform)
+
+                            Per-host filtering does not work: Linux and macOS
+                            exit with an error,
+                            and Windows runs the command without network
+                            restrictions. See
+                            https://mise.jdx.dev/sandboxing.html#access-to-particular-hosts
+      --allow-read <PATH>   Allow reads from PATH (implies --deny-read for
+                            everything else)
+      --allow-write <PATH>  Allow writes to PATH (implies --deny-write for
+                            everything else)
+      --deny-all            Block reads, writes, network, and env vars
+      --deny-env            Block env var inheritance except PATH, HOME, USER,
+                            SHELL, TERM, COLORTERM, LANG
+
+                            On Windows it also keeps the variables programs need
+                            to start, such as
+                            SystemRoot and TEMP.
+      --deny-net            Block all network access
+      --deny-read           Block filesystem reads (system libs and tool dirs
+                            still accessible)
+      --deny-write          Block filesystem writes except temporary and device
+                            paths (/tmp, /dev)
+      --fresh-env           Bypass the environment cache and recompute the
+                            environment
+      --no-deps             Skip automatic dependency preparation
+      --raw                 Connect install commands directly to the terminal;
+                            implies --jobs=1
+      --secrets <SECRET>    [experimental] Give the command these secrets
+                            (comma-separated); by default it gets none
+      --secrets-all         [experimental] Give the command every secret the
+                            project can inject, except file secrets
+  -h, --help                Print help
+
+Global flags:
+  -C, --cd <DIR>            Run as if mise were started in DIR
+  -E, --env <ENV>           Load the `mise.<ENV>.toml` config files (same as
+                            MISE_ENV)
+
+                            Repeat the flag or separate names with commas to
+                            load several environments.
+  -q, --quiet               Suppress non-error messages
+                            [env: MISE_QUIET]
+  -v, --verbose             Show extra output (use -vv for even more)
+  -y, --yes                 Answer yes to all confirmation prompts
+      --locked              Require download URLs from the lockfile when
+                            installing
+
+                            Installing fails when the lockfile has no
+                            pre-resolved URL for a tool on the current platform,
+                            so mise does not call the GitHub or aqua registry
+                            APIs to find one. Same as `MISE_LOCKED=1` or the
+                            `locked` setting.
+      --silent              Suppress all task output and mise non-error messages
+
+Examples:
+    Run app.js with node 24
+    $ mise exec node@24 -- node ./app.js
+
+    Run a shell command string
+    $ mise x node@24 python@3.13 -c "node -v && python -V"
+
+    Run in another project's directory
+    $ mise x -C ~/work/api -- npm test
+
+    Run without network access
+    $ mise x --deny-net -- npm run build
+
+    [experimental] Pass one secret from the project's secrets source
+    $ mise x --secrets GH_TOKEN -- gh release list

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/replace.py", line 6, in <module>
+    replace_exact(Path(sys.argv[1]),Path(sys.argv[2]),json.loads(sys.argv[3]),json.loads(sys.argv[4]))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_runtime.py", line 95, in replace_exact
+    assert identity(staged) == after and identity(destination) == before
+                                         ~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_runtime.py", line 84, in identity
+    assert path.is_absolute() and path == path.resolve(strict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

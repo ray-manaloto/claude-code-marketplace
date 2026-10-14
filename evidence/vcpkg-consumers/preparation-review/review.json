@@ -1,0 +1,62 @@
+{
+  "helper_sha256": "54110064e07f11daa4e22a0347d95146bbfe8bfd98424d645f8f2a2c79aec4f4",
+  "contract_sha256": "508d230c9857f0620853f91eab842f0809f387d2ce3b24c7f7c8da91ca3a26a6",
+  "candidate_sha256": "7010eebffbb4caf56b25103ce5d875f2b02b3862e690a3b5b7233717c5a87784",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "b3f1adfe6bc634e08b47f1b2912ee94c09f405ba",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "result": "PASS",
+  "findings": [],
+  "scope": "Task 12c3c preparation only: five maintained files for eight sequential consumers of the real core and retained fmt packages.",
+  "static_review": [
+    "Root CMake composition accepts only the exact retained public vcpkg toolchain path and SHA plus the existing chainloader, preserving the original direct-lane guards and all remaining root behavior.",
+    "Public-toolchain source gates installation/bootstrap on disabled manifest switches; macOS application-local copying is disabled. Exact fmt_DIR, imported target kind, per-configuration path and artifact digest are asserted before build.",
+    "The actual core and compiled fmt::fmt are linked into a C++26 witness. The shared compiler chainloader retains dependency flags, pinned SDK/deployment/architecture and lane-specific runtime linking; consumer cache/compiler checks compare both retained configurations.",
+    "Each native command is bounded and nonzero outcomes propagate through the unchanged hash-bound runner. Four trees and eight Debug/Release build/run cells are sequential with one build job; process-group timeout/interruption cleanup is retained.",
+    "New normalized private directory, explicit minimal build environment, write-only-private and no-network sandbox, admission/review bindings, canonical lease and final source/package/protected-state checks are present. Runtime receipt parsing requires selected ARM64 and stdlib paths plus exact dynamic fmt path or no fmt dylib for static consumers."
+  ],
+  "reviewer_checks": {
+    "comparison_execution": "execution.json",
+    "returncode": 0,
+    "elapsed_seconds": 0.05357650015503168,
+    "candidate_files": 5,
+    "new_input_bindings": 11,
+    "new_public_toolchain_bindings": 1,
+    "prior_tables_compared_without_rehash": {
+      "inputs": 65,
+      "tools": 17,
+      "source_inputs": 18,
+      "abi_triplets": 4
+    },
+    "root_preimage_preserved": true,
+    "frozen_files_unchanged_at_packaging": 20
+  },
+  "parent_receipts": {
+    "prerequisite_fmt_artifact_review": "PASS; current hash and qualification/closure/postcommit links verified",
+    "prior_fmt_native_returncode": 0,
+    "postcommit_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pre_review_static_returncodes": [
+      0,
+      0
+    ],
+    "acceptance_baseline_reported": 19,
+    "secret_scan_raw_returncode": 1,
+    "secret_scan_disposition_returncode": 0,
+    "secret_scan_disposition": "One actual file-content digest verified; no complete-token matches recorded."
+  },
+  "not_run": [
+    "Native CMake configure/build/compiler/consumer/runtime execution; all eight cells remain UNVERIFIED.",
+    "Prior guard batteries, full source inventories, installed-library/tool rehashing, lease/capacity/default-profile commands, native scanner or unchanged controls.",
+    "Fresh Codex/model sessions, full Claude/container acceptance, providers or network."
+  ],
+  "maintained_writes": 0,
+  "shared_writes": 0
+}

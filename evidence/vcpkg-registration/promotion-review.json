@@ -1,0 +1,320 @@
+{
+  "result": "PASS for task 11d scoped global vcpkg promotion and fresh consumer discovery",
+  "findings": [],
+  "reviewer": "/root/cold_bottle_review",
+  "recorded_at": "2026-10-11T05:28:39.992709+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "3c007c27341050c6ec1e7888d7d4ac12264f58e7",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+  "manifest_sha256": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316",
+  "proposal": {
+    "destination": "/Users/rmanaloto/.local/share/mise/installs/asdf-vcpkg",
+    "preimage": "absent",
+    "namespace": {
+      "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+        "sha256": null
+      }
+    },
+    "manifest_sha256": "d0d77dd258a083bcfafa4d5267c586d511ea51eaf5d1f40641b0941fc5485316",
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0"
+    }
+  },
+  "reviewed_binding": {
+    "exact_review_admission_proposal_and_helper_match": true,
+    "receipt_inputs": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-promotion-20261011T052242Z/qualification.json",
+        "sha256": "b16770751ef227134db7e7c038346552960ea93b92de301b3b233675476d2f72"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion/qualification.json",
+        "sha256": "b16770751ef227134db7e7c038346552960ea93b92de301b3b233675476d2f72"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/admission.json",
+        "sha256": "b6db6d268af3ce81d05ba54208e3ee9bd5faeb6033096bf3f9cdcf33ecf80ba3"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/preparation-review.json",
+        "sha256": "a62e98cb51d5f9a7d04b5c056a1de7b42fe43aa76a6f69fd5f54a04770463736"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-writer-census.json",
+        "sha256": "692f4b9eb1992955d6e99961cc52c80f34ba1096dad4d15479f59475e9b52774"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-ownership.json",
+        "sha256": "9739b65e61d5027fc02efd35a45d0a5d3d4c690912e7bdcbda1620d467dbf275"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/promotion-invocation.json",
+        "sha256": "4b001d0d0282b878e64fc15ade9234e6c77b920fe7611c58552f4c794f77fd78"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-bootstrap/native/qualification.json",
+        "sha256": "18f9d3f4978737a84330f393098d31791e66149ce57b72a95c8a961dcc45063b"
+      }
+    ]
+  },
+  "parent_invocation_exit": 0,
+  "parent_native_command_exits": {
+    "source-head": 0,
+    "source-tree": 0,
+    "source-clean": 0,
+    "native-link": 0,
+    "native-manifest": 0,
+    "default-before": 0,
+    "fresh-version": 0,
+    "default-after": 0
+  },
+  "original_and_retained_log_pairs_verified": 16,
+  "recorded_writer_censuses": {
+    "external": 1,
+    "operation": 2,
+    "all_show_only_three_known_mcp_runners": true,
+    "live_census_rerun": false
+  },
+  "current_namespace": {
+    "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+      "mode": "0o700",
+      "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-bootstrap-20261011T0413/prefix",
+      "sha256": null
+    }
+  },
+  "only_global_install_entries_added": [
+    "asdf-vcpkg",
+    "asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc"
+  ],
+  "nine_private_backups_match_recorded_hashes_and_current_globals": true,
+  "backup_details": [
+    {
+      "name": "config.toml",
+      "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "mise.lock",
+      "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "config.cpp-build.toml",
+      "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "config.gcc16.toml",
+      "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "config.p2996.toml",
+      "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "cpp-foundation/common.toml",
+      "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "mise.cpp-build.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "mise.gcc16.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    },
+    {
+      "name": "mise.p2996.lock",
+      "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+      "current_mode": "0o600",
+      "backup_mode": "0o600"
+    }
+  ],
+  "qualified_binary": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/vcpkg",
+    "sha512": "1cc2c658e8bcbdaa522f30e6c4a21ef85c68de1e8c6b5d5bbf5476ca2f44acc479f1367c045439f84ce4f3d912bccc05aefbeb2a5d0293f0168758759356486b",
+    "sha256": "f6adb17ce4df42bcb36d143664689de7ecce951739cd3e555e0c2e4ba04fa263",
+    "bytes": 12409856
+  },
+  "fresh_native_consumer": {
+    "argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-config",
+      "--no-hooks",
+      "--no-env",
+      "-C",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer/cwd",
+      "exec",
+      "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/usr/bin/arch",
+      "-arm64",
+      "vcpkg",
+      "version",
+      "--debug",
+      "--disable-metrics"
+    ],
+    "returncode": 0,
+    "invocations": 1,
+    "explicit_arm64_execution": true,
+    "expected_source_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+    "debug_root_matches": true,
+    "version_matches": true,
+    "metrics_disabled": true,
+    "private_home_data_config_state_cache_and_xdg_roots": true,
+    "actual_global_installs_directory": "/Users/rmanaloto/.local/share/mise/installs",
+    "VCPKG_ROOT_provided": false,
+    "offline_and_auto_install_disabled": true,
+    "logs": [
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer.stdout",
+        "sha256": "a5a7c3d89bf9f30941c8478d72df2c9b1b0c982e9e267b330f5e818e71cd8fea"
+      },
+      {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "reviewer_postprocessing_correction": {
+    "initial_wrapper_exit": 1,
+    "cause": "Reviewer expected the phrase Metrics disabled; actual successful command says Disabling metrics because vcpkg.disable-metrics exists.",
+    "corrected_validation": "Reparsed the existing captured logs only; native consumer was not rerun."
+  },
+  "static_checks": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T05:27:39.424718+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T05:27:39.631657+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/acceptance-baseline.stdout",
+          "sha256": "34fe4cd4ff154d1c374d7aa61f649fa77438737a86a17fd70d29eaf8f62df7d3"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "claude_baseline_counts": {
+    "baseline": 19,
+    "json": 319,
+    "python": 11,
+    "shell": 6,
+    "toml": 14
+  },
+  "preservation": {
+    "protected_state_unchanged_after_consumer_and_static_checks": true,
+    "global_mise_files": 9,
+    "homebrew_packages": 8,
+    "glib_files": 2,
+    "global_shims": 835,
+    "global_command_wrappers": 0,
+    "preexisting_install_entries": 2196,
+    "current_install_entries": 2198,
+    "vcpkg_binary_prefix_metrics_marker_and_git_metadata_unchanged": true,
+    "default_compiler_environment_before_and_after_operation_equal_to_prior_independent_snapshot": true,
+    "private_consumer_has_no_plugin_or_install_namespace": true
+  },
+  "limits": [
+    "The promotion helper, promotion, bootstrap, download and installer were not rerun.",
+    "No build, compiler, dependency installation, network acquisition, global configuration or repository write was performed by this reviewer.",
+    "Recorded ownership and writer censuses were verified as operation evidence; no new live census was run.",
+    "This review establishes native discovery through the promoted namespace only; dependency builds, compiler triplets, caching and full Claude OCI acceptance remain separate.",
+    "Parent owns the routine documentation and plan closure; those ongoing text changes are preserved."
+  ],
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/acceptance-baseline.stdout",
+      "sha256": "34fe4cd4ff154d1c374d7aa61f649fa77438737a86a17fd70d29eaf8f62df7d3"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer-check.json",
+      "sha256": "ee9d4c8b174dc3acf493279a621b325e319c69109909e4fff28893308c39d5a2"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/consumer.stdout",
+      "sha256": "a5a7c3d89bf9f30941c8478d72df2c9b1b0c982e9e267b330f5e818e71cd8fea"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/parent-evidence-review.json",
+      "sha256": "9cf31a5ab234195237c7ba745538c0a8b38272d1b0897d9333e411124008d409"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/post-checks.json",
+      "sha256": "f7cf2dc888d3828d40ae263c6d63c44a8362ec24b172fe01d72ff9b9e5a124ef"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/pre-state.json",
+      "sha256": "c8f7139e70eaeeaaf2e0abf0935ed3da36b6a711d203bfbf28b6ef380c8aade0"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/static-checks.json",
+      "sha256": "35e5049daab262d9a7f29c82b563a404cf4a142ab9151298a4097cb79efa08cc"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-promotion-review-3jrp6wr7/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+    }
+  ]
+}

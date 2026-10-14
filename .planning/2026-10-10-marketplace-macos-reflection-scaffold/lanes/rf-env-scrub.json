@@ -1,0 +1,53 @@
+{
+  "unit": "rf-env-scrub",
+  "tickets": [],
+  "originating_retro": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/m0-remaining-work-merge.md",
+  "title": "research_refresh harness: tolerate or scrub inherited runtime selectors (VIRTUAL_ENV, UV_PROJECT_ENVIRONMENT)",
+  "owner": "implementer",
+  "writer_model": "opus",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/rf-env-scrub",
+  "branch": "claude/rf-env-scrub-inherited-selectors",
+  "base_sha": "e0667ec",
+  "owned_paths": [
+    "dev/check.py",
+    "dev/research_refresh/test_refresh.py",
+    "dev/research_refresh/runtime_preflight.py",
+    "dev/research_refresh/test_runtime_preflight.py",
+    "docs/research-feedback.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "AGENTS.md",
+    "dev/research_refresh/refresh.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "required_checks": [
+    "check:research with VIRTUAL_ENV exported to the project .venv (must pass)",
+    "check:research with VIRTUAL_ENV exported to a foreign path (regression test decides)",
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check",
+    "retro:gate"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none"
+  },
+  "holds": [
+    "C1 (#94)",
+    "C2 (#98)",
+    "C3 (#95)"
+  ],
+  "status": "integrated into codex/marketplace-native-onboarding; C1/C2/C3 released from the M0 barrier; published f250f75",
+  "created_at": "2026-10-13T21:05:00Z",
+  "lane_commit": "716e888",
+  "merged_head": "281a198 (merge of 8c5656f)",
+  "integration_merge": "447110a",
+  "review": "fable cold review PASS-with-P3 (handoff tip drift only; merge-tree clean on f039041)",
+  "published": "f250f75",
+  "retro": "passed"
+}

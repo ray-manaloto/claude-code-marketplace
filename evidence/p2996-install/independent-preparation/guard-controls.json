@@ -1,0 +1,455 @@
+{
+  "result": "PASS",
+  "helper_sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+  "python": "3.15.0 (main, Oct  9 2026, 14:27:39) [Clang 23.1.3 ]",
+  "scope": "Exact extracted guard and inventory AST; inert private fixtures only. No main(), --install, CMake, compiler, lease or subprocess control execution.",
+  "groups": {
+    "prefix_and_manifest_absence": {
+      "lines": [
+        124
+      ],
+      "ast_sha256": "043af003085e97f314912f958d584dd254149628e2b7dcd28cf1d72676ff6002"
+    },
+    "install_admission": {
+      "lines": [
+        179,
+        180,
+        181,
+        182,
+        183,
+        184
+      ],
+      "ast_sha256": "db52e7778996aae6e1f4b81fbe07e8c785b571fcc799ea729c9a5abe06f4ca34"
+    },
+    "input_bindings_function": {
+      "lines": [
+        149
+      ],
+      "ast_sha256": "d2e7cb72a3bf301d1a081a014b5274173a7b6fe504040790ae2e33a7aa426b8f"
+    },
+    "post_install_manifest_alias_reconciliation": {
+      "lines": [
+        208,
+        209,
+        210,
+        211,
+        219,
+        224
+      ],
+      "ast_sha256": "8cccc362eccc86319e7ec76d824e50bb70765111613525e8164c6c2d0aeb1d6f"
+    },
+    "private_run_directory": {
+      "lines": [
+        48,
+        57
+      ],
+      "ast_sha256": "3a0dd3405a6775910e9e85450c491dc3ed2c87c5958265a461999222f30776a4"
+    },
+    "successful_build_and_contract": {
+      "lines": [
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        119,
+        120,
+        121,
+        122,
+        123
+      ],
+      "ast_sha256": "a597b06e70694dd22c5eb0145868a070850eb6cd7adb347d2e0a5801ddf3bb6d"
+    }
+  },
+  "prefix_inventory_ast_sha256": "22e0301b0899970aeed0435eef2fe51daeed61e5362e5b62111062cd83d0e95a",
+  "controls": [
+    {
+      "case": "absent-prefix-and-manifests",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "existing-prefix",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 124,
+      "pass": true
+    },
+    {
+      "case": "dangling-prefix",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 124,
+      "pass": true
+    },
+    {
+      "case": "existing-manifest",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 124,
+      "pass": true
+    },
+    {
+      "case": "dangling-manifest",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 124,
+      "pass": true
+    },
+    {
+      "case": "valid-private-run",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "relative-run",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "ValueError",
+      "exception_line": 45,
+      "pass": true
+    },
+    {
+      "case": "repository-run",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "ValueError",
+      "exception_line": 45,
+      "pass": true
+    },
+    {
+      "case": "source-run",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "ValueError",
+      "exception_line": 45,
+      "pass": true
+    },
+    {
+      "case": "build-run",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "ValueError",
+      "exception_line": 45,
+      "pass": true
+    },
+    {
+      "case": "bound-inputs-unchanged",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "bound-input-byte-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 150,
+      "pass": true
+    },
+    {
+      "case": "prefix-parent-symlink",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 151,
+      "pass": true
+    },
+    {
+      "case": "build-symlink",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 151,
+      "pass": true
+    },
+    {
+      "case": "reviewed-build-contract",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "failed-build",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 110,
+      "pass": true
+    },
+    {
+      "case": "unreleased-build-lease",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 111,
+      "pass": true
+    },
+    {
+      "case": "build-command-failed",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 112,
+      "pass": true
+    },
+    {
+      "case": "review-finding",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 113,
+      "pass": true
+    },
+    {
+      "case": "operation-hash-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 114,
+      "pass": true
+    },
+    {
+      "case": "supporting-receipt-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 118,
+      "pass": true
+    },
+    {
+      "case": "contract-root-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 120,
+      "pass": true
+    },
+    {
+      "case": "manifest-contract-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 121,
+      "pass": true
+    },
+    {
+      "case": "unclassified-script-command",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 122,
+      "pass": true
+    },
+    {
+      "case": "parallel-install-enabled",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 123,
+      "pass": true
+    },
+    {
+      "case": "matching-install-admission",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "wrong-helper",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 179,
+      "pass": true
+    },
+    {
+      "case": "wrong-admission-proposal",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 180,
+      "pass": true
+    },
+    {
+      "case": "wrong-review-proposal",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 180,
+      "pass": true
+    },
+    {
+      "case": "wrong-run-directory",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 181,
+      "pass": true
+    },
+    {
+      "case": "wrong-review-hash",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 182,
+      "pass": true
+    },
+    {
+      "case": "failed-review",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 183,
+      "pass": true
+    },
+    {
+      "case": "review-has-findings",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 183,
+      "pass": true
+    },
+    {
+      "case": "lock-module-drift",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 184,
+      "pass": true
+    },
+    {
+      "case": "complete-prefix-direct-and-chained-aliases",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "duplicate-manifest-entry",
+      "expected_accepted": true,
+      "accepted": true,
+      "exception": null,
+      "exception_line": null,
+      "pass": true
+    },
+    {
+      "case": "missing-manifest-leaf",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 224,
+      "pass": true
+    },
+    {
+      "case": "unlisted-prefix-file",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 224,
+      "pass": true
+    },
+    {
+      "case": "outside-manifest-path",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 217,
+      "pass": true
+    },
+    {
+      "case": "relative-manifest-path",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 217,
+      "pass": true
+    },
+    {
+      "case": "manifest-directory-entry",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 224,
+      "pass": true
+    },
+    {
+      "case": "nonexistent-manifest-leaf",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "FileNotFoundError",
+      "exception_line": 460,
+      "pass": true
+    },
+    {
+      "case": "symlink-manifest",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 212,
+      "pass": true
+    },
+    {
+      "case": "wrong-alias-target",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 221,
+      "pass": true
+    },
+    {
+      "case": "escaping-alias",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 29,
+      "pass": true
+    },
+    {
+      "case": "dangling-alias",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "FileNotFoundError",
+      "exception_line": 460,
+      "pass": true
+    },
+    {
+      "case": "unsupported-prefix-fifo",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 36,
+      "pass": true
+    },
+    {
+      "case": "prefix-root-symlink-rejected",
+      "expected_accepted": false,
+      "accepted": false,
+      "exception": "AssertionError",
+      "exception_line": 26,
+      "pass": true
+    }
+  ],
+  "controls_count": 48,
+  "findings": []
+}

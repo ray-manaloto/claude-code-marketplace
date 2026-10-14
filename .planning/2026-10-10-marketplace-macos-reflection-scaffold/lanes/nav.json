@@ -1,0 +1,61 @@
+{
+  "unit": "nav",
+  "tickets": [
+    "CT-04 (spec 'Claude team takeover and self-improving workflow', publication pending user approval)"
+  ],
+  "title": "Guidance hierarchy: root AGENTS.md pointer, per-directory AGENTS.md + thin CLAUDE.md importers, reviewer-only CODING_STANDARDS.md",
+  "owner": "doc-writer",
+  "writer_model": "sonnet",
+  "reviewer": "reviewer (fable, cold)",
+  "worktree": ".claude/worktrees/nav",
+  "branch": "claude/nav-guidance-hierarchy",
+  "base_sha": "c6ff7ef",
+  "allocated_from": "7e22d13",
+  "owned_paths": [
+    "AGENTS.md",
+    "CODING_STANDARDS.md",
+    "dev/AGENTS.md",
+    "dev/CLAUDE.md",
+    "docs/AGENTS.md",
+    "docs/CLAUDE.md",
+    "evidence/AGENTS.md",
+    "evidence/CLAUDE.md",
+    ".planning/AGENTS.md",
+    ".planning/CLAUDE.md",
+    ".claude/AGENTS.md",
+    ".claude/CLAUDE.md"
+  ],
+  "excluded_shared_paths": [
+    "CLAUDE.md",
+    ".claude/settings.json",
+    ".claude/agents/",
+    ".claude/rules/",
+    "docs/agents/*.md",
+    "plugins/aggregated-research/AGENTS.md",
+    "mise.dev.toml",
+    "dev/check.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "required_checks": [
+    "every pointer resolves (rg --files)",
+    "root AGENTS.md under sixty lines",
+    "tasks validate",
+    "check",
+    "check:acceptance-baseline",
+    "git diff --check"
+  ],
+  "resource_admissions": {
+    "host_heavy": "not admitted",
+    "providers": "none",
+    "network": "none"
+  },
+  "status": "integrated into codex/marketplace-native-onboarding; published 28fedf1",
+  "created_at": "2026-10-13T20:26:01Z",
+  "lane_commit": "5cadad4 + repairs 6dc421e",
+  "merged_head": "6840342 (merge of 937042d)",
+  "integration_merge": "fa892d2",
+  "published": "28fedf1",
+  "review": "fable cold review PASS-with-P2; focused re-review PASS for integration",
+  "retro": "passed"
+}

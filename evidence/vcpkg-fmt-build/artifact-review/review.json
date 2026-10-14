@@ -1,0 +1,72 @@
+{
+  "head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "candidate_sha256": "9babec38c8583e7f4f27678bf3ebb6d5ab2687838a4a1654c4c5bf150bfb3f82",
+  "helper_sha256": "fcf8aebc632d1e4bc929897b91e0cde44340ace2d59749c5b71b6ee6a9aa98e2",
+  "contract_sha256": "aea0d5f2da6df3cdd2cded252e017481e62e81f9b4b128a020b6c41a400fc776",
+  "qualification_sha256": "fcc33ae9227691836ec65eabdb89057a8b489e3a0fc084d9b3f916dc8f470de2",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "result": "PASS",
+  "findings": [],
+  "scope": "Task 12c3b final native artifacts for four private fmt triplets, Debug and Release; application consumer parity remains pending.",
+  "observed_native_receipts": {
+    "wrapper_returncode": 0,
+    "elapsed_seconds": 64.6651227499824,
+    "command_outcomes": {
+      "total": 29,
+      "returncode_0": 26,
+      "expected_denial_73": 3
+    },
+    "ordinary_installs": 4,
+    "libraries": 8,
+    "arm64_results": 8,
+    "otool_receipts": 4,
+    "final_source_and_shared_guard": "PASS",
+    "default_before_after": "Exact bytes match accepted default receipt",
+    "closure": "All 29 recorded PIDs absent; canonical lease free and unchanged, as recorded in native-closure.json"
+  },
+  "reviewer_checks": {
+    "kind": "Manual log/source/document review and one bounded filesystem/JSON/text/hash comparison",
+    "returncode": 0,
+    "text_source_copy_pairs": 162,
+    "reviewed_input_snapshots": 8,
+    "installed_libraries_hashed_once": 8,
+    "Config_target_metadata_files": 16,
+    "reviewed_input_chain": "Candidate, helper, contract, admission, prior independent PASS and native launch/execution match.",
+    "compiler_SDK_linkage": "Raw compile/link commands use the pinned Clang21 or GCC16.2.0 and MacOSX27.0.sdk, target arm64 with deployment27.0, and match both Debug/Release static/shared outputs.",
+    "dynamic_dependencies": "P2996 records libc++, libc++abi and libunwind at @rpath; GCC records /opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib. Both also record libSystem.",
+    "ABI": "Four actual ABI receipts match their recorded additional-file entries and tracked environment hashes.",
+    "raw_whitespace": "All 162 copies preserve source bytes; three new attribute patterns affect only generated CMakeCache, Ninja and stdout evidence. Existing attribute bytes preserved.",
+    "docs": "Factual changes accurately describe the retry and retain consumer parity as a separate gate.",
+    "native_commands": 0,
+    "control_calls": 0,
+    "prior_audit_replays": 0
+  },
+  "parent_checks": {
+    "initial_static_returncodes": [
+      0,
+      0,
+      1
+    ],
+    "final_static_returncodes": [
+      0,
+      0
+    ],
+    "Claude_original_hashes": 19,
+    "secret_scan": {
+      "recorded_files": 349,
+      "raw_returncode": 1,
+      "verified_file_digest_dispositions": 7,
+      "transformed_returncode": 0,
+      "complete_token_hits": 0
+    }
+  },
+  "limits": [
+    "No compiler/build/profile/capacity/lease/native-tool command or inspect_cell call was rerun.",
+    "The original failed attempt and diagnosis are not recast as successful; their prior review was not repeated.",
+    "Dynamic loader resolution, relocated/application consumers, fresh model sessions and full OCI/Claude runtime acceptance were not tested."
+  ],
+  "maintained_writes": 0,
+  "shared_writes": 0
+}

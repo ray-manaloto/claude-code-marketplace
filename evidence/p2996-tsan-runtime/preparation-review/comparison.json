@@ -1,0 +1,342 @@
+{
+  "candidate_inputs_sha256": "afd293aeaa228ba52e29cc8dcfb8e55c96a24e4beeb25840f329a159fda76c3f",
+  "candidate_sha256": "2926689a130dabdc34e130f27290129c1b05429ea4cfb99c341c2f0318474481",
+  "checks": {
+    "binary_identities": {
+      "bytes": 2208112,
+      "count": 2,
+      "each_read_once": true,
+      "files": [
+        {
+          "bytes": 1104608,
+          "content_reads": 1,
+          "kind": "installed-original",
+          "mach_o": "arm64 dylib",
+          "mode": "0o755",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+          "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+          "uuids": [
+            "C87B1C75-0AFA-365D-AAC2-AB401E9E6D94"
+          ]
+        },
+        {
+          "bytes": 1103504,
+          "content_reads": 1,
+          "kind": "qualified-private",
+          "mach_o": "arm64 dylib",
+          "mode": "0o700",
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+          "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+          "uuids": [
+            "BCA7D867-58F1-3C3E-BDCB-50E94DBCAE2B"
+          ]
+        }
+      ],
+      "installed_original_unchanged": true,
+      "planned_installed_stage_mode": "0o755",
+      "private_mode": "0o700"
+    },
+    "git_identity": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "elapsed_seconds": 0.012034124927595258,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "elapsed_seconds": 0.010518667055293918,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "codex/marketplace-native-onboarding\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "elapsed_seconds": 0.010653208941221237,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "847684dc237e669a3d8eaa23795b68ae31625f56\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "elapsed_seconds": 0.009204749949276447,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n"
+      }
+    ],
+    "parent_control_receipts": {
+      "child_returncodes": [
+        0,
+        0,
+        1
+      ],
+      "control_rerun_by_reviewer": false,
+      "current_ASan_guard_asserted_before_children": true,
+      "exact_argv_private_only": true,
+      "outer_returncode_not_recorded_in_controls_json": true,
+      "postpromotion_guard_executed": false,
+      "prepromotion_TSan_rejection_reported": true,
+      "sandbox_sha256": "0cbbd9f3524239d400e17273ff8a4fc53454c5858879e9facdede249e5a656b0",
+      "six_log_bindings": [
+        {
+          "bytes": 0,
+          "case": "replace",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream": "stdout"
+        },
+        {
+          "bytes": 0,
+          "case": "replace",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream": "stderr"
+        },
+        {
+          "bytes": 0,
+          "case": "restore",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream": "stdout"
+        },
+        {
+          "bytes": 0,
+          "case": "restore",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream": "stderr"
+        },
+        {
+          "bytes": 0,
+          "case": "reject-unknown-target",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream": "stdout"
+        },
+        {
+          "bytes": 811,
+          "case": "reject-unknown-target",
+          "sha256": "f960efac3e97ef92569f39d9cff739dbfa5caa39765f838bd97e353d937ec09a",
+          "stream": "stderr"
+        }
+      ],
+      "state": "PASS: composed overlay and private exact-file controls"
+    },
+    "parent_static_receipts": {
+      "baseline_hashes": 19,
+      "independent_static_or_fresh_Claude_OCI_execution": false,
+      "result": {
+        "baseline": 19,
+        "json": 2138,
+        "python": 154,
+        "shell": 6,
+        "status": "pass",
+        "toml": 16
+      },
+      "returncodes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "prerequisite_receipts": {
+      "ASan_artifact_review_sha256": "d4433074af9fb62b2404da5e403feb7f4868bde6b95323d80bee09bba6606845",
+      "TSan_artifact_review_sha256": "88ffefd62bb5617da8ab0643cb9976c5dcac2ae8c7ad34388e25a29c688c7f9c",
+      "TSan_qualified_row_matches_contract": true,
+      "TSan_review_matches_original_private_copy": true
+    },
+    "secret_scan": {
+      "bound_files": 11,
+      "complete_token_files": [],
+      "digest_dispositions": [],
+      "raw_findings": [],
+      "raw_findings_file": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-scan-tz6se9bf/pre-review-secret-scan-raw.json",
+      "raw_returncode": 0,
+      "scanner_rerun_by_reviewer": false,
+      "transformed_scan_run": false
+    },
+    "snapshots": {
+      "direct_contract_inputs": 27,
+      "maintained": 4,
+      "new_inputs": [
+        "dev/toolchains/p2996_asan_runtime.py",
+        "evidence/p2996-asan-promotion/artifact-review.json",
+        "evidence/p2996-asan-promotion/operation/qualification.json",
+        "evidence/p2996-asan-runtime/contract.json",
+        "evidence/p2996-tsan-repair/artifact-inventory.json",
+        "evidence/p2996-tsan-repair/artifact-review/review.json",
+        "evidence/p2996-tsan-repair/operation/closure.json",
+        "evidence/p2996-tsan-repair/operation/qualification.json"
+      ],
+      "prerequisite_snapshots": 8,
+      "receipts": 5,
+      "unchanged_inherited_inputs": 19
+    },
+    "static_inventory_delta": {
+      "evidence/p2996-install/independent-installation/post-install-inventory.json": {
+        "derived_rows": [
+          {
+            "after_bytes": 1072848,
+            "after_sha256": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464",
+            "before_bytes": 1073472,
+            "before_sha256": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+            "changed_fields": [
+              "bytes",
+              "sha256"
+            ],
+            "mode_preserved": "0o755",
+            "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "row_index": 131
+          },
+          {
+            "after_bytes": 1103504,
+            "after_sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+            "before_bytes": 1104608,
+            "before_sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+            "changed_fields": [
+              "bytes",
+              "sha256"
+            ],
+            "mode_preserved": "0o755",
+            "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+            "row_index": 132
+          }
+        ],
+        "inventory_rows": 159,
+        "original_sha256": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103"
+      },
+      "evidence/p2996-install/operation/prefix-inventory.json": {
+        "derived_rows": [
+          {
+            "after_bytes": 1072848,
+            "after_sha256": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464",
+            "before_bytes": 1073472,
+            "before_sha256": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+            "changed_fields": [
+              "bytes",
+              "sha256"
+            ],
+            "mode_preserved": "0o755",
+            "path": "lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib",
+            "row_index": 5934
+          },
+          {
+            "after_bytes": 1103504,
+            "after_sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a",
+            "before_bytes": 1104608,
+            "before_sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb",
+            "changed_fields": [
+              "bytes",
+              "sha256"
+            ],
+            "mode_preserved": "0o755",
+            "path": "lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+            "row_index": 5942
+          }
+        ],
+        "inventory_rows": 6411,
+        "original_sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159"
+      }
+    },
+    "static_source": {
+      "IWYU_tool_keys_conflict_with_sanitizer_overlays": false,
+      "candidate_or_guard_functions_executed": false,
+      "guard_chain_read_and_traced": [
+        "TSan contract/current identity",
+        "ASan then TSan in-memory inventory overlays",
+        "mise_renovate.protected",
+        "mise_runtime.protected",
+        "p2996_reflection.protected including full inventory and prefix equality"
+      ],
+      "module_lines": 93,
+      "overlay_matches_ASan_AST_with_only_current_field_renamed": true,
+      "protected_body_ast_sha256": "ac74a82fc78af8fee4839b085155635726abcfcb578bd64d367f6f51bb8b42b6",
+      "unchanged_identity_and_replace_exact_aliases": true
+    }
+  },
+  "contract_sha256": "3e33503010361fe6d66d4906b3fa3b73c92fce8a191daab86cbc40cde5d7be36",
+  "helper_sha256": "1b573b7ee86dd4f220ba0e7cbfaa70fe8e381500d54127f0ddfb8f32cb0b8ec3",
+  "not_run": [
+    "No candidate controls, helper contracts/protected functions, overlay functions, replacement primitive, compiler or native witness executed",
+    "No nested guard traversal, global-state reads from predecessor input lists, source/build/compiler inventory rehash, lease/capacity/PID/census or Docker operation",
+    "No scanner/static task rerun, model session, network, service, install, promotion or OCI acceptance"
+  ],
+  "recorded_at": "2026-10-12T03:33:05.091232+00:00",
+  "result": "PASS: Task14b2a bounded preparation comparison",
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "ea9f2357815380eb984d2de558320dadaec96f274a75deaf7a21e09a1ea62bce",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "71bb04722ddd347006c2537823c32ce84458961b8d5e6b8f7223438ffebe74e1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_renovate.py": "a3f651d40e19e53661769a766b1b17a206614ff19c95dbc0b14dda2419b8bf69",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_runtime.py": "9220bb5bd18d6af5fc6c6c5a46ae5845b9b1d1687e0212cf66b02bc6d049e92c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_runtime.py": "b5707d35a19ef75e706824e094dc04184f975faa9d2afdf7b5911a3918211fdf",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizer_repair.py": "849e9b1d60878273b8dd62894218947dcd2e8d1c67313c3b6c01a5164a07437c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_runtime.py": "1b573b7ee86dd4f220ba0e7cbfaa70fe8e381500d54127f0ddfb8f32cb0b8ec3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "ad18f14990611e1e55cdc40b03fad8d5b1b0ac6bc75b64365fd3abbadf2797a5",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/proposal.json": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-renovate/contract.json": "617b0b1f30c4011ddc1d8b6995365eab1e349054e8487afc6636a331ef452cb6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/contract.json": "c56618b021993665015b8f40c448504a666cb121076a88fb6217df2611434ff5",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/artifact-review.json": "d4433074af9fb62b2404da5e403feb7f4868bde6b95323d80bee09bba6606845",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/operation/qualification.json": "ab09108318e5546021008d4e260ea060c99dcb38f27afd00c0a3c506480f7170",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/contract.json": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repair-postcommit.json": "366a5d65110549d47af5febb671f8c671ee86546dee67dba532133d297ea2a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/artifact-inventory.json": "a59b76631a548b490f4855f3aa638e4420946b8fcf82aed6efc1019cf482b850",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/artifact-review.json": "d24aa966165b11cc6ad7b2c0dc9a1e9af12d1d5738859193ebda0c27b7c27675",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/contract.json": "9906271737b860860155959d70c95fe4fc434b73642c7465ce9b2b541378ae0e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/closure.json": "debf69abd93ba9a563735a5b0240c38f29a510192a8ae7cfeeb4ca4b23911e8f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/qualification.json": "c5f01649fe39b50744e7c3984f0a01692ce1e5a9912aba2ca7cc49ff399dffc4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/artifact-inventory.json": "8f6efbcd2d25a8c4a7b95c65c3ea93e4851b76919410570db17f7cc067fe11c0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/artifact-review/review.json": "88ffefd62bb5617da8ab0643cb9976c5dcac2ae8c7ad34388e25a29c688c7f9c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/closure.json": "9315a00b6d624a7337ae8fcb74b43ff5b2e99b2b72700de972007d153d4e0223",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/qualification.json": "99444de48ba10fc4dab6a6e66662fb585e77204d1a53cb7eb0376b468c923ecb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/candidate-inputs.json": "afd293aeaa228ba52e29cc8dcfb8e55c96a24e4beeb25840f329a159fda76c3f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/candidate.json": "2926689a130dabdc34e130f27290129c1b05429ea4cfb99c341c2f0318474481",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/contract.json": "3e33503010361fe6d66d4906b3fa3b73c92fce8a191daab86cbc40cde5d7be36",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/controls.py.source": "b6a5b2155bb899d6c23ab29abf6b7accd823fd76a34139d30df773b5f0dadff9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/controls/controls.json": "5c500f4b4ef9065edbc3d41311ebdcd45dc5bbb6f74cf7bbfad7be2ba1d47e21",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/derive.py.source": "ed8903293ab79e35cc83ab3e93ac8895f0844635afc13f52635e03fbb93b4c81",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/pre-review-secret-scan.json": "1b887647de8577e3c08fe206d31d6d7891cd4f9fd40e617bc13dbe1f9dedd3f6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/pre-review-static.json": "362f141081961ce2dfea427ecc8a16e19c12fe956d451e053d616ae4efd7de1d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/private.sb": "0cbbd9f3524239d400e17273ff8a4fc53454c5858879e9facdede249e5a656b0",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/reject-unknown-target.stderr": "f960efac3e97ef92569f39d9cff739dbfa5caa39765f838bd97e353d937ec09a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/reject-unknown-target.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/replace.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/replace.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/restore.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-controls-57aipv3k/restore.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-scan-tz6se9bf/pre-review-secret-scan-raw.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-runtime-scan-tz6se9bf/scan.py": "c3ab586e8a4086982caf047c7624b87761076a70995c389265645505ea3dbe44",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-repair-artifact-review-p5e41g8z/review.json": "88ffefd62bb5617da8ab0643cb9976c5dcac2ae8c7ad34388e25a29c688c7f9c"
+  }
+}

@@ -1,0 +1,65 @@
+import ast,hashlib,json
+from pathlib import Path
+out=Path(__file__).parent;root=Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace");e=root/"evidence/pkgconf-install";prior=Path("/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-pkgconf-install-review-_c_8xtgp")
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();load=lambda p:json.loads(Path(p).read_text());watched={}
+def bind(p,s=None):
+ p=Path(p);actual=sha(p)
+ if s is not None:assert actual==s,str(p)
+ watched[str(p)]=actual;return actual
+identity={"checkout":str(root),"branch":"codex/marketplace-native-onboarding","head":"318c671f5c6a781b29af399d7f6005fe8a917bb5","common_git_directory":"/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git","helper_sha256":"4a1d7e799a02a97961d3275bba35c25ef5440390e82ec624675e6cafc75e64a0","contract_sha256":"3ed141c4d99903d28b41c2cf180ad0cc780fee2444daebf49f70a45b008dc217","candidate_sha256":"c17ae9411d1c40024ff5aca7c9863b3b23600095d62c51f80518a2fb613ae588"}
+helper=root/"dev/toolchains/pkgconf_install.py";bind(helper,identity["helper_sha256"]);bind(e/"contract.json",identity["contract_sha256"]);bind(e/"candidate.json",identity["candidate_sha256"])
+current=helper.read_text();old=(prior/"checked-helper.py.source").read_text();bind(prior/"checked-helper.py.source","cecdd666b787db46f28020a5cbb6db2b96938beddf9fe9065ea67d88f285b94a")
+expected=old.replace('    expected.pop(".")\n','    root = expected.pop(".")\n    assert root["type"] == "5" and keg.is_dir() and not keg.is_symlink()\n    assert oct(keg.stat().st_mode & 0o777) == root["mode"]\n',1)
+line='            assert run("pkg-config-version", [exe, "--version"], descriptor=fd).strip() == "3.0.8"\n'
+assert expected.count(line)==1;expected=expected.replace(line,'',1)
+anchor='                assert {line.strip().split()[0] for line in deps} == set(contract["runtime_libraries"][path])\n';assert expected.count(anchor)==1
+expected=expected.replace(anchor,anchor+line,1);assert current==expected
+oldcan=load(prior/"checked-candidate.json");can=load(e/"candidate.json")
+assert can["head"]==identity["head"] and can["contract_sha256"]==identity["contract_sha256"]
+for p,s in can["files"].items():bind(root/p,s)
+assert can["files"]["docs/vcpkg-toolchains.md"]==oldcan["files"]["docs/vcpkg-toolchains.md"]
+plan=".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md";progress=plan.replace("task_plan.md","progress.md")
+assert can["files"][plan]==oldcan["files"][plan]
+lines=(root/progress).read_text().splitlines(keepends=True)
+assert hashlib.sha256(''.join(lines[:-3]).encode()).hexdigest()==oldcan["files"][progress]
+assert ''.join(lines[-3:])=='- Cold review reproduced an unchecked keg-root mode. The helper now validates\n  that mode and delays pkg-config execution until all Mach-O checks pass.\n  The original candidate and finding remain retained; delta review is pending.\n'
+origreview=load(prior/"review.json");bind(prior/"review.json","24cd8efb6ade0ebfe204312a3a36bfeeff9f62c7c4977778dbbcf78ca35ceaf5")
+bind(prior/"supporting-manifest.json","381b58c2813b1a4f86b80f3d9c6d8fa780284104153850def14b786a836a6905")
+assert [f["id"] for f in origreview["findings"]]==["R1"]
+required=set(load(prior/"supporting-manifest.json")["allowlist"])|{"review.json","supporting-manifest.json"}
+rows=load(e/"original-review-copy-manifest.json")["files"];assert len(rows)==14 and {Path(r["destination"]).name for r in rows}==required
+for r in rows:
+ source=Path(r["source"]);target=root/r["destination"];assert source.parent==prior;bind(source,r["sha256"]);bind(target,r["sha256"]);assert source.read_bytes()==target.read_bytes()
+for r in load(e/"original-candidate-copy-manifest.json")["files"]:
+ target=root/r["destination"];bind(target,r["sha256"])
+ retained=prior/("checked-candidate.json" if target.name=="candidate.json" else "checked-helper.py.source")
+ assert target.read_bytes()==retained.read_bytes()
+for name in ("original-review-copy-manifest.json","original-candidate-copy-manifest.json","review-repair.diff","repaired-static.json"):bind(e/name)
+static=load(e/"repaired-static.json");assert static["helper_sha256"]==identity["helper_sha256"] and all(r["returncode"]==0 for r in static["commands"])
+assert json.loads(static["commands"][1]["stdout"])["checks"]["baseline"]==19
+ct,ot=ast.parse(current),ast.parse(old)
+findloop=lambda t:next(n for n in ast.walk(t) if isinstance(n,ast.For) and isinstance(n.iter,ast.Subscript) and isinstance(n.iter.value,ast.Name) and n.iter.value.id=="contract" and isinstance(n.iter.slice,ast.Constant) and n.iter.slice.value=="macho_files")
+loop,oldloop=findloop(ct),findloop(ot);assert ast.dump(loop)==ast.dump(oldloop)
+parent=next(n for n in ast.walk(ct) if isinstance(n,ast.With) and loop in n.body)
+version=parent.body[parent.body.index(loop)+1]
+assert isinstance(version,ast.Assert) and 'run("pkg-config-version"' in ast.get_source_segment(current,version)
+assert version.lineno>loop.end_lineno and len(load(e/"contract.json")["macho_files"])==5
+controls=[];scope={"Path":Path,"load":load}
+node=next(n for n in ct.body if isinstance(n,ast.FunctionDef) and n.name=="validate_keg")
+exec(compile(ast.Module(body=[node],type_ignores=[]),str(helper),"exec"),scope)
+for mode,required_acceptance in ((0o755,True),(0o777,False)):
+ prefix=out/"fixtures"/oct(mode)/"prefix";keg=prefix/"Cellar/pkgconf/3.0.8";keg.mkdir(parents=True);keg.chmod(mode);(keg.parent/".mise-staging.lock").write_bytes(b"")
+ content=b"unchanged\n";leaf=keg/"kept.txt";leaf.write_bytes(content);leaf.chmod(0o444)
+ mf={"members":[{"path":"pkgconf/3.0.8","type":"5","mode":"0o755"},{"path":"pkgconf/3.0.8/kept.txt","type":"0","mode":"0o444","sha256":sha(leaf)}]};contract={"changed_files":[],"receipt_required":{"homebrew_version":"5.1.15 (mise)"},"text_postimages":{}}
+ receipt=keg/"INSTALL_RECEIPT.json";receipt.write_text(json.dumps(contract["receipt_required"]|{"time":1791749000,"changed_files":[]}))
+ observed=[{"path":p.name,"kind":"file","mode":oct(p.stat().st_mode&0o777),"sha256":sha(p),"bytes":p.stat().st_size} for p in (leaf,receipt)]
+ scope["PREFIX"]=prefix;scope["prefix_inventory"]=lambda p,exp=keg,rows=observed: rows if p==exp else (_ for _ in ()).throw(AssertionError("wrong inventory path"))
+ try:scope["validate_keg"](mf,contract);accepted=True
+ except AssertionError:accepted=False
+ assert accepted==required_acceptance
+ controls.append({"root_mode":oct(mode),"expected_mode":"0o755","required_acceptance":required_acceptance,"actual_acceptance":accepted})
+assert len(controls)==2
+for p,s in watched.items():assert sha(p)==s,p
+result={"result":"PASS","findings":[],**identity,"resolved_finding":"R1","prior_review_sha256":sha(prior/"review.json"),"exact_helper_delta_verified":True,"original_review_copy_pairs":14,"original_candidate_copies":2,"candidate_files_checked":4,"unchanged_contract_sha256":sha(e/"contract.json"),"progress_append_lines":3,"ordering":{"unchanged_full_macho_loop":True,"files":5,"loop_end_line":loop.end_lineno,"pkg_config_version_line":version.lineno,"version_is_immediately_after_loop":True},"validation_calls":2,"controls":controls,"retained_static_returncodes":[0,0],"full_audit_replayed":False,"native_commands":0,"watched_files":len(watched)}
+(out/"delta-results.json").write_text(json.dumps(result,indent=2)+"\n");(out/"watched-files.json").write_text(json.dumps(watched,indent=2)+"\n")
+print(json.dumps({"result":"PASS","validation_calls":2,"original_review_copies":14,"original_candidate_copies":2,"watched_files":len(watched)}))

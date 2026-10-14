@@ -1,0 +1,96 @@
+{
+  "cases": {
+    "hit": {
+      "commands": [
+        [
+          "api",
+          "repos/example/project"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:issue needle"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:pr needle"
+        ]
+      ],
+      "returncode": 0,
+      "sha256": "0b8980e09190696311ec172b9d3097cfe6c724ca31c07381b983072de807a3a3"
+    },
+    "null": {
+      "commands": [
+        [
+          "api",
+          "repos/example/project"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:issue unfindable"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:pr unfindable"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:issue"
+        ],
+        [
+          "api",
+          "-X",
+          "GET",
+          "search/issues",
+          "-f",
+          "q=repo:example/project is:pr"
+        ]
+      ],
+      "returncode": 0,
+      "sha256": "3696adafb34b9b5b0de8f0f55171df4ade90112c29428433cc724cf67e6f205a"
+    }
+  },
+  "controls": {
+    "help": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "aggregated-research <verb> [args...]\n  verbs: trackers\n"
+    },
+    "unknown": {
+      "returncode": 2,
+      "stderr": "aggregated-research: unknown verb 'bogus'\n",
+      "stdout": ""
+    }
+  },
+  "direct_url_sha256": "c01ea5282dfa1e538e046330fcb5c2f46df8f47f09bc9c1754a810826a4ba297",
+  "installed_cli": "/Users/rmanaloto/.claude/plugins/data/aggregated-research-ray-manaloto/mise/installs/pipx-git-https-github-com-ray-manaloto-knowledge-base-git/a872cb016feb5512994b37330ce6a387c5732253/kb-setup/bin/aggregated-research",
+  "installed_module_sha256": {
+    "cli.py": "51365b2f6752b1f1c314bac831976dfdd772cc0395685e82ee4ff6fa1e48ad95",
+    "generated/research_record.py": "2a354ba4c1c34ddcafb23a0f4e84418e3a35b52e4c8689c4a1057ccabf34c2a6",
+    "research/cli.py": "d4d4e366a5906c4566627223235990d686e4d0675df84350b30678478ff613f4",
+    "research/trackers.py": "254064a68b45a5605e02633fc74788440056de58253249456d240b6b8ac3c536"
+  },
+  "installed_python": "/Users/rmanaloto/.claude/plugins/data/aggregated-research-ray-manaloto/mise/installs/pipx-git-https-github-com-ray-manaloto-knowledge-base-git/a872cb016feb5512994b37330ce6a387c5732253/kb-setup/bin/python",
+  "pinned_commit": "a872cb016feb5512994b37330ce6a387c5732253",
+  "provider_calls": 0,
+  "source_checkout_access": "none"
+}

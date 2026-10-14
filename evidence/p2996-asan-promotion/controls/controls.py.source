@@ -1,0 +1,62 @@
+import ast,hashlib,json,os,shutil,signal,subprocess,sys,time
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+DIRECTORY=Path(__file__).parent
+sys.path.insert(0,str(ROOT/'dev/toolchains'))
+import p2996_asan_runtime as asan
+from mise_runtime import function
+HELPER=ROOT/'dev/toolchains/p2996_asan_promote.py'
+transition=function(HELPER,'transition',globals())
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,value):p.write_text(json.dumps(value,indent=2)+'\n')
+old=b'original private fixture\n';new=b'qualified private fixture\n';unknown=b'unknown private fixture\n'
+def identity(data):return {'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'mode':'0o755'}
+before,after=identity(old),identity(new)
+report={'helper_sha256':sha(HELPER),'guard_sha256':sha(Path(asan.__file__)),'controls':[],'commands':[],'shared_guard_executed':False,'native_runtime_executed':False}
+contract=json.loads((ROOT/'evidence/p2996-asan-promotion/contract.json').read_text());installed=Path(contract['target']);initial=asan.identity(installed);assert initial==contract['before']
+script='import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from p2996_asan_runtime import replace_exact;replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),json.loads(sys.argv[4]),json.loads(sys.argv[5]))'
+for case in ('success','qualification-failure','apply-before-failure','apply-after-failure','unknown-after-failure','backup-drift','source-mismatch','destination-mismatch','restore-failure'):
+ root=DIRECTORY/case;root.mkdir();work=root/'work';work.mkdir();target=root/'target.dylib';replacement=root/'replacement.dylib';target.write_bytes(unknown if case=='destination-mismatch' else old);target.chmod(0o755);replacement.write_bytes(unknown if case=='source-mismatch' else new);replacement.chmod(0o700)
+ profile=root/'mutation.sb';profile.write_text('(version 1)\n(allow default)\n(deny file-write*)\n(allow file-write* (subpath '+json.dumps(str(work))+') (literal '+json.dumps(str(target))+') (literal "/dev/null"))\n(deny network*)\n')
+ state={'mutation_started':False};events=[]
+ def snapshot():save(root/'state.json',state)
+ def apply(label,staged,expected,desired):
+  events.append(label)
+  if case=='apply-before-failure' and label=='promote':raise RuntimeError('injected failure before replace')
+  if case=='restore-failure' and label=='restore':raise RuntimeError('injected restore failure')
+  argv=['/usr/bin/sandbox-exec','-f',str(profile),sys.executable,'-E','-B','-c',script,str(ROOT/'dev/toolchains'),str(staged),str(target),json.dumps(expected),json.dumps(desired)];start=time.monotonic();p=subprocess.run(argv,capture_output=True,text=True,timeout=30)
+  logs=[]
+  for suffix,text in (('stdout',p.stdout),('stderr',p.stderr)):
+   path=root/(label+'.'+suffix);path.write_text(text);logs.append({'path':str(path),'sha256':sha(path)})
+  report['commands'].append({'case':case+'-'+label,'argv':argv,'returncode':p.returncode,'elapsed_seconds':time.monotonic()-start,'logs':logs});assert p.returncode==0,p.stderr
+  if label=='promote' and case in ('apply-after-failure','unknown-after-failure'):
+   if case=='unknown-after-failure':target.write_bytes(unknown)
+   raise RuntimeError('injected failure after replace')
+ def qualify(current):
+  events.append('qualify-'+str(current));assert asan.identity(target)==(after if current else before)
+  if current and case in ('qualification-failure','backup-drift','restore-failure'):
+   if case=='backup-drift':(work/'original.dylib').write_bytes(unknown)
+   raise RuntimeError('injected witness failure')
+ error=None
+ try:transition(work,target,replacement,before,after,apply,qualify,state,snapshot)
+ except BaseException as caught:error=type(caught).__name__+': '+str(caught)
+ assert (error is None)==(case=='success'),(case,error)
+ expected_bytes={'success':new,'unknown-after-failure':unknown,'backup-drift':new,'destination-mismatch':unknown,'restore-failure':new}.get(case,old);assert target.read_bytes()==expected_bytes
+ assert replacement.read_bytes()==(unknown if case=='source-mismatch' else new) and (replacement.stat().st_mode&0o7777)==0o700
+ if case in ('qualification-failure','apply-before-failure','apply-after-failure'):assert state['recovery'] in ('original restored','original already present') and events[-1]=='qualify-False'
+ if case in ('unknown-after-failure','backup-drift','restore-failure'):assert 'recovery_error' in state and 'qualify-False' not in events
+ if case=='unknown-after-failure':assert 'restore' not in events and (work/'original.dylib').read_bytes()==old
+ if case in ('source-mismatch','destination-mismatch'):assert not events and not state['mutation_started']
+ if (work/'original.dylib').exists():assert (work/'original.dylib').read_bytes()==(unknown if case=='backup-drift' else old)
+ report['controls'].append({'case':case,'result':'PASS','events':events,'error':error,'target':asan.identity(target),'state':state,'profile_sha256':sha(profile)})
+ if case=='success':
+  readonly=root/'private.sb';readonly.write_text('(version 1)\n(allow default)\n(deny file-write*)\n(allow file-write* (subpath '+json.dumps(str(work))+') (literal "/dev/null"))\n(deny network*)\n')
+  argv=['/usr/bin/sandbox-exec','-f',str(readonly),sys.executable,'-E','-B','-c','import sys;from pathlib import Path;Path(sys.argv[1]).write_bytes(b"forbidden")',str(target)];start=time.monotonic();p=subprocess.run(argv,capture_output=True,text=True,timeout=30);assert p.returncode==1 and 'PermissionError' in p.stderr and target.read_bytes()==new
+  logs=[]
+  for suffix,text in (('stdout',p.stdout),('stderr',p.stderr)):
+   path=root/('witness-write-denied.'+suffix);path.write_text(text);logs.append({'path':str(path),'sha256':sha(path)})
+  report['commands'].append({'case':'witness-write-denied','argv':argv,'returncode':p.returncode,'elapsed_seconds':time.monotonic()-start,'logs':logs});report['controls'].append({'case':'witness-write-denied','result':'PASS','profile_sha256':sha(readonly)})
+assert asan.identity(installed)==initial and sha(HELPER)==report['helper_sha256'] and sha(Path(asan.__file__))==report['guard_sha256']
+report.update(state='PASS: private transaction success, recovery, drift refusal and witness write confinement',installed_before_after=initial)
+save(DIRECTORY/'controls.json',report)
+print(json.dumps({'state':report['state'],'controls':len(report['controls']),'commands':len(report['commands']),'receipt':str(DIRECTORY/'controls.json')}))

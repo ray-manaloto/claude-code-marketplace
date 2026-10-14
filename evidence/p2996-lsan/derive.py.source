@@ -1,0 +1,62 @@
+"""Derive the bounded installed P2996 LSan witness contract."""
+
+import hashlib
+import json
+import shutil
+from pathlib import Path
+
+ROOT = Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace")
+EVIDENCE = ROOT / "evidence/p2996-lsan"
+DRIVER = Path("/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-driver-probe-20261012T043000Z")
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+prior = json.loads((ROOT / "evidence/p2996-tsan-promotion/contract.json").read_text())
+target = prior["target"]
+assert prior["tools"][target] == prior["before"]["sha256"]
+assert len(prior["inputs"]) == 190 and len(prior["source_inputs"]) == 881 and len(prior["tools"]) == 28
+assert all(sha(ROOT / path) == expected for path, expected in prior["inputs"].items())
+assert all(sha(Path(path)) == expected for path, expected in prior["source_inputs"].items())
+assert {path for path, expected in prior["tools"].items() if sha(Path(path)) != expected} == {target}
+assert sha(Path(target)) == prior["after"]["sha256"]
+
+contract = {key: value for key, value in prior.items() if key not in {
+    "target", "before", "after", "replacement", "replacement_identity", "witnesses"}}
+contract["scope"] = "Private P2996 LSan and LSan+UBSan clean, leak and overflow witnesses"
+contract["base_head"] = "6b31a44455de2da2e204a3d02040b21bb7dc72c1"
+contract["inputs"]["dev/toolchains/lsan_witness.cpp"] = sha(ROOT / "dev/toolchains/lsan_witness.cpp")
+contract["tools"][target] = prior["after"]["sha256"]
+runtime = Path(prior["prefixes"]["p2996"]) / "lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+assert runtime.is_file()
+contract["lsan_runtime"] = {"path": str(runtime), "sha256": sha(runtime),
+                            "bytes": runtime.stat().st_size, "mode": oct(runtime.stat().st_mode & 0o777)}
+contract["tools"][str(runtime)] = contract["lsan_runtime"]["sha256"]
+contract["runtime_environment"] = {
+    "LSAN_OPTIONS": "detect_leaks=1:exitcode=86:symbolize=0",
+    "UBSAN_OPTIONS": "exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1",
+}
+runtime_name = "lib/clang/21/lib/darwin/libclang_rt.lsan_osx_dynamic.dylib"
+overflow = "runtime error: signed integer overflow: 2147483647 + 1 cannot be represented"
+leak = "ERROR: LeakSanitizer: detected memory leaks"
+contract["sanitizers"] = {
+    "lsan": {"flags": ["-fsanitize=leak"], "runtimes": [runtime_name], "errors": {"leak": [leak]}},
+    "lsan-ubsan": {"flags": ["-fsanitize=leak,undefined"], "runtimes": [runtime_name],
+                   "errors": {"leak": [leak], "overflow": [overflow]}},
+}
+probe = json.loads((DRIVER / "summary.json").read_text())
+assert [row["returncode"] for row in probe] == [0, 0]
+assert all(row["mentions_lsan_runtime"] and not row["mentions_asan_runtime"] for row in probe)
+contract["driver_probe"] = {name: sha(DRIVER / name) for name in
+                            ("summary.json", "lsan.stderr", "lsan-ubsan.stderr")}
+copy = EVIDENCE / "driver-probe"
+copy.mkdir(exist_ok=True)
+for name in ("summary.json", "lsan.stderr", "lsan.stdout", "lsan-ubsan.stderr", "lsan-ubsan.stdout"):
+    shutil.copyfile(DRIVER / name, copy / name)
+    assert sha(copy / name) == sha(DRIVER / name)
+(EVIDENCE / "contract.json").write_text(json.dumps(contract, indent=2) + "\n")
+print(json.dumps({"contract_sha256": sha(EVIDENCE / "contract.json"),
+                  "inputs": len(contract["inputs"]), "source_inputs": len(contract["source_inputs"]),
+                  "tools": len(contract["tools"]), "lsan_runtime": contract["lsan_runtime"]}))

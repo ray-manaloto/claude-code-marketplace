@@ -1,0 +1,1402 @@
+{
+  "state": "PASS: bounded type-reflection advice, restricted fixer, rebuild/run and clean analysis",
+  "helper_sha256": "b840f31d5e70ebcb523e25994e7551be8c593a385d00fe6746301b868f57fd4a",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T15:52:34.043876+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45809,
+      "returncode": 0,
+      "elapsed_seconds": 0.013096624985337257,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/project-head.stdout",
+          "sha256": "e624de2dd71e41d836c6d875209d10eb76a00c7f2d1cd2034e2ce74d7c620d7b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T15:52:34.058040+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45810,
+      "returncode": 0,
+      "elapsed_seconds": 0.08251616708002985,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "named-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T15:52:34.141510+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45811,
+      "returncode": 0,
+      "elapsed_seconds": 0.08216187497600913,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/named-profile.stdout",
+          "sha256": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/named-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T15:52:34.233344+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45812,
+      "returncode": 0,
+      "elapsed_seconds": 0.05023991607595235,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/capacity-processes.stdout",
+          "sha256": "53ddf7ebdf037048a18efa9b005793150de4e755be7c528c6e73f7e86c77ba04"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-11T15:52:34.287568+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 15,
+      "stdin": null,
+      "pid": 45813,
+      "returncode": 0,
+      "elapsed_seconds": 0.020744416979141533,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-11T15:52:34.309407+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 15,
+      "stdin": null,
+      "pid": 45814,
+      "returncode": 0,
+      "elapsed_seconds": 0.03580599999986589,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-census.stdout",
+          "sha256": "7ed7d4c8ae8ad6ab5ce66b1fb8504ecb15b5627bf89350aeb385689eed0da740"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-11T15:52:34.346417+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 20,
+      "stdin": null,
+      "pid": 45815,
+      "returncode": 0,
+      "elapsed_seconds": 1.0519599169492722,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-stats.stdout",
+          "sha256": "d75921b800aefef4cada8b620f384970c832cfcc21c54bb7476f845b0a916663"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-iwyu-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T15:52:37.220124+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45832,
+      "returncode": 0,
+      "elapsed_seconds": 0.013057750067673624,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-head.stdout",
+          "sha256": "95ecbde4056405f4054e16728153601fa930134e8730bcd8fb17143adf2d6384"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-iwyu-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T15:52:37.234603+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45833,
+      "returncode": 0,
+      "elapsed_seconds": 0.0121126250596717,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-tree.stdout",
+          "sha256": "32fd93bce1995cb13a4a5603307e6436ec7c1ea5a21658407bef49990664f439"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-iwyu-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T15:52:37.247792+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45834,
+      "returncode": 0,
+      "elapsed_seconds": 0.01878641697112471,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-status.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-iwyu-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T15:52:37.267773+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45835,
+      "returncode": 0,
+      "elapsed_seconds": 0.014948999974876642,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-diff.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-iwyu-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-llvm-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T15:52:37.283550+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45836,
+      "returncode": 0,
+      "elapsed_seconds": 0.012347916956059635,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-llvm-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T15:52:37.297243+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45837,
+      "returncode": 0,
+      "elapsed_seconds": 0.014735582983121276,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-llvm-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T15:52:37.313359+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45838,
+      "returncode": 0,
+      "elapsed_seconds": 1.191320625017397,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "before-llvm-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T15:52:38.506176+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45840,
+      "returncode": 0,
+      "elapsed_seconds": 0.49011579097714275,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/before-llvm-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "baseline-build",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-nostdlib++",
+        "-O0",
+        "-g",
+        "-v",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/baseline"
+      ],
+      "started_at": "2026-10-11T15:52:39.069723+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45841,
+      "returncode": 0,
+      "elapsed_seconds": 1.1451632500393316,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/baseline-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/baseline-build.stderr",
+          "sha256": "67f344e6431e06eb8b0fcdd36344befb26f76bf4cb364f77aae8912e8a0ca615"
+        }
+      ]
+    },
+    {
+      "case": "baseline-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/baseline"
+      ],
+      "started_at": "2026-10-11T15:52:40.217293+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45856,
+      "returncode": 0,
+      "elapsed_seconds": 0.18679545796476305,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/baseline-run.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/baseline-run.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "advice",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/include-what-you-use",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-Xiwyu",
+        "--verbose=3",
+        "-Xiwyu",
+        "--error=23",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc"
+      ],
+      "started_at": "2026-10-11T15:52:40.405952+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 23,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45857,
+      "returncode": 23,
+      "elapsed_seconds": 0.6611699579516426,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/advice.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/advice.stderr",
+          "sha256": "96c34fd2e150e9e2d7ce6a59f4427529db8b7b74de2cb3cc354357cf66fffdf7"
+        }
+      ]
+    },
+    {
+      "case": "fixer",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/fix_includes.py",
+        "--noblank_lines",
+        "--nocomments",
+        "--basedir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc"
+      ],
+      "started_at": "2026-10-11T15:52:41.070786+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/advice.stderr",
+        "sha256": "96c34fd2e150e9e2d7ce6a59f4427529db8b7b74de2cb3cc354357cf66fffdf7"
+      },
+      "pid": 45858,
+      "returncode": 0,
+      "elapsed_seconds": 0.11718341708183289,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixer.stdout",
+          "sha256": "9de801d44e1c6718c082699b9c945590c9692ae613b011d7f41774a2051250db"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixer.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "fixed-build",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-nostdlib++",
+        "-O0",
+        "-g",
+        "-v",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/fixed"
+      ],
+      "started_at": "2026-10-11T15:52:41.190403+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45859,
+      "returncode": 0,
+      "elapsed_seconds": 0.577289916924201,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixed-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixed-build.stderr",
+          "sha256": "3b0692e1d63d1a15813335ea0ef1d9f6146c199226175531ac9010909a4fec9f"
+        }
+      ]
+    },
+    {
+      "case": "fixed-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/fixed"
+      ],
+      "started_at": "2026-10-11T15:52:41.768838+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45863,
+      "returncode": 0,
+      "elapsed_seconds": 0.13385424995794892,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixed-run.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixed-run.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "clean-analysis",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/include-what-you-use",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-Xiwyu",
+        "--verbose=3",
+        "-Xiwyu",
+        "--error=23",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc"
+      ],
+      "started_at": "2026-10-11T15:52:41.904213+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45864,
+      "returncode": 0,
+      "elapsed_seconds": 0.6541090420214459,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/clean-analysis.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/clean-analysis.stderr",
+          "sha256": "dbe888d035ae6554b129cf6c51f6f711c04df75f95999c9d0dfefceff05134b1"
+        }
+      ]
+    },
+    {
+      "case": "missing-reflection",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/prefix/bin/include-what-you-use",
+        "--no-default-config",
+        "-std=c++26",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-I",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection",
+        "-Xiwyu",
+        "--verbose=3",
+        "-Xiwyu",
+        "--error=23",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc"
+      ],
+      "started_at": "2026-10-11T15:52:42.559734+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 1,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45865,
+      "returncode": 1,
+      "elapsed_seconds": 0.5725369170540944,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/missing-reflection.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/missing-reflection.stderr",
+          "sha256": "ef2605a4da32cce946ee45311bbdcef5c448d540ad69c97196499ea901fbd3e8"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T15:52:43.136283+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 45866,
+      "returncode": 0,
+      "elapsed_seconds": 0.07990883302409202,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-iwyu-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T15:52:46.460501+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47656,
+      "returncode": 0,
+      "elapsed_seconds": 0.013348332955501974,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-head.stdout",
+          "sha256": "95ecbde4056405f4054e16728153601fa930134e8730bcd8fb17143adf2d6384"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-iwyu-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T15:52:46.475578+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47657,
+      "returncode": 0,
+      "elapsed_seconds": 0.013051124988123775,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-tree.stdout",
+          "sha256": "32fd93bce1995cb13a4a5603307e6436ec7c1ea5a21658407bef49990664f439"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-iwyu-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T15:52:46.490193+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47660,
+      "returncode": 0,
+      "elapsed_seconds": 0.01915225002449006,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-status.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-iwyu-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-source-20261011T140625Z/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T15:52:46.510597+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47663,
+      "returncode": 0,
+      "elapsed_seconds": 0.014053708058781922,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-diff.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-iwyu-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-llvm-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T15:52:46.525919+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47664,
+      "returncode": 0,
+      "elapsed_seconds": 0.013656875002197921,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-llvm-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T15:52:46.541013+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47667,
+      "returncode": 0,
+      "elapsed_seconds": 0.013523709028959274,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-llvm-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T15:52:46.556246+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47669,
+      "returncode": 0,
+      "elapsed_seconds": 1.0991936669452116,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "after-llvm-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T15:52:47.657085+00:00",
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z",
+      "expected_returncode": 0,
+      "timeout_seconds": 60,
+      "stdin": null,
+      "pid": 47688,
+      "returncode": 0,
+      "elapsed_seconds": 0.22692270798143,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/after-llvm-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "admission_sha256": "10dfe7837582406ad0e1626d87817db3a3e5d63cc209f9fd6671d89320a268bf",
+  "capacity": {
+    "active": [],
+    "load": [
+      3.44970703125,
+      3.87255859375,
+      4.00439453125
+    ],
+    "cpus": 12,
+    "free_bytes": 60768030720,
+    "total_cpu_percent": 144.6,
+    "container_cpu_percent": 5.26
+  },
+  "fixture_before": [
+    {
+      "path": "indirect.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "3fe3f2424a609947d25e1f7df4f8d45f5bfebdd94d5a516f0ecea8cca92254e6",
+      "bytes": 78
+    },
+    {
+      "path": "main.cc",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "b28d00232bd243ea140b8e8318aed7e341559348b403bf461fb85170ec6ee2d9",
+      "bytes": 166
+    },
+    {
+      "path": "value.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "49ca2a6f4b06858f7222136ff9130dee5ae69cf27fb8b60f788d80e1226e4c55",
+      "bytes": 89
+    }
+  ],
+  "recommendations": [
+    [
+      "#include \"value.h\""
+    ],
+    [
+      "- #include \"indirect.h\""
+    ],
+    [
+      "#include <meta>",
+      "#include \"value.h\""
+    ]
+  ],
+  "fixture_after_fix": [
+    {
+      "path": "baseline",
+      "mode": "0o700",
+      "kind": "file",
+      "sha256": "64704c58a8f41bc13065d136a20e7c9ac6c438b9c0ba2f8f3f534250a51e5f21",
+      "bytes": 17176
+    },
+    {
+      "path": "baseline.dSYM",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Info.plist",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "dd585d1f372c8034162a275f99d6deac607cdd28b280ce884d527ee2966a27d7",
+      "bytes": 637
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/DWARF",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/DWARF/baseline",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "3420826832694ed04e4695355f9f6fcdee810aefdb6b9bcae0334e6f0f48d323",
+      "bytes": 25888
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations/aarch64",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations/aarch64/baseline.yml",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "860c86bfa61cc808ba28f64899d7a4c5080ebfda3456f6f69f072ba1b52ebd4c",
+      "bytes": 205
+    },
+    {
+      "path": "indirect.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "3fe3f2424a609947d25e1f7df4f8d45f5bfebdd94d5a516f0ecea8cca92254e6",
+      "bytes": 78
+    },
+    {
+      "path": "main.cc",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "0365b5c601ae129da9f90a5bed3bd5d6bf4d6f23ff3eaefb4bee694ded458a6b",
+      "bytes": 163
+    },
+    {
+      "path": "value.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "49ca2a6f4b06858f7222136ff9130dee5ae69cf27fb8b60f788d80e1226e4c55",
+      "bytes": 89
+    }
+  ],
+  "final_fixture": [
+    {
+      "path": "baseline",
+      "mode": "0o700",
+      "kind": "file",
+      "sha256": "64704c58a8f41bc13065d136a20e7c9ac6c438b9c0ba2f8f3f534250a51e5f21",
+      "bytes": 17176
+    },
+    {
+      "path": "baseline.dSYM",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Info.plist",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "dd585d1f372c8034162a275f99d6deac607cdd28b280ce884d527ee2966a27d7",
+      "bytes": 637
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/DWARF",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/DWARF/baseline",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "3420826832694ed04e4695355f9f6fcdee810aefdb6b9bcae0334e6f0f48d323",
+      "bytes": 25888
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations/aarch64",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "baseline.dSYM/Contents/Resources/Relocations/aarch64/baseline.yml",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "860c86bfa61cc808ba28f64899d7a4c5080ebfda3456f6f69f072ba1b52ebd4c",
+      "bytes": 205
+    },
+    {
+      "path": "fixed",
+      "mode": "0o700",
+      "kind": "file",
+      "sha256": "700d38a1047064a6d526d8336aa77b372ce2c4b03a023b0ce99333c2f95d09ab",
+      "bytes": 17176
+    },
+    {
+      "path": "fixed.dSYM",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents/Info.plist",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "27cf04e2eaa899bf3e0d0b20fedda9c866a39aa3643457616a36e50f45dc9b20",
+      "bytes": 634
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources/DWARF",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources/DWARF/fixed",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "df3695b237359c57bf6093b59b3892a2024735a77cbfa38d22ee6a177ebbcbd2",
+      "bytes": 25888
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources/Relocations",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources/Relocations/aarch64",
+      "mode": "0o700",
+      "kind": "directory"
+    },
+    {
+      "path": "fixed.dSYM/Contents/Resources/Relocations/aarch64/fixed.yml",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "5e946bff338b789d79825af2d01a14aa21e8754b4767345b5bed1dba12939040",
+      "bytes": 202
+    },
+    {
+      "path": "indirect.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "3fe3f2424a609947d25e1f7df4f8d45f5bfebdd94d5a516f0ecea8cca92254e6",
+      "bytes": 78
+    },
+    {
+      "path": "main.cc",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "0365b5c601ae129da9f90a5bed3bd5d6bf4d6f23ff3eaefb4bee694ded458a6b",
+      "bytes": 163
+    },
+    {
+      "path": "value.h",
+      "mode": "0o600",
+      "kind": "file",
+      "sha256": "49ca2a6f4b06858f7222136ff9130dee5ae69cf27fb8b60f788d80e1226e4c55",
+      "bytes": 89
+    }
+  ],
+  "lease_released": true,
+  "protected_state_unchanged": true
+}

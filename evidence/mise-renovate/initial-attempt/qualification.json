@@ -1,0 +1,109 @@
+{
+  "state": "FAIL",
+  "helper_sha256": "55dc72e3f26baf26a6c250c9aa652d30a06873f6f3c4efb0a70be93f788ef468",
+  "contract_sha256": "72d537a4857e431afab0f1127114107cbc54facc83db20da7deb84f182ea80f1",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T18:32:24.641849+00:00",
+      "pid": 98063,
+      "returncode": 0,
+      "elapsed_seconds": 0.012606375035829842,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/project-head.stdout",
+          "sha256": "8acf30d14511ee047e83b9ef4c7e54fc9c58f774ea9122e88b8e14fcef83d085"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--version"
+      ],
+      "started_at": "2026-10-11T18:32:24.657100+00:00",
+      "pid": 98064,
+      "returncode": 0,
+      "elapsed_seconds": 0.013203042093664408,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/version.stdout",
+          "sha256": "aafc9ea40926d1caedd237951384706dbdbe597b3904890d65c79846459bea0e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T18:32:24.671368+00:00",
+      "pid": 98066,
+      "returncode": 0,
+      "elapsed_seconds": 0.09543954092077911,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/default-profile.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-reattest-20261011T183215Z/default-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "admission_sha256": "84df7fa9884002ae878992e70944a4178e9d2ca7f1e7120d61fb7f167adb11bd",
+  "writer_census_before": {
+    "at": "2026-10-11T18:32:24.636544+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "error": "AssertionError('default')",
+  "protected_state_unchanged": true
+}

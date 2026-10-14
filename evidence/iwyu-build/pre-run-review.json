@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "unit": "09b IWYU native-operation pre-run cold review",
+  "result": "PASS: pre-run guard and receipt review; native IWYU execution remains UNVERIFIED",
+  "created_at": "2026-10-11T14:47:49.027941+00:00",
+  "reviewer": "/root/cold_bottle_review",
+  "findings": [],
+  "helper_sha256": "48b95b5252fef0cfed97c1b45d99678c771a54f9262c5361d68f3fb6a2c34c6c",
+  "proposal_sha256": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "ec1b5353ec9ab684d5a3668675778ca503923d4a",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "initial_native_inspection_exit": 0
+  },
+  "ownership": {
+    "sole_writer": "parent /root",
+    "reviewer_shared_files_owned": [],
+    "writes": "new private reviewer directory only",
+    "maintained_files": {
+      "dev/toolchains/iwyu_build.py": "48b95b5252fef0cfed97c1b45d99678c771a54f9262c5361d68f3fb6a2c34c6c",
+      "docs/iwyu-toolchain.md": "73b4e11b9088c21a9cdada133a7f8baf0d0995be069257f0ebd14171e50df184",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "2679398234fafd4542b91ef8b6812cef49ad1a8a0a6910dd06f6451a077725b0",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "3acf338b59d9e057f2d4ca49bf2afd9c2638c423d8854c1a055b82a1bfa64367"
+    },
+    "maintained_hashes_unchanged": true
+  },
+  "prerequisites": {
+    "passed_09a_review": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-source/preparation-review.json",
+      "sha256": "63ee85f2a4e3f1dba7d09d7e8dc414471b4a2852dc5a8ba782899d76836df5fc",
+      "bytes": 10565
+    },
+    "current_proposal": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/proposal.json",
+      "sha256": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8",
+      "bytes": 8989
+    },
+    "current_preparation": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/preparation/qualification.json",
+      "sha256": "77875f75800600c3c11a5084cc2298a9a1afc86c9deb23704b3137a73d2cde0e",
+      "bytes": 29484
+    },
+    "current_preparation_manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/preparation-manifest.json",
+      "sha256": "8d6842628fe824faeaa0e270f3f35e72019ddb6aef056965e8986788ed29d1d7",
+      "bytes": 13659
+    },
+    "earlier_preparation_manifest": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/preparation-1-manifest.json",
+      "sha256": "f68c77910ecfe5b040da261518f4ff5e141b066e14339e356c4e69d438171e8f",
+      "bytes": 14376
+    },
+    "retained_static_gates": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/preparation-static-checks.json",
+      "sha256": "152d265d3751adbc4ca9de03a26bbe7ce9155397bc47127c846a13c39cdc8b2b",
+      "bytes": 687
+    }
+  },
+  "executed_checks": {
+    "review_wrapper": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/invocation.json",
+      "sha256": "eec83edefe9ecc4dd006190b2516c94c03f98d61eea8860b1b6313508c4ca8fa",
+      "bytes": 990
+    },
+    "wrapper_exit_code": 0,
+    "argument_controls": [
+      {
+        "case": "help",
+        "returncode": 0,
+        "expected_returncode": 0
+      },
+      {
+        "case": "relative",
+        "returncode": 2,
+        "expected_returncode": 2
+      },
+      {
+        "case": "project",
+        "returncode": 2,
+        "expected_returncode": 2
+      },
+      {
+        "case": "llvm-build",
+        "returncode": 2,
+        "expected_returncode": 2
+      }
+    ],
+    "argument_controls_fresh_processes": 4,
+    "pure_data_controls": 21,
+    "pure_data_accepts": 2,
+    "pure_data_expected_rejections": 19,
+    "static_check_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/static-checks.json",
+      "sha256": "67e1e61703b61c972afd356a8bb323b6604878ffe9c3e8094b2d10ee94d84be3",
+      "bytes": 7087
+    },
+    "synthetic_fixture": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/pure-fixture.json",
+      "sha256": "10952ad7e9d31065181c494875939162ca2686d4124b69b38fcc20cd5299bea5",
+      "bytes": 27923
+    }
+  },
+  "receipt_verification": {
+    "current_and_earlier_original_copy_pairs": 84,
+    "separately_reconstructed_old_helper": 1,
+    "earlier_helper_reconstruction": "Only comparator block changed; reversing that block yields the exact SHA-256 bound by the earlier proposal.",
+    "retained_preparation_native_command_count": 40,
+    "retained_preparation_command_log_count": 80,
+    "retained_preparation_wrapper_exits": [
+      0,
+      0
+    ],
+    "current_and_earlier_preparation_commands_all_zero": true,
+    "default_before_after_match_registration": true,
+    "source_before_after_receipts_match": true,
+    "selected_profile_matches_current_proposal": true,
+    "current_admitted_project_input_hashes": 52,
+    "current_tool_hashes": 11,
+    "current_source_blob_hash_size_mode_checks": 854,
+    "current_protected_global_configuration_hash_mode_checks": 9,
+    "original_Claude_files": 19,
+    "retained_static_gate_exits": [
+      0,
+      0
+    ],
+    "static_gates_rerun": false
+  },
+  "static_guard_review": {
+    "admission": "Run directory/helper, review hash/PASS/no-findings, proposal hash and full recomputed proposal equality precede the host lease and native actions. The proposal includes helper and input/tool hashes, selected profile, exact source/SDK/prefix, base HEAD, limits and jobs.",
+    "confinement": "Normalized fresh operation directory outside project, both upstream sources, LLVM build/install workspace and global config/mise roots. Configure/build/install target new children under that operation root; inspected pinned CMake install rules target the private prefix. Install manifest and full prefix inventory are checked after installation. Existing files are never cleaned or rewritten by the runner.",
+    "capacity": "Pinned canonical host-lock module and path; inherited-lock state rejected; immediate process, CPU/load, disk and Docker-context/container checks under the lock. The reviewer did not acquire the lock or query Docker/capacity.",
+    "cleanup": "Exact previously reviewed run function preserves real return codes and log hashes; timeout/interruption cleanup masks repeated termination signals and kills its process group through TERM/grace/KILL. The shared lock scope unwinds on failure; finally always attempts protected state/source/input/tool/SDK checks and persists qualification. This was source-reviewed only, without repeating historical timeout tests.",
+    "commands": "Pinned upstream lists 15 IWYU translation units. Candidate checks compiler/source/SDK/ARM64/C++17/EH/RTTI flags, compares all 15 CDB commands with planned Ninja commands after removing only the exact five dependency tokens bound to each output, and requires 16 executed lines to equal planned lines. Two pure positive cases and 19 explicit admission/comparator mutations passed; the generated native commands themselves remain unobserved.",
+    "installed_witness": "ARM64 and version/loader assertions are explicit. --version exit 0 and Git revision/full Clang version text are supported by inspected exact upstream code. otool library and LC_RPATH output is retained for post-run review; actual generated rpaths and dylib resolution remain unverified until that operation.",
+    "preservation": "Full installed-prefix/source/build/default protection uses the exact frozen helper and accepted inventories. Both retained preparation runs report successful protection. Review independently rehashed the new source/input/tool/global-config/original-Claude bindings without rerunning broad runtime suites.",
+    "scope": "Exactly four maintained files; native execution remains pending in docs/plans; no public Claude name/interface changes."
+  },
+  "limitations": [
+    "No --execute, project configure, compiler, build, install, IWYU native version/analysis, relocation or reflection apply/rebuild was run by reviewer.",
+    "No Docker census, lease acquisition, services, containers, installs, network or model sessions.",
+    "No native preparation rerun, old timeout/failure battery or full prefix-runtime suite; retained receipts were inspected.",
+    "Synthetic command/admission inputs exercise source assertions only and do not establish actual generated command or runtime correctness.",
+    "Parent must use this exact reviewed helper/proposal and fresh admission for the native operation; native completion and post-run review remain separate."
+  ],
+  "reviewer_correction": {
+    "initial_exit_code": 1,
+    "initial_error": "KeyError: source for explicitly reconstructed helper manifest entry",
+    "candidate_commands_before_error": 0,
+    "retention": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/initial-retention.json",
+      "sha256": "3623d46ee3ddc7f4901dd337fbf2fcbc771316ca563f6a33497844e93b3f6e9a",
+      "bytes": 1973
+    },
+    "disposition": "Corrected private reader; no candidate change or finding."
+  },
+  "status_probe": "Answered through native collaboration before final, including completed control outcomes and no unresolved finding.",
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-prerun-review-f3mq_3fb/supporting-manifest.json",
+    "sha256": "ed3407c34ad76b4d86faf8d78e5dfd4a413a40eca49ebc6cb24cb61aa6ab0302",
+    "bytes": 5502
+  }
+}

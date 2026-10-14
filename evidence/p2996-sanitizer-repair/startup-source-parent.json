@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-12T00:03:42.121255+00:00",
+  "parent_verified_source_bindings": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+      "sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+      "bytes": 17205
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/tests/sanitizer_procmaps_mac_test.cpp",
+      "sha256": "db989695808dac019c0401e4343fc59711921fba6fe223595585e92fd9490d71",
+      "bytes": 5386
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/tests/sanitizer_procmaps_test.cpp",
+      "sha256": "b2d0fbccdf8ecd6e804051478d0514a4b8d85d736f0921ec609d38c87d8cc52e",
+      "bytes": 4675
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/mach/task_info.h",
+      "sha256": "97604815a62fbc508daefe7c3f9d81fcb51fbf314cb7f0134782c91775751242",
+      "bytes": 24412
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/mach-o/dyld_images.h",
+      "sha256": "909c205966428440ceeac78621f07988f1e488b068e72e8efb1ec130f6cad391",
+      "bytes": 9367
+    }
+  ],
+  "retained_inspector_report": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/asan-startup-source-atqpKX/startup-source.json",
+    "sha256": "5dbf32f7e320a597d5edec4c55718fd397c78b9d1a15f6e9c85e7f69241ef071",
+    "state": "SOURCE_TRACE_COMPLETE_SAMPLE_PENDING",
+    "source_files": 10,
+    "limitation": "The inspector confirmed sampled initialization re-entry in its messages, but its final expanded receipt was interrupted by a service error. This parent record does not claim a delivered 13-file inspector receipt."
+  },
+  "sample": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-startup-repeat-20261011T235521Z/startup.sample.txt",
+    "sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840"
+  },
+  "observed_cause": "Same-thread recursive AsanInitFromRtl before SetAsanInited. MemoryRangeIsAvailable invokes get_dyld_hdr; shared-cache iteration invokes allocating Block_copy; sanitizer malloc zone re-enters the held init mutex.",
+  "candidate_strategy": "For the currently qualified macOS 27 target, retrieve the self-process dyld header through public TASK_DYLD_INFO and dyld_all_image_infos.dyldImageLoadAddress. Validate task_info result, returned size/format, address, version and Mach-O dyld header. Preserve mapping enumeration and shadow validation. Original paths for older operating systems remain unchanged.",
+  "source_spans": {
+    "sanitizer_procmaps_mac.cpp": [
+      "145-148",
+      "194-215",
+      "217-241"
+    ],
+    "mach/task_info.h": [
+      "260-271"
+    ],
+    "mach-o/dyld_images.h": [
+      "122-139"
+    ]
+  },
+  "native_probe_or_patch_applied": false,
+  "state": "SOURCE-BASED SCRATCH CANDIDATE; requires preparation review and bounded native controls"
+}

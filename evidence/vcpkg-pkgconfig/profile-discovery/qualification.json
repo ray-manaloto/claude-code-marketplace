@@ -1,0 +1,213 @@
+{
+  "scope": "Guarded read-only filesystem lookup under existing named profiles; no pkg-config, compiler or dependency execution",
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.08321750001050532,
+      "stdout_sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "p2996-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.08842666703276336,
+      "stdout_sha256": "9b2f8ed032ab499b1163f236170fd47da7e80a435df8180e3e11b16468a334fe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "p2996-lookup",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import hashlib,json,os,shutil;print(json.dumps({'home':os.environ.get('HOME'),'path_sha256':hashlib.sha256(os.environ.get('PATH','').encode()).hexdigest(),'path_components':len(os.environ.get('PATH','').split(os.pathsep)),'tools':{n:shutil.which(n) for n in ['pkg-config','pkgconf']},'pkg_config_override_defined':'PKG_CONFIG' in os.environ}))"
+      ],
+      "returncode": 0,
+      "seconds": 0.10365083406213671,
+      "stdout_sha256": "6e08e1d6af5013960717da23493b8acf7086b9453133afbb46a788d730dde724",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "gcc16-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.09065516700502485,
+      "stdout_sha256": "cc00d9513773e9a7863b6bce6663e5885d62bd095998a6acb1cf846a90553524",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "gcc16-lookup",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconfig-profile-probe-zkzvlqjn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import hashlib,json,os,shutil;print(json.dumps({'home':os.environ.get('HOME'),'path_sha256':hashlib.sha256(os.environ.get('PATH','').encode()).hexdigest(),'path_components':len(os.environ.get('PATH','').split(os.pathsep)),'tools':{n:shutil.which(n) for n in ['pkg-config','pkgconf']},'pkg_config_override_defined':'PKG_CONFIG' in os.environ}))"
+      ],
+      "returncode": 0,
+      "seconds": 0.10236566700041294,
+      "stdout_sha256": "6e08e1d6af5013960717da23493b8acf7086b9453133afbb46a788d730dde724",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.08264345803763717,
+      "stdout_sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "helper_sha256": "826a9cf09b3835ca4c914cff40d2d97208a08b929122ae680c0e3955f90f6542",
+  "writer_census_before": {
+    "at": "2026-10-11T19:23:48.298375+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "protected_before": true,
+  "discovery": {
+    "p2996": {
+      "home": "/Users/rmanaloto",
+      "path_sha256": "76e6798286594e91683d678f39bc850669d7b9e441bcc530b97eb633cab0a13e",
+      "path_components": 160,
+      "tools": {
+        "pkg-config": null,
+        "pkgconf": null
+      },
+      "pkg_config_override_defined": false
+    },
+    "gcc16": {
+      "home": "/Users/rmanaloto",
+      "path_sha256": "76e6798286594e91683d678f39bc850669d7b9e441bcc530b97eb633cab0a13e",
+      "path_components": 160,
+      "tools": {
+        "pkg-config": null,
+        "pkgconf": null
+      },
+      "pkg_config_override_defined": false
+    }
+  },
+  "state": "PASS: existing profile discovery only",
+  "writer_census_after": {
+    "at": "2026-10-11T19:23:51.228447+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "protected_after": true
+}
