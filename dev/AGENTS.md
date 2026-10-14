@@ -23,6 +23,10 @@ Subdirectories: `research_refresh/` (runner, own `README.md` and tests), `toolch
 ## Writing a helper
 
 - Helpers use the standard library only, read inputs boundedly and reach no network.
+- Exit codes: 0 pass, 1 usage, 2 refusal with one reason per stderr line (C2 section E;
+  `retro_gate.py`, `plan_decide.py`). argparse exits 2 on usage, so subclass `error`.
+- A task that forwards free text runs as `mise run <task> -- <argv>` with no `usage` line; a
+  `usage` variadic splits a multi-word argument.
 - A helper that mutates state previews first, applies against a fresh preimage and
   verifies afterwards; an ambiguous attempt is verify-only.
 - Unit size and ownership: `docs/agents/codex-task-orchestration.md`.

@@ -531,9 +531,23 @@ verbatim in `progress-archive-2026-10-13.md`.
   CODING_STANDARDS rule 5 sentence as D47 (pending user). Gates and A09 publish:
   `reviews/ccm-20261013/phase3/w0/w0-docs-merge-report.md`.
 
-- NEXT (2026-10-14, owner: parent; rewrite in place, keep last): integrate `w0-decisions` once
-  its retro passes, then `w0-doctor` (then apply the w0-docs `dev/check.py` manifest-hash rule,
-  retro `w0-docs.md` audit P2); then cut `w0-doctor-records` and `w0-session-hooks`
-  (`base_sha` `c21941f` recorded); then the CT-21 import lane; then the user answers D47 and
-  types `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`. Still no
-  `hooks:install` (D2).
+- 2026-10-14 (Phase 4 wave 0, lane w0-decisions integration, root checkout at `3bb4fd3`): merge
+  `c7054fd` (`--no-ff` of `922eab4` = impl `7649ca7` Opus 5.5 + retro `f9c8848` + repair by
+  retro-writer Fable 5.1; scratchpad merge script, rc 0). Cold review PASS-with-P3 (`f9c8848`),
+  focused re-review PASS-with-P3 (`922eab4`), retro passed. Records commit: `task_plan.md` D46 row
+  (resolves DL-50's source) and D48 pending user (CODING_STANDARDS rule 14, dash punctuation);
+  `dev/AGENTS.md` "Writing a helper" exit-code and `-- argv` bullets (D31 auto; no wave-0 lane
+  owns the file); `lanes/w0-decisions.json` integrated; ledger CT-24 seed integrated. Deferred:
+  `mise.dev.toml` rows `plan:decide`, `test:plan-decide` and the `check:research` depends entry
+  (receipt `w0-decisions-receipt.md:9-21`) to the w0-doctor integration (it owns `mise.dev.toml`);
+  the `issue-tracker.md` ledger sentence to the wave-1 CT-24 lane. Gates and A09 publish:
+  `reviews/ccm-20261013/phase3/w0/w0-decisions-merge-report.md`.
+
+- NEXT (2026-10-14, owner: parent; rewrite in place, keep last): integrate `w0-doctor` once its
+  retro passes; then apply the deferred rows: the w0-decisions `mise.dev.toml` hunk
+  (`plan:decide`, `test:plan-decide`, `check:research` depends; receipt
+  `w0-decisions-receipt.md:9-21`; rerun `tasks validate`) and the w0-docs `dev/check.py`
+  manifest-hash rule (retro `w0-docs.md` audit P2); then cut `w0-doctor-records` and
+  `w0-session-hooks` (`base_sha` `c21941f` recorded); then the CT-21 import lane; then the user
+  answers D47 and D48 and types `/mattpocock-skills:setup-matt-pocock-skills` and `/to-tickets`.
+  Still no `hooks:install` (D2).
