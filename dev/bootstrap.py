@@ -19,7 +19,8 @@ DEV_CONFIG = ROOT / "mise.dev.toml"
 DEV_LOCK = ROOT / "mise.dev.lock"
 PY_LOCK = ROOT / "uv.lock"
 OCI_FILES = (ROOT / "mise.toml", ROOT / "mise.lock")
-TOOL_BACKENDS = {"python": "core:python", "uv": "aqua:astral-sh/uv"}
+TOOL_BACKENDS = {"python": "core:python", "uv": "aqua:astral-sh/uv",
+                 "aqua:betterleaks/betterleaks": "aqua:betterleaks/betterleaks"}
 LOCK_PLATFORMS = {"macos-arm64", "linux-arm64", "linux-x64"}
 
 

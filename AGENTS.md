@@ -44,7 +44,7 @@ grill-with-docs → to-spec → to-tickets → implement-spec → retro, per
   read `docs/agents/hooks-and-mods.md` before touching `.claude/settings.json`, `dev/hooks/` or a mod.
 - Native first: new logic goes into the C++26 core; Python and TypeScript stay thin bridges, and
   existing Python takes fixes, tests and deletions only (ADR 0008, `docs/accepted-decisions.md`).
-- Run `./dev/mise tasks validate`, `./dev/mise run check` and
+- Run, one literal command each (zsh keeps a `$t` loop variable as one word and every check exits 1 on usage), `./dev/mise tasks validate`, `./dev/mise run check` and
   `./dev/mise run check:acceptance-baseline`. Root `mise.toml` / `mise.lock` define the
   Linux OCI image (container install only); do not install plugin runtimes just to lint.
 - Run named checks from one worktree at a time; a raced result is not a receipt (CT-11

@@ -115,7 +115,7 @@ run = 'uv run --no-sync --offline python -B -m unittest discover -s dev -p test_
 [tasks."check:research"]
 description = "Run the portable bootstrap and offline research regression checks"
 dir = "{{config_root}}"
-depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor", "test:plan-decide", "test:frontier", "test:retro-gate"]
+depends = ["test:bootstrap", "test:one-page", "test:catalog", "test:collect", "test:control", "test:compare", "test:publish", "test:examples", "test:issue-create", "test:issue-amend", "test:issue-new-edges", "test:codex-session-history", "test:hooks", "test:doctor", "test:plan-decide", "test:frontier", "test:retro-gate", "test:delivery"]
 run = '"${MARKETPLACE_PYTHON:-python3}" dev/check.py --baseline'
 
 [tasks.check]

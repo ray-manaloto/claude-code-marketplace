@@ -3,7 +3,7 @@
 Claude Code project configuration. Roles and lane lifecycle: `docs/agents/claude-team.md`.
 
 - `agents/`: role definitions (implementer, doc-writer, reviewer, retro-writer, extractor).
-- `rules/`: path-scoped rules for `dev/`, `evidence/`, `.planning/` and hooks and mods; edit a rule here and
+- `rules/`: path-scoped rules for `dev/`, `evidence/`, `.planning/`, `.gitleaks.toml` and hooks and mods; edit a rule here and
   point to it elsewhere.
 - `skills/`: skills authored in this repository (`codex-session-history`), each mirrored
   under `.agents/skills/` for Codex; change both copies together. Copies of global skills

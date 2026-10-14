@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT / "dev/research_refresh"))
 from runtime_preflight import scrubbed  # noqa: E402  (single selector list for the CLI and harness)
+sys.path.insert(0, str(ROOT / "dev"))
+from bootstrap import verify_tool_lock  # noqa: E402  (the tools:prepare lock binding; static, no install)
 
 
 def run(*args, env=None):
@@ -67,6 +69,7 @@ def check(baseline=False):
                 raise ValueError(f"Original acceptance file changed: {entry['path']}")
             counts["baseline"] += 1
 
+    verify_tool_lock()  # every mise.dev.toml [tools] entry is bound in mise.dev.lock, so tools:prepare cannot refuse later
     run("git", "diff", "--check")
     run("git", "diff", "--cached", "--check")
     run(sys.executable, "-I", "dev/doctor/cli.py", "--surface", "check")  # CT-22 doctor: rc 2 on any P1/P2
@@ -82,7 +85,7 @@ if __name__ == "__main__":
     parser.add_argument("--baseline", action="store_true", help="Require original onboarding file hashes")
     try:
         check(parser.parse_args().baseline)
-    except (OSError, ValueError, SyntaxError, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, RuntimeError, SyntaxError, subprocess.CalledProcessError) as error:
         print(f"check failed: {error}", file=sys.stderr)
         if isinstance(error, subprocess.CalledProcessError):
             print(error.stderr, file=sys.stderr, end="")
