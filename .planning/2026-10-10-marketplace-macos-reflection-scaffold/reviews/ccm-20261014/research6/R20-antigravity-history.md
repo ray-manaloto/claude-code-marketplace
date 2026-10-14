@@ -315,7 +315,7 @@ identical under `.agents/skills/`).
    error steps carry their user message, and no write reaches `~/.gemini`. A thin bridge calls it.
    Until it lands, the skill uses `strings` on single blobs, or `protoc --decode_raw` where protoc
    is installed.
-9. **Safety rules in SKILL.md.** Copy before you open; `mode=ro&immutable=1`; never start the app or
+9. **Safety rules in SKILL.md.** Copy before you open; `mode=ro&immutable=1` (a copy whose `-wal` is non-empty: `immutable=1` skips the WAL, so reread the scratch copy with `?mode=ro`, skill recipe 0); never start the app or
    `agy` (antigravity-cli#1006); never read token files; digests stay in scratch.
 10. **AgentsView.** The codex skill's sources table says the archive imports Antigravity
     (`.claude/skills/codex-session-history/references/sources.md:20`), and AgentsView 0.45.0 has

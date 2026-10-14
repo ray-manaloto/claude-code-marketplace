@@ -1,6 +1,6 @@
 ---
 name: codex-session-history
-description: Retrieve what a Codex (OpenAI Codex CLI / Codex Desktop) thread did from its native records (rollouts, SQLite state, research-fanout receipts, writer locks, OTel export, AgentsView) as bounded digests and briefs. Use whenever a task mentions a codex://threads/<id> link, a Codex worktree under ~/.codex/worktrees, "what was Codex doing", a Codex handoff/takeover, a scheduled Codex automation, or Codex telemetry/evidence; also when a Claude agent must resume, review or audit work another agent (Codex) started, even if the user does not say "session history".
+description: Retrieve what a Codex (OpenAI Codex CLI / Codex Desktop) thread did from its native records (rollouts, SQLite state, research-fanout receipts, writer locks, OTel export, AgentsView) as bounded digests and briefs. Use whenever a task mentions a codex://threads/{id} link, a Codex worktree under ~/.codex/worktrees, "what was Codex doing", a Codex handoff/takeover, a scheduled Codex automation, or Codex telemetry/evidence; also when a Claude agent must resume, review or audit work another agent (Codex) started, even if the user does not say "session history".
 ---
 
 # Codex session history

@@ -37,7 +37,7 @@
     "./dev/mise run check",
     "./dev/mise run check:acceptance-baseline",
     "git diff --check",
-    "gitleaks dir --config .gitleaks.toml on the skill tree (no TR names)",
+    "betterleaks 1.9.0 dir --config .gitleaks.toml on both skill trees (rule ids none)",
     "./dev/mise run retro:gate -- agy-history"
   ],
   "resource_admissions": {
@@ -46,12 +46,13 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "allocated",
-  "review": null,
-  "retro": null,
+  "status": "retro-passed",
+  "review": "PASS with P2/P3 on dacca55 (reviewer, Fable, cold); all applied by the retro-writer",
+  "retro": "passed",
   "created_at": "2026-10-14",
   "notes": [
     "no scripts/ directory: the parser boundary is a C++ ticket (R20 section 8 item 8)",
-    "eval prompts must not name TR; use a generic workspace substring"
+    "eval prompts must not name TR; use a generic workspace substring",
+    "retro: `retros/agy-history.md` at a5d1dbd (blob 1cb4bb5), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; parent edits 1, 2, 4 and 5 applied in the same records commit; edit 3 recorded as ledger row CT-95 (pending issue); edit 6 recorded as a note on the CT-38 (38a) ledger row, test not added"
   ]
 }

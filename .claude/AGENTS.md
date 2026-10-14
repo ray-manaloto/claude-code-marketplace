@@ -5,8 +5,9 @@ Claude Code project configuration. Roles and lane lifecycle: `docs/agents/claude
 - `agents/`: role definitions (implementer, doc-writer, reviewer, retro-writer, extractor).
 - `rules/`: path-scoped rules for `dev/`, `evidence/`, `.planning/`, `.gitleaks.toml` and hooks and mods; edit a rule here and
   point to it elsewhere.
-- `skills/`: skills authored in this repository (`codex-session-history`), each mirrored
-  under `.agents/skills/` for Codex; change both copies together. Copies of global skills
+- `skills/`: skills authored in this repository (`codex-session-history`,
+  `antigravity-session-history`, `session-handoff`, `session-resume`, `ticket-frontier`), each
+  mirrored under `.agents/skills/` for Codex; change both copies together. Copies of global skills
   stay out of the project, with one sanctioned exception the user chose to keep: `gh-stack`.
 - `settings.json`: shared project settings and hooks, composed by ticket CT-02. Its
   keys are `$schema`, `env`, `autoCompactEnabled`, `autoCompactWindow`, `enabledPlugins`,
