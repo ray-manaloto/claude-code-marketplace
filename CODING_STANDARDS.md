@@ -20,6 +20,10 @@ and names every check left unrun.
 15. A test named for a property (fail closed, deny, block) asserts it at every seam that carries
     it: a usage exit at one CLI seam is not a refusal at a hook seam (retro gate-git-path, GGP-1;
     numbered 15 so rules 4-14 keep their numbers).
+16. A gate that reads a shell command carries, in its refused or allowed cases, each form that
+    can reshape argv: a backslash-newline continuation, a variable, a command substitution, a
+    nested shell or eval, a pipe and a heredoc. Reject a gate change whose case list lacks one
+    of them (retro gh-guard, GG-9, GG-10, GG-12).
 
 ## Receipts and claims
 

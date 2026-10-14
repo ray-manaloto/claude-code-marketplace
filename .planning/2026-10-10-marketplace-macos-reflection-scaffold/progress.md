@@ -867,6 +867,19 @@ verbatim in `progress-archive-2026-10-13.md`.
   retro "passed"; worktree removed, branch kept. Nothing pushed. Report:
   `reviews/ccm-20261014/republish/capture-filter-merge-report.md`.
 
+- 2026-10-14 (gh-guard integration, D164, D179): gh-guard (CT-94, R-174) merged `94e5445`
+  (records `8ed943a`, retro blob `3ab4eac` byte-identical to `36fe2b7`); no conflict, tree
+  `8aaef74` = merge-tree. The Bash deny gate now refuses raw gh writes and names the scanned route
+  `./dev/mise run gh:write -- <gh args>`; `.codex/rules/gh-write.rules` forbids the same prefixes for
+  Codex. Gates rc 0 on the merged tree: tasks validate (68), check, check:acceptance-baseline (19),
+  check:research, test:hooks (27), test:gh-write (5), test:issue-amend (26), retro:gate,
+  `git diff --check 8ed943a`, betterleaks 1.9.0 over `94d32c4..HEAD` (no finding). Live check of
+  the merged gate: the raw issue comment probe is denied, the issue view probe allowed. Parent edits:
+  1 (dev-tests real HOME) and 2 (CODING_STANDARDS rule 16) applied in `8ed943a`; 3 became ledger
+  row CT-96 (pending issue, gh-guard follow-ups GG-1, GG-2, GG-7) under #138; 4 lane record
+  integrated with retro "passed". Worktree removed, branch kept. Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/gh-guard-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,

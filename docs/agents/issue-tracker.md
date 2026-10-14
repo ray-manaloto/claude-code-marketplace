@@ -53,8 +53,10 @@ or execution readiness.
   blocker edge means `issue:new-edge-*`, and a body or label update means
   `issue:preview`, `issue:apply`, `issue:verify`. Never call `gh issue create`,
   `gh issue edit`, `gh issue comment`, `gh pr create|edit|comment` or a writing `gh api`
-  call directly: only those tasks run the secret and private-name scan on outbound
-  text first (R-174); a comment or PR body waits for its scanned route (#138).
+  call directly: only the scanned routes run the secret and private-name scan on
+  outbound text first (R-174). Send comments, PR text and other gh writes through
+  `./dev/mise run gh:write -- <gh args>`, which scans every argument and named file,
+  then runs gh with the same argv; the Bash gate refuses the raw commands (D179).
 - "Fetch" or "read the issue" means `gh issue view` or `gh issue list`.
 - A `research/<name>` branch from a wayfinder run stays local until an admitted A09
   publish; the Wayfinding block that `setup-matt-pocock-skills` writes above this
