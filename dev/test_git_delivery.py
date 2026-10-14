@@ -17,15 +17,16 @@ import unittest
 HELPER = Path(__file__).with_name("git_delivery.py")
 ROOT = HELPER.parent.parent
 sys.path.insert(0, str(HELPER.parent))
-from git_delivery import PRIVATE_RULE_ID, PRIVATE_RULES_ENV  # noqa: E402
+from git_delivery import PRIVATE_RULE_ID, PRIVATE_RULES_DEFAULT, PRIVATE_RULES_ENV  # noqa: E402
 
 # A synthetic stand-in for the private-name rule: no test reads the real private file (D178).
 SYNTHETIC_PRIVATE_NAME = "quillfeather"
 
 
-def synthetic_private_rules(path: Path, rule_id: str = PRIVATE_RULE_ID) -> Path:
+def synthetic_private_rules(path: Path, rule_id: str = PRIVATE_RULE_ID, extra: str = "") -> Path:
     path.write_text(f'[[rules]]\nid = "{rule_id}"\ndescription = "Synthetic private name for tests"\n'
-                    f"regex = '''(?i)\\b{SYNTHETIC_PRIVATE_NAME}\\b'''\n", encoding="utf-8")
+                    f"regex = '''(?i)\\b{SYNTHETIC_PRIVATE_NAME}\\b'''\n{extra}", encoding="utf-8")
+    path.chmod(0o600)  # the resolver refuses a private rule file other users can read
     return path
 
 
@@ -520,35 +521,71 @@ class DeliveryTests(unittest.TestCase):
             self.assertTrue(tracked in combined and private in combined, "combined config lacks a source")
             self.assertEqual(record.with_suffix(".modes").read_text().split(), ["-rw-------", "drwx------"])
 
+    def publish_with_private_rules(self, tree: str, value: str | None, label: str) -> tuple[subprocess.CompletedProcess[str], Path]:
+        """Publish with MARKETPLACE_PRIVATE_RULES set to value (None: unset) and a recording scanner."""
+        saved = self.env
+        self.env = {k: v for k, v in saved.items() if k != PRIVATE_RULES_ENV}
+        if value is not None:
+            self.env[PRIVATE_RULES_ENV] = value
+        scanner, calls = self.recording_scanner(label)
+        try:
+            return self.publish_selected(scanner, tree), calls
+        finally:
+            self.env = saved
+
+    def assert_refused_before_any_scan(self, result: subprocess.CompletedProcess[str], calls: Path, *named: str) -> None:
+        self.assertFalse(SYNTHETIC_PRIVATE_NAME in result.stderr, "rule text leaked into the refusal")
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertEqual(result.stderr.count("\n"), 1)
+        for text in named:
+            self.assertIn(text, result.stderr)
+        self.assertEqual(list(calls.iterdir()), [])
+        self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
+        self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+
     def test_publish_refuses_without_a_usable_private_rule_file(self) -> None:
         tree = self.prepare_selected()
-        unreadable = synthetic_private_rules(self.base / "unreadable.toml")
-        unreadable.chmod(0)
-        self.addCleanup(unreadable.chmod, 0o600)
+        unreadable = self.base / "unreadable-dir"  # a directory: unreadable as a file even for root
+        unreadable.mkdir(mode=0o700)
         cases = (str(self.base / "absent.toml"),
                  str(synthetic_private_rules(self.base / "wrong.toml", rule_id="other-rule")),
                  str(unreadable),
+                 # parses alone but not after the tracked config: a second [extend] table
+                 str(synthetic_private_rules(self.base / "extend.toml", extra="\n[extend]\nuseDefault = true\n")),
                  None)  # unset: the default path under the scratch HOME does not exist
-        saved = self.env
         for case, value in enumerate(cases):
             with self.subTest(case=case):
-                self.env = {k: v for k, v in saved.items() if k != PRIVATE_RULES_ENV}
-                if value:
-                    self.env[PRIVATE_RULES_ENV] = value
-                scanner, calls = self.recording_scanner(f"case-{case}")
-                try:
-                    result = self.publish_selected(scanner, tree)
-                finally:
-                    self.env = saved
-                self.assertFalse(SYNTHETIC_PRIVATE_NAME in result.stderr, "rule text leaked into the refusal")
-                self.assertEqual(result.returncode, 2, result.stderr)
-                self.assertEqual(result.stderr.count("\n"), 1)
-                self.assertIn(PRIVATE_RULES_ENV, result.stderr)
-                self.assertIn("~/.local/state/claude-code-marketplace/private-notes/scanner/private-rules.toml",
-                              result.stderr)
-                self.assertEqual(list(calls.iterdir()), [])
-                self.assertEqual(self.git("rev-parse", "HEAD"), self.head)
-                self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+                result, calls = self.publish_with_private_rules(tree, value, f"case-{case}")
+                self.assert_refused_before_any_scan(result, calls, PRIVATE_RULES_ENV, PRIVATE_RULES_DEFAULT)
+
+    def test_publish_refuses_a_private_rule_file_others_can_read_or_a_symlink(self) -> None:
+        tree = self.prepare_selected()
+        loose = synthetic_private_rules(self.base / "loose.toml")
+        loose.chmod(0o644)
+        link = self.base / "link.toml"
+        link.symlink_to(self.private)
+        for case, value in enumerate((loose, link)):
+            with self.subTest(case=case):
+                result, calls = self.publish_with_private_rules(tree, str(value), f"mode-{case}")
+                self.assert_refused_before_any_scan(result, calls, PRIVATE_RULES_ENV, PRIVATE_RULES_DEFAULT,
+                                                    "mode must be 0600")
+
+    def test_publish_refuses_a_relative_private_rule_path(self) -> None:
+        # The relative path names a valid 0600 rule file from the publish cwd; only its form is refused.
+        tree = self.prepare_selected()
+        relative = os.path.relpath(self.private, self.repo)
+        result, calls = self.publish_with_private_rules(tree, relative, "relative")
+        self.assert_refused_before_any_scan(result, calls, PRIVATE_RULES_ENV, "absolute")
+
+    def test_publish_refuses_without_the_tracked_config(self) -> None:
+        tree = self.prepare_selected()
+        tracked = self.repo / ".gitleaks.toml"
+        for case, damage in enumerate((tracked.unlink, tracked.mkdir)):
+            with self.subTest(case=case):
+                damage()
+                result, calls = self.publish_with_private_rules(tree, str(self.private), f"tracked-{case}")
+                self.assert_refused_before_any_scan(result, calls, "tracked scanner config", ".gitleaks.toml")
+                self.assertFalse(PRIVATE_RULES_ENV in result.stderr, "tracked refusal blamed the private rule file")
 
     def test_publish_refuses_a_commit_naming_the_private_project(self) -> None:
         # The real pinned scanner, with the synthetic private rule supplied from outside the checkout.

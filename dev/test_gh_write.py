@@ -10,7 +10,8 @@ import sys
 import tempfile
 import unittest
 
-from test_issue_create import private_name_sample, secret_sample
+from git_delivery import PRIVATE_RULE_ID
+from test_issue_create import private_name_sample, secret_sample, use_synthetic_private_rule
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRUB = ("VIRTUAL_ENV", "UV_PROJECT_ENVIRONMENT", "BETTERLEAKS_CONFIG", "BETTERLEAKS_CONFIG_TOML", "GITLEAKS_CONFIG",
@@ -28,6 +29,7 @@ class GhWrite(unittest.TestCase):
         temp = tempfile.TemporaryDirectory(dir=Path(tempfile.gettempdir()).resolve())
         self.addCleanup(temp.cleanup)
         self.base = Path(temp.name)
+        use_synthetic_private_rule(self, self.base)  # in os.environ before self.env copies it (D178)
         (self.base / "home").mkdir()
         (self.base / "bin").mkdir()
         (self.base / "bin" / "gh").write_text(SHIM.format(python=sys.executable))
@@ -46,13 +48,13 @@ class GhWrite(unittest.TestCase):
 
     def test_a_scan_hit_refuses_by_position_and_rule_before_gh_runs(self):
         cases = (  # (gh args, file text, stdin, refused field, rule)
-            (["issue", "comment", "12", "--body", "note {private}"], "", "", "arg 5", "private-tr-project"),
+            (["issue", "comment", "12", "--body", "note {private}"], "", "", "arg 5", PRIVATE_RULE_ID),
             (["pr", "comment", "4", "--body-file", "c.md"], "{secret}", "", "arg 5 file", "aws-access-key-id"),
-            (["issue", "create", "-t", "t", "-F", "c.md"], "{private}", "", "arg 6 file", "private-tr-project"),
+            (["issue", "create", "-t", "t", "-F", "c.md"], "{private}", "", "arg 6 file", PRIVATE_RULE_ID),
             (["api", "repos/o/r/issues/1/comments", "-F", "body=@c.md"], "{secret}", "", "arg 4 file",
              "aws-access-key-id"),
             (["api", "-X", "POST", "repos/o/r/issues", "--input=c.md"], "{private}", "", "arg 5 file",
-             "private-tr-project"),
+             PRIVATE_RULE_ID),
             (["issue", "comment", "1", "--body-file", "-"], "", "{secret}", "arg 5 stdin", "aws-access-key-id"),
         )
         samples = {"private": private_name_sample(), "secret": secret_sample()}

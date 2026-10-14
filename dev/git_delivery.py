@@ -315,28 +315,48 @@ def remote_head(root: Path, remote: str, branch: str) -> str | None:
     return oid.decode("ascii")
 
 
+def defines_private_rule(text: str) -> bool:
+    rules = tomllib.loads(text).get("rules")
+    return isinstance(rules, list) and any(isinstance(rule, dict) and rule.get("id") == PRIVATE_RULE_ID for rule in rules)
+
+
 @contextlib.contextmanager
 def scan_config(tracked: Path, refusal: type[Exception] = Refusal) -> Iterator[Path]:
     """Yield a private temporary config holding the tracked rules plus the private rule file, then delete it.
 
-    The private file comes from MARKETPLACE_PRIVATE_RULES, else PRIVATE_RULES_DEFAULT. A missing or
-    unreadable file, or one without the private rule id, refuses; the reason never quotes a value.
+    The private file comes from MARKETPLACE_PRIVATE_RULES (an absolute path), else PRIVATE_RULES_DEFAULT.
+    It must be a regular file no other user can read and must define the private rule id, alone and
+    after the tracked rules. Every refusal names the path or the variable, never a value.
     """
-    source = Path(os.environ.get(PRIVATE_RULES_ENV) or os.path.expanduser(PRIVATE_RULES_DEFAULT))
+    try:
+        base = tracked.read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        raise refusal(f"tracked scanner config unreadable: {tracked}") from None
+    configured = os.environ.get(PRIVATE_RULES_ENV)
+    if configured and not os.path.isabs(configured):
+        raise refusal(f"{PRIVATE_RULES_ENV} must be an absolute path (default {PRIVATE_RULES_DEFAULT})")
+    source = Path(configured or os.path.expanduser(PRIVATE_RULES_DEFAULT))
+    unavailable = (f"private scanner rule unavailable: {PRIVATE_RULES_ENV} or {PRIVATE_RULES_DEFAULT} "
+                   f"must be a readable file defining rule {PRIVATE_RULE_ID}")
+    try:
+        info = source.lstat()
+    except OSError:
+        raise refusal(unavailable) from None
+    if stat.S_ISLNK(info.st_mode) or info.st_mode & 0o077:
+        raise refusal(f"private scanner rule refused: {PRIVATE_RULES_ENV} or {PRIVATE_RULES_DEFAULT} "
+                      "must not be a symlink; mode must be 0600")
     try:
         private = source.read_text(encoding="utf-8")
-        rules = tomllib.loads(private).get("rules")
-        base = tracked.read_text(encoding="utf-8")
+        text = f"{base.rstrip()}\n\n{private}"
+        usable = defines_private_rule(private) and defines_private_rule(text)
     except (OSError, UnicodeError, tomllib.TOMLDecodeError):
-        rules = base = None
-    if base is None or not isinstance(rules, list) or not any(
-            isinstance(rule, dict) and rule.get("id") == PRIVATE_RULE_ID for rule in rules):
-        raise refusal(f"private scanner rule unavailable: {PRIVATE_RULES_ENV} or {PRIVATE_RULES_DEFAULT} "
-                      f"must be a readable file defining rule {PRIVATE_RULE_ID}")
+        usable = False
+    if not usable:
+        raise refusal(unavailable)
     with tempfile.TemporaryDirectory(prefix="scan-config-") as temp:  # mkdtemp creates it 0700
         combined = Path(temp) / "combined.toml"
         with os.fdopen(os.open(combined, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as out:
-            out.write(f"{base.rstrip()}\n\n{private}")
+            out.write(text)
         yield combined
 
 
