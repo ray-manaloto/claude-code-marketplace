@@ -1,13 +1,16 @@
 """Offline A07a controls; no GitHub requests or credentials."""
 
+import io
 import json
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
-from issue_amend import Refusal, apply, intent, marker, preview, verify
+from issue_amend import Refusal, apply, intent, main, marker, preview, verify
 import issue_amend as amendment
+from test_issue_create import private_name_sample, secret_sample
 
 
 def issue(body="old", labels=("ready-for-agent",), updated="t1"):
@@ -48,10 +51,18 @@ class FakeIssues:
 class FakeClient:
     def __init__(self):
         self.issues = FakeIssues()
+        self.requests = 0
 
     def rest(self, version):
         assert version == "2026-03-10"
+        self.requests += 1
         return SimpleNamespace(issues=self.issues)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
 
 
 class AmendmentTests(unittest.TestCase):
@@ -153,6 +164,64 @@ class AmendmentTests(unittest.TestCase):
         other = self.path.with_name("other.json")
         with self.assertRaisesRegex(Refusal, "pull request"):
             preview(self.client, 11, self.body, self.labels, other)
+
+    def test_scan_hit_refuses_preview_before_any_request(self):
+        for field, text, rule in (("body", private_name_sample(), "private-tr-project"),
+                                  ("labels", secret_sample(), "aws-access-key-id")):
+            with self.subTest(field=field):
+                self.body.write_text(f"new {text}\n" if field == "body" else "new\n", encoding="utf-8")
+                self.labels.write_text(json.dumps([text] if field == "labels" else []), encoding="utf-8")
+                client, output = FakeClient(), self.path.with_name(f"preview-{field}.json")
+                with self.assertRaises(Refusal) as caught:
+                    preview(client, 11, self.body, self.labels, output)
+                self.assertEqual(str(caught.exception).splitlines(),
+                                 [f"secret scan hit: local id #11, field {field}, rule {rule}; nothing sent"])
+                self.assertNotIn(text, str(caught.exception))
+                self.assertEqual((client.requests, output.exists()), (0, False))
+
+    def test_scan_hit_refuses_apply_on_the_bytes_to_send(self):
+        # An intent journaled before the scan existed still reaches the scan at apply.
+        for field, text, rule in (("body", secret_sample(), "aws-access-key-id"),
+                                  ("labels", private_name_sample(), "private-tr-project")):
+            with self.subTest(field=field):
+                data = json.loads(self.path.read_text())
+                data["desired"] = {"body": f"new {text}\n" if field == "body" else "new\n",
+                                   "labels": [text] if field == "labels" else []}
+                path = self.path.with_name(f"apply-{field}.json")
+                path.write_bytes(amendment.wire(data))
+                client = FakeClient()
+                with self.assertRaises(Refusal) as caught:
+                    apply(client, path, amendment.sha(path.read_bytes()))
+                self.assertEqual(str(caught.exception).splitlines(),
+                                 [f"secret scan hit: local id #11, field {field}, rule {rule}; nothing sent"])
+                self.assertNotIn(text, str(caught.exception))
+                self.assertEqual((client.requests, client.issues.writes, marker(path).exists()), (0, [], False))
+
+    def test_missing_pinned_scanner_fails_closed_at_preview_and_apply(self):
+        with patch.object(amendment, "MISE", self.path.with_name("absent-mise")):
+            client = FakeClient()
+            with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
+                preview(client, 11, self.body, self.labels, self.path.with_name("other.json"))
+            with self.assertRaisesRegex(Refusal, "pinned betterleaks .* unavailable"):
+                apply(client, self.path, self.digest)
+            self.assertEqual((client.requests, client.issues.writes, marker(self.path).exists()), (0, [], False))
+
+    def test_cli_names_each_hit_on_its_own_stderr_line_and_exits_2(self):
+        self.body.write_text(f"{private_name_sample()}\n{secret_sample()}\n", encoding="utf-8")
+        argv = ["issue_amend.py", "preview", "--issue", "11", "--body-file", str(self.body),
+                "--labels-file", str(self.labels), "--intent-file", str(self.path.with_name("cli.json"))]
+        client, stderr = FakeClient(), io.StringIO()
+        with (patch("sys.argv", argv), patch("issue_amend.credential", return_value=("offline", "test")),
+              patch("issue_amend.GitHub", return_value=client), patch("sys.stderr", stderr)):
+            self.assertEqual(main(), 2)
+        self.assertEqual(stderr.getvalue().splitlines(), [
+            "REFUSED: secret scan hit: local id #11, field body, rule aws-access-key-id; nothing sent",
+            "REFUSED: secret scan hit: local id #11, field body, rule private-tr-project; nothing sent"])
+        self.assertEqual(client.requests, 0)
+
+    def test_clean_amendment_is_sent_unchanged(self):
+        self.assertEqual(apply(self.client, self.path, self.digest), "VERIFIED")
+        self.assertEqual(self.client.issues.writes, [{"body": "new\n", "labels": ["needs-info", "ready-for-agent"]}])
 
     def test_nested_symlink_cannot_redirect_intent_or_marker(self):
         base = Path(self.temp.name)

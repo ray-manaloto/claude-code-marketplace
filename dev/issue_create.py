@@ -13,7 +13,7 @@ from githubkit import GitHub
 from githubkit.exception import RequestFailed
 
 from github_search_one_page import API_VERSION, credential
-from issue_amend import OWNER, REPO, Refusal, labels, publish, read, sha, wire
+from issue_amend import OWNER, REPO, Refusal, labels, publish, read, refused, scan, sha, wire
 
 REPOSITORY = f"{OWNER}/{REPO}"
 LOCAL_ID = re.compile(r"A\d\d(?:[ab])?\Z")
@@ -51,6 +51,12 @@ def manifest(path: Path) -> tuple[dict, str]:
 def full_body(ticket: dict) -> str:
     return ticket["body"].rstrip("\n") + "\n\n" + (
         f"<!-- marketplace-ticket:{ticket['local_id']}:{ticket['body_sha256']} -->")
+
+
+def outbound(ticket: dict) -> dict:
+    payload = {"title": ticket["title"], "body": full_body(ticket), "labels": ticket["labels"]}
+    scan(ticket["local_id"], payload)  # R-174 (D171): D113 fix to existing Python; scans before any request
+    return payload
 
 
 def issue(raw: object) -> dict | None:
@@ -150,6 +156,7 @@ def preview(client: GitHub, manifest_file: Path, local_id: str, journal: Path) -
     ticket = next((x for x in data["tickets"] if x["local_id"] == local_id), None)
     if ticket is None:
         raise Refusal("local ID absent from manifest")
+    outbound(ticket)
     path = intent_path(journal, local_id)
     if path.exists() or path.is_symlink() or attempt_path(path).exists() or binding_path(path).exists():
         raise Refusal("local ID already has a publication record")
@@ -212,6 +219,7 @@ def verify(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
 
 def apply(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
     data = load_intent(path, digest, manifest_file)
+    payload = outbound(data["ticket"])
     attempt = attempt_path(path)
     if attempt.exists() or attempt.is_symlink() or binding_path(path).exists():
         raise Refusal("attempt already recorded; use verify only")
@@ -220,8 +228,6 @@ def apply(client: GitHub, path: Path, digest: str, manifest_file: Path) -> str:
         raise Refusal("fresh issue preimage drifted")
     publish(attempt, wire({"version": 1, "intent_sha256": digest,
                            "operation": operation(data)}))
-    ticket = data["ticket"]
-    payload = {"title": ticket["title"], "body": full_body(ticket), "labels": ticket["labels"]}
     if before["parent"] is not None:
         payload["parent_issue_id"] = before["parent"]["id"]
     try:
@@ -267,7 +273,7 @@ def main() -> int:
             print(result)
             return 0 if result == "VERIFIED" else 2
     except (Refusal, OSError, UnicodeError, ValueError) as error:
-        print(f"REFUSED: {error}", file=sys.stderr)
+        print(refused(error), file=sys.stderr)  # R-174: one line per scan hit
         return 2
     except Exception as error:
         print(f"UNRESOLVED: {type(error).__name__}", file=sys.stderr)
