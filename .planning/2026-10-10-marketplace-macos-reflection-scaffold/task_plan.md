@@ -39,6 +39,36 @@ and the A2-0 spike (D104), then fold CT-25..CT-81 and D59..D110 into the spec; t
 stages publish it; then `/mattpocock-skills:implement-spec` runs the waves of Phase 4b. Phase 3
 residual steps 9 and 11 stay open.
 
+## Open requests (D160; source reviews/ccm-20261014/context-loss/CL1-requests.jsonl)
+
+Every user request without a task_plan item or ticket, projected here so handoffs, /clear and
+compaction carry it (CL1, CL2). GitHub issue links wait for the D160 proposal; until then each
+line is the tracking record. Tick a line only with its evidence.
+
+- [ ] R-119 (D114): claude-agent intake skill: every new task_plan item goes through the agent team that tracks reprioritization history, duration and context per ticket (the user's example of a dropped request); issue: none yet
+- [ ] R-120 (D114): visual artifact of parallel lanes, the work queue and each new task's predicted lane; issue: none yet
+- [ ] R-127 (D119): build CT-59 (claude-agent team) now; reorder still parks it at waves 30-38; issue: none yet
+- [ ] R-139 (D133): once the claude-agent team exists, build the P2996 LLVM tools now; issue: none yet
+- [ ] R-118 (D114): fourth reprioritization: re-scope the unstarted Python and TypeScript tickets before spec publication; issue: none yet
+- [ ] R-122 (D115): ticket: port the doctor to the C++ library behind a bridge; issue: none yet
+- [ ] R-135 (D130): architecture artifact: components, dependencies, workflow and sequence diagrams, all C++ deps (R13-R15); issue: none yet
+- [ ] R-138 (D133): heavy-gate bake-off in C++23 and C++26; update the host-lock artifact; issue: none yet
+- [ ] R-140 (D134, D138): research summary plus the launchd saved-search watch (mise task, minute-resolution schedule); issue: none yet
+- [ ] R-146 (D140, D135): stdexec[asio] vcpkg fetch and both-compiler probe; glaze and jsoncons probe first; issue: none yet
+- [ ] R-148 (D142, D147): provider credit preflight units (SDK before CLI, status enums) as tickets; issue: none yet
+- [ ] R-026 (none): fnox env and daemon adoption (latest fnox for this project) as its own ticket; issue: none yet
+- [ ] R-163 (D153): complete and migrate TR's unfinished harvester and auto-improve work (generic parts only, D144, D112); issue: none yet
+- [ ] R-056 (D90): run setup-matt-pocock-skills, grill-with-docs, to-spec, to-tickets as the user types them (typed stages); issue: none yet
+- [ ] R-142 (D137): research summary artifact showing the five log-built sections (queries, results, stage-2 searches, saved searches, seed map); issue: none yet
+- [ ] R-157 (D150, D154): hk 2.6.0 lane: all relevant builtins, parallel steps, jactionlint, pre-push guard (R18; CT-82 part B); issue: none yet
+- [ ] R-158 (D150, D157): update all dependencies with offline docs and repo mirrors (R21 batches 1-5); issue: none yet
+- [ ] R-165 (D156): pin CI to ubuntu-26.04 and fix what breaks; issue: none yet
+- [ ] R-166 (D157): mise minimum_release_age 1h for this project; issue: none yet
+- [ ] R-167 (D157): automated dependency updates through GHA (Renovate or Dependabot review, R22), zero agent tokens unless an upgrade breaks; issue: none yet
+- [ ] R-168 (D158): hk linters and build tools for Python, TypeScript and C++ (native tools first); issue: none yet
+- [ ] R-162 (D153): antigravity-session-history skill (lane agy-history, builder running); issue: none yet
+- [ ] R-170 (D160): context-loss fix and automatic catch; every request tracked as a task_plan item linked to a GitHub issue (team CL); issue: none yet
+
 ## Phases
 
 ### Phase 0: Takeover and M0
