@@ -56,7 +56,7 @@ class PlanDecideCli(unittest.TestCase):
         self.assertEqual(plan_decide.pending(self.ledger), [])
         closing = self.rows()[-1]
         self.assertEqual((closing["kind"], closing["subject"]), ("receipt", op))
-        self.assertEqual(closing["receipt"], {"path": str(evidence), "rc": 0, "sha256":
+        self.assertEqual(closing["receipt"], {"path": "relabel.log", "rc": 0, "sha256":  # root-relative
                          "6454e3d9430308f594a66fa910e35610c43d4d63112ee02bd174f811aff2d3c1"})
 
     def test_approved_lists_only_approval_subjects(self):
@@ -84,6 +84,19 @@ class PlanDecideCli(unittest.TestCase):
         self.assertEqual(rc, 2)
         self.assertIn("DL-9", err)
         self.assertEqual(self.decide("receipt", "DL-1", "--path", str(evidence))[0], 2)  # an approval
+        self.assertEqual(self.ledger.read_bytes(), before)
+
+    def test_receipt_refuses_a_path_outside_the_ledger_root(self):  # review P3 plan_decide.py:70
+        rc, out, _ = self.decide("operation", "--subject", "draft PR", "--source", "D20")
+        self.assertEqual(rc, 0)
+        before = self.ledger.read_bytes()
+        outside = tempfile.TemporaryDirectory()
+        self.addCleanup(outside.cleanup)
+        evidence = Path(outside.name) / "pr.log"
+        evidence.write_text("ok\n")
+        rc, _, err = self.decide("receipt", out.split()[0], "--path", str(evidence), "--rc", "0")
+        self.assertEqual(rc, 2)
+        self.assertIn("not a file under", err)
         self.assertEqual(self.ledger.read_bytes(), before)
 
 

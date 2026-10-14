@@ -2,6 +2,8 @@
 
 Rows are JSON lines {id, ts, kind, subject, text, source, receipt}; ids are DL-<n> so that
 they never read as a task_plan decision id (D1, D2, ...). Nothing here executes an operation.
+Exit codes follow C2 section E: 0 pass, 1 usage, 2 refusal with one reason on stderr. DL-<n> is
+the row count plus one: correct for one appending writer at a time (CT-11 serializes writers).
 """
 
 import argparse
@@ -17,10 +19,13 @@ DEFAULT = Path(__file__).resolve().parents[1] / ".planning" / PLAN_ID / "decisio
 
 
 def rows(path=DEFAULT):
-    path = Path(path)
-    if not path.exists():
-        return []
-    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    text = Path(path).read_text() if Path(path).exists() else ""
+    return [json.loads(line) for line in text.splitlines() if line.strip()]
+
+
+def root(ledger=DEFAULT):  # receipts are relative to the ledger's checkout, else to its directory
+    ledger = Path(ledger).resolve()
+    return next((p for p in ledger.parents if (p / ".git").exists()), ledger.parent)
 
 
 def approved(path=DEFAULT):
@@ -64,12 +69,13 @@ def receipt(args):
     if args.id not in {row["id"] for row in pending(args.file)}:
         print(f"refused: {args.id} is not an open operation", file=sys.stderr)
         return 2
-    if not args.path.is_file():
-        print(f"refused: receipt path {args.path} is not a file", file=sys.stderr)
+    path, base = args.path.resolve(), root(args.file)
+    if not (path.is_file() and path.is_relative_to(base)):
+        print(f"refused: receipt path {args.path} is not a file under {base}", file=sys.stderr)
         return 2
-    digest = hashlib.sha256(args.path.read_bytes()).hexdigest()
-    proof = {"path": str(args.path), "rc": args.rc, "sha256": digest}
-    print(f"{append(args.file, 'receipt', args.id, str(args.path), receipt=proof)} receipt {args.id}")
+    proof = {"path": path.relative_to(base).as_posix(), "rc": args.rc,
+             "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    print(f"{append(args.file, 'receipt', args.id, proof['path'], receipt=proof)} receipt {args.id}")
     return 0
 
 
