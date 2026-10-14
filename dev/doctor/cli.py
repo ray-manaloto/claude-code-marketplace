@@ -2,7 +2,8 @@
 """Doctor: report checkout, settings and context drift after the fact (C3 §Doctor task spec).
 
 Exit 0 without P1/P2, 2 with any, 1 usage, 3 when a detector raised; `--surface session-start
---format context` (the SessionStart hook form) always exits 0. A hook payload on stdin supplies `cwd`.
+--format context` (the SessionStart hook form) always exits 0, and `--surface pre-commit` also exits 2
+when a detector was skipped (a commit guard fails closed). A hook payload on stdin supplies `cwd`.
 """
 from __future__ import annotations
 
@@ -66,7 +67,8 @@ def main(argv=None) -> int:
     ctx = core.Context(top, args.surface, args.plan_id, Path.home(), payload)
     findings, lines, raised = core.run(ctx, args.budget_ms)
     real = [f for f in findings if f.severity != "skipped"]
-    code = 3 if raised else 2 if any(f.severity in ("P1", "P2") for f in real) else 0
+    guard = [f for f in findings if f.severity == "skipped"] if args.surface == "pre-commit" else []
+    code = 3 if raised else 2 if guard or any(f.severity in ("P1", "P2") for f in real) else 0
     if args.format == "context":
         print(context_block(ctx, real, lines))
         return 0 if args.surface == "session-start" else code
@@ -77,7 +79,7 @@ def main(argv=None) -> int:
                           "counts": {s: sum(f.severity == s for f in real) for s in ("P1", "P2", "P3")},
                           "duration_ms": int((time.monotonic() - started) * 1000)}, indent=1))
     else:
-        for f in real:
+        for f in real + guard:
             print(f"{f.severity} {f.id} {f.subject}" + (f"\n  fix: {f.fix_hint}" if f.fix_hint else ""),
                   file=sys.stderr)
     return code

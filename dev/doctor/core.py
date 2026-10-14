@@ -86,7 +86,8 @@ def run(ctx: Context, budget_ms: int | None = None) -> tuple[list[Finding], list
         thread.join(max(0.0, started + ms / 1000 - time.monotonic()))
         found, block, error, done = results.get(name, ([], (0, []), None, float("inf")))
         if done - started > ms / 1000:
-            findings.append(Finding("doctor.skipped", "skipped", f"{name}: budget {ms} ms"))
+            findings.append(Finding("doctor.skipped", "skipped", f"{name}: budget {ms} ms",
+                                    fix_hint="rerun; raise the detector's BUDGET_MS if it recurs"))
         elif error is not None:
             findings.append(failure(name, error))
             raised = True

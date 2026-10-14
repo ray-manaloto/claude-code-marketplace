@@ -1,5 +1,6 @@
 """Class A: the context-budget thresholds (one source; hooks import this file by path) and the
-auto-compact line (C3 §A, C2 T-A5, C4 required change 4). Reads key names and booleans only."""
+auto-compact line (C3 §A, C2 T-A5, C4 required change 4). Reads key names and booleans only; the
+finding follows settings precedence (local > project > the two personal copies, D21), never a document."""
 from __future__ import annotations
 
 import json
@@ -8,7 +9,6 @@ import json
 THRESHOLDS = {"warn": 400_000, "checkpoint": 550_000, "fork_deny": 500_000, "hard": 650_000}
 SURFACES = {"session-start"}
 CONTEXT_RANK = 80
-GUIDE = "docs/agents/claude-team.md"
 
 
 def autocompact(ctx) -> dict[str, bool]:
@@ -26,13 +26,19 @@ def autocompact(ctx) -> dict[str, bool]:
     return flags
 
 
+def ruling_off(flags: dict[str, bool]) -> list[str]:
+    """Sources whose `false` is in force: the local or project file decides first, else both personal copies."""
+    for name in ("local", "project"):
+        if name in flags:
+            return [] if flags[name] else [name]
+    return [name for name in ("user", "global") if flags.get(name) is False]
+
+
 def run(ctx):
-    off = [name for name, value in autocompact(ctx).items() if value is False]
-    guide = ctx.repo / GUIDE
-    if not off or (guide.is_file() and "autoCompactEnabled" in guide.read_text()):
-        return []
+    off = ruling_off(autocompact(ctx))
     return [ctx.finding("A.autocompact-off", "P3", f"autoCompactEnabled=false in {', '.join(off)}",
-                        fix_hint=f"set it true where it is false, or record the decision in {GUIDE}")]
+                        fix_hint="set it true there; .claude/settings.json (project) overrides the personal copies")
+            ] if off else []
 
 
 def context_lines(ctx):

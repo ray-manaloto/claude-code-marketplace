@@ -72,6 +72,9 @@ class Contract(Scratch):
         self.assertEqual(self.doctor("--surface", "nowhere")[0], 1)
         self.settings({"permissions": {"allow": ["placeholder"]}})
         self.assertEqual(self.doctor("--surface", "check")[0], 2)
+        self.settings({"enabledPlugins": {"x@m": True}})  # a P2 alone (undeclared marketplace) exits 2 too
+        rc, report = self.report()
+        self.assertEqual((rc, [f["severity"] for f in report["findings"]]), (2, ["P2"]))
         self.settings("{not json")
         rc, report = self.report()
         self.assertEqual(rc, 3)
@@ -82,6 +85,9 @@ class Contract(Scratch):
         self.assertEqual((rc, report["findings"]), (0, []))
         self.assertTrue(report["skipped"])
         self.assertTrue(all(s["severity"] == "skipped" and "budget" in s["subject"] for s in report["skipped"]))
+        rc, _, err = self.doctor("--surface", "pre-commit", "--budget-ms", "0")  # a guard fails closed
+        self.assertEqual(rc, 2, err)
+        self.assertIn("skipped doctor.skipped settings: budget 0 ms", err)
         self.assertEqual(self.git("status", "--porcelain", "--ignored"), "?? .claude/\n")  # writes nothing
 
 
@@ -148,16 +154,25 @@ class ContextBudget(Scratch):
                          frontier["context_ceiling_fraction"] * frontier["windows"]["opus"])
 
     def test_autocompact_line_reports_both_booleans(self):
-        """C2 T-A5: user settings false + project true -> one `auto-compact:` line naming both; P3 until documented."""
+        """C2 T-A5 / D21: user false + project true -> one `auto-compact:` line naming both; the project file rules."""
         (self.home / ".claude").mkdir()
         (self.home / ".claude" / "settings.json").write_text(json.dumps({"autoCompactEnabled": False}))
         self.settings({"autoCompactEnabled": True})
         (line,) = [line for line in self.context() if "auto-compact:" in line]
         self.assertIn("user=false", line)
         self.assertIn("project=true", line)
-        self.assertEqual(self.ids("session-start"), [("A.autocompact-off", "autoCompactEnabled=false in user")])
-        self.write("docs/agents/claude-team.md", "Keep `autoCompactEnabled` on: D21.\n")
         self.assertEqual(self.ids("session-start"), [])
+
+    def test_autocompact_off_follows_settings_precedence(self):
+        """A.autocompact-off reads the ruling settings file (local > project > personal copies), never a document."""
+        (self.home / ".claude").mkdir()
+        (self.home / ".claude" / "settings.json").write_text(json.dumps({"autoCompactEnabled": False}))
+        self.write("docs/agents/claude-team.md", "Keep `autoCompactEnabled` on: D21.\n")
+        self.assertEqual(self.ids("session-start"), [("A.autocompact-off", "autoCompactEnabled=false in user")])
+        self.settings({"autoCompactEnabled": True})
+        self.settings({"autoCompactEnabled": False}, "settings.local.json")
+        self.write(".git/info/exclude", ".claude/settings.local.json\n")
+        self.assertEqual(self.ids("session-start"), [("A.autocompact-off", "autoCompactEnabled=false in local")])
 
     def test_autocompact_line_defaults_on_without_settings(self):
         """C2 T-A5 twin: no settings file sets the key -> `auto-compact: default(on)`."""

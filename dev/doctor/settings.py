@@ -9,7 +9,7 @@ import json
 
 SURFACES = {"session-start", "check", "pre-commit"}
 CONTEXT_RANK = 20
-BUDGET_MS = {"session-start": 3000, "check": 10000, "pre-commit": 1000}  # a guard that skips under load is none
+BUDGET_MS = {"session-start": 3000, "check": 10000, "pre-commit": 1000}  # pre-commit fails closed on skipped (cli)
 PATH, LOCAL = ".claude/settings.json", ".claude/settings.local.json"
 PROJECT_KEYS = frozenset({"$schema", "env", "autoCompactEnabled", "autoCompactWindow", "enabledPlugins",
                           "extraKnownMarketplaces", "hooks"})
