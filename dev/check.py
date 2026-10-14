@@ -69,6 +69,7 @@ def check(baseline=False):
 
     run("git", "diff", "--check")
     run("git", "diff", "--cached", "--check")
+    run(sys.executable, "-I", "dev/doctor/cli.py", "--surface", "check")  # CT-22 doctor: rc 2 on any P1/P2
     for directory, pattern in (("dev", "test_research_*.py"), ("dev/research_refresh", "test_*.py")):
         result = run(sys.executable, "-B", "-m", "unittest", "discover", "-s", directory, "-p", pattern,
                      env=scrubbed(os.environ))

@@ -281,7 +281,13 @@ class Settings(unittest.TestCase):
         wired = {event: [h for entry in entries for h in entry["hooks"]] for event, entries in hooks.items()}
         expected = {"PreToolUse": "pretooluse_gate.py", "SubagentStop": "subagent_stop_gate.py",
                     "Stop": "stop_gate.py"}
-        self.assertEqual(set(wired), set(expected))
+        self.assertEqual(set(wired), {*expected, "SessionStart"})
+        (doctor,) = wired["SessionStart"]  # C3 hook entry: never blocks, so no onFailure
+        self.assertEqual(hooks["SessionStart"][0]["matcher"], "startup|resume|clear|compact|fork")
+        self.assertEqual((doctor["type"], doctor["timeout"], "onFailure" in doctor), ("command", 15, False))
+        self.assertEqual(doctor["command"], 'python3 -I "$CLAUDE_PROJECT_DIR/dev/doctor/cli.py" --surface '
+                                            'session-start --format context')
+        self.assertTrue((ROOT / "dev" / "doctor" / "cli.py").is_file())
         for event, script in expected.items():
             (handler,) = wired[event]
             self.assertEqual(handler["command"], f'python3 -I "$CLAUDE_PROJECT_DIR/dev/hooks/{script}"')
@@ -304,8 +310,10 @@ class HkHooks(Scratch):
     def setUp(self):
         super().setUp()
         (self.repo / "dev" / "hooks").mkdir(parents=True)
+        (self.repo / "dev" / "doctor").mkdir()
         for name in ("hk.pkl", "mise.dev.toml", "dev/retro_gate.py", *(f"dev/hooks/{p.name}" for p in
-                                                                         HOOKS.glob("*.py"))):
+                                                                         HOOKS.glob("*.py")),
+                     *(f"dev/doctor/{p.name}" for p in (ROOT / "dev" / "doctor").glob("*.py"))):
             shutil.copyfile(ROOT / name, self.repo / name)
         mise = self.repo / "dev" / "mise"
         mise.write_text(FAKE_MISE.format(python=sys.executable))
@@ -338,6 +346,18 @@ class HkHooks(Scratch):
         self.git("merge", "--no-ff", "--no-edit", "claude/x-y")
         self.git("push", "origin", "main")
         self.assertEqual(self.git("rev-parse", "HEAD").stdout, self.git("rev-parse", "origin/main").stdout)
+
+    def test_pre_commit_records_step_refuses_non_project_settings_key(self):
+        """C2 T-B5 / W0-5: the staged settings file is refused before the commit, then accepted once split."""
+        (self.repo / ".claude").mkdir()
+        (self.repo / ".claude" / "settings.json").write_text(json.dumps({"permissions": {"allow": []}}))
+        self.git("add", "-A")
+        refused = self.git("commit", "-q", "-m", "settings", check=False)
+        self.assertNotEqual(refused.returncode, 0, refused.stdout + refused.stderr)
+        self.assertIn("I.settings-non-project-key permissions", refused.stdout + refused.stderr)
+        (self.repo / ".claude" / "settings.json").write_text(json.dumps({"env": {"PLAN_ID": PLAN}}))
+        self.git("add", "-A")
+        self.git("commit", "-q", "-m", "settings")
 
 
 if __name__ == "__main__":
