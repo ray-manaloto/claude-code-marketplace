@@ -880,6 +880,22 @@ verbatim in `progress-archive-2026-10-13.md`.
   integrated with retro "passed". Worktree removed, branch kept. Nothing pushed. Report:
   `reviews/ccm-20261014/republish/gh-guard-merge-report.md`.
 
+- 2026-10-14 (rule-split integration, D164, D178 part 1): rule-split merged `04b560b` (records
+  `98ff3e9`, retro blob `0884343` byte-identical to `3d4c147`); no conflict, tree `5057109` =
+  merge-tree. The private-name scanner rule now lives only in the untracked private rule file, and
+  every scan route (A09 staged and outbound, the issue routes, `gh:write`) builds its config through
+  `scan_config` and refuses with exit 2 without a usable private file. Review: Fable cold review
+  PASS-with-findings on `1d65cd0`, P2 and P3a-e fixed in `d4e4299`; the parent accepted the
+  retro-writer's line-by-line verification of `d4e4299` in place of a second cold pass. Gates rc 0
+  on the merged tree: tasks validate (68), check, check:acceptance-baseline (19), check:research,
+  test:delivery (29), test:issue-create (25), test:issue-amend (27), test:gh-write (5), test:hooks
+  (27), retro:gate, `git diff --check 38d1cc3`, betterleaks 1.9.0 through `scan_config` over
+  `38d1cc3..HEAD` (no finding, private rule 0). Live check: `gh:write` with
+  `MARKETPLACE_PRIVATE_RULES` at a missing absolute path exits 2 and names the variable. Parent
+  edits 2 (dev-tests rule) and 3 (both handoff-template copies) applied in `98ff3e9`; no ledger row
+  covers D178 part 1. Worktree removed, branch kept. Nothing pushed; D178 part 2 (history rewrite)
+  is next. Report: `reviews/ccm-20261014/republish/rule-split-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
