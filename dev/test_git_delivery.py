@@ -305,6 +305,39 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertFalse(marker.exists())
 
+    def test_scratch_validation_runs_source_pinned_installs(self) -> None:
+        # dev/mise pins MISE_DATA_DIR to <checkout>/.mise; the copy must reach the source's installs.
+        pinned = self.repo / ".mise/installs/aqua-betterleaks-betterleaks/1.9.0/betterleaks"
+        check = self.repo / "dev/mise"
+        check.write_text(
+            "#!/bin/sh\n[ \"$*\" = 'run test:delivery' ] || exit 0\n"
+            "bin=\"$(cd \"$(dirname \"$0\")/..\" && pwd -P)/.mise/installs/aqua-betterleaks-betterleaks/1.9.0/betterleaks\"\n"
+            f"[ \"$bin\" -ef '{pinned}' ] && [ \"$(\"$bin\" version)\" = 1.9.0 ] || exit 31\n")
+        check.chmod(0o700)
+        (self.repo / "selected.txt").write_text("reviewed\n")
+        options = ("--path", "selected.txt", "--path", "dev/mise")
+        prepared = self.invoke("prepare", *options)
+        self.assertEqual(prepared.returncode, 0, prepared.stderr)
+        tree = dict(line.split("=", 1) for line in prepared.stdout.splitlines())["index_tree"]
+        message = self.base / "message"
+        message.write_text("reviewed change\n")
+        scanner = self.base / "scanner"
+        scanner.write_text("#!/bin/sh\nexit 0\n")
+        scanner.chmod(0o700)
+        options += ("--index-tree", tree, "--message-file", str(message),
+                    "--check-task", "check", "--gitleaks-bin", str(scanner))
+        missing = self.invoke("publish", *options)
+        self.assertEqual(missing.returncode, 2)
+        self.assertIn("rc=31", missing.stderr)
+        self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
+        pinned.parent.mkdir(parents=True)
+        pinned.write_text("#!/bin/sh\necho 1.9.0\n")
+        pinned.chmod(0o700)
+        result = self.invoke("publish", *options)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        published = dict(line.split("=", 1) for line in result.stdout.splitlines())["published"]
+        self.assertEqual(self.git("rev-parse", f"{published}^{{tree}}"), tree)
+
     def test_scratch_validation_refuses_export_ignored_tree(self) -> None:
         (self.repo / ".gitattributes").write_text("selected.txt export-ignore\n")
         (self.repo / "selected.txt").write_text("reviewed\n")
