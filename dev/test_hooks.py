@@ -339,7 +339,8 @@ ANSWER = {"session_id": "797fac9e-45f6-4000-bb0b-7a4b6c71a99d", "prompt_id": "ff
           "tool_use_id": "toolu_01NaR2bfprATUFujrY2dE1Hy"}
 HARNESS_PROMPTS = (  # background-task report: the shape of both live ledger rows (p:9dc3aa9d, p:cf32b5bb)
     "<task-notification>\n<task-id>b1</task-id>\n<status>completed</status>\n</task-notification>",
-    # Claude Code 2.1.300: a poll event or session notice runs the hook on its `<event kind=...>` element
+    # Claude Code 2.1.300, element form: the hook runs on the `<event kind=...>` element. The fields form
+    # (bare kind word, then the `at` line) is not filtered: retro capture-filter, information access.
     '<event kind="session-notice" at="2026-10-14T00:00:00Z" notice-class="info">done</event>',
     "<<autonomous-loop>>",  # the CronCreate and ScheduleWakeup sentinels a /loop iteration fires with
     "<<autonomous-loop-dynamic>>",
