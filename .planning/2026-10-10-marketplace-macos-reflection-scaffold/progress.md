@@ -791,6 +791,17 @@ verbatim in `progress-archive-2026-10-13.md`.
   plan-decide, retro-gate, frontier, check:records, hk validate, both retro gates, handoff 36,
   `git diff --check`, doctor check surface, check:research (17 tasks).
 
+- 2026-10-14 (afternoon, D150-D169): research6 R17-R22 (scanner, hk, TR review, Antigravity, deps,
+  update automation); global hk aligned to 2.6.0 with six events (D154); Codex worktrees archived and
+  removed, all old-history branches deleted (D155); scanner-betterleaks lane reviewed, retro passed,
+  merged `ece5030` with records `9672854` (first merge both gates checked, D164); its A09 publish is
+  blocked until lane a09-hook-events lands (D165). Team CL (context loss, D160): CL1 ledger of 170
+  requests (12 dropped, the claude-agent intake skill first), CL2 causes, CL3 research, CL4 proposal,
+  CL5 review PASS-with-findings; task_plan "Open requests" (23 items) now sits under Next Step;
+  decisions D166-D169 adopt capture and carry hooks, a handoff.py catch, the GitHub intake and a live
+  probe; tickets CT-86..CT-93c. Running: agy-history skill builder, a09-hook-events, CT-87 probe,
+  CT-92 intake issues. Corrected: the deny gate never ran on be1a0f9 and 878e7f0 (`git -C $MP`).
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
