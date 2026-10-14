@@ -25,8 +25,9 @@ Runbook: `reviews/ccm-20261013/phase3/HANDOFF-2026-10-14.md`.
 ## notes
 - Integrated and published 2026-10-14: gate-git-path (`2185777`) and w0-doctor (`959c56f`) on
   the scrubbed baseline `62b154a`; receipts in `reviews/ccm-20261014/republish/`.
-- TR material stays local (D144); `.gitleaks.toml` guards A09 publish (D145); a plain push is
-  not scanned, so publish only through A09. No environment listing under fnox (D146).
+- TR material stays local (D144); `.gitleaks.toml` plus the private rule file (D178,
+  `.claude/rules/secret-scanner.md`) guard A09 publish (D145); a plain push is not scanned, so
+  publish only through A09. No environment listing under fnox (D146).
 - Order: plan Phase 4b (D65, D68-D110; ADR 0005, ADR 0007) from
   `reviews/ccm-20261014/reprioritize-3/Q2-order-v2.md`; decisions through D149.
 - Mods replace owned settings hooks except the three deny gates (D102,
