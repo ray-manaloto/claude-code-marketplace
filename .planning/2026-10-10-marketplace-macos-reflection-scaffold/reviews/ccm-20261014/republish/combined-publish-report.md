@@ -48,8 +48,34 @@ travel in the next local records commit.
 
 ## Publish (A09)
 
-Pending.
+Filled after the publish; the copy committed in P says "pending" here.
+
+| Command | rc | Output |
+| --- | --- | --- |
+| `git diff --cached --name-only HEAD \| wc -l` (before) | 0 | 0 |
+| `./dev/mise run delivery:prepare -- prepare.json 76eb5478…` | 0 | `head=f555f565…`, `index_tree=fbd120b0ff1ae993419409fca38d5235f23fc5b3` |
+| `./dev/mise run delivery:publish -- publish.json cfdbb959…` (22:54:16-22:57:43Z) | 0 | `published=9422625fba1f67cca8f03c404f14f518f3674d0b`, `history_scan_rc=0` |
+
+`publish` rc 0 implies rc 0 for the selected-tree check in the scratch copy (`tasks validate`,
+`check`, `check:acceptance-baseline`, `test:delivery`, with the source's pinned installs), each
+check_task in the root, `git diff --cached --check`, the staged betterleaks scan and the outbound
+history scan over `bea3e67..9422625` with the tracked rules plus the private rule. This is the
+first real `delivery:publish` through the a09-selected-tree fix and the first A09 publish scanned
+with betterleaks (D159 operation B). P `9422625` has parent `f555f56`, tree `fbd120b`, the session
+trailers, and no force: the push is a fast-forward of `bea3e67`.
 
 ## Post-publish verification
 
-Pending.
+| Command | rc | Result |
+| --- | --- | --- |
+| `git ls-remote origin refs/heads/codex/marketplace-native-onboarding` | 0 | `9422625fba1f67cca8f03c404f14f518f3674d0b` = published |
+| `gh pr view 110 --json headRefOid,isDraft,state` | 0 | `headRefOid` `9422625f…`, `isDraft` true, `state` OPEN |
+| `git fetch --no-tags origin <branch>:refs/remotes/origin/<branch>`; `git rev-parse HEAD origin/<branch>` | 0; 0 | both `9422625f…` |
+| `git status --porcelain` | 0 | clean |
+| `gh run list --branch codex/marketplace-native-onboarding` (read-only, 22:58Z) | 0 | on `9422625`: acceptance `38651094354`, development checks `38651094274`, research-fast `38651094393` and `38651092445`, all in progress; not watched |
+
+## Receipts
+
+DL-212 and DL-221 are closed by receipt rows that point at this file with rc 0, in the local
+records commit that follows P; that commit is not published. DL-234 is a decision row and takes no
+receipt (`plan_decide.py` receipts close operations only).
