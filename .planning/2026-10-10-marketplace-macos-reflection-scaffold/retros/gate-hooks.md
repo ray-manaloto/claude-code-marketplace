@@ -35,3 +35,9 @@ Steering beyond the row above: none, because `AGENTS.md` and `CLAUDE.md` are unt
 
 Review P3-1 (`extraKnownMarketplaces`) is the parent's decision and owner; `test:hooks`
 stays out of `check:research` until the parent wires it at integration.
+
+## Integration repair (I1b): `test:hooks` under `dev/mise`
+
+| Severity | Category and finding | Applied action and verification |
+| --- | --- | --- |
+| P1 | Automated checks: on `e12cf04`, `./dev/mise run test:hooks` was rc 1 (`HkHooks.test_merge_commit_and_push_refused_then_accepted`, `mise ERROR Config files in …/repo/mise.dev.toml are not trusted`). `environment()` kept the outer `MISE_*` trust and config variables, so a nested mise call in the scratch repo saw its untrusted copy. The direct unittest run passed, so the earlier "13 tests, rc 0" receipt did not cover the `dev/mise` path. | Applied: `environment()` also scrubs the `MISE_` prefix. The regression test `ScratchEnvironment.test_outer_mise_trust_and_config_do_not_reach_the_scratch_repo` failed first (6 `MISE_*` keys leaked) and now passes. Results: direct suite rc 0, `./dev/mise run test:hooks` rc 0 (14 tests), `check` rc 0, `hk validate` rc 0, `git diff --check` rc 0. Focused re-review is pending. |

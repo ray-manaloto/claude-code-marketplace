@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 HOOKS = ROOT / "dev" / "hooks"
@@ -32,7 +33,8 @@ for line in [run] if isinstance(run, str) else run:
 
 
 def environment(home):
-    env = {k: v for k, v in os.environ.items() if k not in SCRUB and not k.startswith(("GIT_", "HK_"))}
+    # MISE_*: a nested mise in the scratch repo must not inherit the outer dev/mise trust and config.
+    env = {k: v for k, v in os.environ.items() if k not in SCRUB and not k.startswith(("GIT_", "HK_", "MISE_"))}
     env["PATH"] = os.pathsep.join([GIT_DIR, *([str(Path(HK).parent)] if HK else []), env.get("PATH", "")])
     env.update(HOME=str(home), CODEX_HOME=str(Path(home, ".codex")), PLAN_ID=PLAN,
                GIT_CONFIG_GLOBAL=str(Path(home, ".gitconfig")), GIT_CONFIG_NOSYSTEM="1", GIT_TERMINAL_PROMPT="0",
@@ -234,6 +236,15 @@ class Settings(unittest.TestCase):
             self.assertEqual((handler["type"], handler["onFailure"]), ("command", "block"))
             self.assertTrue((HOOKS / script).is_file())
         self.assertEqual(hooks["PreToolUse"][0]["matcher"], "Bash")
+
+
+class ScratchEnvironment(unittest.TestCase):
+    def test_outer_mise_trust_and_config_do_not_reach_the_scratch_repo(self):
+        outer = {"MISE_TRUSTED_CONFIG_PATHS": "/outer/mise.dev.toml",
+                 "MISE_OVERRIDE_CONFIG_FILENAMES": "mise.dev.toml", "MISE_CONFIG_DIR": "/outer/.config/mise"}
+        with mock.patch.dict(os.environ, outer):
+            env = environment(Path("/scratch/home"))
+        self.assertEqual(sorted(k for k in env if k.startswith("MISE_")), [])
 
 
 @unittest.skipUnless(HK, "hk is not installed")
