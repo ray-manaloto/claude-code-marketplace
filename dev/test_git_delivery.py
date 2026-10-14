@@ -243,8 +243,9 @@ class DeliveryTests(unittest.TestCase):
         hook.write_text(f"#!/bin/sh\ntouch '{marker}'\n")
         hook.chmod(0o700)
         configured_marker = self.base / "configured-hook-ran"
-        self.git("config", "hook.safe.event", "pre-push")
-        self.git("config", "hook.safe.command", f"touch '{configured_marker}'")
+        for event in self.HK_EVENTS:  # every admitted event; none may fire on the publish path
+            self.git("config", f"hook.safe-{event}.event", event)
+            self.git("config", f"hook.safe-{event}.command", f"echo {event} >> '{configured_marker}'")
         result = self.invoke("publish", "--path", "selected.txt", "--index-tree", tree,
                              "--message-file", str(message), "--check-task", "check",
                              "--gitleaks-bin", str(scanner),
@@ -253,7 +254,7 @@ class DeliveryTests(unittest.TestCase):
         published = dict(line.split("=", 1) for line in result.stdout.splitlines())["published"]
         self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery").split()[0], published)
         self.assertFalse(marker.exists())
-        self.assertFalse(configured_marker.exists())
+        self.assertFalse(configured_marker.exists(), configured_marker.exists() and configured_marker.read_text())
 
     def test_publish_checks_staged_mixed_config(self) -> None:
         (self.repo / "mise.dev.toml").write_text("good\n")
