@@ -45,7 +45,7 @@
             "type": "command",
             "async": true,
             "timeout": 10,
-            "command": "/bin/mkdir -p -m 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
           }
         ]
       }
@@ -68,7 +68,7 @@
           {
             "type": "command",
             "timeout": 10,
-            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
           }
         ]
       }
@@ -94,7 +94,7 @@
             "type": "command",
             "async": true,
             "timeout": 10,
-            "command": "/bin/mkdir -p -m 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
           }
         ]
       }
@@ -105,7 +105,7 @@
           {
             "type": "command",
             "timeout": 10,
-            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
           }
         ]
       }
@@ -116,7 +116,7 @@
           {
             "type": "command",
             "timeout": 10,
-            "command": "{ printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep each id and its next action):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; } | /usr/bin/jq -cRs '{hookSpecificOutput:{hookEventName:\"SubagentStart\",additionalContext:.}}'"
+            "command": "{ printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; } | /usr/bin/jq -cRs '{hookSpecificOutput:{hookEventName:\"SubagentStart\",additionalContext:.}}'"
           }
         ]
       }

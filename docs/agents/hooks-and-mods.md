@@ -27,7 +27,8 @@ Every captured request must reach the plan and survive compaction, `/clear`, res
 briefs (CL4 E1, E4). The hooks hold no logic beyond `/usr/bin/jq`, `/usr/bin/sed` and printing, and
 none blocks:
 - Capture: async `UserPromptSubmit` and `PostToolUse` (matcher `AskUserQuestion`) append the hook
-  stdin, `jq -c .`, to `~/.local/state/claude-code-marketplace/requests/ledger.jsonl`. The ledger stays
+  stdin, `jq -c .`, to `~/.local/state/claude-code-marketplace/requests/ledger.jsonl`, holding the
+  directory at mode 0700 on every run (`mkdir -p` then `chmod 700`). The ledger stays
   untracked and outside every published path because prompts can name the private project; read it
   with `./dev/mise run requests:tail`. A row's key, the `p:<id8>` of a plan line or a
   `dispositions.jsonl` row, is the last 8 characters of `tool_use_id` for an answer (every id starts

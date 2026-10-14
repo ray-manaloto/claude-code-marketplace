@@ -3,6 +3,7 @@
 import json
 import os
 from pathlib import Path
+import copy
 import shutil
 import subprocess
 import sys
@@ -282,7 +283,7 @@ class Settings(unittest.TestCase):
         wired = {event: [h for entry in entries for h in entry["hooks"]] for event, entries in hooks.items()}
         expected = {"PreToolUse": "pretooluse_gate.py", "SubagentStop": "subagent_stop_gate.py",
                     "Stop": "stop_gate.py"}
-        self.assertEqual(set(wired), {*expected, "SessionStart", *REQUEST_EVENTS})
+        self.assertEqual(hook_map(hooks), EXPECTED_HOOKS)  # the D92 pin: every event, matcher and handler count
         (doctor,) = hooks["SessionStart"][0]["hooks"]  # C3 hook entry: never blocks, so no onFailure
         self.assertEqual(hooks["SessionStart"][0]["matcher"], "startup|resume|clear|compact|fork")
         self.assertEqual((doctor["type"], doctor["timeout"], "onFailure" in doctor), ("command", 15, False))
@@ -296,10 +297,37 @@ class Settings(unittest.TestCase):
             self.assertTrue((HOOKS / script).is_file())
         self.assertEqual(hooks["PreToolUse"][0]["matcher"], "Bash")
 
+    def test_the_pin_refuses_one_more_entry_handler_or_event(self):
+        """Rule 15: the pin fails on each way a hook can be added, so an unallocated hook fails test:hooks."""
+        hooks = json.loads((ROOT / ".claude" / "settings.json").read_text())["hooks"]
+        extra = {"type": "command", "command": "true"}
+        for name, grow in (("entry", lambda h: h["SessionStart"].append({"matcher": "startup", "hooks": [extra]})),
+                           ("handler", lambda h: h["PostToolUse"][0]["hooks"].append(extra)),
+                           ("event", lambda h: h.__setitem__("Notification", [{"hooks": [extra]}]))):
+            with self.subTest(added=name):
+                grown = copy.deepcopy(hooks)
+                grow(grown)
+                self.assertNotEqual(hook_map(grown), EXPECTED_HOOKS)
+
+
+def hook_map(hooks):
+    """The seam the pin asserts: each event's entries as (matcher, handler count), in file order."""
+    return {event: [(entry.get("matcher"), len(entry["hooks"])) for entry in entries] for event, entries in hooks.items()}
+
+
+EXPECTED_HOOKS = {  # three deny gates (D102), the doctor (C3) and the five D166 entries; nothing else
+    "UserPromptSubmit": [(None, 1)],
+    "SessionStart": [("startup|resume|clear|compact|fork", 1), ("startup|resume|clear|compact", 1)],
+    "PreToolUse": [("Bash", 1)],
+    "PostToolUse": [("AskUserQuestion", 1)],
+    "PreCompact": [(None, 1)],
+    "SubagentStart": [(None, 1)],
+    "SubagentStop": [(None, 1)],
+    "Stop": [(None, 1)],
+}
 
 LEDGER = Path(".local/state/claude-code-marketplace/requests/ledger.jsonl")  # CL4 E1, under $HOME
-REQUEST_EVENTS = {"UserPromptSubmit", "PostToolUse", "PreCompact", "SubagentStart"}  # D166, plus SessionStart
-HEADER = "Open requests (task_plan ## Open requests, D166; keep each id and its next action):\n"
+HEADER = "Open requests (task_plan ## Open requests, D166; keep every line verbatim):\n"
 PROMPT = {"session_id": "797fac9e-45f6-4000-bb0b-7a4b6c71a99d", "transcript_path": "/t/797fac9e.jsonl",
           "cwd": "/w", "prompt_id": "ff1c3221-ef20-4940-a382-bf0dadcffa05", "permission_mode": "default",
           "hook_event_name": "UserPromptSubmit", "prompt": "/probe-cmd alpha é \"quoted\""}
@@ -356,6 +384,7 @@ class RequestHooks(unittest.TestCase):
         path.write_text(text)
 
     def test_capture_hooks_are_async_and_append_the_stdin_row_to_the_untracked_ledger(self):
+        (self.tmp / "home" / LEDGER).parent.mkdir(parents=True, mode=0o755)  # a pre-existing wider directory
         for (event, matcher), payload in {("UserPromptSubmit", None): PROMPT,
                                           ("PostToolUse", "AskUserQuestion"): ANSWER}.items():
             with self.subTest(event=event):
