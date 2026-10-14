@@ -251,7 +251,10 @@ def check_selected_tree(root: Path, tree: str) -> None:
             ("run", "check:acceptance-baseline"),
             ("run", "test:delivery"),
         ):
-            run([str(selected / "dev/mise"), *argv], cwd=selected, env=env)
+            try:
+                run([str(selected / "dev/mise"), *argv], cwd=selected, env=env)
+            except Refusal as exc:  # run() drops output, so name the failing task
+                raise Refusal(f"selected-tree {' '.join(argv)}: {exc}") from exc
 
 
 def identity(args: argparse.Namespace) -> Path:

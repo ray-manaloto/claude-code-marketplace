@@ -328,7 +328,7 @@ class DeliveryTests(unittest.TestCase):
                     "--check-task", "check", "--gitleaks-bin", str(scanner))
         missing = self.invoke("publish", *options)
         self.assertEqual(missing.returncode, 2)
-        self.assertIn("rc=31", missing.stderr)
+        self.assertIn("selected-tree run test:delivery: command failed (rc=31)", missing.stderr)
         self.assertEqual(self.git("ls-remote", "--heads", "origin", "delivery"), "")
         pinned.parent.mkdir(parents=True)
         pinned.write_text("#!/bin/sh\necho 1.9.0\n")
