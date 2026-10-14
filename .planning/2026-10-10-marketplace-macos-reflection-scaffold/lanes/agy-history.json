@@ -1,0 +1,57 @@
+{
+  "unit": "agy-history",
+  "tickets": [
+    "D153 (antigravity-session-history skill, built with /skill-creator)"
+  ],
+  "title": "antigravity-session-history skill: SKILL.md, references (sources, recipes, brief template), evals; no scripts (D112), per R20 section 8",
+  "owner": "parent (interactive /skill-creator run in the lane worktree)",
+  "writer_model": "opus-5.5 (parent session)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/agy-history",
+  "branch": "claude/agy-history-skill",
+  "base_sha": "132e8e3",
+  "allocated_from": "132e8e3",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "reviews/ccm-20261014/research6/R20-antigravity-history.md sections 6-8",
+  "owned_paths": [
+    ".claude/skills/antigravity-session-history/",
+    ".agents/skills/antigravity-session-history/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/agy-history.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/skills/codex-session-history/",
+    ".agents/skills/codex-session-history/",
+    ".claude/AGENTS.md",
+    "AGENTS.md",
+    "mise.dev.toml",
+    "dev/",
+    ".claude/settings.json",
+    "docs/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "diff -r .claude/skills/antigravity-session-history .agents/skills/antigravity-session-history (empty)",
+    "python3 -I -m json.tool evals/evals.json",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "gitleaks dir --config .gitleaks.toml on the skill tree (no TR names)",
+    "./dev/mise run retro:gate -- agy-history"
+  ],
+  "resource_admissions": {
+    "antigravity_data": "read-only copies into the session scratchpad for eval runs; never open live files, never run the app or agy",
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "review": null,
+  "retro": null,
+  "created_at": "2026-10-14",
+  "notes": [
+    "no scripts/ directory: the parser boundary is a C++ ticket (R20 section 8 item 8)",
+    "eval prompts must not name TR; use a generic workspace substring"
+  ]
+}
