@@ -819,6 +819,16 @@ verbatim in `progress-archive-2026-10-13.md`.
   issue #11 carried a private domain word; body rewritten (scan rc 0), two history revisions await
   the user's deletion (the auto-mode classifier refused the Chrome click).
 
+- 2026-10-14 (request lanes integration, D164): request-hooks (CT-88, CT-89, D166) merged `cadd2ed`
+  (records `bb3e476`, retro blob byte-identical to `6a6ca77`); request-catch (CT-90, D167) merged
+  `71dbb6b` (records `18c986a`, retro byte-identical to `f557db5`); no conflicts. Gates rc 0 after
+  each merge: tasks validate, check, check:acceptance-baseline, test:hooks (24), test:handoff (47,
+  after request-catch), check:research, retro:gate, `git diff --check`, skill mirrors. Parent edits
+  applied: orchestration Settings-test owner line; CL4 E2 key rule written once for both lanes;
+  implementer step 4 `git merge --no-edit`; lane records integrated with retro "passed". Nothing
+  pushed; A09 publish waits for lane a09-selected-tree. Report:
+  `reviews/ccm-20261014/republish/request-lanes-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,

@@ -1,0 +1,57 @@
+{
+  "unit": "capture-filter",
+  "tickets": [
+    "CT-88 follow-up (D166)"
+  ],
+  "title": "The UserPromptSubmit capture hook records only user prompts, not task notifications delivered through the same event",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/capture-filter",
+  "branch": "claude/capture-filter",
+  "base_sha": "9cb206e",
+  "allocated_from": "9cb206e",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "parent observation 2026-10-14: both rows in the live request ledger after the request-hooks merge (p:9dc3aa9d, p:cf32b5bb) are <task-notification> payloads, and each raised H.request-unprojected P1",
+  "delivers": [
+    "the capture hook's jq filter drops a UserPromptSubmit payload whose prompt is a harness event (it starts with <task-notification>; survey the other harness-originated shapes this session receives, e.g. scheduled wake-ups, and include each one with evidence) and still appends every real user prompt unchanged",
+    "zero logic beyond jq (D166): one select() in the existing command",
+    "RequestHooks seam tests: a task-notification payload appends nothing; a user prompt that merely mentions <task-notification> mid-text is still captured; the Settings pin stays exact"
+  ],
+  "owned_paths": [
+    ".claude/settings.json",
+    "dev/test_hooks.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/capture-filter.md"
+  ],
+  "excluded_shared_paths": [
+    "dev/handoff.py",
+    "dev/hooks/",
+    "mise.dev.toml",
+    "docs/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:hooks",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- capture-filter"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "the three deny gates and the D101 SessionStart doctor entry stay byte-identical",
+    "the live ledger is read-only evidence; never print prompt text into tracked files"
+  ]
+}

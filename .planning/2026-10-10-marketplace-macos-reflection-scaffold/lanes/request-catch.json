@@ -56,7 +56,7 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "allocated",
+  "status": "integrated",
   "review": "PASS with P2/P3 on `ee64a19` (reviewer, Fable, cold)",
   "retro": "passed",
   "created_at": "2026-10-14",
@@ -65,6 +65,9 @@
     "the request ledger itself is CT-88's; this lane reads its documented format",
     "a09-hook-events retro P-2: dev/test_handoff.py git() (line 33) and the bare clone (line 200) pass no env, so the global hk hooks run in its scratch repositories; pin HOME, GIT_CONFIG_GLOBAL=/dev/null and GIT_CONFIG_NOSYSTEM=1 as dev/test_git_delivery.py setUp does, and cite the test_handoff rc 0 in this lane's retro",
     "retro widening (pre-authorized): `mise.dev.toml` line 118 (`check:research` depends gains `test:handoff`) and lines 356-359 (`[tasks.\"test:handoff\"]`); `.claude/skills/session-handoff/SKILL.md` lines 15-17 and 29-32 and `evals/evals.json` eval 3 (lines 30-31, 35), with the `.agents/skills/session-handoff` mirrors byte-identical",
-    "retro: `retros/request-catch.md` at f557db5 (blob a0ffa1c), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires"
-  ]
+    "retro: `retros/request-catch.md` at f557db5 (blob a0ffa1c), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "integrated 2026-10-14 as 71dbb6b (parents 18c986a, f557db5), no conflict (mise.dev.toml auto-merged with request-hooks' requests:tail row); gates on the merged tree rc 0 (tasks validate 66, check, check:acceptance-baseline, test:hooks 24, test:handoff 47, check:research, retro:gate, git diff --check 18c986a, skill mirrors); report reviews/ccm-20261014/republish/request-lanes-merge-report.md"
+  ],
+  "head_sha": "f557db5",
+  "integration_merge": "71dbb6b"
 }
