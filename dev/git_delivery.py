@@ -378,6 +378,7 @@ def publish(args: argparse.Namespace, root: Path, paths: set[str], pre: dict[str
     git(root, "diff", "--cached", "--check")
     check_selected_tree(root, args.index_tree)
     remote_before = remote_head(root, args.remote, args.branch)
+    # Check tasks run with the caller's environment: the safe set above covers only A09's own git calls, so a task that itself runs git commit fires configured hooks.
     for task in args.check_task:
         if not SAFE_NAME.fullmatch(task):
             raise Refusal("invalid check task name")
