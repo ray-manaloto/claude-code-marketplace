@@ -32,7 +32,7 @@ Rules live in `.claude/skills/ticket-frontier/references/scheduler.md` (§Confli
 4. Estimate `est_files` and `est_loc`. Split when `est_files > 5` or `est_loc > 300`
    (sub-units in dependency order), when two seams are independently testable (parallel
    sub-lanes), or when a documentation half exists (`doc-writer` sub-lane). Keep one lane
-   with a Fable reviewer and no sibling when a hot path or a frozen baseline file is
+   with an Opus reviewer (D189) and no sibling when a hot path or a frozen baseline file is
    touched. Done when every unit is near five files and 300 handwritten lines.
 5. Return one JSON object per candidate, nothing else:
    `{"unit", "ticket", "owner_role", "owned_paths", "excluded", "seam", "est_files", "est_loc", "split", "conflicts"}`
