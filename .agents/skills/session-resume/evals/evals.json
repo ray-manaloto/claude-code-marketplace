@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "/session-resume ccm-20261014",
-      "expected_output": "Reads the HANDOFF pointer from the plan's `## Next Step`, runs the doctor session-start surface (root or w0-doctor worktree), runs `dev/handoff.py check --agents-done`, dispatches one extractor with the fixed brief, rewrites the owner line with `dev/handoff.py owner --session ccm-20261014`, then prints the first three actions, the pending-user list and the slash commands the user must type from HANDOFF §2(j).",
+      "expected_output": "Reads the HANDOFF pointer from the plan's `## Next Step`, compares `claude --version` with the CLI row, runs the doctor session-start surface, runs `dev/handoff.py check --agents-done`, dispatches one extractor with the fixed brief, rewrites the owner line with `dev/handoff.py owner --session ccm-20261014` (and `--session-id` when the start command fixed one), then prints the first three actions, the pending-user list and the slash commands the user must type from HANDOFF §2(j).",
       "files": [],
       "expectations": [
         "Runs the doctor session-start surface and quotes its P1/P2/P3 counts",
@@ -23,6 +23,19 @@
         "Asks the user to /rename when the session has no name",
         "Does not skip the check or the extractor",
         "Prints the pending-user list and the slash commands to type"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/session-resume ccm-20261015T101500.123456789-05 (I ran /quit after upgrading, pasted the start command without its prompt, and typed /reload-skills and /reload-plugins first)",
+      "expected_output": "Sees that `claude --version` differs from the version HANDOFF §1's CLI row says the handing-off session ran, so the release intake (R-176: offline/research/R22-cc-2.1.300/ and reviews/ccm-20261014/cc-2.1.300/) comes first. Runs the doctor and check, then the startup-log checks from .claude/skills/session-start/SKILL.md against ~/.local/state/claude-code-marketplace/session-start/events.jsonl for this session (a fired row, reload accepted, reload finished before the first prompt, title set) and reports each as pass or fail; a fail goes ahead of the plan's own next action. Dispatches the extractor, then runs `dev/handoff.py owner --session ccm-20261015T101500.123456789-05 --session-id <uuid>` with the id the start command fixed.",
+      "files": [],
+      "expectations": [
+        "Runs claude --version and puts the R-176 release intake first when it differs from the CLI row's handing-off version",
+        "Runs the session-start log checks for this session and reports each pass or fail with its row",
+        "Reports 'mod not integrated' and goes on when the session-start skill or the log is absent",
+        "Runs dev/handoff.py owner with the --session-id the start command fixed, not the newest transcript",
+        "Does not skip the check or the extractor"
       ]
     }
   ]

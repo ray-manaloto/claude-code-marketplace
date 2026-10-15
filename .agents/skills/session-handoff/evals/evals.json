@@ -4,38 +4,54 @@
     {
       "id": 1,
       "prompt": "Context is getting full; prepare for /clear. All my subagents have returned.",
-      "expected_output": "Asks or records that no agent is running, runs `python3 -I dev/handoff.py write --agents-done` (dry-run first when the template changed), then `check --agents-done --json`, reports go/no-go with the finding list and prints the `claude -n <name> \"...\"` start command; never edits task_plan.md by hand.",
+      "expected_output": "Checks itself, without asking, that no agent or background task is running (ListAgents, a process scan, background Bash and Monitor tasks), runs `python3 -I dev/handoff.py write --agents-done` (dry-run first when the template changed), then `check --agents-done --json`, reports go/no-go with the finding list and prints the plain `dev/handoff.py start-command` output (a fresh `claude -n <name> --session-id <uuid> \"...\"` command); never edits task_plan.md by hand.",
       "files": [],
       "expectations": [
+        "Verifies with ListAgents and a process scan that no agent is running and never asks the user whether agents are running",
         "Runs dev/handoff.py write before check and reports both exit codes",
         "Reports go only when check exits 0 and lists every P1/P2 finding otherwise",
-        "Prints the start command from dev/handoff.py start-command",
-        "Tells the user to type /session-resume <name> only after /clear, never after the start command",
+        "Prints the start command from dev/handoff.py start-command, run without --name",
+        "Tells the user to type /session-resume <name> only on the /clear and by-hand paths, never after the whole start command",
         "Does not hand-edit task_plan.md, progress.md or the HANDOFF file"
       ]
     },
     {
       "id": 2,
       "prompt": "Checkpoint the session: a merge is still in progress and I have one implementer still running.",
-      "expected_output": "Reports no-go: refuses to assert --agents-done while an agent runs, runs check without the flag, shows H.git-op-in-progress and H.agents-unconfirmed with their fix hints, and tells the user what to finish before /clear.",
+      "expected_output": "Stops at step 1 with a no-go: ListAgents shows the running implementer, so it reports that agent and the in-progress merge as what must finish, does not pass --agents-done, does not run write, and does not tell the user to /clear or /quit.",
       "files": [],
       "expectations": [
         "Does not pass --agents-done while an agent is running",
-        "Names H.git-op-in-progress and H.agents-unconfirmed with fix hints",
-        "Returns no-go and does not tell the user to /clear"
+        "Does not run write and stops at step 1 with the running implementer named",
+        "Names the in-progress merge as unfinished work (H.git-op-in-progress once check runs)",
+        "Returns no-go and does not tell the user to /clear or /quit"
       ]
     },
     {
       "id": 3,
-      "prompt": "handoff: the next session should start as ccm-20261015 and the user now owes R-172 (D59).",
-      "expected_output": "Edits references/handoff-template.md (owner section), copies it to the .agents mirror, confirms R-172 is an `owner user` line of `## Open requests` (the generated Pending user line carries it), runs write --dry-run to show the diff, then write and check, and prints the start command naming ccm-20261015.",
+      "prompt": "handoff: put the R-176 release intake first in the next session's action, and the user still owes R-173 and R-056.",
+      "expected_output": "Edits references/handoff-template.md (the action section leads with the R-176 intake, the owner section holds no session name), copies it to the .agents mirror, confirms R-173 and R-056 are `owner user` lines of `## Open requests` (the generated Pending user line carries them), runs write --dry-run to show the diff, then write and check, and prints the plain start command with its generated name.",
       "files": [],
       "expectations": [
         "Changes the template rather than the generated block",
-        "Puts the user-owed item in `## Open requests` as an `owner user` R-n line, never in the template",
+        "Puts the user-owed items in `## Open requests` as `owner user` R-n lines (R-173, R-056), never in the template",
+        "Leads the action section with the R-176 release intake",
         "Syncs the .agents/skills/session-handoff mirror after the template edit",
         "Shows the write --dry-run diff before writing",
-        "The start command names ccm-20261015"
+        "The start command comes from dev/handoff.py start-command and its name is not the current owner's"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm upgrading Claude Code to the new version, so I'll /quit and start again. Prepare the handoff; one of my Monitor tasks is still watching a build.",
+      "expected_output": "Treats the Monitor task as running work (exit force-kills background commands 1.5 s after it stops): reports no-go until the task finishes or is stopped on purpose, then runs write and check, sets the CLI row from `claude --version`, puts the release intake first in the action, prints the plain start command and offers the /quit path (ignore the printed resume line, paste the start command, type nothing else) and the by-hand path (paste without the prompt, then /reload-skills, /reload-plugins without --force, /session-resume <name>), telling the user to use one.",
+      "files": [],
+      "expectations": [
+        "Counts the Monitor task as running work and does not go until it has finished or been stopped",
+        "Sets the state-rows CLI row from claude --version and leads the action with the pending release intake",
+        "Prints dev/handoff.py start-command without --name",
+        "Offers /quit then paste the start command, and says to ignore the claude --resume line /quit prints",
+        "Offers the by-hand path /reload-skills, /reload-plugins (never --force), /session-resume <name>, and says to use one path, never two"
       ]
     }
   ]
