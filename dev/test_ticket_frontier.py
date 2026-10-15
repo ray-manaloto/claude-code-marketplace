@@ -7,6 +7,7 @@ Nothing here reads the real plan directory or the network.
 """
 
 import filecmp
+import importlib.util
 import json
 import os
 import shutil
@@ -207,6 +208,16 @@ class NextTests(FrontierCase):
         """D189: frontier.toml [model_policy] review feeds the per-call model that overrides reviewer.md."""
         policy = tomllib.loads(CONFIG.read_text())["model_policy"]
         self.assertEqual((policy["review"]["model"], policy["review"]["effort"]), ("opus", "high"))
+
+    def test_fable_kinds_match_shipped_policy(self):
+        """compaction-40 retro: the escalation guard skips exactly the kinds frontier.toml already puts on fable."""
+        sys.dont_write_bytecode = True  # keep __pycache__ out of the skill dir so the mirror diff stays clean
+        spec = importlib.util.spec_from_file_location("frontier_script", SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        policy = tomllib.loads(CONFIG.read_text())["model_policy"]
+        fable = {kind for kind, entry in policy.items() if isinstance(entry, dict) and entry.get("model") == "fable"}
+        self.assertEqual(set(module.FABLE_KINDS), fable)
 
     def test_escalation_to_fable_after_one_opus_reasoning_failure(self):
         journal = self.tmp / "21-offline.jsonl"

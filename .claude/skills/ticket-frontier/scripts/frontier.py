@@ -58,7 +58,8 @@ class ReadyTicket(TypedDict):
 DEFAULT_PLAN_ID = "2026-10-10-marketplace-macos-reflection-scaffold"
 WRITER_ROLES = ("implementer", "doc-writer")
 PRIORITY_RULES = ["critical_path", "unblocks", "always_active", "wave", "number"]
-FABLE_KINDS = ("review", "retro", "synthesis", "design")
+FABLE_KINDS = ("retro", "synthesis", "design")  # kinds frontier.toml [model_policy] already puts on fable; the
+#   escalation guard in next_lane skips them (D189: review runs on opus and escalates like any opus kind)
 ESCALATION_REASON = "reasoning"
 LEDGER_KINDS = ("mechanical", "judgement", "navigation", "workflow", "role", "hook")
 LEDGER_MODES = ("auto", "propose")

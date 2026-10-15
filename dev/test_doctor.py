@@ -152,8 +152,13 @@ class ContextBudget(Scratch):
         self.assertTrue(all(value < window - 33_000 for value in budget.THRESHOLDS.values()))
         frontier = tomllib.loads((ROOT / ".planning" / "2026-10-10-marketplace-macos-reflection-scaffold" /
                                   "frontier.toml").read_text())
-        self.assertEqual(budget.THRESHOLDS["fork_deny"],
-                         frontier["context_ceiling_fraction"] * frontier["windows"]["opus"])
+        # D191 holds for every dispatchable model, not only opus: frontier.py computes the ceiling as
+        # int(windows[model] * fraction), and `plan` refuses when that differs from fork_deny.
+        self.assertTrue(frontier["windows"])
+        for model, window in frontier["windows"].items():
+            with self.subTest(model=model):
+                self.assertEqual(budget.THRESHOLDS["fork_deny"],
+                                 int(window * float(frontier["context_ceiling_fraction"])))
 
     def test_team_guide_budget_table_equals_thresholds(self):
         """w0-docs retro deferral: the claude-team.md Context budget table and budget.THRESHOLDS state one set."""
