@@ -24,6 +24,9 @@ and names every check left unrun.
     can reshape argv: a backslash-newline continuation, a variable, a command substitution, a
     nested shell or eval, a pipe and a heredoc. Reject a gate change whose case list lacks one
     of them (retro gh-guard, GG-9, GG-10, GG-12).
+17. A helper that runs a child process checks its exit status before reading its output and
+    refuses with the code and the first line of stderr; a nonzero exit with output, one without,
+    and a hang each have a seam test (handoff-script RV-1).
 
 ## Receipts and claims
 

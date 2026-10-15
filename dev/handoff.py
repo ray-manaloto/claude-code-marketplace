@@ -10,6 +10,7 @@ Subcommands (all read the checkout under --repo and the plan under .planning/<pl
                                            into temp copies, probe them, move them only when check passes
   owner --session NAME [--session-id ID]   rewrite the plan's owner paragraph
   start-command [--name N] [--session-id]  the `claude -n <name> "<prompt>"` line with the pins exported
+  next-name                                the next session name: ccm- + one OS `date` call (D61, D187)
 Exit codes: 0 clean, 2 findings or refusal, 1 usage or error. Stdlib only; run under `python3 -I`.
 Findings use the doctor shape {id, class, severity, subject, evidence, fix_hint, auto_fixable}; the module
 also exports SURFACES/BUDGET_MS/CONTEXT_RANK/run/context_lines so it can move into dev/doctor/ as-is.
@@ -55,6 +56,11 @@ ITEM_RE = re.compile(r"- \[([ xX])\] (R-\d+)\b")  # a projected request line (CL
 LINK_RE = re.compile(r"\bissue:? #\d+\b|(?<=· )#\d+(?= ·|$)|github\.com/[\w.-]+/[\w.-]+/issues/\d+", re.I)  # D168 link: `issue: #N`, the bare `· #N ·` field (CL4 §4.2) or an issue URL
 OWNER_USER_RE = re.compile(r"\bowner:? user\b")  # an item awaiting the user (CL4 §4.2)
 GIT_SKIP = {"MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_LOG"}
+# D61, D76, D187: the session name is `ccm-` + `date` with this format, cut to an hour offset; the
+# session-start mod (.claude/skills/session-start/) passes the same string, so neither adds time logic
+NAME_DATE_FORMAT = "+%Y%m%dT%H%M%S.%N%z"
+NAME_DATE_RE = re.compile(r"\d{8}T\d{6}\.\d{9}[+-]\d{4}")  # what that format prints; a date without %N fails it
+DATE_TIMEOUT_S = 10  # a hung `date` is a refusal (exit 2), not an error
 
 
 @dataclasses.dataclass(frozen=True)
@@ -129,6 +135,32 @@ def git_binary() -> str:
 
 
 GIT = git_binary()
+
+
+class Refusal(Exception):
+    """Exit 2 with one reason on stderr."""
+
+
+def date_binary() -> str:
+    """The OS date: PATH unless it is a mise shim, else /bin/date (the git_binary rule)."""
+    found = shutil.which("date")
+    if found and Path(found).resolve().name != "mise":
+        return found
+    return "/bin/date" if Path("/bin/date").is_file() else "date"
+
+
+def next_name() -> str:
+    """`ccm-` + one `date NAME_DATE_FORMAT` call with `%z` cut to its hour (D61); no Python time formatting."""
+    try:
+        result = subprocess.run([date_binary(), NAME_DATE_FORMAT], capture_output=True, text=True, timeout=DATE_TIMEOUT_S)
+    except subprocess.TimeoutExpired:
+        raise Refusal(f"date did not answer within {DATE_TIMEOUT_S} s") from None
+    if result.returncode != 0:
+        raise Refusal(f"date exited {result.returncode}: {result.stderr.strip()[:80]!r}")
+    stamp = result.stdout.strip()
+    if not NAME_DATE_RE.fullmatch(stamp):
+        raise Refusal(f"date output does not match {NAME_DATE_FORMAT} (a date without %N?): {stamp[:40]!r}")
+    return f"ccm-{stamp[:-2]}"
 
 
 def git(repo: Path, *args: str, codes=(0,)) -> str | None:
@@ -449,7 +481,8 @@ def parse_frames(hook_stdout: str) -> dict:
 
 
 def run_probe(plan_root: Path, plan_id: str, context: str, smart: bool) -> dict:
-    """One pwf fire: the SessionStart hook (`userprompt`) or the Python twin (`pretool`), fresh session id."""
+    """One pwf fire with a fresh session id: the SessionStart hook as `/clear` (`userprompt`) or as a restart
+    (`startup`, S9), or the Python twin (`pretool`)."""
     root = plugin_root()
     if root is None:
         return {"plan": [], "progress": [], "bytes": 0, "error": "planning-with-files plugin cache not found"}
@@ -464,7 +497,8 @@ def run_probe(plan_root: Path, plan_id: str, context: str, smart: bool) -> dict:
             result = subprocess.run(cmd, cwd=plan_root, env=env, capture_output=True, text=True, timeout=30)
         else:
             payload = json.dumps({"session_id": env["PWF_SESSION_ID"], "cwd": str(plan_root),
-                                  "hook_event_name": "SessionStart", "source": "clear"})
+                                  "hook_event_name": "SessionStart",
+                                  "source": "startup" if context == "startup" else "clear"})
             result = subprocess.run(["sh", str(root / "hooks/claude-hook.sh"), "session-start"], input=payload,
                                     cwd=plan_root, env=env, capture_output=True, text=True, timeout=30)
     except (OSError, subprocess.TimeoutExpired) as error:
@@ -478,10 +512,12 @@ def run_probe(plan_root: Path, plan_id: str, context: str, smart: bool) -> dict:
 
 
 def probe_findings(ctx: Context, st: dict) -> list[Finding]:
-    """H.injection-probe-failed: legacy (positions inside 30), smart (presence), pretool (inside 30), NEXT last."""
+    """H.injection-probe-failed: legacy and startup (positions inside 30), smart (presence), pretool (inside 30),
+    NEXT last."""
     out = []
     has_next = any(line.startswith("- NEXT") for line in read(ctx.plan / "progress.md").splitlines())
-    for name, context, smart in (("legacy", "userprompt", False), ("smart", "userprompt", True), ("pretool", "pretool", False)):
+    for name, context, smart in (("legacy", "userprompt", False), ("smart", "userprompt", True),
+                                 ("startup", "startup", False), ("pretool", "pretool", False)):
         frames = run_probe(ctx.root, ctx.plan_id, context, smart)
         if frames["error"]:
             out.append(Finding("H.injection-probe-failed", "P2", f"{name} probe did not run: {frames['error']}",
@@ -497,7 +533,7 @@ def probe_findings(ctx: Context, st: dict) -> list[Finding]:
             problems.append(f"`## Next Step` at frame line {step}, handoff line {hand}: outside the first 30")
         if name == "smart" and not any(line.startswith("phases:") for line in plan):
             problems.append("smart view not active (no `phases:` line)")
-        if context == "userprompt" and has_next:
+        if context != "pretool" and has_next:
             progress = frames["progress"]
             starts = [i for i, line in enumerate(progress) if line.startswith("- ")]
             if not starts or not progress[starts[-1]].startswith("- NEXT"):
@@ -668,8 +704,10 @@ def print_findings(found: list[Finding], st: dict | None, as_json: bool) -> None
 # ---------------------------------------------------------------- write
 
 def owner_name(template: dict, name: str | None) -> str:
+    """--name, else the first backticked span of the template's owner sentence, else a fresh `next_name()`:
+    the same generator as `start-command`, so the block, the NEXT bullet and §8 name one session (HS-3)."""
     match = re.search(r"`([^`]+)`", template.get("owner", ""))
-    return name or (match.group(1) if match else "next-session")
+    return name or (match.group(1) if match else next_name())
 
 
 def next_rev(block: list[str]) -> int:
@@ -791,9 +829,9 @@ def section_preclear(st: dict) -> str:
             "1 on error; the finding ids and the predicate: `.claude/skills/session-handoff/references/predicate.md`.\n"
             f"Last `write`: {st['generated_utc']}, findings at write time: none (a write with findings is refused).\n\n"
             "Manual twin when the script cannot run:\n"
-            "1. Injection probe: legacy, smart and pretool pwf fires with fresh probe ids; `## Next Step` and its\n"
-            "   `Session handoff` line inside plan line 30 (legacy, pretool) and present in the smart frame; the\n"
-            "   progress tail ends on the NEXT bullet while one exists.\n"
+            "1. Injection probe: legacy (`clear`), smart, `startup` and pretool pwf fires with fresh probe ids;\n"
+            "   `## Next Step` and its `Session handoff` line inside plan line 30 (legacy, startup, pretool) and\n"
+            "   present in the smart frame; the progress tail ends on the NEXT bullet while one exists.\n"
             "2. Doctor session-start (root `dev/doctor/cli.py` or the w0-doctor worktree copy): 0 P1.\n"
             "3. `git status`: no `MERGE_HEAD`, `REBASE_HEAD` or `CHERRY_PICK_HEAD`; counts as declared in §1.\n"
             "4. No running agents: every dispatched agent has returned; only then `--agents-done`.\n"
@@ -810,20 +848,23 @@ def section_start(ctx: Context, st: dict, name: str) -> str:
             "- Same terminal: type `/clear`, then type this as the first turn:\n"
             f"  `/session-resume {name}`\n"
             "  `/clear` keeps this terminal's environment: it does not unset `VIRTUAL_ENV` or export the pins.\n\n"
-            "Optional: `--session-id \"$(uuidgen | tr A-Z a-z)\"` fixes the id before launch. Never `claude -c`,\n"
-            "`--bare` or `--safe-mode`; fork (`-r <id> --fork-session`) only under the 500K fork-deny line.\n\n")
+            "The block fixes `--session-id` before launch and its prompt hands the same id to `dev/handoff.py\n"
+            "owner`. Never `claude -c`, `--bare` or `--safe-mode`; fork (`-r <id> --fork-session`) only under the\n"
+            "500K fork-deny line.\n\n")
 
 
 def start_command(ctx: Context, name: str | None, session_id: str | None) -> str:
-    name = name or f"ccm-{datetime.now(timezone.utc):%Y%m%d}"
+    """A fresh next-name (never the owner's, S4) and a fixed session id that the prompt hands to `owner` (S7)."""
+    name = name or next_name()
+    sid = session_id or str(uuid.uuid4())
     handoff = ctx.handoff_path
     rel = str(handoff.relative_to(ctx.root)) if handoff else ".planning/<plan>/reviews/<session>/phase3/HANDOFF-<date>.md"
-    sid = f" --session-id {session_id}" if session_id else ""
     prompt = (f"Use the session-resume skill for session {name}: it follows {rel} section 2, runs the doctor "
               f"session-start surface and dev/handoff.py check, dispatches the extractor and rewrites the owner "
-              f"line. Then continue at the Next Step of the plan.")
+              f"line with dev/handoff.py owner --session {name} --session-id {sid}. Then continue at the Next "
+              f"Step of the plan.")
     return (f"cd {ctx.repo}\nunset VIRTUAL_ENV\nexport PLAN_ID={ctx.plan_id} PWF_PLAN_ROOT={ctx.repo}\n"
-            f"claude -n {name}{sid} \"{prompt}\"")
+            f"claude -n {name} --session-id {sid} \"{prompt}\"")
 
 
 def replace_next_step(plan_text: str, block: str) -> str:
@@ -948,7 +989,7 @@ def context_lines(doctor_ctx) -> list[str]:
     found = [f for f in getattr(doctor_ctx, "findings", ()) if f.id.startswith("H.")]
     name = ctx.handoff_path.name if ctx.handoff_path else "none"
     return [f"handoff: {name} §2 · check {'PASS' if not exit_code(found) else 'FAIL'} ({len(found)} H findings) · "
-            f"resume: /session-resume after /clear only"]
+            f"resume: /quit, then the §8 start command (it runs session-resume); or /session-resume <name> after /clear"]
 
 
 # ---------------------------------------------------------------- cli
@@ -956,6 +997,14 @@ def context_lines(doctor_ctx) -> list[str]:
 class Parser(argparse.ArgumentParser):
     def error(self, message):
         self.exit(1, f"handoff: {message}\n")
+
+
+def session_uuid(value: str) -> str:
+    """argparse type for --session-id: `claude --session-id <uuid>` takes only a valid UUID (2.1.300 --help)."""
+    try:
+        return str(uuid.UUID(value))
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"not a UUID: {value!r}") from None
 
 
 def main(argv=None) -> int:
@@ -977,13 +1026,14 @@ def main(argv=None) -> int:
     p_write.add_argument("--dry-run", action="store_true")
     p_write.add_argument("--agents-done", action="store_true")
     p_write.add_argument("--template", help="hand-written sentences (default: .claude/skills/session-handoff/references/handoff-template.md)")
-    p_write.add_argument("--name", help="next session name (default: the template's owner line)")
+    p_write.add_argument("--name", help="next session name (default: the template owner line's backticked name, else next-name)")
     p_owner = sub.add_parser("owner")
     p_owner.add_argument("--session", required=True)
-    p_owner.add_argument("--session-id")
+    p_owner.add_argument("--session-id", type=session_uuid)
     p_start = sub.add_parser("start-command")
     p_start.add_argument("--name")
-    p_start.add_argument("--session-id")
+    p_start.add_argument("--session-id", type=session_uuid)
+    sub.add_parser("next-name")
     args = parser.parse_args(argv)
     repo = Path(args.repo).resolve() if args.repo else Path(__file__).resolve().parents[1]
     if git(repo, "rev-parse", "--show-toplevel") is None:
@@ -1008,6 +1058,12 @@ def main(argv=None) -> int:
         if args.command == "start-command":
             print(start_command(ctx, args.name, args.session_id))
             return 0
+        if args.command == "next-name":
+            print(next_name())
+            return 0
+    except Refusal as error:
+        print(f"handoff: {error}", file=sys.stderr)
+        return 2
     except (OSError, ValueError) as error:
         print(f"handoff: {error}", file=sys.stderr)
         return 1
