@@ -59,6 +59,8 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-175 (none): check the session-handoff and session-resume skills for the /quit and restart flow on Claude Code 2.1.300 (session-start mod reloads skills and plugins before the first request, D103, and renames the session; prompt cache kept); issue: #139; p:5a8b9624
 - [ ] R-176 (R-158): Claude Code 2.1.300 release intake: run the dependency upgrade workflow for offline docs and repo mirrors, produce structured JSON and OKF release data for agents, and review what the release changes for the project and its tickets; issue: #140; p:5a8b9624
 - [ ] R-177 (R-127, D185): prioritize the claude-agent and codex-agent skill teams, with the prerequisite machine-readable JSON and OKF inventory of settings, environment variables and feature flags for both harnesses (Codex's earlier work read through codex-session-history); issue: #141; p:5a8b9624, p:8983a5df
+- [ ] R-179 (D188): auto-compaction at 40% of the active model's context limit instead of the fixed 700K window; a Claude Code mod only if no native setting does it (research first, D100); issue: pending
+- [ ] R-180 (D188): research why the repo has both mise.toml and mise.dev.toml and whether one file can serve; run Claude Code in CI/CD on the latest pinned version, with the native installer if possible; the image-pin bump (CT-08 batch 4) waits for it; issue: pending
 
 ## Goal
 Integrate wave 0, publish each integration through A09, file CT-01..CT-81 (+CT-02b, CT-20a/b,
