@@ -60,6 +60,7 @@ GIT_SKIP = {"MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BIS
 # session-start mod (.claude/skills/session-start/) passes the same string, so neither adds time logic
 NAME_DATE_FORMAT = "+%Y%m%dT%H%M%S.%N%z"
 NAME_DATE_RE = re.compile(r"\d{8}T\d{6}\.\d{9}[+-]\d{4}")  # what that format prints; a date without %N fails it
+DATE_TIMEOUT_S = 10  # a hung `date` is a refusal (exit 2), not an error
 
 
 @dataclasses.dataclass(frozen=True)
@@ -150,7 +151,13 @@ def date_binary() -> str:
 
 def next_name() -> str:
     """`ccm-` + one `date NAME_DATE_FORMAT` call with `%z` cut to its hour (D61); no Python time formatting."""
-    stamp = subprocess.run([date_binary(), NAME_DATE_FORMAT], capture_output=True, text=True, timeout=10).stdout.strip()
+    try:
+        result = subprocess.run([date_binary(), NAME_DATE_FORMAT], capture_output=True, text=True, timeout=DATE_TIMEOUT_S)
+    except subprocess.TimeoutExpired:
+        raise Refusal(f"date did not answer within {DATE_TIMEOUT_S} s") from None
+    if result.returncode != 0:
+        raise Refusal(f"date exited {result.returncode}: {result.stderr.strip()[:80]!r}")
+    stamp = result.stdout.strip()
     if not NAME_DATE_RE.fullmatch(stamp):
         raise Refusal(f"date output does not match {NAME_DATE_FORMAT} (a date without %N?): {stamp[:40]!r}")
     return f"ccm-{stamp[:-2]}"
@@ -990,6 +997,14 @@ class Parser(argparse.ArgumentParser):
         self.exit(1, f"handoff: {message}\n")
 
 
+def session_uuid(value: str) -> str:
+    """argparse type for --session-id: `claude --session-id <uuid>` takes only a valid UUID (2.1.300 --help)."""
+    try:
+        return str(uuid.UUID(value))
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"not a UUID: {value!r}") from None
+
+
 def main(argv=None) -> int:
     parser = Parser(prog="handoff", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--repo", help="checkout to inspect (default: this file's repository)")
@@ -1012,10 +1027,10 @@ def main(argv=None) -> int:
     p_write.add_argument("--name", help="next session name (default: the template's owner line)")
     p_owner = sub.add_parser("owner")
     p_owner.add_argument("--session", required=True)
-    p_owner.add_argument("--session-id")
+    p_owner.add_argument("--session-id", type=session_uuid)
     p_start = sub.add_parser("start-command")
     p_start.add_argument("--name")
-    p_start.add_argument("--session-id")
+    p_start.add_argument("--session-id", type=session_uuid)
     sub.add_parser("next-name")
     args = parser.parse_args(argv)
     repo = Path(args.repo).resolve() if args.repo else Path(__file__).resolve().parents[1]
@@ -1047,7 +1062,7 @@ def main(argv=None) -> int:
     except Refusal as error:
         print(f"handoff: {error}", file=sys.stderr)
         return 2
-    except (OSError, ValueError, subprocess.TimeoutExpired) as error:
+    except (OSError, ValueError) as error:
         print(f"handoff: {error}", file=sys.stderr)
         return 1
     return 1

@@ -565,11 +565,14 @@ NAME_RE = r"ccm-\d{8}T\d{6}\.\d{9}[+-]\d{2}"  # D61: local %Y%m%dT%H%M%S.%N, hou
 FAKE_STAMP = "20261014T184849.575921000-0500"
 
 
-def fake_date(bin_dir: Path, stamp: str = FAKE_STAMP) -> Path:
-    """A `date` on PATH that logs its argv and prints `stamp`; returns the log path."""
+def fake_date(bin_dir: Path, stamp: str = FAKE_STAMP, rc: int = 0, stderr: str = "", sleep: float = 0) -> Path:
+    """A `date` on PATH that logs its argv, sleeps `sleep` seconds, prints `stamp` (stdout) and `stderr`, and
+    exits `rc`; returns the log path."""
     bin_dir.mkdir(parents=True, exist_ok=True)
     log = bin_dir / "date.log"
-    (bin_dir / "date").write_text(f"#!/bin/sh\nprintf '%s\\n' \"$*\" >> '{log}'\nprintf '%s\\n' '{stamp}'\n")
+    (bin_dir / "date").write_text(f"#!/bin/sh\nprintf '%s\\n' \"$*\" >> '{log}'\n" + (f"sleep {sleep}\n" if sleep else "")
+                                  + (f"printf '%s\\n' '{stamp}'\n" if stamp else "")
+                                  + (f"printf '%s\\n' '{stderr}' >&2\n" if stderr else "") + f"exit {rc}\n")
     (bin_dir / "date").chmod(0o755)
     return log
 
@@ -605,6 +608,27 @@ class NextNameTests(SubprocessCli):
         self.assertEqual((rc, out), (2, ""))
         self.assertIn("date output does not match", err)
 
+    def test_a_date_that_exits_nonzero_is_refused_naming_its_exit_and_stderr(self):
+        # P3 (cold review): a stamp on stdout with rc 1 was accepted; rc 1 with no output blamed %N
+        for stamp, stderr in ((FAKE_STAMP, "date: illegal option -- N"), ("", "")):
+            with self.subTest(stamp=bool(stamp)):
+                fake_date(self.tmp / "bin", stamp=stamp, rc=1, stderr=stderr)
+                rc, out, err = self.cli("next-name", path_first=self.tmp / "bin")
+                self.assertEqual((rc, out), (2, ""), err)
+                self.assertIn("date exited 1", err)
+                self.assertIn(stderr, err)
+                self.assertNotIn("%N?", err)
+
+    def test_a_hung_date_is_refused_not_an_error(self):
+        fake_date(self.tmp / "bin", sleep=5)
+        with mock.patch.dict(os.environ, {"PATH": f"{self.tmp / 'bin'}{os.pathsep}{os.environ.get('PATH', '')}"}), \
+                mock.patch.object(handoff, "DATE_TIMEOUT_S", 0.2):
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                rc = handoff.main(["--repo", str(self.fx["repo"]), "--plan-id", PLAN_ID, "next-name"])
+        self.assertEqual((rc, out.getvalue()), (2, ""), err.getvalue())
+        self.assertIn("date did not answer within 0.2 s", err.getvalue())
+
 
 class StartCommandCliTests(SubprocessCli):
     UUID = r"[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"
@@ -623,9 +647,20 @@ class StartCommandCliTests(SubprocessCli):
         sid = re.search(rf"^claude -n ccm-x --session-id ({self.UUID}) \"", launch)
         self.assertTrue(sid, launch)
         self.assertIn(f"dev/handoff.py owner --session ccm-x --session-id {sid[1]}", launch)
-        rc, out, _ = self.cli("start-command", "--name", "ccm-x", "--session-id", "abc")
-        self.assertIn("claude -n ccm-x --session-id abc \"", out)
-        self.assertIn("owner --session ccm-x --session-id abc", out)
+        given = "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"
+        rc, out, _ = self.cli("start-command", "--name", "ccm-x", "--session-id", given)
+        self.assertIn(f"claude -n ccm-x --session-id {given} \"", out)
+        self.assertIn(f"owner --session ccm-x --session-id {given}", out)
+
+    def test_a_session_id_that_is_not_a_uuid_is_a_usage_error(self):
+        # P3 (cold review): `claude --session-id <uuid>` (2.1.300 --help) takes only a valid UUID
+        before = (self.fx["plan"] / "task_plan.md").read_text()
+        for args in (("start-command", "--name", "ccm-x"), ("owner", "--session", "ccm-new")):
+            with self.subTest(command=args[0]):
+                rc, out, err = self.cli(*args, "--session-id", "abc")
+                self.assertEqual((rc, out), (1, ""), err)
+                self.assertIn("--session-id: not a UUID: 'abc'", err)
+        self.assertEqual((self.fx["plan"] / "task_plan.md").read_text(), before)
 
     def test_owner_records_the_given_session_id(self):
         rc, out, err = self.cli("owner", "--session", "ccm-new", "--session-id", "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee")
