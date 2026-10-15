@@ -56,10 +56,13 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "allocated",
+  "status": "reviewed, retro passed at lane tip ae2e2ba; merge pending",
   "created_at": "2026-10-14",
   "notes": [
     "scope from the frontier-scheduler proposal 2026-10-14; the skills and docs halves (handoff-skills, ct35b-session-start-docs) follow after these two merge",
-    "existing Python takes fixes only (D113); the generator is one subprocess call to date, so the format string has one source per D61"
-  ]
+    "existing Python takes fixes only (D113); the generator is one subprocess call to date, so the format string has one source per D61",
+    "`NAME_DATE_FORMAT` (`dev/handoff.py:61`) is the format string shared with ct35a (`hooks/register.ts:8` `DATE_ARGV`, D187); `write` names a name-free template's next session with `next_name()` (HS-3, `7d93c62`)."
+  ],
+  "review": "fable cold review PASS-with-P3 on 0e4f6e7; RV-1 (date exit status) and RV-2 (--session-id UUID) fixed in dc34dbb, HS-3 (write falls back to next_name()) fixed in 7d93c62; the retro-writer (fable) verified them, and the parent accepts that verification in place of a second cold pass",
+  "retro": "passed"
 }
