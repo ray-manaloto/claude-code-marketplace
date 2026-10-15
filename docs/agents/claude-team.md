@@ -13,7 +13,7 @@ the lane lifecycle and the gate. Role definitions are `.claude/agents/*.md`.
 | parent | session model | session | integration branch, shared planning | allocates it | merged lane has a passing retro gate and recorded exits |
 | implementer | Opus | high | its `owned_paths` | first | `./dev/mise run retro:gate -- <unit>` exits 0 after tests, `check` and tip reconciliation |
 | doc-writer | Sonnet | high | its `owned_paths` | first | `check` exits 0, every cited path resolves, retro draft handed off |
-| reviewer | Fable | high | nothing | via the parent's brief | disposition PASS, PASS-with-P2/P3 or FAIL with unrun checks named |
+| reviewer | Opus | high | nothing | via the parent's brief | disposition PASS, PASS-with-P2/P3 or FAIL with unrun checks named |
 | retro-writer | Fable | high | retro record plus applied learnings | first | `retro:gate` and `check` exit 0, no actionable finding open |
 | extractor | Haiku | low | nothing | via the parent's brief | requested facts returned as JSON, absent values `null` |
 
@@ -115,15 +115,15 @@ judgement about findings stays with the reviewer.
 
 ## Context budget
 
-Thresholds count tokens in the session transcript and sit below the project
-`autoCompactWindow` (700000, `.claude/settings.json`):
+Thresholds count tokens in the session transcript and sit below the point where the project
+`autoCompactWindow` (433000, `.claude/settings.json`) compacts, about 400K (D190):
 
 | Level | Tokens | Behaviour |
 | --- | --- | --- |
-| warn | 400K | checkpoint (append a dated `progress.md` entry, refresh the handoff block at the head of `task_plan.md`), then delegate the remaining work to lanes |
-| fork_deny | 500K | dispatch a fresh `implementer` or `doc-writer`; a fork would start at this size |
-| checkpoint | 550K | finish the handoff, confirm it reads whole, then `/clear` |
-| hard | 650K | stop starting work; only the handoff and `/clear` remain |
+| warn | 220K | checkpoint (append a dated `progress.md` entry, refresh the handoff block at the head of `task_plan.md`), then delegate the remaining work to lanes |
+| fork_deny | 275K | dispatch a fresh `implementer` or `doc-writer`; a fork would start at this size |
+| checkpoint | 303K | finish the handoff, confirm it reads whole, then `/clear` |
+| hard | 358K | stop starting work; only the handoff and `/clear` remain |
 
 Run Codex forensics and transcript reads in subagents so the parent window carries
 conclusions. Use a fork only for tasks of about ten minutes or less, below `fork_deny`.

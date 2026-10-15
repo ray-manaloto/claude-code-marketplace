@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import json
 
-# All below the project autoCompactWindow (700000); fork_deny = frontier.toml ceiling fraction x window (D29).
-THRESHOLDS = {"warn": 400_000, "checkpoint": 550_000, "fork_deny": 500_000, "hard": 650_000}
+# All below the compaction point of the project autoCompactWindow 433000 (fires at 400K, D190);
+# fork_deny = frontier.toml ceiling fraction x window (D29, D191).
+THRESHOLDS = {"warn": 220_000, "checkpoint": 303_000, "fork_deny": 275_000, "hard": 358_000}
 SURFACES = {"session-start"}
 CONTEXT_RANK = 80
 

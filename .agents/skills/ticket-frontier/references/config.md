@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | `schema` | 1 | format version |
 | `max_parallel` | 3 | writer lanes (`implementer`, `doc-writer`) at once; other roles uncounted |
-| `max_live_agents` | 8 | hard cap on every claim (the harness allows 20; 8 keeps the receipts readable) |
+| `max_live_agents` | 5 | hard cap on every claim (`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6` refuses a 7th spawn with an error that says not to retry; 5 leaves a slot for a fork or a resume) |
 | `always_active` | `["cxx"]` | classes that hold the first slot while a member is ready |
-| `context_ceiling_fraction` | 0.5 | lane ceiling = `windows[model] × fraction`; must equal `budget.py` `fork_deny` (CT-22) |
+| `context_ceiling_fraction` | 0.275 | lane ceiling = `windows[model] × fraction`; must equal `budget.py` `fork_deny` (CT-22) |
 | `executor` | `native` | `native`, `claude-agent`, `codex-agent`; non-native needs the executor gate |
 | `retro_apply` | `auto` | `auto` or `propose`; learning-ledger.md lists what is always `propose` |
 | `publish_batch` | `per-integration` | or `per-wave` |

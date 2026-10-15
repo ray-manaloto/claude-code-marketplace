@@ -6,16 +6,16 @@ one rule that moves a step onto Fable. Source: K1 §2 and user answers Q9, Q10
 
 ## Table
 
-| Step kind | Agent definition | Model | Effort | Window (tokens) | Ceiling at 0.5 | Rule id |
+| Step kind | Agent definition | Model | Effort | Window (tokens) | Ceiling at 0.275 | Rule id |
 | --- | --- | --- | --- | --- | --- | --- |
-| implement | `implementer` | opus | high | 1,000,000 | 500,000 | `policy.implement` |
-| docs | `doc-writer` | sonnet | high | 1,000,000 | 500,000 | `policy.docs` |
-| review | `reviewer` | fable | high | 1,000,000 | 500,000 | `policy.review` |
-| retro | `retro-writer` | fable | high | 1,000,000 | 500,000 | `policy.retro` |
-| synthesis | (parent brief) | fable | high | 1,000,000 | 500,000 | `policy.synthesis` |
-| design | (parent brief) | fable | high | 1,000,000 | 500,000 | `policy.design` |
-| schedule | `frontier-scheduler` | opus | high | 1,000,000 | 500,000 | `policy.schedule` |
-| extraction | `extractor` | haiku | low | 1,000,000 | 500,000 | `policy.extraction` |
+| implement | `implementer` | opus | high | 1,000,000 | 275,000 | `policy.implement` |
+| docs | `doc-writer` | sonnet | high | 1,000,000 | 275,000 | `policy.docs` |
+| review | `reviewer` | opus | high | 1,000,000 | 275,000 | `policy.review` |
+| retro | `retro-writer` | fable | high | 1,000,000 | 275,000 | `policy.retro` |
+| synthesis | (parent brief) | fable | high | 1,000,000 | 275,000 | `policy.synthesis` |
+| design | (parent brief) | fable | high | 1,000,000 | 275,000 | `policy.design` |
+| schedule | `frontier-scheduler` | opus | high | 1,000,000 | 275,000 | `policy.schedule` |
+| extraction | `extractor` | haiku | low | 1,000,000 | 275,000 | `policy.extraction` |
 
 Pass `model` and `effort` as the Agent tool's per-invocation parameters: the docs
 (code.claude.com/docs/en/sub-agents, "Model resolution order") list the per-invocation
@@ -27,7 +27,7 @@ per lane because "a subagent's context window is sized by its own model, not the
 
 A step runs on Fable iff one of:
 
-- (a) its kind is `review`, `retro`, `synthesis` or `design` (`policy.<kind>`);
+- (a) its kind is `retro`, `synthesis` or `design` (`policy.<kind>`);
 - (b) the unit's receipt journal holds ≥ `escalate_after_partial` (1) lines with
   `agent_type: implementer`, `model: opus`, `task_status ∈ {partial, blocked}` and
   `reason: reasoning` (`escalation`); reasons `admission`, `conflict` and `ceiling` never
@@ -43,6 +43,6 @@ Fable lists at $10/$50 per MTok against Opus's $4/$20 on the models overview.
 
 `context_ceiling_fraction × windows[model]` must equal `dev/doctor/budget.py`'s `fork_deny`
 once CT-22 exists; `plan` refuses on a mismatch so there is one threshold source. The
-C4-reconciled dict is `warn 400 K, checkpoint 550 K, fork_deny 500 K, hard 650 K`, all
-below the project `autoCompactWindow 700000`. The brief line checkpoints at 80 % of the
-ceiling (400 K at 500 K).
+dict is `warn 220 K, checkpoint 303 K, fork_deny 275 K, hard 358 K` (D190, D191), all
+below the point where the project `autoCompactWindow 433000` compacts (about 400 K). The
+brief line checkpoints at 80 % of the ceiling (220 K at 275 K).

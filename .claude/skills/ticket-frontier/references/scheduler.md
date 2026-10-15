@@ -37,7 +37,7 @@ scores so a reviewer can recompute them.
 ## Capacity
 
 `max_parallel` counts claims whose role is `implementer` or `doc-writer`. Every claim,
-reviewers and the scheduler included, counts against `max_live_agents` (8). `plan` fills
+reviewers and the scheduler included, counts against `max_live_agents` (5). `plan` fills
 at most `min(writers_free, live_free)` slots; `claim` refuses past either limit. A slot
 that stays empty is reported as `unfilled` with the `skipped` and `conflicts` rows that
 explain it; the two ways to fill it are an admission (`--admitted #n`) or a scheduler
@@ -73,7 +73,7 @@ returns, per candidate: `unit`, `ticket`, `owner_role` (`implementer` or `doc-wr
 `owned_paths`, `excluded`, `seam`, `est_files`, `est_loc`, `split`, `conflicts`. Split
 rules: `est_files > 5` or `est_loc > 300` → sub-units; two independently testable seams →
 parallel sub-lanes; a documentation half → a `doc-writer` sub-lane; a hot path or a frozen
-baseline file → one lane, Fable reviewer, no parallel sibling. Re-run it at skill start,
+baseline file → one lane, Opus reviewer (D189), no parallel sibling. Re-run it at skill start,
 after every `release`, after every failure receipt (`task_status ∈ {partial, blocked,
 failed}`) and whenever the cxx slot empties. Nothing is written until `claim` accepts the
 proposal.
