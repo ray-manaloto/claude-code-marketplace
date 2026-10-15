@@ -914,6 +914,24 @@ verbatim in `progress-archive-2026-10-13.md`.
   Support addendum (13 replaced commits, the PR #110 test merge `3d81dec`, the force-push compare)
   on the same Support ticket (id in private notes). Report: `reviews/ccm-20261014/republish/combined-publish-report.md`.
 
+- 2026-10-14 (handoff-script integration, D164, R-175): handoff-script merged `4726121` (records
+  `6a01a16`, retro blob `5301b18` byte-identical to `ae2e2ba`); no conflict, tree `dd5d757` =
+  merge-tree. `dev/handoff.py next-name` prints a D61 name from one OS `date` call
+  (`NAME_DATE_FORMAT`, shared with ct35a, D187) and refuses a failed or hung `date`; `start-command`
+  defaults to a fresh name and always passes a UUID `--session-id` that its prompt hands to
+  `owner`; `write` names a name-free template's next session with `next_name()`; the injection probe
+  fires `startup`; the context line names the /quit path. Review: Fable cold review PASS-with-P3 on
+  `0e4f6e7`, RV-1 and RV-2 fixed in `dc34dbb`, HS-3 in `7d93c62`; the parent accepted the
+  retro-writer's verification in place of a second cold pass. Parent edits in `6a01a16`: `hk.pkl`
+  pre-commit gains the `whitespace` step (`git diff --cached --check`, RT-1; a staged trailing blank
+  line is refused by hk rc 2 and by `git commit` rc 1) and `CODING_STANDARDS.md` rule 17 (RT-3);
+  edit 4 (the HS-2 admission on lane handoff-skills' record) is the parent's. Gates rc 0 on the
+  merged tree: tasks validate (68), check, check:acceptance-baseline (19), check:research,
+  test:handoff (61), retro:gate, `git diff --check cc07e8c`, `handoff.py next-name` and
+  `start-command`, betterleaks 1.9.0 through `git_delivery.scan` over `cc07e8c..HEAD` (10 commits,
+  no finding, private rule 0). Worktree removed, branch kept. Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/handoff-script-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
