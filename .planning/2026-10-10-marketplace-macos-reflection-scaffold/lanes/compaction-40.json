@@ -64,7 +64,7 @@
     "network": "none",
     "global_settings": "none (project settings key only)"
   },
-  "status": "reviewed, retro passed at lane tip 38d5c1c; merge pending",
+  "status": "integrated (merge bbdf0d4, 2026-10-14); not published; autoCompactWindow 433000 and the doctor thresholds load at the user's restart; runtime acceptance pending (R-179 unticked)",
   "created_at": "2026-10-14",
   "notes": [
     "D190, D191; lands before the restart; the new window and thresholds take effect at the restart",
@@ -73,8 +73,13 @@
     "review disposition (parent): opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d; P3 (the D191 invariant fork_deny == int(windows[model] * fraction) was checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000 in frontier.toml: test:doctor rc 1 naming model='sonnet', reverted: rc 0, 14 tests; review listed in FABLE_KINDS: test:frontier rc 1, removed: rc 0, 31 tests); the implementer-side P3s (frontier.py fallbacks, thresholds below window - 33_000) were applied in 7213170; the parent accepts the retro-writer's verification in place of a second cold pass",
     "changed paths: 19 against merge base a8e3682 (+262 -92): .claude/settings.json (autoCompactWindow 700000 -> 433000 only), dev/doctor/budget.py, dev/test_doctor.py, dev/test_ticket_frontier.py, frontier.toml, docs/agents/claude-team.md (reviewer row and the Context budget section only), six files under each ticket-frontier skill copy, and the retro; all inside owned_paths",
     "writers: 7213170, 5c2e2e9 and 6fca41d name Claude Opus 5.5 (implementer, matching writer_model); 0cab4ff, c2aa3fd and 38d5c1c name Claude Fable 5.1 (retro-writer)",
-    "parent edits from the retro applied ahead of the merge: 2 (task_plan.md Context budget lines, D190, D191), 3 (task_plan.md Models line, Opus for review, D189), 4 (this record: three delivers entries, status, review and retro), 5 (task_plan.md D21 row: window superseded by D190); 1 was applied by lane roster-v2 (grep -n \"Fable reviewer\" .claude/agents/frontier-scheduler.md returns nothing); 6 (runtime acceptance) waits for the user's restart"
+    "parent edits from the retro applied ahead of the merge: 2 (task_plan.md Context budget lines, D190, D191), 3 (task_plan.md Models line, Opus for review, D189), 4 (this record: three delivers entries, status, review and retro), 5 (task_plan.md D21 row: window superseded by D190); 1 was applied by lane roster-v2 (grep -n \"Fable reviewer\" .claude/agents/frontier-scheduler.md returns nothing); 6 (runtime acceptance) waits for the user's restart",
+    "integrated 2026-10-14 as bbdf0d4 (parents 497af7f, 38d5c1c), no conflict (ort auto-merged .claude/settings.json and docs/agents/claude-team.md), tree ff60e52 = merge-tree on 497af7f; hk pre-merge-commit printed retro gate passed for claude/compaction-40; gates on the merged tree rc 0 (tasks validate 69, check, check:acceptance-baseline 19, check:research 21 test runs, test:doctor 19, test:frontier 31, test:hooks 27, the ticket-frontier mirror diff, doctor, doctor:session-start context line warn 220K, checkpoint 303K, fork_deny 275K, hard 358K, retro:gate, git diff --check 7ec0a71, no \"Fable reviewer\" in frontier-scheduler.md, autoCompactWindow 433000 with both roster-v2 env keys kept, betterleaks 1.9.0 through git_delivery.scan over 7ec0a71..HEAD: 8 commits, no finding, private rule 0)",
+    "lane worktree .claude/worktrees/compaction-40 removed by the merger after integration (clean, fully merged; ignored tool directories only); branch claude/compaction-40 kept at 38d5c1c",
+    "runtime acceptance (retro parent edit 6, owner parent) waits for the user's restart: /autocompact or /context shows the 433k window, and the first non-idle auto compact_boundary has preTokens near 400,000; R-179 stays unticked until that receipt"
   ],
   "review": "opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d (every value matches D190/D191, threshold order right, all checks rc 0); P3 (D191 invariant checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000: test:doctor rc 1, real config rc 0, 14 tests; review listed: test:frontier rc 1, removed rc 0, 31 tests); the parent accepts that verification in place of a second cold pass",
-  "retro": "passed"
+  "retro": "passed",
+  "head_sha": "38d5c1c",
+  "integration_merge": "bbdf0d4"
 }

@@ -991,6 +991,27 @@ verbatim in `progress-archive-2026-10-13.md`.
   removed, branch kept. Loads at the restart. R-177 not ticked. Nothing pushed. Report:
   `reviews/ccm-20261014/republish/roster-v2-merge-report.md`.
 
+- 2026-10-14 (compaction-40 integration, D164, D189-D191, R-179): compaction-40 merged `bbdf0d4`
+  (records `497af7f`, retro blob `d5f591b` byte-identical to `38d5c1c`); no conflict, tree
+  `ff60e52` = merge-tree. Project settings `autoCompactWindow` 700000 -> 433000 (compaction at about
+  400K; both roster-v2 `env` keys kept); doctor thresholds warn 220K, fork_deny 275K, checkpoint
+  303K, hard 358K (D190); frontier `context_ceiling_fraction` 0.275 (D191), `max_live_agents` 5,
+  reviewer on Opus wherever the frontier passes a model (D189). Review: Opus 5.5 cold review PASS
+  with two P3s on `6fca41d`; both applied test-first and verified by the retro-writer in `0cab4ff`,
+  accepted in place of a second cold pass. All 19 changed paths are inside `owned_paths`
+  (`.claude/settings.json` only `autoCompactWindow`; `docs/agents/claude-team.md` only the reviewer
+  row and the Context budget section). Parent edits in `497af7f`: 2 (task_plan Context budget
+  lines), 3 (Models line, Opus for review), 4 (lane record `delivers`), 5 (D21 row superseded by
+  D190); 1 was applied by roster-v2. Gates rc 0 on the merged tree: tasks validate (69), check,
+  check:acceptance-baseline (19), check:research, test:doctor (19), test:frontier (31), test:hooks
+  (27), the ticket-frontier mirror diff, doctor, doctor:session-start (warn 220K, checkpoint 303K,
+  fork_deny 275K, hard 358K), retro:gate, `git diff --check 7ec0a71`, betterleaks 1.9.0 through
+  `git_delivery.scan` over `7ec0a71..HEAD` (8 commits, no finding, private rule 0). Stale-value grep:
+  every `700000`, `700 K` and `max_live_agents = 8` hit is a planning record. Worktree removed,
+  branch kept. Loads at the restart; runtime acceptance (`/autocompact` or `/context` shows 433k,
+  first non-idle auto `compact_boundary` near 400K) is pending, so R-179 is not ticked. Nothing
+  pushed. Report: `reviews/ccm-20261014/republish/compaction-40-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
