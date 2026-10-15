@@ -370,6 +370,11 @@ description = "Exercise dev/handoff.py state, check, write and the D167 request 
 dir = "{{config_root}}"
 run = '"${MARKETPLACE_PYTHON:-python3}" -I -m unittest discover -s dev -p test_handoff.py -v'
 
+[tasks."test:session-start-mod"]
+description = "Run the session-start mod's tests against the mocked engine (no session, model or network)"
+dir = "{{config_root}}"
+run = "claude plugin test .claude/skills/session-start"
+
 [tasks."test:frontier"]
 description = "Exercise the ticket-frontier skill script against fixture graphs in scratch plan dirs"
 dir = "{{config_root}}"

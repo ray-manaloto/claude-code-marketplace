@@ -32,6 +32,8 @@ Subdirectories: `hooks/` (the three deny gates that stay settings hooks;
 - A hook or gate that spawns git per call resolves it with `git_executable()` (`dev/hooks/git_gate.py`;
   `dev/retro_gate.py` keeps a copy): a mise shim costs about 186 ms per call against 9.5 ms for
   `/usr/bin/git`. A test that spawns git puts `git --exec-path` first on PATH.
+- `timeout` is a mise shim with no version on this host; bound a command with
+  `/usr/bin/perl -e 'alarm N; exec @ARGV' <command>`.
 - A task that forwards free text runs as `mise run <task> -- <argv>` with no `usage` line; a
   `usage` variadic splits a multi-word argument.
 - A helper that mutates state previews first, applies against a fresh preimage and
