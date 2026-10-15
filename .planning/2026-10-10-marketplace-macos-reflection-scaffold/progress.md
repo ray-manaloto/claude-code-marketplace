@@ -972,6 +972,25 @@ verbatim in `progress-archive-2026-10-13.md`.
   removed, branch kept. R-175 not ticked. Nothing pushed. Report:
   `reviews/ccm-20261014/republish/handoff-skills-merge-report.md`.
 
+- 2026-10-14 (roster-v2 integration, D164, D189, R-177): roster-v2 merged `3114a11` (records
+  `44d0a0f`, retro blob `274f812` byte-identical to `3452c12`); no conflict, tree `4d864dd` =
+  merge-tree. Project settings `env` gains `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6` and
+  `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1`; the implementer and reviewer deny `Agent`, the reviewer
+  runs on Opus (D189), the implementer and retro-writer request `cacheTtl` 1h, and
+  `dev/test_doctor_agents.py` checks every agent file's frontmatter. Review: Opus 5.5 cold review
+  PASS-with-P2/P3 on `92f6894`; both findings fixed and verified by the retro-writer in `3452c12`,
+  accepted in place of a second cold pass. All 7 changed paths are inside `owned_paths` after edit
+  A. Parent edits in `44d0a0f`: A (`owned_paths`), F (`.claude/AGENTS.md` agents bullet), J (the
+  reviewer line of ct21-codex-imports and handoff-skills), K (the session-history synthesizer
+  sentence, both copies), M (`docs/agents/claude-team.md:42`). G is a separate lane, L waits for
+  the restart onto 2.1.300, and lane compaction-40 carries B-E, H and I (its cap is 5). Gates rc 0
+  on the merged tree: tasks validate (69), check, check:acceptance-baseline (19), check:research,
+  test:doctor (19), test:hooks (27), test:handoff (61), test:codex-session-history (12), both
+  mirror diffs, retro:gate, `git diff --check e3b2d83`, betterleaks 1.9.0 through
+  `git_delivery.scan` over `e3b2d83..HEAD` (8 commits, no finding, private rule 0). Worktree
+  removed, branch kept. Loads at the restart. R-177 not ticked. Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/roster-v2-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
