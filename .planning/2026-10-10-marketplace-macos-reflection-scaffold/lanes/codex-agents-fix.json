@@ -1,7 +1,8 @@
 {
   "unit": "codex-agents-fix",
   "tickets": [
-    "D189 (R12c Codex defect: custom agents inherit the parent sandbox; openai/codex#45482)"
+    "D189 (R12c Codex defect: custom agents inherit the parent sandbox; openai/codex#45482)",
+    "R-181 (#144; D193, D194 amend D192)"
   ],
   "title": "Codex agents: drop the ineffective sandbox_mode lines, point to codex exec -s read-only, pin the default subagent model",
   "owner": "implementer",
@@ -17,42 +18,56 @@
   "delivers": [
     "the three .codex/agents/*.toml lose sandbox_mode with a comment that a custom agent inherits the parent's sandbox and that read-only roles run as codex exec -s read-only lanes (R12c Codex roster v1)",
     "project .codex/config.toml pins agents.default_subagent_model (and its reasoning effort) per R12c, confirmed against the codex-cli 0.162.1 config schema on disk; taplo or the repo's TOML check passes",
-    "no user-level ~/.codex change; the Codex reviewer role waits for Codex after 2026-10-19"
+    "no user-level ~/.codex change; the Codex reviewer role waits for Codex after 2026-10-19",
+    "D193: .codex/rules/git.rules per the R-181 security review section 6: allow (outside the sandbox) git add, commit, fetch, switch, checkout, restore, stash, rebase, cherry-pick, tag, branch, worktree, mv, rm, reset; forbidden git push, the --no-verify/-n spellings of commit/merge/rebase/cherry-pick/revert/am, git remote add/set-url/remove/rm/rename, git config --global/--system; no allow for git merge or ./dev/mise run delivery:publish; each rule carries match/not_match examples and a justification; the header states the tripwire limit (leading argv only)",
+    "D194: .codex/config.toml [sandbox_workspace_write] network_access = true and writable_roots exactly ~/.codex/research-coverage, ~/.codex/skills/.shared/agent-protocol, ~/.local/state/agent-protocol, ~/.local/state/mise, ~/.cache/mise, ~/Library/Caches/mise, ~/.local/state/gh, ~/Library/Caches/uv; a comment names the roots that must never be added (~/.local/state, ~/.local/share/mise, ~/.codex, ~/.config, ~) and the Phase B network proxy (commented, not enabled)",
+    "dev/test_codex_config.py and a test:codex-config task listed in check:research: parses .codex/config.toml (D192 keys, D194 network and exact roots, no forbidden root, no sandbox key in .codex/agents/*.toml) and the rules file (forbidden push/remote/global-config/no-verify rules present, no allow rule matching push, merge or delivery:publish); red before the change, green after",
+    "docs/codex-runtime.md: the codex-agents-fix retro parent edits 2-4, rewritten to state D193 and D194 (network on, narrowed roots, git rules file, Phase B proxy, first-run checks after 2026-10-19)",
+    "first-run checks recorded, not run (Codex usage-limited until 2026-10-19): gh auth status sandboxed, CODEX_SANDBOX_NETWORK_DISABLED empty, git commit --allow-empty via the allow rule, execpolicy check of git push forbidden, a sandboxed git -C push to a scratch remote"
   ],
   "owned_paths": [
     ".codex/agents/",
     ".codex/config.toml",
-    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/codex-agents-fix.md"
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/codex-agents-fix.md",
+    ".codex/rules/",
+    "dev/test_codex_config.py",
+    "mise.dev.toml (one test:codex-config task and its check:research depends entry only)",
+    "docs/codex-runtime.md"
   ],
   "excluded_shared_paths": [
-    "mise.dev.toml",
     "hk.pkl",
     ".gitignore",
     "AGENTS.md",
     "CLAUDE.md",
     ".claude/skills/",
     ".agents/",
-    "dev/",
-    "docs/",
     ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)",
     ".claude/",
-    ".codex/rules/"
+    ".codex/rules/",
+    "docs/ (except docs/codex-runtime.md)",
+    "dev/ (except dev/test_codex_config.py)",
+    "dev/hooks/",
+    "~/.codex/ (user layer; D194 needs its own admission)"
   ],
   "required_checks": [
     "./dev/mise tasks validate",
     "./dev/mise run check",
     "./dev/mise run check:acceptance-baseline",
     "git diff --check",
-    "./dev/mise run retro:gate -- codex-agents-fix"
+    "./dev/mise run retro:gate -- codex-agents-fix",
+    "./dev/mise run test:codex-config",
+    "./dev/mise run check:research"
   ],
   "resource_admissions": {
     "providers": "none",
     "network": "none",
-    "global_settings": "none (project files only)"
+    "global_settings": "none (project files only)",
+    "codex_cli": "codex --version and codex execpolicy check only (local, no model call); no codex session or exec"
   },
   "status": "allocated",
   "created_at": "2026-10-14",
   "notes": [
-    "D189; loads at the user's restart onto 2.1.300"
+    "D189; loads at the user's restart onto 2.1.300",
+    "Reopened 2026-10-14 after the R-181 architect proposal and Fable security review (APPROVE-WITH-CHANGES) and the user's D193/D194; the earlier retro stays as round 1, round 2 appends."
   ]
 }
