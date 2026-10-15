@@ -49,6 +49,7 @@
   "required_checks": [
     "claude plugin validate --strict .claude/skills/session-start",
     "claude plugin list (session-start@skills-dir loaded)",
+    "claude plugin test .claude/skills/session-start",
     "./dev/mise tasks validate",
     "./dev/mise run check",
     "./dev/mise run check:acceptance-baseline",
@@ -60,7 +61,7 @@
     "network": "none",
     "global_settings": "writes its own log under ~/.local/state/claude-code-marketplace/session-start/ at run time (project state dir, not a settings file)"
   },
-  "status": "allocated",
+  "status": "reviewed, retro passed at lane tip 02c497c; merge pending",
   "created_at": "2026-10-14",
   "notes": [
     "scope from the frontier-scheduler proposal 2026-10-14 (scratchpad skills-audit/report.md S1-S13; R3-await-plugin-reload.md; R1-mod-loading-gaps.md)",
@@ -69,6 +70,11 @@
     "2.1.300 docs and types are not on disk; use the 2.1.299 copies in the session scratchpad research5/R1/docs and the 2.1.296 mod types; record any API you could not confirm",
     "cut the worktree with git worktree add, never isolation worktree (#92533 unverified on this host); the mod registers no tool.call hook",
     "rollback: claude plugin disable session-start@skills-dir",
-    "2026-10-14: logging and detection added at the user's request; the session-resume skill runs the checks after a restart (lane handoff-skills); a doctor detector is a later C++ core item (D113)"
-  ]
+    "2026-10-14: logging and detection added at the user's request; the session-resume skill runs the checks after a restart (lane handoff-skills); a doctor detector is a later C++ core item (D113)",
+    "retro: `retros/ct35a-session-start-mod.md` at 02c497c (blob 78261cf), gate rc 0; added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "review disposition (parent): fable cold review with a security pass, pass-with-fixes on 36157c1 (two P2, six P3); P2-1 (unbounded awaits: 30 s reload deadline, timeoutMs 5000 on both process.run calls) and P2-2 (HOME-less log path) and the P3s fixed in f68951c; the retro-writer (fable, independent of the implementer) verified them with 17 plugin tests (claude plugin test rc 0), and the parent accepted that verification in place of a second cold pass",
+    "parent edits from the retro, applied ahead of the merge: 1 (.claude/AGENTS.md no-mirror exception for session-start), 4 (mise.dev.toml test:session-start-mod; tasks validate rc 0, 69 tasks; not added to check:research, because the task needs the claude CLI and exits 1 where hooks modules are switched off (#99130), and check:research holds the research and tracker suites the workflows run), 5 (dev/AGENTS.md timeout gotcha), 7 (this record's required_checks); 2 and 3 (ADR 0007, hooks-and-mods.md) wait for lane ct35b; 6 (handoff-script NAME_DATE_FORMAT test), 8 (session-resume first step, lane handoff-skills) and 9 (live-acceptance record of the 2.1.300 held text and budget outcome) stay recorded follow-ups"
+  ],
+  "review": "fable cold review (with a security pass) pass-with-fixes on 36157c1; P2-1 (unbounded awaits: 30 s reload deadline, timeoutMs) and P2-2 (HOME-less log path) plus the P3s fixed in f68951c; the retro-writer (fable) verified them with 17 plugin tests, and the parent accepts that verification in place of a second cold pass",
+  "retro": "passed"
 }
