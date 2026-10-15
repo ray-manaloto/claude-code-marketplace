@@ -29,22 +29,26 @@ Run commands from the repository root with `VIRTUAL_ENV` unset. The session name
 3. **Check.** `python3 -I dev/handoff.py check --agents-done --json` (a fresh session has no
    agents). Done when rc is 0; rc 2 lists the stale facts to correct before anything else
    (ids in `.claude/skills/session-handoff/references/predicate.md`).
-4. **Startup log.** After a restart (skip it after `/clear`), run the checks documented in
-   `.claude/skills/session-start/SKILL.md` against
-   `~/.local/state/claude-code-marketplace/session-start/events.jsonl`, rows of this session
-   only. A fail is no `fired` row for the session, a reload not accepted, a reload that
-   finished after the first prompt, or a title skipped. Done when each check has a pass or
-   fail with its row; a fail comes ahead of the plan's own next action. When that skill or
-   the log is absent, report "mod not integrated" and go on.
+4. **Startup log.** After a restart (skip it after `/clear`), run the four checks under
+   "Detect a failure after a restart" in `.claude/skills/session-start/SKILL.md` against
+   `~/.local/state/claude-code-marketplace/session-start/events.jsonl` with
+   `SID=${CLAUDE_SESSION_ID}` (this session's id, substituted when the skill loads;
+   `$CLAUDE_CODE_SESSION_ID` holds the same value inside Bash): "1. Did not fire", "2. Reload
+   missing or not accepted", "3. Reload finished after the first prompt reached the
+   transcript", "4. No title, or an error". Done when each check has a pass or fail with its
+   row; a fail comes ahead of the plan's own next action. When that skill or the log is
+   absent, report "mod not integrated" and go on.
 5. **Extract.** Dispatch one `extractor` agent with the fixed brief in
    [references/extractor-brief.md](references/extractor-brief.md). Done when its JSON
    returns and you have read `omitted` and `wrong`.
 6. **Own the plan.** If the doctor or the terminal shows no session name, ask the user to
    type `/rename <name>` first. Then `python3 -I dev/handoff.py owner --session <name>
-   --session-id <uuid>` with the `--session-id` the start command fixed (its prompt names it);
-   without it `owner` guesses the newest transcript, which is wrong when another session is
-   writing, so only the `/clear` path (no fixed id) omits it. Done when the printed paragraph
-   names the new owner and the previous session as closed.
+   --session-id ${CLAUDE_SESSION_ID}`: the substitution is this session's id on every path (it
+   equals the id the start command fixed, and `/clear` updates it), so `owner` never guesses
+   the newest transcript, which is wrong when another session is writing. A literal
+   `${CLAUDE_SESSION_ID}` reaching `owner` fails its UUID check (rc 1): then take the id from
+   the start command's prompt. Done when the printed paragraph names the new owner and the
+   previous session as closed.
 7. **Report.** In this order: the first three actions (from `## Next Step` and HANDOFF §2,
    corrected by the extractor); the pending-user list verbatim; the slash commands the user
    must type and their order from HANDOFF §2(j), as a request ("Please type ..."); the

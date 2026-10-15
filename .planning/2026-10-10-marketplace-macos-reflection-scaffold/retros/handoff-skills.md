@@ -4,113 +4,139 @@ Unit `handoff-skills` (skills audit S3, S5, S6, S8, S9 doc line, S12; handoff-sc
 2-5; R-175, #139). Worktree `.claude/worktrees/handoff-skills`, branch `claude/handoff-skills`,
 `base_sha` `3834661`, cut from the allocation commit `2b06eb3`, so `git log 2b06eb3..HEAD` is the
 lane. Commits, in order: `535d61d` (the skill changes), `484f1c8` (merge of the integration tip
-`65541f4`, clean, trailers, no lane branch name), `521b3e7` (this record), then the commit that
-trims the template to the budget (coordinator follow-up; the final SHA, in the hand-back). Writer: Claude Sonnet 5.5, matching the record's `writer_model`. This is
-the writer's draft: the independent cold review and the retro-writer pass have not run, so
-"reviewed" is open.
+`65541f4`), `521b3e7` (the writer's draft of this record), `c037168` (template trimmed to the
+budget), `b087860` (merge of the integration tip `b1dc645`; the reviewed tip), `696d338` (merge of
+the integration tip `6257246`, `--no-ff`, message file with the trailers, which brings lane
+handoff-script as `4726121`), then the commit carrying the review fixes and this record (the final
+SHA, in the hand-back). Writer: Claude Sonnet 5.5, matching the record's `writer_model`. Cold
+review: Opus 5.5, read-only, on `b087860`: one P1 (merge order), two P2s, three P3s, relayed by
+the parent. Retro writer: Fable 5.1, high; this is the retro-writer pass over the writer's draft.
 
 Delivered, in the `.claude/skills/` copies and byte-identical in `.agents/skills/`:
-- `session-handoff/SKILL.md`: step 1 also counts this session's background Bash commands and
-  Monitor tasks as running work (2.1.300 force-kills a background command 1.5 s after exit, S8,
-  S4 by hand); step 2 says the owner sentence holds no session name and sets the CLI row from
-  `claude --version`; step 5 runs `start-command` plain (it generates the D61 name with
-  `next-name` and fixes `--session-id`) and offers three restart paths, one only: `/clear` then
-  `/session-resume <name>`; `/quit` (ignore the printed `claude --resume` line) then the start
-  command; or the start command without its prompt, then `/reload-skills`, `/reload-plugins`
-  (never `--force`) and `/session-resume <name>` (S3). The description gains `/quit` triggers.
-- `handoff-template.md`: no session name in `## owner` (handoff-script edit 4); a CLI row
-  "2.1.300 installed; the handing-off session ran 2.1.299"; an `action` that leads with R-176 and
-  names its two paths; header lines that state the owner and CLI-row rules; notes read "decisions
-  through D188" (S5). The action, owner and notes sentences are cut to words so the block stays
-  inside the 16-line budget (HS-2).
+- `session-handoff/SKILL.md`: step 1 counts this session's background Bash commands and Monitor
+  tasks as running work (2.1.300 force-kills a background command 1.5 s after exit, S8, S4 by
+  hand) and lists them from the session's own task ids (RV-P3-3); step 2 says the owner sentence
+  holds no session name and sets the CLI row from `claude --version`; step 5 prints the `sh`
+  block of HANDOFF §8 as `write` wrote it, the one start command (RV-P2-1), and offers three
+  restart paths, one only: `/clear` then `/session-resume <name>`; `/quit` (ignore the printed
+  `claude --resume` line) then the start command; or the start command without its prompt, then
+  `/reload-skills`, `/reload-plugins` (never `--force`) and `/session-resume <name>` (S3). The
+  description gains `/quit` triggers.
+- `handoff-template.md`: no session name in `## owner` (handoff-script edit 4; `write` names the
+  session with `next-name`); a CLI row "2.1.300 installed; the handing-off session ran 2.1.299";
+  an `action` in the one shape "First <R-n> release intake (<report paths>). Then <work>."
+  (RV-P3-2); notes read "decisions through D188" (S5). The block stays inside the 16-line budget
+  (HS-2).
 - `probe-commands.md`: the restart fire (`"source":"startup"`) and `startup` in the pass criteria
   (S9, handoff-script edit 3); the w0-doctor worktree fallback is gone (S6). `predicate.md`: the
-  `H.injection-probe-failed` row lists four fires, matching `dev/handoff.py` at handoff-script.
+  `H.injection-probe-failed` row lists four fires, matching `dev/handoff.py`.
 - `session-resume/SKILL.md`: step 1 runs `claude --version` and puts the R-176 intake first when it
-  differs from the version the CLI row says the handing-off session ran; new step 4 runs the
-  session-start log checks after a restart; step 6 requires the `--session-id` the start command
-  fixes (handoff-script edit 5); the doctor step loses the w0-doctor fallback (S6); the description
+  differs from the version the CLI row says the handing-off session ran; step 4 runs the four
+  checks of `session-start/SKILL.md` "Detect a failure after a restart", quoted by name, with
+  `SID=${CLAUDE_SESSION_ID}` (RV-P3-1, RV-P2-2); step 6 passes `--session-id ${CLAUDE_SESSION_ID}`
+  on every path (RV-P2-2); the doctor step loses the w0-doctor fallback (S6); the description
   names the `/quit` restart.
-- Evals: each skill gains a `/quit`-and-upgrade eval (handoff 4, resume 3); handoff eval 1 checks
-  and never asks whether agents run, eval 2 stops at step 1 where the skill says stop, eval 3 uses
-  the open requests R-173 and R-056 and the R-176 intake in place of the ticked R-172 (S12).
+- Evals: each skill gains a `/quit`-and-upgrade eval (handoff 4, resume 3); handoff evals 1, 3
+  and 4 expect HANDOFF §8 as the start command and no `start-command` run; resume evals 1-3
+  expect `--session-id ${CLAUDE_SESSION_ID}` and the four named checks (S12).
 
-Size: 14 files in two identical trees, 7 maintained; `git diff --numstat 2b06eb3 535d61d`
-shows 112 added and 51 removed lines in the `.claude/skills/` copies.
+Size: 14 files in two identical trees, 7 maintained. `git diff --numstat 2b06eb3 535d61d` shows
+112 added and 51 removed lines in the `.claude/skills/` copies; the retro pass adds 49 and
+removes 36 across the five maintained files.
 
-Exits on the merged bytes `484f1c8`, from the worktree, `VIRTUAL_ENV` unset, one command each:
+Exits on the merged bytes `696d338` plus the retro-pass edits, from the worktree, `VIRTUAL_ENV`
+unset, one literal command each:
 - `diff -r .claude/skills/session-handoff .agents/skills/session-handoff`: rc 0.
   `diff -r .claude/skills/session-resume .agents/skills/session-resume`: rc 0.
 - `python3 -I -m json.tool` on each of the four `evals.json` files: rc 0 each.
-- `./dev/mise tasks validate`: rc 0 (68 tasks). `./dev/mise run check`: rc 0 (`"status": "pass"`,
-  91 tests OK). `./dev/mise run check:acceptance-baseline`: rc 0 (19 hashes).
-- `git diff --check 2b06eb3 HEAD`: rc 0. hk `pre-commit` (`check:records`) passed on `535d61d`;
-  the merge hooks passed on `484f1c8`.
+- `./dev/mise tasks validate`: rc 0. `./dev/mise run check`: rc 0 (`"status": "pass"`).
+  `./dev/mise run check:acceptance-baseline`: rc 0 (19 hashes).
+- `git diff --check`: rc 0 (also rc 0 before the commit on the unstaged tree).
+- `./dev/mise run test:handoff`: rc 1 before RT-1 (`FAILED (failures=1)`,
+  `test_skill_report_types_resume_only_after_clear`), rc 0 after (61 tests OK).
 - `./dev/mise run retro:gate -- handoff-skills`: run on this record; the rc is in the hand-back.
-- Budget probe, after the trim (coordinator follow-up), `python3 -I dev/handoff.py write --dry-run
-  --agents-done` in this worktree: the regenerated `## Next Step` block is 15 lines of at most 100
-  characters (limit 16) and the NEXT bullet is 8 lines of at most 99 (limit 12). The command exits
-  rc 2 with "write refused: the regenerated handoff still fails the check", from worktree-only
-  findings (`H.receipt-missing` for the lane worktrees and the ignored local `offline/research/R22-cc-2.1.300/`,
-  `H.head-not-remote`, `H.request-unprojected` p:WY8rd, `H.request-unlinked` R-179 and R-180,
-  `H.mode-not-inject-smart`), none of them a budget error. Before the trim: rc 1, "required
-  handoff lines exceed 16 (18)", and 17 with the base template. `owner_name` on the new template
-  returns `next-session` (HS-1).
-- After the trim: the mirror diffs, `tasks validate`, `check`, `check:acceptance-baseline` and
-  `git diff --check` are rc 0 again; the `retro:gate` rc is in the hand-back.
+- `git merge-base --is-ancestor 4726121 HEAD`: rc 0 (handoff-script is merged, RV-P1).
+- Budget probe, `python3 -I dev/handoff.py write --dry-run --agents-done` in this worktree: the
+  regenerated `## Next Step` block is 15 lines of at most 100 characters (limit 16) and the NEXT
+  bullet 8 lines of at most 100 (limit 12); the NEXT bullet names the generated session
+  `ccm-20261014T195015.947578000-05` and no line holds `next-session`. The command exits rc 2
+  with "write refused: the regenerated handoff still fails the check", from worktree-only
+  findings (`H.receipt-missing` for the lane worktrees and the ignored local
+  `offline/research/R22-cc-2.1.300/`, `H.head-not-remote`, `H.request-unprojected`,
+  `H.request-unlinked` R-179 and R-180, `H.mode-not-inject-smart`), none of them a budget error.
+- Verification greps on the final bytes: `grep -c 'the only start command you print'
+  .claude/skills/session-handoff/SKILL.md` prints 1; `grep -c 'CLAUDE_SESSION_ID'
+  .claude/skills/session-resume/SKILL.md` prints 3; `grep -c 'Detect a failure after a restart'
+  .claude/skills/session-resume/SKILL.md` prints 1; `git show
+  claude/ct35a-session-start-mod:.claude/skills/session-start/SKILL.md | grep -c 'Detect a failure
+  after a restart\|events.jsonl'` prints 4 (ct35a tip `02c497c`).
 
 ## Findings
 
 | Severity | Category and finding (source) | Action, verification and disposition |
 | --- | --- | --- |
-| P2 | HS-1 Steering: `write` takes the next session's name from the first backticked span of the template's `## owner` sentence (`owner_name`, `dev/handoff.py:699`). With the name-free owner sentence (handoff-script edit 4) it falls back to `next-session`, and that placeholder reaches the NEXT bullet ("owner: next session `next-session`") and the `/session-resume next-session` line of HANDOFF §8, while `start-command` prints a different, fresh name. Edit 4 as written (`next-name` in backticks) would have made the name `next-name`. (Writer; handoff-script HS-3, `dev/handoff.py:699`, `:788`.) | Applied in this lane: the owner sentence carries no backticks, and the template header says so. Deferred, owner parent via a fix lane on `dev/`: `write` must not print a name it did not generate (parent edit 4 gives the text for §8 and the NEXT bullet). Admission condition: `write --dry-run` shows no `next-session`, and the name in §8 equals the one `start-command` prints; until then step 5 of session-handoff names `start-command` as the only source of `<name>`. |
-| P2 | HS-2 Automated checks: `write` refused before it wrote: the required lines were 17 with the base template and 18 with this one (the open-request roll-call takes 4 lines for the many open items; budget 16). The `action` lead sentence added one line. (Writer; the first dry-run.) | Applied in this lane after the coordinator's follow-up: `action` is two lines naming R-176 and its two paths, `owner` is one sentence, and the history rule and the D61/D76 refs moved to the first `notes` bullet (dropped from the block when it is full, kept in the template). The roll-call and runbook path stay as they were. Verification: the dry-run block is 15 lines (limit 16) and the NEXT bullet 8 (limit 12), widths at most 100; mirror diff rc 0. Remaining: when R-176 closes, parent edit 5 drops the lead sentence. |
-| P3 | HS-3 Information access: ct35a's `session-start/SKILL.md` does not yet document the log checks or the `events.jsonl` path (its branch `claude/ct35a-session-start-mod` was still running; `register.ts` already writes `fired`, `reload_plugins_begin`, `reload_plugins_end`, `title_set`, `title_skipped`, `title_kept` and `error` rows to `~/.local/state/claude-code-marketplace/session-start/events.jsonl`). session-resume step 4 therefore names the path and the four failures (no `fired` row for the session, reload not accepted, reload finished after the first prompt, title skipped) and defers the commands to that skill. (Writer; read of the ct35a worktree.) | Deferred, owner parent after ct35a integrates: read `session-start/SKILL.md`, and if its check names or commands differ from step 4's wording, edit step 4 in both copies. Admission condition: `grep -n 'events.jsonl' .claude/skills/session-start/SKILL.md` matches, and each failure named in step 4 appears there. |
-| P3 | HS-4 Information access: `predicate.md` still said "three pwf fires" after handoff-script added the `startup` fire. The lane record did not list it and handoff-script's parent edits 2-5 did not either. (Writer; `dev/handoff.py:513`.) | Applied in this lane (owned path): the row lists four fires and what each receives. Verification: `grep -c 'four pwf fires' .claude/skills/session-handoff/references/predicate.md` prints 1, and the mirror diff is rc 0. |
-| P3 | HS-5 Navigation: `predicate.md` (`H.doctor-findings`, "root, else the w0-doctor worktree copy") and `dev/handoff.py` §7 still carry the w0-doctor fallback that S6 retires from the skills; the code still falls back to it. (Writer.) | Kept in `predicate.md` because it describes the code. Deferred, owner parent with the fix lane in HS-1: drop the fallback from `dev/handoff.py` and then from `predicate.md`. Admission condition: `grep -rn 'w0-doctor' .claude/skills/session-handoff` matches nothing. |
-| P3 | HS-6 Automated checks: the CLI row is hand-written, so session-resume's comparison rests on a sentence the handing-off agent types; a wrong "ran" version silently skips or forces the intake. (Writer.) | Deferred, owner parent: a ticket for `dev/handoff.py state` to print `claude --version` and `write` to generate the row. Admission condition: the row appears in `write --dry-run` output without a template line. |
-| P3 | HS-7 Information access: audit findings S1, S2, S7 (applied by handoff-script), S10 (applied by handoff-script), S11 and S13 are not in this lane's contract. (Writer.) | Rejected for this lane (outside `owned_paths`); S1 and S2 are parent record work (sub-issues of #111, dispositions rows), S11 belongs to ct35b, S13 to the memory note. |
+| P1 | RV-P1 Automated checks (cold review): `b087860` documented `next-name`, `start-command --session-id` and the `write` fallback before the branch that defines them (lane handoff-script) was in the lane's history, so the skills steered agents at commands the merged tip did not have. (Reviewer, on `b087860`.) | Applied: `696d338` merges the integration tip `6257246`, which holds handoff-script as `4726121`. Verification: `git merge-base --is-ancestor 4726121 HEAD` rc 0; `./dev/mise run test:handoff` rc 0 on the merged `dev/handoff.py`. |
+| P2 | RV-P2-1 Steering (cold review): step 5 ran `start-command` after `write`, and each call mints its own `next-name` and `uuid4`, so the `## Next Step` block and HANDOFF §8 named one session and the pasted command another. The merged `dev/handoff.py` has `write --name` but no `write --session-id`, and `section_start` calls `start_command(ctx, name, None)`, so a shared name alone cannot pin the id; §8 is the single source. (Reviewer; `dev/handoff.py:841-867`, `:1029`.) | Applied in this lane: step 5 prints the `sh` block of HANDOFF §8 verbatim (the `sed` range is in the step) and says `start-command` run now would mint a second pair; handoff evals 1, 3 and 4 expect §8 and no `start-command` run. No code change is needed; parent edit 6 aligns `--help`. Verification: `grep -c 'the only start command you print' .claude/skills/session-handoff/SKILL.md` prints 1; mirror diff rc 0; the dry-run NEXT bullet names the generated session. |
+| P2 | RV-P2-2 Information access (cold review): session-resume never said where the agent gets its own session id on the by-hand path, and the newest transcript for this cwd is wrong when another session writes. Claude Code substitutes `${CLAUDE_SESSION_ID}` in skill text since 2.1.9 (`offline/research/R22-cc-2.1.300/raw/CHANGELOG-v2.1.300.md:7677`) and sets `CLAUDE_CODE_SESSION_ID` in Bash since 2.1.132 (`:5560`; `raw/docs/env-vars.md:378`: matches the hook `session_id`, updated on `/clear`). (Reviewer; the 2.1.300 intake.) | Applied in this lane: step 4 sets `SID=${CLAUDE_SESSION_ID}` and names `$CLAUDE_CODE_SESSION_ID` as the same value in Bash; step 6 passes `--session-id ${CLAUDE_SESSION_ID}` on every path and says an unsubstituted literal fails `owner`'s UUID check (rc 1, visible) rather than guessing; resume evals 1-3 updated. Verification: `grep -c 'CLAUDE_SESSION_ID' .claude/skills/session-resume/SKILL.md` prints 3; mirror diff rc 0. |
+| P2 | HS-1 Steering (writer): `write` fell back to the placeholder `next-session` for a name-free owner sentence. (`dev/handoff.py:699` at `0e4f6e7`.) | Closed upstream: handoff-script `7d93c62` makes `owner_name` fall back to `next_name()` (`dev/handoff.py:706`), merged here in `696d338`. Verification: the dry-run NEXT bullet reads `ccm-20261014T195015.947578000-05` and no added line holds `next-session`; the template header now states that behaviour (RV-P3-2 row). |
+| P2 | HS-2 Automated checks (writer): `write` refused at 17 and 18 required lines (budget 16). | Applied (`c037168`): two-line `action`, one-sentence `owner`, history rule in the first `notes` bullet. Verification on the final bytes: block 15 lines, NEXT 8, widths at most 100. Remaining: parent edit 5 when R-176 closes. |
+| P3 | RV-P3-1 Information access (cold review) and HS-3 (writer): step 4 paraphrased the startup-log checks instead of quoting them, and ct35a had not yet documented them. ct35a tip `02c497c` now documents the log path and four numbered checks under "Detect a failure after a restart". | Applied in this lane: step 4 quotes the four names word for word ("1. Did not fire", "2. Reload missing or not accepted", "3. Reload finished after the first prompt reached the transcript", "4. No title, or an error") and leaves the commands to that skill. HS-3 and parent edit 1 closed. Verification: the `git show ... | grep -c` above prints 4; `grep -c 'Detect a failure after a restart' .claude/skills/session-resume/SKILL.md` prints 1. Admission at ct35a integration: the same grep on `.claude/skills/session-start/SKILL.md` in the root checkout prints 4. |
+| P3 | RV-P3-2 Coding standards (cold review): the `action` sentence existed in three shapes: the template header (`handoff-template.md:8`, "First <R-n>, the release intake (<report path>)"), the section (`:20`, "First R-176 release intake (...)") and the draft's parent edit 5. | Applied: the header shape is "First <R-n> release intake (<report paths>). Then <work>.", the section matches it, and parent edit 5 quotes the section verbatim. Verification: `grep -n 'First <R-n>\|First R-176' .claude/skills/session-handoff/references/handoff-template.md` prints lines 8 and 21 in that shape. |
+| P3 | RV-P3-3 Steering (cold review): step 1 said background tasks count as running work without saying how to list them. `/tasks` is a user-typed view (`raw/docs/sub-agents.md:382`, changelog `:1291` folds system tasks under one row). | Applied: step 1 lists them from the session's own record (each `run_in_background` Bash and Monitor call returned a task id; the harness sends one completion notice per id; an id without its notice is running) and names `/tasks` as the cross-check only the user can open. Verification: `grep -c 'completion notice' .claude/skills/session-handoff/SKILL.md` prints 1. |
+| P3 | RT-1 Automated checks (retro writer): `dev/test_handoff.py:526` `test_skill_report_types_resume_only_after_clear` pins step 5's phrase "never after the start command", but the lane wrote "never after the whole start command"; the lane's `required_checks` omit `./dev/mise run test:handoff`, and `check` does not run it (`check:research` does, in CI on push), so the mismatch reached the cold review unseen. An existing check not wired in. | Applied in this lane: the phrase matches the test. The wiring is outside `owned_paths`: parent edits 2 and 7. Verification: `./dev/mise run test:handoff` rc 0 (61 tests). |
+| P3 | HS-4 Information access (writer): `predicate.md` said "three pwf fires". | Applied (`535d61d`): four fires. Verification: `grep -c 'four pwf fires' .claude/skills/session-handoff/references/predicate.md` prints 1. |
+| P3 | HS-5 Navigation (writer): `predicate.md` (`H.doctor-findings`) and `dev/handoff.py` §7 still carry the w0-doctor fallback S6 retires from the skills. | Kept in `predicate.md` because it describes the code. Deferred, owner parent, with a fix lane on `dev/`: drop the fallback from `dev/handoff.py`, then from `predicate.md`. Admission condition: `grep -rn 'w0-doctor' .claude/skills/session-handoff` matches nothing. |
+| P3 | HS-6 Automated checks (writer): the CLI row is hand-written, so session-resume's comparison rests on a typed sentence. | Deferred, owner parent: a ticket for `dev/handoff.py state` to read `claude --version` and `write` to generate the row. Admission condition: the row appears in `write --dry-run` output without a template line. |
+| P3 | RT-2 Tool economy (retro writer): the first search of the offline 2.1.300 tree used `grep -rn` and returned 225 KB, then two `grep -o` patterns were refused by the host's ugrep ("exceeds complexity limits"); a `python3 -I` filter printing matching lines answered in one call. | No edit: the offline tree is ignored local data and the alias is a host setting, not a repository fact; recorded for the memory note. |
+| P3 | HS-7 Information access (writer): audit findings S1, S2, S7, S10, S11, S13 are not in this lane's contract. | Rejected for this lane (outside `owned_paths`): S1 and S2 are parent record work, S7 and S10 landed with handoff-script, S11 belongs to ct35b, S13 to the memory note. |
 
-Navigation: HS-5 only. Every cited path resolves in the worktree except two that are local data
-(`offline/research/R22-cc-2.1.300/`, ignored; `.claude/skills/session-start/`, on the ct35a branch);
-the first exists in the root checkout, the second lands with ct35a.
+Navigation: RT-1 is the finding: nothing tells an agent editing `session-handoff` or
+`session-resume` that `dev/test_handoff.py` pins their prose, so parent edit 7 adds one line to
+`.claude/AGENTS.md`. HS-5 stays deferred. Every cited path resolves in the worktree except two
+that are local data (`offline/research/R22-cc-2.1.300/`, ignored; `.claude/skills/session-start/`,
+on the ct35a branch); the first exists in the root checkout, the second lands with ct35a.
 
-Coding standards: no finding. Steps end on a done-when condition (rule 9), the new steps state the
-behaviour to perform (rule 8; "run it plain" replaces a prohibition on `--name`), and the
-`.agents` copies are byte-identical (rc 0).
+Automated checks: RV-P1 applied by the merge; RT-1 applied in-lane with its wiring in parent edits
+2 and 7; HS-2 verified on the final bytes; HS-6 deferred. `check` ran once per tree state and
+passed each time; `test:handoff` is the one check that caught a regression this pass.
 
-Tool economy: no finding. One scripted pass per file, `write --dry-run` and the mirror diff reused
-as the lane's own probes; the checks ran once before the tip merge and once after.
-
-No-ops: none open. The `/quit` triggers in the description and the "run it plain" sentence change
-what an agent does (`next-name` replaces a hand-typed name). The one sentence that restates the
-code, in the template header (`write` reads the first backticked span), is a gotcha no config
-confesses until HS-1 is fixed, and is deleted by that fix.
+Coding standards: RV-P3-2 applied. Steps end on a done-when condition (rule 9) and state the
+behaviour to perform (rule 8): "print the §8 block" replaces "run `start-command`", the one
+prohibition kept (`never --force`) sits beside its positive target, and the `.agents` copies are
+byte-identical (rc 0).
 
 Steering and global guidance: no `AGENTS.md`, `CLAUDE.md`, `.claude/rules` or `.claude/agents`
-file changed. HS-1 is the steering finding for the skill and the template.
+file changed in this lane. RV-P2-1, RV-P2-2 and RV-P3-3 are the steering fixes, all inside the two
+skills; HS-1 closed upstream.
 
-Information access: the writer read the audit's S-table, handoff-script's retro and `dev/handoff.py`
-at `0e4f6e7`, the ct35a worktree (`register.ts`, `SKILL.md`, its retro), and the 2.1.300 intake
-README and `impact.md`. Nothing read a provider, the network or a secret; no environment listing
-is printed.
+Tool economy: RT-2. Otherwise one scripted pass per file with exact-match assertions, the mirror
+copy and its diff as one step, each gate run once per tree state, and the dry-run output parsed
+from one saved file instead of rerun.
+
+No-ops: none open. The template header sentence that restated a bug (`write` reads the first
+backticked span) now states the shipped behaviour (`next-name` for a name-free owner, a
+backticked span wins), which an agent cannot read from the template alone. The "whole" in step 5
+changed nothing an agent did and was the word the test rejected (RT-1).
+
+Information access: this pass read the merged `dev/handoff.py` and `dev/test_handoff.py`, the
+ct35a skill through `git show` at `02c497c` (read-only), the 2.1.300 changelog and `env-vars.md`
+lines cited above, and the handoff-script retro. Nothing read a provider, the network or a
+secret; no environment listing is printed; the dry-run output was saved to the session
+scratchpad and parsed there.
 
 ## Parent edits (outside `owned_paths`; literal)
 
-1. After lane ct35a-session-start-mod integrates: read `.claude/skills/session-start/SKILL.md`; if
-   it does not name the `events.jsonl` path and the four failures, add a "Checks" section there that
-   does (reload not accepted; no `fired` row for the session; reload finished after the first
-   prompt; title skipped), each with the one command that finds it. If its wording differs from
-   session-resume step 4, edit step 4 in `.claude/skills/session-resume/SKILL.md` and the
-   `.agents` mirror (HS-3).
+1. Closed (HS-3, RV-P3-1): ct35a `02c497c` documents the path and the four checks and step 4
+   quotes them. Nothing to apply.
 2. `lanes/handoff-skills.json`: set `status`, `review` and `retro` at integration. Add to `notes`:
-   "session-handoff and session-resume now require `dev/handoff.py start-command` without `--name`
-   and `owner` with the fixed `--session-id`."
+   "session-handoff prints HANDOFF §8 as the only start command (`write` names and ids it; never a
+   second `start-command`), and session-resume passes `--session-id ${CLAUDE_SESSION_ID}` on every
+   path." Add to `required_checks`: `"./dev/mise run test:handoff"` (RT-1).
 3. Before the real `/session-handoff`: the block fits (15 of 16 lines); write the real action and
    CLI row, then `python3 -I dev/handoff.py write --dry-run --agents-done` in the root checkout must
    report at most 16 lines and a NEXT of at most 12. Root `check` clears the worktree-only findings.
-4. `dev/handoff.py` (fix lane; HS-1 and S3): in `section_start` replace the "Two ways to start the
-   next session; use one, never both:" list with
+4. `dev/handoff.py` (fix lane; S3): in `section_start` replace the "Two ways to start the next
+   session; use one, never both:" list with
    ```text
    Three ways to start the next session; use one, never two:
    - Same terminal and version: type `/clear`, then `/session-resume <name>` as the first turn.
@@ -119,9 +145,19 @@ is printed.
    - New version, typed by hand: paste the block without its prompt, then type `/reload-skills`,
      `/reload-plugins` (never `--force`) and `/session-resume <name>`.
    ```
-   with `<name>` the one after `claude -n` in the block, and make `render` leave the NEXT bullet's
-   name and the `/session-resume` line to that block instead of `owner_name`. Update
-   `test_section_start_types_resume_only_after_clear` to match.
-5. When R-176 is ticked, delete the first sentence of the template's `## action` ("First R-176, the
-   Claude Code 2.1.300 release intake (...)."), in both copies, and set the CLI row to
-   "<version> installed; the handing-off session ran <version>".
+   with `<name>` the one after `claude -n` in the block. Update
+   `test_section_start_types_resume_only_after_clear` (`never both` becomes `never two`). Until
+   then the skill prints only the `sh` block of §8, so the two-way prose never reaches the user.
+5. When R-176 is ticked, delete the first line of the template's `## action`, which reads
+   ``First R-176 release intake (`reviews/ccm-20261014/cc-2.1.300/`, `offline/research/R22-cc-2.1.300/`).``
+   in both copies, and set the CLI row to "<version> installed; the handing-off session ran
+   <version>".
+6. `dev/handoff.py:12`, the module docstring line
+   `  start-command [--name N] [--session-id]  the \`claude -n <name> "<prompt>"\` line with the pins exported`
+   becomes
+   `  start-command [--name N] [--session-id]  the \`claude -n <name> "<prompt>"\` line with the pins exported (write puts it in HANDOFF §8; by hand, pass §8's name and id)`
+   (RV-P2-1). Verification: `python3 -I dev/handoff.py --help | grep -c 'HANDOFF §8'` prints 1.
+7. `.claude/AGENTS.md`, in the `skills/` bullet after "change both copies together.", add:
+   "`dev/test_handoff.py` pins `session-handoff` and `session-resume` prose and their mirrors; run
+   `./dev/mise run test:handoff` after editing either." (RT-1). Verification: `grep -c
+   'test:handoff' .claude/AGENTS.md` prints 1.

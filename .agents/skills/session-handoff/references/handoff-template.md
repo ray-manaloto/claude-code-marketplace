@@ -3,9 +3,10 @@
 Hand-written sentences `dev/handoff.py write` preserves; everything else in `## Next Step`, the
 NEXT bullet and HANDOFF §1/§7/§8 is regenerated from `dev/handoff.py state`. Edit a section,
 run `write --dry-run`, then copy this file to `.agents/skills/session-handoff/references/` (mirror rule).
-The `owner` sentence carries no session name and no backticked span: `write` reads the first
-backticked span there as the next session's name. `action` leads with the release intake while
-one is pending, in the shape "First <R-n>, the release intake (<report path>). Then <work>."
+The `owner` sentence carries no session name and no backticked span: with none, `write` names
+the next session with `next-name` (a backticked span there would win and become the name).
+`action` leads with the release intake while one is pending, in the shape "First <R-n> release
+intake (<report paths>). Then <work>."
 Keep each section short: the block budget is 16 lines of 100 characters; no em-dashes. `notes`
 bullets are optional and dropped from the block, in order, when they do not fit (they always stay
 here). `state-rows` holds hand-written `| Item | Value |` rows appended to HANDOFF §1; the CLI row reads
