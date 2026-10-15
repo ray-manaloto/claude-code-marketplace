@@ -932,6 +932,26 @@ verbatim in `progress-archive-2026-10-13.md`.
   no finding, private rule 0). Worktree removed, branch kept. Nothing pushed. Report:
   `reviews/ccm-20261014/republish/handoff-script-merge-report.md`.
 
+- 2026-10-14 (ct35a-session-start-mod integration, D164, CT-35): ct35a merged `696e03f` (records
+  `41d824c`, retro blob `78261cf` byte-identical to `02c497c`); no conflict, tree `23900f6` =
+  merge-tree. `.claude/skills/session-start/` is a skills-dir plugin (`session-start@skills-dir`,
+  `defaultEnabled`): `session.start` awaits a plain `/reload-plugins` in interactive sessions with a
+  30 s deadline, `classic.SessionStart` returns `reloadSkills` on startup and clear and, on startup
+  without `-n`, a D61 `ccm-` title from `/bin/date`; every step writes a JSONL row and a debug row.
+  Review: Fable cold review (security pass) pass-with-fixes on `36157c1`, P2-1, P2-2 and the P3s
+  fixed in `f68951c`; the parent accepted the retro-writer's verification (17 plugin tests) in place
+  of a second cold pass. Parent edits in `41d824c`: `.claude/AGENTS.md` no-mirror exception (1),
+  `mise.dev.toml` `test:session-start-mod` (4; kept out of `check:research`: it needs the claude CLI
+  and exits 1 where hooks modules are off), `dev/AGENTS.md` timeout gotcha (5), the lane's
+  `required_checks` (7); 2 and 3 wait for ct35b; 6, 8 and 9 stay follow-ups. Gates rc 0 on the
+  merged tree: tasks validate (69), check, check:acceptance-baseline (19), check:research, `claude
+  plugin test` (17 pass), `claude plugin validate --strict`, `claude plugin list` (loaded),
+  test:session-start-mod, retro:gate, `git diff --check 6257246`, betterleaks 1.9.0 through
+  `git_delivery.scan` over `6257246..HEAD` (10 commits, no finding, private rule 0). Worktree
+  removed, branch kept. Live acceptance waits for the user's restart onto 2.1.300 (steps in the
+  report). Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/ct35a-session-start-mod-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,
