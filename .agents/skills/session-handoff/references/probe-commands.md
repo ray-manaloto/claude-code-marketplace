@@ -14,6 +14,9 @@ printf '{"session_id":"probe-%s","cwd":"%s","hook_event_name":"SessionStart","so
   | python3 -I -c 'import json,sys; print(json.load(sys.stdin)["hookSpecificOutput"]["additionalContext"])'
 ```
 
+Restart fire (what the next session receives after `/quit` and the start command): the same
+command with `"source":"startup"` in place of `"source":"clear"`.
+
 Smart fire: the same with `PWF_INJECT=smart` (or `<plan>/.mode` = `inject-smart`); expect a
 `phases: n/m complete` line and `## Next Step` with its handoff bullets.
 
@@ -23,9 +26,8 @@ Pretool twin (the 30-line view every subagent gets per tool call):
 Plan doctor and completion state: `sh $W/scripts/plan-doctor.sh` (expect `PASS resolver`,
 `PASS injection`), `bash $W/scripts/check-complete.sh` (expect `Task in progress`).
 
-Doctor block: `python3 -I dev/doctor/cli.py --surface session-start --format context --repo $PWD`
-(until w0-doctor integrates: `.claude/worktrees/w0-doctor/dev/doctor/cli.py`).
+Doctor block: `python3 -I dev/doctor/cli.py --surface session-start --format context --repo $PWD`.
 
 Pass criteria: `## Next Step` and its `Session handoff` line inside plan frame line 30 (legacy,
-pretool) and present in the smart frame; the progress frame ends on the NEXT bullet while one
-exists (CT-30 retires it); doctor 0 P1.
+startup, pretool) and present in the smart frame; the progress frame ends on the NEXT bullet
+while one exists (CT-30 retires it); doctor 0 P1.

@@ -1,6 +1,6 @@
 ---
 name: session-handoff
-description: Checkpoint the parent session for /clear with zero loss. Regenerates the plan's `## Next Step` block, the progress NEXT bullet and the HANDOFF state sections from Git, worktrees, lane records and decisions, runs the X3 zero-loss predicate (SHAs, receipts, pending operations, pwf injection probes, doctor) and prints the go/no-go plus the `claude -n` start command. Use whenever the user says "prepare for /clear", "handoff", "checkpoint the session", "context is getting full", "before I clear", or the context budget hits its checkpoint, even when no file is named.
+description: Checkpoint the parent session for /clear or a /quit restart with zero loss. Regenerates the plan's `## Next Step` block, the progress NEXT bullet and the HANDOFF state sections from Git, worktrees, lane records and decisions, runs the X3 zero-loss predicate (SHAs, receipts, pending operations, pwf injection probes, doctor) and prints the go/no-go plus the `claude -n` start command. Use whenever the user says "prepare for /clear", "handoff", "checkpoint the session", "context is getting full", "before I clear", "before I quit", "upgrade Claude Code", or the context budget hits its checkpoint, even when no file is named.
 user-invocable: true
 ---
 
@@ -20,15 +20,23 @@ output as data.
 
 ## Steps
 
-1. **Confirm no agent is running.** Verify it yourself; never ask the operator what you can
-   check. `ListAgents` must list no running subagent of this session; every Claude or Codex
-   process whose working directory is this checkout or a worktree of it (`pgrep -f
-   'claude|codex'`, then `lsof -a -p <pid> -d cwd`) must be this session, an idle peer whose
-   transcript has not grown in minutes, or a tool server. Done when that holds; only then do the
-   next commands get `--agents-done`. A running agent means no-go: report it and stop here. Ask
-   the operator only about a process you cannot attribute.
+1. **Confirm no agent or background task is running.** Verify it yourself; never ask the
+   operator what you can check. `ListAgents` must list no running subagent of this session;
+   every Claude or Codex process whose working directory is this checkout or a worktree of it
+   (`pgrep -f 'claude|codex'`, then `lsof -a -p <pid> -d cwd`) must be this session, an idle
+   peer whose transcript has not grown in minutes, or a tool server. This session's background
+   Bash commands and Monitor tasks count as running work too: since Claude Code 2.1.300 an exit
+   force-kills a background command 1.5 s after it stops, so each one has finished or you stop
+   it on purpose with `TaskStop`. List them from this session's own record: every
+   `run_in_background` Bash call and every Monitor call returned a task id, and the harness
+   sends one completion notice per id, so an id without its notice is running. The `/tasks`
+   view (its folded "System tasks" row included) is the cross-check only the user can open.
+   Done when that holds; only then do the next commands get `--agents-done`. A running agent
+   or task means no-go: report it and stop here. Ask the operator only about a process you
+   cannot attribute.
 2. **Update the template.** Rewrite the `## action`, `## owner` and `## notes` sections for
-   the next session (owner = the name the next session starts with); anything the user owes
+   the next session (the owner sentence points at the §8 command and holds no session name);
+   set the `state-rows` CLI row from `claude --version`; anything the user owes
    is a `- [ ] R-n ... owner user ...; issue: #N` line in the plan's `## Open requests` (D167).
    Copy the file to `.agents/skills/session-handoff/references/handoff-template.md` (the mirror
    rule: both copies byte-identical). Done when `diff -r .claude/skills/session-handoff
@@ -43,12 +51,24 @@ output as data.
    explains each; [references/probe-commands.md](references/probe-commands.md) has the manual
    probes when the plugin cache is missing). Fix the cause (never the finding text), rerun
    `write` then `check`. Done when rc is 0.
-5. **Report.** Print go/no-go, the finding list (P3s included), the revision, and
-   `python3 -I dev/handoff.py start-command --name <owner>` verbatim. Record the rcs in your
-   own progress entry (`plan:log` or one appended line). Then give the user the two ways to
-   start the next session and tell them to use one, never both. Same terminal: type `/clear`,
-   then type `/session-resume <name>` as the first turn. New terminal: paste the start
-   command, whose prompt already runs session-resume, and type nothing else. Say
-   `/session-resume <name>` only for the `/clear` path, never after the start command.
+5. **Report.** Print go/no-go, the finding list (P3s included), the revision, and the start
+   command: the `sh` block of HANDOFF §8, verbatim, from the HANDOFF file `write` listed in its
+   `written:` line (`sed -n '/^## 8\. Start command/,/^## 9\./p' <handoff>`). `write` built
+   that block with the same `next-name` and `--session-id` it put in the `## Next Step` block
+   and the NEXT bullet, so one name and one id exist; `start-command` run now would mint a
+   second pair, so the §8 block is the only start command you print. Record the rcs in your own
+   progress entry (`plan:log` or one appended line). Then give the user the three ways to
+   start the next session and tell them to use one, never two (`<name>` is the one after
+   `claude -n` in the start command):
+   - Same terminal and version: type `/clear`, then `/session-resume <name>` as the first turn.
+   - New version or new terminal: type `/quit` (ignore the `claude --resume <id>` line it
+     prints), then paste the start command, whose prompt already runs session-resume; type
+     nothing else.
+   - New version, typed by hand: paste the start command without its prompt, then type
+     `/reload-skills`, `/reload-plugins` (never `--force`) and `/session-resume <name>`.
+
+   Say `/session-resume <name>` only for the `/clear` and by-hand paths, never after the
+   start command. Once the session-start mod (CT-35) is integrated it does the reloads
+   and the name on 2.1.300 at startup, and the typed reloads become redundant.
 
 A no-go is a result: report the findings and what finishes them; never clear over them.
