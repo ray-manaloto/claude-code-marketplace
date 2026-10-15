@@ -56,9 +56,9 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-168 (D158): hk linters and build tools for Python, TypeScript and C++ (native tools first); issue: #132
 - [x] R-162 (D153): antigravity-session-history skill (lane agy-history, builder running); issue: #133; integrated and published in 9422625 (report reviews/ccm-20261014/republish/scan-agy-merge-report.md)
 - [ ] R-170 (D160): context-loss fix and automatic catch; every request tracked as a task_plan item linked to a GitHub issue (team CL); issue: #134
-- [ ] R-175 (none): check the session-handoff and session-resume skills for the /quit and restart flow on Claude Code 2.1.300 (session-start mod reloads skills and plugins before the first request, D103, and renames the session; prompt cache kept); issue: pending
-- [ ] R-176 (R-158): Claude Code 2.1.300 release intake: run the dependency upgrade workflow for offline docs and repo mirrors, produce structured JSON and OKF release data for agents, and review what the release changes for the project and its tickets; issue: pending
-- [ ] R-177 (R-127): prioritize the claude-agent and codex-agent skill teams, with the prerequisite machine-readable JSON and OKF inventory of settings, environment variables and feature flags for both harnesses (Codex's earlier work read through codex-session-history); issue: pending
+- [ ] R-175 (none): check the session-handoff and session-resume skills for the /quit and restart flow on Claude Code 2.1.300 (session-start mod reloads skills and plugins before the first request, D103, and renames the session; prompt cache kept); issue: #139; p:5a8b9624
+- [ ] R-176 (R-158): Claude Code 2.1.300 release intake: run the dependency upgrade workflow for offline docs and repo mirrors, produce structured JSON and OKF release data for agents, and review what the release changes for the project and its tickets; issue: #140; p:5a8b9624
+- [ ] R-177 (R-127, D185): prioritize the claude-agent and codex-agent skill teams, with the prerequisite machine-readable JSON and OKF inventory of settings, environment variables and feature flags for both harnesses (Codex's earlier work read through codex-session-history); issue: #141; p:5a8b9624, p:8983a5df
 
 ## Goal
 Integrate wave 0, publish each integration through A09, file CT-01..CT-81 (+CT-02b, CT-20a/b,
