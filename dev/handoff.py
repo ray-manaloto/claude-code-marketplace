@@ -704,8 +704,10 @@ def print_findings(found: list[Finding], st: dict | None, as_json: bool) -> None
 # ---------------------------------------------------------------- write
 
 def owner_name(template: dict, name: str | None) -> str:
+    """--name, else the first backticked span of the template's owner sentence, else a fresh `next_name()`:
+    the same generator as `start-command`, so the block, the NEXT bullet and §8 name one session (HS-3)."""
     match = re.search(r"`([^`]+)`", template.get("owner", ""))
-    return name or (match.group(1) if match else "next-session")
+    return name or (match.group(1) if match else next_name())
 
 
 def next_rev(block: list[str]) -> int:
@@ -1024,7 +1026,7 @@ def main(argv=None) -> int:
     p_write.add_argument("--dry-run", action="store_true")
     p_write.add_argument("--agents-done", action="store_true")
     p_write.add_argument("--template", help="hand-written sentences (default: .claude/skills/session-handoff/references/handoff-template.md)")
-    p_write.add_argument("--name", help="next session name (default: the template's owner line)")
+    p_write.add_argument("--name", help="next session name (default: the template owner line's backticked name, else next-name)")
     p_owner = sub.add_parser("owner")
     p_owner.add_argument("--session", required=True)
     p_owner.add_argument("--session-id", type=session_uuid)

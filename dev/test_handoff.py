@@ -669,6 +669,44 @@ class StartCommandCliTests(SubprocessCli):
         self.assertIn("Owner: session `ccm-new` (`aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee`)", text)
 
 
+# Lane handoff-skills' name-free owner sentence (`claude/handoff-skills` 521b3e7, verbatim) over the scratch
+# fixture's other sections: no backticked span, so `write` must generate the next session's name (HS-3).
+NAME_FREE_OWNER = """Owner: start with the HANDOFF §8 command (a fresh next-name, D61, D76); rewrite owner line 4 with
+dev/handoff.py owner.
+"""
+NAME_FREE_TEMPLATE = TEMPLATE.replace("Owner: start as `next-session` (HANDOFF §8).\n", NAME_FREE_OWNER)
+assert "`" not in NAME_FREE_OWNER and NAME_FREE_TEMPLATE != TEMPLATE
+
+
+class WriteNameFreeTests(SubprocessCli):
+    def dry_run(self, template_text: str):
+        template = self.tmp / "name-free-template.md"
+        template.write_text(template_text)
+        log = fake_date(self.tmp / "bin")
+        fake_plugin(self.tmp / "pwf")  # the child runs the real injection probe
+        with mock.patch.dict(os.environ, {"CLAUDE_PLUGIN_ROOT": str(self.tmp / "pwf")}):
+            rc, out, err = self.cli("write", "--dry-run", "--agents-done", "--template", str(template),
+                                    path_first=self.tmp / "bin")
+        return rc, out, err, log
+
+    def test_a_name_free_template_gets_a_fresh_next_name_in_the_block_bullet_and_start_command(self):
+        rc, out, err, log = self.dry_run(NAME_FREE_TEMPLATE)
+        self.assertEqual(rc, 0, out + err)
+        added = "\n".join(l[1:] for l in out.splitlines() if l.startswith("+") and not l.startswith("+++"))
+        self.assertNotIn("next-session", added)
+        self.assertIn("owner: next session `ccm-20261014T184849.575921000-05`", added)
+        self.assertIn("/session-resume ccm-20261014T184849.575921000-05", added)
+        self.assertRegex(added, rf"claude -n ccm-20261014T184849\.575921000-05 --session-id {StartCommandCliTests.UUID} \"")
+        self.assertEqual(log.read_text().splitlines(), ["+%Y%m%dT%H%M%S.%N%z"])
+
+    def test_a_backticked_owner_name_is_still_used(self):
+        rc, out, err, log = self.dry_run(TEMPLATE)
+        self.assertEqual(rc, 0, out + err)
+        self.assertIn("owner: next session `next-session`", out)
+        self.assertRegex(out, rf"claude -n next-session --session-id {StartCommandCliTests.UUID} \"")
+        self.assertFalse(log.exists(), "date was called although the template named the session")
+
+
 def fake_plugin(root: Path, drop_source: str = "") -> Path:
     """A planning-with-files cache stand-in: the session-start hook logs each payload's `source` and emits
     head-50/tail-20 frames unless the source is `drop_source`; the pretool twin emits head-30."""
