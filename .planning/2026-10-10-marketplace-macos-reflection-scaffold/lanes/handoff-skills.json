@@ -1,0 +1,68 @@
+{
+  "unit": "handoff-skills",
+  "tickets": [
+    "skills audit S3, S5, S6, S8, S9 (doc line), S12; handoff-script parent edits 2-5; R-175 (#139)"
+  ],
+  "title": "session-handoff and session-resume cover the /quit and restart path, a CLI-version check, the session-start log checks and the release intake",
+  "owner": "doc-writer",
+  "writer_model": "sonnet 5.5 (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/handoff-skills",
+  "branch": "claude/handoff-skills",
+  "base_sha": "3834661",
+  "allocated_from": "3834661",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "skills audit 2026-10-14 (session scratchpad skills-audit/report.md), handoff-script retro parent edits, frontier-scheduler scope proposal",
+  "delivers": [
+    "session-handoff step 5 offers three restart paths: /clear then /session-resume <name>; a new version or terminal: /quit (ignore the printed resume line), then paste the start command; or paste it without its prompt and type /reload-skills, /reload-plugins (never --force) and /session-resume <name> (S3); the session-start mod (CT-35) does the reloads and the name on 2.1.300 once integrated",
+    "session-handoff tells agents to run plain start-command (no --name; dev/handoff.py next-name generates it) and step 1 also checks background Bash and Monitor tasks, since 2.1.300 force-kills background commands 1.5 s after exit (S4 by hand, S8)",
+    "handoff-template.md carries no session name (handoff.py fills it), a CLI row with the installed version, and an action section shape that puts a pending release intake first (S5, handoff-script edit 4)",
+    "session-resume step 1: if claude --version differs from HANDOFF section 1's CLI row, the release intake (R-176: offline/research/R22-cc-2.1.300/ and reviews/ccm-20261014/cc-2.1.300/) comes first; after a restart it runs the session-start log checks documented in .claude/skills/session-start/SKILL.md and reports them; it requires the --session-id the start command fixes (S5, handoff-script edit 5)",
+    "the stale w0-doctor worktree fallback is removed (S6); probe-commands.md adds the startup fire (S9, handoff-script edit 3)",
+    "evals: each skill gains a /quit-and-upgrade eval; handoff eval 1 no longer asks whether agents run; eval 2 stops where the skill says stop; eval 3 uses a current open request (S12)",
+    "the .agents/skills mirrors stay byte-identical (diff -r empty)"
+  ],
+  "owned_paths": [
+    ".claude/skills/session-handoff/",
+    ".claude/skills/session-resume/",
+    ".agents/skills/session-handoff/",
+    ".agents/skills/session-resume/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/handoff-skills.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/AGENTS.md",
+    ".claude/agents/",
+    ".claude/skills/session-start/",
+    "dev/",
+    "docs/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)"
+  ],
+  "required_checks": [
+    "diff -r .claude/skills/session-handoff .agents/skills/session-handoff",
+    "diff -r .claude/skills/session-resume .agents/skills/session-resume",
+    "python3 -I -m json.tool on each evals.json",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- handoff-skills"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "the interfaces it documents come from lanes handoff-script (next-name, --session-id, startup probe; branch claude/handoff-script at 0e4f6e7, under review) and ct35a-session-start-mod (log path and checks; running); read both branches, do not edit their files",
+    "the skill-creator plugin skill may be used for structure; work stays in the worktree (R-169)"
+  ]
+}

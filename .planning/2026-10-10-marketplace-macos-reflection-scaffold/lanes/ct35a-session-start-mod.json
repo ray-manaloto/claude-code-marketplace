@@ -20,7 +20,10 @@
     "classic.SessionStart returns reloadSkills on startup and clear, and sessionTitle on startup when no title was given (claude -n wins): ccm-<local time %Y%m%dT%H%M%S.%N, hour offset> per D61 and D76, produced by the OS date command (one format string shared with dev/handoff.py next-name; ADR 0008, no logic in the mod)",
     "no settings SessionStart hook for /clear (D92, D103 replace D61's hook route); the doctor's existing SessionStart hook stays",
     "acceptance recorded: claude plugin validate --strict .claude/skills/session-start rc 0 and claude plugin list shows session-start@skills-dir; the live check (reload before the first request, a prompt typed during start waits, the title appears, /cost prompt-cache line without a miss) is the user's restart onto 2.1.300, recorded after it",
-    "no .agents/skills mirror (Codex cannot run mods); the parent adds that exception to .claude/AGENTS.md"
+    "no .agents/skills mirror (Codex cannot run mods); the parent adds that exception to .claude/AGENTS.md",
+    "diagnostic log (user request 2026-10-14): one JSON line per step to ~/.local/state/claude-code-marketplace/session-start/events.jsonl (dir 0700, file 0600; override MARKETPLACE_SESSION_START_LOG): ts (ns UTC), session_id, cli_version, event and source, step (fired, reload_plugins_begin/end, reload_skills_returned, title_set/kept/skipped, error), result, duration_ms; a native mod logging facility as well when the types offer one",
+    "detection: held, rejected or failed reloads and a skipped title show a status message and a log row; the reference SKILL.md documents one-line checks an agent runs after a restart (no fired row for the session, reload not accepted, reload finished after the first prompt, title skipped)",
+    "claude plugin test cases assert the log rows for success, held and rejected (log path pointed at a temp dir)"
   ],
   "owned_paths": [
     ".claude/skills/session-start/",
@@ -55,7 +58,7 @@
   "resource_admissions": {
     "providers": "none",
     "network": "none",
-    "global_settings": "none"
+    "global_settings": "writes its own log under ~/.local/state/claude-code-marketplace/session-start/ at run time (project state dir, not a settings file)"
   },
   "status": "allocated",
   "created_at": "2026-10-14",
@@ -65,6 +68,7 @@
     "reference only: the dotfiles session-start mod queues --force reloads unawaited, the shape D103 rejects; do not copy it",
     "2.1.300 docs and types are not on disk; use the 2.1.299 copies in the session scratchpad research5/R1/docs and the 2.1.296 mod types; record any API you could not confirm",
     "cut the worktree with git worktree add, never isolation worktree (#92533 unverified on this host); the mod registers no tool.call hook",
-    "rollback: claude plugin disable session-start@skills-dir"
+    "rollback: claude plugin disable session-start@skills-dir",
+    "2026-10-14: logging and detection added at the user's request; the session-resume skill runs the checks after a restart (lane handoff-skills); a doctor detector is a later C++ core item (D113)"
   ]
 }
