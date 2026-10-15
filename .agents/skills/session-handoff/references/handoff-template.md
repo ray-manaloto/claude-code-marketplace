@@ -17,18 +17,18 @@ items of the plan's `## Open requests`; an item awaits the user when it says `ow
 `pending-user` section here makes `write` refuse. Something the user owes becomes an R-n line.
 
 ## action
-First R-176, the Claude Code 2.1.300 release intake (`reviews/ccm-20261014/cc-2.1.300/README.md`).
-Then Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first CT-80
-check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches, never merge.
+First R-176 release intake (`reviews/ccm-20261014/cc-2.1.300/`, `offline/research/R22-cc-2.1.300/`).
+Then Wave 0a: CT-40, the D7 spike, `21-offline`, the first CT-80 check (D77, D82, D104).
 
 ## owner
-Owner: start with the HANDOFF §8 command (a fresh next-name, D61, D76); rewrite owner line 4 with
-dev/handoff.py owner.
+Owner: HANDOFF §8 command, then dev/handoff.py owner.
 
 ## runbook
 Runbook: `reviews/ccm-20261013/phase3/HANDOFF-2026-10-14.md`.
 
 ## notes
+- History was replaced (D143, D148): rebase old-history branches, never merge. The next session's
+  name is a fresh next-name (D61, D76); `21-offline` starts with its lane record.
 - Integrated and published 2026-10-14: gate-git-path (`2185777`) and w0-doctor (`959c56f`) on
   the scrubbed baseline `62b154a`; receipts in `reviews/ccm-20261014/republish/`.
 - TR material stays local (D144); `.gitleaks.toml` plus the private rule file (D178,

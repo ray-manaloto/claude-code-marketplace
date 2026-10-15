@@ -4,8 +4,8 @@ Unit `handoff-skills` (skills audit S3, S5, S6, S8, S9 doc line, S12; handoff-sc
 2-5; R-175, #139). Worktree `.claude/worktrees/handoff-skills`, branch `claude/handoff-skills`,
 `base_sha` `3834661`, cut from the allocation commit `2b06eb3`, so `git log 2b06eb3..HEAD` is the
 lane. Commits, in order: `535d61d` (the skill changes), `484f1c8` (merge of the integration tip
-`65541f4`, clean, trailers, no lane branch name), then the commit carrying this record (the final
-SHA, in the hand-back). Writer: Claude Sonnet 5.5, matching the record's `writer_model`. This is
+`65541f4`, clean, trailers, no lane branch name), `521b3e7` (this record), then the commit that
+trims the template to the budget (coordinator follow-up; the final SHA, in the hand-back). Writer: Claude Sonnet 5.5, matching the record's `writer_model`. This is
 the writer's draft: the independent cold review and the retro-writer pass have not run, so
 "reviewed" is open.
 
@@ -19,8 +19,10 @@ Delivered, in the `.claude/skills/` copies and byte-identical in `.agents/skills
   command; or the start command without its prompt, then `/reload-skills`, `/reload-plugins`
   (never `--force`) and `/session-resume <name>` (S3). The description gains `/quit` triggers.
 - `handoff-template.md`: no session name in `## owner` (handoff-script edit 4); a CLI row
-  "2.1.300 installed; the handing-off session ran 2.1.299"; an `action` that leads with R-176;
-  header lines that state the owner and CLI-row rules; notes read "decisions through D188" (S5).
+  "2.1.300 installed; the handing-off session ran 2.1.299"; an `action` that leads with R-176 and
+  names its two paths; header lines that state the owner and CLI-row rules; notes read "decisions
+  through D188" (S5). The action, owner and notes sentences are cut to words so the block stays
+  inside the 16-line budget (HS-2).
 - `probe-commands.md`: the restart fire (`"source":"startup"`) and `startup` in the pass criteria
   (S9, handoff-script edit 3); the w0-doctor worktree fallback is gone (S6). `predicate.md`: the
   `H.injection-probe-failed` row lists four fires, matching `dev/handoff.py` at handoff-script.
@@ -45,17 +47,24 @@ Exits on the merged bytes `484f1c8`, from the worktree, `VIRTUAL_ENV` unset, one
 - `git diff --check 2b06eb3 HEAD`: rc 0. hk `pre-commit` (`check:records`) passed on `535d61d`;
   the merge hooks passed on `484f1c8`.
 - `./dev/mise run retro:gate -- handoff-skills`: run on this record; the rc is in the hand-back.
-- Live probe: `python3 -I dev/handoff.py write --dry-run --agents-done` exits 1 in this worktree
-  ("required handoff lines exceed 16 (18)") with the new template and also with the base template
-  (17), so the refusal predates this lane (HS-2). `load_template` and `owner_name` on the new
-  template return `next-session` for the owner (HS-1).
+- Budget probe, after the trim (coordinator follow-up), `python3 -I dev/handoff.py write --dry-run
+  --agents-done` in this worktree: the regenerated `## Next Step` block is 15 lines of at most 100
+  characters (limit 16) and the NEXT bullet is 8 lines of at most 99 (limit 12). The command exits
+  rc 2 with "write refused: the regenerated handoff still fails the check", from worktree-only
+  findings (`H.receipt-missing` for the lane worktrees and the ignored local `offline/research/R22-cc-2.1.300/`,
+  `H.head-not-remote`, `H.request-unprojected` p:WY8rd, `H.request-unlinked` R-179 and R-180,
+  `H.mode-not-inject-smart`), none of them a budget error. Before the trim: rc 1, "required
+  handoff lines exceed 16 (18)", and 17 with the base template. `owner_name` on the new template
+  returns `next-session` (HS-1).
+- After the trim: the mirror diffs, `tasks validate`, `check`, `check:acceptance-baseline` and
+  `git diff --check` are rc 0 again; the `retro:gate` rc is in the hand-back.
 
 ## Findings
 
 | Severity | Category and finding (source) | Action, verification and disposition |
 | --- | --- | --- |
 | P2 | HS-1 Steering: `write` takes the next session's name from the first backticked span of the template's `## owner` sentence (`owner_name`, `dev/handoff.py:699`). With the name-free owner sentence (handoff-script edit 4) it falls back to `next-session`, and that placeholder reaches the NEXT bullet ("owner: next session `next-session`") and the `/session-resume next-session` line of HANDOFF §8, while `start-command` prints a different, fresh name. Edit 4 as written (`next-name` in backticks) would have made the name `next-name`. (Writer; handoff-script HS-3, `dev/handoff.py:699`, `:788`.) | Applied in this lane: the owner sentence carries no backticks, and the template header says so. Deferred, owner parent via a fix lane on `dev/`: `write` must not print a name it did not generate (parent edit 4 gives the text for §8 and the NEXT bullet). Admission condition: `write --dry-run` shows no `next-session`, and the name in §8 equals the one `start-command` prints; until then step 5 of session-handoff names `start-command` as the only source of `<name>`. |
-| P2 | HS-2 Automated checks: `write` refuses before it writes: the required lines are 17 with the base template and 18 with this one (the open-request roll-call takes 4 lines for the many open items; budget 16). The `action` lead sentence adds one line. (Writer; the dry-run above.) | Deferred, owner parent: tick or shorten open requests, or have `write` budget the roll-call, before the real `/session-handoff`; the writer kept the old Wave 0a text intact rather than trim content outside the contract. Admission condition: `python3 -I dev/handoff.py write --dry-run --agents-done` exits 0. Once R-176 closes, drop the template's first action sentence (parent edit 5), which returns the block to the base size. |
+| P2 | HS-2 Automated checks: `write` refused before it wrote: the required lines were 17 with the base template and 18 with this one (the open-request roll-call takes 4 lines for the many open items; budget 16). The `action` lead sentence added one line. (Writer; the first dry-run.) | Applied in this lane after the coordinator's follow-up: `action` is two lines naming R-176 and its two paths, `owner` is one sentence, and the history rule and the D61/D76 refs moved to the first `notes` bullet (dropped from the block when it is full, kept in the template). The roll-call and runbook path stay as they were. Verification: the dry-run block is 15 lines (limit 16) and the NEXT bullet 8 (limit 12), widths at most 100; mirror diff rc 0. Remaining: when R-176 closes, parent edit 5 drops the lead sentence. |
 | P3 | HS-3 Information access: ct35a's `session-start/SKILL.md` does not yet document the log checks or the `events.jsonl` path (its branch `claude/ct35a-session-start-mod` was still running; `register.ts` already writes `fired`, `reload_plugins_begin`, `reload_plugins_end`, `title_set`, `title_skipped`, `title_kept` and `error` rows to `~/.local/state/claude-code-marketplace/session-start/events.jsonl`). session-resume step 4 therefore names the path and the four failures (no `fired` row for the session, reload not accepted, reload finished after the first prompt, title skipped) and defers the commands to that skill. (Writer; read of the ct35a worktree.) | Deferred, owner parent after ct35a integrates: read `session-start/SKILL.md`, and if its check names or commands differ from step 4's wording, edit step 4 in both copies. Admission condition: `grep -n 'events.jsonl' .claude/skills/session-start/SKILL.md` matches, and each failure named in step 4 appears there. |
 | P3 | HS-4 Information access: `predicate.md` still said "three pwf fires" after handoff-script added the `startup` fire. The lane record did not list it and handoff-script's parent edits 2-5 did not either. (Writer; `dev/handoff.py:513`.) | Applied in this lane (owned path): the row lists four fires and what each receives. Verification: `grep -c 'four pwf fires' .claude/skills/session-handoff/references/predicate.md` prints 1, and the mirror diff is rc 0. |
 | P3 | HS-5 Navigation: `predicate.md` (`H.doctor-findings`, "root, else the w0-doctor worktree copy") and `dev/handoff.py` §7 still carry the w0-doctor fallback that S6 retires from the skills; the code still falls back to it. (Writer.) | Kept in `predicate.md` because it describes the code. Deferred, owner parent with the fix lane in HS-1: drop the fallback from `dev/handoff.py` and then from `predicate.md`. Admission condition: `grep -rn 'w0-doctor' .claude/skills/session-handoff` matches nothing. |
@@ -97,8 +106,9 @@ is printed.
 2. `lanes/handoff-skills.json`: set `status`, `review` and `retro` at integration. Add to `notes`:
    "session-handoff and session-resume now require `dev/handoff.py start-command` without `--name`
    and `owner` with the fixed `--session-id`."
-3. Before the real `/session-handoff` (HS-2): bring the roll-call under the budget (tick R-n lines
-   with evidence, or shorten) until `python3 -I dev/handoff.py write --dry-run --agents-done` exits 0.
+3. Before the real `/session-handoff`: the block fits (15 of 16 lines); write the real action and
+   CLI row, then `python3 -I dev/handoff.py write --dry-run --agents-done` in the root checkout must
+   report at most 16 lines and a NEXT of at most 12. Root `check` clears the worktree-only findings.
 4. `dev/handoff.py` (fix lane; HS-1 and S3): in `section_start` replace the "Two ways to start the
    next session; use one, never both:" list with
    ```text
