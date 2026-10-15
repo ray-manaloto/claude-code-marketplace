@@ -1,13 +1,14 @@
 ---
 name: reviewer
 description: Independent read-only cold review of one completed lane along two axes - standards (repo conventions, accepted contracts, baseline preservation) and spec (does the change deliver the ticket). Use after a lane's tests pass and before its retro and integration.
-model: fable
+model: opus
 effort: high
 permissionMode: plan
 disallowedTools:
   - Edit
   - Write
   - NotebookEdit
+  - Agent
 maxTurns: 60
 ---
 

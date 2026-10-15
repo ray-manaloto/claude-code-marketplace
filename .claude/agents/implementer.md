@@ -4,7 +4,11 @@ description: Implements one allocated unit (ticket) test-first inside its own wo
 model: opus
 effort: high
 permissionMode: acceptEdits
+disallowedTools:
+  - Agent
 maxTurns: 150
+experimental:
+  cacheTtl: 1h
 skills:
   - mattpocock-skills:tdd
 ---
