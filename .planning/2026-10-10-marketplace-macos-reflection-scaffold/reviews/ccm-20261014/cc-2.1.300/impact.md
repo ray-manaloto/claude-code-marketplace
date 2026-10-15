@@ -95,4 +95,3 @@ Changes tagged for VS Code, Claude Tag, Code Review, cloud, web and self-hosted-
 - R-174 (#138): transcripts carry more private text from 2.1.300.
 - R-163 (#124): TR's release-review generator is the pattern this intake replaces; see workflow-inventory.md.
 - R-120 (#113), R-127 (#114), R-119 (#112): the new mod and agent APIs are the building blocks for the lane view and the agent team.
-
