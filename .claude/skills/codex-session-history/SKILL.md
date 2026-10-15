@@ -34,9 +34,7 @@ evidence.
 3. **Digest the rollout.** `codex_rollout_digest.py <id> --out <scratch>/<id>.md`.
    Read the *turn-final messages* and *git commits* sections first; use the
    assistant timeline to locate ordinals. A 100 MB thread digests to ~400K
-   chars: hand it to a synthesizer subagent (Fable, high effort) with
-   [references/brief-template.md](references/brief-template.md) and read the
-   brief it returns.
+   chars: at spawn depth 0 hand it to a synthesizer subagent (Fable, high effort) with [references/brief-template.md](references/brief-template.md) and read the brief it returns; a subagent cannot spawn (depth 1, D189), so it reads the turn-final and git-commit sections itself and fills the same template.
 4. **Pull the receipts the thread cites.** `codex_research_receipts.py <id>`
    lists research-fanout runs with policy, query and per-provider status
    (`ok`, `empty_verified`, `empty_unverified`, `error`, provisional

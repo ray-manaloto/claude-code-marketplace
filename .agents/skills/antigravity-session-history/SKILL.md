@@ -67,9 +67,7 @@ its scratch directory outside the repository. The desktop app writes
    `ASK_QUESTION` answers, turn-final messages, plan approvals, write-like
    calls, commits and pushes, errors (mirror errors plus the database-only
    error steps from step 2). For a digest over about 100 KB, hand the path to
-   a synthesizer subagent (Fable, high effort) with
-   [references/brief-template.md](references/brief-template.md) and read the
-   brief it returns; the brief keeps the template's eight headings in order
+   a synthesizer subagent (Fable, high effort) at spawn depth 0, with [references/brief-template.md](references/brief-template.md), and read the brief it returns; a subagent cannot spawn (depth 1, D189), so it reads the digest itself and fills the same template; the brief keeps the template's eight headings in order
    and answers the user's specific questions inside them. Done when every
    section is present, an empty one reading "none observed".
 4. **Pull artifacts and receipts** (recipe 6): each `brain/<id>/*.md` with

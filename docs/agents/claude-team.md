@@ -39,6 +39,8 @@ separate (planned, implemented, tested, reviewed, committed, published).
 | publish | parent | `delivery:prepare` and `delivery:publish` receipts, remote SHA |
 | close | parent | ticket ledger row and the qualified close operation, one ticket at a time |
 
+Scratch files carry the unit id (`<unit>-commit-msg.txt`): the scratchpad is one directory for every agent of a session, so a generic name is overwritten by a sibling between two calls (roster-v2 retro, finding 10).
+
 ## Integration
 
 - Merge every lane with `git merge --no-ff <branch>` and let Git create the commit;
