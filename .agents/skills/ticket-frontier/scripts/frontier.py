@@ -58,7 +58,8 @@ class ReadyTicket(TypedDict):
 DEFAULT_PLAN_ID = "2026-10-10-marketplace-macos-reflection-scaffold"
 WRITER_ROLES = ("implementer", "doc-writer")
 PRIORITY_RULES = ["critical_path", "unblocks", "always_active", "wave", "number"]
-FABLE_KINDS = ("review", "retro", "synthesis", "design")
+FABLE_KINDS = ("retro", "synthesis", "design")  # kinds frontier.toml [model_policy] already puts on fable; the
+#   escalation guard in next_lane skips them (D189: review runs on opus and escalates like any opus kind)
 ESCALATION_REASON = "reasoning"
 LEDGER_KINDS = ("mechanical", "judgement", "navigation", "workflow", "role", "hook")
 LEDGER_MODES = ("auto", "propose")
@@ -248,7 +249,7 @@ class Frontier:
     # ---- thresholds --------------------------------------------------------------
     def ceiling(self, model: str) -> int:
         window = int(self.config.get("windows", {}).get(model, 0))
-        return int(window * float(self.config.get("context_ceiling_fraction", 0.5)))
+        return int(window * float(self.config.get("context_ceiling_fraction", 0.275)))
 
     def check_thresholds(self) -> dict:
         budget = self.repo / "dev/doctor/budget.py"
@@ -348,7 +349,7 @@ class Frontier:
 
         # capacity: writer lanes against max_parallel, every claim against the live cap
         max_parallel = int(self.config.get("max_parallel", 3))
-        max_live = int(self.config.get("max_live_agents", 8))
+        max_live = int(self.config.get("max_live_agents", 5))
         writers_active = sum(1 for c in state["claims"].values() if c.get("role") in WRITER_ROLES)
         live = len(state["claims"])
         writers_free = max(0, max_parallel - writers_active)
@@ -540,7 +541,7 @@ class Frontier:
             if role in WRITER_ROLES and ticket in self.lane_tickets(record) and \
                     not status.startswith(("integrated", "published", "closed")) and record["unit"] != unit:
                 raise Refusal(f"ticket {ticket} already held by lane record {record['unit']} (status {record.get('status')})")
-        max_live = int(self.config.get("max_live_agents", 8))
+        max_live = int(self.config.get("max_live_agents", 5))
         if len(claims) >= max_live:
             raise Refusal(f"hard cap: {max_live} live agents already claimed; release one before dispatching {unit}")
         if role in WRITER_ROLES:
@@ -636,7 +637,7 @@ class Frontier:
             "plan_dir": str(self.plan_dir), "executor": self.config.get("executor", "native"),
             "executor_gate": gate, "retro_apply": self.config.get("retro_apply", "auto"),
             "capacity": {"max_parallel": int(self.config.get("max_parallel", 3)), "writers_active": writers,
-                         "live_agents": len(claims), "max_live_agents": int(self.config.get("max_live_agents", 8))},
+                         "live_agents": len(claims), "max_live_agents": int(self.config.get("max_live_agents", 5))},
             "ceilings": {m: self.ceiling(m) for m in self.config.get("windows", {})},
             "claims": claims, "continuations": state["continuations"],
             "last_plan": receipts[-1] if receipts else None, "degraded": self.degraded(),

@@ -51,7 +51,7 @@ follow the fallback it names; the loop degrades, it never stops.
    the scheduler's judgement lines. The ceiling line travels in every brief because a
    subagent's window is sized by its own model and starts empty. Done when the SubagentStop
    receipt (journal line) names a final SHA, exits and the retro draft.
-6. **Review, retro, gate.** `reviewer` (Fable, cold, fixed point `base_sha`); FAIL sends one
+6. **Review, retro, gate.** `reviewer` (Opus, D189; cold, fixed point `base_sha`); FAIL sends one
    more implementer round to the same lane. Then `retro-writer` (Fable) applies every
    `auto` finding, appends a ledger row per finding (`frontier.py ledger append --row`),
    and lists `propose` hunks for step 3. Then `doctor --surface integrate` (CT-22) when it
@@ -73,8 +73,8 @@ follow the fallback it names; the loop degrades, it never stops.
 
 ## Your own context
 
-Each lane ceiling is `windows[model] × context_ceiling_fraction` (500 K today); the parent
-has the same ceiling. At `warn` (400 K) delegate the next integration to a fresh
+Each lane ceiling is `windows[model] × context_ceiling_fraction` (275 K today); the parent
+has the same ceiling. At `warn` (220 K) delegate the next integration to a fresh
 `implementer`-typed merger agent instead of merging inline; at the ceiling stop dispatching,
 run `plan:handoff --write` (CT-15, else write the handoff block by hand), tell the user to
 `/clear`, and let the status line above restore the loop. Never fork: a fork inherits this

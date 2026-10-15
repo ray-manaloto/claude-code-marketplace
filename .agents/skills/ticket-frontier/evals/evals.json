@@ -34,11 +34,11 @@
       "id": 3,
       "name": "max-parallel-saturation",
       "prompt": "Three implementer lanes are already claimed (units a→CT-11, b→#17, c→#20) and one reviewer (r1→#17). What can I dispatch next? Graph: evals/fixtures/graph-12.json.",
-      "expected_output": "After reproducing the claims with `frontier.py claim`, `plan` reports writers 3/3 saturated, live 4/8, chosen empty; `next` exits 2 naming max_parallel; the answer says to wait for a release (or a reviewer slot stays available since reviewers are uncounted) and does not dispatch.",
+      "expected_output": "After reproducing the claims with `frontier.py claim`, `plan` reports writers 3/3 saturated, live 4/5, chosen empty; `next` exits 2 naming max_parallel; the answer says to wait for a release (or a reviewer slot stays available since reviewers are uncounted) and does not dispatch.",
       "files": ["evals/fixtures/graph-12.json"],
       "expectations": [
         "frontier.py next exits 2 with 'max_parallel' in its output",
-        "The answer states writers 3/3 and live agents 4/8",
+        "The answer states writers 3/3 and live agents 4/5",
         "The answer says reviewers and retro-writers do not count against max_parallel",
         "No new implementer or doc-writer is dispatched"
       ]
@@ -47,11 +47,11 @@
       "id": 4,
       "name": "ceiling-refusal",
       "prompt": "Lane l21 (ticket #21) died at 541K tokens; its CT-19 journal is at /tmp/l21.jsonl with the last usage line {\"usage\": {\"input\": 540000, \"output\": 1000, \"total\": 541000}}. Can I just resume it?",
-      "expected_output": "`frontier.py release l21 --from-journal /tmp/l21.jsonl --resume` exits 2 with split-required (541000 >= ceiling 500000); the answer says no resume, carve a continuation unit l21-2 from the lane's commits and ledger with a fresh brief and the CTX-CEILING line, state travels through the branch not the transcript.",
+      "expected_output": "`frontier.py release l21 --from-journal /tmp/l21.jsonl --resume` exits 2 with split-required (541000 >= ceiling 275000); the answer says no resume, carve a continuation unit l21-2 from the lane's commits and ledger with a fresh brief and the CTX-CEILING line, state travels through the branch not the transcript.",
       "files": [],
       "expectations": [
         "release --resume exits 2 and the output contains 'split-required'",
-        "The answer names the ceiling 500000 and the observed usage 541000",
+        "The answer names the ceiling 275000 and the observed usage 541000",
         "The answer proposes a continuation unit from commits and ledger rather than resuming the agent",
         "The answer says the continuation brief carries a CTX-CEILING line"
       ]
@@ -86,10 +86,10 @@
       "id": 7,
       "name": "threshold-mismatch",
       "prompt": "dev/doctor/budget.py just landed with fork_deny = 450_000. Plan the frontier.",
-      "expected_output": "`frontier.py plan` exits 2 with 'threshold mismatch' naming 450000 and 500000; the answer says there is one threshold source, asks the user which value is right, and proposes the frontier.toml hunk (fraction 0.45) or the budget.py change as a propose item rather than editing silently.",
+      "expected_output": "`frontier.py plan` exits 2 with 'threshold mismatch' naming 450000 and 275000; the answer says there is one threshold source, asks the user which value is right, and proposes the frontier.toml hunk (fraction 0.45) or the budget.py change as a propose item rather than editing silently.",
       "files": [],
       "expectations": [
-        "plan exits 2 and the output contains 'threshold mismatch', 450000 and 500000",
+        "plan exits 2 and the output contains 'threshold mismatch', 450000 and 275000",
         "The answer asks the user before changing either file",
         "A change to frontier.toml is presented as a propose hunk"
       ]

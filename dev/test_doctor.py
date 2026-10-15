@@ -129,7 +129,7 @@ class SettingsComposition(Scratch):
         live = json.loads((ROOT / ".claude" / "settings.json").read_text())
         self.assertIs(live["autoCompactEnabled"], True)
         self.assertEqual((live["autoCompactWindow"], live["env"]["PLAN_ID"]),
-                         (700000, "2026-10-10-marketplace-macos-reflection-scaffold"))
+                         (433000, "2026-10-10-marketplace-macos-reflection-scaffold"))
         self.assertLessEqual(set(live), {"$schema", "env", "autoCompactEnabled", "autoCompactWindow",
                                          "enabledPlugins", "extraKnownMarketplaces", "hooks"})
 
@@ -145,14 +145,20 @@ class ContextBudget(Scratch):
         spec = importlib.util.spec_from_file_location("doctor_budget", ROOT / "dev" / "doctor" / "budget.py")
         budget = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(budget)
-        self.assertEqual(budget.THRESHOLDS, {"warn": 400_000, "checkpoint": 550_000, "fork_deny": 500_000,
-                                             "hard": 650_000})
+        self.assertEqual(budget.THRESHOLDS, {"warn": 220_000, "checkpoint": 303_000, "fork_deny": 275_000,
+                                             "hard": 358_000})
         window = json.loads((ROOT / ".claude" / "settings.json").read_text())["autoCompactWindow"]
-        self.assertTrue(all(value < window for value in budget.THRESHOLDS.values()))
+        # D190: compaction fires at window - 33K (20K output reserve + 13K buffer; R23 section 1).
+        self.assertTrue(all(value < window - 33_000 for value in budget.THRESHOLDS.values()))
         frontier = tomllib.loads((ROOT / ".planning" / "2026-10-10-marketplace-macos-reflection-scaffold" /
                                   "frontier.toml").read_text())
-        self.assertEqual(budget.THRESHOLDS["fork_deny"],
-                         frontier["context_ceiling_fraction"] * frontier["windows"]["opus"])
+        # D191 holds for every dispatchable model, not only opus: frontier.py computes the ceiling as
+        # int(windows[model] * fraction), and `plan` refuses when that differs from fork_deny.
+        self.assertTrue(frontier["windows"])
+        for model, window in frontier["windows"].items():
+            with self.subTest(model=model):
+                self.assertEqual(budget.THRESHOLDS["fork_deny"],
+                                 int(window * float(frontier["context_ceiling_fraction"])))
 
     def test_team_guide_budget_table_equals_thresholds(self):
         """w0-docs retro deferral: the claude-team.md Context budget table and budget.THRESHOLDS state one set."""

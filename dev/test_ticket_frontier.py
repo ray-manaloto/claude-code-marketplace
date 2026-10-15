@@ -7,12 +7,14 @@ Nothing here reads the real plan directory or the network.
 """
 
 import filecmp
+import importlib.util
 import json
 import os
 import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 import unittest
 from pathlib import Path
 from typing import ClassVar
@@ -140,13 +142,14 @@ class PlanTests(FrontierCase):
         self.assertEqual(rc, 2, out + err)
         self.assertIn("max_parallel", out)
 
-    def test_live_agent_hard_cap_is_eight(self):
-        for n in range(8):
+    def test_live_agent_hard_cap_is_five(self):
+        """roster-v2 review: CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 refuses a 7th spawn; 5 leaves a fork slot."""
+        for n in range(5):
             rc, out, err = self.claim(f"x{n}", "#17", "reviewer" if n else "implementer")
             self.assertEqual(rc, 0, out + err)
-        rc, out, err = self.claim("x8", "#17", "reviewer")
+        rc, out, err = self.claim("x5", "#17", "reviewer")
         self.assertEqual(rc, 2, out + err)
-        self.assertIn("8 live agents", out)
+        self.assertIn("5 live agents", out)
 
     def test_plan_receipt_is_written_only_under_frontier_dir(self):
         rc, out, err = self.run_cli("plan", "--graph", str(self.plan / "graph.json"), "--write")
@@ -162,13 +165,13 @@ class PlanTests(FrontierCase):
     def test_threshold_mismatch_with_budget_py_is_refused(self):
         budget = self.repo / "dev/doctor/budget.py"
         budget.parent.mkdir(parents=True)
-        budget.write_text('THRESHOLDS = {"warn": 400_000, "checkpoint": 550_000, "fork_deny": 450_000, "hard": 650_000}\n')
+        budget.write_text('THRESHOLDS = {"warn": 220_000, "checkpoint": 303_000, "fork_deny": 250_000, "hard": 358_000}\n')
         rc, out, err = self.run_cli("plan", "--graph", str(self.plan / "graph.json"))
         self.assertEqual(rc, 2, out + err)
         self.assertIn("threshold mismatch", out)
-        self.assertIn("450000", out)
-        self.assertIn("500000", out)
-        budget.write_text('THRESHOLDS = {"fork_deny": 500_000}\n')
+        self.assertIn("250000", out)
+        self.assertIn("275000", out)
+        budget.write_text('THRESHOLDS = {"fork_deny": 275_000}\n')
         rc, out, err = self.run_cli("plan", "--graph", str(self.plan / "graph.json"))
         self.assertEqual(rc, 0, out + err)
 
@@ -196,10 +199,25 @@ class NextTests(FrontierCase):
         self.assertEqual(nxt["role"], "implementer")
         self.assertEqual((nxt["model"], nxt["effort"]), ("opus", "high"))
         self.assertEqual(nxt["rule"], "policy.implement")
-        self.assertEqual(nxt["ceiling"], 500000)
-        self.assertIn("CTX-CEILING: 500000", nxt["brief_lines"][0])
+        self.assertEqual(nxt["ceiling"], 275000)
+        self.assertIn("CTX-CEILING: 275000", nxt["brief_lines"][0])
         self.assertEqual(nxt["dispatch"]["subagent_type"], "implementer")
         self.assertTrue(nxt["dispatch"]["run_in_background"])
+
+    def test_shipped_policy_reviews_on_opus(self):
+        """D189: frontier.toml [model_policy] review feeds the per-call model that overrides reviewer.md."""
+        policy = tomllib.loads(CONFIG.read_text())["model_policy"]
+        self.assertEqual((policy["review"]["model"], policy["review"]["effort"]), ("opus", "high"))
+
+    def test_fable_kinds_match_shipped_policy(self):
+        """compaction-40 retro: the escalation guard skips exactly the kinds frontier.toml already puts on fable."""
+        sys.dont_write_bytecode = True  # keep __pycache__ out of the skill dir so the mirror diff stays clean
+        spec = importlib.util.spec_from_file_location("frontier_script", SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        policy = tomllib.loads(CONFIG.read_text())["model_policy"]
+        fable = {kind for kind, entry in policy.items() if isinstance(entry, dict) and entry.get("model") == "fable"}
+        self.assertEqual(set(module.FABLE_KINDS), fable)
 
     def test_escalation_to_fable_after_one_opus_reasoning_failure(self):
         journal = self.tmp / "21-offline.jsonl"

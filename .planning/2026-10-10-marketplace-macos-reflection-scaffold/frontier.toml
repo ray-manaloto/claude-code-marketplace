@@ -6,10 +6,11 @@
 schema = 1
 max_parallel = 3                    # writer lanes (implementer, doc-writer) at once; reviewers,
                                     # retro-writers, the scheduler and the extractor are not counted (Q4)
-max_live_agents = 8                 # hard cap on every live agent this skill has claimed (Q4)
+max_live_agents = 5                 # hard cap on every live agent this skill has claimed (Q4); below
+                                    # CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 with a slot for a fork or resume
 always_active = ["cxx"]             # one max_parallel slot is reserved for this class while a member is ready
-context_ceiling_fraction = 0.5      # lane ceiling = windows[model] × fraction; `plan` refuses when
-                                    # dev/doctor/budget.py's fork_deny (CT-22) differs from it (Q3)
+context_ceiling_fraction = 0.275    # lane ceiling = windows[model] × fraction; `plan` refuses when
+                                    # dev/doctor/budget.py's fork_deny (CT-22) differs from it (Q3, D191)
 executor = "native"                 # native | claude-agent | codex-agent; non-native needs executor-gate (K1 §7)
 retro_apply = "auto"                # auto | propose; K1 §6 lists what stays propose regardless (Q5)
 publish_batch = "per-integration"   # per-integration | per-wave (Q11)
@@ -31,7 +32,7 @@ haiku = 1000000
 [model_policy]                      # step kind → model/effort (K1 §2); the Agent tool's overrides carry them
 implement = { model = "opus", effort = "high" }
 docs = { model = "sonnet", effort = "high" }
-review = { model = "fable", effort = "high" }
+review = { model = "opus", effort = "high" }            # D189: model diversity from the cross-vendor reviewer
 retro = { model = "fable", effort = "high" }
 synthesis = { model = "fable", effort = "high" }
 design = { model = "fable", effort = "high" }
