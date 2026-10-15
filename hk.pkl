@@ -11,6 +11,7 @@ hooks {
         stash = "none"
         steps {
             ["records"] { check = "./dev/mise run check:records" }
+            ["whitespace"] { check = "git diff --cached --check" }
         }
     }
     ["pre-merge-commit"] {

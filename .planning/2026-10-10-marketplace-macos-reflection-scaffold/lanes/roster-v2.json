@@ -1,0 +1,61 @@
+{
+  "unit": "roster-v2",
+  "tickets": [
+    "D189 (R12c roster v2; R-177 #141)"
+  ],
+  "title": "Roster v2: subagent caps in project settings and the agent-file changes, loaded at the restart",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (opus 5.5, high, cold, read-only; D189)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/roster-v2",
+  "branch": "claude/roster-v2",
+  "base_sha": "2c9d536",
+  "allocated_from": "2c9d536",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261014/research7/R12c-team-roster-refresh.md",
+  "delivers": [
+    "project .claude/settings.json env gains CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 and CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 (verify both names against the 2.1.300 docs or changelog before writing; the doctor's settings checks and tests stay green)",
+    ".claude/agents/implementer.md: Agent added to disallowedTools, experimental cacheTtl 1h, no isolation; .claude/agents/reviewer.md: model opus (D189), Agent disallowed; .claude/agents/retro-writer.md: experimental cacheTtl 1h and the brief line that the record file is the deliverable (#101519)",
+    "the upgrade-intake role (Sonnet 5.5 high, read-only) as a brief documented beside the frontier-scheduler, not a new file, per R12c; the test-author, test-contract, security-reviewer and cross-vendor reviewer briefs recorded where the roster lives (.claude/AGENTS.md is parent-owned: propose the text)",
+    "every frontmatter key used is confirmed against the 2.1.300 docs or changelog (offline/research/R22-cc-2.1.300/) and claude plugin validate or the doctor accepts it"
+  ],
+  "owned_paths": [
+    ".claude/agents/",
+    ".claude/settings.json (env keys only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/roster-v2.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/skills/",
+    ".agents/",
+    "dev/",
+    "docs/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)",
+    ".codex/",
+    ".claude/AGENTS.md"
+  ],
+  "required_checks": [
+    "./dev/mise run test:doctor",
+    "./dev/mise run test:hooks",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- roster-v2"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none (project files only)"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "D189; loads at the user's restart onto 2.1.300"
+  ]
+}

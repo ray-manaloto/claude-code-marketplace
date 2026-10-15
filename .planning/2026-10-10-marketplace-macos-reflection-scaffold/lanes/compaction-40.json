@@ -1,0 +1,70 @@
+{
+  "unit": "compaction-40",
+  "tickets": [
+    "R-179 (D188, D190, D191)",
+    "D189 reviewer on Opus 5.5: roster-v2 retro parent edits B-E (same files)"
+  ],
+  "title": "Auto-compaction at about 400K (40% of the 1M context): autoCompactWindow 433000, doctor thresholds, frontier ceiling, docs",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (opus 5.5, high, cold, read-only; D189)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/compaction-40",
+  "branch": "claude/compaction-40",
+  "base_sha": "1ec9edf",
+  "allocated_from": "1ec9edf",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261014/research7/R23-compaction-percent.md",
+  "delivers": [
+    "project .claude/settings.json autoCompactWindow 700000 -> 433000 (only that key; lane roster-v2 owns the env keys in the same file)",
+    "dev/doctor/budget.py thresholds: warn 220000, fork_deny 275000, checkpoint 303000, hard 358000, with dev/test_doctor.py updated; the doctor's SessionStart line shows the new values",
+    ".planning/.../frontier.toml context_ceiling_fraction 0.5 -> 0.275 so windows[model] x fraction = fork_deny (D191); dev/test_ticket_frontier.py updated",
+    "docs/agents/claude-team.md budget table and both ticket-frontier skill copies (SKILL.md line 76, references/config.md, references/model-policy.md) state the new values; mirrors byte-identical",
+    "no CLAUDE_AUTOCOMPACT_PCT_OVERRIDE, no modelSettings, no user-settings change",
+    "the review model becomes opus (D189) wherever the frontier passes it: frontier.toml review = { model = ... } (it overrides the agent file on every Agent call), references/model-policy.md lines 13 and 30, ticket-frontier SKILL.md line 54 (both mirrors) and docs/agents/claude-team.md line 16 (roster-v2 retro, parent edits B-E)"
+  ],
+  "owned_paths": [
+    ".claude/settings.json (autoCompactWindow only)",
+    "dev/doctor/budget.py",
+    "dev/test_doctor.py",
+    "dev/test_ticket_frontier.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/frontier.toml",
+    "docs/agents/claude-team.md (budget table and the review-model line only)",
+    ".claude/skills/ticket-frontier/",
+    ".agents/skills/ticket-frontier/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/compaction-40.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/agents/",
+    ".claude/AGENTS.md",
+    ".codex/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except frontier.toml and the lane's retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:doctor",
+    "./dev/mise run test:frontier",
+    "diff -r .claude/skills/ticket-frontier .agents/skills/ticket-frontier",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- compaction-40",
+    "./dev/mise run doctor (shows the new thresholds)"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none (project settings key only)"
+  },
+  "status": "allocated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "D190, D191; lands before the restart; the new window and thresholds take effect at the restart",
+    "shares .claude/settings.json with roster-v2 (env keys); merge order roster-v2 then compaction-40 or either way, disjoint keys"
+  ]
+}

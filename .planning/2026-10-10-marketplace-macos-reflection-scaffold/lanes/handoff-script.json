@@ -56,10 +56,20 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "allocated",
+  "status": "integrated",
   "created_at": "2026-10-14",
   "notes": [
     "scope from the frontier-scheduler proposal 2026-10-14; the skills and docs halves (handoff-skills, ct35b-session-start-docs) follow after these two merge",
-    "existing Python takes fixes only (D113); the generator is one subprocess call to date, so the format string has one source per D61"
-  ]
+    "existing Python takes fixes only (D113); the generator is one subprocess call to date, so the format string has one source per D61",
+    "`NAME_DATE_FORMAT` (`dev/handoff.py:61`) is the format string shared with ct35a (`hooks/register.ts:8` `DATE_ARGV`, D187); `write` names a name-free template's next session with `next_name()` (HS-3, `7d93c62`).",
+    "retro: `retros/handoff-script.md` at ae2e2ba (blob 5301b18), gate rc 0; added to the integration branch ahead of the merge in 6a01a16 (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; lane commits 40d2398, 3cf8b47, 187eb32 and 0e4f6e7 name Claude Opus 5.5 (implementer), dc34dbb, 375117a, 7d93c62 and ae2e2ba name Claude Fable 5.1 (retro-writer)",
+    "review disposition (parent): fable cold review PASS-with-P3 on 0e4f6e7; RV-1 (date exit status) and RV-2 (--session-id UUID) fixed in dc34dbb, HS-3 (write falls back to next_name()) fixed in 7d93c62; the retro-writer (fable, independent of the implementer) verified them, and the parent accepted that verification in place of a second cold pass",
+    "parent edits from the retro: 1 (this record) in 6a01a16 and at integration; 2 (hk.pkl pre-commit whitespace step, RT-1) in 6a01a16: hk validate rc 0, a staged file ending in a blank line refused by hk run pre-commit (rc 2) and by git commit (rc 1, HEAD unchanged), 6a01a16 itself passed both pre-commit steps, test:hooks rc 0 (27 tests); 3 (CODING_STANDARDS.md rule 17, RT-3) in 6a01a16, the grep prints 1; 4 (lane handoff-skills' record carries the HS-2 admission) left to the parent",
+    "integrated 2026-10-14 as 4726121 (parents 6a01a16, ae2e2ba), no conflict, tree dd5d757 = merge-tree on 6a01a16 (b48eaa6 on cc07e8c plus the three non-retro R1 files); gates on the merged tree rc 0 (tasks validate 68, check, check:acceptance-baseline 19, check:research, test:handoff 61, retro:gate, git diff --check cc07e8c, handoff.py next-name and start-command); betterleaks 1.9.0 through git_delivery.scan over cc07e8c..HEAD (10 commits): no finding, private rule 0",
+    "lane worktree .claude/worktrees/handoff-script removed by the merger after integration (clean, fully merged); branch claude/handoff-script kept at ae2e2ba"
+  ],
+  "review": "fable cold review PASS-with-P3 on 0e4f6e7; RV-1 (date exit status) and RV-2 (--session-id UUID) fixed in dc34dbb, HS-3 (write falls back to next_name()) fixed in 7d93c62; the retro-writer (fable) verified them, and the parent accepts that verification in place of a second cold pass",
+  "retro": "passed",
+  "head_sha": "ae2e2ba",
+  "integration_merge": "4726121"
 }
