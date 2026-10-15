@@ -1,0 +1,95 @@
+{
+  "result": "PASS",
+  "application_preparation": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-rdf-comparator-review-18ooya34/application-preparation/qualification.json",
+    "sha256": "382daac94a9059b97e06bc82d9c9eb84eadb4614830dbfdc435ab3a06b90c262",
+    "proposal": {
+      "adaptation": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+        "files": [
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+            "before_sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888",
+            "after_sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e"
+          },
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+            "before_sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d",
+            "after_sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb"
+          },
+          {
+            "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+            "before_sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269",
+            "after_sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+            "before_sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308",
+            "after_sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+            "before_sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a",
+            "after_sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857"
+          }
+        ],
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "probe_sha256": "6726c18565a92ad9e578c48f86b40e2846e7434dfa5b02b4b44d892732c2eea9",
+      "lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+        "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+      }
+    },
+    "helper_sha256": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+    "commands": [
+      {
+        "case": "source-head",
+        "returncode": 0,
+        "elapsed_seconds": 0.013220250024460256
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0,
+        "elapsed_seconds": 0.012731874943710864
+      },
+      {
+        "case": "source-clean",
+        "returncode": 0,
+        "elapsed_seconds": 0.7965858749812469
+      },
+      {
+        "case": "patch-check",
+        "returncode": 0,
+        "elapsed_seconds": 0.025271042017266154
+      },
+      {
+        "case": "default-before",
+        "returncode": 0,
+        "elapsed_seconds": 0.08631845901254565
+      },
+      {
+        "case": "default-after",
+        "returncode": 0,
+        "elapsed_seconds": 0.08027058304287493
+      }
+    ],
+    "all_12_logs_hash_verified": true,
+    "default_environment_byte_identical_to_parent_before": true
+  },
+  "protected_state_unchanged": true,
+  "global_file_count": 9,
+  "package_count": 8,
+  "glib_file_count": 2,
+  "directory_count": 2,
+  "install_entry_count": 2198,
+  "source_and_sdk_reference_count": 18,
+  "source_and_sdk_preimages_unchanged": true,
+  "build_helper_unchanged": true
+}

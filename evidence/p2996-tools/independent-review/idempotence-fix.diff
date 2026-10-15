@@ -1,0 +1,11 @@
+--- original
++++ reviewed
+@@ -144,6 +144,8 @@
+             result = run("format-copy", base + [formatter, "--style=LLVM", "--fail-on-incomplete-format", copied], descriptor=fd)
+             assert result.strip(), "formatting produced no source (possibly ignored)"
+             formatted.write_bytes((directory / "format-copy.stdout").read_bytes())
++            result = run("format-idempotence", base + [formatter, "--style=LLVM", "--fail-on-incomplete-format", formatted], descriptor=fd)
++            assert result.strip() and (directory / "format-idempotence.stdout").read_bytes() == formatted.read_bytes()
+             run("format-check", base + [formatter, "--style=LLVM", "--dry-run", "--Werror", formatted], descriptor=fd)
+             unformatted = directory / "unformatted.cpp"
+             unformatted.write_text("int main(){return 0;}\n")

@@ -1,0 +1,74 @@
+"""Capture the exact read-only TSan link recipe and its object preimages."""
+
+import hashlib
+import json
+from pathlib import Path
+import shlex
+import stat
+
+ROOT = Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace")
+EV = ROOT / "evidence/p2996-tsan-repair"
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+prior = json.loads((ROOT / "evidence/p2996-sanitizer-repair/recipes.json").read_text())
+qualified = json.loads((ROOT / "evidence/p2996-sanitizer-repair/operation/qualification.json").read_text())
+assert qualified["state"].startswith("PASS: private ASan repair")
+build = Path(prior["build"])
+stdout = (EV / "ninja-commands.stdout.source").read_text()
+receipt = json.loads((EV / "ninja-commands.receipt.json").read_text())
+assert sha(EV / "ninja-commands.stdout.source") == receipt["stdout_sha256"]
+assert receipt["returncode"] == 0 and receipt["stdout_lines"] == len(stdout.splitlines()) == 129
+lines = [row for row in stdout.splitlines() if "libclang_rt.tsan_osx_dynamic.dylib" in row and " -o " in row]
+assert len(lines) == 1
+tokens = shlex.split(lines[0])
+assert tokens[:2] == [":", "&&"]
+separators = [i for i, token in enumerate(tokens) if token == "&&"]
+assert len(separators) == 3 and tokens[separators[1] + 1] == "cd"
+link = tokens[2:separators[1]]
+sign = tokens[separators[2] + 1:]
+assert link[0] == prior["link_argv"][0] and sign[:5] == prior["codesign_argv"][:5]
+assert Path(link[link.index("-o") + 1]) == Path(sign[-1])
+assert Path(sign[-1]).name == "libclang_rt.tsan_osx_dynamic.dylib"
+assert "-nodefaultlibs" in link and "-nostdlib++" in link
+assert "-lc" in link and "-lobjc" in link
+names = [token for token in link if token.endswith(".o")]
+assert len(names) == len(set(names)) == 128 and prior["mapping_object"] in names
+assert all(not Path(name).is_absolute() for name in names)
+objects = {}
+for name in names:
+    path = build / name
+    info = path.stat()
+    assert stat.S_ISREG(info.st_mode) and info.st_nlink == 1
+    objects[name] = {"sha256": sha(path), "bytes": info.st_size}
+prior_objects = {str(Path(path).relative_to(build)): row for path, row in prior["objects"].items()}
+shared = set(names) & set(prior_objects)
+assert len(shared) == 93 and all(objects[name]["sha256"] == prior_objects[name]["sha256"] for name in shared)
+original, patched = (qualified["repair"][name] for name in ("original", "patched"))
+assert original["object_sha256"] != patched["object_sha256"]
+for row in (original, patched):
+    path = Path(row["path"]).parent / "procmaps.o"
+    assert sha(path) == row["object_sha256"]
+payload = {
+    "scope": "Read-only Ninja commands tool; no build/link/sign/run performed",
+    "build": str(build),
+    "ninja_receipt_sha256": sha(EV / "ninja-commands.receipt.json"),
+    "ninja_stdout_sha256": sha(EV / "ninja-commands.stdout.source"),
+    "prior_asan_recipes_sha256": sha(ROOT / "evidence/p2996-sanitizer-repair/recipes.json"),
+    "asan_qualification_sha256": sha(ROOT / "evidence/p2996-sanitizer-repair/operation/qualification.json"),
+    "link_argv": link,
+    "codesign_argv": sign,
+    "mapping_object": prior["mapping_object"],
+    "objects": objects,
+    "shared_asan_objects": len(shared),
+    "tsan_only_objects": len(set(names) - shared),
+    "qualified_mapping_objects": {
+        name: {"path": str(Path(row["path"]).parent / "procmaps.o"), "sha256": row["object_sha256"]}
+        for name, row in (("original", original), ("patched", patched))
+    },
+}
+(EV / "recipes.json").write_text(json.dumps(payload, indent=2) + "\n")
+print(json.dumps({"objects": len(objects), "shared": len(shared), "new": len(objects) - len(shared), "recipe_sha256": sha(EV / "recipes.json")}))

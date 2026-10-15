@@ -1,0 +1,175 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.01145300013013184,
+      "stdout": "5a4062e17089ad2fe2b160fea998dc7954aa5766\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.012659832835197449,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.188713249983266,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.256875165970996,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 2039, \"python\": 147, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.021235499996691942,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-promotion-closure-scan-deh_bvze/scan.py",
+        "closure-secret-scan"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.0504935418721288,
+      "stdout": "{\"files\": 106, \"raw_rc\": 1, \"verified_file_digests\": 8, \"disposition_rc\": 0, \"complete_token_files\": []}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "add",
+        "--",
+        "dev/toolchains/p2996_asan_promote.py",
+        "docs/sanitizers.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        "evidence/p2996-asan-promotion/"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.07178591703996062,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.013041374972090125,
+      "stdout": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\ndev/toolchains/p2996_asan_promote.py\ndocs/sanitizers.md\nevidence/p2996-asan-promotion/admission.json\nevidence/p2996-asan-promotion/artifact-inventory.json\nevidence/p2996-asan-promotion/artifact-review-copy-manifest.json\nevidence/p2996-asan-promotion/artifact-review.json\nevidence/p2996-asan-promotion/artifact-review/compare.py\nevidence/p2996-asan-promotion/artifact-review/comparison.json\nevidence/p2996-asan-promotion/artifact-review/execution.json\nevidence/p2996-asan-promotion/artifact-review/initial-compare.py\nevidence/p2996-asan-promotion/artifact-review/initial-execution.json\nevidence/p2996-asan-promotion/artifact-review/review.json\nevidence/p2996-asan-promotion/artifact-review/supporting-manifest.json\nevidence/p2996-asan-promotion/candidate-inputs.json\nevidence/p2996-asan-promotion/candidate.json\nevidence/p2996-asan-promotion/capacity-copy-manifest.json\nevidence/p2996-asan-promotion/capacity.py.source\nevidence/p2996-asan-promotion/capacity/capacity.json\nevidence/p2996-asan-promotion/capacity/capacity.py.source\nevidence/p2996-asan-promotion/capacity/docker-census.stderr\nevidence/p2996-asan-promotion/capacity/docker-census.stdout\nevidence/p2996-asan-promotion/capacity/docker-context.stderr\nevidence/p2996-asan-promotion/capacity/docker-context.stdout\nevidence/p2996-asan-promotion/capacity/docker-stats.stderr\nevidence/p2996-asan-promotion/capacity/docker-stats.stdout\nevidence/p2996-asan-promotion/capacity/editor-cwd.stderr\nevidence/p2996-asan-promotion/capacity/editor-cwd.stdout\nevidence/p2996-asan-promotion/capacity/editor-identities-after.stderr\nevidence/p2996-asan-promotion/capacity/editor-identities-after.stdout\nevidence/p2996-asan-promotion/capacity/editor-identities.stderr\nevidence/p2996-asan-promotion/capacity/editor-identities.stdout\nevidence/p2996-asan-promotion/capacity/execution.json\nevidence/p2996-asan-promotion/capacity/processes.stderr\nevidence/p2996-asan-promotion/capacity/processes.stdout\nevidence/p2996-asan-promotion/closure-candidate.json\nevidence/p2996-asan-promotion/closure-inputs.json\nevidence/p2996-asan-promotion/closure-secret-scan.json\nevidence/p2996-asan-promotion/closure-static.json\nevidence/p2996-asan-promotion/contract.json\nevidence/p2996-asan-promotion/controls-copy-manifest.json\nevidence/p2996-asan-promotion/controls/apply-after-failure/mutation.sb\nevidence/p2996-asan-promotion/controls/apply-after-failure/promote.stderr\nevidence/p2996-asan-promotion/controls/apply-after-failure/promote.stdout\nevidence/p2996-asan-promotion/controls/apply-after-failure/restore.stderr\nevidence/p2996-asan-promotion/controls/apply-after-failure/restore.stdout\nevidence/p2996-asan-promotion/controls/apply-after-failure/state.json\nevidence/p2996-asan-promotion/controls/apply-before-failure/mutation.sb\nevidence/p2996-asan-promotion/controls/apply-before-failure/state.json\nevidence/p2996-asan-promotion/controls/backup-drift/mutation.sb\nevidence/p2996-asan-promotion/controls/backup-drift/promote.stderr\nevidence/p2996-asan-promotion/controls/backup-drift/promote.stdout\nevidence/p2996-asan-promotion/controls/backup-drift/state.json\nevidence/p2996-asan-promotion/controls/controls.json\nevidence/p2996-asan-promotion/controls/controls.py.source\nevidence/p2996-asan-promotion/controls/destination-mismatch/mutation.sb\nevidence/p2996-asan-promotion/controls/execution.json\nevidence/p2996-asan-promotion/controls/qualification-failure/mutation.sb\nevidence/p2996-asan-promotion/controls/qualification-failure/promote.stderr\nevidence/p2996-asan-promotion/controls/qualification-failure/promote.stdout\nevidence/p2996-asan-promotion/controls/qualification-failure/restore.stderr\nevidence/p2996-asan-promotion/controls/qualification-failure/restore.stdout\nevidence/p2996-asan-promotion/controls/qualification-failure/state.json\nevidence/p2996-asan-promotion/controls/restore-failure/mutation.sb\nevidence/p2996-asan-promotion/controls/restore-failure/promote.stderr\nevidence/p2996-asan-promotion/controls/restore-failure/promote.stdout\nevidence/p2996-asan-promotion/controls/restore-failure/state.json\nevidence/p2996-asan-promotion/controls/source-mismatch/mutation.sb\nevidence/p2996-asan-promotion/controls/success/mutation.sb\nevidence/p2996-asan-promotion/controls/success/private.sb\nevidence/p2996-asan-promotion/controls/success/promote.stderr\nevidence/p2996-asan-promotion/controls/success/promote.stdout\nevidence/p2996-asan-promotion/controls/success/state.json\nevidence/p2996-asan-promotion/controls/success/witness-write-denied.stderr\nevidence/p2996-asan-promotion/controls/success/witness-write-denied.stdout\nevidence/p2996-asan-promotion/controls/unknown-after-failure/mutation.sb\nevidence/p2996-asan-promotion/controls/unknown-after-failure/promote.stderr\nevidence/p2996-asan-promotion/controls/unknown-after-failure/promote.stdout\nevidence/p2996-asan-promotion/controls/unknown-after-failure/state.json\nevidence/p2996-asan-promotion/dispatch.py.source\nevidence/p2996-asan-promotion/final-candidate.json\nevidence/p2996-asan-promotion/guard-postcommit.json\nevidence/p2996-asan-promotion/native-execution.json\nevidence/p2996-asan-promotion/native-launch.json\nevidence/p2996-asan-promotion/operation/admission.json\nevidence/p2996-asan-promotion/operation/closure.json\nevidence/p2996-asan-promotion/operation/collect.py.source\nevidence/p2996-asan-promotion/operation/collection-execution.json\nevidence/p2996-asan-promotion/operation/copy-manifest.json\nevidence/p2996-asan-promotion/operation/native-execution.json\nevidence/p2996-asan-promotion/operation/native-launch.json\nevidence/p2996-asan-promotion/operation/qualification.json\nevidence/p2996-asan-promotion/operation/text-receipts.json\nevidence/p2996-asan-promotion/pre-artifact-secret-scan.json\nevidence/p2996-asan-promotion/pre-artifact-static.json\nevidence/p2996-asan-promotion/pre-review-secret-scan.json\nevidence/p2996-asan-promotion/pre-review-static.json\nevidence/p2996-asan-promotion/pre-run-review.json\nevidence/p2996-asan-promotion/preparation-provenance.json\nevidence/p2996-asan-promotion/preparation-review-copy-manifest.json\nevidence/p2996-asan-promotion/preparation-review/compare.py\nevidence/p2996-asan-promotion/preparation-review/comparison.json\nevidence/p2996-asan-promotion/preparation-review/execution.json\nevidence/p2996-asan-promotion/preparation-review/review.json\nevidence/p2996-asan-promotion/preparation-review/supporting-manifest.json\nevidence/p2996-asan-promotion/prepared-launchers.json\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.018735000165179372,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "commit",
+        "--quiet",
+        "-m",
+        "Qualify installed macOS ASan runtime promotion"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.3651970839127898,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.011755458079278469,
+      "stdout": "757a72bd22d774d8533b8f831c8ee604ce0109b8\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.06401854194700718,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.2062318339012563,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 2041, \"python\": 147, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.10812170919962227,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "head": "757a72bd22d774d8533b8f831c8ee604ce0109b8",
+  "base_head": "5a4062e17089ad2fe2b160fea998dc7954aa5766",
+  "staged_files": 107,
+  "clean": true,
+  "review_sha256": "d4433074af9fb62b2404da5e403feb7f4868bde6b95323d80bee09bba6606845",
+  "final_candidate_sha256": "88d1ae400a4c30e2f402e08d91fa217716e9ef64d775368596a81b19657be377"
+}

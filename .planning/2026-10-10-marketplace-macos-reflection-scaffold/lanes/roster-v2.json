@@ -1,0 +1,75 @@
+{
+  "unit": "roster-v2",
+  "tickets": [
+    "D189 (R12c roster v2; R-177 #141)"
+  ],
+  "title": "Roster v2: subagent caps in project settings and the agent-file changes, loaded at the restart",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (opus 5.5, high, cold, read-only; D189)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/roster-v2",
+  "branch": "claude/roster-v2",
+  "base_sha": "2c9d536",
+  "allocated_from": "2c9d536",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261014/research7/R12c-team-roster-refresh.md",
+  "delivers": [
+    "project .claude/settings.json env gains CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 and CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 (verify both names against the 2.1.300 docs or changelog before writing; the doctor's settings checks and tests stay green)",
+    ".claude/agents/implementer.md: Agent added to disallowedTools, experimental cacheTtl 1h, no isolation; .claude/agents/reviewer.md: model opus (D189), Agent disallowed; .claude/agents/retro-writer.md: experimental cacheTtl 1h and the brief line that the record file is the deliverable (#101519)",
+    "the upgrade-intake role (Sonnet 5.5 high, read-only) as a brief documented beside the frontier-scheduler, not a new file, per R12c; the test-author, test-contract, security-reviewer and cross-vendor reviewer briefs recorded where the roster lives (.claude/AGENTS.md is parent-owned: propose the text)",
+    "every frontmatter key used is confirmed against the 2.1.300 docs or changelog (offline/research/R22-cc-2.1.300/) and claude plugin validate or the doctor accepts it"
+  ],
+  "owned_paths": [
+    ".claude/agents/",
+    ".claude/settings.json (env keys only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/roster-v2.md",
+    "dev/test_doctor_agents.py",
+    ".claude/agents/frontier-scheduler.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/skills/",
+    ".agents/",
+    "dev/",
+    "docs/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the lane's retro record)",
+    ".codex/",
+    ".claude/AGENTS.md"
+  ],
+  "required_checks": [
+    "./dev/mise run test:doctor",
+    "./dev/mise run test:hooks",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- roster-v2"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none (project files only)"
+  },
+  "status": "integrated (merge 3114a11, 2026-10-14); not published; agent files and settings env load at the user's restart onto 2.1.300",
+  "created_at": "2026-10-14",
+  "notes": [
+    "D189; loads at the user's restart onto 2.1.300",
+    "edit A (D189, applied by the parent at integration): owned_paths gains dev/test_doctor_agents.py (the one exception to the excluded dev/) and .claude/agents/frontier-scheduler.md, both written on the lane by the retro-writer (retro findings 1 and 3)",
+    "retro: `retros/roster-v2.md` at 3452c12 (blob 274f812), added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "review disposition (parent): opus 5.5 cold review (high, read-only, D189) PASS-with-P2/P3 on 92f6894; P2 (cacheTtl compared before quote stripping, so a valid YAML \"1h\" failed) and P3 (disallowedTools entries not checked against tool names, so `Agnet` passed) applied in 3452c12 by the retro-writer (fable 5.1), who verified them (planted `Agnet`: test:doctor rc 1 with 2 failures, restored: rc 0, 19 tests); the parent accepts that verification in place of a second cold pass",
+    "changed paths: 7 (four .claude/agents files, .claude/settings.json with env keys only, dev/test_doctor_agents.py, the retro), all inside owned_paths once edit A is applied",
+    "writers: aeaa116, 64d4cf2, 30dc039 and 92f6894 name Claude Opus 5.5 (implementer, matching writer_model); 37092f9 and 3452c12 name Claude Fable 5.1 (retro-writer)",
+    "parent edits from the retro applied ahead of the merge: A (this record), F (.claude/AGENTS.md agents/ bullet), J (reviewer line of ct21-codex-imports and handoff-skills), K (the synthesizer sentence of codex-session-history and antigravity-session-history, both copies), M (docs/agents/claude-team.md scratch-file line); G (dev/hooks/git_gate.py patch) is a separate lane; L waits for the user's restart onto 2.1.300; B-E, H and I are carried by lane compaction-40 (its max_live_agents cap is 5, not the retro's 6, by coordinator choice)",
+    "integrated 2026-10-14 as 3114a11 (parents 44d0a0f, 3452c12), no conflict, tree 4d864dd = merge-tree on 44d0a0f (3c693a2 on e3b2d83 plus the R1 edits); hk pre-merge-commit printed retro gate passed for claude/roster-v2; gates on the merged tree rc 0 (tasks validate 69, check, check:acceptance-baseline 19, check:research, test:doctor 19, test:hooks 27, test:handoff 61, test:codex-session-history 12, both session-history mirror diffs, retro:gate, git diff --check e3b2d83, betterleaks 1.9.0 through git_delivery.scan over e3b2d83..HEAD: 8 commits, no finding, private rule 0)",
+    "lane worktree .claude/worktrees/roster-v2 removed by the merger after integration (clean, fully merged; ignored tool directories only); branch claude/roster-v2 kept at 3452c12"
+  ],
+  "review": "opus 5.5 cold review (high, read-only, D189) PASS-with-P2/P3 on 92f6894; P2 (cacheTtl quote stripping) and P3 (disallowedTools tool names) fixed in 3452c12 by the retro-writer (fable 5.1), who verified them (red on a planted Agnet, then green; test:doctor 19 tests); the parent accepts that verification in place of a second cold pass",
+  "retro": "passed",
+  "head_sha": "3452c12",
+  "integration_merge": "3114a11"
+}

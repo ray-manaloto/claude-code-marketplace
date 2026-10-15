@@ -1,0 +1,852 @@
+{
+  "state": "PASS: 03b2b pre-run source bindings, retained ABI replay, help and lightweight checks",
+  "started_at": "2026-10-11T13:24:49.603519+00:00",
+  "commands": [
+    {
+      "case": "identity",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "--show-toplevel",
+        "--git-common-dir",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T13:24:49.609793+00:00",
+      "pid": 2232,
+      "returncode": 0,
+      "elapsed_seconds": 0.02478458301629871,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/identity.stdout",
+          "sha256": "6e81463cbdf2f3ce9c5df00a47067e03aa4b41cc8b160ff3d181b613874800e1"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/identity.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T13:24:49.635941+00:00",
+      "pid": 2236,
+      "returncode": 0,
+      "elapsed_seconds": 0.012867124984040856,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/branch.stdout",
+          "sha256": "e346c1210f8462790b30c81725108cdb31dfc81c0a04d9d151bdefdd66ddb81c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/branch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "changed-files",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "diff",
+        "--name-only"
+      ],
+      "started_at": "2026-10-11T13:24:49.649740+00:00",
+      "pid": 2239,
+      "returncode": 0,
+      "elapsed_seconds": 0.02480262506287545,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/changed-files.stdout",
+          "sha256": "b1f1327b3db8829dccea4e56ab958fe4fd462dda8cba6573a16691c7dd0a2234"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/changed-files.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "planning-diff",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "diff",
+        "--",
+        "dev/toolchains/core_matrix.py",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+      ],
+      "started_at": "2026-10-11T13:24:49.675577+00:00",
+      "pid": 2240,
+      "returncode": 0,
+      "elapsed_seconds": 0.02508516702800989,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/planning-diff.stdout",
+          "sha256": "fa629e9169444c6790cff0f80ceaa5047c3cd5bfab2fd653facae4d1e5f9ddf9"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/planning-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "helper-help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+        "--help"
+      ],
+      "started_at": "2026-10-11T13:24:49.701820+00:00",
+      "pid": 2241,
+      "returncode": 0,
+      "elapsed_seconds": 0.13567420793697238,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/helper-help.stdout",
+          "sha256": "65d8db1d80ef7fe08e48e1ed4ad62d1718317b63a39b8bc0992d384de671768c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/helper-help.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T13:24:49.838767+00:00",
+      "pid": 2247,
+      "returncode": 0,
+      "elapsed_seconds": 0.04370604106225073,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T13:24:49.883950+00:00",
+      "pid": 2261,
+      "returncode": 0,
+      "elapsed_seconds": 0.63610612496268,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/acceptance-baseline.stdout",
+          "sha256": "0d6eacb13177272c21b7de5f857e0a0eed5ad4bca203026e55aabeceafb8b494"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/acceptance-baseline.stderr",
+          "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae"
+        }
+      ]
+    },
+    {
+      "case": "status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "status",
+        "--porcelain",
+        "--untracked-files=normal"
+      ],
+      "started_at": "2026-10-11T13:24:50.521802+00:00",
+      "pid": 2300,
+      "returncode": 0,
+      "elapsed_seconds": 0.043834791984409094,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/status.stdout",
+          "sha256": "d584c9b7b3e6b4922d9cb0d4d51a252ca2471e880e8cc7e000f3266caab7d8f2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-matrix-prerun-review-9kjgmqj9/status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "helper_sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+  "proposal_sha256": "abd022fd8d214e5c174c693f5b9e711af6e41bd0db75fcc99a419726d8a158b4",
+  "input_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.claude-plugin/marketplace.json",
+      "sha256": "fe82ec0884818c3c0bad7b53cb75fa3e87ecb170c393d8b8fbfb6b8f7900d5a3",
+      "bytes": 707
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.github/workflows/acceptance.yml",
+      "sha256": "6f16cd67ca817bbac3924523d3ad88786c692fd940f6249816ff32e6871e4f73",
+      "bytes": 2697
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.gitignore",
+      "sha256": "878dec9929c520a4b978bfe849fc44ef57bfe0756a6ccc644c36d63c494f301a",
+      "bytes": 10
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/README.md",
+      "sha256": "db34d1062b16162d6a89a6bc565e97ffd129c53b39148ec6e35ecefc53e6e572",
+      "bytes": 2874
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/ci/acceptance.sh",
+      "sha256": "f3d04a2c2e4576d44592928d36cad16e95a02342d3e26cf77a45718e89e67fc4",
+      "bytes": 17258
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.lock",
+      "sha256": "11df5e3fe8ff4fde65a6636a7f1ab2545758a9a0adefdda5ab4930a9151add01",
+      "bytes": 8960
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/mise.toml",
+      "sha256": "c4785d6824b59d8e1e4b0fbdc57839bc20f712a07312de7c074f1746f5387573",
+      "bytes": 2583
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/.claude-plugin/plugin.json",
+      "sha256": "3dd1631c93314955884b94075044547d9dc400721aa080aada424fd118b3af7e",
+      "bytes": 677
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/.lsp.json",
+      "sha256": "44a941588b8162ed53c14e04a656c81deadfaf6304e086df145638b4333c483f",
+      "bytes": 136
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/README.md",
+      "sha256": "711ec820356f9dd1c2532644654379b4bb2946a83710124dd30f94daad1972f9",
+      "bytes": 8886
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/bin/aggregated-research",
+      "sha256": "75aa4578df8b80524376bf4a7f230329ef8c4aadfd1b2b53ae785f3c696204e9",
+      "bytes": 121
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/bin/mise-env",
+      "sha256": "f32b73346e0a55f8d9de11cdb0bf29a060511ee9e4dafa04b63cef99d2dc5460",
+      "bytes": 2704
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/bin/ty",
+      "sha256": "b5b4436feb9a6c4e56de3fafbff9828d29d262173fb452e96adce2362d873907",
+      "bytes": 87
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/docs/bin-wrapper-decision.md",
+      "sha256": "7608bef1fff602e6aafcd5f6640b89eeaccb8f8f5a9efcf09137c8e88e06bb60",
+      "bytes": 7772
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/hooks/hooks.json",
+      "sha256": "09c473154e70c48a1cde83b25302bdf0c9e1c1066cc1114f8775b17c6efbed43",
+      "bytes": 540
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/mise.toml",
+      "sha256": "fb9da28ec14b08fecd60bc47ace2934fdc60fa1b99eca52dc928fd7851875f30",
+      "bytes": 238
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/skills/aggregated-research/SKILL.md",
+      "sha256": "3734b3544adb7acec6f3a5740732aa0a29d0bdf4c2ec06bdf120ba4b9befe6c0",
+      "bytes": 12186
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/skills/aggregated-research/references/acceptance-509.md",
+      "sha256": "8894f40ad5b43fc4d996c2d52cda166e35f1e55ce3718211d1c283c990a7b45a",
+      "bytes": 5022
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/plugins/aggregated-research/spine-budgets.toml",
+      "sha256": "2a939848b59bd793f6a814b74565b5fc7141c221e41ddde482f6ec06762c0766",
+      "bytes": 2384
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt",
+      "sha256": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e",
+      "bytes": 2771
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp",
+      "sha256": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+      "bytes": 333
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "sha256": "580687fa2fe000648f5cf6db2f65e5df08c10fea53a08687fd9a25248382ca82",
+      "bytes": 1351
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "sha256": "2b229655f362f18015c9563ce575efc050c100d501f403a01d9659a885fa411a",
+      "bytes": 595
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+      "bytes": 2053
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "bytes": 4647
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-command-preparation/command-review.json",
+      "sha256": "4be3d61dcb0bad092ccef79d3805e2ba1afa8c2309116db38dba8ac748184ca9",
+      "bytes": 13333
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-command-preparation/harness-contract.json",
+      "sha256": "9becd18e6c597a273fa8c4eded3cf5f11bd00c1b3999d78f130797f22ca68dd7",
+      "bytes": 29124
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/source-contract.json",
+      "sha256": "0f098eb998ba2ed5c485568553387c42d233ea89c991a84425df71c9afc1fe4f",
+      "bytes": 72415
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/preparation-review.json",
+      "sha256": "066dbb351c09878ef4f6d4a1b8874fc71c6b9ba39e58ef7d39c57f1c0cb92fe9",
+      "bytes": 21912
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/operation/qualification.json",
+      "sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77",
+      "bytes": 32143
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/qualification.json",
+      "sha256": "f4720db22a7d02be7ff34d672086ea6c03ebebd8c6470b8037a694b297732a35",
+      "bytes": 55939
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/registration-review.json",
+      "sha256": "c8a131ad9dfcd8657eb51c8ea19b7cbfba473d120aac29d848e198645edb526f",
+      "bytes": 21042
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+      "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+      "bytes": 296002
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103",
+      "bytes": 103593
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+      "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192",
+      "bytes": 29416
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/onboarding/baseline-files.json",
+      "sha256": "bf5a5d040a6888e97d68e419a64587e39b8eafb41343ed041cc253607a080adb",
+      "bytes": 3334
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/export-tool-prerequisite.json",
+      "sha256": "4ddad861aefcded3253434211167379b99fcfb277d0d1ca43395dc46bdeee7d4",
+      "bytes": 16437
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+      "bytes": 22556
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/tool-foundation/host-qualification.json",
+      "sha256": "8612baf227d9fa439de1827ba6e81576a3405b322a0c832662b3da2b4611f910",
+      "bytes": 25412
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_math_probe.py",
+      "sha256": "5de2be4ea2af16b9ff484fac08f6e4336e5a6ca16458ca24f35adbf7c27d1816",
+      "bytes": 13639
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_source.py",
+      "sha256": "44b8a8e645ce3297a49a8200b7eb33ef6db9007d48892c1a9859a0962164b025",
+      "bytes": 5416
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "bytes": 12651
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tools.py",
+      "sha256": "a26a94932bb165cca2090acb1beb2de0366ea6be205e8bef20169a6a49f50551",
+      "bytes": 14228
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_coverage.py",
+      "sha256": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b",
+      "bytes": 16190
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_cmake.py",
+      "sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72",
+      "bytes": 22667
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_bottles.py",
+      "sha256": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "bytes": 8991
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_math_apply.py",
+      "sha256": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2",
+      "bytes": 10532
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py",
+      "sha256": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff",
+      "bytes": 13673
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py",
+      "sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "bytes": 8435
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+      "sha256": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+      "bytes": 25137
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_register.py",
+      "sha256": "b80d364c30736a407469947b486a8eaf1b8e3ca27a97b4c4675c782a19130542",
+      "bytes": 12220
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py",
+      "sha256": "271187bd5316f21d2a749acc509c0043f4933c0b8f396d980a8f236b9e8f60d9",
+      "bytes": 15752
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+      "sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+      "bytes": 15399
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+      "bytes": 22556
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_snapshot_plan.py",
+      "sha256": "e95da8dd19dca33d0544cd91dc1ce744378aef9dfb9d2bc9ee6329ede9c3a74c",
+      "bytes": 6372
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+      "sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "bytes": 14282
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_commands.py",
+      "sha256": "78aa67e2f39444cfbf4992e30419db000629bdd97bd69e059bb833361bc0179d",
+      "bytes": 11261
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sdk_compat.py",
+      "sha256": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+      "bytes": 9975
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_bootstrap.py",
+      "sha256": "4f47abfcaf953e37583a87507d27ced2216805c7abd22944181392922e2a9baf",
+      "bytes": 8308
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_reflection.py",
+      "sha256": "ba30b9e98e91fab10ec96b87fb1d8b3b15a43fa036ab35a22dab8c4c68cca60b",
+      "bytes": 10175
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_configure.py",
+      "sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "bytes": 12948
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/cmake-review.json",
+      "sha256": "062210037e50131b0178ea5de4b8b3f7cf5b82bb46c3f4512a2b48c0544fd36d",
+      "bytes": 33277
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/runtime-review.json",
+      "sha256": "1f56fa2bf3e8a69cb826247ac79b22bd8e6189fab5a43b6beed3f8c2e1098c02",
+      "bytes": 45635
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification.json",
+      "sha256": "1dc4c5559821952dfcafd542278bfc8c0ee8d9c97562f44a1ebe772b3345bc9c",
+      "bytes": 41611
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/cmake-review.json",
+      "sha256": "5731f4d97e1c1b80d0778344457852eef803f6578a488901973ca4a1ebc6ac2f",
+      "bytes": 69105
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification.json",
+      "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159",
+      "bytes": 88297
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "sha256": "ed7506e63892baa5e1eacfa0040f1ea04b546ee390671535c64e1ec67f1a3f28",
+      "bytes": 44736
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+      "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2",
+      "bytes": 7968
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+      "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+      "bytes": 9081
+    }
+  ],
+  "tool_bindings": [
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+      "bytes": 26639440,
+      "resolved": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815",
+      "bytes": 828128,
+      "resolved": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+      "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88",
+      "bytes": 29114000,
+      "resolved": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest"
+    },
+    {
+      "path": "/usr/bin/git",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+      "bytes": 200560,
+      "resolved": "/usr/bin/git"
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "a06fe087161557f1f8c030672eaedcd90bc6a8e92b8f2d44e07cffedc3349205",
+      "bytes": 268736,
+      "resolved": "/bin/ps"
+    },
+    {
+      "path": "/usr/bin/file",
+      "sha256": "8014815e1028410f48966f1880f99c842a5678cf2fcaa010e8d7e9e498f651d0",
+      "bytes": 713808,
+      "resolved": "/usr/bin/file"
+    },
+    {
+      "path": "/usr/bin/lipo",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+      "bytes": 200560,
+      "resolved": "/usr/bin/lipo"
+    },
+    {
+      "path": "/usr/bin/otool",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+      "bytes": 200560,
+      "resolved": "/usr/bin/otool"
+    },
+    {
+      "path": "/usr/bin/env",
+      "sha256": "2b2a1145527f00e8369fda0d2ffc523b520201bb08dbaf4b0bded837f7652ce0",
+      "bytes": 167712,
+      "resolved": "/usr/bin/env"
+    },
+    {
+      "path": "/bin/sh",
+      "sha256": "84ca7f9b83021621e16059a1c7850df72a462d879e8239d566236ca6ddd00953",
+      "bytes": 166576,
+      "resolved": "/bin/sh"
+    },
+    {
+      "path": "/usr/bin/ar",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+      "bytes": 200560,
+      "resolved": "/usr/bin/ar"
+    },
+    {
+      "path": "/usr/bin/ranlib",
+      "sha256": "34129c71a01a74f7f3b2443521519b2e5447553fa187f5fcafaaf8c42cc192e2",
+      "bytes": 200560,
+      "resolved": "/usr/bin/ranlib"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014",
+      "bytes": 127277984,
+      "resolved": "/Users/rmanaloto/.local/bin/mise"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib",
+      "sha256": "bb84c48b0e4b1e7cc48afd5ecf15e922b9ea5c0f2075eb9f27256e884b8c5b07",
+      "bytes": 133944,
+      "resolved": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ar"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/nm",
+      "sha256": "82e9189ec1a359699d4b680601c0a2930a9cbea7376c7320947dff5e9862cfa8",
+      "bytes": 16367008,
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-nm"
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/bin/c++filt",
+      "sha256": "19636f9056610385daeb17604aa247f193fa660d1f6ad48ec3e161ac7595c924",
+      "bytes": 466416,
+      "resolved": "/Library/Developer/CommandLineTools/usr/bin/llvm-cxxfilt"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "sha256": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219",
+      "bytes": 177608,
+      "resolved": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang-21"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+      "sha256": "b1f98e3089a1f165872b09e8628e4c92a315f5bc6e9a61ef85aa0c1c2887f363",
+      "bytes": 3038744,
+      "resolved": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16"
+    }
+  ],
+  "manuals": [
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/nm.1",
+      "sha256": "b8dc0f61148a7fb5023f7ae0f37c9bb18908193f2d10d7b8c94360326eecb1df",
+      "bytes": 6087,
+      "line_ranges": [
+        [
+          141,
+          142
+        ],
+        [
+          157,
+          161
+        ],
+        [
+          163,
+          182
+        ]
+      ],
+      "excerpts_match": true
+    },
+    {
+      "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/c++filt.1",
+      "sha256": "598c82c77d450e9176187557c09dfd5f5547ffbc0c21af5b399f3793c8b9556f",
+      "bytes": 3266,
+      "line_ranges": [
+        [
+          85,
+          98
+        ],
+        [
+          107,
+          118
+        ]
+      ],
+      "excerpts_match": true
+    }
+  ],
+  "abi_log_replay": {
+    "configured_log": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/CMakeConfigureLog.yaml",
+      "sha256": "e9ad335fc77383189f1c319152fc0fb9386cf9561e8e828f1f51b5907bf7ed09",
+      "bytes": 1026410
+    },
+    "events": [
+      {
+        "probe": "CMakeCCompilerABI.c",
+        "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/CMakeFiles/CMakeScratch/TryCompile-Rlxtzl",
+        "commands": 2,
+        "native_exit_recorded": 0,
+        "cached": false,
+        "generated_log": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/probe-CMakeCCompilerABI.c.stdout",
+          "sha256": "1cb826064fd7c26b28c4dcc59407114fc905831fb1ee7222fdfe98c6f05ffd93",
+          "bytes": 1270
+        },
+        "native_encoded_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang -DCMAKE_INTDIR=\\\\\"Debug\\\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0   -v -Wl,-v -MD -MT CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -c /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCCompilerABI.c",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -o Debug/cmTC_fafaa   && :"
+        ],
+        "generated_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang -DCMAKE_INTDIR=\\\"Debug\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0   -v -Wl,-v -MD -MT CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -c /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCCompilerABI.c",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTC_fafaa.dir/Debug/CMakeCCompilerABI.c.o -o Debug/cmTC_fafaa   && :"
+        ],
+        "match": true
+      },
+      {
+        "probe": "private_runtime.cpp",
+        "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/CMakeFiles/CMakeScratch/TryCompile-nEeMZL",
+        "commands": 2,
+        "native_exit_recorded": 0,
+        "cached": false,
+        "generated_log": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/probe-private_runtime.cpp.stdout",
+          "sha256": "23560ca66b4f39df79e6b886e77626add49c26c1e0f95182cabbf6ba6ec28b3b",
+          "bytes": 2049
+        },
+        "native_encoded_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ -DCMAKE_INTDIR=\\\\\"Debug\\\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -MD -MT CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -MF CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o.d -o CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/CMakeFiles/CMakeScratch/TryCompile-nEeMZL/private_runtime.cpp",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -nostdlib++ /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib -Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -o Debug/cmTC_85ebd   && :"
+        ],
+        "generated_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ -DCMAKE_INTDIR=\\\"Debug\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -MD -MT CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -MF CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o.d -o CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -c /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/CMakeFiles/CMakeScratch/TryCompile-nEeMZL/private_runtime.cpp",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -nostdlib++ /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib -Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib CMakeFiles/cmTC_85ebd.dir/Debug/private_runtime.cpp.o -o Debug/cmTC_85ebd   && :"
+        ],
+        "match": true
+      },
+      {
+        "probe": "CMakeCXXCompilerABI.cpp",
+        "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/CMakeFiles/CMakeScratch/TryCompile-uYrJNo",
+        "commands": 2,
+        "native_exit_recorded": 0,
+        "cached": false,
+        "generated_log": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/probe-CMakeCXXCompilerABI.cpp.stdout",
+          "sha256": "2212e441703b21b7858b88cf0084d6180de3faf35c07261f7003390a95a117fa",
+          "bytes": 2072
+        },
+        "native_encoded_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ -DCMAKE_INTDIR=\\\\\"Debug\\\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0   -v -Wl,-v -MD -MT CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -c /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXCompilerABI.cpp",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v -nostdlib++ /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib -Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -o Debug/cmTC_f73eb   && :"
+        ],
+        "generated_lines": [
+          "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ -DCMAKE_INTDIR=\\\"Debug\\\"  --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0   -v -Wl,-v -MD -MT CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -c /Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeCXXCompilerABI.cpp",
+          ": && /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++ --no-default-config -fno-blocks -resource-dir \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21\" -stdlib=libc++ -nostdinc++ -isystem \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1\"  -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v -nostdlib++ /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib -Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib CMakeFiles/cmTC_f73eb.dir/Debug/CMakeCXXCompilerABI.cpp.o -o Debug/cmTC_f73eb   && :"
+        ],
+        "match": true
+      }
+    ],
+    "commands": 6,
+    "new_native_builds": 0
+  },
+  "old_os_runtime_evidence": [
+    {
+      "case": "runtime-Debug",
+      "receipt": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/runtime-Debug.stderr",
+        "sha256": "df1dd9d1570f2f974db7e24f3f6244cf7df79d6549f4308740052c4367b2cf75",
+        "bytes": 7783
+      },
+      "allowed_os_cpp_images_observed": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ]
+    },
+    {
+      "case": "runtime-shared-Debug",
+      "receipt": {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stderr",
+        "sha256": "3756e27377f552b5653ecfb9b9d1f34c76e608a9e65aaf0880167b8f1f8402bf",
+        "bytes": 7842
+      },
+      "allowed_os_cpp_images_observed": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libc++abi.dylib",
+        "/usr/lib/system/libunwind.dylib"
+      ]
+    }
+  ],
+  "maintained_hashes_before": {
+    "dev/toolchains/core_matrix.py": "3a3c06f9f736929d02b6843d344a69380c42962f7eccdff0a0e7b77f150a035c",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "a1ea7e161fb24a4feb65bf6df124102397c73fd50c6172fafef68ee1d8f9e5ad",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "ad88f5e62bf0bf8b6930c0995dbe820c63951c77aa77a783615bfb4b6985c7a7"
+  },
+  "control_hashes": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/AGENTS.md": "451833b3da3a90637e5814a85f3881bc1e7b99e661205284f8039401c8e0402d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/accepted-decisions.md": "c832008771c6d91703cde7a8d58452d230dcfb242589997a8963d5219c8ed910",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/core-qualification.md": "c8406943cab6039609edd5866fc99450f0128ef5193ab7250078186f805d436b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md": "1a577daf40e1d143813b2672f3dc12ebaff65db1d4ddf66e0ba90b71596c5d73",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise": "d6ef74934230b0106308a4dca1adfd40d16a4eebd29ade54ac6d450db3eaec67",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/proposal.json": "abd022fd8d214e5c174c693f5b9e711af6e41bd0db75fcc99a419726d8a158b4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/export-tool-prerequisite.json": "4ddad861aefcded3253434211167379b99fcfb277d0d1ca43395dc46bdeee7d4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/preparation-checks.json": "1e0b6d8587faec52a1aff98ad0daa356bf06aec68edf551871565b0d0995919c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/pre-run-static-checks.json": "e1b1d901a6fb22d6f287662682ef45e8d761e1903c865952947cee7d13683a85"
+  },
+  "prior_help_receipt_scope": "preparation-checks.json help ran earlier 319-line e1873100 candidate; own --help below runs the current 322-line helper.",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "4247f308ed6cc0ad77b1bd61bbb849f317628661",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "static_counts": {
+    "baseline": 19,
+    "json": 873,
+    "python": 48,
+    "shell": 6,
+    "toml": 14
+  },
+  "status": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n?? dev/toolchains/core_matrix.py\n?? evidence/core-p2996/\n",
+  "all_candidate_control_input_tool_hashes_unchanged": true,
+  "finished_at": "2026-10-11T13:24:50.664276+00:00"
+}

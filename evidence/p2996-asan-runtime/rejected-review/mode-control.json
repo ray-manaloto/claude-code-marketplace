@@ -1,0 +1,29 @@
+{
+  "result": "CONFIRMED: unexpected special modes accepted",
+  "helper_sha256": "c390c4615eeb2a023dc9bd255b18e2a9425a69f38712c79c126f327825e8c40c",
+  "cases": [
+    {
+      "special_mode_side": "source",
+      "pre_modes": {
+        "source": "0o4755",
+        "destination": "0o755"
+      },
+      "replacement_accepted": true,
+      "destination_actual_mode": "0o4755",
+      "destination_reported_mode": "0o755",
+      "staged_consumed": true
+    },
+    {
+      "special_mode_side": "destination",
+      "pre_modes": {
+        "source": "0o755",
+        "destination": "0o4755"
+      },
+      "replacement_accepted": true,
+      "destination_actual_mode": "0o755",
+      "destination_reported_mode": "0o755",
+      "staged_consumed": true
+    }
+  ],
+  "scope": "Two tiny new private fixtures only; no module imports, installed paths, shared state or runtime execution"
+}

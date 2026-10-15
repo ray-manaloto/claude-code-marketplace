@@ -1,0 +1,74 @@
+{
+  "unit": "request-hooks",
+  "tickets": [
+    "CT-88 (capture)",
+    "CT-89 (carry)",
+    "D166 dated D92 exception"
+  ],
+  "title": "Zero-logic request capture and carry settings hooks: UserPromptSubmit and PostToolUse(AskUserQuestion) append to the untracked request ledger; PreCompact, SessionStart and SubagentStart print the open-request list; requests:tail task",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/request-hooks",
+  "branch": "claude/request-hooks",
+  "base_sha": "3d5b181",
+  "allocated_from": "3d5b181",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "reviews/ccm-20261014/context-loss/CL4-proposal.md (E1, E2, E4; section 6 rows capture and carry), CL3-research.md, CT-87-probe-receipt.md",
+  "delivers": [
+    ".claude/settings.json: async UserPromptSubmit and PostToolUse(matcher AskUserQuestion) hooks that append the hook stdin JSON with /usr/bin/jq -c . to the untracked request ledger (path and fields per CL4 E1/E2; never tracked, never printed elsewhere); PreCompact, SessionStart (matchers startup|resume|clear|compact) and SubagentStart hooks that print the task_plan Open requests list (ids and one-line texts) with no other logic, reading the plan through ${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}",
+    "CLAUDE.md gains a '# Compact instructions' section telling the summarizer to keep every open request id and its next action",
+    "docs/agents/hooks-and-mods.md and .claude/rules/hooks-and-mods.md record the dated D166 exception (these hooks are deleted when the matching mod events are verified live, D128 path) and the watch-list entries (#102134, #96831, #100869)",
+    "a requests:tail mise task that prints the ledger's last entries",
+    "proof: a hermetic test or scripted check that each hook command produces the expected ledger line or printed list from a fixture stdin (no live session; CT-87 receipt already covers live firing)"
+  ],
+  "owned_paths": [
+    ".claude/settings.json",
+    "CLAUDE.md",
+    "docs/agents/hooks-and-mods.md",
+    ".claude/rules/hooks-and-mods.md",
+    "mise.dev.toml (requests:tail task only)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/request-hooks.md",
+    "dev/test_hooks.py (Settings test and the RequestHooks fixture tests only)"
+  ],
+  "excluded_shared_paths": [
+    "dev/hooks/",
+    "dev/handoff.py",
+    "dev/doctor/ (propose any settings-rule data row as a parent edit)",
+    "AGENTS.md",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "fixture checks of every hook command (exit codes and output)",
+    "./dev/mise run check:records (doctor settings rule on the new settings)",
+    "python3 -I dev/doctor/cli.py --surface check --json",
+    "./dev/mise run test:hooks",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- request-hooks"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "claude_sessions": "none (CT-87 receipt covers live firing)",
+    "global_settings": "none"
+  },
+  "status": "integrated",
+  "review": "fable cold review PASS-with-P2/P3 on 9a902a2 -> repairs 8adf3e4 (P2 pin, P3 compact instructions, P3 chmod 700)",
+  "retro": "passed",
+  "created_at": "2026-10-14",
+  "notes": [
+    "UserPromptSubmit does not fire for the built-in /compact (CT-87)",
+    "AskUserQuestion answers arrive in PostToolUse tool_response (CT-87)",
+    "the ledger format must match what lane request-catch (CT-90) parses; coordinate through CL4 E1/E2",
+    "2026-10-14: parent widened owned_paths to dev/test_hooks.py after the implementer showed test:hooks cannot pass otherwise (allocation rule: a lane that adds a settings hook owns the Settings test)",
+    "retro: passed (retros/request-hooks.md, retro:gate rc 0); record blob b1b7098 at 6a6ca77 (writer fable high) added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "integrated 2026-10-14 as cadd2ed (parents bb3e476, 6a6ca77), no conflict; gates on the merged tree rc 0 (tasks validate, check, check:acceptance-baseline, test:hooks 24, check:research, retro:gate, git diff --check bb3e476, skill mirrors); report reviews/ccm-20261014/republish/request-lanes-merge-report.md"
+  ],
+  "head_sha": "6a6ca77",
+  "integration_merge": "cadd2ed"
+}

@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-10T23:49:14.319149+00:00",
+  "reviewer": "/root/cold_reviewer",
+  "read_only": true,
+  "proposal_commit": "a07f40ccc16dd3512ad2cb4d3d33bb906fd94c7c",
+  "result": "PASS; P3 repaired and independently rechecked; no actionable findings remain in scope",
+  "scope": "Five maintained proposal files and three generated named lockfiles; source/receipt comparisons only",
+  "finding": {
+    "severity": "P3",
+    "claim": "Root-equivalent prefixes passed initial guard",
+    "confirmation": "reviewer-root-alias-controls.json",
+    "repair": "Reject empty/dot/parent components and trailing slashes; preserve internal spaces",
+    "recheck_receipt": "native-profile-check-reviewed.json",
+    "cases": 35,
+    "expected_successes": 8,
+    "expected_rejections": 27
+  },
+  "current_toml_hashes": {
+    "dev/global-mise/config.gcc16.toml": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+    "dev/global-mise/config.p2996.toml": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+    "dev/global-mise/config.cpp-build.toml": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+    "dev/global-mise/cpp-foundation/common.toml": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1"
+  },
+  "independent_checks": [
+    "Current TOML bytes match reviewed native receipt",
+    "Three native locks match accepted releases/assets/digests",
+    "Live default config and lock and private backups match exact preimages and modes",
+    "Seven proposed destinations absent including symlinks"
+  ],
+  "limits": [
+    "Exclusive ownership and application are separate phase decisions",
+    "No reviewer runtime probe",
+    "No installation or compiler execution",
+    "Filesystem and symlink identity require later compiler qualification"
+  ]
+}

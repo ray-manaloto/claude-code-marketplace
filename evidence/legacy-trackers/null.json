@@ -1,0 +1,27 @@
+{
+  "adapter": "trackers",
+  "tier": "cheap",
+  "question": "example/project unfindable",
+  "command": "gh api -X GET search/issues -f q=repo:example/project is:issue unfindable",
+  "has_issues": true,
+  "has_discussions": false,
+  "ran_at": "2026-08-28T02:07:38Z",
+  "total_count": 0,
+  "hits": [],
+  "null_result": {
+    "arms": [
+      {
+        "kind": "issue",
+        "command": "gh api -X GET search/issues -f q=repo:example/project is:issue",
+        "result": "total_count=0",
+        "discriminates": false
+      },
+      {
+        "kind": "pr",
+        "command": "gh api -X GET search/issues -f q=repo:example/project is:pr",
+        "result": "total_count=2",
+        "discriminates": true
+      }
+    ]
+  }
+}

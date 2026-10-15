@@ -1,0 +1,135 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib, json, os, re, signal, subprocess, sys
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+sys.path.insert(0, str(ROOT / 'dev/toolchains'))
+from gcc_install import digest, preserved, read, package_state
+
+directory = Path(sys.argv[1]).resolve()
+os.umask(0o077)
+directory.mkdir(parents=True, exist_ok=False)
+(directory / 'cwd').mkdir()
+before = read('install-preimages.json')
+context = json.loads((Path(before['normal_environment']['argv'][-1]).parent / 'context.json').read_text())
+environment = context['environment'] | {'MISE_OFFLINE':'1'}
+runtime = json.loads((ROOT / 'evidence/gcc-runtime/qualification.json').read_text())
+report = {'state':'running', 'started_at':datetime.now(timezone.utc).isoformat(), 'commands':[],
+          'harness_sha256':digest(Path(__file__)), 'inputs':{str(p.relative_to(ROOT)):digest(p) for p in
+          [ROOT/x for x in ('CMakeLists.txt','include/aggregated_research/core.hpp','src/core.cpp','src/smoke.cpp',
+           'cmake/toolchains/gcc16-macos-arm64.cmake','evidence/gcc-runtime/qualification.json')]}}
+def save():
+    (directory/'qualification.json').write_text(json.dumps(report,indent=2)+'\n')
+def run(label, argv, expected=0, env=None):
+    row={'case':label,'argv':argv,'started_at':datetime.now(timezone.utc).isoformat()}
+    report['commands'].append(row); save()
+    paths=[directory/(label+suffix) for suffix in ('.stdout','.stderr')]
+    with paths[0].open('wb') as out, paths[1].open('wb') as err:
+        p=subprocess.Popen(argv,env=environment if env is None else env,cwd=directory,
+                           stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+        try:
+            p.wait(timeout=60)
+        except (subprocess.TimeoutExpired, KeyboardInterrupt):
+            row['interrupted']=True
+            for sig in (signal.SIGTERM,signal.SIGKILL):
+                try: os.killpg(p.pid,sig)
+                except ProcessLookupError: pass
+                if sig==signal.SIGTERM:
+                    try: p.wait(timeout=5)
+                    except subprocess.TimeoutExpired: pass
+            p.wait(); raise
+        finally:
+            row.update({'returncode':p.returncode,'logs':[{'path':str(f),'sha256':digest(f)} for f in paths]})
+            save()
+    print(json.dumps({'case':label,'returncode':p.returncode}),flush=True)
+    assert p.returncode==expected,label
+    return paths[0].read_text(),paths[1].read_text()
+try:
+    preserved(before,installed=True)
+    for name,state in read('installation.json')['installed_packages'].items():
+        assert package_state(name)==state
+    for row in runtime['identities'].values():
+        assert digest(Path(row['path']))==row['sha256']
+    sdk=runtime['sdk']['path']; assert digest(Path(sdk)/'SDKSettings.json')==runtime['sdk']['settings_sha256']
+    census=subprocess.run(['/bin/ps','-axo','pid=,ppid=,comm='],text=True,capture_output=True,check=True,timeout=15)
+    active=[line.strip() for line in census.stdout.splitlines() if re.fullmatch(
+        r'(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|sccache',
+        Path(line.strip().split(None,2)[-1]).name)]
+    assert not active,active
+    report['admission']={'at':datetime.now(timezone.utc).isoformat(),'scope':'Tiny native skeleton; static/shared, four configurations, sequential single-job builds only',
+                         'census_returncode':census.returncode,'active_builds':active,'load_average':os.getloadavg()}
+    normal,_=run('default-before',before['normal_environment']['argv'])
+    assert json.loads(normal)==before['normal_environment']['output']
+    mise=read('install-proposal.json')['native_mise']; assert digest(Path(mise['path']))==mise['sha256']
+    environment['MARKETPLACE_GCC16_PREFIX']='/opt/homebrew/Cellar/gcc/16.2.0'
+    base=[mise['path'],'--no-hooks','-C',str(directory/'cwd'),'-E','gcc16','exec','--fresh-env','--no-deps','--']
+    host=json.loads((ROOT/'evidence/tool-foundation/host-qualification.json').read_text())
+    tool_rows=host['binaries']
+    cmake=tool_rows['cmake']['resolved_path']; ninja=tool_rows['ninja']['resolved_path']
+    for name in ('cmake','ninja'):
+        assert digest(Path(tool_rows[name]['resolved_path']))==tool_rows[name]['sha256']
+    ctest=str(Path(cmake).with_name('ctest'))
+    report['tools']={name:{'path':p,'sha256':digest(Path(p))} for name,p in [('cmake',cmake),('ninja',ninja),('ctest',ctest)]}
+    version,_=run('ctest-version',base+[ctest,'--version']); assert version.startswith('ctest version 4.4.4')
+    options=['-G','Ninja Multi-Config','-DCMAKE_MAKE_PROGRAM='+ninja,
+             '-DCMAKE_TOOLCHAIN_FILE='+str(ROOT/'cmake/toolchains/gcc16-macos-arm64.cmake'),
+             '-DCMAKE_OSX_SYSROOT='+sdk,'-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0']
+    first=directory/'declone-first.cpp';second=directory/'declone-second.cpp'
+    first.write_text('#include <stdexcept>\nint probe() { return 42; }\n')
+    second.write_text('#include <stdexcept>\nint probe(); int main() { return probe() == 42 ? 0 : 1; }\n')
+    cxx=runtime['identities']['cxx']['path']
+    for label,flags,expected in [('declone-red',['-Os'],1),('declone-fixed',['-Os','-fno-declone-ctor-dtor'],0),
+                                 ('declone-reverse',['-O2','-fdeclone-ctor-dtor'],1)]:
+        output=directory/label
+        _,err=run(label,base+[cxx,'-std=c++26','-isysroot',sdk,*flags,str(first),str(second),'-o',str(output)],expected)
+        if expected: assert 'duplicate symbol' in err
+        else: run(label+'-run',base+[str(output)])
+    report['cells']={}
+    for linkage in ('static','shared'):
+        build=directory/linkage
+        run('configure-'+linkage,base+[cmake,'-S',str(ROOT),'-B',str(build),*options,
+                                      '-DBUILD_SHARED_LIBS='+('ON' if linkage=='shared' else 'OFF')])
+        for config in ('Debug','Release','RelWithDebInfo','MinSizeRel'):
+            cell=linkage+'-'+config
+            run('build-'+cell,base+[cmake,'--build',str(build),'--config',config,'--parallel','1','--verbose'])
+            test,_=run('test-'+cell,base+[ctest,'--test-dir',str(build),'-C',config,'--output-on-failure','--no-tests=error'])
+            assert '100% tests passed' in test and 'out of 1' in test
+            summary=dict(line.split('=',1) for line in (build/('core-'+config+'.txt')).read_text().splitlines() if line)
+            binary=Path(summary['binary']); library=Path(summary['library'])
+            assert library.suffix==('.dylib' if linkage=='shared' else '.a')
+            architecture,_=run('architecture-'+cell,['/usr/bin/file','-b',str(binary)])
+            assert 'arm64' in architecture
+            architecture,_=run('library-architecture-'+cell,['/usr/bin/lipo','-archs',str(library)])
+            assert architecture.strip()=='arm64'
+            output,dyld=run('runtime-'+cell,base+['/usr/bin/env','DYLD_PRINT_LIBRARIES=1',str(binary)])
+            assert output=='reflection value=43, members=1\n'
+            assert '/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib' in dyld
+            assert ('libresearch_core.dylib' in dyld)==(linkage=='shared')
+            libraries,_=run('libraries-'+cell,['/usr/bin/otool','-L',str(binary)])
+            assert 'libstdc++.6.dylib' in libraries and 'libc++.1.dylib' not in libraries
+            assert ('libresearch_core.dylib' in libraries)==(linkage=='shared')
+            report['cells'][cell]={'binary':str(binary),'binary_sha256':digest(binary),
+                                   'library':str(library),'library_sha256':digest(library),'summary':summary}
+        commands=json.loads((build/'compile_commands.json').read_text())
+        assert len(commands)==8
+        for row in commands:
+            command=row['command']; assert command.startswith(runtime['identities']['cxx']['path'])
+            assert '-std=c++26' in command and '-isysroot '+sdk in command
+            assert ('-freflection' in command)==(Path(row['file']).name=='core.cpp')
+            assert ('-fno-declone-ctor-dtor' in command)==('MinSizeRel' in command)
+            assert '/opt/homebrew/opt/llvm' not in command and '-stdlib=libc++' not in command
+        report[linkage+'_compile_commands']=commands
+    environment.pop('MARKETPLACE_GCC16_PREFIX')
+    normal_after,_=run('default-after',before['normal_environment']['argv'])
+    assert json.loads(normal_after)==json.loads(normal)
+    report['state']='PASS: native skeleton, GCC16 static/shared, four configurations'
+except BaseException as error:
+    report.update({'state':'FAIL','error':repr(error)}); raise
+finally:
+    try:
+        preserved(before,installed=True)
+        for row in runtime['identities'].values(): assert digest(Path(row['path']))==row['sha256']
+        report['protected_state_unchanged']=True
+    except Exception as error:
+        report.update({'state':'FAIL','preservation_error':repr(error)}); raise
+    finally:
+        save(); print(json.dumps({'state':report['state'],'receipt':str(directory/'qualification.json')}))

@@ -1,0 +1,395 @@
+{
+  "build_recipe": {
+    "argv_after_cmake": [
+      "--build",
+      "${build}",
+      "--parallel",
+      "4"
+    ],
+    "child_build_commands": [
+      {
+        "argv_after_cmake": [
+          "--build",
+          "."
+        ],
+        "cwd": "runtimes/builtins-bins",
+        "graph_line": 119524
+      },
+      {
+        "argv_after_cmake": [
+          "--build",
+          "."
+        ],
+        "cwd": "runtimes/runtimes-bins",
+        "graph_line": 119671
+      }
+    ],
+    "environment": {
+      "CMAKE_BUILD_PARALLEL_LEVEL": "4"
+    },
+    "lifecycle": "Use the existing build tree and default all target. Preserve it for an incremental retry; omit --clean-first. Parent supplies fresh capacity admission, canonical lease, bounded execution and final exit-code/log evidence.",
+    "native_cmake_relative_path": "bin/cmake",
+    "placement": "Use /usr/bin/env CMAKE_BUILD_PARALLEL_LEVEL=4 immediately before native CMake, inside/after any existing tools-only mise --fresh-env wrapper."
+  },
+  "concurrency": {
+    "aggregate_limit": "UNVERIFIED; no claim of four total compiler jobs. Outer compile/link work may overlap a nested stage. There is no inspected shared aggregate job server.",
+    "conservative_capacity_allowance": "Plan for four outer plus four nested build job slots: eight job-equivalents. This deliberately overcounts a waiting outer coordinator; it is a planning allowance, not an enforced aggregate process/CPU cap.",
+    "dependency": "build.ninja:119679 makes runtimes-configure depend on builtins-done; the child build recipes use pool = console at 119526 and 119673. At most one nested build stage is expected from this dependency graph.",
+    "each_child_build_default": 4,
+    "evidence_gap": "No exact retained Ninja 1.13.2 manual/source was located or supplied; no new acquisition was performed.",
+    "outer_limit": 4,
+    "probe_limit": "CMAKE_BUILD_PARALLEL_LEVEL describes cmake --build mode. Previously inspected CMake try_compile passes NO_BUILD_PARALLEL_LEVEL and omits explicit Ninja -j; nested configure probes and tool-internal threads are not covered by an asserted hard eight-process bound.",
+    "source_backed": "CMake 4.4.4 documents --parallel as the selected build's maximum parallel processes and CMAKE_BUILD_PARALLEL_LEVEL as the default when --parallel is absent. Generated child commands do not set a parallel option or reset the environment. ExternalProject source documents that a Ninja parent's command-line arguments are not passed to the child."
+  },
+  "created_at_utc": "2026-10-11T05:33:06.079167+00:00",
+  "disposition": "SOURCE_INSPECTION_COMPLETE; build and install runtime acceptance UNVERIFIED",
+  "end_artifacts": {
+    "compiler_rt_qualification": "The macOS builtins archive path follows darwin_lipo_libs(clang_rt.osx) plus resource-dir defaults. Enumerate enabled sanitizer/profile products from the eventual child graph and install manifest; their runtime generation is not established here.",
+    "completion_stamps_relative_to_build": [
+      "runtimes/builtins-stamps/builtins-done",
+      "runtimes/runtimes-stamps/runtimes-done"
+    ],
+    "graph_backed_relative_to_build": [
+      {
+        "line": 74988,
+        "path": "bin/clang-21"
+      },
+      {
+        "line": 75006,
+        "path": "bin/clang"
+      },
+      {
+        "kind": "post-build symlink to clang-21",
+        "line": 75007,
+        "path": "bin/clang++"
+      },
+      {
+        "line": 44949,
+        "path": "bin/llvm-config"
+      },
+      {
+        "line": 90599,
+        "path": "bin/clang-tidy"
+      },
+      {
+        "line": 97110,
+        "path": "bin/clangd"
+      },
+      {
+        "line": 114866,
+        "path": "lib/libLLVM.dylib"
+      },
+      {
+        "line": 78313,
+        "path": "lib/libclang-cpp.dylib"
+      }
+    ],
+    "later_installed_reflection_header": "${prefix}/include/c++/v1/meta",
+    "required_child_generated_metadata": [
+      "runtimes/builtins-bins/CMakeCache.txt",
+      "runtimes/builtins-bins/build.ninja",
+      "runtimes/builtins-bins/cmake_install.cmake",
+      "runtimes/runtimes-bins/CMakeCache.txt",
+      "runtimes/runtimes-bins/build.ninja",
+      "runtimes/runtimes-bins/cmake_install.cmake"
+    ],
+    "runtime_path_qualification": "Generated LLVMConfig.cmake fixes LLVM_LIBRARY_DIR to build/./lib; runtimes/CMakeLists.txt reuses it. Per-target runtime directories are OFF and LLVM_LIBDIR_SUFFIX is empty. Shared paths may be symlinks; record resolved versioned files. Actual child graphs must confirm these source-derived expectations after configure.",
+    "source_derived_runtime_paths_relative_to_build": [
+      "lib/libc++.a",
+      "lib/libc++.dylib",
+      "lib/libc++abi.a",
+      "lib/libc++abi.dylib",
+      "lib/libunwind.a",
+      "lib/libunwind.dylib",
+      "lib/clang/21/lib/darwin/libclang_rt.osx.a"
+    ],
+    "state": "Expected after a successful full build, not observed as built by this inspection."
+  },
+  "later_install": {
+    "artifact_checks": "Check prefix/bin compiler and tools, prefix/lib LLVM and runtime libraries, prefix/lib/clang/21/lib/darwin/libclang_rt.osx.a, and prefix/include/c++/v1/meta. Validate all symlink targets and reconcile each child manifest with the intended private prefix.",
+    "build_install_separation": "ExternalProject INSTALL_COMMAND is empty. build.ninja:119552 and 119699 run cmake -E echo_append and label the stage No install step. A done stamp proves build-stage progression, not installation.",
+    "exit_codes": "Record and require 0 independently for all three. Stop admission to later steps on any failure; do not treat the outer install's rc 0 as child-install success.",
+    "manifests_to_check": [
+      "${build}/install_manifest.txt",
+      "${build}/runtimes/builtins-bins/install_manifest.txt",
+      "${build}/runtimes/runtimes-bins/install_manifest.txt"
+    ],
+    "native_install_scope": "CMake's retained --install documentation runs installation without the native build tool. Direct child commands check their own script failures. This repeats a successful outer child installation if one occurred, using the same configured prefix.",
+    "ordered_argv_after_cmake": [
+      [
+        "--install",
+        "${build}",
+        "--config",
+        "Release",
+        "--prefix",
+        "${prefix}"
+      ],
+      [
+        "--install",
+        "${build}/runtimes/builtins-bins",
+        "--config",
+        "Release",
+        "--prefix",
+        "${prefix}"
+      ],
+      [
+        "--install",
+        "${build}/runtimes/runtimes-bins",
+        "--config",
+        "Release",
+        "--prefix",
+        "${prefix}"
+      ]
+    ],
+    "prefix": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "prefix_source": "build/CMakeCache.txt:408",
+    "reason": "Generated runtimes/cmake_install.cmake:40-45 invokes both child cmake_install.cmake scripts using execute_process without RESULT_VARIABLE or COMMAND_ERROR_IS_FATAL. LLVMExternalProjectUtils.cmake:451-457 generates this behavior."
+  },
+  "remaining_runtime_assertions": [
+    "Fresh parent capacity lease and bounded build operation are separate prerequisites; this receipt grants neither.",
+    "Capture actual final build exit code and untruncated terminal log. A timeout or absent final exit code is incomplete.",
+    "After nested configure, inspect child caches/graphs for the built compiler paths, arm64, intended SDK/deployment target, Ninja identity, runtime options and output directories.",
+    "Verify observed child build job arguments/defaults and aggregate activity with sanitized evidence; do not infer a process-tree cap from outer -j4.",
+    "Check built artifacts and both done stamps; stamps or file existence alone cannot substitute for final build success.",
+    "Later record each native install exit code and all install manifests. Verify installed architecture, dependency resolution and private-prefix runtime linkage.",
+    "Execute the separately admitted P2996 compile/link/run proof with the installed compiler, reflection headers and built runtimes before claiming a working reflection toolchain."
+  ],
+  "roots": {
+    "build": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+    "cmake": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents",
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source"
+  },
+  "routes": {
+    "did_not_run": [
+      "CMake",
+      "Ninja",
+      "compiler",
+      "install",
+      "Exa",
+      "Firecrawl",
+      "Last30Days",
+      "Context7",
+      "GitHub search",
+      "native goal",
+      "global configuration mutation"
+    ],
+    "failed_or_unavailable": [
+      "Exact function(...) search for darwin_add_builtin_libraries returned rc 1 because it is a macro; corrected macro search and source reads returned rc 0.",
+      "Some overbroad search output was truncated; final claims use narrowed source ranges.",
+      "Retained Ninja manual/source unavailable; no network fallback."
+    ],
+    "ran": [
+      "functions.exec / exec_command",
+      "rg",
+      "sed",
+      "Python 3.14.8 read-only text parsing and private JSON serialization"
+    ]
+  },
+  "schema_version": 1,
+  "scope": {
+    "compiler_cmake_ninja_invocations": 0,
+    "lease_acquired": false,
+    "network_acquisitions": 0,
+    "private_receipt_only": true,
+    "repository_or_global_edits": 0
+  },
+  "source_references": [
+    {
+      "bytes": 63199,
+      "lines": [
+        "859-870",
+        "949-1023"
+      ],
+      "path": "share/cmake-4.4/Help/manual/cmake.1.rst",
+      "root": "cmake",
+      "sha256": "76213b4dc42f28c66c1184e22bab69c88449ed720d7e5b695df2de70ef038c38"
+    },
+    {
+      "bytes": 581,
+      "lines": [
+        "8-14"
+      ],
+      "path": "share/cmake-4.4/Help/envvar/CMAKE_BUILD_PARALLEL_LEVEL.rst",
+      "root": "cmake",
+      "sha256": "507a388de05cd5178d61086430d2aa4adb036f4f82b0c68d44557c5da58333d8"
+    },
+    {
+      "bytes": 115520,
+      "lines": [
+        "737-760",
+        "798-809",
+        "2947-2954"
+      ],
+      "path": "share/cmake-4.4/Modules/ExternalProject.cmake",
+      "root": "cmake",
+      "sha256": "492e0d9828db9d98751621c3e6ceacbefb27a68e753fc00a854ca79422545fee"
+    },
+    {
+      "bytes": 18422,
+      "lines": [
+        "381-425",
+        "451-457"
+      ],
+      "path": "llvm/cmake/modules/LLVMExternalProjectUtils.cmake",
+      "root": "source",
+      "sha256": "aa3d39ca477cebb56b86c0bd2b125e3a2d367fed781e4d966242349ca294535e"
+    },
+    {
+      "bytes": 21509559,
+      "lines": [
+        "119514-119679",
+        "119698-119700",
+        "123443",
+        "126242"
+      ],
+      "path": "build.ninja",
+      "root": "build",
+      "sha256": "d989f17ccf96634b5c81fb0981a32d080049e14cc660453c712d9c0db21a3edf"
+    },
+    {
+      "bytes": 2386,
+      "lines": [
+        "40-45"
+      ],
+      "path": "runtimes/cmake_install.cmake",
+      "root": "build",
+      "sha256": "2eb842ee6f41ec8321f2f56e06eddfdb7ab18a84ec32029504e1858b38c1e393"
+    },
+    {
+      "bytes": 85173,
+      "lines": [
+        "295",
+        "408",
+        "950",
+        "1175"
+      ],
+      "path": "CMakeCache.txt",
+      "root": "build",
+      "sha256": "78f5a5c77b86bce9e8236deb12c4feb4a24c83381e52d85cb85fe0c42a99c53a"
+    },
+    {
+      "bytes": 14198,
+      "lines": [
+        "242",
+        "250"
+      ],
+      "path": "lib/cmake/llvm/LLVMConfig.cmake",
+      "root": "build",
+      "sha256": "b0930d0b478ae5aa021aeb3da5e008558400b73378bbd9f37c8635dc871fa2f0"
+    },
+    {
+      "bytes": 16397,
+      "lines": [
+        "64-84"
+      ],
+      "path": "runtimes/CMakeLists.txt",
+      "root": "source",
+      "sha256": "041bf69b40a71359736c20a0dbc162be62a9f59ace9f89c87d0bc612956a1c7d"
+    },
+    {
+      "bytes": 40749,
+      "lines": [
+        "190-204",
+        "407-451"
+      ],
+      "path": "libcxx/CMakeLists.txt",
+      "root": "source",
+      "sha256": "fb020a3ec72a50964f137b12a4e6de54d84e3a97868f1ca4fc485d09227bfe94"
+    },
+    {
+      "bytes": 14585,
+      "lines": [
+        "186-188",
+        "278",
+        "358-367"
+      ],
+      "path": "libcxx/src/CMakeLists.txt",
+      "root": "source",
+      "sha256": "38a74444821f5d958f556f98324878d663d56668ebd971f7853fe0c3114f123a"
+    },
+    {
+      "bytes": 53199,
+      "lines": [
+        "1034",
+        "1684-1689",
+        "1719-1724"
+      ],
+      "path": "libcxx/include/CMakeLists.txt",
+      "root": "source",
+      "sha256": "ebcd68b079cb2c6ba081a6e46cf7228ddaf52a3e6adaf1480ea50288b107bf09"
+    },
+    {
+      "bytes": 21253,
+      "lines": [
+        "89-90",
+        "197-210"
+      ],
+      "path": "libcxxabi/CMakeLists.txt",
+      "root": "source",
+      "sha256": "24426c911cb68594bd41ca9eb69a15a05d30fd7b01b330572a2e7a51c0e5ac89"
+    },
+    {
+      "bytes": 13824,
+      "lines": [
+        "202-204",
+        "320",
+        "337-339"
+      ],
+      "path": "libcxxabi/src/CMakeLists.txt",
+      "root": "source",
+      "sha256": "e332b0e43a951631ecb12869068be8e165de35f7d6674041cc93c9e29c4d31be"
+    },
+    {
+      "bytes": 14062,
+      "lines": [
+        "140-141",
+        "154-165"
+      ],
+      "path": "libunwind/CMakeLists.txt",
+      "root": "source",
+      "sha256": "cc61a59ec60cffd52270680cac335e08cb04236ab79dc45b5fc63b9e18186499"
+    },
+    {
+      "bytes": 8412,
+      "lines": [
+        "156-158",
+        "203",
+        "217-219"
+      ],
+      "path": "libunwind/src/CMakeLists.txt",
+      "root": "source",
+      "sha256": "ac3467763e64638de5f2f3695353a2f45b3a4d890cf284ed22706d116d1e9a64"
+    },
+    {
+      "bytes": 23900,
+      "lines": [
+        "277-337",
+        "339-370",
+        "509-516"
+      ],
+      "path": "compiler-rt/cmake/Modules/CompilerRTDarwinUtils.cmake",
+      "root": "source",
+      "sha256": "c4f3c2d0f4123b02c43224d80f00f33e0219450da5feb1706b190978319a6774"
+    },
+    {
+      "bytes": 13948,
+      "lines": [
+        "35-45",
+        "97-116"
+      ],
+      "path": "compiler-rt/cmake/base-config-ix.cmake",
+      "root": "source",
+      "sha256": "960dfef72f250cdf7146840f819c1403d18af532aa5e363fc5b8359079945e96"
+    },
+    {
+      "bytes": 885,
+      "lines": [
+        "9-27"
+      ],
+      "path": "cmake/Modules/GetClangResourceDir.cmake",
+      "root": "source",
+      "sha256": "3639507e87228be3bd291bb231dea5a862d51ba887a49e872a66253bf763c344"
+    }
+  ],
+  "task": "07a retained-source build and later-install prerequisite"
+}

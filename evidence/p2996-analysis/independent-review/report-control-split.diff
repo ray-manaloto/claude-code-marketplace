@@ -1,0 +1,45 @@
+--- /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/p2996_analysis.py.source
++++ /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_analysis.py
+@@ -175,13 +175,14 @@
+                 path = directory / (label + ".cpp")
+                 path.write_text(text)
+                 fixtures.append(path)
++            analyzer = base + [prefix / "bin/clang++", *flags, "--analyze", "--analyzer-no-default-checks",
++                               "-Xclang", "-analyzer-checker=core.NullDereference", "--analyzer-output", "plist"]
+             for label, path, expected in (("analyzer-bad", fixtures[2], 1), ("analyzer-clean", fixtures[3], 0),
+                                           ("analyzer-reflection", clean, 0)):
+                 original, output = digest(path), directory / (label + ".plist")
+                 assert not output.exists()
+-                run(label, base + [prefix / "bin/clang++", *flags, "--analyze", "--analyzer-no-default-checks",
+-                                  "-Xclang", "-analyzer-checker=core.NullDereference", "-Xclang", "-analyzer-werror",
+-                                  "--analyzer-output", "plist", path, "-o", output], timeout=60, descriptor=fd, expected=expected)
++                errors = [] if expected else ["-Xclang", "-analyzer-werror"]
++                run(label, analyzer + errors + [path, "-o", output], timeout=60, descriptor=fd)
+                 assert digest(path) == original and output.is_file() and output.stat().st_size > 0
+                 parsed = plistlib.loads(output.read_bytes())
+                 diagnostics = parsed["diagnostics"]
+@@ -190,11 +191,22 @@
+                     item = diagnostics[0]
+                     assert item["check_name"] == "core.NullDereference" and item["type"] == "Dereference of null pointer"
+                     assert item["location"]["line"] == 3 and parsed["files"][item["location"]["file"]] == str(path)
+-                    assert "Dereference of null pointer" in (directory / (label + ".stderr")).read_text()
++                    assert str(path) + ":3:6: warning: Dereference of null pointer" in (directory / (label + ".stderr")).read_text()
+                 else:
+                     assert diagnostics == [] and not re.search(r": (?:fatal )?error:", (directory / (label + ".stderr")).read_text())
+-                report["diagnostics"][label] = {"native_returncode": expected, "diagnostic_count": len(diagnostics),
++                report["diagnostics"][label] = {"native_returncode": 0, "diagnostic_count": len(diagnostics),
+                                               "checks": [item["check_name"] for item in diagnostics], "source_unchanged": True}
++            path, output = fixtures[2], directory / "analyzer-error-exit.plist"
++            original = digest(path)
++            assert not output.exists()
++            run("analyzer-error-exit", analyzer + ["-Xclang", "-analyzer-werror", path, "-o", output],
++                timeout=60, descriptor=fd, expected=1)
++            diagnostic = (directory / "analyzer-error-exit.stderr").read_text()
++            errors = [line for line in diagnostic.splitlines() if re.search(r": (?:fatal )?error:", line)]
++            assert len(errors) == 1 and str(path) + ":3:6: error: Dereference of null pointer" in errors[0]
++            assert "[core.NullDereference]" in errors[0] and not output.exists() and digest(path) == original
++            report["diagnostics"]["analyzer-error-exit"] = {"native_returncode": 1, "errors": errors,
++                                                          "report_removed_by_driver": True, "source_unchanged": True}
+             assert bad.read_bytes() == witness.read_bytes()
+             report["artifacts"] = {p.name: {"path": str(p), "sha256": digest(p)} for p in [*fixtures, *directory.glob("*.plist")]}
+         report["lease_released"] = True

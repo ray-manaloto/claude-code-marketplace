@@ -1,0 +1,221 @@
+{
+  "result": "PASS source/helper and script-mode guards only",
+  "at": "2026-10-11T14:11:38.451235+00:00",
+  "cache_sha256": "21974423058ef0d57af681619f7a41ed4517e1a77f5b932bf6544feb5afacbf5",
+  "helper_sha256": "fe201831c22903a472b0b236af580c4c29c73684195cc122f336e6240c039646",
+  "commands": [
+    {
+      "case": "positive",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "expected_diagnostic": "",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/positive.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/positive.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "wrong-lane",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "Select the isolated cpp-build",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/wrong-lane.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/wrong-lane.stderr",
+          "sha256": "361317da1edf2073e80d1488fdcbbcc3eda4fb44940e13297e1a2f4add257ff2"
+        }
+      ]
+    },
+    {
+      "case": "dirty-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "Inherited CXXFLAGS",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/dirty-flags.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/dirty-flags.stderr",
+          "sha256": "58af957cb3df3e293191457f79343f41480103839789a4e894c24b9b881a11d4"
+        }
+      ]
+    },
+    {
+      "case": "missing-tool",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "input does not exist: NINJA",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/missing-tool.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/missing-tool.stderr",
+          "sha256": "5c9810220b5a38b39c16021b4ca26ecb1e27be1f4475633db0ea55b1c9b4e243"
+        }
+      ]
+    },
+    {
+      "case": "existing-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "new separate private install prefix",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/existing-prefix.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/existing-prefix.stderr",
+          "sha256": "fe68e096a2501fa2a6dfb2556b910dfb2aa83e6626d984db56237f29ee5176ee"
+        }
+      ]
+    },
+    {
+      "case": "nested-prefix",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "new separate private install prefix",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/nested-prefix.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/nested-prefix.stderr",
+          "sha256": "fe68e096a2501fa2a6dfb2556b910dfb2aa83e6626d984db56237f29ee5176ee"
+        }
+      ]
+    },
+    {
+      "case": "rpath-override",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_INSTALL_RPATH=/unrelated",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "unset CMAKE_INSTALL_RPATH",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/rpath-override.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/rpath-override.stderr",
+          "sha256": "3edc66653edd203ce3f015fa18d9c63c290af972861ba7a99477fb7788f62bea"
+        }
+      ]
+    },
+    {
+      "case": "toolchain-override",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-DCMAKE_TOOLCHAIN_FILE=/unrelated",
+        "-P",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu-bootstrap.cmake"
+      ],
+      "returncode": 1,
+      "expected_returncode": 1,
+      "expected_diagnostic": "unset CMAKE_TOOLCHAIN_FILE",
+      "logs": [
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/toolchain-override.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/tmp/marketplace-iwyu-preparation-jmyn898a/toolchain-override.stderr",
+          "sha256": "4be0f6a30054937f2ba196c6414733f28d08531ad5581808d40e079ce3fbaf41"
+        }
+      ]
+    },
+    {
+      "case": "help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "expected_returncode": 0,
+      "stdout": "usage: iwyu_source.py [-h] --directory DIRECTORY\n\nAcquire the accepted IWYU commit into a new private directory; never build it.\n\noptions:\n  -h, --help            show this help message and exit\n  --directory DIRECTORY\n                        new absolute private directory\n",
+      "stderr": ""
+    },
+    {
+      "case": "relative-source",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--directory",
+        "relative"
+      ],
+      "returncode": 2,
+      "expected_returncode": 2,
+      "stdout": "",
+      "stderr": "usage: iwyu_source.py [-h] --directory DIRECTORY\niwyu_source.py: error: directory must be an absolute normalized path\n"
+    },
+    {
+      "case": "project-source",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_source.py",
+        "--directory",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/iwyu-private-probe"
+      ],
+      "returncode": 2,
+      "expected_returncode": 2,
+      "stdout": "",
+      "stderr": "usage: iwyu_source.py [-h] --directory DIRECTORY\niwyu_source.py: error: keep the upstream checkout outside the marketplace worktree\n"
+    }
+  ],
+  "native_configure_compiler_build_install_count": 0,
+  "install_prefix_absent": true
+}

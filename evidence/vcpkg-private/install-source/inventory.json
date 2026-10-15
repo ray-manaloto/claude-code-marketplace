@@ -1,0 +1,37 @@
+{
+  "archive": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/2026-09-26.zip",
+  "archive_sha512": "19669a5f107cb02693fe5968687cf83e3ae13692c16a389ff08ff5d51caddf4d885c961e91c60ee2adfbd242dffcdd8987dbcb2f59a71b797a9c7f95e9d89934",
+  "files": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-install-source-prerequisite/src/vcpkg/commands.install.cpp",
+      "member": "vcpkg-tool-2026-09-26/src/vcpkg/commands.install.cpp",
+      "sha256": "a8c2c93c8b2efade69c60b09cf635f0c54d8018c43fd5df69516a506117315b3",
+      "bytes": 74511
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-install-source-prerequisite/LICENSE.txt",
+      "member": "vcpkg-tool-2026-09-26/LICENSE.txt",
+      "sha256": "16e3c9cdb4fa14a8627bc4b5ef0237773a79c3ad1d012c288f37e29573e116cc",
+      "bytes": 1095
+    }
+  ],
+  "excerpt_matches": [
+    {
+      "line": 1315,
+      "excerpt": "        const ParsedArguments options =\n            args.parse_arguments(manifest ? CommandInstallMetadataManifest : CommandInstallMetadataClassic);\n\n        const bool dry_run = Util::Sets::contains(options.switches, SwitchDryRun);\n        const bool use_head_version = Util::Sets::contains(options.switches, (SwitchHead));\n        const bool no_downloads = Util::Sets::contains(options.switches, (SwitchNoDownloads));\n        const bool only_downloads = Util::Sets::contains(options.switches, (SwitchOnlyDownloads));\n        const bool no_build_missing = Util::Sets::contains(options.switches, SwitchOnlyBinarycaching);"
+    },
+    {
+      "line": 1478,
+      "excerpt": "                                              var_provider,\n                                              installed_lock,\n                                              std::move(install_plan),\n                                              dry_run ? DryRun::Yes : DryRun::No,\n                                              print_cmake_usage ? PrintUsage::Yes : PrintUsage::No,\n                                              pkgsconfig,\n                                              true,\n                                              skip_install_if_cached);"
+    },
+    {
+      "line": 1532,
+      "excerpt": "            fs.write_contents(pkgsconfig_path, pkgsconfig_contents, VCPKG_LINE_INFO);\n            msg::println(msgWroteNuGetPkgConfInfo, msg::path = pkgsconfig_path);\n        }\n        else if (!dry_run)\n        {\n            compute_all_abis(paths, action_plan, var_provider, status_db);\n        }\n"
+    },
+    {
+      "line": 1537,
+      "excerpt": "            compute_all_abis(paths, action_plan, var_provider, status_db);\n        }\n\n        if (dry_run)\n        {\n            Checks::exit_success(VCPKG_LINE_INFO);\n        }\n"
+    }
+  ],
+  "executed_source": false
+}

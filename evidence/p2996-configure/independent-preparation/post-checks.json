@@ -1,0 +1,66 @@
+{
+  "result": "PASS",
+  "protected_state_unchanged": true,
+  "checks": [
+    {
+      "case": "source-identity",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "returncode": 0,
+      "stdout": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e\n9899759f9004a7df8442ec57000a17e53e6ad5f6\n",
+      "stderr": ""
+    },
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "worktree-identity",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD",
+        "--abbrev-ref",
+        "HEAD",
+        "--git-common-dir"
+      ],
+      "returncode": 0,
+      "stdout": "ad73b79b05c669574649af3c05e282ec417646e1\ncodex/marketplace-native-onboarding\n/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    },
+    {
+      "case": "worktree-status",
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n M docs/p2996-toolchain.md\n M docs/status.md\n?? dev/toolchains/p2996_configure.py\n?? evidence/p2996-configure/\n",
+      "stderr": ""
+    }
+  ],
+  "no_admission_file": true
+}

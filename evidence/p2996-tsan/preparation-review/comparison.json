@@ -1,0 +1,315 @@
+{
+  "result": "PASS",
+  "recorded_at": "2026-10-12T02:03:02.421966+00:00",
+  "candidate_sha256": "0231dad4a490ab673b1fb8ef4e607b8b25d3bc47843aabd9038cb014a3213053",
+  "helper_sha256": "772b0e5eb433bdc5b759c1d2f20da60503a0efc128b256f8263aed705b3f353d",
+  "contract_sha256": "02bb703bc058f2c085289af3cabe1cd4911a90ca94cd48d37a8b3605aac23bc9",
+  "checks": {
+    "candidate": {
+      "exact_snapshots": 9,
+      "maintained_files": {
+        "dev/toolchains/p2996_tsan.py": "772b0e5eb433bdc5b759c1d2f20da60503a0efc128b256f8263aed705b3f353d",
+        "dev/toolchains/tsan_witness.cpp": "fdf915b4bc4242dcb6fe7db025c721fdb1e2a1d797775000b8b88af76f522f7f",
+        "docs/sanitizers.md": "a4e2fb444b5d88aad5dd38bf5d03277c728185d0125d56ec3fec8a8c8de14b9a",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "e756cb8540ddf9b538f7865ae2201527bde0df5a06c0367abb60d151c2871cc7",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "99a910bd44649f1eadb77d7d80e8ec93d710a5567459474cdb00bdc1c99821a3"
+      },
+      "helper_lines": 207,
+      "fixture_lines": 44
+    },
+    "contract_derivation": {
+      "retained_project_inputs": 163,
+      "new_project_inputs": {
+        "dev/toolchains/tsan_witness.cpp": "fdf915b4bc4242dcb6fe7db025c721fdb1e2a1d797775000b8b88af76f522f7f",
+        "evidence/p2996-tsan/source-prerequisite.json": "e780e1e62fe318ede93ac30d4e0ae0234786caf9719aa957218e468a13f987e4",
+        "evidence/p2996-tsan/promotion-postcommit.json": "01decdce6e074335f670aed7de117bdc0559d182af8d2bcec83a3ba25e4f04a2",
+        "dev/toolchains/p2996_asan_promote.py": "88610fe87f9629504f16b66a39d4af755a5a2efa239eacce9ea8adece3f3ea0c",
+        "evidence/p2996-asan-promotion/contract.json": "88b922a84e58f2f9f4aed492aa643c95fd3ed2b460a95b26286e5063a07a094c",
+        "evidence/p2996-asan-promotion/artifact-review.json": "d4433074af9fb62b2404da5e403feb7f4868bde6b95323d80bee09bba6606845",
+        "evidence/p2996-asan-promotion/artifact-inventory.json": "3f8509c7450bb105788834ab92e84e8f34ce823a79bb317c3c3ac01c01834ae0",
+        "evidence/p2996-asan-promotion/operation/qualification.json": "ab09108318e5546021008d4e260ea060c99dcb38f27afd00c0a3c506480f7170",
+        "evidence/p2996-asan-promotion/operation/closure.json": "928cb8a1218b4f73329492fab5e7c93979eb0a4d55d007d1df47eccfa81a5aff"
+      },
+      "retained_source_inputs": 841,
+      "new_small_source_files": {
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/CMakeLists.txt": "8206ce359c8d094c11e493541a245385e42b809c0a9de9112764c9cd4df06989",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_flags.cpp": "11f877207ca4ceab12e1a6167c213bd653231aee327aa15d6fc25e9e6b7f7ba5",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_report.cpp": "d6470534ca0cca7f158212891bf1bdb59f4de98a496cfed896f8e69b2a8eb10c",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_rtl_report.cpp": "9f790d57d3892ec032214bec478e74571c97b41f759ce6fe2680d3dab03699c1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp": "d696667e925cf53c598f99dd53bea38b5c870651ea5ec301859cdac5319c8992"
+      },
+      "new_small_source_bytes": 68710,
+      "total_source_inputs": 846,
+      "tools": 28,
+      "tool_changes": {
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.asan_osx_dynamic.dylib": {
+          "before": "66407a3a537c28815c2dc334da61a11d4145f52703d58fbaf86644d61102cb27",
+          "after": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464"
+        },
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib": {
+          "added": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb"
+        }
+      },
+      "removed_promotion_only_fields": [
+        "after",
+        "before",
+        "repair",
+        "replacement",
+        "replacement_identity",
+        "target",
+        "witnesses"
+      ],
+      "source_excerpts": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+          "first_line": 1593,
+          "last_line": 1606,
+          "claim": "Driver selects TSan dylib",
+          "verification": "current excerpt with inherited full-file digest",
+          "excerpt_sha256": "be45ff6eadadb26d81d0c2a78997ca8035fdf07e9f0abd6c898306884b8de27b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/ToolChains/Darwin.cpp",
+          "first_line": 3730,
+          "last_line": 3754,
+          "claim": "Darwin arm64 supports thread instrumentation",
+          "verification": "current excerpt with inherited full-file digest",
+          "excerpt_sha256": "2bd6020ef37143ffdcabf25b38847df38e9eafacdd0b7ca10b937f535a604126"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Driver/SanitizerArgs.cpp",
+          "first_line": 355,
+          "last_line": 363,
+          "claim": "TSan suppresses standalone UBSan runtime",
+          "verification": "current excerpt with inherited full-file digest",
+          "excerpt_sha256": "07f36e911ac6c7df2aa76c4634538242ab4cdcfadaeb6d43bfffe596af1bcc3f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/CMakeLists.txt",
+          "first_line": 132,
+          "last_line": 152,
+          "claim": "TSan embeds RTUbsan and shared mapping code",
+          "verification": "new small source hash and excerpt",
+          "excerpt_sha256": "8751bffe0222f3bd59f832513ea1576fa1bd526bb688a349a67592727140f2ce"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_flags.cpp",
+          "first_line": 54,
+          "last_line": 111,
+          "claim": "TSan then UBSan common runtime options",
+          "verification": "new small source hash and excerpt",
+          "excerpt_sha256": "3e309a0543cebfcc308d86a879368c9b9bb8651f38f6236ace1a85fa7442710a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_report.cpp",
+          "first_line": 282,
+          "last_line": 288,
+          "claim": "Race diagnostic prefix",
+          "verification": "new small source hash and excerpt",
+          "excerpt_sha256": "e912d8166e3cf394cfc7ab6b690a10a8e4e420fe4d0e5636f77d8b617d979daa"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_rtl_report.cpp",
+          "first_line": 650,
+          "last_line": 668,
+          "claim": "halt_on_error takes fatal path",
+          "verification": "new small source hash and excerpt",
+          "excerpt_sha256": "035845ebc0f8e9872c180a283f093ca79330acc02a5418e570fd2dea52649a18"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp",
+          "first_line": 228,
+          "last_line": 246,
+          "claim": "TSan mapping initialization remains unqualified",
+          "verification": "new small source hash and excerpt",
+          "excerpt_sha256": "be47a94e529acbf9ef85f17ab7ad99001f9b04b126fd805a6437490b38450bd2"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+          "first_line": 219,
+          "last_line": 256,
+          "claim": "Separate installed TSan retains original dyld traversal",
+          "verification": "current excerpt with inherited full-file digest",
+          "excerpt_sha256": "6303a155bc8fd1f368ebd57a31b52ef52a419f02902277b39d13c00e0cc875b0"
+        }
+      ],
+      "tsan_matches_original_text_inventory": true,
+      "installed_binaries_hashed": 0
+    },
+    "prepared_launchers": {
+      "copy_pairs": 2,
+      "files": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-prepared-377grhf1/capacity.py",
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/capacity.py.source",
+          "sha256": "adb015f27852aaeabbecf8531487fc17cd463d70c56acc063ad9daf9e541d857"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-prepared-377grhf1/dispatch.py",
+          "copy": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/dispatch.py.source",
+          "sha256": "17a25bf2bd165e4e884d171fabc14ff1b72d4781d55920698c1e450a947d7aed"
+        }
+      ],
+      "executed": false
+    },
+    "static_source_assertions": {
+      "inherited_functions_equal": [
+        "save",
+        "guard",
+        "run",
+        "interrupted"
+      ],
+      "source_state_equal_to_promotion_runner": true,
+      "protected_import": "p2996_asan_runtime.protected",
+      "editor_import": "p2996_sanitizers.admit_editors",
+      "one_job": 1,
+      "public_compile_baseline_has_no_reflection_flag": true,
+      "expected_cases": {
+        "tsan": {
+          "clean": 0,
+          "race": 86
+        },
+        "tsan-ubsan": {
+          "clean": 0,
+          "race": 86,
+          "overflow": 86
+        }
+      },
+      "candidate_code_imported_or_executed": false
+    },
+    "recorded_checks": {
+      "previous_closure_commands": 14,
+      "previous_closure_returncodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "current_static_returncodes": [
+        0,
+        0,
+        0
+      ],
+      "acceptance_baseline_original_hashes": 19,
+      "scan_files": 15,
+      "raw_returncode": 1,
+      "digest_false_positives": 4,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "static_and_scanner_replayed": false,
+      "historical_false_positive_source_files_rehashed": false
+    },
+    "git_identity": [
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--verify",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "757a72bd22d774d8533b8f831c8ee604ce0109b8\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/bin/git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "codex/marketplace-native-onboarding\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/candidate.json": "0231dad4a490ab673b1fb8ef4e607b8b25d3bc47843aabd9038cb014a3213053",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/contract.json": "02bb703bc058f2c085289af3cabe1cd4911a90ca94cd48d37a8b3605aac23bc9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/candidate-inputs.json": "1d73c00b1cbd071bcd75ab8206861d7d44231661e5d55bc5dda131ad5444c08a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan.py": "772b0e5eb433bdc5b759c1d2f20da60503a0efc128b256f8263aed705b3f353d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/tsan_witness.cpp": "fdf915b4bc4242dcb6fe7db025c721fdb1e2a1d797775000b8b88af76f522f7f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "a4e2fb444b5d88aad5dd38bf5d03277c728185d0125d56ec3fec8a8c8de14b9a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "e756cb8540ddf9b538f7865ae2201527bde0df5a06c0367abb60d151c2871cc7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "99a910bd44649f1eadb77d7d80e8ec93d710a5567459474cdb00bdc1c99821a3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/capacity.py.source": "adb015f27852aaeabbecf8531487fc17cd463d70c56acc063ad9daf9e541d857",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/dispatch.py.source": "17a25bf2bd165e4e884d171fabc14ff1b72d4781d55920698c1e450a947d7aed",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/contract-derivation.json": "194933b4d7a8317051848a14544714679e5ea306f35aa47debb72f33bb1937b1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/contract.json": "88b922a84e58f2f9f4aed492aa643c95fd3ed2b460a95b26286e5063a07a094c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/source-prerequisite.json": "e780e1e62fe318ede93ac30d4e0ae0234786caf9719aa957218e468a13f987e4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/promotion-postcommit.json": "01decdce6e074335f670aed7de117bdc0559d182af8d2bcec83a3ba25e4f04a2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_promote.py": "88610fe87f9629504f16b66a39d4af755a5a2efa239eacce9ea8adece3f3ea0c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/artifact-review.json": "d4433074af9fb62b2404da5e403feb7f4868bde6b95323d80bee09bba6606845",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/artifact-inventory.json": "3f8509c7450bb105788834ab92e84e8f34ce823a79bb317c3c3ac01c01834ae0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/operation/qualification.json": "ab09108318e5546021008d4e260ea060c99dcb38f27afd00c0a3c506480f7170",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/operation/closure.json": "928cb8a1218b4f73329492fab5e7c93979eb0a4d55d007d1df47eccfa81a5aff",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/CMakeLists.txt": "8206ce359c8d094c11e493541a245385e42b809c0a9de9112764c9cd4df06989",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_flags.cpp": "11f877207ca4ceab12e1a6167c213bd653231aee327aa15d6fc25e9e6b7f7ba5",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_report.cpp": "d6470534ca0cca7f158212891bf1bdb59f4de98a496cfed896f8e69b2a8eb10c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_rtl_report.cpp": "9f790d57d3892ec032214bec478e74571c97b41f759ce6fe2680d3dab03699c1",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/tsan/rtl/tsan_platform_mac.cpp": "d696667e925cf53c598f99dd53bea38b5c870651ea5ec301859cdac5319c8992",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/prepared-launchers.json": "fc5a0fb666797907e8c8f05be88c4abcc5013b5d3d16fa9213688cbb8bee929f",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-prepared-377grhf1/capacity.py": "adb015f27852aaeabbecf8531487fc17cd463d70c56acc063ad9daf9e541d857",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-prepared-377grhf1/dispatch.py": "17a25bf2bd165e4e884d171fabc14ff1b72d4781d55920698c1e450a947d7aed",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizers.py": "d6ab78097ac7cb12705d97de750f8f11d919fb006a7ff4de9b2407f829411918",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/operation/qualification.json": "b0a50b11252a6fad2a204603c0f40bec57a1333a9b85a5896e659ec50c65d83c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/pre-review-static.json": "976a8c81be2a282b26d9d130ee1f0da833702dcdc6fc38024e567f35a24a4b61",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan/pre-review-secret-scan.json": "0552d4eebe916d3ddee5914b3f6b4c7270d45412bc747f3ebc7ff19eaae15c8e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-scan-azc5s6_1/scan.py": "baa3a4022aced9fea09f1d5d5930ca531a61b4770fd4300ad406f6d4d0f98eda"
+  },
+  "not_run": [
+    "candidate execution or import",
+    "compiler or sanitizer runtime",
+    "capacity or dispatch execution",
+    "full guards or 846-source traversal",
+    "installed runtime or other binary hashes",
+    "lease acquisition or process/service/container probes",
+    "network or global changes",
+    "source/build/prefix writes",
+    "scanner or baseline replay",
+    "fresh model session",
+    "full OCI/Claude acceptance",
+    "dependency instrumentation, coverage or matrix execution"
+  ]
+}

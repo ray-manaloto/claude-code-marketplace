@@ -1,0 +1,52 @@
+import fcntl,hashlib,json,os,shutil,sys
+from datetime import datetime,timezone
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace');EV=ROOT/'evidence/p2996-tsan-promotion';PRIVATE=Path(__file__).parent
+sys.path.insert(0,str(ROOT/'dev/toolchains'))
+import p2996_tsan_runtime as tsan
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def load(p):return json.loads(p.read_text())
+def save(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+c=load(EV/'contract.json');admission=load(EV/'admission.json');execution=load(EV/'native-execution.json');directory=Path(admission['run_directory']);q=load(directory/'qualification.json');assert execution['returncode']==0
+assert q['state']=='PASS: installed TSan promotion and five sanitizer witnesses' and q['protected_state_matches_expected'] and q['lease_released'] and q['mutation_started']
+assert not q.get('recovery') and not q.get('recovery_error') and not q.get('preservation_error')
+assert q['helper_sha256']==admission['helper_sha256']==sha(ROOT/'dev/toolchains/p2996_tsan_promote.py')
+assert admission['contract_sha256']==sha(EV/'contract.json') and q['admission_sha256']==sha(EV/'admission.json')
+expected={'tsan-clean':0,'tsan-race':86,'tsan-ubsan-clean':0,'tsan-ubsan-race':86,'tsan-ubsan-overflow':86};seen={}
+for row in q['commands']:
+ assert row['returncode']==row['expected_returncode']==expected.get(row['case'],0),row['case']
+ if row['case'] in expected:seen[row['case']]=row['returncode'];assert (directory/(row['case']+'.stdout')).read_text()=='reflection value=43, members=1\n'
+ for log in row['logs']:assert sha(Path(log['path']))==log['sha256']
+assert seen==expected and len({row['case'] for row in q['commands']})==len(q['commands'])
+for when in ('before','after'):
+ assert sha(directory/f'source-{when}-diff.stdout')==c['source_provenance']['diff_sha256']
+ assert (directory/f'source-{when}-status.stdout').read_bytes()==(ROOT/c['source_provenance']['status']).read_bytes()
+ assert (directory/f'default-{when}.stdout').read_bytes()==(ROOT/c['default_profile']).read_bytes()
+artifacts=[]
+for kind,path,wanted in [('installed-runtime',Path(c['target']),c['after']),('original-backup',Path(q['backup']['path']),c['before']),('qualified-private-runtime',Path(c['replacement']),c['replacement_identity'])]:
+ actual=tsan.identity(path);assert actual==wanted;artifacts.append({'kind':kind,'path':str(path),**actual})
+for mode,row in c['witnesses'].items():
+ p=Path(row['path']);assert sha(p)==row['sha256'];artifacts.append({'kind':mode+'-binary','path':str(p),'sha256':row['sha256'],'bytes':p.stat().st_size})
+processes=[]
+for case,pid in [('native-helper',execution['pid'])]+[(row['case'],row['pid']) for row in q['commands']]:
+ try:os.kill(pid,0);absent=False
+ except ProcessLookupError:absent=True
+ processes.append({'case':case,'pid':pid,'absent':absent});assert absent,(case,pid)
+lock=Path.home()/'.local/state/dotfiles/heavy-gate.lock';before=lock.read_bytes()
+with lock.open('rb') as f:
+ fcntl.flock(f.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB);fcntl.flock(f.fileno(),fcntl.LOCK_UN)
+assert lock.read_bytes()==before
+texts=[directory/name for name in ('qualification.json','private.sb','mutation.sb')]+[Path(log['path']) for row in q['commands'] for log in row['logs']]
+launch=Path(execution['private_launch_directory']);texts += [launch/name for name in ('launch.json','execution.json','stdout','stderr')]
+assert len(set(texts))==len(texts)
+rows=[{'source':str(p),'sha256':sha(p),'bytes':p.stat().st_size,'text':p.read_text()} for p in texts]
+receipt={'encoding':'UTF-8, exact source bytes','files':rows};save(PRIVATE/'text-receipts.json',receipt)
+closure={'recorded_at':datetime.now(timezone.utc).isoformat(),'native_returncode':execution['returncode'],'native_execution_sha256':sha(EV/'native-execution.json'),'qualification_sha256':sha(directory/'qualification.json'),'retained_text_files':len(texts),'text_receipts_sha256':sha(PRIVATE/'text-receipts.json'),'command_count':len(q['commands']),'command_outcomes':[{'case':row['case'],'returncode':row['returncode']} for row in q['commands']],'processes':processes,'lease_probe':{'free':True,'contents_unchanged':True},'protected_state_matches_expected':True,'installed_identity':q['installed_identity'],'source_and_default_outputs_match':True,'state':'CLOSED PASS: one installed TSan promotion and five sanitizer witnesses'}
+save(PRIVATE/'closure.json',closure);save(PRIVATE/'artifact-inventory.json',{'artifacts':artifacts,'qualification_sha256':sha(directory/'qualification.json'),'state':'PASS: exact installed runtime, backup, retained candidate and two witness binaries'})
+operation=EV/'operation';operation.mkdir();pairs=[]
+for source,name in [(directory/'qualification.json','qualification.json'),(PRIVATE/'text-receipts.json','text-receipts.json'),(PRIVATE/'closure.json','closure.json'),(EV/'admission.json','admission.json'),(EV/'native-launch.json','native-launch.json'),(EV/'native-execution.json','native-execution.json')]:
+ target=operation/name;shutil.copyfile(source,target);assert sha(source)==sha(target);pairs.append({'source':str(source),'destination':str(target),'sha256':sha(target)})
+shutil.copyfile(PRIVATE/'artifact-inventory.json',EV/'artifact-inventory.json');pairs.append({'source':str(PRIVATE/'artifact-inventory.json'),'destination':str(EV/'artifact-inventory.json'),'sha256':sha(EV/'artifact-inventory.json')})
+shutil.copyfile(Path(__file__),operation/'collect.py.source');pairs.append({'source':str(Path(__file__)),'destination':str(operation/'collect.py.source'),'sha256':sha(operation/'collect.py.source')})
+save(operation/'copy-manifest.json',{'files':pairs})
+print(json.dumps({'state':closure['state'],'commands':len(q['commands']),'text_files':len(texts),'artifacts':len(artifacts),'qualification_sha256':sha(directory/'qualification.json'),'closure_sha256':sha(PRIVATE/'closure.json'),'artifact_inventory_sha256':sha(EV/'artifact-inventory.json')}))

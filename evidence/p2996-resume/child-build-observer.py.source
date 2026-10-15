@@ -1,0 +1,157 @@
+from pathlib import Path
+import datetime, hashlib, json, os, re, subprocess, sys, time
+
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+RUN=Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-resume-20261011T065131Z')
+QUAL=RUN/'qualification.json'
+ROOT_PID=42081
+EXPECTED_ROOT_PPID=42011
+EXPECTED_ROOT_COMM='/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake'
+EXPECTED_ROOT_START='Sun Oct 11 01:51:56 2026'
+ROOT_START_RECEIPT='2026-10-11T06:51:56.183281+00:00'
+MAX_SECONDS=1800
+INTERVAL_SECONDS=5
+OUT=Path(__file__).with_suffix('.jsonl')
+START=time.monotonic()
+seen={}
+expired=set()
+query_counts={}
+probe_errors=[]
+ticks=0
+last_qual_state=None
+last_qual_signature=None
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def digest(data):return hashlib.sha256(data).hexdigest()
+def command(argv):
+ start=now();clock=time.monotonic()
+ try:
+  proc=subprocess.run(argv,cwd=ROOT,capture_output=True,timeout=8)
+  out=proc.stdout;err=proc.stderr;rc=proc.returncode;timed=False
+ except subprocess.TimeoutExpired as exc:
+  out=exc.stdout or b'';err=exc.stderr or b'';rc=None;timed=True
+ name=' '.join(argv[:2]);counts=query_counts.setdefault(name,{})
+ counts[str(rc)]=counts.get(str(rc),0)+1
+ record={'argv':argv,'started_at':start,'finished_at':now(),'returncode':rc,'timed_out':timed,'elapsed_seconds':round(time.monotonic()-clock,6),'stdout_sha256':digest(out),'stderr_sha256':digest(err),'stdout_bytes':len(out),'stderr_bytes':len(err)}
+ return record,out.decode(errors='replace')
+fd=os.open(OUT,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+stream=os.fdopen(fd,'w',buffering=1)
+def emit(kind,**values):
+ obj={'event':kind,'at':now(),**values}
+ stream.write(json.dumps(obj,sort_keys=True)+'\n');stream.flush();os.fsync(stream.fileno())
+ public={k:v for k,v in obj.items() if k not in ['command_text','checks','ancestry','qualification_build_argv','identities','qualification']}
+ print(json.dumps(public,sort_keys=True),flush=True)
+def read_qualification():
+ data=QUAL.read_bytes();obj=json.loads(data)
+ rows=[r for r in obj.get('commands',[]) if r.get('case')=='llvm-build']
+ if len(rows)!=1:raise ValueError('Expected exactly one llvm-build row')
+ row=rows[0]
+ if row.get('pid')!=ROOT_PID or row.get('started_at')!=ROOT_START_RECEIPT:raise ValueError('Qualification build identity changed')
+ return obj,row,{'path':str(QUAL),'sha256':digest(data),'bytes':len(data)}
+def census():
+ rec,out=command(['/bin/ps','-axo','pid=,ppid=,comm='])
+ if rec['returncode']!=0:return rec,None
+ procs={}
+ for line in out.splitlines():
+  cols=line.strip().split(None,2)
+  if len(cols)==3:
+   try:procs[int(cols[0])]={'pid':int(cols[0]),'ppid':int(cols[1]),'comm':cols[2]}
+   except ValueError:continue
+ return rec,procs
+def ancestry(pid,procs):
+ chain=[];checked=set();current=pid
+ while current in procs and current not in checked:
+  checked.add(current);chain.append(procs[current])
+  if current==ROOT_PID:return chain
+  current=procs[current]['ppid']
+ return None
+def selected_name(comm):
+ return os.path.basename(comm) in ['cmake','ninja']
+def job_limit(command_text):
+ m=re.search(r'(?:^|\s)-j\s*(\d+)(?:\s|$)',command_text)
+ if m:return {'kind':'native_ninja_jobs','value':int(m.group(1)),'flag':m.group(0).strip()}
+ m=re.search(r'(?:^|\s)--parallel(?:=|\s+)(\d+)(?:\s|$)',command_text)
+ if m:return {'kind':'cmake_build_parallel','value':int(m.group(1)),'flag':m.group(0).strip()}
+ return None
+def end_summary(reason,row=None,qualification=None,checks=None):
+ returncode=row.get('returncode',row.get('rc')) if row else None
+ nested=[v for v in seen.values() if v['role']=='nested_build_process']
+ root_ninja=[v for v in seen.values() if v['role']=='outer_ninja']
+ emit('observer_complete',reason=reason,observer_elapsed_seconds=round(time.monotonic()-START,3),poll_count=ticks,root_native_returncode=returncode,root_exit_code_status='OBSERVED_IN_QUALIFICATION' if returncode is not None else 'UNVERIFIED',qualification=qualification,checks=checks or [],query_returncode_counts=query_counts,process_identity_count=len(seen),outer_ninja_observations=[{'pid':v['pid'],'lstart':v['lstart'],'job_limit':v['job_limit']} for v in root_ninja],nested_observations=[{'pid':v['pid'],'ppid':v['ppid'],'lstart':v['lstart'],'executable':v['executable'],'job_limit':v['job_limit']} for v in nested],child_ninja_job_limit_status='OBSERVED' if any(v['executable']=='ninja' and v['job_limit'] for v in nested) else 'UNVERIFIED: no child Ninja job-limit argument captured',limitations=['Five-second polling can miss short-lived processes.','Only ps native command text is observed; argv boundaries are not reconstructed.','No environment was read; qualification assignments and native child -j flags are separate evidence.','Disappearance does not reveal an individual child exit code.','Root PID, parent, executable and lstart are pinned; child lstart and identity are checked around argument capture.'],scope={'compiler_configure_build_test_package_invocations':0,'signals_or_service_control':0,'lease_acquire_or_release':0,'repository_source_build_helper_global_writes':0,'owned_private_script':str(Path(__file__)),'owned_private_receipt':str(OUT)})
+try:
+ initial_obj,initial_row,initial_ref=read_qualification()
+ identity={}
+ identity_checks=[]
+ for key,args in [('checkout',['--show-toplevel']),('HEAD',['--verify','HEAD']),('branch',['--abbrev-ref','HEAD']),('common_git_directory',['--git-common-dir'])]:
+  rec,out=command(['/usr/bin/git','-c','core.fsmonitor=false','rev-parse',*args]);identity_checks.append(rec);identity[key]=out.strip()
+ if identity['checkout']!=str(ROOT):raise ValueError('Checkout identity mismatch')
+ emit('observer_started',root_pid=ROOT_PID,root_ppid=EXPECTED_ROOT_PPID,root_executable=EXPECTED_ROOT_COMM,root_lstart=EXPECTED_ROOT_START,root_started_at=ROOT_START_RECEIPT,qualification=initial_ref,qualification_state=initial_obj.get('state'),qualification_build_argv=initial_row.get('argv'),identity=identity,checks=identity_checks,poll_seconds=INTERVAL_SECONDS,max_seconds=MAX_SECONDS,script_sha256=digest(Path(__file__).read_bytes()),receipt=str(OUT),existing_outer_ninja_pid_reported_by_parent=42082)
+ while time.monotonic()-START<MAX_SECONDS:
+  ticks+=1
+  try:obj,row,qref=read_qualification()
+  except (OSError,ValueError,json.JSONDecodeError) as exc:
+   emit('qualification_identity_or_read_failure',error_type=type(exc).__name__)
+   end_summary('qualification_identity_or_read_failure');break
+  state=obj.get('state');rc=row.get('returncode',row.get('rc'))
+  signature=(state,rc)
+  if signature!=last_qual_signature:
+   emit('qualification_state',state=state,root_native_returncode=rc,qualification=qref)
+   last_qual_signature=signature
+  if rc is not None:
+   end_summary('native_build_returncode_observed',row,qref);break
+  crecord,procs=census()
+  if procs is None:
+   emit('census_failed',checks=[crecord])
+   end_summary('census_failure',row,qref,[crecord]);break
+  root=procs.get(ROOT_PID)
+  rstart_record,rstart=command(['/bin/ps','-p',str(ROOT_PID),'-o','lstart='])
+  if root is None or rstart_record['returncode']!=0:
+   try:obj,row,qref=read_qualification()
+   except (OSError,ValueError,json.JSONDecodeError):pass
+   emit('root_exit_observed',root_pid=ROOT_PID,checks=[crecord,rstart_record],qualification=qref,root_native_returncode=row.get('returncode',row.get('rc')))
+   end_summary('root_process_ended',row,qref,[crecord,rstart_record]);break
+  if root['ppid']!=EXPECTED_ROOT_PPID or root['comm']!=EXPECTED_ROOT_COMM or rstart.strip()!=EXPECTED_ROOT_START:
+   emit('root_identity_changed',root_pid=ROOT_PID,observed_parent=root['ppid'],observed_executable_sha256=digest(root['comm'].encode()),observed_lstart=rstart.strip(),checks=[crecord,rstart_record])
+   end_summary('root_identity_changed_stop_to_avoid_pid_reuse',row,qref,[crecord,rstart_record]);break
+  candidates=[]
+  for pid,proc in procs.items():
+   if selected_name(proc['comm']):
+    chain=ancestry(pid,procs)
+    if chain is not None:candidates.append((pid,proc,chain))
+  current_keys=set()
+  for pid,proc,chain in candidates:
+   lrec,ltext=command(['/bin/ps','-p',str(pid),'-o','lstart='])
+   if lrec['returncode']!=0:continue
+   lstart=ltext.strip();key=(pid,lstart,proc['comm']);current_keys.add(key)
+   if key in seen:continue
+   verify_rec,verify_out=command(['/bin/ps','-p',str(pid),'-o','pid=,ppid=,comm='])
+   parts=verify_out.strip().split(None,2)
+   if verify_rec['returncode']!=0 or len(parts)!=3 or parts!=[str(pid),str(proc['ppid']),proc['comm']]:continue
+   argrec,argtext=command(['/bin/ps','-ww','-p',str(pid),'-o','args='])
+   afterrec,aftertext=command(['/bin/ps','-p',str(pid),'-o','lstart='])
+   if argrec['returncode']!=0 or afterrec['returncode']!=0 or aftertext.strip()!=lstart:
+    emit('owned_candidate_vanished_before_stable_capture',pid=pid,lstart=lstart,executable=os.path.basename(proc['comm']),checks=[crecord,lrec,verify_rec,argrec,afterrec]);continue
+   executable=os.path.basename(proc['comm']);text=argtext.strip()
+   if not text.startswith(proc['comm']) and not text.startswith(executable):
+    emit('owned_candidate_command_identity_unverified',pid=pid,lstart=lstart,executable=executable,checks=[crecord,lrec,verify_rec,argrec,afterrec]);continue
+   if pid==ROOT_PID:role='outer_cmake_build'
+   elif executable=='ninja' and proc['ppid']==ROOT_PID:role='outer_ninja'
+   elif executable=='cmake' and '--build' not in text:role='nested_cmake_other'
+   else:role='nested_build_process'
+   item={'pid':pid,'ppid':proc['ppid'],'lstart':lstart,'executable':executable,'role':role,'first_seen_at':now(),'job_limit':job_limit(text),'command_text':text}
+   seen[key]=item
+   emit('new_owned_ninja_or_cmake',**item,ancestry=list(reversed(chain)),checks=[crecord,rstart_record,lrec,verify_rec,argrec,afterrec],cmake_build_invocation='--build' in text)
+  for key,item in seen.items():
+   if key not in current_keys and key not in expired:
+    expired.add(key);emit('owned_process_disappeared',pid=item['pid'],lstart=item['lstart'],role=item['role'],native_returncode='UNVERIFIED; observer is not the parent')
+  remaining=MAX_SECONDS-(time.monotonic()-START)
+  if remaining>0:time.sleep(min(INTERVAL_SECONDS,remaining))
+ else:
+  try:obj,row,qref=read_qualification()
+  except (OSError,ValueError,json.JSONDecodeError):row=None;qref=None
+  end_summary('thirty_minute_observation_bound',row,qref)
+except Exception as exc:
+ emit('observer_error',error_type=type(exc).__name__)
+ end_summary('observer_error')
+ raise
+finally:
+ stream.close()

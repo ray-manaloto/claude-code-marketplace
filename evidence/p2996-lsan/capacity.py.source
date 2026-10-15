@@ -1,0 +1,46 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib, json, os, re, shutil, subprocess, sys, time
+ROOT = Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace")
+sys.path.insert(0, str(ROOT / "dev/toolchains"))
+from gcc_install import census
+from mise_runtime import function
+HELPER = ROOT / "dev/toolchains/p2996_sanitizers.py"
+CONTRACT = ROOT / "evidence/p2996-lsan/contract.json"
+assert hashlib.sha256(HELPER.read_bytes()).hexdigest() == 'd6ab78097ac7cb12705d97de750f8f11d919fb006a7ff4de9b2407f829411918'
+assert hashlib.sha256(CONTRACT.read_bytes()).hexdigest() == 'cfafed1f9ba63cb65cba2cab852b44c2a49d4ee03a4b0472a286d5e36ecd42d3'
+admit_editors = function(HELPER, "admit_editors", globals())
+editor_policy = json.loads(CONTRACT.read_text())["editor_services"]
+assert hashlib.sha256((ROOT / 'dev/toolchains/p2996_lsan.py').read_bytes()).hexdigest() == '594cbab175138f6c8aba936ebdcf2e09a0bc1fecc55863258d27be09f81249f6'
+assert __debug__
+os.umask(0o077)
+directory = Path(sys.argv[1]); directory.mkdir(exist_ok=False)
+report = {"recorded_at": datetime.now(timezone.utc).isoformat(), "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "commands": [], "held_lease": False, "native_operation_started": False}
+def run(case, argv, timeout):
+    start = time.monotonic(); p = subprocess.run(argv, text=True, capture_output=True, timeout=timeout)
+    logs = []
+    for suffix, value in (("stdout", p.stdout), ("stderr", p.stderr)):
+        path = directory / (case + "." + suffix); path.write_text(value)
+        logs.append({"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+    report["commands"].append({"case": case, "argv": argv, "returncode": p.returncode, "timeout_seconds": timeout, "elapsed_seconds": time.monotonic()-start, "logs": logs})
+    assert p.returncode == 0, case
+    return p.stdout
+try:
+    report["writer_census"] = census()
+    rows = run("processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="], 15).splitlines()
+    active = [l for l in rows if re.fullmatch(r"(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|ld|clangd|clang-tidy|include-what-you-use|vcpkg", Path(l.split(maxsplit=2)[-1]).name)]
+    report.update(active_build_processes=active, cpus=os.cpu_count(), load=os.getloadavg(), free_bytes=shutil.disk_usage(directory).free, total_cpu_percent=sum(float(l.split()[1]) for l in rows))
+    docker = "/Applications/Docker.app/Contents/Resources/bin/docker"
+    report["docker_context"] = run("docker-context", [docker,"context","show"],15).strip()
+    report["containers"] = run("docker-census",[docker,"ps","--format","{{.ID}}\t{{.Image}}"],15).splitlines()
+    report["container_cpu_percent"] = sum(float(json.loads(l)["CPUPerc"].rstrip("%")) for l in run("docker-stats",[docker,"stats","--no-stream","--format","{{json .}}"],20).splitlines())
+    report["admitted_editor_services"] = admit_editors(active, run, editor_policy)
+    assert report["free_bytes"] >= 8 * 1024**3
+    assert report["load"][0] <= 2 * report["cpus"] and report["total_cpu_percent"] <= 75 * report["cpus"]
+    assert report["container_cpu_percent"] <= 50 * report["cpus"]
+    report["state"] = "PASS"
+except BaseException as error:
+    report.update(state="FAIL",error=repr(error)); raise
+finally:
+    (directory/"capacity.json").write_text(json.dumps(report,indent=2)+"\n")
+    print(json.dumps({"state":report["state"],"receipt":str(directory/"capacity.json")}))

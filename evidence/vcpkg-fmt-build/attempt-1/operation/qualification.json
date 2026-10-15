@@ -1,0 +1,412 @@
+{
+  "state": "FAIL",
+  "helper_sha256": "1d1f90acbbbd5d9b1bc83d908203efd206f5cba9a191209cbf5fc6c90e4e1843",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T21:19:35.464687+00:00",
+      "pid": 98745,
+      "returncode": 0,
+      "elapsed_seconds": 0.011879374971613288,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/project-head.stdout",
+          "sha256": "3d578eca1b4cf7049b427ec98775ff00bd84b39a3fb33e953d54e4f62b9b0921"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T21:19:35.477965+00:00",
+      "pid": 98746,
+      "returncode": 0,
+      "elapsed_seconds": 0.1063397501129657,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/default-before.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T21:19:35.590155+00:00",
+      "pid": 98750,
+      "returncode": 0,
+      "elapsed_seconds": 0.05662266700528562,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/capacity-processes.stdout",
+          "sha256": "c1c1c3703ed383479de1fe0fd1bf602814a315e5a72f79ded51c0db2807e5d15"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-11T21:19:35.651924+00:00",
+      "pid": 98752,
+      "returncode": 0,
+      "elapsed_seconds": 0.021966999862343073,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-11T21:19:35.675483+00:00",
+      "pid": 98924,
+      "returncode": 0,
+      "elapsed_seconds": 0.036671833135187626,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-11T21:19:35.713735+00:00",
+      "pid": 98925,
+      "returncode": 0,
+      "elapsed_seconds": 1.043508708011359,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-stats.stdout",
+          "sha256": "16777ec7b361564e63a6b5a9cfa41f44a238426471e920fe6968b6e4075bb8ae"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "private-write",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "from pathlib import Path;import sys;Path(sys.argv[1]).write_text('private\\n')",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/allowed"
+      ],
+      "started_at": "2026-10-11T21:19:47.864236+00:00",
+      "pid": 99249,
+      "returncode": 0,
+      "elapsed_seconds": 0.029252500040456653,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private-write.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private-write.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "outside-write",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import errno,socket,sys\nfrom pathlib import Path\ntry:\n if sys.argv[1] == 'network':\n  s=socket.socket();s.settimeout(2);s.connect(('127.0.0.1',9))\n else: Path(sys.argv[2]).write_text('forbidden')\nexcept OSError as e:\n if e.errno not in (errno.EPERM,errno.EACCES): raise\n print('DENIED:'+str(e.errno));sys.exit(73)\nsys.exit(74)\n",
+        "write",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z-outside-control/sentinel"
+      ],
+      "started_at": "2026-10-11T21:19:47.894747+00:00",
+      "pid": 99250,
+      "returncode": 73,
+      "elapsed_seconds": 0.0313271670602262,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/outside-write.stdout",
+          "sha256": "b651b7d59d82fe3a6f5fa430beb16aec77d934190448c82e985f8b6248708450"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/outside-write.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 73,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "symlink-write",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import errno,socket,sys\nfrom pathlib import Path\ntry:\n if sys.argv[1] == 'network':\n  s=socket.socket();s.settimeout(2);s.connect(('127.0.0.1',9))\n else: Path(sys.argv[2]).write_text('forbidden')\nexcept OSError as e:\n if e.errno not in (errno.EPERM,errno.EACCES): raise\n print('DENIED:'+str(e.errno));sys.exit(73)\nsys.exit(74)\n",
+        "write",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/escape/new"
+      ],
+      "started_at": "2026-10-11T21:19:47.927510+00:00",
+      "pid": 99251,
+      "returncode": 73,
+      "elapsed_seconds": 0.031266791047528386,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/symlink-write.stdout",
+          "sha256": "b651b7d59d82fe3a6f5fa430beb16aec77d934190448c82e985f8b6248708450"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/symlink-write.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 73,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "network-denied",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "-c",
+        "import errno,socket,sys\nfrom pathlib import Path\ntry:\n if sys.argv[1] == 'network':\n  s=socket.socket();s.settimeout(2);s.connect(('127.0.0.1',9))\n else: Path(sys.argv[2]).write_text('forbidden')\nexcept OSError as e:\n if e.errno not in (errno.EPERM,errno.EACCES): raise\n print('DENIED:'+str(e.errno));sys.exit(73)\nsys.exit(74)\n",
+        "network",
+        "None"
+      ],
+      "started_at": "2026-10-11T21:19:47.960204+00:00",
+      "pid": 99252,
+      "returncode": 73,
+      "elapsed_seconds": 0.0312303330283612,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/network-denied.stdout",
+          "sha256": "b651b7d59d82fe3a6f5fa430beb16aec77d934190448c82e985f8b6248708450"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/network-denied.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 73,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "p2996-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T21:19:47.993098+00:00",
+      "pid": 99253,
+      "returncode": 0,
+      "elapsed_seconds": 0.09023058298043907,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/p2996-profile.stdout",
+          "sha256": "9b2f8ed032ab499b1163f236170fd47da7e80a435df8180e3e11b16468a334fe"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/p2996-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "arm64-osx-p2996-static",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/vcpkg/vcpkg",
+        "--disable-metrics",
+        "--vcpkg-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/vcpkg",
+        "--downloads-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/downloads",
+        "--x-manifest-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/manifest",
+        "install",
+        "--triplet=arm64-osx-p2996-static",
+        "--host-triplet=arm64-osx",
+        "--overlay-triplets=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets",
+        "--no-downloads",
+        "--x-wait-for-lock",
+        "--feature-flags=-binarycaching,compilertracking",
+        "--debug",
+        "--x-registries-cache=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/registries",
+        "--x-install-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/arm64-osx-p2996-static/installed",
+        "--x-buildtrees-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/arm64-osx-p2996-static/buildtrees",
+        "--x-packages-root=/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/arm64-osx-p2996-static/packages"
+      ],
+      "started_at": "2026-10-11T21:19:50.467728+00:00",
+      "pid": 99308,
+      "returncode": 0,
+      "elapsed_seconds": 8.11959358304739,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/arm64-osx-p2996-static.stdout",
+          "sha256": "206c07f10dd9bae8188639d21580d26b14e3a9fcedc2fb450d784eafae4bacd3"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/arm64-osx-p2996-static.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 600
+    }
+  ],
+  "cells": {},
+  "admission_sha256": "ac973aa7fa8ed3c932af4992f003231964d7bc1110d187751ce608fc739cfbec",
+  "writer_census_before": {
+    "at": "2026-10-11T21:19:35.464406+00:00",
+    "processes": [],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "capacity": {
+    "active": [],
+    "load": [
+      7.36572265625,
+      6.17529296875,
+      6.5810546875
+    ],
+    "cpus": 12,
+    "free_bytes": 72570953728,
+    "total_cpu_percent": 340.4,
+    "container_cpu_percent": 3.51
+  },
+  "source_entries": 17644,
+  "confinement": {
+    "profile_sha256": "67c56fd2ccf6ff6572b615f6f16b2b93a5cc6ae1c541f5d92c75344a4a3f21d1",
+    "allowed_inherited_fds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "environments": {
+    "p2996": {
+      "VCPKG_ROOT": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/vcpkg",
+      "VCPKG_DOWNLOADS": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/downloads",
+      "X_VCPKG_REGISTRIES_CACHE": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/registries",
+      "XDG_CACHE_HOME": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/cache",
+      "TMPDIR": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-fmt-build-20261011T211903Z/tmp",
+      "VCPKG_FORCE_SYSTEM_BINARIES": "1",
+      "VCPKG_DISABLE_METRICS": "1",
+      "HOME": "/Users/rmanaloto",
+      "USER": "rmanaloto",
+      "LANG": "en_US.UTF-8",
+      "PATH": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin:/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2:/opt/homebrew/Cellar/pkgconf/3.0.8/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      "PKG_CONFIG": "/opt/homebrew/bin/pkg-config",
+      "GIT_CONFIG_GLOBAL": "/dev/null",
+      "GIT_CONFIG_SYSTEM": "/dev/null",
+      "GIT_TERMINAL_PROMPT": "0",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "VCPKG_MAX_CONCURRENCY": "1",
+      "CMAKE_BUILD_PARALLEL_LEVEL": "1",
+      "MAKEFLAGS": "-j1",
+      "MARKETPLACE_CPP_LANE": "p2996",
+      "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+    }
+  },
+  "error": "AssertionError()",
+  "protected_state_unchanged": true
+}

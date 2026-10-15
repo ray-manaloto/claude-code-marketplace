@@ -1,0 +1,362 @@
+{
+  "Claude_baseline_hashes_reported": 19,
+  "binary_reads": 0,
+  "candidate_bindings": 6,
+  "candidate_inputs_sha256": "48a04b572d1a92455db8083efc3efb4d3ac79467369faf86a8f21020f52ee189",
+  "candidate_sha256": "fee7bb9cb6679586df72223db0471f01bc63a7a2f7caf18e522e08156a8fe587",
+  "contract_sha256": "f7a4bae70a2437c667435040877b2e7da90d83249982e707ee6dfcc6d3e5b0fb",
+  "control": {
+    "child_command": [
+      "/usr/bin/true"
+    ],
+    "command_record": {
+      "argv": [
+        "/usr/bin/true"
+      ],
+      "case": "command-binding-control",
+      "elapsed_seconds": 0.0038884999230504036,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz/command-binding-control.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz/command-binding-control.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "pid": 56096,
+      "returncode": 0,
+      "started_at": "2026-10-12T04:01:50.339195+00:00"
+    },
+    "private_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz",
+    "returncode": 0,
+    "runner_sha256": "9d4e73dab0c4884349c7fc166a0b09a0d01dbf1573de50777341ac5144867af4",
+    "scope": "Private harmless command only; no installed mutation, lease or sanitizer witness",
+    "source_sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "state": "PASS: extracted command wrapper bindings"
+  },
+  "control_reexecuted": false,
+  "control_script_retained": false,
+  "direct_source_tool_build_inventory_rehashes": 0,
+  "findings": [],
+  "four_file_deltas": {
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "--- before/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n+++ retry/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n@@ -1570,3 +1570,16 @@\n   recorded the two witness hashes but did not verify them at execution time.\n   The runner now checks exact byte lengths and SHA-256 in its repeated guard.\n   A focused review of the corrected candidate is pending.\n+- The focused correction review passed without findings. Fresh capacity\n+  admission passed, but the first native dispatch exited 1 before recording\n+  any child command or entering the lease. The extracted command wrapper raised\n+  `NameError: datetime` because the new runner lacked three imports its copied\n+  global scope must supply. The failure-path guard passed, the installed TSan\n+  digest and mode stayed original, and the owned dispatch PID ended. An\n+  unrelated VM process had the lease file open during the closure probe; an\n+  open descriptor alone does not prove an active flock. No installed mutation\n+  occurred.\n+- Restored `datetime`, `time` and `subprocess` in the runner. A private\n+  `/usr/bin/true` command through the extracted wrapper exited 0 with empty\n+  logs. The corrected runner requires another frozen review and fresh admission\n+  before a native retry.\n",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "--- before/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n+++ retry/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n@@ -91,7 +91,7 @@\n | 14b | P2996 TSan and TSan+UBSan witnesses | Ordered clean case; data-race and overflow diagnostics; exact runtimes | Failed; closure independently verified |\n | 14b1 | Private TSan startup repair trial | Exact TSan link recipe; original/patch A/B witnesses; no installed write | Complete |\n | 14b2a | Installed TSan guard preparation | Composed ASan/TSan inventory overlay and private exact-file controls | Complete |\n-| 14b2b | Guarded installed TSan promotion | Exact prior/next identities, fresh admission and five installed-path witnesses | Prepared; review pending |\n+| 14b2b | Guarded installed TSan promotion | Exact prior/next identities, fresh admission and five installed-path witnesses | Initial dispatch failed before mutation; corrected retry review pending |\n \n Onboarding is committed at `67bd4827532864ecb934050dde6c0c11b92f9939`.\n Its post-commit baseline check exited 0 and the worktree was clean.\n",
+    "dev/toolchains/p2996_tsan_promote.py": "--- before/dev/toolchains/p2996_tsan_promote.py\n+++ retry/dev/toolchains/p2996_tsan_promote.py\n@@ -1,6 +1,7 @@\n \"\"\"Promote one qualified TSan library and verify its installed loader path.\"\"\"\n \n import argparse\n+from datetime import datetime, timezone\n import importlib.util\n import io\n import json\n@@ -9,7 +10,9 @@\n import re\n import shutil\n import signal\n+import subprocess\n import sys\n+import time\n \n from gcc_install import ROOT, census, digest, read\n from mise_runtime import function, load\n",
+    "docs/sanitizers.md": "--- before/docs/sanitizers.md\n+++ retry/docs/sanitizers.md\n@@ -140,3 +140,9 @@\n It then requires two clean runs and three deliberate diagnostic runs through\n the normal installed loader path. Preparation review and native execution are\n still pending; the installed TSan library remains unchanged.\n+The first admitted dispatch stopped before the lease and before any installed\n+write because the runner omitted imports required by its extracted command\n+wrapper. [Failure closure](../evidence/p2996-tsan-promotion/initial-failure/closure.json)\n+confirms zero child commands, the original installed digest and an ended owned\n+process. The imports are restored and the wrapper passed a private harmless\n+command control; native installed-path qualification remains pending.\n"
+  },
+  "git": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "--show-toplevel"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "codex/marketplace-native-onboarding\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "a3de6bc78da3d5717c5c1367585f396908977e9d\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n"
+    }
+  ],
+  "guard_call_lines": [
+    107,
+    142,
+    168,
+    198,
+    210
+  ],
+  "head": "a3de6bc78da3d5717c5c1367585f396908977e9d",
+  "helper_sha256": "9d4e73dab0c4884349c7fc166a0b09a0d01dbf1573de50777341ac5144867af4",
+  "initial_failure": {
+    "closure": {
+      "collected_at": "2026-10-12T04:01:16.176322+00:00",
+      "command_count": 0,
+      "dispatch_returncode": 1,
+      "error": "NameError(\"name 'datetime' is not defined\")",
+      "files": {
+        "dispatch.stderr": "dd029cf8a31a5e68e393eac6786b6ef4ffe3877bc200a50e807c220b8301674e",
+        "dispatch.stdout": "37c8cf693a44a0992617c9ac7f0f64f0e2d951d485d12314c3ab5d7e367278fb",
+        "execution.json": "e15143e2f2ca47a7e95252ddf91c2d562ecf518f9878cb958a95a4e79b835475",
+        "launch.json": "c9c2ceca28687ed9b3a1217c5cc06b474bcf7a90ebe65d3c92d1ebd297fbb923",
+        "qualification.json": "b640b756fe9cbb5fee6ae0ee4146f843dae16ff78daaeeda56ef5027e36333c6"
+      },
+      "installed_tsan_identity": {
+        "bytes": 1104608,
+        "mode": "0o755",
+        "sha256": "f82eafd6a04a3e82ed1d1905add3040002664607d22ae8a4c581b1ba67babfcb"
+      },
+      "lease_observation": {
+        "lsof_argv": [
+          "/usr/sbin/lsof",
+          "-nP",
+          "-t",
+          "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock"
+        ],
+        "lsof_returncode": 0,
+        "note": "Open-file observation is not proof of an active flock; no lease was attempted by this run",
+        "open_file_pids": [
+          "96190"
+        ],
+        "our_attempt_reached_lease": false
+      },
+      "mutation_started": false,
+      "native_pid_probe": {
+        "argv": [
+          "/bin/ps",
+          "-p",
+          "45617",
+          "-o",
+          "pid=,comm="
+        ],
+        "returncode": 1,
+        "stderr": "",
+        "stdout": ""
+      },
+      "protected_state_matches_expected": true,
+      "qualification_sha256": "b640b756fe9cbb5fee6ae0ee4146f843dae16ff78daaeeda56ef5027e36333c6",
+      "state": "PASS: failed attempt closed before native commands or mutation"
+    },
+    "execution": {
+      "admission_sha256": "af94b42e3185041bb77e75633463b7b1803b7b5e5a8e403ba4cd7ee1d813564f",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_promote.py",
+        "--run-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-20261012T035916Z",
+        "--promote"
+      ],
+      "dispatch_sha256": "a4b76e67f25ae9f4acb599eb80e094f27787d0ed5a12b9d8c92387108137b3f7",
+      "elapsed_seconds": 7.159831250086427,
+      "finished_at": "2026-10-12T03:59:52.314660+00:00",
+      "helper_sha256": "19d23e4308de99a6a76279684036d71c9af2c76e7f7c0f8326fe580ddd275e7d",
+      "pid": 45617,
+      "private_launch_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-launch-d32uldzu",
+      "returncode": 1,
+      "started_at": "2026-10-12T03:59:45.154546+00:00",
+      "stderr_sha256": "dd029cf8a31a5e68e393eac6786b6ef4ffe3877bc200a50e807c220b8301674e",
+      "stdout_sha256": "37c8cf693a44a0992617c9ac7f0f64f0e2d951d485d12314c3ab5d7e367278fb"
+    },
+    "observations_historical_only": true,
+    "private_copy_pairs_checked": 5
+  },
+  "input_bindings": 15,
+  "limits": [
+    "No native retry, promotion, witness, recovery, real guard, lease, capacity, census, lsof or PID probe performed.",
+    "No binary artifact reads or 190-input/881-source/28-tool/ABI inventory rehash. Only scoped text receipts and the specifically inspected helper/wrapper/extractor source were hashed.",
+    "Parent control receipt/logs were verified; the control has no retained script and was not independently rerun.",
+    "Closure PID, installed identity and lease observations are retained historical claims, not independently reprobed state.",
+    "No static task/scanner/tool execution, installs, services, containers, network, models, global changes or further agents."
+  ],
+  "missing_globals_after": [],
+  "previous_missing_globals": [
+    "datetime",
+    "timezone",
+    "time",
+    "subprocess"
+  ],
+  "previous_review_copies": {
+    "compare.py": "e40ff3f584ab7cb293bc709626f2eda5f0833f99d437d03b270a9edc886980a1",
+    "comparison.json": "c815157e2ce9d9ab2602f9d8e8974722e2da5e0247c741e4102fb1bfdfb3480e",
+    "execution.json": "fab4903c086d08f3070fa0ce3cdf3b563fa0760284a8ae0eae6428ed64916a12",
+    "review.json": "3331215a0dd4ebe6a4cb1a5a38eeaa640be8eb84d9f0b96b1227736814dc2d6d",
+    "supporting-manifest.json": "1e1d08ce189a65b7a5f2a7983d2c5f845ef727c44a84fede6d44d3fe0132ffc0"
+  },
+  "result": "PASS: focused retry preparation only",
+  "retained_witness_checks_not_reexecuted": [
+    {
+      "bytes": 35336,
+      "canonical_regular_owned_single_link": true,
+      "mach_o": "arm64 executable",
+      "mode": "0o700",
+      "name": "tsan",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+      "reads": 1,
+      "sha256": "98bbddbab90890197bebfe79f451d7e5ad6384bd3ad340dc5f47c3b93ad0f018",
+      "stable_during_read": true
+    },
+    {
+      "bytes": 52152,
+      "canonical_regular_owned_single_link": true,
+      "mach_o": "arm64 executable",
+      "mode": "0o700",
+      "name": "tsan-ubsan",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+      "reads": 1,
+      "sha256": "7ddfb29def4c0293f50876a9139429a64bf6ea9d6adcaf02ce62e07c994e3f99",
+      "stable_during_read": true
+    }
+  ],
+  "scan": {
+    "complete_tokens": [],
+    "dispositions": 24,
+    "files": 62,
+    "inherited_dispositions_without_SDK_object_reads": 22,
+    "new_text_digest_bindings": [
+      {
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-scan-f1ivlzrx/corrected-secret-scan-raw.json",
+        "reason": "Verified exact file-content digest",
+        "rule": "generic-api-key",
+        "sha256": "9a529af6473c6ddf5389c8d7096c98067e91233674fa3958530edb34140d3133"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/corrected-secret-scan.json",
+        "reason": "Verified exact file-content digest",
+        "rule": "generic-api-key",
+        "sha256": "36e43b32eb6c2c37522567520172ca411544b2098258e5c8365fa2fcbc94c8a8"
+      }
+    ],
+    "raw_and_transformed_payload_reconstruction": true,
+    "raw_rc": 1,
+    "transformed_rc": 0
+  },
+  "static_receipt_rcs": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "3d361fb6e79c2a54c372e7eda9adb869c60e1a56b58095693fb5df3daf8b4019",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "2d542278b648e5860421c891976ce794035810b7933cf66403a8bc581db8c7aa",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_runtime.py": "9220bb5bd18d6af5fc6c6c5a46ae5845b9b1d1687e0212cf66b02bc6d049e92c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_promote.py": "9d4e73dab0c4884349c7fc166a0b09a0d01dbf1573de50777341ac5144867af4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "9fa355ca24394760783f5dfbc17b608033c073460e5a8ea210781f754803a638",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-promotion/operation/qualification.json": "ab09108318e5546021008d4e260ea060c99dcb38f27afd00c0a3c506480f7170",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/admission-before-import-repair.json": "af94b42e3185041bb77e75633463b7b1803b7b5e5a8e403ba4cd7ee1d813564f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/admission.json": "af94b42e3185041bb77e75633463b7b1803b7b5e5a8e403ba4cd7ee1d813564f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate-before-import-repair.json": "86d503cf678ff84bc47d952bcafcea6bb583d045e3a1fa9b2fc6c2e8de34cc3d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate-initial.json": "f77746133fe079eaf308e4b707bba41944dcc07bc52bbe5fa27a88c20b11c29f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate-inputs-before-import-repair.json": "ce61b5cf507c9e871b637743cbcf4b2dabff81b2677534f3a1012f99267e6dbb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate-inputs-initial.json": "315f9c00545184b042324d76cc26b850aa06d186790a906f961f601fc6f4e190",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate-inputs.json": "48a04b572d1a92455db8083efc3efb4d3ac79467369faf86a8f21020f52ee189",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/candidate.json": "fee7bb9cb6679586df72223db0471f01bc63a7a2f7caf18e522e08156a8fe587",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity-copy-manifest.json": "74830015ac26e1878650deffcf0e3e9d3cf263628cdbd90885537a65dd8ee9c8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity-execution.json": "7f70677d0e77a514a7372957e282e3b186e38d8bb2a274cde3d6466d98048729",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity.py.source": "b71ce3813acbe568af2d3f8d2d0b4c6601c2cac30a249f2a035210c0cf72c844",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/capacity.json": "844ece71a4f4cf2bd41a3ee67fef8ebb601840afabcbda65091439a70448e6c8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/docker-stats.stdout": "e77f25a66bff8bdd62a3f63e99ec16eca887d061d2379738bd3f95672f8fc7b2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/capacity/processes.stdout": "8c31b5b896a1ade189506fe346a48085dd79b74b9b584db3677053b7b96fb84b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/command-binding-control.json": "84ed3259347c317111ac3e5e030ac300336414f5fa60fea0739b3747268ce947",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/contract.json": "f7a4bae70a2437c667435040877b2e7da90d83249982e707ee6dfcc6d3e5b0fb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/corrected-secret-scan.json": "36e43b32eb6c2c37522567520172ca411544b2098258e5c8365fa2fcbc94c8a8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/corrected-static.json": "b01b94f9bea6954c791dd050e3e3c94df7831a9f27fc0d6adaa52a5ce1ccbd57",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/derive.py.source": "000a3a86f0444ca213855b099521bc977f53344387ebe1a9d37f98b250cc0dde",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/dispatch.py.source": "a4b76e67f25ae9f4acb599eb80e094f27787d0ed5a12b9d8c92387108137b3f7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/closure.json": "6692731380c1b30650f90b9881bbc31bdc7eef42a570449cd2cba8dae5cc83f9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/copy-manifest.json": "99bac01a3936d3a3f5a47456aa3496f0f31fb2341f50d7aae94225711df088c7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/dispatch.stderr": "dd029cf8a31a5e68e393eac6786b6ef4ffe3877bc200a50e807c220b8301674e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/dispatch.stdout": "37c8cf693a44a0992617c9ac7f0f64f0e2d951d485d12314c3ab5d7e367278fb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/execution.json": "e15143e2f2ca47a7e95252ddf91c2d562ecf518f9878cb958a95a4e79b835475",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/launch.json": "c9c2ceca28687ed9b3a1217c5cc06b474bcf7a90ebe65d3c92d1ebd297fbb923",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/initial-failure/qualification.json": "b640b756fe9cbb5fee6ae0ee4146f843dae16ff78daaeeda56ef5027e36333c6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/native-execution-before-import-repair.json": "e15143e2f2ca47a7e95252ddf91c2d562ecf518f9878cb958a95a4e79b835475",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/native-execution.json": "e15143e2f2ca47a7e95252ddf91c2d562ecf518f9878cb958a95a4e79b835475",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/native-launch-before-import-repair.json": "c9c2ceca28687ed9b3a1217c5cc06b474bcf7a90ebe65d3c92d1ebd297fbb923",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/native-launch.json": "c9c2ceca28687ed9b3a1217c5cc06b474bcf7a90ebe65d3c92d1ebd297fbb923",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/pre-review-secret-scan.json": "37d403574aa9f6bafa359b154c807db1239c8a68c442e13b38b56c558f37d416",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/pre-review-static.json": "ad093791b32d57ed515a468b95cdb7dd70565842a085dd58edf2a2960246ad60",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/pre-run-review-before-import-repair.json": "3331215a0dd4ebe6a4cb1a5a38eeaa640be8eb84d9f0b96b1227736814dc2d6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/pre-run-review.json": "3331215a0dd4ebe6a4cb1a5a38eeaa640be8eb84d9f0b96b1227736814dc2d6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-corrected/compare.py": "e40ff3f584ab7cb293bc709626f2eda5f0833f99d437d03b270a9edc886980a1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-corrected/comparison.json": "c815157e2ce9d9ab2602f9d8e8974722e2da5e0247c741e4102fb1bfdfb3480e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-corrected/execution.json": "fab4903c086d08f3070fa0ce3cdf3b563fa0760284a8ae0eae6428ed64916a12",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-corrected/review.json": "3331215a0dd4ebe6a4cb1a5a38eeaa640be8eb84d9f0b96b1227736814dc2d6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-corrected/supporting-manifest.json": "1e1d08ce189a65b7a5f2a7983d2c5f845ef727c44a84fede6d44d3fe0132ffc0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-initial/compare.py": "be7cc949f3f4e909257fbdc5d2e7705b1683c83860b6a40f439ab6fa1f293594",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-initial/comparison.json": "09f3c26af3f78900914dfe524727eed9695024aaa9fe2775849e8baf261a5e3e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-initial/execution.json": "85d996033c8d50c26370a81d721497056119aef0d9cfdcd1a5cd3a86b14834ba",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-initial/review.json": "a6dd3eedd1ee1f66fec66a6b1a90644ed29bf82269192caf110bf1c6af0ce356",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/preparation-review-initial/supporting-manifest.json": "ac75e0d0e641fbd4f4c2e3826d070a1cafdf0600e06a8145ce5c4242084e83dd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/retry-secret-scan.json": "7db118faa284e23c22f3f772914890a03daa5882a77fecc2c75f512a30e061fe",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-promotion/retry-static.json": "312a936541001ed78378ebebd393854d5f54491d3dd31bbec9e313c1bdc72445",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/artifact-inventory.json": "8f6efbcd2d25a8c4a7b95c65c3ea93e4851b76919410570db17f7cc067fe11c0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/artifact-review/review.json": "88ffefd62bb5617da8ab0643cb9976c5dcac2ae8c7ad34388e25a29c688c7f9c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/closure.json": "9315a00b6d624a7337ae8fcb74b43ff5b2e99b2b72700de972007d153d4e0223",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-repair/operation/qualification.json": "99444de48ba10fc4dab6a6e66662fb585e77204d1a53cb7eb0376b468c923ecb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/contract.json": "3e33503010361fe6d66d4906b3fa3b73c92fce8a191daab86cbc40cde5d7be36",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-tsan-runtime/preparation-review/review.json": "297f782d8a77415f0d8c10cac1c5f3b6848e450148f1c7ea7b8fda62b6dde2ed",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz/binding.json": "b15c337e58bdbd482690b86bebb39a36b4d2276d03e3c8f11d115406edc5c9d6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz/command-binding-control.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-binding-9bcawyzz/command-binding-control.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-20261012T035916Z/qualification.json": "b640b756fe9cbb5fee6ae0ee4146f843dae16ff78daaeeda56ef5027e36333c6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-launch-d32uldzu/execution.json": "e15143e2f2ca47a7e95252ddf91c2d562ecf518f9878cb958a95a4e79b835475",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-launch-d32uldzu/launch.json": "c9c2ceca28687ed9b3a1217c5cc06b474bcf7a90ebe65d3c92d1ebd297fbb923",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-launch-d32uldzu/stderr": "dd029cf8a31a5e68e393eac6786b6ef4ffe3877bc200a50e807c220b8301674e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-native-launch-d32uldzu/stdout": "37c8cf693a44a0992617c9ac7f0f64f0e2d951d485d12314c3ab5d7e367278fb",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-scan-f1ivlzrx/corrected-secret-scan-raw.json": "9a529af6473c6ddf5389c8d7096c98067e91233674fa3958530edb34140d3133",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-scan-f1ivlzrx/retry-secret-scan-raw.json": "e905f62990cf2d205666887bc94b1cf33f9f5dadaa74bcf9ebc6bd054e5e4b02",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-scan-f1ivlzrx/retry-secret-scan-transformed.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-promotion-scan-f1ivlzrx/scan.py": "6d7ee36158b1d38250a7c5747c0641545bd81f29103d369e07cdeee7efbcdc34",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-promotion-corrected-review-t9m2nox0/compare.py": "e40ff3f584ab7cb293bc709626f2eda5f0833f99d437d03b270a9edc886980a1",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-promotion-corrected-review-t9m2nox0/comparison.json": "c815157e2ce9d9ab2602f9d8e8974722e2da5e0247c741e4102fb1bfdfb3480e",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-promotion-corrected-review-t9m2nox0/execution.json": "fab4903c086d08f3070fa0ce3cdf3b563fa0760284a8ae0eae6428ed64916a12",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-promotion-corrected-review-t9m2nox0/review.json": "3331215a0dd4ebe6a4cb1a5a38eeaa640be8eb84d9f0b96b1227736814dc2d6d",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-tsan-promotion-corrected-review-t9m2nox0/supporting-manifest.json": "1e1d08ce189a65b7a5f2a7983d2c5f845ef727c44a84fede6d44d3fe0132ffc0"
+  },
+  "wrapper_globals": [
+    "datetime",
+    "digest",
+    "directory",
+    "env",
+    "json",
+    "os",
+    "report",
+    "save",
+    "shutil",
+    "signal",
+    "subprocess",
+    "time",
+    "timezone"
+  ]
+}

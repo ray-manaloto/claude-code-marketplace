@@ -1,0 +1,719 @@
+{
+  "result": "PASS: Task 08c independent cold review; no findings",
+  "findings": [],
+  "reviewed_at": "2026-10-11T11:33:35.217710+00:00",
+  "reviewer": "/root/cold_bottle_review",
+  "parent_return_channel": "native collaboration to /root",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "head": "7baee2b880265c5d444e17aeeaf66eb3011f2684",
+    "branch": "codex/marketplace-native-onboarding"
+  },
+  "ownership": "Parent remained sole implementation writer. Reviewer wrote only this new private scratch and exercised the admitted canonical host lease.",
+  "scope": [
+    "dev/toolchains/p2996_coverage.py",
+    "docs/llvm-tools.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md"
+  ],
+  "helper_sha256": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b",
+  "operation_sha256": "50ec5b0cc963fabbc3db100a0de9d8d5a17f349cd6cc0b16e7dfa1a3d5b9ac5f",
+  "admission_sha256": "2e770631aa7db790f7dcfdec99c2964c7f353c1c698475ef7afe19e8f4cf6630",
+  "source_contract_sha256": "1ecffe052346285a893b6de8a03eba13c024ae075f3e9505e97d47653ce4a643",
+  "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+  "all_protected_state_unchanged": true,
+  "parent_evidence": {
+    "verification_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/parent-evidence-verification.json",
+      "sha256": "31b3b98cc763bf1c37d882d4859f699657218e68167344a1277842de1f290d4c",
+      "bytes": 15673
+    },
+    "stages": [
+      {
+        "stage": "initial-failure",
+        "manifest_sha256": "d8abad08817186aac9363cd5586c47cae2b85f69693a238cb14b2d092731f981",
+        "qualification_sha256": "3f2917cc80d6bb3bd85bd4edb3afbd91dbfa974bd1e15766d4b8a02039f8ac8f",
+        "helper_sha256": "71a5b506ef0eb9f50117960c68117462dd6cecbc7a330553e42080cf12a4ad64",
+        "copied_records_verified": 26,
+        "native_logs_verified": 20,
+        "private_binary_artifacts_verified": 2,
+        "wrapper_returncode": 1,
+        "native_exits": {
+          "source-before-head": 0,
+          "source-before-tree": 0,
+          "source-before-status": 0,
+          "source-before-diff": 0,
+          "default-before": 0,
+          "native-where": 0,
+          "named-profile": 0,
+          "capacity-processes": 0,
+          "coverage-compile": 0,
+          "coverage-run": 0
+        },
+        "state": "FAIL",
+        "preservation_receipt": true
+      },
+      {
+        "stage": "operation",
+        "manifest_sha256": "eb6af73c52746b777382781a75730b4c2980cca73c9b3f0453e48ebc32456fbf",
+        "qualification_sha256": "50ec5b0cc963fabbc3db100a0de9d8d5a17f349cd6cc0b16e7dfa1a3d5b9ac5f",
+        "helper_sha256": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b",
+        "copied_records_verified": 42,
+        "native_logs_verified": 36,
+        "private_binary_artifacts_verified": 3,
+        "wrapper_returncode": 0,
+        "native_exits": {
+          "source-before-head": 0,
+          "source-before-tree": 0,
+          "source-before-status": 0,
+          "source-before-diff": 0,
+          "default-before": 0,
+          "native-where": 0,
+          "named-profile": 0,
+          "capacity-processes": 0,
+          "coverage-compile": 0,
+          "coverage-run": 0,
+          "coverage-merge": 0,
+          "coverage-export": 0,
+          "coverage-absent-data": 1,
+          "default-after": 0,
+          "source-after-head": 0,
+          "source-after-tree": 0,
+          "source-after-status": 0,
+          "source-after-diff": 0
+        },
+        "state": "PASS: LLVM source-based coverage with reflection controls",
+        "preservation_receipt": true
+      }
+    ],
+    "final_records_original_and_copy_verified": 42,
+    "final_native_logs_verified": 36,
+    "final_private_binary_profile_artifacts_verified": 3,
+    "initial_failure_records_original_and_copy_verified": 26,
+    "initial_failure_native_logs_verified": 20,
+    "initial_private_binary_profile_artifacts_verified": 2,
+    "pinned_primary_source_references_verified": 13,
+    "local_source_contract_references_verified": 3,
+    "environment_correction_references_verified": 4,
+    "correction_reference_excerpts_equal_actual_source": true,
+    "admission_initial_and_current_pre_run_review_bindings_verified": true,
+    "final_parent_wrapper_returncode": 0,
+    "initial_parent_wrapper_returncode": 1,
+    "source_excerpt_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/source-excerpts.txt",
+      "sha256": "2d6decf54c1ed6c0ab0040d4d6b2dc44b39da081575d4a2d63e5bc2ae7d4db5c",
+      "bytes": 37963
+    },
+    "correction_diff": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/environment-correction.diff",
+      "sha256": "244de6998950f991df53b720bc0a6665b7dcdf6e9e60a2785f7b027ff9f3358a",
+      "bytes": 1515
+    },
+    "initial_failure_disposition": "Compile and execution returned0 and the440-byte raw profile exists, but required loader stderr was empty. The guard failed, wrapper returned1 and no merge/export ran. The original is retained unchanged.",
+    "environment_correction_disposition": "The only runtime delta injects LLVM_PROFILE_FILE and DYLD_PRINT_LIBRARIES through /usr/bin/env after named-profile selection and uses the previously qualified loaded-path comparison. The original filtering boundary remains unlocalized; no launcher trace or causal filtering claim was made."
+  },
+  "static_review": {
+    "status": "No findings",
+    "guidance_read": [
+      "AGENTS.md",
+      "docs/onboarding.md development/acceptance",
+      "docs/accepted-decisions.md compiler/build foundation",
+      "Selected plan08c and current progress",
+      "docs/llvm-tools.md08c"
+    ],
+    "implementation": "Read the actual237-line frozen helper and retained original. Unit consists of four maintained files. Exact admission, helper/witness/source-contract, prefix, registration and prior independent analysis review bindings are consistent.",
+    "failure_propagation": "The frozen runner records actual rc/log hashes and cleans up its process group on timeout. The exact expected-exit adapter accepts only the expected case/rc; every positive stage also validates its artifact and semantic outputs. The retained missing-loader attempt demonstrates wrapper failure despite successful compiler/program exits. Timeout cleanup was source-reviewed and reused, not injected again.",
+    "profile_runtime_selection": "Pinned Darwin driver source requires the profile runtime for -fprofile-instr-generate and builds ResourceDir/lib/darwin/libclang_rt.profile_osx.a. Explicit private resource-dir plus the unchanged archive digest bind the expected static runtime. It does not appear as a loaded dylib; no additional link-map probe ran.",
+    "raw_and_merged_guards": "Profile runtime atexit discards writeFile return status, and profdata can warn on some write failures. The helper therefore requires previously absent, nonempty outputs and a successfully parsed structured export. The actual final and independent runs meet those guards.",
+    "export_contract": "Pinned llvm-cov uses --format=text for JSON3.0.0. Function branch records contain true/false counts and file IDs in the asserted positions. Mismatch/stale-profile warnings are rejected because rc0 alone can still accompany a partial export. --debuginfod=false disables the optional network fetcher.",
+    "negative_contract": "The selected absent profile is separate from the valid profile. Pinned doExport returns1 at its stat failure before exporting JSON; independent stderr identifies exactly that private missing path.",
+    "fresh_process_behavior": "One fresh private fixture, exact source bytes, newly absent output files, child-scoped profile/loader variables, named p2996 --fresh-env selection and absolute tool/SDK/header/runtime paths. No global profile variables or defaults were changed."
+  },
+  "independent_runtime": {
+    "invocation": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/invocation.json",
+      "sha256": "7311d19e504db1560dc602d507f741eb34d4860d49b65504c67ce0bf0c8920c5",
+      "bytes": 921
+    },
+    "native_receipt": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/native-checks.json",
+      "sha256": "08778422922d57e643bc16d6c7c63d5bf396747a3dcf40696489aef9932edf1d",
+      "bytes": 34423
+    },
+    "single_execution": true,
+    "native_command_count": 17,
+    "native_exits": {
+      "named-profile": 0,
+      "capacity-processes": 0,
+      "coverage-compile": 0,
+      "coverage-run": 0,
+      "coverage-merge": 0,
+      "coverage-export": 0,
+      "coverage-absent-data": 1,
+      "default-consumer": 0,
+      "source-head": 0,
+      "source-tree": 0,
+      "source-status": 0,
+      "source-diff": 0,
+      "tasks-validate": 0,
+      "acceptance-baseline": 0,
+      "root-identity": 0,
+      "root-branch": 0,
+      "root-status": 0
+    },
+    "coverage_exits": {
+      "coverage-compile": 0,
+      "coverage-run": 0,
+      "coverage-merge": 0,
+      "coverage-export": 0,
+      "coverage-absent-data": 1
+    },
+    "coverage_elapsed_seconds": {
+      "coverage-compile": 0.8987783750053495,
+      "coverage-run": 0.25761695904657245,
+      "coverage-merge": 0.14595170796383172,
+      "coverage-export": 0.0906351669691503,
+      "coverage-absent-data": 0.09013412497006357
+    },
+    "all_native_calls_less_than60seconds": true,
+    "sequential_under_lease": true,
+    "argv_equivalence": "All five coverage argv lists independently constructed and asserted equal to final parent commands after replacing only the private scratch path.",
+    "selected_environment": {
+      "selected": {
+        "CC": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang",
+        "CXX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "CPPFLAGS": null,
+        "LDFLAGS": null,
+        "AR": null,
+        "RANLIB": null,
+        "LD": null,
+        "AS": null,
+        "CPATH": null,
+        "C_INCLUDE_PATH": null,
+        "CPLUS_INCLUDE_PATH": null,
+        "OBJC_INCLUDE_PATH": null,
+        "LIBRARY_PATH": null,
+        "COMPILER_PATH": null,
+        "PKG_CONFIG_PATH": null,
+        "PKG_CONFIG_LIBDIR": null,
+        "CMAKE_PREFIX_PATH": null,
+        "CMAKE_TOOLCHAIN_FILE": null,
+        "CMAKE_GENERATOR": null,
+        "CMAKE_C_COMPILER_LAUNCHER": null,
+        "CMAKE_CXX_COMPILER_LAUNCHER": null,
+        "SDKROOT": null,
+        "MACOSX_DEPLOYMENT_TARGET": null,
+        "DYLD_LIBRARY_PATH": null,
+        "DYLD_FALLBACK_LIBRARY_PATH": null,
+        "MARKETPLACE_CPP_LANE": "p2996",
+        "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "MARKETPLACE_GCC16_PREFIX": null,
+        "MAKEFLAGS": "-j2",
+        "CMAKE_BUILD_PARALLEL_LEVEL": "2"
+      },
+      "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+      "homebrew_llvm_on_path": true
+    },
+    "tool_hashes": {
+      "clang++": "e282e5f7e1517840740523d49c0b4f1422d5a3f9d6f4ecf3b1bbba3fbffe2219",
+      "llvm-profdata": "f519159620c2e507aba686149ef1ea8ffbafaececec10b1e266aabb9384490e0",
+      "llvm-cov": "9e589e1bfaa5d485b73f2d949c6266113fa542106983a273a6c093ceeb8ece17"
+    },
+    "profile_runtime": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.profile_osx.a",
+      "sha256": "48dd00286225897919bf6fb6a6630245d9489ac8a6544acb55b9350486f3d31b",
+      "bytes": 113832
+    },
+    "coverage": {
+      "functions": {
+        "_Z24coverage_reflection_mainv": {
+          "branches": [
+            [
+              26,
+              13,
+              26,
+              49,
+              0,
+              1,
+              0,
+              0,
+              4
+            ],
+            [
+              29,
+              12,
+              29,
+              30,
+              1,
+              0,
+              0,
+              0,
+              4
+            ]
+          ],
+          "count": 1,
+          "filenames": [
+            "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp"
+          ],
+          "mcdc_records": [],
+          "name": "_Z24coverage_reflection_mainv",
+          "regions": [
+            [
+              18,
+              12,
+              30,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              23,
+              9,
+              25,
+              6,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              25,
+              43,
+              28,
+              6,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              26,
+              13,
+              26,
+              49,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              26,
+              50,
+              26,
+              51,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              26,
+              51,
+              26,
+              59,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              26,
+              60,
+              27,
+              9,
+              1,
+              0,
+              0,
+              3
+            ],
+            [
+              27,
+              9,
+              28,
+              6,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              28,
+              6,
+              29,
+              5,
+              0,
+              0,
+              0,
+              3
+            ],
+            [
+              29,
+              5,
+              29,
+              38,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              29,
+              12,
+              29,
+              30,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              29,
+              32,
+              29,
+              33,
+              1,
+              0,
+              0,
+              3
+            ],
+            [
+              29,
+              33,
+              29,
+              34,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              29,
+              37,
+              29,
+              38,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "coverage_branch": {
+          "branches": [
+            [
+              6,
+              7,
+              6,
+              11,
+              1,
+              1,
+              0,
+              0,
+              4
+            ]
+          ],
+          "count": 2,
+          "filenames": [
+            "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp"
+          ],
+          "mcdc_records": [],
+          "name": "coverage_branch",
+          "regions": [
+            [
+              5,
+              43,
+              9,
+              2,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              7,
+              6,
+              11,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              12,
+              7,
+              5,
+              1,
+              0,
+              0,
+              3
+            ],
+            [
+              7,
+              5,
+              7,
+              13,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              7,
+              14,
+              8,
+              3,
+              1,
+              0,
+              0,
+              3
+            ],
+            [
+              8,
+              3,
+              8,
+              11,
+              1,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "main": {
+          "branches": [],
+          "count": 1,
+          "filenames": [
+            "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp"
+          ],
+          "mcdc_records": [],
+          "name": "main",
+          "regions": [
+            [
+              11,
+              12,
+              14,
+              2,
+              1,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "wrapper_branches": {
+        "count": 2,
+        "covered": 2,
+        "notcovered": 0,
+        "percent": 100
+      },
+      "totals": {
+        "branches": {
+          "count": 6,
+          "covered": 4,
+          "notcovered": 2,
+          "percent": 66.66666666666666
+        },
+        "functions": {
+          "count": 3,
+          "covered": 3,
+          "percent": 100
+        },
+        "instantiations": {
+          "count": 3,
+          "covered": 3,
+          "percent": 100
+        },
+        "lines": {
+          "count": 22,
+          "covered": 22,
+          "percent": 100
+        },
+        "mcdc": {
+          "count": 0,
+          "covered": 0,
+          "notcovered": 0,
+          "percent": 0
+        },
+        "regions": {
+          "count": 15,
+          "covered": 13,
+          "notcovered": 2,
+          "percent": 86.66666666666667
+        }
+      },
+      "export_schema": {
+        "type": "llvm.coverage.json.export",
+        "version": "3.0.0",
+        "data_length": 1
+      }
+    },
+    "negative_control": {
+      "native_returncode": 1,
+      "stdout_empty": true,
+      "absent_file_remains_absent": true,
+      "intended_profile_read_error": true,
+      "all_positive_artifacts_and_sources_unchanged": true
+    },
+    "loaded_private_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+    ],
+    "fresh_nonempty_raw_and_merged": true,
+    "sources_unchanged": true,
+    "negative_preserved_all_positive_artifacts": true,
+    "compile_merge_export_stderr_empty": true,
+    "artifacts": {
+      "p2996_reflection.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/p2996_reflection.cpp",
+        "sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+        "bytes": 991
+      },
+      "coverage.cpp": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.cpp",
+        "sha256": "1b0a991f9b9c5677d5fb3f82eb6c891856bda81d2095427590171546db9d44e7",
+        "bytes": 281
+      },
+      "coverage": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+        "sha256": "68c075b3db38d3920bd255e89ce8d32d0cd3ad0ae753c39f3b9b1e6444930261",
+        "bytes": 149736
+      },
+      "coverage.profraw": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+        "sha256": "373337fa92f087f081ae079aa4b9cba1024bbad5af1fde84c25f5c03474a9a88",
+        "bytes": 440
+      },
+      "coverage.profdata": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata",
+        "sha256": "4b5532d9ec4a2dee318f65f47f8210eeb267aceaaff82c7f5eb0f82642618e92",
+        "bytes": 904
+      }
+    },
+    "binary_profile_artifacts_remain_private": [
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profraw",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/coverage.profdata"
+    ],
+    "lease": {
+      "module": "/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py",
+      "module_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+      "wait_seconds": 0,
+      "acquired": true,
+      "released": true,
+      "acquired_at": "2026-10-11T11:31:04.560975+00:00",
+      "descriptor": 3,
+      "holder": "21613\tmarketplace-p2996-coverage-cold-review\t2026-10-11T11:31:04Z",
+      "released_at": "2026-10-11T11:31:06.107554+00:00",
+      "free_after_release": true
+    },
+    "capacity": {
+      "observed_at": "2026-10-11T11:31:04.612838+00:00",
+      "blockers": [],
+      "free_disk_bytes": 56274018304,
+      "required_free_disk_bytes": 8589934592,
+      "native_process_check_returncode": 0
+    }
+  },
+  "preservation": {
+    "before_check_passed": true,
+    "after_check_passed": true,
+    "method": "Executed the hash-bound protected function AST twice with real dependencies, the159-record retained inventory and registered post-state. Prefix inventory comparison covers all6411 entries. No historical guard suite was rerun.",
+    "prefix_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/operation/prefix-inventory.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211
+    },
+    "prefix_entries": 6411,
+    "prefix_unchanged": true,
+    "retained_source_build_inventory": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103",
+      "bytes": 103593
+    },
+    "retained_records": 159,
+    "retained_records_unchanged": true,
+    "registration_post_state": {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+      "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317",
+      "bytes": 296002
+    },
+    "protected_counts": {
+      "global_files": 9,
+      "packages": 8,
+      "glib_files": 2
+    },
+    "directory_entry_counts": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "install_entry_count": 2200,
+    "registered_global_state_unchanged": true,
+    "default_consumer": {
+      "returncode": 0,
+      "stdout_sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "byte_equal_final_parent_and_registration_default": true
+    },
+    "source_identity": {
+      "head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "status_sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "unchanged_status_line_count": 7,
+      "optional_locks_disabled": true,
+      "byte_equal_parent_before_and_after": true
+    },
+    "maintained_files_unchanged": {
+      "dev/toolchains/p2996_coverage.py": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b",
+      "docs/llvm-tools.md": "36e3097d66cb4a3d842b802026e6b5c54d123904590a346d8c08ff531c24daa8",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "c97eac6fe7f9e6c617858d7f33af9e118749eb466f49244f32cbc8be3d6cd5d6",
+      ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "7f15bfa21e69eab6969c1492954f35c6e381eda1a589ddaa1ff85135f742687f"
+    },
+    "control_files_unchanged": {
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/admission.json": "2e770631aa7db790f7dcfdec99c2964c7f353c1c698475ef7afe19e8f4cf6630",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/operation-manifest.json": "eb6af73c52746b777382781a75730b4c2980cca73c9b3f0453e48ebc32456fbf",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/source-contract.json": "1ecffe052346285a893b6de8a03eba13c024ae075f3e9505e97d47653ce4a643",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/environment-correction.json": "6257071bd67410a6aa7f22f3b9cf7d5fb3cff2b618e79667fef01305a1c1d3ad",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/pre-run-review.json": "b9f153e678309b34e19b4ddf6b445ed32140b921b8d0b354fb8b01f6f29b0086",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-coverage/preflight.json": "2e93b9132de518518afd76ea56a9c0a198840041cddaf1877390adb2ba5cbcdb",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+    },
+    "mise_binary_and_sdk_settings_hashes_unchanged": true,
+    "root_status_matches_unit_allowlist": true
+  },
+  "claude_acceptance_preservation": {
+    "tasks_validate_returncode": 0,
+    "check_acceptance_baseline_returncode": 0,
+    "static_counts": {
+      "baseline": 19,
+      "json": 763,
+      "python": 34,
+      "shell": 6,
+      "toml": 14
+    },
+    "all19_original_files_preserved": true,
+    "full_oci_acceptance_run": false
+  },
+  "limits": [
+    "Coverage is qualified for this pinned private reflection/branch fixture, not every reflection program or optimization/configuration/linkage combination.",
+    "The witness intentionally leaves failure paths unexecuted: regions13/15 and branch outcomes4/6; no claim of100percent total coverage.",
+    "No MC/DC, sanitizer, PGO/LTO, relocation, full matrix, IWYU or other tool qualification ran.",
+    "No historical guard/timeout/failure-injection batteries or launcher-environment cause tracing reran.",
+    "No installer, registration/promotion, toolchain rebuild, global configuration write, service/container/model session or network/research action ran.",
+    "Full Claude/OCI/provider/hook-runtime acceptance was not run."
+  ],
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-coverage-review-6q1aayo_/supporting-manifest.json",
+    "sha256": "aa19ef04e6999d7917606348f850d5b194fea076e201a8fe98639c37c8422aa7",
+    "bytes": 12113
+  }
+}

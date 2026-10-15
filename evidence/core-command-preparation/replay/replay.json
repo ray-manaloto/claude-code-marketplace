@@ -1,0 +1,237 @@
+{
+  "state": "PASS: recorded-command replay and parser rejection controls; new native core matrix unverified",
+  "validator_sha256": "09d20dcae377be5031f97103db0905cd39fb51439da6d28aff8ad0bb212b344b",
+  "positive": [
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "static",
+      "config": "Debug",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "static",
+      "config": "Release",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "static",
+      "config": "RelWithDebInfo",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "static",
+      "config": "MinSizeRel",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "shared",
+      "config": "Debug",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "shared",
+      "config": "Release",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "shared",
+      "config": "RelWithDebInfo",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-gcc-native-commands",
+      "linkage": "shared",
+      "config": "MinSizeRel",
+      "commands": 8
+    },
+    {
+      "kind": "recorded-p2996-fixture-flags",
+      "config": "Debug"
+    },
+    {
+      "kind": "synthetic-p2996-install-name-parser-only",
+      "config": "Debug"
+    },
+    {
+      "kind": "recorded-p2996-fixture-flags",
+      "config": "Release"
+    },
+    {
+      "kind": "synthetic-p2996-install-name-parser-only",
+      "config": "Release"
+    },
+    {
+      "kind": "recorded-p2996-fixture-flags",
+      "config": "RelWithDebInfo"
+    },
+    {
+      "kind": "synthetic-p2996-install-name-parser-only",
+      "config": "RelWithDebInfo"
+    },
+    {
+      "kind": "recorded-p2996-fixture-flags",
+      "config": "MinSizeRel"
+    },
+    {
+      "kind": "synthetic-p2996-install-name-parser-only",
+      "config": "MinSizeRel"
+    }
+  ],
+  "negative": [
+    "static-missing-action",
+    "static-wrong-driver",
+    "static-extra-library",
+    "static-actual-command-drift",
+    "static-output-collision",
+    "static-reflection-leak",
+    "static-wrong-arch",
+    "static-response-file",
+    "unadmitted-archive-tool",
+    "shared-missing-action",
+    "shared-wrong-driver",
+    "shared-extra-library",
+    "shared-actual-command-drift",
+    "shared-output-collision",
+    "shared-reflection-leak",
+    "shared-wrong-arch",
+    "shared-response-file",
+    "wrong-install-name",
+    "p2996-shared-response-file-Debug",
+    "p2996-shared-response-file-Release",
+    "p2996-shared-response-file-RelWithDebInfo",
+    "p2996-shared-response-file-MinSizeRel"
+  ],
+  "inputs": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_cmake.py",
+      "sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/cmake-review.json",
+      "sha256": "062210037e50131b0178ea5de4b8b3f7cf5b82bb46c3f4512a2b48c0544fd36d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+      "sha256": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996-preparation/source-contract.json",
+      "sha256": "0f098eb998ba2ed5c485568553387c42d233ea89c991a84425df71c9afc1fe4f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/qualification.json",
+      "sha256": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-runtime/runtime-review.json",
+      "sha256": "1f56fa2bf3e8a69cb826247ac79b22bd8e6189fab5a43b6beed3f8c2e1098c02"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification.json",
+      "sha256": "1dc4c5559821952dfcafd542278bfc8c0ee8d9c97562f44a1ebe772b3345bc9c"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/cmake-review.json",
+      "sha256": "5731f4d97e1c1b80d0778344457852eef803f6578a488901973ca4a1ebc6ac2f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification.json",
+      "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json",
+      "sha256": "ed7506e63892baa5e1eacfa0040f1ea04b546ee390671535c64e1ec67f1a3f28"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+      "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source",
+      "sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab"
+    },
+    {
+      "label": "build-static-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Debug.stdout",
+      "sha256": "91e03ea90532a9fbfbe10dac69c71d1300ad744ae037d202a34d4f92f01e207d"
+    },
+    {
+      "label": "build-shared-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Debug.stdout",
+      "sha256": "9120401bec7aa5de57fd1883ddeb1a9151760149bdf9de6e17d85256dd0214f7"
+    },
+    {
+      "label": "build-shared-MinSizeRel",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-MinSizeRel.stdout",
+      "sha256": "9c3a1cc1fd0e5b5c6537f111290255defbb9ec08e0c3158c90bc1d1a0c9ae316"
+    },
+    {
+      "label": "runtime-shared-Debug",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stderr",
+      "sha256": "3756e27377f552b5653ecfb9b9d1f34c76e608a9e65aaf0880167b8f1f8402bf"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-static-Debug.stdout",
+      "sha256": "91e03ea90532a9fbfbe10dac69c71d1300ad744ae037d202a34d4f92f01e207d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-static-Release.stdout",
+      "sha256": "3bd245322ff6655dea6121679873687ddf9c6ab6e6c0e0bfe207e3ae47d4f0d8"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-static-RelWithDebInfo.stdout",
+      "sha256": "7fbc3da84ea4b5aa6e3c6b3d8579b17a9c64a2ea342ffb736030dc0a4432547f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-static-MinSizeRel.stdout",
+      "sha256": "a37907ccc12775c6711579e97bd8e890f0d39214910b395f1a854a16fc450cd5"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-shared-Debug.stdout",
+      "sha256": "9120401bec7aa5de57fd1883ddeb1a9151760149bdf9de6e17d85256dd0214f7"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-shared-Release.stdout",
+      "sha256": "d4704d3449f6eaa2daddaed3b560cf7ca222e0ba0d1f94ae1947c2a6eea73a81"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-shared-RelWithDebInfo.stdout",
+      "sha256": "2d3e6df100f0e1dc005c58d8f9cf9ed13339f00bf60dc00cbf07b18d64d70c89"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/logs/build-shared-MinSizeRel.stdout",
+      "sha256": "9c3a1cc1fd0e5b5c6537f111290255defbb9ec08e0c3158c90bc1d1a0c9ae316"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json",
+      "sha256": "e61702be845f1602d267789d8ab78ce5601a59ab9cd78ef0435cbebe365081b6"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/build-Debug.stdout",
+      "sha256": "51b4210efe5cafc41bff916cbf85b3c2ec178b388cee7712a05fd56a6f96cc23"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/build-Release.stdout",
+      "sha256": "d7a1517d216e692412d09a694042e453349369e9bd8bb4e31d99ca5fb049ca8d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/build-RelWithDebInfo.stdout",
+      "sha256": "a10b88b9ac639260fd2c9deda9b7d8b5986445e5082ae01e987c988daf719e19"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/build-MinSizeRel.stdout",
+      "sha256": "1e4354139e05ff726fc0fc60397ed681b3b0a3c0ee6a3baff4fbffd172aca58c"
+    }
+  ],
+  "native_builds": 0
+}

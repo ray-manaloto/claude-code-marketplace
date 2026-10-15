@@ -1,0 +1,156 @@
+"""Probe native linked-tool registration in two new private mise roots only."""
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+
+from gcc_install import ROOT, digest, preserved, read
+
+TOOLS = {"clang-p2996": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+         "vcpkg": "e456309491fd875487bf02b8a0dca76c1b1b00cc"}
+
+
+def snapshot(directory):
+    return {str(p.relative_to(directory)): {"mode": oct(p.lstat().st_mode & 0o777),
+            "link": os.readlink(p) if p.is_symlink() else None,
+            "sha256": digest(p) if p.is_file() and not p.is_symlink() else None}
+            for p in sorted(directory.rglob("*"))}
+
+
+def isolated(directory):
+    directory.mkdir()
+    for name in ("cwd", "config", "data", "state", "cache", "tmp", "system-config", "system-data"):
+        (directory / name).mkdir()
+    env = {key: os.environ[key] for key in ("HOME", "USER", "LOGNAME") if key in os.environ}
+    env.update(PATH="/usr/bin:/bin:/usr/sbin:/sbin", NO_COLOR="1", MISE_OFFLINE="1",
+               MISE_AUTO_INSTALL="0", MISE_EXEC_AUTO_INSTALL="0", MISE_AUTO_ENV="0",
+               MISE_TASK_RUN_AUTO_INSTALL="0", MISE_NOT_FOUND_AUTO_INSTALL_REGISTRY="0")
+    for key, name in {"DATA": "data", "STATE": "state", "CACHE": "cache", "TMP": "tmp",
+                      "CONFIG": "config", "SYSTEM_CONFIG": "system-config",
+                      "SYSTEM_DATA": "system-data"}.items():
+        env["MISE_" + key + "_DIR"] = str(directory / name)
+    env.update(MISE_CEILING_PATHS=str(directory / "cwd"),
+               MISE_GLOBAL_CONFIG_FILE=str(directory / "config/absent.toml"),
+               MISE_SYSTEM_CONFIG_FILE=str(directory / "system-config/absent.toml"))
+    return env
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    directory = parser.parse_args().run_dir
+    if not directory.is_absolute() or directory != directory.resolve() or directory.is_relative_to(ROOT):
+        parser.error("use a new normalized absolute private directory outside this worktree")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    report = {"state": "running", "started_at": datetime.now(timezone.utc).isoformat(),
+              "helper_sha256": digest(Path(__file__)), "commands": []}
+    before = read("install-preimages.json")
+    global_shims = Path.home() / ".local/share/mise/shims"
+    shim_state = snapshot(global_shims)
+    mise = read("install-proposal.json")["native_mise"]
+
+    def save():
+        (directory / "qualification.json").write_text(json.dumps(report, indent=2) + "\n")
+
+    def run(label, arguments, env, expected=0):
+        argv = [mise["path"], "--no-config", "--no-hooks", "--no-env",
+                "-C", env["MISE_CEILING_PATHS"], *arguments]
+        row = {"case": label, "argv": argv, "expected_exit": expected,
+               "started_at": datetime.now(timezone.utc).isoformat()}
+        report["commands"].append(row)
+        save()
+        logs = [directory / (label + suffix) for suffix in (".stdout", ".stderr")]
+        with logs[0].open("wb") as out, logs[1].open("wb") as err:
+            p = subprocess.Popen(argv, env=env, cwd=directory, stdin=subprocess.DEVNULL,
+                                 stdout=out, stderr=err, start_new_session=True)
+            try:
+                p.wait(timeout=30)
+            except (subprocess.TimeoutExpired, KeyboardInterrupt):
+                row["interrupted"] = True
+                for sig in (signal.SIGTERM, signal.SIGKILL):
+                    try:
+                        os.killpg(p.pid, sig)
+                    except ProcessLookupError:
+                        pass
+                    if sig == signal.SIGTERM:
+                        try:
+                            p.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            pass
+                p.wait()
+                raise
+            finally:
+                row.update(returncode=p.returncode,
+                           logs=[{"path": str(f), "sha256": digest(f)} for f in logs])
+                save()
+        print(json.dumps({"case": label, "returncode": p.returncode}), flush=True)
+        assert p.returncode == expected, label
+        return logs[0].read_text()
+
+    try:
+        preserved(before, installed=True)
+        assert digest(Path(mise["path"])) == mise["sha256"]
+        stage, consumer = directory / "stage", directory / "consumer"
+        environments = {"stage": isolated(stage), "consumer": isolated(consumer)}
+        assert run("version", ["version"], environments["stage"]).startswith("2026.10.7 ")
+        (consumer / "data/installs").mkdir()
+        report["promotions"] = []
+        for name, version in TOOLS.items():
+            prefix = directory / ("prefix-" + name)
+            (prefix / "bin").mkdir(parents=True)
+            command = "marketplace-probe-" + name
+            binary = prefix / "bin" / command
+            binary.write_text("#!/bin/sh\nprintf '%s\\n' 'private-probe:" + name + "'\n")
+            binary.chmod(0o700)
+            run(name + "-bare-rejected", ["link", name + "@" + version, str(prefix)],
+                environments["stage"], 1)
+            tool = "asdf:" + name + "@" + version
+            run(name + "-link", ["link", tool, str(prefix)], environments["stage"])
+            namespace = stage / "data/installs" / ("asdf-" + name)
+            link = namespace / version
+            assert link.is_symlink() and link.resolve() == prefix
+            run(name + "-idempotent", ["link", tool, str(prefix)], environments["stage"])
+            run(name + "-overwrite-rejected", ["link", tool, str(directory)], environments["stage"], 1)
+            run(name + "-latest-rejected", ["link", "asdf:" + name + "@latest", str(prefix)],
+                environments["stage"], 1)
+            assert link.is_symlink() and link.resolve() == prefix
+            entries = snapshot(namespace)
+            destination = consumer / "data/installs" / namespace.name
+            assert not destination.exists()
+            namespace.rename(destination)
+            assert snapshot(destination) == entries
+            report["promotions"].append({"tool": tool, "entries": entries,
+                                         "from": str(namespace), "to": str(destination)})
+            output = run(name + "-fresh-consumer", ["exec", tool, "--no-deps", "--", command],
+                         environments["consumer"])
+            assert output == "private-probe:" + name + "\n"
+        for place in (stage, consumer):
+            assert not list((place / "data/plugins").glob("*"))
+        report["private_state"] = {name: snapshot(directory / name) for name in environments}
+        report["state"] = "PASS: isolated native link and fresh consumer; no real tool or global registration"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            preserved(before, installed=True)
+            assert snapshot(global_shims) == shim_state
+            report["protected_globals_and_shims_unchanged"] = True
+            report["global_shims_snapshot_sha256"] = hashlib.sha256(
+                json.dumps(shim_state, sort_keys=True).encode()).hexdigest()
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

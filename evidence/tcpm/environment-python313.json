@@ -1,0 +1,252 @@
+{
+  "recorded_at": "2026-10-11T00:20:24.701215+00:00",
+  "source_commit": "f532db0b25843aaad0dd6c481923c6840425485b",
+  "run_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z",
+  "harness_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/harnesses/install-tcpm-python313.py",
+  "harness_sha256": "cf94e0295e0c70d00f7a5dce9207372204fb9a671cbc920c79c8a1bdf292323e",
+  "uv": "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+  "python": "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+  "commands": [
+    {
+      "case": "uv-lock",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+        "lock",
+        "--project",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial",
+        "--python",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+        "--no-python-downloads",
+        "--no-build-package",
+        "regex"
+      ],
+      "returncode": 0,
+      "seconds": 4.019,
+      "log_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/uv-lock.log",
+      "log_sha256": "be4e4d1e199847dcb3ba8596f31afd26a12acab5b3a7e7d7d35ea6708224457a",
+      "log_bytes": 537,
+      "scan_returncode": 0,
+      "stdout": "",
+      "stderr": "Using CPython 3.13.12 interpreter at: /Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3\nwarning: Resolving despite existing lockfile due to fork markers being disjoint with `requires-python`: `python_full_version == '3.14.*'` vs `python_full_version == '3.13.*'`\n   Updating https://github.com/thirtytwobits/the-cmake-preset-matrix (f532db0b25843aaad0dd6c481923c6840425485b)\n    Updated https://github.com/thirtytwobits/the-cmake-preset-matrix (f532db0b25843aaad0dd6c481923c6840425485b)\nResolved 4 packages in 2.54s\n"
+    },
+    {
+      "case": "uv-sync",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+        "sync",
+        "--frozen",
+        "--project",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial",
+        "--python",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+        "--no-python-downloads",
+        "--no-build-package",
+        "regex"
+      ],
+      "returncode": 0,
+      "seconds": 0.797,
+      "log_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/uv-sync.log",
+      "log_sha256": "deefc1e8ab9898f8bf91806116f40bca2b791bab07aba54fcde635586c6827c5",
+      "log_bytes": 699,
+      "scan_returncode": 0,
+      "stdout": "",
+      "stderr": "Using CPython 3.13.12 interpreter at: /Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3\nCreating virtual environment at: /Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env\n   Building tcpm @ git+https://github.com/thirtytwobits/the-cmake-preset-matrix@f532db0b25843aaad0dd6c481923c6840425485b\n      Built tcpm @ git+https://github.com/thirtytwobits/the-cmake-preset-matrix@f532db0b25843aaad0dd6c481923c6840425485b\nPrepared 3 packages in 288ms\nInstalled 3 packages in 5ms\n + parsimonious==0.11.0\n + regex==2026.9.29\n + tcpm==0.3.3 (from git+https://github.com/thirtytwobits/the-cmake-preset-matrix@f532db0b25843aaad0dd6c481923c6840425485b)\n"
+    },
+    {
+      "case": "tcpm-version",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+        "run",
+        "--no-sync",
+        "--offline",
+        "--project",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial",
+        "--python",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+        "--no-python-downloads",
+        "tcpm",
+        "--version"
+      ],
+      "returncode": 0,
+      "seconds": 0.862,
+      "log_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/tcpm-version.log",
+      "log_sha256": "a0dc8325e2fbe558e09bf7d61260ca378151b0a3f875dd8b46ecd3693e34c10b",
+      "log_bytes": 6,
+      "scan_returncode": 0,
+      "stdout": "0.3.3\n",
+      "stderr": ""
+    },
+    {
+      "case": "tcpm-help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+        "run",
+        "--no-sync",
+        "--offline",
+        "--project",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial",
+        "--python",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+        "--no-python-downloads",
+        "tcpm",
+        "--help"
+      ],
+      "returncode": 0,
+      "seconds": 1.013,
+      "log_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/tcpm-help.log",
+      "log_sha256": "69a7bdfeaf9909ab2e4789528df135d5f82a3c1122edcf92b25e6412e389ec9d",
+      "log_bytes": 3153,
+      "scan_returncode": 0,
+      "stdout": "usage: tcpm [-h] [--version] [--indent INDENT]\n            [--presets-version PRESETS_VERSION] [--clean]\n            [--no-schema-validation] [--presets-schema-url PRESETS_SCHEMA_URL]\n            [--presets-file PRESETS_FILE] [--template-file TEMPLATE_FILE]\n            [--force] [--warn-threshold WARN_THRESHOLD] [--verbose]\n            [--non-interactive] [--backup-file-suffix BACKUP_FILE_SUFFIX]\n            [--no-backup] [--stdout]\n\nGenerate CMake presets based on given options. See\nhttps://cmake.org/cmake/help/latest/manual/cmake-presets.7.html for details on cmake presets.\n\nThis script is driven by configuration in the top-level 'vendor' section of the CMakePresets.json file. The\n'tcpm' section of the 'vendor' section is used to generate the presets. The 'tcpm' section must contain\nthe following keys:\n\n* version \u2013 The version of the 'tcpm' section. The current version is 1.\n* preset-groups \u2013 A dictionary of preset groups. Each group must contain the following keys:\n\n    * common \u2013  A list of common presets that pre-exist in the presets file and which the group presets\n      should inherit from.\n    * parameters \u2013 A dictionary of named values to use when generating presets.\n\nSee https://thirtytwobits.github.io/the-cmake-preset-matrix for more information.\n\noptions:\n  -h, --help            show this help message and exit\n  --version             Print the version of the script and exit.\n  --indent INDENT       The number of spaces to indent the output by.\n  --presets-version PRESETS_VERSION\n                        The required version of the presets file.\n  --clean               Clean the presets file of all presets first.\n  --no-schema-validation\n                        Skip schema validation.\n  --presets-schema-url PRESETS_SCHEMA_URL\n                        The URL to the schema to validate against.\n  --presets-file, --output-file, -o PRESETS_FILE\n                        The path to the CMakePresets.json file to update.\n  --template-file, --input-file, -i TEMPLATE_FILE\n                        A file to use as a template for the presets file. The template file is used to generate the presets file\n                        if it does not exist. If the template file and the presets file are the same, the presets file is updated\n                        in place using itself as the template. TCPM is designed to be idempotent, so using a presets file as its\n                        own template will not change the file unless changes are made that affect preset generation.\n                        \n  --force, -f           Force overwrite of the CMakePresets.json file.\n  --warn-threshold WARN_THRESHOLD\n                        The number of presets in any given group that will trigger a warning.\n  --verbose, -v         Print verbose output.\n  --non-interactive     Do not prompt the user for input.\n  --backup-file-suffix BACKUP_FILE_SUFFIX\n                        The suffix to append to the backup file.\n  --no-backup, -nb      Do not create a backup when overwriting the presets file.\n  --stdout, -s          Print the generated presets to standard output instead of writing to a file.\n\nVersion: 0.3.3\n",
+      "stderr": ""
+    },
+    {
+      "case": "installed-provenance",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/uv/0.13.0/uv-aarch64-apple-darwin/uv",
+        "run",
+        "--no-sync",
+        "--offline",
+        "--project",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/tcpm-trial",
+        "--python",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.13.12/bin/python3",
+        "--no-python-downloads",
+        "python",
+        "-c",
+        "import tcpm,pathlib,importlib.metadata,json;d=importlib.metadata.distribution(\"tcpm\");print(json.dumps({\"root\":str(pathlib.Path(tcpm.__file__).parent),\"version\":d.version,\"direct_url\":json.loads(d.read_text(\"direct_url.json\")),\"dependencies\":[{\"name\":n,\"version\":importlib.metadata.version(n)} for n in (\"parsimonious\",\"regex\")]}))"
+      ],
+      "returncode": 0,
+      "seconds": 1.231,
+      "log_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/installed-provenance.log",
+      "log_sha256": "ac5d844cf29b5fc7a06d1ea41d6ccd83fa5491cef59cb69e001ee9fb5396ee30",
+      "log_bytes": 498,
+      "scan_returncode": 0,
+      "stdout": "{\"root\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm\", \"version\": \"0.3.3\", \"direct_url\": {\"url\": \"https://github.com/thirtytwobits/the-cmake-preset-matrix\", \"vcs_info\": {\"vcs\": \"git\", \"commit_id\": \"f532db0b25843aaad0dd6c481923c6840425485b\", \"requested_revision\": \"f532db0b25843aaad0dd6c481923c6840425485b\"}}, \"dependencies\": [{\"name\": \"parsimonious\", \"version\": \"0.11.0\"}, {\"name\": \"regex\", \"version\": \"2026.9.29\"}]}\n",
+      "stderr": ""
+    }
+  ],
+  "state": "PASS - pinned source installed; CLI smoke qualified; generation pending",
+  "installed": {
+    "root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm",
+    "version": "0.3.3",
+    "direct_url": {
+      "url": "https://github.com/thirtytwobits/the-cmake-preset-matrix",
+      "vcs_info": {
+        "vcs": "git",
+        "commit_id": "f532db0b25843aaad0dd6c481923c6840425485b",
+        "requested_revision": "f532db0b25843aaad0dd6c481923c6840425485b"
+      }
+    },
+    "dependencies": [
+      {
+        "name": "parsimonious",
+        "version": "0.11.0"
+      },
+      {
+        "name": "regex",
+        "version": "2026.9.29"
+      }
+    ]
+  },
+  "installed_source_matches": [
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/__init__.py",
+      "sha256": "7f3a86c5622bce5610c1c800f66db12f402ad774eac981248ca8bc44bf85017e",
+      "source_path": "evidence/tcpm/source/src/tcpm/__init__.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/__main__.py",
+      "sha256": "f8d263abaee9b92d243b329817aae2e911e95a1e93db2865d9233eac2ecf806d",
+      "source_path": "evidence/tcpm/source/src/tcpm/__main__.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_core.py",
+      "sha256": "300b2d4c602587e76771766b34f9370c5249b3ca41630a943b7ca7602c854f79",
+      "source_path": "evidence/tcpm/source/src/tcpm/_core.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_data_model.py",
+      "sha256": "78dd460dd9d69be7a0d4b8ebe884c2104b3b885e9edbe082eee75d8f247d7b25",
+      "source_path": "evidence/tcpm/source/src/tcpm/_data_model.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_errors.py",
+      "sha256": "af31172e4c22c62c94ab4823fe077cc2d8d22545a5ccbedff251d13984256db6",
+      "source_path": "evidence/tcpm/source/src/tcpm/_errors.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_generators.py",
+      "sha256": "6c0742ae531e6e502f032215c831d93dba214cb91771c484bed5d82ddc041790",
+      "source_path": "evidence/tcpm/source/src/tcpm/_generators.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_pquery.py",
+      "sha256": "a170bc993462e64c426cfd0475adfc38f1acdf19eec8cc3824f7cb9566e7f392",
+      "source_path": "evidence/tcpm/source/src/tcpm/_pquery.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_rendering.py",
+      "sha256": "c829b3770a3ee4c1613bef2bf090c6a540ad3bb31359ed79a22e473c5165ff4e",
+      "source_path": "evidence/tcpm/source/src/tcpm/_rendering.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/_utility.py",
+      "sha256": "0b62f54d93bcf520b67e6318e71d48db3b93117cfc9db181287fa7ba5d7136f6",
+      "source_path": "evidence/tcpm/source/src/tcpm/_utility.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/cli/__init__.py",
+      "sha256": "986909ed62d740ec7d7f462821be6dbcf90f344011cd6d3490a597bce5773646",
+      "source_path": "evidence/tcpm/source/src/tcpm/cli/__init__.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/cli/_parser.py",
+      "sha256": "5bfc45b484c03470d59d37db629f6cc9eee881fe15a8f1ae99a4d2cb7663f0d9",
+      "source_path": "evidence/tcpm/source/src/tcpm/cli/_parser.py.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_path": "evidence/tcpm/source/src/tcpm/py.typed.source"
+    },
+    {
+      "installed_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/tcpm-py313-20261011T002024Z/env/lib/python3.13/site-packages/tcpm/version.py",
+      "sha256": "4b14114e1391b1360529318fe7f1925c0ff6f8bc18de1ba1e696fb4391bc1afd",
+      "source_path": "evidence/tcpm/source/src/tcpm/version.py.source"
+    }
+  ],
+  "lock_sha256": "34f917088da69ec20c7d8a9540a4aa5578fcc5761a959b660a9391cfd616ef0f",
+  "lock_packages": [
+    {
+      "name": "marketplace-tcpm-trial",
+      "version": "0.0.0",
+      "source": {
+        "virtual": "."
+      }
+    },
+    {
+      "name": "parsimonious",
+      "version": "0.11.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      }
+    },
+    {
+      "name": "regex",
+      "version": "2026.9.29",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      }
+    },
+    {
+      "name": "tcpm",
+      "version": "0.3.3",
+      "source": {
+        "git": "https://github.com/thirtytwobits/the-cmake-preset-matrix?rev=f532db0b25843aaad0dd6c481923c6840425485b#f532db0b25843aaad0dd6c481923c6840425485b"
+      }
+    }
+  ],
+  "global_mise_unchanged": true,
+  "generator_executed": false
+}

@@ -1,0 +1,965 @@
+{
+  "state": "PASS: native preparation only",
+  "helper_sha256": "175de0ddf4e5832990da909fbb06ee0591f258edfe46ca552ec1895d0f63e92a",
+  "commands": [
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-prepare-20261011T193109Z/cwd",
+        "version"
+      ],
+      "expected": 0,
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "logs": {
+        "version.stdout": "aafc9ea40926d1caedd237951384706dbdbe597b3904890d65c79846459bea0e",
+        "version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "case": "apply-help",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-prepare-20261011T193109Z/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--help"
+      ],
+      "expected": 0,
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "logs": {
+        "apply-help.stdout": "214d09233e0c9b0a22fbe4513243a169ae735a05b7b67dadfc7321a64958ec43",
+        "apply-help.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "case": "captured-plan",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-prepare-20261011T193109Z/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "expected": 0,
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "logs": {
+        "captured-plan.stdout": "331ed219aa21e4da4ae02d26ac3b5850eaa61a7b06a1a63c2d032fbc3115495d",
+        "captured-plan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "case": "missing-metadata",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-prepare-20261011T193109Z/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "expected": 1,
+      "timeout_seconds": 45,
+      "returncode": 1,
+      "logs": {
+        "missing-metadata.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "missing-metadata.stderr": "b226e067ba0d9485ae8fe5e80b13801f957894d4173cb2e73506f989eb7d304e"
+      }
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/formula/pkgconf.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/pkgconf.json",
+      "status": 404
+    },
+    {
+      "path": "/api/formula.json",
+      "status": 404
+    }
+  ],
+  "bottle": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/pkgconf-bottle-y7r5x9re/pkgconf-3.0.8.tar.gz",
+    "sha256": "cfcd403c852da8f88324056c0881ce69880fcb675181b20345ff7ffc99d4f586",
+    "bytes": 194142
+  },
+  "manifest": {
+    "members": [
+      {
+        "path": "pkgconf/3.0.8",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/.brew",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/.brew/pkgconf.rb",
+        "type": "0",
+        "mode": "0o644",
+        "size": 4757,
+        "linkname": "",
+        "sha256": "efe802d06f23356f99a7e3be6459d2c0e5e00287c2e5e59a3b998ade46e14514"
+      },
+      {
+        "path": "pkgconf/3.0.8/AUTHORS",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3607,
+        "linkname": "",
+        "sha256": "8b3dbc024558bb120b3db6b6d37bf23e38603165a810013ca3539bc7fbdadcd9"
+      },
+      {
+        "path": "pkgconf/3.0.8/COPYING",
+        "type": "0",
+        "mode": "0o644",
+        "size": 468,
+        "linkname": "",
+        "sha256": "055a265b839672a62f590869b0a1f8e4f5147e8f073c9ba77b17b8d7ad653966"
+      },
+      {
+        "path": "pkgconf/3.0.8/NEWS",
+        "type": "0",
+        "mode": "0o644",
+        "size": 50782,
+        "linkname": "",
+        "sha256": "bfe51151c4b62e3a09ac8c31abf6f1a2f2fff2dd707a7abfa3be62995ba37fee"
+      },
+      {
+        "path": "pkgconf/3.0.8/README.md",
+        "type": "0",
+        "mode": "0o644",
+        "size": 6841,
+        "linkname": "",
+        "sha256": "9feaeee0de7e1256b86dfff1717ee9f011b3b7e216a35cf08c73a52f2f45f998"
+      },
+      {
+        "path": "pkgconf/3.0.8/bin",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/bin/bomtool",
+        "type": "0",
+        "mode": "0o555",
+        "size": 54048,
+        "linkname": "",
+        "sha256": "3279a738ee3ee7c2621c94749c731589f58aea7821d192ec7edc3f56ddef469a"
+      },
+      {
+        "path": "pkgconf/3.0.8/bin/pccritic",
+        "type": "0",
+        "mode": "0o555",
+        "size": 71056,
+        "linkname": "",
+        "sha256": "af0113775b5e07835604c0dbf09295a55171f53a037e6e0ccd50be465d9db69f"
+      },
+      {
+        "path": "pkgconf/3.0.8/bin/pkg-config",
+        "type": "2",
+        "mode": "0o777",
+        "size": 0,
+        "linkname": "pkgconf"
+      },
+      {
+        "path": "pkgconf/3.0.8/bin/pkgconf",
+        "type": "0",
+        "mode": "0o555",
+        "size": 74768,
+        "linkname": "",
+        "sha256": "a9ab5c1a9e2f3574a91a8a6fe3f001b57f64738e25e25b239dfd8e24fb6117b7"
+      },
+      {
+        "path": "pkgconf/3.0.8/bin/spdxtool",
+        "type": "0",
+        "mode": "0o555",
+        "size": 75616,
+        "linkname": "",
+        "sha256": "d6334864c1a430b623fcbd47b8733da5a8befdf37cfd4cb630f7ccb85f2f1c67"
+      },
+      {
+        "path": "pkgconf/3.0.8/include",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf/bsdstubs.h",
+        "type": "0",
+        "mode": "0o644",
+        "size": 1305,
+        "linkname": "",
+        "sha256": "5c8a44f022606484f4c5992cafc81ad84e3fdb83a3a65e0182ebc11ef8e1ba20"
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf/iter.h",
+        "type": "0",
+        "mode": "0o644",
+        "size": 2422,
+        "linkname": "",
+        "sha256": "f68a51c3fa7ccb2de92d5cfc06be7552a7236471d9662c72b891e27efd2c19a9"
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf/libpkgconf-api.h",
+        "type": "0",
+        "mode": "0o644",
+        "size": 758,
+        "linkname": "",
+        "sha256": "6f69f98afaec48407a6964a96791e2dd7728d252f7d50f4a53abdbfb86bc7f17"
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf/libpkgconf.h",
+        "type": "0",
+        "mode": "0o644",
+        "size": 37574,
+        "linkname": "",
+        "sha256": "01e8859542d333368fdd289438752d4af790313cb84c865ac8dd2ca5b5ca08a9"
+      },
+      {
+        "path": "pkgconf/3.0.8/include/pkgconf/libpkgconf/stdinc.h",
+        "type": "0",
+        "mode": "0o644",
+        "size": 2851,
+        "linkname": "",
+        "sha256": "4bc8376c4ae0a67ac788835fbdc8bc3a7121192337bdcdbb05ad4ccb015dbbc5"
+      },
+      {
+        "path": "pkgconf/3.0.8/lib",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "type": "0",
+        "mode": "0o444",
+        "size": 117296,
+        "linkname": "",
+        "sha256": "5b704caa55bfe0e026af52fe723f42f0113859f19096fb933bf398ea7c117349"
+      },
+      {
+        "path": "pkgconf/3.0.8/lib/libpkgconf.a",
+        "type": "0",
+        "mode": "0o444",
+        "size": 136976,
+        "linkname": "",
+        "sha256": "1ecfdd49ac426a873bf49b31cdb331a4125305231f0c557f6f5849862920c8e9"
+      },
+      {
+        "path": "pkgconf/3.0.8/lib/libpkgconf.dylib",
+        "type": "2",
+        "mode": "0o777",
+        "size": 0,
+        "linkname": "libpkgconf.8.dylib"
+      },
+      {
+        "path": "pkgconf/3.0.8/lib/pkgconfig",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/lib/pkgconfig/libpkgconf.pc",
+        "type": "0",
+        "mode": "0o444",
+        "size": 563,
+        "linkname": "",
+        "sha256": "11c0f478a71d9639d58f2bccdad1e89e426391ee8cb9d4bef383bc3e4b09b3b4"
+      },
+      {
+        "path": "pkgconf/3.0.8/sbom.spdx.json",
+        "type": "0",
+        "mode": "0o644",
+        "size": 1665,
+        "linkname": "",
+        "sha256": "a47e37e200543ed372132b75338a3e92d72ed3e22fab483efed32fea6b640c5d"
+      },
+      {
+        "path": "pkgconf/3.0.8/share",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/aclocal",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/aclocal/pkg.m4",
+        "type": "0",
+        "mode": "0o644",
+        "size": 12678,
+        "linkname": "",
+        "sha256": "f649256076fa72946d9a844636393128e1c31fd3591389b97aa55705c4df5766"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf/AUTHORS",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3607,
+        "linkname": "",
+        "sha256": "8b3dbc024558bb120b3db6b6d37bf23e38603165a810013ca3539bc7fbdadcd9"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf/CONTRIBUTING.md",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3468,
+        "linkname": "",
+        "sha256": "37305299406a43a87be1d62a9d972dcfcb579b19edba16e85ba7683c21deee73"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf/COPYING",
+        "type": "0",
+        "mode": "0o644",
+        "size": 468,
+        "linkname": "",
+        "sha256": "055a265b839672a62f590869b0a1f8e4f5147e8f073c9ba77b17b8d7ad653966"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf/DCO",
+        "type": "0",
+        "mode": "0o644",
+        "size": 1366,
+        "linkname": "",
+        "sha256": "f7ac75b443f4ca16b503241344b41aeff9503b0c30bedc2b119551d83cb0fa90"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/doc/pkgconf/README.md",
+        "type": "0",
+        "mode": "0o644",
+        "size": 6841,
+        "linkname": "",
+        "sha256": "9feaeee0de7e1256b86dfff1717ee9f011b3b7e216a35cf08c73a52f2f45f998"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1/bomtool.1",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3632,
+        "linkname": "",
+        "sha256": "7b28e732dc56be868c8bca4943daa33af08427a299bd2eedce715a8853d0c3d0"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1/pccritic.1",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3568,
+        "linkname": "",
+        "sha256": "232d71f1a2c3aa12e13453c59c5b331f3ac60ae2260ecd4a231c176f91b4dfa6"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1/pkg-config.1",
+        "type": "0",
+        "mode": "0o644",
+        "size": 22961,
+        "linkname": "",
+        "sha256": "a433d0d300b68099b707175638eaec8a49b0ea33230669ff703df163011dc544"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1/pkgconf.1",
+        "type": "0",
+        "mode": "0o644",
+        "size": 22961,
+        "linkname": "",
+        "sha256": "a433d0d300b68099b707175638eaec8a49b0ea33230669ff703df163011dc544"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man1/spdxtool.1",
+        "type": "0",
+        "mode": "0o644",
+        "size": 4127,
+        "linkname": "",
+        "sha256": "3b55d5465b87945838d5998b576a4164eda95abf0696e6343f3a1730c8c34ba4"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man5",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man5/pc.5",
+        "type": "0",
+        "mode": "0o644",
+        "size": 10709,
+        "linkname": "",
+        "sha256": "976bd258f80c2d8d0436098a1d8f4dff19904f2bd8b5fdd94fc3ea4e2c220ba5"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man5/pkgconf-personality.5",
+        "type": "0",
+        "mode": "0o644",
+        "size": 3417,
+        "linkname": "",
+        "sha256": "b772f57e966c98c1a349aa9e768f0e4a1a78e1bef3aa0f1b0e4eadb56efcc962"
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man7",
+        "type": "5",
+        "mode": "0o755",
+        "size": 0,
+        "linkname": ""
+      },
+      {
+        "path": "pkgconf/3.0.8/share/man/man7/pkg.m4.7",
+        "type": "0",
+        "mode": "0o644",
+        "size": 4005,
+        "linkname": "",
+        "sha256": "6324cc3adf3c50b7f6ca91c1da81603a35f85442f0df19236977efeabf108e58"
+      }
+    ],
+    "prefix_writes": {
+      "/opt/homebrew/bin/bomtool": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/bomtool",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/bin/pccritic": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pccritic",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/bin/pkg-config": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkg-config",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/bin/pkgconf": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/pkgconf",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/bin/spdxtool": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/bin/spdxtool",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf/bsdstubs.h": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/include/pkgconf/libpkgconf/bsdstubs.h",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf/iter.h": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/include/pkgconf/libpkgconf/iter.h",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf/libpkgconf-api.h": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/include/pkgconf/libpkgconf/libpkgconf-api.h",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf/libpkgconf.h": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/include/pkgconf/libpkgconf/libpkgconf.h",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf/stdinc.h": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/include/pkgconf/libpkgconf/stdinc.h",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/lib/libpkgconf.8.dylib": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.8.dylib",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/lib/libpkgconf.a": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.a",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/lib/libpkgconf.dylib": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/libpkgconf.dylib",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/lib/pkgconfig/libpkgconf.pc": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/lib/pkgconfig/libpkgconf.pc",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/aclocal/pkg.m4": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/aclocal/pkg.m4",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/doc/pkgconf/AUTHORS": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/doc/pkgconf/AUTHORS",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/doc/pkgconf/CONTRIBUTING.md": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/doc/pkgconf/CONTRIBUTING.md",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/doc/pkgconf/COPYING": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/doc/pkgconf/COPYING",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/doc/pkgconf/DCO": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/doc/pkgconf/DCO",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/doc/pkgconf/README.md": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/doc/pkgconf/README.md",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man1/bomtool.1": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man1/bomtool.1",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man1/pccritic.1": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man1/pccritic.1",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man1/pkg-config.1": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man1/pkg-config.1",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man1/pkgconf.1": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man1/pkgconf.1",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man1/spdxtool.1": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man1/spdxtool.1",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man5/pc.5": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man5/pc.5",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man5/pkgconf-personality.5": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man5/pkgconf-personality.5",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/share/man/man7/pkg.m4.7": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8/share/man/man7/pkg.m4.7",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/opt/pkgconf": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8",
+        "preimage": {
+          "kind": "absent"
+        }
+      },
+      "/opt/homebrew/var/homebrew/linked/pkgconf": {
+        "target": "/opt/homebrew/Cellar/pkgconf/3.0.8",
+        "preimage": {
+          "kind": "absent"
+        }
+      }
+    },
+    "parent_preimages": {
+      "/opt/homebrew/bin": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/include/pkgconf/libpkgconf": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/include/pkgconf": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/include": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/lib": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/lib/pkgconfig": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/aclocal": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/share/doc/pkgconf": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/share/doc": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man/man1": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man/man5": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man/man7": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/opt": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/var/homebrew/linked": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/var/homebrew": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/var": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/etc": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/share/zsh": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/Cellar": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/Cellar/pkgconf": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/var/homebrew/locks": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      }
+    },
+    "materializations": {},
+    "control_preimages": {
+      "/opt/homebrew": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/bin": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/etc": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/include": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/lib": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/sbin": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/share": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/var": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/opt": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/Cellar": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/Caskroom": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/Frameworks": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/etc/bash_completion.d": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/zsh": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/zsh/site-functions": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/doc": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/share/man/man1": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o755"
+      },
+      "/opt/homebrew/var/homebrew": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/var/homebrew/linked": {
+        "kind": "directory",
+        "uid": 501,
+        "mode": "0o775"
+      },
+      "/opt/homebrew/Cellar/pkgconf": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/Cellar/pkgconf/.mise-staging.lock": {
+        "kind": "absent"
+      },
+      "/opt/homebrew/var/homebrew/locks/mise-bootstrap.lock": {
+        "kind": "file",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "additional_native_writes": [
+      "/opt/homebrew/Cellar/pkgconf/.mise-staging.lock",
+      "/opt/homebrew/Cellar/pkgconf/.mise-extract-3.0.8-<random>/",
+      "/opt/homebrew/Cellar/pkgconf/3.0.8/",
+      "/opt/homebrew/var/homebrew/locks/mise-bootstrap.lock",
+      "Missing listed parent directories",
+      "Listed directory materializations",
+      "Private mise state, data and cache"
+    ]
+  },
+  "census_before": {
+    "at": "2026-10-11T19:31:11.546433+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "prefix_preimages_unchanged": true,
+  "archive_extracted": false,
+  "installation_executed": false,
+  "loopback_server_stopped": true,
+  "census_after": {
+    "at": "2026-10-11T19:31:18.514564+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "protected_state_unchanged": true
+}

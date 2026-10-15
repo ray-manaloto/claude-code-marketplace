@@ -1,0 +1,40 @@
+{
+ "version": 2,
+ "repo": "ray-manaloto/claude-code-marketplace",
+ "parent_number": 999999,
+ "note": "Preview of one additional ticket in the exact entry shape of tickets.preview.json (build_manifests.py ticket_body); merge into TICKETS before the real build with the created spec number. Not applied to tickets.preview.json.",
+ "design": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261013/T2-import-lane-design.md",
+ "edges": {
+  "blocked_by": [],
+  "blocks_closure_of": [
+   "#69",
+   "#63",
+   "#64",
+   "#65",
+   "#66",
+   "#68",
+   "#71",
+   "#72",
+   "#73",
+   "#74"
+  ],
+  "blocks_operations": [
+   "CLOSE lane for the A-series",
+   "D9 removal of the 2a14 and c658 worktrees",
+   "parent rewrite of the four tracked 2a14 absolute paths (task_plan.md:322, docs/status.md:10, docs/agents/claude-takeover.md:26, docs/agents/codex-task-orchestration.md:6)"
+  ],
+  "prerequisite_operations": [
+   "R8 wave 0 step 0.3 ([task_config] includes list in mise.dev.toml)",
+   "second publish carries the T1 index files, not the snapshot payload"
+  ]
+ },
+ "tickets": [
+  {
+   "local_id": "CT-21",
+   "title": "CT-21: Import Codex worktree inputs and cited evidence; fail closed on missing inputs",
+   "body": "## Parent\n\nThe takeover spec issue (#999999).\n\n## What to build\n\n**What to build:** the integration tip stops depending on unsaved Codex worktree data. Copy, hash-verified against the T1 snapshot `MANIFEST.json`, the 58 untracked-class files the tip cites (the A06 release schema and retrieval runs, the nine saved-search runs with comparisons, the A02 one-page captures, the A09 triage and adjudication, the A08 graph audit and edge receipt, the three W5/A-series `docs/agents` audits, the A07b spec-11 candidate pair) and the 61 manifest-hashed `*.log` files to their tip paths (`git add -f` for the logs: only the host's global excludes file ignores them, never the frozen `.gitignore`); declare the 18 iwyu build-tree files and every keep-private set (`evidence/claude-amendment-review/`, the `issue-publication-private` intents, the redacted gitleaks report, the `c658` schema) in a new `dev/cited-inputs.json` with their SHA-256 and the private mirror that holds them. `dev/codex_examples.py` refuses a missing tracked input with exit 3 and a message naming the path instead of a generic `unresolved`; `dev/checkout_transfer.py` takes the old worktree from `--old` or `MARKETPLACE_OLD_WORKTREE` and refuses when neither is given, with no host path in the source. A new `dev/check_inputs.py` (task `check:inputs`) walks every path cited by a tracked retro, an evidence manifest row with `path`+`sha256`, or a declared code default and exits 1 naming each path that is neither in the tree with the recorded hash nor declared in a mirror; the parent wires it into `check`, `check:research` and the development workflow.\n\n## Acceptance criteria\n\n- [ ] `./dev/mise run check:inputs` exits 0 on the composed tree and, in a scratch copy with one imported file removed, exits 1 with one line per missing path naming the citing file and line; every imported file's SHA-256 equals its `MANIFEST.json` row (119 files, 1,057,200 bytes), recorded in a receipt under `evidence/codex-imports/`.\n- [ ] `./dev/mise run test:examples` gains a test that reads the real `evidence/codex-examples/release/config-schema.json` and the cited `evidence/saved-searches/runs/*` without patching and fails when they are absent or drift from `dev/cited-inputs.json`; the hermetic fixture tests stay; `dev/codex_examples.py` against an absent run or schema exits 3 and names the path; `dev/checkout_transfer.py plan` without `--old` and `MARKETPLACE_OLD_WORKTREE` exits 2 naming both.\n- [ ] gitleaks 8.30.1 (built-in rules, `--redact=100`) over the imported files reports 0 findings and the A09 publish records `history_scan_rc`; no keep-private file enters the tree; `check`, `check:acceptance-baseline` (19/19, `.gitignore` untouched) and `git diff --check` stay rc 0.\n\n## Blocked by\n\n- None (can start immediately).\n\nLocal ID: CT-21. Execution boundary: one lane, one worktree, explicit path allowlist, about five maintained files and 300 handwritten lines; retro record required before integration; no push, publication, closure or host-heavy operation is implied by this ticket.\n",
+   "body_sha256": "b03064b18be3e9550c1497fa6cc4f7a973cb659aca189a3cdbf4d1f4bca7ce45",
+   "labels": []
+  }
+ ]
+}

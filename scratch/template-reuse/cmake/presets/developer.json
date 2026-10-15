@@ -1,0 +1,57 @@
+{
+  "version": 12,
+  "configurePresets": [
+    {
+      "name": "reuse-common",
+      "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_CXX_STANDARD_REQUIRED": true,
+        "CMAKE_CXX_EXTENSIONS": false
+      }
+    },
+    {
+      "name": "reuse-multi",
+      "inherits": "reuse-common",
+      "displayName": "Source-only reuse fixture; no qualified compiler"
+    }
+  ],
+  "buildPresets": [
+    { "name": "reuse-debug", "configurePreset": "reuse-multi", "configuration": "Debug" },
+    { "name": "reuse-release", "configurePreset": "reuse-multi", "configuration": "Release" },
+    { "name": "reuse-relwithdebinfo", "configurePreset": "reuse-multi", "configuration": "RelWithDebInfo" },
+    { "name": "reuse-minsizerel", "configurePreset": "reuse-multi", "configuration": "MinSizeRel" }
+  ],
+  "testPresets": [
+    {
+      "name": "reuse-test-common",
+      "hidden": true,
+      "configurePreset": "reuse-multi",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "error", "stopOnFailure": true }
+    },
+    { "name": "reuse-debug", "inherits": "reuse-test-common", "configuration": "Debug" },
+    { "name": "reuse-release", "inherits": "reuse-test-common", "configuration": "Release" },
+    { "name": "reuse-relwithdebinfo", "inherits": "reuse-test-common", "configuration": "RelWithDebInfo" },
+    { "name": "reuse-minsizerel", "inherits": "reuse-test-common", "configuration": "MinSizeRel" }
+  ],
+  "workflowPresets": [
+    {
+      "name": "reuse-all",
+      "steps": [
+        { "type": "configure", "name": "reuse-multi" },
+        { "type": "build", "name": "reuse-debug" },
+        { "type": "test", "name": "reuse-debug" },
+        { "type": "build", "name": "reuse-release" },
+        { "type": "test", "name": "reuse-release" },
+        { "type": "build", "name": "reuse-relwithdebinfo" },
+        { "type": "test", "name": "reuse-relwithdebinfo" },
+        { "type": "build", "name": "reuse-minsizerel" },
+        { "type": "test", "name": "reuse-minsizerel" }
+      ]
+    }
+  ]
+}

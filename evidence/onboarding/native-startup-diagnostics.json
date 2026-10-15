@@ -1,0 +1,149 @@
+{
+  "kind": "startup_only_no_inference",
+  "argv": [
+    "/Users/rmanaloto/.local/bin/codex",
+    "--no-daemon",
+    "-C",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "-s",
+    "read-only",
+    "-a",
+    "never",
+    "-c",
+    "mcp_servers.computer-use.enabled=false",
+    "-c",
+    "mcp_servers.node_repl.enabled=false",
+    "-c",
+    "mcp_servers.openaiDeveloperDocs.enabled=false",
+    "-c",
+    "mcp_servers.MCP_DOCKER.enabled=false",
+    "-c",
+    "mcp_servers.graphify.enabled=false",
+    "-c",
+    "mcp_servers.exa.enabled=false",
+    "-c",
+    "mcp_servers.context7.enabled=false",
+    "-c",
+    "plugins.record-and-replay@openai-bundled.mcp_servers.event-stream.enabled=false",
+    "-c",
+    "plugins.computer-history@openai-bundled.mcp_servers.computer-history.enabled=false",
+    "-c",
+    "plugins.codex-app-tools@openai-bundled.mcp_servers.codex_app.enabled=false",
+    "-c",
+    "plugins.messages@openai-bundled.mcp_servers.messages.enabled=false",
+    "-c",
+    "plugins.openai-developers@openai-curated.mcp_servers.openai-api-key-local-confirmation.enabled=false",
+    "-c",
+    "plugins.codex-security@openai-curated.mcp_servers.codex-security.enabled=false",
+    "-c",
+    "plugins.unified-computer-use@openai-bundled.mcp_servers.cua_repl.enabled=false",
+    "-c",
+    "plugins.code-review@openai-bundled.mcp_servers.code-review.enabled=false",
+    "app-server",
+    "--strict-config",
+    "--listen",
+    "stdio://"
+  ],
+  "exit_code": 0,
+  "thread_start": {
+    "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "instructionSources": [
+      "/Users/rmanaloto/.codex/AGENTS.md",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/AGENTS.md"
+    ],
+    "approvalPolicy": "never",
+    "sandbox": {
+      "type": "readOnly",
+      "networkAccess": false
+    }
+  },
+  "notifications": [
+    {
+      "method": "warning",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "message": "Under-development features enabled: chronicle. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/rmanaloto/.codex/config.toml."
+      },
+      "emittedAtMs": 1791672090794
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "codex-security",
+        "status": "starting",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672090794
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "xcodebuildmcp",
+        "status": "starting",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672090794
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "codex_apps",
+        "status": "starting",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672090794
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "openai-api-key-local-confirmation",
+        "status": "starting",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672090794
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "openai-api-key-local-confirmation",
+        "status": "ready",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672090833
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "codex-security",
+        "status": "ready",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672091800
+    },
+    {
+      "method": "mcpServer/startupStatus/updated",
+      "params": {
+        "threadId": "01a127fa-79e4-70b2-8f82-d7518ed94335",
+        "name": "codex_apps",
+        "status": "ready",
+        "error": null,
+        "failureReason": null
+      },
+      "emittedAtMs": 1791672091870
+    }
+  ],
+  "stderr_bytes": 0,
+  "stderr_tail": ""
+}

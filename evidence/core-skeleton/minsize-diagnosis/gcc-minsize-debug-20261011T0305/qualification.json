@@ -1,0 +1,91 @@
+{
+  "state": "FAIL: hypothesis 1 falsified; without-modules also has duplicate symbols",
+  "started_at": "2026-10-11T02:54:57.158208+00:00",
+  "commands": [
+    {
+      "case": "minimal-red",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-Os",
+        "-fmodules-ts",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/first.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/second.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/witness"
+      ],
+      "started_at": "2026-10-11T02:54:57.160873+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/minimal-red.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/minimal-red.stderr",
+          "sha256": "2df27221c233cf5a1b2a92c5f41e2b2b3c060b0cc8250e3b24986a17bf6455af"
+        }
+      ]
+    },
+    {
+      "case": "without-modules",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-Os",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/first.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/second.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/without-modules"
+      ],
+      "started_at": "2026-10-11T02:54:58.403326+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/without-modules.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-minsize-debug-20261011T0305/without-modules.stderr",
+          "sha256": "bf360a3ee1df40b60277b976f85b52e3f85e433ad369cb828198dab312145525"
+        }
+      ]
+    }
+  ],
+  "harness_sha256": "875c6d9128cff684ff6ed096a34077272d15a0f8857b78cb1399d501cbbeba57",
+  "inputs": {
+    "CMakeLists.txt": "80301ed0f3145e625360f224888f5792b5bb83249284c86f736aef69741a401e",
+    "include/aggregated_research/core.hpp": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+    "src/core.cpp": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+    "src/smoke.cpp": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+    "cmake/toolchains/gcc16-macos-arm64.cmake": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+    "evidence/gcc-runtime/qualification.json": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+  },
+  "protected_state_unchanged": true
+}

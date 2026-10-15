@@ -1,0 +1,65 @@
+{
+  "unit": "capture-filter",
+  "tickets": [
+    "CT-88 follow-up (D166)"
+  ],
+  "title": "The UserPromptSubmit capture hook records only user prompts, not task notifications delivered through the same event",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/capture-filter",
+  "branch": "claude/capture-filter",
+  "base_sha": "9cb206e",
+  "allocated_from": "9cb206e",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "parent observation 2026-10-14: both rows in the live request ledger after the request-hooks merge (p:9dc3aa9d, p:cf32b5bb) are <task-notification> payloads, and each raised H.request-unprojected P1",
+  "delivers": [
+    "the capture hook's jq filter drops a UserPromptSubmit payload whose prompt is a harness event (it starts with <task-notification>; survey the other harness-originated shapes this session receives, e.g. scheduled wake-ups, and include each one with evidence) and still appends every real user prompt unchanged",
+    "zero logic beyond jq (D166): one select() in the existing command",
+    "RequestHooks seam tests: a task-notification payload appends nothing; a user prompt that merely mentions <task-notification> mid-text is still captured; the Settings pin stays exact"
+  ],
+  "owned_paths": [
+    ".claude/settings.json",
+    "dev/test_hooks.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/capture-filter.md"
+  ],
+  "excluded_shared_paths": [
+    "dev/handoff.py",
+    "dev/hooks/",
+    "mise.dev.toml",
+    "docs/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:hooks",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- capture-filter"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none"
+  },
+  "status": "integrated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "the three deny gates and the D101 SessionStart doctor entry stay byte-identical",
+    "the live ledger is read-only evidence; never print prompt text into tracked files",
+    "retro: `retros/capture-filter.md` at da016c9 (blob 1d98cd7), gate rc 0; added to the integration branch ahead of the merge in d078d86 (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; the retro commit da016c9 carries a Claude Fable 5.1 trailer, its actual writer (retro-writer, fable)",
+    "parent edits from the retro: 1 (docs/agents/hooks-and-mods.md Capture bullet) applied in d078d86; 2 (live-ledger prune) not run, the parent dispositioned those rows; 3 (dev/check.py runs dev/test_hooks.py) not applied: check:research depends on test:hooks and then runs dev/check.py --baseline, so the suite would run twice there; run the way check.py would call it, it passes (rc 0, 25 tests, about 8 s), so CI coverage needs a parent choice (drop test:hooks from check:research, or a development.yml step)",
+    "integrated 2026-10-14 as 53de52d (parents d078d86, da016c9), no conflict, tree d26a5a0 = merge-tree; gates on the merged tree rc 0 (tasks validate 66, check, check:acceptance-baseline 19, check:research, test:hooks 25, retro:gate, git diff --check d078d86 and dc96614, betterleaks 1.9.0 git dc96614..HEAD no finding); report reviews/ccm-20261014/republish/capture-filter-merge-report.md",
+    "lane worktree .claude/worktrees/capture-filter removed by the merger after integration (clean, fully merged); branch claude/capture-filter kept"
+  ],
+  "head_sha": "da016c9",
+  "integration_merge": "53de52d",
+  "review": "fable cold review PASS-with-P3 on 4289ead",
+  "retro": "passed"
+}

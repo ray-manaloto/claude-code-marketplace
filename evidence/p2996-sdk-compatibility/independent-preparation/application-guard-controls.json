@@ -1,0 +1,127 @@
+{
+  "result": "PASS",
+  "helper_sha256": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294",
+  "scope": "Exact AST guards with mock admissions/environment; no lease acquisition, native apply, or compiler execution",
+  "controls": [
+    {
+      "case": "valid-admission",
+      "result": "PASS",
+      "assertion_rejected": false,
+      "lease_acquired": false
+    },
+    {
+      "case": "helper-mismatch",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "proposal-mismatch",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "run-directory-mismatch",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "review-digest-mismatch",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "review-fails",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "lock-digest-mismatch",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "alternate-lock-directory",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "alternate-state-home",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "inherited-holder",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "inherited-descriptor",
+      "result": "PASS",
+      "assertion_rejected": true,
+      "lease_acquired": false
+    },
+    {
+      "case": "valid-source-metadata",
+      "result": "PASS",
+      "assertion_rejected": false
+    },
+    {
+      "case": "wrong-base",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "wrong-allowlist",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "wrong-patch-hash",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "probe-not-passed",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "probe-source-changed",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "unexpected-positive-exit",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "valid-five-preimages",
+      "result": "PASS",
+      "assertion_rejected": false
+    },
+    {
+      "case": "valid-five-postimages",
+      "result": "PASS",
+      "assertion_rejected": false
+    },
+    {
+      "case": "wrong-postimages",
+      "result": "PASS",
+      "assertion_rejected": true
+    },
+    {
+      "case": "preservation-failure-propagates-and-labels-FAIL",
+      "result": "PASS"
+    }
+  ]
+}

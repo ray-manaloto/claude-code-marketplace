@@ -1,0 +1,51 @@
+{
+  "kind": "onboarding_qualification_before_evidence_commit",
+  "head_at_check": "a39b1b399475c98f874e1cc3324c207a36121aee",
+  "base_head": "6b5b092efa6bdf678815073db42f69fae3f07ab3",
+  "branch": "codex/marketplace-native-onboarding",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "checks": [
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "exit_code": 0,
+      "seconds": 3.205,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 20, \"python\": 1, \"shell\": 5, \"toml\": 9}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "6b5b092efa6bdf678815073db42f69fae3f07ab3"
+      ],
+      "exit_code": 0,
+      "seconds": 2.297,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "source_hashes_match": true,
+  "all_19_sources_rechecked": true,
+  "current_native_context_hashes_match": true,
+  "decisions_match_source_except_trailing_newlines": true,
+  "sanitization_exit_code": 0,
+  "sanitization_findings": 0,
+  "review_receipts": [
+    "n1-review.json",
+    "n2-review.json",
+    "n3-review.json",
+    "n4-cold-review.json"
+  ],
+  "limits": [
+    "Full OCI acceptance pending",
+    "Provider coverage incomplete",
+    "MCP connectivity unqualified",
+    "Native build tasks pending"
+  ],
+  "pass": true
+}

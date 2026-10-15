@@ -1,0 +1,520 @@
+{
+  "schema": 1,
+  "kind": "task12-exact-vcpkg-tool-detector-environment-abi-source-review",
+  "recorded_at": "2026-10-11T16:33:09.765Z",
+  "reviewer": "/root/docs_reviewer",
+  "status": "SOURCE_BOUNDARIES_CONFIRMED_NATIVE_UNVERIFIED_UNADMITTED",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "374beaa6239b9e2e4ecf2f998285ff64139f8d21",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "vcpkg_source_identity": {
+    "checkout": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+    "git_admin": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/.git",
+    "common_directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/.git",
+    "branch": null,
+    "head": "e456309491fd875487bf02b8a0dca76c1b1b00cc",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "tool_source": {
+    "repository": "https://github.com/microsoft/vcpkg-tool",
+    "tag": "2026-09-26",
+    "commit": "51bf87ca6e9bf3e622d84ff323bd202ab1ca0c0b",
+    "tree": "9d78bd87b88a7b37b24f4eb4d929cbb48f53755e",
+    "identity_basis": "Parent official tag/commit metadata; reviewer independently rehashed exact archive and checked its ZIP end-record commit comment; all eight extracted-file SHA256 values match source-disposition.json.",
+    "archive": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/2026-09-26.zip",
+      "sha256": "73bbdd5d41529dd1d2a4dcdf8151201890b5e8eca85b1c164695a542b3bdd3f2",
+      "sha512": "19669a5f107cb02693fe5968687cf83e3ae13692c16a389ff08ff5d51caddf4d885c961e91c60ee2adfbd242dffcdd8987dbcb2f59a71b797a9c7f95e9d89934",
+      "bytes": 3792141,
+      "commit_comment": "51bf87ca6e9bf3e622d84ff323bd202ab1ca0c0b"
+    },
+    "license": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/LICENSE.txt",
+      "sha256": "16e3c9cdb4fa14a8627bc4b5ef0237773a79c3ad1d012c288f37e29573e116cc",
+      "license": "MIT",
+      "copyright": "Microsoft Corporation"
+    }
+  },
+  "prerequisites": [
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source-disposition.json",
+      "sha256": "85bad7f597336162185c8223976f58caf02644b7c028b94e7d825531d69b7212"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/process-receipts.json",
+      "sha256": "6f23e4a057b861014b04011d25cf6c62231a6f775c489871f049be7ece76c85f"
+    },
+    {
+      "path": "/private/tmp/marketplace-task12-detector-prerequisite-6l547s/inventory.json",
+      "sha256": "f8e11b82171aa360e8c135f42f9c3df3d91cf8a2fdbbb033f3932dd4555a317a",
+      "reuse": "Unchanged prior detector/helper source evidence"
+    },
+    {
+      "path": "/private/tmp/marketplace-task12-prerequisites-g_spu0p_/inventory.json",
+      "sha256": "f2ed77c915ee5d0b4aae68b91b186eff0efb3fc88b62475169ba13d58f68ebb8",
+      "reuse": "Unchanged task12 prerequisites"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-vcpkg-chainload-prerequisite-20261011T160548372Z.json",
+      "sha256": "37455192989b87de0bb4bb703764121ca99130da9b0bc5454928bfa64fb3b912",
+      "reuse": "Unchanged policy/composition requirements"
+    }
+  ],
+  "acquisition_disposition": {
+    "reviewer_network_calls": 0,
+    "parent_initial_fnox_exit": 1,
+    "parent_corrected_fnox_exit": 0,
+    "initial_failure": "Proposed src/vcpkg/build.cpp absent in successfully hash-verified archive; actual split is commands.build.cpp/buildenvironment.cpp. Initial receipt retained.",
+    "process_receipt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/process-receipts.json"
+  },
+  "scope": {
+    "parent_sole_maintained_file_writer": true,
+    "source_files": 8,
+    "additional_source_members_requested": 0,
+    "source_files_modified": 0,
+    "maintained_or_global_writes": 0,
+    "git_or_native_tool_executions": 0,
+    "network_calls": 0,
+    "profile_protected_lease_docker_operations": 0,
+    "private_output_files": 1,
+    "methods": [
+      "node_repl filesystem reads and cryptographic hashes",
+      "Git administrative text reads without Git executable",
+      "exact local archive digest and ZIP comment read",
+      "one new private JSON receipt"
+    ],
+    "status_probe_answered": true
+  },
+  "sources": [
+    {
+      "id": "src/vcpkg/commands.build.cpp",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/commands.build.cpp",
+      "sha256": "8a2cae098a28327ca4ece8f64ca51d1570240216a04738baaa7c076d4df51689",
+      "bytes": 108701,
+      "line_count": 2300
+    },
+    {
+      "id": "include/vcpkg/commands.build.h",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/include/vcpkg/commands.build.h",
+      "sha256": "36df8a1bf9ecacf6c10994a2ff3baf1bea09db013fb4f7596ca5994d17e65f82",
+      "bytes": 14327,
+      "line_count": 365
+    },
+    {
+      "id": "src/vcpkg/buildenvironment.cpp",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/buildenvironment.cpp",
+      "sha256": "12641562fb37d4df2cd064eac8d5360baeb15bb250b63e4b345f785573d1573c",
+      "bytes": 991,
+      "line_count": 23
+    },
+    {
+      "id": "include/vcpkg/buildenvironment.h",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/include/vcpkg/buildenvironment.h",
+      "sha256": "d86ce69e02e5147ace4fbd758ffa81a969eba42c85a6a7a8c9f628e7e6ee02dc",
+      "bytes": 306,
+      "line_count": 14
+    },
+    {
+      "id": "src/vcpkg/cmakevars.cpp",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/cmakevars.cpp",
+      "sha256": "3f5ad515cf14b940b454630b5b0c7727c9c60d4cd1314a926a5a44922feaeca1",
+      "bytes": 17299,
+      "line_count": 403
+    },
+    {
+      "id": "src/vcpkg/base/system.process.cpp",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/src/vcpkg/base/system.process.cpp",
+      "sha256": "eaa4be62402217a85babea926684b0ba09e67e1b28a026b16f4faa6f89670a4b",
+      "bytes": 84227,
+      "line_count": 2276
+    },
+    {
+      "id": "include/vcpkg/base/system.process.h",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/include/vcpkg/base/system.process.h",
+      "sha256": "5b65da999cea3d7f71a8a707e9d88cea82e5028dea2e2a6b05f21a505f2e6cb4",
+      "bytes": 14310,
+      "line_count": 311
+    },
+    {
+      "id": "LICENSE.txt",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-tool-source-20261011T162407Z/source/LICENSE.txt",
+      "sha256": "16e3c9cdb4fa14a8627bc4b5ef0237773a79c3ad1d012c288f37e29573e116cc",
+      "bytes": 1095,
+      "line_count": 23
+    }
+  ],
+  "reused_sources": [
+    {
+      "id": "scripts/detect_compiler/portfile.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/portfile.cmake",
+      "sha256": "b2d148c0e913b01e2f9417622acf11d864170575e105aa8e242d693d687bd25a",
+      "basis": "Unchanged prior receipt; source not requalified through native execution"
+    },
+    {
+      "id": "scripts/detect_compiler/CMakeLists.txt",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/detect_compiler/CMakeLists.txt",
+      "sha256": "eb3a229344dd5eb273e791adf163cebe6cfcf31dda3df0a87363f8eb7c84fcb0",
+      "basis": "Unchanged prior receipt; source not requalified through native execution"
+    },
+    {
+      "id": "scripts/cmake/vcpkg_configure_cmake.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/cmake/vcpkg_configure_cmake.cmake",
+      "sha256": "e2f0cfea5cdd7a7569bad8d9a46c67f6e525e6bf540395d6e59c2827dd6b40ae",
+      "basis": "Unchanged prior receipt; source not requalified through native execution"
+    },
+    {
+      "id": "scripts/ports.cmake",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/scripts/ports.cmake",
+      "sha256": "ae49e729c370bed1954cdd64875854fe1bb2ae4b9ed0316f6777d32ffeb9bd4a",
+      "basis": "Unchanged prior receipt; source not requalified through native execution"
+    }
+  ],
+  "findings": [
+    {
+      "id": "detector-and-real-port-route",
+      "status": "source-confirmed",
+      "statement": "load_compiler_info selects scripts/detect_compiler as CURRENT_PORT_DIR, the selected target triplet file, host triplet equal to target, installed compiler-hash cache file, and selected top-level toolchain. It invokes paths.ports_cmake using the generic BUILD args. Real ports use the same generic args, selected toolchain and action-environment path. The retained CMake evidence includes TARGET_TRIPLET_FILE before the selected portfile; the detector selects Release and calls builtin vcpkg_configure_cmake, which appends VCPKG_CMAKE_CONFIGURE_OPTIONS. Thus the previously proposed -DCMAKE_POLICY_DEFAULT_CMP0210=NEW option has a source-confirmed route into detector configure, conditional on its triplet definition. Effective policy remains a native witness requirement.",
+      "refs": [
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            790,
+            839
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            909,
+            921
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            953,
+            958
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1202,
+            1207
+          ]
+        },
+        {
+          "source": "src/vcpkg/buildenvironment.cpp",
+          "lines": [
+            10,
+            21
+          ]
+        },
+        {
+          "source": "scripts/ports.cmake",
+          "lines": [
+            145,
+            176
+          ]
+        },
+        {
+          "source": "scripts/ports.cmake",
+          "lines": [
+            200,
+            209
+          ]
+        },
+        {
+          "source": "scripts/detect_compiler/portfile.cmake",
+          "lines": [
+            16,
+            24
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            244,
+            259
+          ]
+        },
+        {
+          "source": "scripts/cmake/vcpkg_configure_cmake.cmake",
+          "lines": [
+            325,
+            330
+          ]
+        }
+      ]
+    },
+    {
+      "id": "triplet-extraction-and-tracked-names",
+      "status": "source-confirmed",
+      "statement": "cmakevars copies the selected triplet text into its extraction script and exports VCPKG_ENV_PASSTHROUGH, VCPKG_ENV_PASSTHROUGH_UNTRACKED, VCPKG_HASH_ADDITIONAL_FILES and chainload settings. PreBuildInfo splits the tracked list and separately appends untracked names to the forwarding list. MARKETPLACE names are not special built-ins: the triplet must explicitly list MARKETPLACE_CPP_LANE and exactly the selected MARKETPLACE_P2996_PREFIX or MARKETPLACE_GCC16_PREFIX as tracked inputs before variable extraction.",
+      "refs": [
+        {
+          "source": "src/vcpkg/cmakevars.cpp",
+          "lines": [
+            88,
+            118
+          ]
+        },
+        {
+          "source": "src/vcpkg/cmakevars.cpp",
+          "lines": [
+            137,
+            167
+          ]
+        },
+        {
+          "source": "src/vcpkg/cmakevars.cpp",
+          "lines": [
+            268,
+            273
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            2223,
+            2223
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            2234,
+            2249
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unix-inheritance-versus-windows-forwarding",
+      "status": "source-confirmed",
+      "statement": "On non-Windows, get_action_env returns get_clean_environment; the non-Windows implementation supplies an empty Environment when no PATH prefix is requested. The redirected launcher passes the inherited environ to /bin/sh and expresses removals with env -u. Detector and port actions remove DESTDIR; the port also adds GIT_CEILING_DIRECTORIES. Consequently Unix/macOS child inheritance is not an allowlist and is independent of the tracked ABI list. Windows instead reads selected tracked plus untracked variables into its modified clean environment, alongside its standard preserved variables. Do not characterize the Unix branch as Windows-style sanitization.",
+      "refs": [
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            481,
+            498
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            613,
+            630
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            829,
+            830
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1205,
+            1211
+          ]
+        },
+        {
+          "source": "src/vcpkg/base/system.process.cpp",
+          "lines": [
+            737,
+            750
+          ]
+        },
+        {
+          "source": "src/vcpkg/base/system.process.cpp",
+          "lines": [
+            873,
+            876
+          ]
+        },
+        {
+          "source": "src/vcpkg/base/system.process.cpp",
+          "lines": [
+            1797,
+            1815
+          ]
+        },
+        {
+          "source": "src/vcpkg/base/system.process.cpp",
+          "lines": [
+            1866,
+            1869
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tracked-value-hashing-is-not-validation",
+      "status": "source-confirmed",
+      "statement": "Each present tracked environment value creates ENV:<name> with SHA256(value). Unset names contribute no entry; a present empty value hashes as the empty string. The tool does not validate MARKETPLACE lane/prefix values here. Tracking therefore makes values ABI inputs, but does not reject missing, empty, wrong or polluted environments. Such rejection belongs to the qualified toolchain/adapter/operation guards. Untracked inherited variables do not gain tracked ABI entries by being present in a Unix child.",
+      "refs": [
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1354,
+            1366
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1413,
+            1421
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            2234,
+            2243
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compiler-and-top-level-toolchain-cache-boundary",
+      "status": "source-confirmed",
+      "statement": "The top-level toolchain is the configured external chainload file or the platform default. Its SHA256 is lazily cached by file path; triplet bytes are SHA256-hashed and lazily cached by triplet-file path. Within that triplet entry, compiler_info and triplet_info are keyed by the top-level toolchain content hash. With compiler tracking enabled, triplet ABI is triplet-hash + toolchain-hash + detector compiler-hash; disabling tracking omits compiler hash. Environment values and VCPKG_HASH_ADDITIONAL_FILES are not keys of this C++ compiler-info cache. Included/nested CMake files are not recursively traversed by the top-level toolchain hash. A package-ABI change from an additional file is therefore not proof that compiler detection was rerun.",
+      "refs": [
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            637,
+            704
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            821,
+            822
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            988,
+            1001
+          ]
+        },
+        {
+          "source": "include/vcpkg/commands.build.h",
+          "lines": [
+            341,
+            363
+          ]
+        }
+      ]
+    },
+    {
+      "id": "additional-file-hashes-and-package-abi",
+      "status": "source-confirmed",
+      "statement": "VCPKG_HASH_ADDITIONAL_FILES is parsed as a semicolon-separated path list. Every listed path must be absolute and a regular file; each file contributes SHA256(bytes) under additional_file_<list index>. The entry hashes contents, not the pathname; list order is part of the association. These entries are computed inside the per-PackageSpec ABI-source cache population. After combining environment, triplet and other entries, sorted key/value lines are written to the ABI-info file and SHA256-hashed to form the package ABI. List all nested compiler/toolchain inputs explicitly; merely including a nested file from a hashed top-level adapter does not hash that nested file.",
+      "refs": [
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            2246,
+            2249
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1423,
+            1455
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1529,
+            1558
+          ]
+        },
+        {
+          "source": "src/vcpkg/commands.build.cpp",
+          "lines": [
+            1564,
+            1583
+          ]
+        }
+      ]
+    }
+  ],
+  "minimum_required_controls": {
+    "environment": "Before launching vcpkg, provide one valid selected lane and its qualified prefix; explicitly track both names in each matching triplet. Preserve existing lane pollution and compiler/prefix guards. Unix inheritance is delivery, not sanitization or validation; cache variables with the same spelling do not satisfy ENV reads. Keep inputs stable throughout each process.",
+    "application": "Retain the qualified application compiler/toolchain path, CMP0210=NEW policy default, exact SDK/deployment/architecture and existing compiler/runtime checks from the unchanged chainload receipt. The application needs its own policy/environment witnesses.",
+    "port": "Use the same bounded composition adapter in the triplet; retain VCPKG_CMAKE_CONFIGURE_OPTIONS with the required policy default and tracked environment list; preserve pinned native osx flag composition. Leave VCPKG_BUILD_TYPE undefined for actual Debug and Release fmt builds.",
+    "detector": "Use the source-confirmed builtin helper route and capture actual detector argv/cache, policy, selected compiler/lane/prefix and compiler-hash result. The detector is intentionally Release. Parent application policy alone is insufficient.",
+    "abi": "Keep compiler tracking enabled. Freeze a deterministic absolute list of all nested toolchain/compiler inputs in VCPKG_HASH_ADDITIONAL_FILES; tracked prefix text covers selected-location changes while file hashes cover same-path contents. Do not mutate inputs during a process; use a new vcpkg process and isolated detector/installed caches for mutation controls."
+  },
+  "later_native_controls": [
+    {
+      "id": "baseline-contexts",
+      "input": "Fresh detector; real fmt Debug and Release; application Multi-Config; relevant try_compile/re-entry contexts.",
+      "required_witness": "Effective policy, compiler path/hash, selected lane/prefix, SDK/deployment/architecture, flags and runtime; actual exits and artifact hashes. Record only allowlisted nonsecret environment facts."
+    },
+    {
+      "id": "missing-empty-lane-or-prefix",
+      "input": "Independently unset and then empty MARKETPLACE_CPP_LANE and the selected prefix.",
+      "required_witness": "Required environment guards reject. Missing tracked entries and empty-value hashes alone do not reject. Attest each exercised context; a detector failure does not prove that a later port configure guard ran."
+    },
+    {
+      "id": "wrong-or-conflicting-environment",
+      "input": "Wrong lane, other-lane prefix, substituted qualified-prefix path, conflicting CC/CXX, and a variable from the existing pollution list.",
+      "required_witness": "Existing toolchain/adapter/operation guards reject at the expected boundary; no host fallback or untracked bypass. Preserve prior stronger GCC SDK equality controls."
+    },
+    {
+      "id": "tracked-environment-abi",
+      "input": "In a fresh disposable control, change a tracked nonsecret value while retaining other inputs; separately test absent versus empty.",
+      "required_witness": "ENV:name lines and package ABI change as source predicts for configurations permitted to reach ABI generation. Production-invalid lane/prefix must reject instead of being forced through qualification."
+    },
+    {
+      "id": "top-level-toolchain-mutation",
+      "input": "Change bytes at the same copied top-level toolchain path between fresh processes.",
+      "required_witness": "Toolchain hash/triplet ABI changes; collect actual detector/cache behavior, not only package ABI."
+    },
+    {
+      "id": "each-nested-file-mutation",
+      "input": "For each explicitly listed nested compiler/toolchain input, change copied bytes at the same path while holding top-level adapter/triplet/environment constant.",
+      "required_witness": "Matching additional_file_i and package ABI change on fresh computation. If a frozen source guard rejects drift earlier, record that rejection; do not weaken it. This does not by itself establish compiler-info cache invalidation."
+    },
+    {
+      "id": "additional-file-validation",
+      "input": "Relative path and missing/non-regular absolute path in a disposable additional-files control.",
+      "required_witness": "Tool rejects before successful package ABI/build acceptance."
+    },
+    {
+      "id": "compiler-drift-and-cache-isolation",
+      "input": "Same-path compiler-byte drift only in an admitted private copy; fresh process and isolated compiler-hash cache/build roots.",
+      "required_witness": "Frozen compiler guard rejects or the expected detector/additional-file/package hashes change. No mutation of qualified installations; native cache hit/miss and persistent detector-cache behavior remain unverified."
+    },
+    {
+      "id": "policy-and-composition-regressions",
+      "input": "Retain the unchanged chainload receipt negative/positive controls, including explicit OLD conflict, unpaired flags, repeated inclusion, forbidden compiler-check bypass and SDK substitutions.",
+      "required_witness": "Real child contexts preserve the accepted policy, exact final flag checks and active executable compiler checks."
+    }
+  ],
+  "unverified": [
+    "No new adapter, triplet or maintained-file implementation was made.",
+    "No CMake, compiler, vcpkg, profile, build, ABI mutation or native control ran in this follow-up.",
+    "Source-confirmed option delivery is not proof of effective CMP0210 policy, CMake re-entry, successful compiler detection, port build or application runtime.",
+    "This receipt establishes source-level C++ cache keys, not native cache-hit/miss behavior or complete persistent detector-cache qualification.",
+    "Prior policy/flag-composition issues remain the parent next-unit work; this source follow-up closes only the previously missing tool-boundary evidence."
+  ]
+}

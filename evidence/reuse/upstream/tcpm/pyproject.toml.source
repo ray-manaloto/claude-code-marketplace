@@ -1,0 +1,313 @@
+[build-system]
+requires = ["flit_core >=3,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "tcpm"
+authors = [{ name = "Scott Dixon", email = "dixonsco@amazon.com" }]
+description = "Generate CMakePresets.json configuration and build presets from the cartesian product of a set of parameters."
+readme = "README.rst"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = ["parsimonious"]
+
+[project.optional-dependencies]
+test = [
+    "types-parsimonious",
+    "tox>=4.19.0",
+    "black==25.1.0",
+    "colorama",
+    "coverage",
+    "check-manifest==0.50",
+    "flake8-bugbear",
+    "flake8-docstrings",
+    "flake8-formatter_junit_xml",
+    "flake8",
+    "flake8-pyproject",
+    "isort==6.0.0",
+    "lxml",
+    "mypy",
+    "pre-commit",
+    "pylint",
+    "pylint_junit",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-runner",
+    "pytest>=8.3.4",
+    "pytest-github-actions-annotate-failures",
+    "sybil[pytest]",
+    "jsonschema>=4.23.0",
+]
+schema = ["jsonschema>=4.23.0"]
+docs = ["furo", "sphinx-argparse", "sphinxemoji", "sphinx"]
+
+[project.urls]
+Documentation = "https://thirtytwobits.github.io/the-cmake-preset-matrix"
+Source = "https://github.com/thirtytwobits/the-cmake-preset-matrix"
+Tracker = "https://github.com/thirtytwobits/the-cmake-preset-matrix/issues"
+
+[project.scripts]
+tcpm = "tcpm:cli_main"
+
+
+# +---------------------------------------------------------------------------+
+# | TOOLS
+# +---------------------------------------------------------------------------+
+
+[tool.flit.module]
+name = "tcpm"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.coverage.run]
+branch = true
+parallel = true
+relative_files = true
+include = ["src/tcpm/*"]
+
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.report]
+fail_under = 50
+exclude_also = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "assert False",
+    "if __name__ == .__main__.",
+]
+
+
+[tool.flake8]
+max-line-length = 120
+select = "F,E,W,B,B901,B902,B903"
+exclude = [
+    ".eggs",
+    ".git",
+    ".tox",
+    "obj",
+    "out",
+    "packages",
+    "pywin32",
+    "tests",
+]
+ignore = ["E722", "B001", "W503", "E203", "E501"]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_context = true
+mypy_path = "src"
+exclude = ["^test_.*\\.py$"]
+
+[tool.pytest.ini_options]
+addopts = ["-p", "no:doctest", "--no-cov"]
+pythonpath = ["src"]
+testpaths = ["tests", "src", "docs"]
+junit_family = "xunit2"
+norecursedirs = ["build*", ".*", "__*"]
+log_level = "DEBUG"
+log_cli = true
+log_cli_level = "WARNING"
+
+
+# +---------------------------------------------------------------------------+
+# | TOOL:TOX
+# +---------------------------------------------------------------------------+
+[tool.tox]
+requires = ["tox>=4.19", "virtualenv>20.2"]
+env_list = ["py310-test", "py311-test", "py312-test", "py313-test"]
+
+[tool.tox.env_run_base]
+description = "Run pytest under {base_python}"
+allowlist_externals = ["coverage"]
+extras = ["test"]
+commands = [
+    [
+        "coverage",
+        "run",
+        "-m",
+        "pytest",
+        "--basetemp={envtmpdir}",
+        "-p",
+        "no:cacheprovider",
+        "--junit-xml={envtmpdir}/xunit-result.xml",
+        "--rootdir={toxinidir}",
+        "--log-file={envtmpdir}/pytest-test.log",
+        { replace = "posargs", default = [
+            "{toxinidir}/tests",
+        ], extend = true },
+    ],
+    [
+        "coverage",
+        "run",
+        "-m",
+        "pytest",
+        "--basetemp={envtmpdir}",
+        "-p",
+        "no:cacheprovider",
+        "--junit-xml={envtmpdir}/xunit-result.xml",
+        "--rootdir={toxinidir}",
+        "--log-file={envtmpdir}/pytest-test.log",
+        { replace = "posargs", default = [
+            "{toxinidir}/src",
+        ], extend = true },
+    ],
+]
+
+
+[tool.tox.env.lint]
+description = "run all linters on code base"
+commands = [
+    [
+        "python",
+        "-m",
+        "isort",
+        "src",
+        "--check",
+        "--diff",
+        "--color",
+    ],
+    [
+        "python",
+        "-m",
+        "black",
+        "--diff",
+        "--color",
+        "--check",
+        "--config=pyproject.toml",
+        "src",
+    ],
+    [
+        "python",
+        "-m",
+        "flake8",
+        "src",
+    ],
+    [
+        "python",
+        "-m",
+        "mypy",
+        "-p",
+        "tcpm",
+        "--cache-dir",
+        "{envtmpdir}",
+        "--txt-report",
+        "{envtmpdir}/mypy-report",
+    ],
+    [
+        "python",
+        "-m",
+        "pylint",
+        "--output={envtmpdir}/pylint.txt",
+        "--clear-cache-post-run=y",
+        "--rcfile={toxinidir}/pyproject.toml",
+        "{toxinidir}/src/tcpm",
+    ],
+]
+
+[tool.tox.env.report]
+description = "Create test summary reports"
+commands = [
+    [
+        "-",
+        "coverage",
+        "combine",
+        "--append",
+    ],
+    [
+        "-",
+        "coverage",
+        "html",
+        "-d",
+        "{envtmpdir}",
+    ],
+    [
+        "coverage",
+        "xml",
+        "-o",
+        "{envtmpdir}/coverage.xml",
+    ],
+]
+
+[tool.tox.env.docs]
+description = "Generate HTML documentation."
+extras = ["docs"]
+allowlist_externals = ["sphinx-build"]
+commands = [["sphinx-build", "-W", "-b", "html", "{toxinidir}", "{envtmpdir}"]]
+
+[tool.tox.env.checked_build]
+description = "Fails if the latest tag on main is different than the internally reported version of TCPM."
+commands = [
+    [
+        "python3",
+        "-m",
+        "tcpm.version",
+        "--fail-on-mismatch",
+        "-v",
+        "{posargs}",
+    ],
+    [
+        "python3",
+        "-m",
+        "build",
+    ],
+]
+
+# +---------------------------------------------------------------------------+
+# | TOOL:PYLINT
+# +---------------------------------------------------------------------------+
+
+[tool.pylint]
+source-roots = "src"
+disable = [
+    "no-else-return",
+    "invalid-name",
+    "C0116",
+    "too-many-positional-arguments",
+    "fixme",
+]
+ignore = "CVS"
+ignore-paths = ["^test_.*\\.py$"]
+max-line-length = 120
+max-args = 8
+max-attributes = 12
+min-public-methods = 0
+ignore-patterns = "conftest.py"
+init-hook = 'import sys; sys.setrecursionlimit(8 * sys.getrecursionlimit())'
+limit-inference-results = 100
+persistent = "yes"
+suggestion-mode = "yes"
+unsafe-load-any-extension = "no"
+
+[tool.pylint.'MESSAGES CONTROL']
+enable = "c-extension-no-member"
+
+[tool.pylint.'REPORTS']
+evaluation = "10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)"
+output-format = "text"
+reports = "yes"
+score = "yes"

@@ -1,0 +1,11 @@
+--- /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/initial-failure/p2996_analysis.py.source
++++ /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-analysis/corrected-driver-failure/p2996_analysis.py.source
+@@ -181,7 +181,7 @@
+                 assert not output.exists()
+                 run(label, base + [prefix / "bin/clang++", *flags, "--analyze", "--analyzer-no-default-checks",
+                                   "-Xclang", "-analyzer-checker=core.NullDereference", "-Xclang", "-analyzer-werror",
+-                                  "--analyzer-output=plist", path, "-o", output], timeout=60, descriptor=fd, expected=expected)
++                                  "--analyzer-output", "plist", path, "-o", output], timeout=60, descriptor=fd, expected=expected)
+                 assert digest(path) == original and output.is_file() and output.stat().st_size > 0
+                 parsed = plistlib.loads(output.read_bytes())
+                 diagnostics = parsed["diagnostics"]

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
+if(NOT REVIEW_LINKAGE MATCHES "^(static|dynamic)$")
+  message(FATAL_ERROR "Missing review linkage")
+endif()
+include("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/triplets/arm64-osx-gcc16-${REVIEW_LINKAGE}.cmake")
+message(FATAL_ERROR "Unexpected acceptance of conflicting GCC environment")

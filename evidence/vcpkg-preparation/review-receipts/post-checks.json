@@ -1,0 +1,116 @@
+{
+  "at": "2026-10-11T04:06:11.635731+00:00",
+  "protected_state_unchanged": true,
+  "counts": {
+    "globals": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "shim_entries": 835,
+    "wrapper_entries": 0,
+    "source_git_metadata": 4,
+    "native_mise": 1,
+    "maintained_inputs": 5
+  },
+  "source_clean": true,
+  "git": [
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "fe108bce6f5226005c5082bc85fba7ae31d2aeb6\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "branch",
+        "--show-current"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "codex/marketplace-native-onboarding\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-common-directory",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "status",
+        "--short"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n M docs/status.md\n?? dev/toolchains/__pycache__/\n?? dev/toolchains/mise_link_probe.py\n?? docs/vcpkg-toolchain.md\n?? evidence/vcpkg-preparation/\n",
+      "stderr": ""
+    },
+    {
+      "case": "project-diff-check",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "git_environment": {
+    "GIT_CONFIG_GLOBAL": "/dev/null",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_TERMINAL_PROMPT": "0",
+    "other_inherited_GIT_variables": "removed"
+  },
+  "ignored_cache_note": "The live reviewer status disabled global Git configuration and therefore showed an existing cache file hidden by the ordinary global ignore. This is not a new changed-file finding."
+}

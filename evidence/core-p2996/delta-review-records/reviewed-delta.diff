@@ -1,0 +1,14 @@
+--- /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/attempt-1/operation/core_matrix.py.source
++++ /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py
+@@ -161,7 +161,10 @@
+                 env.pop("MARKETPLACE_GCC16_PREFIX", None)
+                 env["MARKETPLACE_" + lane.upper() + "_PREFIX"] = lane_spec["prefix"]
+                 base = [mise, "--no-hooks", "-C", directory / "cwd", "-E", lane, "exec", "--fresh-env", "--no-deps", "--"]
+-                assert json.loads(run(lane + "-profile", base + normal_argv[-2:], fd)) == (runtime if lane == "p2996" else gcc)["selected_environment"]
++                # Both named profiles share the later qualified foundation PATH.
++                expected_profile = (runtime if lane == "p2996" else gcc)["selected_environment"] | {
++                    "path_sha256": runtime["selected_environment"]["path_sha256"]}
++                assert json.loads(run(lane + "-profile", base + normal_argv[-2:], fd)) == expected_profile
+                 for shared in (False, True):
+                     tree = lane + ("-shared" if shared else "-static")
+                     build = directory / tree

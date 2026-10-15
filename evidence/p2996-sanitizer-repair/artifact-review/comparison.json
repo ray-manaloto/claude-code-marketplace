@@ -1,0 +1,544 @@
+{
+  "result": "PASS: private Task14a1 artifact and closure evidence",
+  "recorded_at": "2026-10-12T00:47:11.451983+00:00",
+  "head": "55a37282b117fca534a86fedcdbd5c8352405e23",
+  "base_candidate_sha256": "7fe8ae293294ad409b176c06acbe9043c2e0842795a9f04e2ae65b7423da3a4d",
+  "checks": {
+    "original_six_snapshots_and_five_file_freeze": true,
+    "exact_private_text_receipts": 95,
+    "operation_exact_copy_pairs": 4,
+    "capacity_exact_copy_pairs": 17,
+    "preparation_review_exact_copy_pairs": 6,
+    "recorded_capacity_commands": 7,
+    "native_commands_and_exact_log_bindings": {
+      "commands": 43,
+      "logs": 86,
+      "arm64_checks": 10
+    },
+    "recorded_default_environment_parity": true,
+    "recorded_closure_only_no_live_probe": {
+      "owned_pids_absent": 44,
+      "lease_free_unchanged": true,
+      "protected_unchanged": true
+    },
+    "recorded_repair_argv_matches_prepared_recipes": {
+      "variants": 2,
+      "unchanged_private_object_inputs_per_link": 126,
+      "mapping_replacements": 1,
+      "old_objects_rehashed": false
+    },
+    "original_control": {
+      "returncode": -15,
+      "elapsed_seconds": 20.00372066698037,
+      "stdout_empty": true,
+      "original_runtime_exact": true
+    },
+    "seven_runtime_cases": [
+      {
+        "case": "asan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-memory",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "ubsan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "ubsan-overflow",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21/lib/darwin/libclang_rt.ubsan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-clean",
+        "returncode": 0,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-memory",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      },
+      {
+        "case": "asan-ubsan-overflow",
+        "returncode": 86,
+        "runtime": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "reflection_stdout": true
+      }
+    ],
+    "dependency_disclosure": {
+      "original": 195,
+      "patched": 224,
+      "new_prebound_sdk_headers": 1,
+      "post_observed_sdk_headers_rehashed": [
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/uuid/uuid.h",
+          "sha256": "720615541b88718ca8eb98acecf70d6d0e5f3d9d0bbd01e136fdeda680ceddc1"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/unistd.h",
+          "sha256": "8d535079658f063bcef358ef4c1c1b52b8e88dacfc22cbf4db0f6bf8abe40637"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/unistd.h",
+          "sha256": "4f0463cea7c466850593f10341e9d57757f8570f610cfa748b5c6a3925842b76"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_posix_vdisable.h",
+          "sha256": "f32872a8af4cfb71be9ca5bcd356241badadceba195d55907129425bc239c222"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_seek_set.h",
+          "sha256": "353b2276ef8132f625b1b780e7593a43183fbf054c1bc906c0515f89dad335c8"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_uid_t.h",
+          "sha256": "d2140a65a17943a857381757c0b73a920f35ade41dc9809437c168be457c276a"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_gid_t.h",
+          "sha256": "e687ad58c03701c132a02ebf20699c8cacfd34c3a67271bd2a415a5a8e4a9ea7"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_off_t.h",
+          "sha256": "7b07626d71084f1b3220e045089f54fd30f4d736be9cd0449042c5fe411fc569"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_pid_t.h",
+          "sha256": "052a6dbbec8e30623c2d33dd373992f6c5d0c57c57ed4949d2b48c4ab0976487"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_useconds_t.h",
+          "sha256": "37c49808a92cc4417181adb1530cc24ca11cc89f064c6c0494a1aff981f92870"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/_ctermid.h",
+          "sha256": "73ac20b763ff6e1c328563bbd125e3eaa78a367eb92c867626a047ae4ab391b3"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/select.h",
+          "sha256": "cffe3e51c7c6c6ef68750cc85f7ddc1b7b4be041a4bbb47fd19914125bf1b6df"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_def.h",
+          "sha256": "feea8c758abe49372bcf3ab7dd9b0391d02269e4a531ef838895e961e9f43f30"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_timespec.h",
+          "sha256": "3314f260a6b3ce09c02df185ba2253577b2a268dac05d3cad55f76bb3e8019e8"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_timeval.h",
+          "sha256": "f723018fec267200e915777897515b5d7ed20901bcb294873f94b1d835f9ae45"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_time_t.h",
+          "sha256": "c0a28cdc5c9c8cf99abea53556895bd8001a6cb13ae6ca9f366955500678b35a"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_suseconds_t.h",
+          "sha256": "d799ffc16cf29b6559b36d879fc7d5fec80ec3c39502eaef078ae9178eeaf275"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_sigset_t.h",
+          "sha256": "df99c73ecdbde1fcb3a4a22169871e036240452472b8ea70f287456d42593972"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_setsize.h",
+          "sha256": "7cd3a93f51f4521e60151c08b1fab36ea8efbb98988bb03db24264a1c434eaee"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_set.h",
+          "sha256": "57009e7fed060e007604e0259788a7bea6afcb18fc4840fc30cd641f58655190"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_clr.h",
+          "sha256": "ccb785f37fdf5503df860a3fba82d8570a65f7ecbd754a5558254483b996747c"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_isset.h",
+          "sha256": "17bdc86c26b6c82411601e955af5e2563a86f2fdd345568b78ab8642b895d1ae"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_zero.h",
+          "sha256": "e5c44af3534182fe3b0872f39617ae17cd2ada72339e6f388eead5472df64c6f"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_copy.h",
+          "sha256": "f4f4289b3da098621b7ed0115faa7d4b85b65852c4615c9bad5e222a8ceb0078"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_select.h",
+          "sha256": "23e013274b46f4eb46aae8492206ed2862ea6c998e28e793427f38a5e499bb6d"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_dev_t.h",
+          "sha256": "4ba3d19759544b9f7bf424d2a16a518ff586e31ed968d525440e678cfbb07a5d"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_mode_t.h",
+          "sha256": "7c4261bde41387fc23aefe5dee1e6298ae6b6f5592bca51947fdd9736e0640a6"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/gethostuuid.h",
+          "sha256": "0a4f4be11c5503f991d5e44f38ee8d50d8b5d4dbfaa5d0da361027968ea4d2c8"
+        }
+      ],
+      "old_source_graph_rehashed": false
+    },
+    "recorded_static_baseline": {
+      "returncode": 0,
+      "original_files": 19,
+      "rerun": false
+    },
+    "recorded_scan": {
+      "raw_returncode": 1,
+      "verified_digest_dispositions": 10,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "bound_text_inputs": 87,
+      "rerun": false
+    },
+    "retained_nonfatal_warnings": {
+      "original-runtime-link": "ld: warning: ignoring duplicate libraries: '-lc++'\n",
+      "patched-runtime-link": "ld: warning: ignoring duplicate libraries: '-lc++'\n",
+      "asan-link": "warning: input verification failed\nnote: while processing /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/tmp/sanitizer_witness-077fcd.o\n"
+    },
+    "new_artifacts_hashed_once": [
+      {
+        "kind": "original-runtime",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original/libclang_rt.asan_osx_dynamic.dylib",
+        "sha256": "3fe17f4359af0404882ef8bd5d18744d5b001953bef110e9683bce4e8f36b55b",
+        "bytes": 1072864
+      },
+      {
+        "kind": "original-object",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original/procmaps.o",
+        "sha256": "31b5647345205673e5a3ecb2f112badbf5fbb46064b9cb858f3f5b253a83815e",
+        "bytes": 62120
+      },
+      {
+        "kind": "original-source",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+        "sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+        "bytes": 17205
+      },
+      {
+        "kind": "patched-runtime",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/libclang_rt.asan_osx_dynamic.dylib",
+        "sha256": "e7e19218bfb2728af982dd0b81a2b339ca920a781439cb81b5bacc6e4ca1a464",
+        "bytes": 1072848
+      },
+      {
+        "kind": "patched-object",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/procmaps.o",
+        "sha256": "94857f0d0d18aa9c238392bda10457ea02b204fd3c8f0e99ec20cead02bdc2d5",
+        "bytes": 68792
+      },
+      {
+        "kind": "patched-source",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+        "sha256": "418216e32aa7ce5e551e4370d77bbc2797b8e4eb9ed803de6ffe4e6d2e1fa4ff",
+        "bytes": 18364
+      },
+      {
+        "kind": "asan-object",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/core.o",
+        "sha256": "9fe784cdaef2c4e16439d92bcfa215f125a71ea8d5307a52139e56b8c7594f50",
+        "bytes": 39992
+      },
+      {
+        "kind": "asan-binary",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan/witness",
+        "sha256": "33f09c56bce168c2174b9cd25d3023c38ccbc0fb9e12f5fe24da51ac8c2c6b0a",
+        "bytes": 52664
+      },
+      {
+        "kind": "ubsan-object",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/core.o",
+        "sha256": "07721a7a932f2d7f8f1174efc367d08e716e712b2f4d0e7ef0975b461a18fcde",
+        "bytes": 39528
+      },
+      {
+        "kind": "ubsan-binary",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan/witness",
+        "sha256": "1d2e94d2d3972feb4a71f8f6f6fe50cbaaa16c91d0254c7991543a67f478deee",
+        "bytes": 51288
+      },
+      {
+        "kind": "asan-ubsan-object",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/core.o",
+        "sha256": "92585d31d5f8408dbb88cb15af74162364d43b70f25d00e141f6077eab35983b",
+        "bytes": 40024
+      },
+      {
+        "kind": "asan-ubsan-binary",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan/witness",
+        "sha256": "95cad3860c22b19faafe81bb992defad12e7bc2f21421509de5c9f9b016cbaa0",
+        "bytes": 52936
+      }
+    ]
+  },
+  "watched_text_sha256": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-candidate-before-whitespace.json": "7fe8ae293294ad409b176c06acbe9043c2e0842795a9f04e2ae65b7423da3a4d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/closure-inputs-before-whitespace.json": "0c560130d11e482facb7be2422e1d0efc2e169b5c5b67814fdf76cdd83515e0c",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-artifact-review-f5tdu48u/original-closure-candidate.json": "7fe8ae293294ad409b176c06acbe9043c2e0842795a9f04e2ae65b7423da3a4d",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-artifact-review-f5tdu48u/original-closure-inputs.json": "0c560130d11e482facb7be2422e1d0efc2e169b5c5b67814fdf76cdd83515e0c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_sanitizer_repair.py": "849e9b1d60878273b8dd62894218947dcd2e8d1c67313c3b6c01a5164a07437c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "43265c80572689cca6b95c1ea7c2b8ce0258c4eba1da92924453f49997621a11",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "fb50890b4bdd14dd0a12f753722d0e2c19f1ac30c3e1f635848c0914c0dfe3ec",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/contract.json": "9906271737b860860155959d70c95fe4fc434b73642c7465ce9b2b541378ae0e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/candidate.json": "8d8608b5ceb72405e973b3a67995178c9a26eebd5f26bd16e5278626a4ba2501",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-run-review.json": "fbfe4c036af8b54a0941290afd6817a6ce8cf2d024d77f6dcb1d3dd91fd13078",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/recipes.json": "37f79177a1afd808736b0cec56d73bd0695711d8b8b87c4cb17c8049016d7174",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/qualification.json": "c5f01649fe39b50744e7c3984f0a01692ce1e5a9912aba2ca7cc49ff399dffc4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/closure.json": "debf69abd93ba9a563735a5b0240c38f29a510192a8ae7cfeeb4ca4b23911e8f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/artifact-inventory.json": "a59b76631a548b490f4855f3aa638e4420946b8fcf82aed6efc1019cf482b850",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/admission.json": "8a44c8d5adade5550d591c1011dfc34313f50a3e1cd2df5bac21c7b65d14845c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/native-execution.json": "8da4cd37355cdd8ffd8f2c54f6da0be450ece5c584da0b87f5a78951121b4580",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/native-launch.json": "cbc485db04c8d0ba0426eb86ec341e5da970284b41f848eba6d74716a9f32dcb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/text-receipts.json": "b494f5d886595d31848bb229b2ebe24f92281c88b882852dfdcd6ab50b7c3d31",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/private.sb": "584e8287676403fb06cd2de7bdc85c69273960d7e4c78a7db764d55f3b5e78db",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-arch-binary.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-clean.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-core.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-memory.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-arch-binary.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-clean.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-core.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-memory.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-overflow.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/capacity-processes.stdout": "a0978e7e54a6297ec7ca498b23f9a6a40c31344c948bc62deced614f7ddfd696",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/default-after.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/default-before.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-stats.stdout": "c8b250af446b6003a338409f0de92b3e03fdbf38e9448630cacc276490adf3c4",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-arch-runtime.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-clean.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-mapping-object.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-runtime-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-runtime-sign.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-apply.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-reverse-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-arch-runtime.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-mapping-object.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-runtime-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-runtime-sign.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/project-head.stdout": "8763700f81a63d7669dfe94d6f91d0b6a41030a604ac42259de25bcc983f2a0c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-arch-binary.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-arch-object.stdout": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-clean.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-core.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-link.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-overflow.stdout": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-arch-binary.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-clean.stderr": "f5f35d952c9ef201e09ab66b456d7f007068a1214b82b0140afa69ff04155ce8",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-core.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-link.stderr": "891ee7ead374e6872c7a12aef7610770ebd8274a88d8e47e439d58efcdf48424",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-memory.stderr": "a768934935952968493635fb25a304006046cae25c8ebd3d7eb49178243fd436",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-arch-binary.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-clean.stderr": "8df42434652055081e2d00b7ec6491df8887439602de35dac0c0fe7f9344fd51",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-core.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-link.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-memory.stderr": "b76bd4f92a56ca80d957134f2dbef7ca76ef75ab80cb932317f768b7b3be31f0",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/asan-ubsan-overflow.stderr": "9303dfc57d123565f73777d65c6a7a045e73edd08b29a2fb2c248a4683318434",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/capacity-processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/default-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/default-before.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-arch-runtime.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-clean.stderr": "0d7fd8e03548f96501f3032ace2623aa73bbd2963de9fe648b412e0f6f6f4691",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-mapping-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-runtime-link.stderr": "ea4090f75f622fb03e64dffcdf8ee0ea79fdd5f11d3163ab1ca96a582531a60b",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original-runtime-sign.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-apply.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patch-reverse-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-arch-runtime.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-mapping-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-runtime-link.stderr": "ea4090f75f622fb03e64dffcdf8ee0ea79fdd5f11d3163ab1ca96a582531a60b",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched-runtime-sign.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/project-head.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-arch-binary.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-arch-object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-clean.stderr": "b11edce8583881060159334a9778b607e02d8e985ce0d2700852f6bf2595252f",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-core.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-link.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/ubsan-overflow.stderr": "364ac80e19ebbe7ff9daa222caecc53cdcae4ffd12ee99ccbd2b4975381a5a34",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-launch-_wc23_nj/launch.json": "cbc485db04c8d0ba0426eb86ec341e5da970284b41f848eba6d74716a9f32dcb",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-launch-_wc23_nj/execution.json": "8da4cd37355cdd8ffd8f2c54f6da0be450ece5c584da0b87f5a78951121b4580",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-launch-_wc23_nj/stdout": "9b4eeadc89b6b82f9bac75571a8c70b109a7bfea50e9e0171b22bc210a907c96",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-launch-_wc23_nj/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/dispatch.py": "39e0268a36fc11cf736da436b3013dea7c80be7a2f5e3a7aa9682dc2f3268e6d",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/close.py": "7d6a1257d1c43e57932789322692340169ed32e819303477865b2f4af20dc203",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original/procmaps.o.d": "fdc8c8329aaa3c177de077c1a04abcc37b89d9cce87cf5b8bcf9ef9bf0eb5b79",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/procmaps.o.d": "c259a6d48a6d6ce0d81d1a00fc72b9d97a0984faa13f66108a8fb9a999867254",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/operation/copy-manifest.json": "686715214f5a50675211a3fb4ffdbc8bd84c7b518f0de6ccefa5fac538f39be0",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/admission.json": "8a44c8d5adade5550d591c1011dfc34313f50a3e1cd2df5bac21c7b65d14845c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/native-launch.json": "cbc485db04c8d0ba0426eb86ec341e5da970284b41f848eba6d74716a9f32dcb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/native-execution.json": "8da4cd37355cdd8ffd8f2c54f6da0be450ece5c584da0b87f5a78951121b4580",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/qualification.json": "c5f01649fe39b50744e7c3984f0a01692ce1e5a9912aba2ca7cc49ff399dffc4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity-copy-manifest.json": "d0d7519e1143cfedb47ffc829c569082e1de9b1f9142949db5ccb0bf517f5424",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/capacity.json": "182336ce6c0cd7f4cf30ee1fb52c0582661231b9210fb8f1a1adebc25c5e4416",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/capacity.json": "182336ce6c0cd7f4cf30ee1fb52c0582661231b9210fb8f1a1adebc25c5e4416",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/capacity.py.source": "fa8fc078584c68fd080c4c412e21cee66c27062d63c1887351c112a5354e9f3b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/capacity.py.source": "fa8fc078584c68fd080c4c412e21cee66c27062d63c1887351c112a5354e9f3b",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-census.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-census.stdout": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-context.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-context.stdout": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-stats.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/docker-stats.stdout": "6a9f907f7d1b6296ef8ec004964fa6722c2e46dbed8a745b09d737a9d8f459b8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/docker-stats.stdout": "6a9f907f7d1b6296ef8ec004964fa6722c2e46dbed8a745b09d737a9d8f459b8",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-cwd.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-cwd.stdout": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-identities-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-identities-after.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-identities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/editor-identities.stdout": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/execution.json": "2681e1ee8d674e0c73a2c2c480087cf92fac4fdbb34207543a0b2298ce3c0ab2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/execution.json": "2681e1ee8d674e0c73a2c2c480087cf92fac4fdbb34207543a0b2298ce3c0ab2",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/processes.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-capacity-20261012T003356Z/processes.stdout": "10d08cccdf2e08be075245c27d5348f98c120165f695ace29fe9b988d920393f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity/processes.stdout": "10d08cccdf2e08be075245c27d5348f98c120165f695ace29fe9b988d920393f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review-copy-manifest.json": "db8d1176ad2a2b184c10bb9acaaa55cad85bca723424c285b431d049f9f4566c",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/review.json": "fbfe4c036af8b54a0941290afd6817a6ce8cf2d024d77f6dcb1d3dd91fd13078",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review/review.json": "fbfe4c036af8b54a0941290afd6817a6ce8cf2d024d77f6dcb1d3dd91fd13078",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/supporting-manifest.json": "3cba9290bf5190cf06f0870ad82d2ae98868ae4a4a9553f2a90665adb6332a32",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review/supporting-manifest.json": "3cba9290bf5190cf06f0870ad82d2ae98868ae4a4a9553f2a90665adb6332a32",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/compare.py": "08a9b81f4be58c66779e8b78a35d0fe1a109f556a87ffba45b308a2f51b63bcf",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review/compare.py": "08a9b81f4be58c66779e8b78a35d0fe1a109f556a87ffba45b308a2f51b63bcf",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/comparison.json": "6e4d696a03be1c3be7ab46efe686e90b95675b4b20a065e1d505bc17dc7b11ad",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review/comparison.json": "6e4d696a03be1c3be7ab46efe686e90b95675b4b20a065e1d505bc17dc7b11ad",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-sanitizer-repair-prep-review-w0wmz3_5/execution.json": "85405dfb80757bc6f2008d70bf0d35dd3d97be2a05bc05b4c944b4340a2f2e69",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-review/execution.json": "85405dfb80757bc6f2008d70bf0d35dd3d97be2a05bc05b4c944b4340a2f2e69",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/capacity.py.source": "fa8fc078584c68fd080c4c412e21cee66c27062d63c1887351c112a5354e9f3b",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-preparation-tzo5kp7h/capacity.py": "fa8fc078584c68fd080c4c412e21cee66c27062d63c1887351c112a5354e9f3b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-renovate/operation/default-after.stdout": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/uuid/uuid.h": "720615541b88718ca8eb98acecf70d6d0e5f3d9d0bbd01e136fdeda680ceddc1",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/unistd.h": "8d535079658f063bcef358ef4c1c1b52b8e88dacfc22cbf4db0f6bf8abe40637",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/unistd.h": "4f0463cea7c466850593f10341e9d57757f8570f610cfa748b5c6a3925842b76",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_posix_vdisable.h": "f32872a8af4cfb71be9ca5bcd356241badadceba195d55907129425bc239c222",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_seek_set.h": "353b2276ef8132f625b1b780e7593a43183fbf054c1bc906c0515f89dad335c8",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_uid_t.h": "d2140a65a17943a857381757c0b73a920f35ade41dc9809437c168be457c276a",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_gid_t.h": "e687ad58c03701c132a02ebf20699c8cacfd34c3a67271bd2a415a5a8e4a9ea7",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_off_t.h": "7b07626d71084f1b3220e045089f54fd30f4d736be9cd0449042c5fe411fc569",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_pid_t.h": "052a6dbbec8e30623c2d33dd373992f6c5d0c57c57ed4949d2b48c4ab0976487",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_useconds_t.h": "37c49808a92cc4417181adb1530cc24ca11cc89f064c6c0494a1aff981f92870",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/_ctermid.h": "73ac20b763ff6e1c328563bbd125e3eaa78a367eb92c867626a047ae4ab391b3",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/select.h": "cffe3e51c7c6c6ef68750cc85f7ddc1b7b4be041a4bbb47fd19914125bf1b6df",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_def.h": "feea8c758abe49372bcf3ab7dd9b0391d02269e4a531ef838895e961e9f43f30",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_timespec.h": "3314f260a6b3ce09c02df185ba2253577b2a268dac05d3cad55f76bb3e8019e8",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_timeval.h": "f723018fec267200e915777897515b5d7ed20901bcb294873f94b1d835f9ae45",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_time_t.h": "c0a28cdc5c9c8cf99abea53556895bd8001a6cb13ae6ca9f366955500678b35a",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_suseconds_t.h": "d799ffc16cf29b6559b36d879fc7d5fec80ec3c39502eaef078ae9178eeaf275",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_sigset_t.h": "df99c73ecdbde1fcb3a4a22169871e036240452472b8ea70f287456d42593972",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_setsize.h": "7cd3a93f51f4521e60151c08b1fab36ea8efbb98988bb03db24264a1c434eaee",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_set.h": "57009e7fed060e007604e0259788a7bea6afcb18fc4840fc30cd641f58655190",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_clr.h": "ccb785f37fdf5503df860a3fba82d8570a65f7ecbd754a5558254483b996747c",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_isset.h": "17bdc86c26b6c82411601e955af5e2563a86f2fdd345568b78ab8642b895d1ae",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_zero.h": "e5c44af3534182fe3b0872f39617ae17cd2ada72339e6f388eead5472df64c6f",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_fd_copy.h": "f4f4289b3da098621b7ed0115faa7d4b85b65852c4615c9bad5e222a8ceb0078",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_select.h": "23e013274b46f4eb46aae8492206ed2862ea6c998e28e793427f38a5e499bb6d",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_dev_t.h": "4ba3d19759544b9f7bf424d2a16a518ff586e31ed968d525440e678cfbb07a5d",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/_types/_mode_t.h": "7c4261bde41387fc23aefe5dee1e6298ae6b6f5592bca51947fdd9736e0640a6",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/gethostuuid.h": "0a4f4be11c5503f991d5e44f38ee8d50d8b5d4dbfaa5d0da361027968ea4d2c8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-artifact-static.json": "bad8514cf2220daeec0d230d46c8f2cf6c708f04df4ea711b69c22c7acf93a5b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-artifact-secret-scan.json": "84a4f1d11829da97d992f5ec17c0a440edae226fcc21a41c5971e8fa302c3a1d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-abi-inputs/closure-secret-scan.json": "f2d86fc409fe1401c61ad69053ca45e57921537dd63221686a2fb4804671a699",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-presets/closure-secret-scan.json": "15c6fe78d3addfaaa154c10007aa0466b1918ec513899fbfb283ab218af8d106",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/baseline-build/closure-secret-scan.json": "3746338913f2a29715b5f532cfe31bda80d9934ac89fd5b7f5c60be487d79727",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/sys/appleapiopts.h": "efd9793f56c08917cf1ddf5108b78240ede88a5bbc8977d6fdaf1684b6b01c1c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-review-secret-scan.json": "8e027b1d4ae259470e3265d8ec9eb352bce6de64a5f299c93edb960d0330e8fe",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/asan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/asan.stdout": "8383016a8eb6a415a26d0afcd004a52f5fc42eadd0f84b38cbf6262a7ca2ef16",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/build-compiler-provenance.json": "be9a7fbecd8fcb79f439c5c33f91e71ab865700c5de0116043128f5493801fce",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/candidate-inputs.json": "35dda722da88cbb354b72fefc1834c596b7948fe57aad2d1030c52c843a1e323",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/dispatch.py.source": "39e0268a36fc11cf736da436b3013dea7c80be7a2f5e3a7aa9682dc2f3268e6d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/failure-postcommit.json": "02b2460d9294785ce5da77a574a7112602b3dea3e9a1cf628ca69299151f29ab",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/frozen-static.json": "be77aee9c706539ef85b5deb3e7ed2ff06be150777a1acd6d21a59bfc478e2dd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/inventory.json": "029a8fba405a25c4f1e66e450ce986a0b7cc2ac3f7b1412c5203521d96a9c4aa",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.json": "3bdb09210dea89c80ee686bec889e5c8f8ef981f9904331685685f8ed539ea44",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-dependencies.stdout": "a08e058575fe154da43943d73cc9767037d24c98a76fc5fd2e65cf59d16c5dda",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object-source-inputs.json": "12aa418fd469ac4a6dd417681e195f13fe6998109eaf60061aad4cf5f439cb4d",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/object.stdout": "2aa2aefb001ce2abf1574005acf6d3e36bbf6d6e643a63554f0696a1858a68b9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-twice.stderr": "ae323ae337a5c485f15558d318930ad9f7cff3d80c54a45e4a1ff523d45fafff",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply-twice.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/apply.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/patch-controls.json": "51e7ee05fd1a02ae8cb6e6f15279b2689779ddff08db5412aa6856f2f69f2d2f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/prepare.py": "c078f035d371a4305e78c38dedc0b4ed99556e559a9c9ce57ca1be8c13cfcf1e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/private.sb": "14674020a476d32c6299b2082d005faac14732d573a7911689d71a93bef33d5f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-original.stderr": "ebce17df1a381adc1e84d276e76b62a65c2ab8f9d3c94db0a0689138c6c97dde",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse-original.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-controls/reverse.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/patch-inputs.json": "19bcd3577ef5e64886f525992cb862982ff600e81560ae64773f3510a767cc97",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/pre-review-static.json": "8d997b783f9abc0f8467a37b8bea47f0b6ea067fd556677f2eca7724423fd928",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/preparation-copy-manifest.json": "2546187f11b24402052725de1199ac14b130b32ea79758a66540f6bad285d050",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/prepared-launchers.json": "47d2a33c7f433cca84dcb099c617da0dff5575b215acf0e3ad79137743ca9199",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/source-review-copy-manifest.json": "385c4490310ffdd532bcee8deaf29d7ec6a9372d098e1256728b259f4494969a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/source-review.json": "312351073c906ffcb49f0cdde74ce9a17a5293f942211f0f2601bcd687a920b6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/startup-source-parent.json": "ef622cdebcc3b94072c6c8768d2ebb887e9dfe9aac90e159763a0d876c83b5c3",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/ubsan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizer-repair/ubsan.stdout": "2052e5e79de16daa78e7b38bcb62e74ec4733366d18fd651ba350737c9a51b8c",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-scan-1ifzr8ml/scan.py": "6174a905f4da37f8daf8b0035536af788976812b442b9af20d7a0ebfe65ece2c"
+  },
+  "limits": [
+    "No runtime/build/compiler/capacity/lease/scanner replay",
+    "No old binary or 127 old object rehash",
+    "No broad old source inventory replay",
+    "No fresh model session or Claude OCI acceptance",
+    "Private seven-case runtime witnesses only; no installed promotion, dependency instrumentation, full matrix or generic allocation proof"
+  ]
+}

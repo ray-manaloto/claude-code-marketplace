@@ -1,0 +1,74 @@
+{
+  "unit": "Task 13a baseline presets source/artifact review",
+  "reviewer": "/root/cold_bottle_review",
+  "reviewed_at": "2026-10-11T22:33:42.904097+00:00",
+  "result": "PASS",
+  "findings": [],
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "e81ba5db9621c36334d10a1c6e4ce5cad63ba79c",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "candidate_sha256": "d9b76a3363e911e47932020c71a5e4eb78b3355c667040323e36fc8f3848ac6c",
+  "generated_sha256": "e304882b21be2dc25a6b024dd6a6eadcb240e0b3fcd4eeb87041dfaf9ee043eb",
+  "template_sha256": "546c06106f5a05a400b2dcdacc89300ba2ced278eecea6d5de1b5a4ac516df50",
+  "generation_sha256": "4d58247da1ec84c863dd7c31fe10d76c7c2bebd354209eb6d7905d47269c7764",
+  "scope": "Five frozen maintained files, generated CMakePresets.json, and new evidence/baseline-presets text artifacts. Prior consumer postcommit is a trusted prerequisite.",
+  "static_source_assertions": [
+    "Compiled fmt integration is opt-in; its default is OFF. Opt-in requires the qualified vcpkg chain and exact fmt 12.2.0 config. PUBLIC fmt::fmt dependency and PRIVATE smoke activation preserve transitive linking without exposing reflection flags.",
+    "Reflection remains PRIVATE to research_core. Existing smoke compile-time flag guards and the original non-fmt source path are retained; removing only the new additions reconstructs both prior root CMake and smoke source bytes.",
+    "Native inheritance keeps compiler, core linkage and dependency linkage distinct. Macro expansion maps all eight configure presets to distinct build/install paths and the correct retained fmt triplet.",
+    "There are eight visible configure presets, 32 build presets, 32 test presets and eight nine-step workflows. All four configurations are represented, builds/tests use one job, and tests reject an empty suite.",
+    "Fresh invocation requires MARKETPLACE_BUILD_ROOT to name the intended private build root. Selected compiler prefixes are supplied by lane inheritance, with CC/CXX and the unused lane prefix unset."
+  ],
+  "artifact_comparisons": {
+    "maintained_file_bindings": 5,
+    "new_scan_file_bindings": 13,
+    "generated_bytes": 44395,
+    "generator_stdout_byte_matches": 2,
+    "private_generated_file_byte_matches": 2,
+    "generation_script_source_pair_matches": true,
+    "parent_recorded_command_returncodes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "parent_static_returncodes": [
+      0,
+      0
+    ],
+    "parent_baseline_original_hashes_reported": 19,
+    "parent_secret_scan_returncode": 0,
+    "parent_full_token_hits": 0,
+    "frozen_watched_hashes_unchanged_at_packaging": true
+  },
+  "reviewer_executed_checks": {
+    "method": "Bounded filesystem, JSON and source comparison only; native commands and candidate code were not executed.",
+    "returncodes": [
+      1,
+      0
+    ],
+    "initial_failure": "Reviewer incorrectly required template and generated vendor metadata to have identical structure. TCPM adds exactly eight inert empty axis-shape dictionaries. This was an audit assumption error, not a candidate regression.",
+    "correction": "Normalized only those eight observed defaults in the private comparator; the corrected comparison passed. Both original and corrected reviewer scripts and execution receipts are retained.",
+    "candidate_changes": 0,
+    "shared_or_project_writes": 0
+  },
+  "limits": [
+    "Task 13b native configure/build/test/runtime matrix remains UNVERIFIED.",
+    "Generation, native preset listing, static checks and scanners were inspected from retained receipts and were not rerun.",
+    "No old controls, prerequisite source graph, tool/binary hash battery, inventories, capacity/lease checks, network, compiler, services or model sessions were run.",
+    "Claude baseline preservation is supported by unchanged scoped source behavior and the retained 19-hash static receipt. Full Claude/OCI, provider, hook runtime and fresh model-session acceptance were not run."
+  ],
+  "support_allowlist": [
+    "compare.py",
+    "compare.first.py.source",
+    "comparison.json",
+    "execution-first.json",
+    "execution.json"
+  ]
+}

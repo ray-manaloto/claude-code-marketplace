@@ -1,0 +1,74 @@
+--- initial-helper.py
++++ final-helper.py
+@@ -168,7 +168,10 @@
+             run("configure", base + [cmake, "--debug-trycompile", "-S", fixture, "-B", build, *options], timeout=60, descriptor=fd)
+ 
+             def flags(arguments, cxx, linking=False, reflection=False, standard=False):
+-                assert str(prefix / "bin" / ("clang++" if cxx else "clang")) in arguments
++                if arguments[:2] == [":", "&&"] and arguments[-2:] == ["&&", ":"]:
++                    arguments = arguments[2:-2]
++                assert arguments[0] == str(prefix / "bin" / ("clang++" if cxx else "clang"))
++                assert not any(arg.startswith("@") or arg == ":" or any(char in arg for char in ";&|<>`$") for arg in arguments)
+                 for name, value in (("-arch", "arm64"), ("-isysroot", configuration["sdk"]["path"]),
+                                     ("-resource-dir", str(prefix / "lib/clang/21"))):
+                     assert arguments.count(name) == 1 and arguments[arguments.index(name) + 1] == value
+@@ -182,7 +185,8 @@
+                     if linking:
+                         assert all(flag in arguments for flag in ["-nostdlib++", *map(str, libraries), "-Wl,-rpath," + str(prefix / "lib")])
+                 else:
+-                    assert not any(flag in arguments for flag in ["-stdlib=libc++", "-nostdinc++", "-nostdlib++", *map(str, libraries)])
++                    assert not any(flag in arguments for flag in ["-stdlib=libc++", "-nostdinc++", "-nostdlib++", "-std=c++26", str(prefix / "include/c++/v1"), *map(str, libraries)])
++                return arguments
+ 
+             probes = {}
+             for child in sorted((build / "CMakeFiles/CMakeScratch").glob("TryCompile-*")):
+@@ -192,11 +196,26 @@
+                 name = matches[0]
+                 output = run("probe-" + name, base + [ninja, "-C", child, "-f", "build-Debug.ninja", "-t", "commands"], descriptor=fd)
+                 commands = [shlex.split(line) for line in output.splitlines() if line.strip()]
+-                assert len(commands) == 2
++                assert len(commands) == 2 and sum("-c" in args for args in commands) == 1
+                 cxx = name != "CMakeCCompilerABI.c"
++                outputs = {}
+                 for arguments in commands:
+-                    flags(arguments, cxx, linking="-c" not in arguments, standard=name == "private_runtime.cpp" and "-c" in arguments)
+-                probes[name] = {"directory": str(child), "generated_commands": commands}
++                    arguments = flags(arguments, cxx, linking="-c" not in arguments, standard=name == "private_runtime.cpp" and "-c" in arguments)
++                    assert arguments.count("-o") == 1
++                    output = (child / arguments[arguments.index("-o") + 1]).resolve()
++                    assert output.is_relative_to(child)
++                    outputs["object" if "-c" in arguments else "executable"] = output
++                if name != "private_runtime.cpp":
++                    outputs["abi-copy"] = build / ("CMakeFiles/4.4.4/CMakeDetermineCompilerABI_" + ("CXX" if cxx else "C") + ".bin")
++                    assert digest(outputs["abi-copy"]) == digest(outputs["executable"])
++                artifacts = {}
++                for kind, output in outputs.items():
++                    assert output.is_file() and output.stat().st_size > 0
++                    copy = directory / "probe-artifacts" / name / (kind + ".bin")
++                    copy.parent.mkdir(parents=True, exist_ok=True)
++                    shutil.copyfile(output, copy)
++                    artifacts[kind] = {"source": str(output), "private_copy": str(copy), "sha256": digest(copy), "bytes": copy.stat().st_size}
++                probes[name] = {"directory": str(child), "generated_commands": commands, "fresh_artifacts": artifacts}
+             assert len(probes) == 3
+             report["probes"] = probes
+             # Capture before another CMake execution can clean the scratch trees.
+@@ -215,10 +234,18 @@
+                 assert "set(CMAKE_" + language + "_ABI_COMPILED TRUE)" in compiler
+             commands = load(build / "compile_commands.json")
+             assert len(commands) == 4
++            compiled = {}
+             for command in commands:
+-                flags(shlex.split(command["command"]), True, reflection=True, standard=True)
++                arguments = flags(shlex.split(command["command"]), True, reflection=True, standard=True)
+                 assert Path(command["file"]).resolve() == witness.resolve()
++                configs = [arg.split("=", 1)[1].strip('"') for arg in arguments if arg.startswith("-DCMAKE_INTDIR=")]
++                assert len(configs) == 1 and configs[0] in configurations and configs[0] not in compiled and arguments.count("-o") == 1
++                output = (Path(command["directory"]) / arguments[arguments.index("-o") + 1]).resolve()
++                assert output.is_relative_to(build) and configs[0] in output.parts
++                compiled[configs[0]] = str(output)
++            assert set(compiled) == set(configurations) and len(set(compiled.values())) == 4
+             report["compile_commands"] = commands
++            report["compile_database_outputs"] = compiled
+             report["configurations"] = {}
+             for config in configurations:
+                 output = run("build-" + config, base + [cmake, "--build", build, "--config", config, "--parallel", "1", "--verbose"], timeout=60, descriptor=fd)

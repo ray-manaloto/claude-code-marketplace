@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "unit": "06b-read-only-source-prerequisites",
+  "inspector": "/root/config_inspector",
+  "preservation_only": true,
+  "checks_rerun_during_preservation": false,
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "1b5e33b832286122043f57fbdffe1571c5b6ad12",
+  "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "source": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "head": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6"
+  },
+  "commands": [
+    {
+      "case": "worktree-identity",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "--show-toplevel",
+        "--abbrev-ref",
+        "HEAD",
+        "--git-common-dir",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "shell": "/bin/sh",
+      "login": false,
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\ncodex/marketplace-native-onboarding\n/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\ncodex/marketplace-native-onboarding\n",
+      "stderr": "",
+      "note": "--abbrev-ref also applied to the final HEAD argument; the commit was obtained by the separate worktree-head command."
+    },
+    {
+      "case": "worktree-head",
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "--verify",
+        "HEAD"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "shell": "/bin/sh",
+      "login": false,
+      "returncode": 0,
+      "stdout": "1b5e33b832286122043f57fbdffe1571c5b6ad12\n",
+      "stderr": ""
+    },
+    {
+      "case": "source-identity",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "shell": "/bin/sh",
+      "login": false,
+      "returncode": 0,
+      "stdout": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e\n9899759f9004a7df8442ec57000a17e53e6ad5f6\n",
+      "stderr": ""
+    },
+    {
+      "case": "bootstrap-cache-hash",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-"
+      ],
+      "stdin": "from pathlib import Path\nimport json,hashlib\nroot=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')\nd=json.loads((root/'evidence/p2996-source/cache-probes/qualification.json').read_text())\nprint('attested_input_values',json.dumps(d.get('values'),indent=2))\np=root/'dev/toolchains/p2996-bootstrap.cmake'\nprint('current_cache_sha256',hashlib.sha256(p.read_bytes()).hexdigest())\nd=json.loads((root/'evidence/p2996-source/source-review.json').read_text())\nfor k in ('static_assertions','limitations','not_executed'): print(k,json.dumps(d.get(k),indent=2))\np=root/'docs/p2996-toolchain.md'\nprint('\\nFILE',p)\nfor i,l in enumerate(p.read_text().split('\\n'),1): print(f'{i}: {l}')\n",
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "shell": "/bin/sh",
+      "login": false,
+      "returncode": 0,
+      "output_capture": "Relevant hash line retained; full command also printed prior receipt selections and toolchain documentation.",
+      "stdout_excerpt": "current_cache_sha256 ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "observed_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "prior_review_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "matches_prior_review": true
+    },
+    {
+      "case": "llvm-source-hash-comparison",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "-"
+      ],
+      "stdin": "from pathlib import Path\nimport hashlib,json\nroot=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')\nreview=json.loads((root/'evidence/p2996-source/source-review.json').read_text())\nknown={i['path']:i['sha256'] for i in review['source_declarations_reviewed']}\npaths=[\n'/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/runtimes/CMakeLists.txt',\n'/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/cmake/modules/LLVMExternalProjectUtils.cmake',\n'/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/CompilerRTDarwinUtils.cmake',\n]\nfor p in paths:\n actual=hashlib.sha256(Path(p).read_bytes()).hexdigest()\n print(json.dumps({'path':p,'sha256':actual,'matches_prior_review':actual==known.get(p)}))\n",
+      "cwd": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "shell": "/bin/sh",
+      "login": false,
+      "returncode": 0,
+      "stdout_json_lines": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/runtimes/CMakeLists.txt",
+          "sha256": "8151a8c1545d3acf1d048bf28021215419e865cb576d52c34a5a167a1fc0145d",
+          "matches_prior_review": true
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm/cmake/modules/LLVMExternalProjectUtils.cmake",
+          "sha256": "aa3d39ca477cebb56b86c0bd2b125e3a2d367fed781e4d966242349ca294535e",
+          "matches_prior_review": true
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/cmake/Modules/CompilerRTDarwinUtils.cmake",
+          "sha256": "c4f3c2d0f4123b02c43224d80f00f33e0219450da5feb1706b190978319a6774",
+          "matches_prior_review": true
+        }
+      ],
+      "stderr": ""
+    }
+  ],
+  "limitations": [
+    "Strict try_compile -j1 remains UNVERIFIED.",
+    "No configure, compiler, build, install, acquisition or service command ran during inspection.",
+    "No new source or tool identity checks were run while preserving this report.",
+    "This companion records previously observed tool results; it is not a fresh execution receipt."
+  ],
+  "preserved_at": "2026-10-11T04:40:43.147927+00:00",
+  "report": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-source-inspection-20261011T044043147658Z.md",
+    "sha256": "be5ff5fa444814527a390876bda296e90de43e5db06e67d509c755cebd571d24",
+    "bytes": 4209,
+    "verbatim_final_response": true,
+    "appended_terminal_newline": false
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "result": "PASS",
+  "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+  "cases": [
+    {
+      "case": "success",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact run AST with real private inert subprocesses; reserve only accelerates wait and supplies synthetic free space",
+      "stdout": "inert-success\n",
+      "exception": null,
+      "elapsed_seconds": 0.022341166040860116,
+      "helper_returncodes": [
+        0
+      ],
+      "rows": [
+        {
+          "case": "success",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "print(\"inert-success\")"
+          ],
+          "started_at": "2026-10-11T05:40:02.895172+00:00",
+          "pid": 40565,
+          "returncode": 0,
+          "elapsed_seconds": 0.021283374982886016,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/success/success.stdout",
+              "sha256": "6612dfe1dd023aeea6d79c5d3756050d4c86be46469e0aa20ea9f3af97af8b87"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/success/success.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "nonzero",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact run AST with real private inert subprocesses; reserve only accelerates wait and supplies synthetic free space",
+      "exception": "AssertionError('nonzero')",
+      "elapsed_seconds": 0.025393209070898592,
+      "helper_returncodes": [
+        23
+      ],
+      "rows": [
+        {
+          "case": "nonzero",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import sys;print(\"inert-failure\");sys.exit(23)"
+          ],
+          "started_at": "2026-10-11T05:40:02.918279+00:00",
+          "pid": 40566,
+          "returncode": 23,
+          "elapsed_seconds": 0.024705749936401844,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/nonzero/nonzero.stdout",
+              "sha256": "1cd112408dccb146a6125e24bc3839a6f5c3d307d568a4ab7a2a33bc15b4ba45"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/nonzero/nonzero.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "timeout-descendant",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact run AST with real private inert subprocesses; reserve only accelerates wait and supplies synthetic free space",
+      "exception": "TimeoutExpired(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', \"import subprocess,time;from pathlib import Path;p=subprocess.Popen(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', 'import signal,time;signal.signal(signal.SIGTERM, signal.SIG_IGN);time.sleep(60)']);Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/timeout-descendant/descendant.pid').write_text(str(p.pid));time.sleep(60)\"], 0.4)",
+      "elapsed_seconds": 0.417592209065333,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "timeout-descendant",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import subprocess,time;from pathlib import Path;p=subprocess.Popen(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', 'import signal,time;signal.signal(signal.SIGTERM, signal.SIG_IGN);time.sleep(60)']);Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/timeout-descendant/descendant.pid').write_text(str(p.pid));time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:40:02.944270+00:00",
+          "pid": 40567,
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.41503908298909664,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/timeout-descendant/timeout-descendant.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/timeout-descendant/timeout-descendant.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "descendant_status_after_helper": "",
+      "descendant_ps_returncode": 1,
+      "descendant_still_executing": false,
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "reserve",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact run AST with real private inert subprocesses; reserve only accelerates wait and supplies synthetic free space",
+      "exception": "AssertionError('disk reserve exhausted')",
+      "elapsed_seconds": 0.13461370894219726,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "reserve",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import time;time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:40:03.372867+00:00",
+          "pid": 40578,
+          "last_monitor": {
+            "at": "2026-10-11T05:40:03.505623+00:00",
+            "free_bytes": 8589934591
+          },
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.13324187498074025,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/reserve/reserve.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/reserve/reserve.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "signal",
+      "helper_sha256": "265476ccaa1690c036b71650e14b5d6a34d2b34d8222b1f3f227fd616864c3a7",
+      "method": "Exact run AST with real private inert subprocesses; reserve only accelerates wait and supplies synthetic free space",
+      "exception": "KeyboardInterrupt('received signal 15')",
+      "elapsed_seconds": 0.4368869160534814,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "signal",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import os,signal,time;time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:40:03.508191+00:00",
+          "pid": 40581,
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.43541962502058595,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/signal/signal.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/signal/signal.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    }
+  ],
+  "real_builds": 0,
+  "canonical_lease_acquisitions": 0
+}

@@ -1,0 +1,500 @@
+{
+  "script_sha256": "41034e457e71987bd2a010366b50a6a3975f974f4753af23246eeb40a2fc202e",
+  "helper_sha256": "dd062d4b58e08064bf3b67dffd3775e8da6af99b2090b0922c8dbe4c771bc3dd",
+  "source_operation": "Only the AST-extracted admit_editors function with synthetic callback outputs; no process probes, lease or native build",
+  "cases": [
+    {
+      "case": "exact observed services",
+      "outcome": "admitted",
+      "pids": [
+        "73356",
+        "73398"
+      ],
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-identities-after",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "no matched services",
+      "outcome": "admitted",
+      "pids": [],
+      "calls": []
+    },
+    {
+      "case": "one observed service remains",
+      "outcome": "admitted",
+      "pids": [
+        "73356"
+      ],
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-identities-after",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "unknown clangd",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "active compiler",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "allowed pid with compiler name",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "duplicate active pid",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "per service cpu high",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "cpu NaN",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "cpu infinity",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "negative cpu",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "combined cpu limit",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": []
+    },
+    {
+      "case": "changed start",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "changed ancestor executable",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "changed parent",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "missing identity",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "duplicate identity",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "malformed identity",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "wrong cwd",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "missing cwd",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "duplicate cwd pid",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "malformed cwd",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "identity changed during cwd",
+      "outcome": "rejected",
+      "error_type": "AssertionError",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-cwd",
+          "argv": [
+            "/usr/sbin/lsof",
+            "-a",
+            "-p",
+            "73356,73398",
+            "-d",
+            "cwd",
+            "-Fpn"
+          ],
+          "timeout": 15
+        },
+        {
+          "case": "editor-identities-after",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    },
+    {
+      "case": "identity probe timeout",
+      "outcome": "rejected",
+      "error_type": "TimeoutExpired",
+      "calls": [
+        {
+          "case": "editor-identities",
+          "argv": [
+            "/usr/bin/env",
+            "LC_ALL=C",
+            "TZ=America/Chicago",
+            "/bin/ps",
+            "-p",
+            "36012,73356,73372,73398",
+            "-o",
+            "pid=,ppid=,lstart=,comm="
+          ],
+          "timeout": 15
+        }
+      ]
+    }
+  ],
+  "state": "PASS"
+}

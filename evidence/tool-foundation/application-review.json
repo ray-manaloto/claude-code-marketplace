@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-11T00:05:18.915835+00:00",
+  "reviewer": "/root/cold_reviewer",
+  "mode": "independent read-only application review",
+  "result": "PASS",
+  "findings": [
+    {
+      "issue": "Admission snapshot read as current state",
+      "disposition": "Changed to an explicit past-tense admission checkpoint; independently rechecked"
+    },
+    {
+      "issue": "Global ignore rule excludes native-install.log",
+      "disposition": "Explicitly force-added unchanged 29-line log; reviewer verified staged hash"
+    }
+  ],
+  "verified": [
+    "Seven regular 0600 files match proposal/admission/application hashes; common directory0700",
+    "Default config/lock and private backups retain preimages",
+    "Three binaries match paths/hashes/ARM64; direct versions rc0",
+    "All14 host qualification outcomes:12 successes,2 expected missing-prefix rejections",
+    "Install rc0; exact project/private/staged log match; no actionable finding remains"
+  ],
+  "parent_static_gate": {
+    "command": "./dev/mise run check:acceptance-baseline",
+    "returncode": 0,
+    "original_files": 19,
+    "json": 63,
+    "python": 1,
+    "shell": 5,
+    "toml": 13
+  },
+  "limits": [
+    "No compiler/configure/build/OCI execution",
+    "No sccache caching qualification",
+    "No publication or other repository writes"
+  ]
+}

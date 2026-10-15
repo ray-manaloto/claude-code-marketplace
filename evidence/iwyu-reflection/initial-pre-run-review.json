@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "unit": "09c1 independent pre-run review, initial revision",
+  "result": "FAIL: fixer effective cwd differs from pinned recipe; native execution remains pending",
+  "created_at": "2026-10-11T15:46:51.202891+00:00",
+  "workspace": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "1ddd107bffe56226ae2a5c115fcb4e2ae6b7b6b9",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "876a9071c12badb9c5523f5f1acb4d086b02967fbd6b02181fc2cbd7254df00d",
+  "contract_sha256": "77208a22af95e9ade5ab5301e9dffa83d200366e998b4db5e8ab0ecbf67b6bcf",
+  "recipe_sha256": "057c1350de72edecf1b922842167b347d10fe464cab4e9faf51f6efda84c5161",
+  "findings": [
+    {
+      "id": "09C1-01",
+      "priority": "P2",
+      "path": "dev/toolchains/iwyu_reflection.py",
+      "line": 171,
+      "related_line": 123,
+      "title": "Use the fixture directory for the fixer mise -C operand",
+      "evidence": "The adapter supplies cwd=fixture, but base passed to the fixer still contains mise -C <run>/cwd. The retained mise exec help says -C runs as if mise started in that directory. Consequently the effective fixer cwd differs from the recipe reflection_fixture.fixer.cwd and the recorded Popen cwd.",
+      "impact": "The absolute --basedir and main.cc allowlist still confine the edit, but the exact admitted invocation and cwd receipt disagree with the pinned recipe.",
+      "requested_change": "Copy the base argv only for the fixer and set its -C operand to the fixture. Keep the fixture Popen cwd, absolute --basedir and main.cc operands. Preserve unrelated cwd for other commands.",
+      "proof": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof.json",
+        "sha256": "fc12512c2a3ff0dafbfcbb00d8aaeb2b5f6628c19644fa942c3bf2204f647a5b",
+        "bytes": 1733
+      },
+      "disposition": "Parent acknowledged; correction and narrow disposition review pending."
+    }
+  ],
+  "referenced_receipts": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/contract.json",
+      "sha256": "77208a22af95e9ade5ab5301e9dffa83d200366e998b4db5e8ab0ecbf67b6bcf",
+      "bytes": 1783
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/source-recipe.json",
+      "sha256": "057c1350de72edecf1b922842167b347d10fe464cab4e9faf51f6efda84c5161",
+      "bytes": 23130
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/pre-review-static.json",
+      "sha256": "5e9e2b9d2779fd7396a6f95d62b1333091f146633af78dfccbdfbc0685ff9aa0",
+      "bytes": 623
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-helper.py.source",
+      "sha256": "876a9071c12badb9c5523f5f1acb4d086b02967fbd6b02181fc2cbd7254df00d",
+      "bytes": 13183
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/installation-review.json",
+      "sha256": "99aa4745c22f5e4309d4c9bfcb6055dda1d5f67a991957c64f800fc8d75dd1f8",
+      "bytes": 20821
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/qualification.json",
+      "sha256": "5a6b8c9927210afc8ca11e1e29d2b517eeb8cf9b27b8282e5fdbab3852c3461e",
+      "bytes": 58865
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/runtime-review.json",
+      "sha256": "3bd37a721c9d9bab361cd8750222d0f8d65135384882bbf983cd80eec0fe6282",
+      "bytes": 9201
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/operation/qualification.json",
+      "sha256": "9350364a7ae6b37e165d0f117190369c3b28e4c65f530f10a86ae7127f4fa240",
+      "bytes": 15940
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/mise-runtime/contract.json",
+      "sha256": "c56618b021993665015b8f40c448504a666cb121076a88fb6217df2611434ff5",
+      "bytes": 3622
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+      "bytes": 22556
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/onboarding/baseline-files.json",
+      "sha256": "bf5a5d040a6888e97d68e419a64587e39b8eafb41343ed041cc253607a080adb",
+      "bytes": 3334
+    }
+  ],
+  "static_assertions": [
+    "Exact advice schema accepts only value.h addition, indirect.h removal, and full list retaining meta; unexpected edits and frontend errors are rejected.",
+    "The upstream fixer receives one absolute file allowlist and saved stderr stdin; complete postimage and all other fixture entries are compared.",
+    "Fresh output directory, independent baseline/fixed binaries, clean reanalysis and missing-reflection negative command are source-wired but have not executed.",
+    "Frozen runner cleanup and explicit expected-return wrapper were read; guard, admission, lease and capacity order remain source assertions for this unit.",
+    "Python 3.14.8 is already pinned by the committed mise-runtime contract and its protected() call chain; no extra binding finding.",
+    "Current documentation marks native results and resource relocation unverified."
+  ],
+  "executed_checks": {
+    "review_process": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/review_prerun.py"
+      ],
+      "started_at": "2026-10-11T15:45:34.733270+00:00",
+      "completed_at": "2026-10-11T15:45:34.873495+00:00",
+      "returncode": 0,
+      "elapsed_seconds": 0.14009362494107336,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/controls.stdout",
+          "sha256": "9dc4636a05f1320a8f0cd71675e2fb0b80d2b453d2a4c2fc5b20aaf97740f30a"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/controls.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "pure_parser_cases": 15,
+    "mocked_Popen_wrapper_cases": 12,
+    "mocked_checks": "Default/explicit cwd, byte-exact stdin and handle close, fd and new-session propagation, durable actual rc/log hashes, expected rc23/rc1, unexpected zero/nonzero, signal exit, launch OSError/TimeoutExpired/KeyboardInterrupt and duplicate labels.",
+    "scope_audit": {
+      "reference_comparisons": 57,
+      "unique_reference_paths": 55,
+      "original_Claude_files": 19,
+      "scoped_files_unchanged": true
+    },
+    "initial_reviewer_attempt": {
+      "returncode": 1,
+      "reason": "Reviewer Popen spy buffered writes unlike native child file-descriptor output. Only the private spy was corrected to flush before log hashing; candidate remained unchanged.",
+      "retention": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/initial-retention.json",
+        "sha256": "a9f9fc00ee847aa9258f56b53c783f1f3b92e94bfea55d673240333b2738a7fe",
+        "bytes": 4678
+      }
+    }
+  },
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/input-audit.json",
+      "sha256": "d260dbdaf6661668c071d7a1f904a3233f13880febdfb6fe69d412e40f455e2a",
+      "bytes": 20151
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/controls.json",
+      "sha256": "474d051638eedf6e7d2de9e3e6350bdb43e4c358a10663cf2b2b4cb1ed265346",
+      "bytes": 12945
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/cwd-proof.json",
+      "sha256": "fc12512c2a3ff0dafbfcbb00d8aaeb2b5f6628c19644fa942c3bf2204f647a5b",
+      "bytes": 1733
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/final-preservation.json",
+      "sha256": "208a1fface883503bfc6148c18416f4aa4aa5194c943cfeb3c2f76028881ec89",
+      "bytes": 1377
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-prerun-review-vh_uj7xv/supporting-manifest.json",
+      "sha256": "3cd14bd975eea4a00e33c8aaba16e3e573f1ff94c4132ccdb5214da355687494",
+      "bytes": 28594
+    }
+  ],
+  "not_run": [
+    "Helper main or any compiler, IWYU, fixer or native profile invocation",
+    "Docker, canonical lease, full protected() or global inventory invocation",
+    "Native reflection advice, fixer output, baseline/fixed build/run and clean/missing-reflection outcome",
+    "Resource relocation, full P2996 visitor coverage, Claude fresh-session or full OCI acceptance"
+  ],
+  "ownership": "Parent sole maintained-file writer; reviewer wrote only this private scratch receipt directory."
+}

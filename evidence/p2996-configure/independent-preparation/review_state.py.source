@@ -1,0 +1,47 @@
+from pathlib import Path
+import hashlib,json,os,stat
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+HERE=Path(__file__).resolve().parent
+HOME=Path('/Users/rmanaloto')
+def digest(p):
+    with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def load(p):return json.loads(Path(p).read_text())
+def item(p):
+    if not p.exists() and not p.is_symlink():return {'kind':'absent'}
+    st=p.lstat();result={'mode':oct(stat.S_IMODE(st.st_mode)),'uid':st.st_uid}
+    if p.is_symlink():result.update(kind='link',target=os.readlink(p))
+    elif p.is_dir():result.update(kind='directory')
+    elif p.is_file():result.update(kind='file',sha256=digest(p),bytes=st.st_size)
+    else:result.update(kind='other')
+    return result
+def snapshot():
+    before=load(ROOT/'evidence/gcc-bootstrap/install-preimages.json')
+    files={}
+    for name in before['global_files']:files[str(HOME/'.config/mise'/name)]=item(HOME/'.config/mise'/name)
+    for path in before['glib_files']:files[path]=item(Path(path))
+    packages={}
+    for name in before['packages']:
+        rack=Path('/opt/homebrew/Cellar')/name
+        packages[name]={'versions':{p.name:item(p/'INSTALL_RECEIPT.json') for p in rack.iterdir() if p.is_dir()} if rack.is_dir() else {},'links':{part:item(Path('/opt/homebrew')/part/name) for part in ('opt','var/homebrew/linked')}}
+    data=HOME/'.local/share/mise'
+    dirs={str(data/n):{str(p.relative_to(data/n)):item(p) for p in sorted((data/n).rglob('*'))} for n in ('shims','command-wrappers')}
+    installs={str(p.relative_to(data/'installs')):item(p) for t in sorted((data/'installs').iterdir()) for p in [t,*(sorted(t.iterdir()) if t.is_dir() and not t.is_symlink() else [])]}
+    acquisition=load(ROOT/'evidence/p2996-source/git/acquisition.json');src=Path(acquisition['source'])
+    for n in ('HEAD','index','config','shallow'):files[str(src/'.git'/n)]=item(src/'.git'/n)
+    qualified=load(ROOT/'evidence/p2996-source/review-receipts/qualification.json')
+    for name,path in qualified['values'].items():
+        if name not in ('PREFIX','SDK'):files[path]=item(Path(path));files[str(Path(path).resolve())]=item(Path(path).resolve())
+    sdk=Path(qualified['values']['SDK'])/'SDKSettings.json';files[str(sdk)]=item(sdk)
+    host=load(ROOT/'evidence/tool-foundation/host-qualification.json')['binaries']
+    for n in ('cmake','ninja'):path=Path(host[n]['resolved_path']);files[str(path)]=item(path)
+    mise=Path(load(ROOT/'evidence/gcc-bootstrap/install-proposal.json')['native_mise']['path']);files[str(mise)]=item(mise)
+    context=Path(before['normal_environment']['argv'][-1]).parent
+    for name in ('context.json','allowlist_probe.py'):files[str(context/name)]=item(context/name)
+    lock=Path('/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py');files[str(lock)]=item(lock)
+    maintained={rel:item(ROOT/rel) for rel in load(HERE/'review-context.json')['scope']}
+    receipt_paths=['evidence/p2996-source/source-review.json','evidence/p2996-source/review-receipts/qualification.json','evidence/p2996-source/git/acquisition.json','evidence/p2996-configure/source-inspection.json','evidence/p2996-configure/source-inspection.md','evidence/p2996-configure/probe-concurrency-source-review.json','evidence/p2996-configure/preparation/qualification.json','evidence/p2996-configure/capacity-inspection/summary.json','dev/toolchains/p2996-bootstrap.cmake']
+    receipts={rel:item(ROOT/rel) for rel in receipt_paths}
+    return {'files':files,'packages':packages,'dirs':dirs,'installs':installs,'maintained':maintained,'prerequisite_receipts':receipts}
+if __name__=='__main__':
+    import sys
+    value=snapshot();(HERE/sys.argv[1]).write_text(json.dumps(value,indent=2)+'\n');print(json.dumps({'files':len(value['files']),'packages':len(value['packages']),'shim_entries':len(next(iter(value['dirs'].values()))),'install_entries':len(value['installs']),'maintained':len(value['maintained'])}))

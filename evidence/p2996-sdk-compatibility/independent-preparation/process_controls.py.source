@@ -1,0 +1,37 @@
+import ast,copy,hashlib,json,os,signal,subprocess,time,types
+from datetime import datetime,timezone
+from pathlib import Path
+ROOT=Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace');PRIVATE=Path(__file__).parent
+helper=ROOT/'dev/toolchains/p2996_sdk_compat.py'
+digest=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+assert digest(helper)=='3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294'
+main=next(n for n in ast.parse(helper.read_text()).body if isinstance(n,ast.FunctionDef) and n.name=='main')
+run=next(n for n in main.body if isinstance(n,ast.FunctionDef) and n.name=='run')
+code=compile(ast.Module(body=[run],type_ignores=[]),str(helper),'exec');results=[]
+for case,argv,expected in [('success',['/usr/bin/true'],None),('nonzero',['/usr/bin/false'],AssertionError),('timeout',['/bin/sleep','5'],subprocess.TimeoutExpired),('post-spawn-save-error',['/bin/sleep','5'],OSError)]:
+    directory=PRIVATE/('process-final-'+case);directory.mkdir(mode=0o700)
+    for signum in (signal.SIGTERM,signal.SIGHUP,signal.SIGINT):signal.signal(signum,signal.SIG_DFL)
+    report={'commands':[]};children=[];injected=[False]
+    class Process:
+        def __init__(self,*a,**kw):self.child=subprocess.Popen(*a,**kw);children.append(self.child)
+        def __getattr__(self,name):return getattr(self.child,name)
+        def wait(self,timeout=None):return self.child.wait(timeout=0.02 if case=='timeout' and timeout==45 else timeout)
+    def save():
+        if case=='post-spawn-save-error' and not injected[0] and report['commands'] and 'pid' in report['commands'][-1]:
+            injected[0]=True;raise OSError(28,'controlled ENOSPC after spawn')
+        (directory/'state.json').write_text(json.dumps(report,indent=2)+'\n')
+    ns={'datetime':datetime,'timezone':timezone,'report':report,'directory':directory,'save':save,'time':time,
+        'subprocess':types.SimpleNamespace(Popen=Process,DEVNULL=subprocess.DEVNULL,TimeoutExpired=subprocess.TimeoutExpired),
+        'env':{'PATH':'/usr/bin:/bin'},'signal':signal,'os':os,'json':json,'digest':digest,'print':lambda *a,**k:None}
+    exec(code,ns);error=None
+    try:ns['run'](case,argv)
+    except BaseException as e:error=e
+    assert (error is None if expected is None else isinstance(error,expected)),(case,repr(error))
+    assert children and all(p.poll() is not None for p in children),case
+    row=report['commands'][0];assert row['returncode'] is not None
+    assert row['returncode']==(0 if case=='success' else 1 if case=='nonzero' else -signal.SIGTERM)
+    for log in row['logs']:assert digest(log['path'])==log['sha256']
+    results.append({'case':case,'result':'PASS','error':repr(error) if error else None,'child_returncode':row['returncode'],'child_reaped':True,'timeout_accelerated_to_seconds':0.02 if case=='timeout' else None})
+report={'result':'PASS','helper_sha256':digest(helper),'scope':'Exact nested run AST with real private inert subprocesses; accelerated timeout only; no compiler, lease, source apply, or global changes','controls':results}
+(PRIVATE/'application-process-controls.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report,indent=2))

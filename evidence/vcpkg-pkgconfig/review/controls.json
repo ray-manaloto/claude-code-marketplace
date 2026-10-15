@@ -1,0 +1,58 @@
+{
+  "result": "PASS",
+  "synthetic_inspect_calls": 6,
+  "native_operations": 0,
+  "candidate_module_imports": 0,
+  "full_or_live_inventories": 0,
+  "cases": [
+    {
+      "case": "valid",
+      "outcome": "accepted",
+      "expected": "accepted",
+      "candidate_preimage_reads": 76,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    },
+    {
+      "case": "absolute_path",
+      "outcome": "rejected",
+      "expected": "rejected",
+      "candidate_preimage_reads": 1,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    },
+    {
+      "case": "dotdot_path",
+      "outcome": "rejected",
+      "expected": "rejected",
+      "candidate_preimage_reads": 1,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    },
+    {
+      "case": "escaping_symlink",
+      "outcome": "rejected",
+      "expected": "rejected",
+      "candidate_preimage_reads": 1,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    },
+    {
+      "case": "duplicate_member",
+      "outcome": "rejected",
+      "expected": "rejected",
+      "candidate_preimage_reads": 1,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    },
+    {
+      "case": "existing_destination",
+      "outcome": "rejected",
+      "expected": "rejected",
+      "candidate_preimage_reads": 3,
+      "all_preimage_reads_scratch_confined": true,
+      "fixture_unchanged": true
+    }
+  ],
+  "scope": "AST-only inspect plus original digest/preimage; all PREFIX reads and fixtures scratch-only. No extraction."
+}

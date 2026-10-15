@@ -1,0 +1,326 @@
+{
+  "result": "PASS",
+  "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+  "cases": [
+    {
+      "case": "success",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "stdout": "inert-success\n",
+      "exception": null,
+      "elapsed_seconds": 0.025823041913099587,
+      "helper_returncodes": [
+        0
+      ],
+      "rows": [
+        {
+          "case": "success",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "print(\"inert-success\")"
+          ],
+          "started_at": "2026-10-11T05:44:14.039124+00:00",
+          "pid": 50939,
+          "returncode": 0,
+          "elapsed_seconds": 0.024678042042069137,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-success/success.stdout",
+              "sha256": "6612dfe1dd023aeea6d79c5d3756050d4c86be46469e0aa20ea9f3af97af8b87"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-success/success.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "nonzero",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "AssertionError('nonzero')",
+      "elapsed_seconds": 0.025227708043530583,
+      "helper_returncodes": [
+        23
+      ],
+      "rows": [
+        {
+          "case": "nonzero",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import sys;print(\"inert-failure\");sys.exit(23)"
+          ],
+          "started_at": "2026-10-11T05:44:14.065606+00:00",
+          "pid": 50940,
+          "returncode": 23,
+          "elapsed_seconds": 0.02460787503514439,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-nonzero/nonzero.stdout",
+              "sha256": "1cd112408dccb146a6125e24bc3839a6f5c3d307d568a4ab7a2a33bc15b4ba45"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-nonzero/nonzero.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "timeout-descendant",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "TimeoutExpired(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', \"import subprocess,time;from pathlib import Path;p=subprocess.Popen(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', 'import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)']);Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-timeout-descendant/descendant.pid').write_text(str(p.pid));time.sleep(60)\"], 0.4)",
+      "elapsed_seconds": 0.41411895805504173,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "timeout-descendant",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import subprocess,time;from pathlib import Path;p=subprocess.Popen(['/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3', '-B', '-c', 'import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)']);Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-timeout-descendant/descendant.pid').write_text(str(p.pid));time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:44:14.091576+00:00",
+          "pid": 50941,
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.41245958395302296,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-timeout-descendant/timeout-descendant.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-timeout-descendant/timeout-descendant.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "descendant_status_after_helper": "",
+      "descendant_ps_returncode": 1,
+      "descendant_still_executing": false,
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "reserve",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "AssertionError('disk reserve exhausted')",
+      "elapsed_seconds": 0.13912924996111542,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "reserve",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import time;time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:44:14.514217+00:00",
+          "pid": 50944,
+          "last_monitor": {
+            "at": "2026-10-11T05:44:14.647079+00:00",
+            "free_bytes": 8589934591
+          },
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.137702125008218,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-reserve/reserve.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-reserve/reserve.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "signal",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "KeyboardInterrupt('received signal 15')",
+      "elapsed_seconds": 0.4450036250054836,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "signal",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import os,signal,time;time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:44:14.654867+00:00",
+          "pid": 50945,
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.4435224999906495,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-signal/signal.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-signal/signal.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "repeated-termination",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "KeyboardInterrupt('received signal 15')",
+      "elapsed_seconds": 5.459404000081122,
+      "helper_returncodes": [
+        -9
+      ],
+      "rows": [
+        {
+          "case": "repeated-termination",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import signal,os,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(0.15);os.kill(os.getppid(),signal.SIGTERM);time.sleep(0.7);os.kill(os.getppid(),signal.SIGTERM);os.kill(os.getppid(),signal.SIGHUP);os.kill(os.getppid(),signal.SIGINT);time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:44:15.101268+00:00",
+          "pid": 50946,
+          "interrupted": true,
+          "returncode": -9,
+          "elapsed_seconds": 5.457544875098392,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-repeated-termination/repeated-termination.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-repeated-termination/repeated-termination.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "post-spawn-save-failure",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "exception": "OSError(28, 'injected private receipt write failure')",
+      "elapsed_seconds": 0.007906958926469088,
+      "helper_returncodes": [
+        -15
+      ],
+      "rows": [
+        {
+          "case": "post-spawn-save-failure",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import time;time.sleep(60)"
+          ],
+          "started_at": "2026-10-11T05:44:20.562634+00:00",
+          "pid": 50999,
+          "interrupted": true,
+          "returncode": -15,
+          "elapsed_seconds": 0.005823333980515599,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-post-spawn-save-failure/post-spawn-save-failure.stdout",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-post-spawn-save-failure/post-spawn-save-failure.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    },
+    {
+      "case": "descriptor",
+      "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "method": "Exact helper run/interrupted AST with real private inert processes; accelerated disk wait and injected reserve/save errors only as named",
+      "stdout": "[16777230, 488104536]\n",
+      "exception": null,
+      "elapsed_seconds": 0.04892429197207093,
+      "helper_returncodes": [
+        0
+      ],
+      "rows": [
+        {
+          "case": "descriptor",
+          "argv": [
+            "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+            "-B",
+            "-c",
+            "import json,os;s=os.fstat(3);print(json.dumps([s.st_dev,s.st_ino]))"
+          ],
+          "started_at": "2026-10-11T05:44:20.572329+00:00",
+          "pid": 51000,
+          "returncode": 0,
+          "elapsed_seconds": 0.047502542030997574,
+          "logs": [
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-descriptor/descriptor.stdout",
+              "sha256": "59f0eba37eb85681c984d8e4e67ebfb2ee184e9ce522db47ece9af7ba6459d63"
+            },
+            {
+              "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/final-control-descriptor/descriptor.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "alive_leaders_on_function_exit": [],
+      "all_owned_leaders_reaped": true,
+      "pass": true
+    }
+  ],
+  "real_builds": 0,
+  "canonical_lease_acquisitions": 0
+}

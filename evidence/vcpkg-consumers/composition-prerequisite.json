@@ -1,0 +1,27 @@
+{
+  "owner": "config_inspector (read-only)",
+  "state": "source prerequisite complete; no native execution",
+  "start_head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+  "closing_head": "b3f1adfe6bc634e08b47f1b2912ee94c09f405ba",
+  "decisions": [
+    "Use actual root target through add_subdirectory and a C++26 fmt::fmt consumer.",
+    "Preserve original lane/compiler guards while adding the exact pinned public-toolchain composition.",
+    "Disable VCPKG_MANIFEST_MODE, VCPKG_MANIFEST_INSTALL and VCPKG_APPLOCAL_DEPS, and both package registries.",
+    "Preflight public toolchain and installed imports before project configure; installation roots remain read-only."
+  ],
+  "parent_choice": "Use vcpkg native package search, then require fmt_DIR and selected imported library to equal the exact retained installation.",
+  "public_toolchain_sha256": "f911a8769d07e10b26ce651f3cef6f52f2d5e598e3504d7f19e70bcbd3b3b25b",
+  "root_preimage_sha256": "151f9268f714ce1d4b38300dc5280be3a44a14ff5d7797ece6d04c0f1c77234e",
+  "source_lines": {
+    "scripts/buildsystems/vcpkg.cmake": {
+      "install_bootstrap_condition": [
+        482,
+        574
+      ],
+      "macos_bundle_copy_hook": [
+        647,
+        655
+      ]
+    }
+  }
+}

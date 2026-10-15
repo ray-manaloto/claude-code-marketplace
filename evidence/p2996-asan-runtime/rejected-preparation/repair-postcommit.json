@@ -1,0 +1,173 @@
+{
+  "head": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed",
+  "recorded_at": "2026-10-12T00:52:08.042597+00:00",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "55a37282b117fca534a86fedcdbd5c8352405e23\n",
+      "stderr": "",
+      "elapsed_seconds": 0.011817791033536196
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.012051167199388146
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n",
+      "stderr": "",
+      "elapsed_seconds": 0.2111907908692956
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1938, \"python\": 139, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.162141292123124
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.025075000012293458
+    },
+    {
+      "argv": [
+        "python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-closure-scan-ox0bcphi/scan.py",
+        "closure-secret-scan"
+      ],
+      "returncode": 0,
+      "stdout": "{\"files\": 107, \"raw_rc\": 1, \"verified_file_digests\": 22, \"disposition_rc\": 0, \"complete_token_files\": []}\n",
+      "stderr": "",
+      "elapsed_seconds": 1.1452247078996152
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "add",
+        "--",
+        "dev/toolchains/p2996_sanitizer_repair.py",
+        "dev/toolchains/patches/p2996-asan-macos27-dyld.patch",
+        "docs/sanitizers.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+        ".gitattributes",
+        "evidence/p2996-sanitizer-repair/"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.08213704195804894
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "returncode": 0,
+      "stdout": ".gitattributes\n.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\ndev/toolchains/p2996_sanitizer_repair.py\ndev/toolchains/patches/p2996-asan-macos27-dyld.patch\ndocs/sanitizers.md\nevidence/p2996-sanitizer-repair/admission.json\nevidence/p2996-sanitizer-repair/artifact-inventory.json\nevidence/p2996-sanitizer-repair/artifact-review-copy-manifest.json\nevidence/p2996-sanitizer-repair/artifact-review.json\nevidence/p2996-sanitizer-repair/artifact-review/addendum-comparison.json\nevidence/p2996-sanitizer-repair/artifact-review/addendum-execution.json\nevidence/p2996-sanitizer-repair/artifact-review/addendum.py\nevidence/p2996-sanitizer-repair/artifact-review/compare.py\nevidence/p2996-sanitizer-repair/artifact-review/comparison.json\nevidence/p2996-sanitizer-repair/artifact-review/execution.json\nevidence/p2996-sanitizer-repair/artifact-review/original-closure-candidate.json\nevidence/p2996-sanitizer-repair/artifact-review/original-closure-inputs.json\nevidence/p2996-sanitizer-repair/artifact-review/review.json\nevidence/p2996-sanitizer-repair/artifact-review/supporting-manifest.json\nevidence/p2996-sanitizer-repair/asan.stderr\nevidence/p2996-sanitizer-repair/asan.stdout\nevidence/p2996-sanitizer-repair/build-compiler-provenance.json\nevidence/p2996-sanitizer-repair/candidate-inputs.json\nevidence/p2996-sanitizer-repair/candidate.json\nevidence/p2996-sanitizer-repair/capacity-copy-manifest.json\nevidence/p2996-sanitizer-repair/capacity.py.source\nevidence/p2996-sanitizer-repair/capacity/capacity.json\nevidence/p2996-sanitizer-repair/capacity/capacity.py.source\nevidence/p2996-sanitizer-repair/capacity/docker-census.stderr\nevidence/p2996-sanitizer-repair/capacity/docker-census.stdout\nevidence/p2996-sanitizer-repair/capacity/docker-context.stderr\nevidence/p2996-sanitizer-repair/capacity/docker-context.stdout\nevidence/p2996-sanitizer-repair/capacity/docker-stats.stderr\nevidence/p2996-sanitizer-repair/capacity/docker-stats.stdout\nevidence/p2996-sanitizer-repair/capacity/editor-cwd.stderr\nevidence/p2996-sanitizer-repair/capacity/editor-cwd.stdout\nevidence/p2996-sanitizer-repair/capacity/editor-identities-after.stderr\nevidence/p2996-sanitizer-repair/capacity/editor-identities-after.stdout\nevidence/p2996-sanitizer-repair/capacity/editor-identities.stderr\nevidence/p2996-sanitizer-repair/capacity/editor-identities.stdout\nevidence/p2996-sanitizer-repair/capacity/execution.json\nevidence/p2996-sanitizer-repair/capacity/processes.stderr\nevidence/p2996-sanitizer-repair/capacity/processes.stdout\nevidence/p2996-sanitizer-repair/closure-candidate-before-whitespace.json\nevidence/p2996-sanitizer-repair/closure-candidate.json\nevidence/p2996-sanitizer-repair/closure-inputs-before-whitespace.json\nevidence/p2996-sanitizer-repair/closure-inputs.json\nevidence/p2996-sanitizer-repair/closure-secret-scan.json\nevidence/p2996-sanitizer-repair/closure-static.json\nevidence/p2996-sanitizer-repair/contract.json\nevidence/p2996-sanitizer-repair/dispatch.py.source\nevidence/p2996-sanitizer-repair/failure-postcommit.json\nevidence/p2996-sanitizer-repair/final-candidate.json\nevidence/p2996-sanitizer-repair/frozen-static.json\nevidence/p2996-sanitizer-repair/inventory.json\nevidence/p2996-sanitizer-repair/native-execution.json\nevidence/p2996-sanitizer-repair/native-launch.json\nevidence/p2996-sanitizer-repair/object-dependencies.json\nevidence/p2996-sanitizer-repair/object-dependencies.stderr\nevidence/p2996-sanitizer-repair/object-dependencies.stdout\nevidence/p2996-sanitizer-repair/object-source-inputs.json\nevidence/p2996-sanitizer-repair/object.stderr\nevidence/p2996-sanitizer-repair/object.stdout\nevidence/p2996-sanitizer-repair/operation/admission.json\nevidence/p2996-sanitizer-repair/operation/closure.json\nevidence/p2996-sanitizer-repair/operation/copy-manifest.json\nevidence/p2996-sanitizer-repair/operation/native-execution.json\nevidence/p2996-sanitizer-repair/operation/native-launch.json\nevidence/p2996-sanitizer-repair/operation/qualification.json\nevidence/p2996-sanitizer-repair/operation/text-receipts.json\nevidence/p2996-sanitizer-repair/patch-controls/apply-check.stderr\nevidence/p2996-sanitizer-repair/patch-controls/apply-check.stdout\nevidence/p2996-sanitizer-repair/patch-controls/apply-twice.stderr\nevidence/p2996-sanitizer-repair/patch-controls/apply-twice.stdout\nevidence/p2996-sanitizer-repair/patch-controls/apply.stderr\nevidence/p2996-sanitizer-repair/patch-controls/apply.stdout\nevidence/p2996-sanitizer-repair/patch-controls/patch-controls.json\nevidence/p2996-sanitizer-repair/patch-controls/prepare.py\nevidence/p2996-sanitizer-repair/patch-controls/private.sb\nevidence/p2996-sanitizer-repair/patch-controls/reverse-check.stderr\nevidence/p2996-sanitizer-repair/patch-controls/reverse-check.stdout\nevidence/p2996-sanitizer-repair/patch-controls/reverse-original.stderr\nevidence/p2996-sanitizer-repair/patch-controls/reverse-original.stdout\nevidence/p2996-sanitizer-repair/patch-controls/reverse.stderr\nevidence/p2996-sanitizer-repair/patch-controls/reverse.stdout\nevidence/p2996-sanitizer-repair/patch-inputs.json\nevidence/p2996-sanitizer-repair/pre-artifact-secret-scan.json\nevidence/p2996-sanitizer-repair/pre-artifact-static.json\nevidence/p2996-sanitizer-repair/pre-review-secret-scan.json\nevidence/p2996-sanitizer-repair/pre-review-static.json\nevidence/p2996-sanitizer-repair/pre-run-review.json\nevidence/p2996-sanitizer-repair/preparation-copy-manifest.json\nevidence/p2996-sanitizer-repair/preparation-review-copy-manifest.json\nevidence/p2996-sanitizer-repair/preparation-review/compare.py\nevidence/p2996-sanitizer-repair/preparation-review/comparison.json\nevidence/p2996-sanitizer-repair/preparation-review/execution.json\nevidence/p2996-sanitizer-repair/preparation-review/review.json\nevidence/p2996-sanitizer-repair/preparation-review/supporting-manifest.json\nevidence/p2996-sanitizer-repair/prepared-launchers.json\nevidence/p2996-sanitizer-repair/recipes.json\nevidence/p2996-sanitizer-repair/source-review-copy-manifest.json\nevidence/p2996-sanitizer-repair/source-review.json\nevidence/p2996-sanitizer-repair/startup-source-parent.json\nevidence/p2996-sanitizer-repair/ubsan.stderr\nevidence/p2996-sanitizer-repair/ubsan.stdout\nevidence/p2996-sanitizer-repair/whitespace-secret-scan.json\nevidence/p2996-sanitizer-repair/whitespace-static.json\n",
+      "stderr": "",
+      "elapsed_seconds": 0.013802375178784132
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.020324416924268007
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "commit",
+        "--quiet",
+        "-m",
+        "Qualify private macOS 27 ASan startup repair"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.3840676669497043
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed\n",
+      "stderr": "",
+      "elapsed_seconds": 0.018999750027433038
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.06500883284024894
+    },
+    {
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 1940, \"python\": 139, \"shell\": 6, \"toml\": 16}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n",
+      "elapsed_seconds": 1.856297791004181
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_seconds": 0.07692625001072884
+    }
+  ],
+  "state": "COMMITTED: private ASan repair independently qualified; installed runtime unchanged"
+}

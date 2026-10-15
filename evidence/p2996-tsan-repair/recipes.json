@@ -1,0 +1,734 @@
+{
+  "scope": "Read-only Ninja commands tool; no build/link/sign/run performed",
+  "build": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/runtimes/runtimes-bins",
+  "ninja_receipt_sha256": "b28697a3ca601a781ba098ad9c60f87ee868d5aa2a8be930173a890986d86dab",
+  "ninja_stdout_sha256": "04ba6ce3ff01e0a508c59b58b151b860b9976f558d518368a78e19b794d90e60",
+  "prior_asan_recipes_sha256": "37f79177a1afd808736b0cec56d73bd0695711d8b8b87c4cb17c8049016d7174",
+  "asan_qualification_sha256": "c5f01649fe39b50744e7c3984f0a01692ce1e5a9912aba2ca7cc49ff399dffc4",
+  "link_argv": [
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++",
+    "--target=arm64-apple-darwin27.0.0",
+    "-fPIC",
+    "-fvisibility-inlines-hidden",
+    "-Werror=date-time",
+    "-Werror=unguarded-availability-new",
+    "-Wall",
+    "-Wextra",
+    "-Wno-unused-parameter",
+    "-Wwrite-strings",
+    "-Wcast-qual",
+    "-Wmissing-field-initializers",
+    "-Wimplicit-fallthrough",
+    "-Wcovered-switch-default",
+    "-Wno-noexcept-type",
+    "-Wnon-virtual-dtor",
+    "-Wdelete-non-virtual-dtor",
+    "-Wsuggest-override",
+    "-Wstring-conversion",
+    "-Wmisleading-indentation",
+    "-Wctad-maybe-unsupported",
+    "-fdiagnostics-color",
+    "-Wall",
+    "-Wno-unused-parameter",
+    "-O3",
+    "-DNDEBUG",
+    "-arch",
+    "arm64",
+    "-isysroot",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "-dynamiclib",
+    "-Wl,-headerpad_max_install_names",
+    "-stdlib=libc++",
+    "-lc++",
+    "-lc++abi",
+    "-fapplication-extension",
+    "-mmacosx-version-min=27.0",
+    "-isysroot",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "-nodefaultlibs",
+    "-nostdlib++",
+    "-Wl,-U,___ubsan_default_options",
+    "-Wl,-U,___sanitizer_free_hook",
+    "-Wl,-U,___sanitizer_get_dtls_size",
+    "-Wl,-U,___sanitizer_malloc_hook",
+    "-Wl,-U,___sanitizer_report_error_summary",
+    "-Wl,-U,___sanitizer_sandbox_on_notify",
+    "-Wl,-U,___sanitizer_symbolize_code",
+    "-Wl,-U,___sanitizer_symbolize_data",
+    "-Wl,-U,___sanitizer_symbolize_frame",
+    "-Wl,-U,___sanitizer_symbolize_demangle",
+    "-Wl,-U,___sanitizer_symbolize_flush",
+    "-Wl,-U,___sanitizer_symbolize_set_demangle",
+    "-Wl,-U,___sanitizer_symbolize_set_inline_frames",
+    "-o",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib",
+    "-install_name",
+    "@rpath/libclang_rt.tsan_osx_dynamic.dylib",
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_aix.cpp.o",
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_linux.cpp.o",
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_mac.cpp.o",
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_win.cpp.o",
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_type_test.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_allocator.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_common.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector1.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector2.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_errno.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_file.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flags.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flag_parser.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_haiku.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libc.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libignore.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux_s390.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mac.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mutex.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_netbsd.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_freebsd.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_linux.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_netbsd.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_posix.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_solaris.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_posix.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_printf.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_common.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_bsd.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_haiku.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_linux.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_mac.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_solaris.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_range.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_solaris.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_mac.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_win.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_suppressions.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_tls_get_addr.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_arg_retval.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_registry.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_type_traits.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win_interception.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_termination.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_common_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_allocator_checks.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_dl.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_linux_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_mac_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_posix_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_linux_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_netbsd_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sancov_flags.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_libcdep_new.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_win_sections.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_allocator_report.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_chained_origin_depot.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stack_store.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stackdepot.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_printer.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_sparc.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libbacktrace.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_mac.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_posix_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_win.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_thread_history.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_linux_libcdep.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_fuchsia.cpp.o",
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_win.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_diag.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_init.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_flags.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_monitor.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_value.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers_cxx.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_itanium.cpp.o",
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_win.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_debugging.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_external.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_fd.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_flags.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_ignoreset.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_memintrinsics.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_posix.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_ann.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_atomic.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_java.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_malloc_mac.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_md5.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mman.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mutexset.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_report.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_mutex.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_proc.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_report.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_thread.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_stack_trace.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_suppressions.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_symbolize.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_sync.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_vector_clock.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mac.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mach_vm.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_mac.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_posix.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_libdispatch.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_new_delete.cpp.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_amd64.S.o",
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_aarch64.S.o",
+    "-Wl,-rpath,@loader_path/../lib",
+    "-lc",
+    "-lobjc"
+  ],
+  "codesign_argv": [
+    "/usr/bin/codesign",
+    "--sign",
+    "-",
+    "-o",
+    "linker-signed",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib"
+  ],
+  "mapping_object": "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_mac.cpp.o",
+  "objects": {
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_aix.cpp.o": {
+      "sha256": "698913e7450b1afe065bcb3675ba14194b8db4cc986ee7b750762383924fc095",
+      "bytes": 2840
+    },
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_linux.cpp.o": {
+      "sha256": "6ab30736896951feee742d6b2d60dce61f78284999ee587360f681f02f820041",
+      "bytes": 2848
+    },
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_mac.cpp.o": {
+      "sha256": "a0ab3b6d1f91b2bd9ba2233b72114c48a70ad18e8e2b57a0a1c3ee88e93efc80",
+      "bytes": 2840
+    },
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_win.cpp.o": {
+      "sha256": "fc36cf069a87cafe8221262bd7809a27a7f57a72ee18beee32f61fa5c762dde2",
+      "bytes": 2840
+    },
+    "compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_type_test.cpp.o": {
+      "sha256": "53c5ccafe5b3ab6af58e3afb5ee4aac26f27cc340f009a63ae34dfe90b87bc50",
+      "bytes": 2856
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_allocator.cpp.o": {
+      "sha256": "878973133b08bc28a978b4f3c07e357838d4a9291f34e378b340a2ece2b4d9dc",
+      "bytes": 125384
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_common.cpp.o": {
+      "sha256": "057dccf2eeed36d44b720f670968f77d8b4bf2aaeacb6d6f5c15813400e3fc84",
+      "bytes": 79136
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector1.cpp.o": {
+      "sha256": "9c209732ffde9161605694de57144bc7d79435b9892c972368525c1f363f1969",
+      "bytes": 121680
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector2.cpp.o": {
+      "sha256": "e763a1515f0395974aaa04c80060a04023f24424abb765437f7e30acc054133b",
+      "bytes": 2856
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_errno.cpp.o": {
+      "sha256": "5b1895b5dc4d5adc235ec34fe17567ac3fc4c0f2b180e5d8e57b1b9966303e32",
+      "bytes": 3376
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_file.cpp.o": {
+      "sha256": "4712cac4bfeba10fd2f5c5f560fd0dfd2f61ef5f2cedf0a9c151c73456c0374f",
+      "bytes": 53704
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flags.cpp.o": {
+      "sha256": "5c70a8575c3d156985ac34dd39f61899bfba69602eebc1bad7acc8e976e14dac",
+      "bytes": 97688
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flag_parser.cpp.o": {
+      "sha256": "8721d1d81e4d7d05c93bb5c53cedfc67d8f99504740110a90e02e98a08fd550a",
+      "bytes": 28232
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_haiku.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libc.cpp.o": {
+      "sha256": "8f1a74f0c7aca6f2e1385bcc3803eb86c78d112b635848fc6a2690a0913d85df",
+      "bytes": 56168
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libignore.cpp.o": {
+      "sha256": "dde9ab8aa755a0f6422cf1d42414822aff86380d7c6e2a66c53a40fadc2b1ceb",
+      "bytes": 47896
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux_s390.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mac.cpp.o": {
+      "sha256": "3f088cd81185e1707ca14db7aeb269edd52a8f315e0a425d764a82bca5f6ba25",
+      "bytes": 163728
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mutex.cpp.o": {
+      "sha256": "b2175c8dd686e6fc9e2b840337495c54732ad56072f5d89e2a1ef4daebaac9d8",
+      "bytes": 10744
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_netbsd.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_freebsd.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_linux.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_netbsd.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_posix.cpp.o": {
+      "sha256": "b836d6268cddf4af6c0f6e6e780b23dd88fbe4da4f61967b1e2504309008b89e",
+      "bytes": 21680
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_solaris.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_posix.cpp.o": {
+      "sha256": "f48f8524e5f3bb52827c9091f1773bb3328cd4b9f7c63d7de39f5bfd58795ceb",
+      "bytes": 66968
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_printf.cpp.o": {
+      "sha256": "81105f04d0f60c5f34fdc15c9c8c1fe37c9b714d297d81d68f8a0a46029104b7",
+      "bytes": 38680
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_common.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_bsd.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_haiku.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_linux.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_mac.cpp.o": {
+      "sha256": "973a3022549a50c9b165c65e29b8a18d3e743deb5a77c7a5ad54ead7c78a83ea",
+      "bytes": 62144
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_solaris.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_range.cpp.o": {
+      "sha256": "150f700858f182793df59197e232495cfcb7d2112f1b481bea64a8747a87997e",
+      "bytes": 30200
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_solaris.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_mac.cpp.o": {
+      "sha256": "baea873283a82e31f9ca2956689e34b105cc510c7b9bf54e76b6bff05c95ee09",
+      "bytes": 36464
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_win.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_suppressions.cpp.o": {
+      "sha256": "e80be91e0836263e34ad12fa1fe3e4dd2bc1615509cc479de9e12c7dbbf1f525",
+      "bytes": 68200
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_tls_get_addr.cpp.o": {
+      "sha256": "9f0d522202de56386bb506e5c1328315d68e6faf527f662005433de6b77b8635",
+      "bytes": 6816
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_arg_retval.cpp.o": {
+      "sha256": "f858306f4d8d836c708086cf1ecba86e99c6b1dfb2221fba4d503d0cb38ab325",
+      "bytes": 77936
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_registry.cpp.o": {
+      "sha256": "9339a167d4b8c26ff92c11ff27e8f38a7a84ef7de46fc16a0ca72e766f51ee51",
+      "bytes": 150000
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_type_traits.cpp.o": {
+      "sha256": "4debdce3150cc3ac693205317c3e8fa461317c2ad0cd82cfce47e2b1913331c0",
+      "bytes": 3688
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win_interception.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_termination.cpp.o": {
+      "sha256": "6652d33bb857b00285721b70067950e6d936af0a5f9e60c55cb0edfd78ce8e3b",
+      "bytes": 13024
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_common_libcdep.cpp.o": {
+      "sha256": "7f6af282e220162eb16cd9171d6a9d1763ddf2e65201476c6c2b69418ebb0d85",
+      "bytes": 28432
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_allocator_checks.cpp.o": {
+      "sha256": "b8db80dda974c84b2285686255ea2baef008d835ddca93b8ff6e1da8085dd838",
+      "bytes": 2888
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_dl.cpp.o": {
+      "sha256": "72f786c005738b56cfea381c961491c02b3af903c53b40e4aa72b48ef5630190",
+      "bytes": 2624
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_linux_libcdep.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_mac_libcdep.cpp.o": {
+      "sha256": "d058efbb43400cfa4efd5df47e48c2338fd194e06ffae43b337ff14a8385e4c0",
+      "bytes": 5712
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_posix_libcdep.cpp.o": {
+      "sha256": "ce43d0e1cb8054697864eef75efeb79a35dc8ee05d75b205117dc751c9c18469",
+      "bytes": 54904
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_linux_libcdep.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_netbsd_libcdep.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sancov_flags.cpp.o": {
+      "sha256": "8f386a6cf31a4ad122f4f898e438671a64fe33623972a326a069bb374b820b0e",
+      "bytes": 15472
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_libcdep_new.cpp.o": {
+      "sha256": "16e4b93f6877875ecca55836186c4fdefc6d35eef67c2bd4359b0f59deca59c0",
+      "bytes": 63624
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_win_sections.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_allocator_report.cpp.o": {
+      "sha256": "f2340e8a092954835c736646cd7cf34f429cd2a72b593b894799083bae913837",
+      "bytes": 25216
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_chained_origin_depot.cpp.o": {
+      "sha256": "caf62d5664f8a37e739b6f2a6fbbf1d3f8b7f108037febf9636fb3b180846455",
+      "bytes": 34616
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stack_store.cpp.o": {
+      "sha256": "ed48a2426e9dd7ec4e5c7b832c25e1bbb074b12723b99f196db2e4f71c2a91d3",
+      "bytes": 122816
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stackdepot.cpp.o": {
+      "sha256": "2df991c9a7d658ff1fbd387eec264a097350e33472e802297ad1351067499476",
+      "bytes": 68088
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace.cpp.o": {
+      "sha256": "49e7e021fd172bb64fa541703535e312ebe8582dc302081b06661f51fd212a45",
+      "bytes": 16440
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_libcdep.cpp.o": {
+      "sha256": "4c9dc6bef820f32d4b471533143f7b4a65811b33d98679ab19df314d38f0b458",
+      "bytes": 43584
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_printer.cpp.o": {
+      "sha256": "37ecd67668ec64a73f5f7779c160281149b422f2b980be79622d5cdff309e3dc",
+      "bytes": 42840
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_sparc.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer.cpp.o": {
+      "sha256": "aed0c9ab8da0900248dc74311efa534c8843cc392879ab3ba469354402f8d16d",
+      "bytes": 78296
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libbacktrace.cpp.o": {
+      "sha256": "366c2e3db8ddc391a1ea42e3f04abe121f6e1b395cd58474262057efe1458467",
+      "bytes": 17256
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libcdep.cpp.o": {
+      "sha256": "1df0e7d15ae0dd9c2d201b3196ff5bc28c936cdc29be5d6115909310e49980fd",
+      "bytes": 144136
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_mac.cpp.o": {
+      "sha256": "aee574f2b05613d8968b8b83d1239baeb17989e7db2c666bfbd451bca7595e14",
+      "bytes": 59528
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup.cpp.o": {
+      "sha256": "5e0ca1819f73a14a6fca62aa642bd5bc9dfc17bbf758f9a9144a142c67cea8bc",
+      "bytes": 53088
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_posix_libcdep.cpp.o": {
+      "sha256": "63940e0ddb0dd23c1099844c06ec8774ad8151e71e4db497ac3d0c9ef1c78a5e",
+      "bytes": 116896
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report.cpp.o": {
+      "sha256": "969efc97b2e9b9f691a10bc67628c6a9ed36fec3a14343047eb584d0a571782d",
+      "bytes": 74848
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_win.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_thread_history.cpp.o": {
+      "sha256": "b170d5957e3deb76527724ba7ba5c5959417c0bf4d87c5c979d4a80aed553d62",
+      "bytes": 56256
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_linux_libcdep.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_fuchsia.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_win.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_diag.cpp.o": {
+      "sha256": "6444c2613faa8d780e53021238fb28cdbd0fb0e573b9e27a0bc444072d89bb0f",
+      "bytes": 100112
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_init.cpp.o": {
+      "sha256": "b881ca5a9a2bce266e3e165eb5d2193d72fc5489059a20e9458bffb7e8b8601d",
+      "bytes": 13472
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_flags.cpp.o": {
+      "sha256": "ad2feb294577f319fd4540b0d23afe65e15ee10fddd880e6dc298ba8828b84ad",
+      "bytes": 26616
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers.cpp.o": {
+      "sha256": "d0770af669d977494cf2e0566d3109c9a58f9f6293619e3146e8c39af85727e3",
+      "bytes": 181896
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_monitor.cpp.o": {
+      "sha256": "2ada9b7a5c76515d427ff47ce9c5d9cd7c133c2fbc3c13b4bc1d7897094698d3",
+      "bytes": 26864
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_value.cpp.o": {
+      "sha256": "192dc8bc6233d7d280c50ffdf089fde9e58cec974b94376c24fabaea32cd27bb",
+      "bytes": 21256
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers_cxx.cpp.o": {
+      "sha256": "f9c428882800a9c5e18302a2f44b8e4263b3f8927ba35909ba81215e5782f485",
+      "bytes": 60168
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash.cpp.o": {
+      "sha256": "cf931e58e8caf6f66866d9f2ce90e4c8c410977a0e2a8cd1c6a997493d1b4850",
+      "bytes": 5272
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_itanium.cpp.o": {
+      "sha256": "5ed60eb82145ec493775ef26be06dbce5371ed35542120a17ae6cfe36e3d8934",
+      "bytes": 15472
+    },
+    "compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_win.cpp.o": {
+      "sha256": "3e0be8e5213cc9c2b75e413200174de7148dc96236a909f46fc315d00eba53cd",
+      "bytes": 336
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_debugging.cpp.o": {
+      "sha256": "710743b67033cb8d92773d3e9d39e7cbc712883dcbb4a37a8006e451ee6fd00a",
+      "bytes": 149104
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_external.cpp.o": {
+      "sha256": "4ead5a833817cff67eef5fbd76a20f67f81a25e28c3f367047e8651c5c98453e",
+      "bytes": 136144
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_fd.cpp.o": {
+      "sha256": "c871cb1c0efb85a6b3f021fb5aec672ef9536f96396b331f9d2090f395a6c42b",
+      "bytes": 117344
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_flags.cpp.o": {
+      "sha256": "acfd84f77a707f43b83912050638c56fbf0199e65fc3daffd2609567b543525e",
+      "bytes": 48872
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_ignoreset.cpp.o": {
+      "sha256": "16d16eec805c33bdf18dc85d77e1637c1fc739f7a1a05d802859811ce26cebf9",
+      "bytes": 7696
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_memintrinsics.cpp.o": {
+      "sha256": "d7cd14c6f27c009923e0f5a0cdd2d4a6556d6a6e34c60b0c734581924bf7f03f",
+      "bytes": 97120
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_posix.cpp.o": {
+      "sha256": "83d41f49e6727b868096c95f21610389cd8d7c3ce9487139639380f964b7477d",
+      "bytes": 1454200
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface.cpp.o": {
+      "sha256": "0c2df8c13251910b603ed0036c3784004204ee6f8209311846692a237d88eb92",
+      "bytes": 87784
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_ann.cpp.o": {
+      "sha256": "09fc8f9d1886c46b5653a89a49b0e83d28f422390d273281efe53b2b8db18e06",
+      "bytes": 206128
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_atomic.cpp.o": {
+      "sha256": "ae0c0192e603c569e21ec90ca81b0c68af70bf55c57cf7b33810924894fbf21c",
+      "bytes": 387840
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_java.cpp.o": {
+      "sha256": "4d07abed4515e041354b4ffacaa3848b557dcc4728f578709af8369b143cf74e",
+      "bytes": 95208
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_malloc_mac.cpp.o": {
+      "sha256": "3166731c67dfd18eea721c31712adc47ed2cddd5ca931ee6638378d5d63dd1c0",
+      "bytes": 150536
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_md5.cpp.o": {
+      "sha256": "bfcbb04d8712ce9b65d77350dd8b6ce7ef96d9b35c644fd7660dbf1308effe29",
+      "bytes": 14240
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mman.cpp.o": {
+      "sha256": "d9d98c96054fd52fc0036fbb7965dfe3b56183b7cf776e96a8b7b2c0e807d68c",
+      "bytes": 279528
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mutexset.cpp.o": {
+      "sha256": "ecce3efc6bbeedd0d92efccbe508542c5a33fa7abe26f2d89ffc7fc9ad334264",
+      "bytes": 17664
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_report.cpp.o": {
+      "sha256": "c6f09cf78644e78fdf804b008a13d68e5aaf59104294fe3c3e0cba9878bf29fa",
+      "bytes": 104632
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl.cpp.o": {
+      "sha256": "786d8f56baa1bf8bdf390c126428c925fc1fd62a55522f97a13107197f2675ab",
+      "bytes": 291688
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o": {
+      "sha256": "516d3a62a7119b2ad624a68d55957e4cd4a9013dd281dbc97aeca6ef73d161f6",
+      "bytes": 508368
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_mutex.cpp.o": {
+      "sha256": "01e29f79ba8675d7e76d1d95c7f5d66bc9ff99c4efa9141e0cf8835399c3894b",
+      "bytes": 227480
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_proc.cpp.o": {
+      "sha256": "9eb7b23ab905da97f970fa446803c75b2587eb50285ebc1e34cf261660ec248d",
+      "bytes": 87264
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_report.cpp.o": {
+      "sha256": "9f8b25df54b725164ee2f9762394c1181fbdee85b318ef6ddfede47d1e1e56ee",
+      "bytes": 268648
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_thread.cpp.o": {
+      "sha256": "db3434a7c6f6cd2eb51b58c8af74d02647aeff5849e5c630f471c0dd66741675",
+      "bytes": 158944
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_stack_trace.cpp.o": {
+      "sha256": "298a5279baafb145cee9050c66f15f1506d2daa944f350115795b70e83a1aad0",
+      "bytes": 16936
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_suppressions.cpp.o": {
+      "sha256": "0e94424e409d4602cdd8d7d655e852b35a5bb4afee81cf43860e49fc5f0a5dc6",
+      "bytes": 38296
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_symbolize.cpp.o": {
+      "sha256": "a2f623e217dbc2ec6af6a4f6f1f23f115578962d4cfe03bd1a764d938558e85e",
+      "bytes": 88696
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_sync.cpp.o": {
+      "sha256": "f055d5c9233b3941c0a887039eacac868052d0ccb0eb79bbeebfff3ca66bc296",
+      "bytes": 181112
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_vector_clock.cpp.o": {
+      "sha256": "a1240cdc82de8904916be1e60e10e832713e0b2ee89483497a0e7371164df5c2",
+      "bytes": 15848
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mac.cpp.o": {
+      "sha256": "98b4aa60b4a9059f319e9988f7fc7514747ba07d917c866efa149a47d2974fc9",
+      "bytes": 211536
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mach_vm.cpp.o": {
+      "sha256": "eda98c91e5c90b0c9424db7dcaafe96f79b37dc5cb525ea1656b54e854c02f7d",
+      "bytes": 89784
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_mac.cpp.o": {
+      "sha256": "2a490f90aef48ce023ebd8745ebd48e6706d24535f2d38bce166a5892ed6d71d",
+      "bytes": 111624
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_posix.cpp.o": {
+      "sha256": "2243be61bc3ab165375d6631ac69fcd6369aee2192ac61b4f375363576f2c4f7",
+      "bytes": 27504
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_libdispatch.cpp.o": {
+      "sha256": "0915334e587844a141a0e71023bf269ead476b9c87bc813355759bf757f6400c",
+      "bytes": 212576
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_new_delete.cpp.o": {
+      "sha256": "7dcb1913c91e0fa9757f8e9eeffde198ae513fc1bc057a9a968d6c91fd6342f2",
+      "bytes": 113016
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_amd64.S.o": {
+      "sha256": "7ca3bef1e298dc182df5ec91eb61a0ee658717d7d667a629b2b2510ee6bb09a9",
+      "bytes": 800
+    },
+    "compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_aarch64.S.o": {
+      "sha256": "9af89cebf4944aeb71ff0068360afb7b17b7af3d8906df69b0758a69db5c72e3",
+      "bytes": 2816
+    }
+  },
+  "shared_asan_objects": 93,
+  "tsan_only_objects": 35,
+  "qualified_mapping_objects": {
+    "original": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/original/procmaps.o",
+      "sha256": "31b5647345205673e5a3ecb2f112badbf5fbb46064b9cb858f3f5b253a83815e"
+    },
+    "patched": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizer-repair-native-20261012T003527Z/patched/procmaps.o",
+      "sha256": "94857f0d0d18aa9c238392bda10457ea02b204fd3c8f0e99ec20cead02bdc2d5"
+    }
+  }
+}

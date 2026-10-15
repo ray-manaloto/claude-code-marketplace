@@ -1,0 +1,81 @@
+{
+  "result": "PASS: Task 14a3 independent preparation review; native promotion remains unexecuted",
+  "findings": [],
+  "reviewed_at": "2026-10-12T01:35:56.063745+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "5a4062e17089ad2fe2b160fea998dc7954aa5766",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "scope": "Four maintained files: p2996_asan_promote.py, sanitizer docs and the selected plan/progress. Parent remains sole writer. Review of preparation only; this receipt does not admit a native operation.",
+  "candidate_sha256": "3353b16f896a5a92a850b6e75e96d1b94813e6844db68a56eb6a77a7604aa5ba",
+  "helper_sha256": "88610fe87f9629504f16b66a39d4af755a5a2efa239eacce9ea8adece3f3ea0c",
+  "contract_sha256": "88b922a84e58f2f9f4aed492aa643c95fd3ed2b460a95b26286e5063a07a094c",
+  "controls_sha256": "9d0a695530ca0a1315be8fd501be32c09efd4c2b0ef89f02839118dfc214ae10",
+  "prepared_launchers_sha256": "64439b9006d116fa89122d22a4f861b45312ff0b5c7dbc4afa1ca03f91a5fa22",
+  "static_review": {
+    "transaction": "The exact original identity is checked before backup and the backup is checked after chmod. Only the qualified replacement is staged to 0755. The inherited exact replacement primitive checks both identities immediately before the atomic replace. Any apply or qualification exception inspects the actual destination, restores only the known replacement, retains the backup, and checks the explicit original guard through qualify(False). Unknown target or backup identity and failed restoration propagate failure.",
+    "write_then_failure": "An apply exception after a completed replacement is recovered based on actual target identity, without relying on a success flag. The recorded control injects a callback failure after the real replacement child exits 0; actual nonzero child-after-write behavior follows the same static exception branch and was not separately executed.",
+    "signals": "The runner maps TERM/HUP/INT to KeyboardInterrupt, which propagates through the inherited child cleanup and transition recovery. Recovery ignores these signals while restoring; previous handlers are restored in finally. No signal-injection runtime check was performed.",
+    "guard_selection": "The promoted boolean selects original_protected or the reviewed ASan guard explicitly. Only the expected installed ASan tool digest changes in memory. Target identity, the qualified candidate, unchanged inherited guards, full prefix preservation, ABI inputs and recorded source/build hashes remain required.",
+    "confinement": "The mutation child receives the private-directory write allowance plus exactly the target path. Witnesses receive only the private-directory allowance and /dev/null, with network denied. Fresh witness environment construction contains no DYLD variables; the launcher adds DYLD_PRINT_LIBRARIES only. All seven cases require exact installed sanitizer paths, reflection stdout and expected 0/86 exits.",
+    "ownership_order": "The global writer census precedes zero-wait lease acquisition. Inside the canonical lease, capacity/editor/container checks, the full guard, source Git checks and exact target checks precede replacement. The census is an observation, not an exclusive lock. No ordering finding for this bounded cooperative-owner transaction; fresh admission remains required for native execution.",
+    "defaults_and_failures": "Successful or recovered qualification restores the recorded normal environment, verifies source Git state and default selection, records another census and runs the explicit guard. Recovery errors and preservation failures leave a FAIL receipt and propagate a nonzero exit.",
+    "source_derivation": "The new contract retains the 242 previous source bindings and adds exactly 432 pinned source/build entries, 127 retained ASan objects, 12 private artifacts and 28 recorded SDK dependencies. The total 841 entries match by text membership and digest comparison. No live source, build object, tool or native artifact was rehashed.",
+    "scope_and_docs": "All three Markdown diffs concern this preparation unit and preserve earlier qualification limits. No Claude manifest, hook, CLI or OCI acceptance file belongs to this change."
+  },
+  "independent_executed_checks": {
+    "comparison_returncode": 0,
+    "comparison_elapsed_seconds": 0.09914575004950166,
+    "comparison_timeout_seconds": 30,
+    "candidate_snapshots": 8,
+    "new_project_text_bindings": 17,
+    "control_copy_pairs": 38,
+    "launcher_copy_pairs": 2,
+    "scan_text_bindings": 52,
+    "git_identity_command_returncodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "candidate_code_executed": false,
+    "details": "Actual new text bytes, recorded command logs, state receipts, sandbox text and source derivation were checked. Previously completed 14a1/14a2 verdicts were reused at identical hashes. No parent control was replayed."
+  },
+  "parent_recorded_checks_inspected": {
+    "private_control_outer_returncode": 0,
+    "private_control_elapsed_seconds": 0.9332500421442091,
+    "control_cases": 10,
+    "sandbox_children": 9,
+    "replacement_and_restore_children_returncode_0": 8,
+    "witness_write_denial_returncode_1": 1,
+    "shared_guard_executed": false,
+    "native_runtime_executed": false,
+    "static_returncodes": [
+      0,
+      0,
+      0
+    ],
+    "acceptance_baseline_original_files": 19,
+    "scan": {
+      "files": 52,
+      "raw_returncode": 1,
+      "recorded_file_digest_false_positives": 4,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "historical_false_positive_source_files_not_rehashed": true
+    }
+  },
+  "existing_acceptance": "Recorded static baseline preserved all 19 original acceptance file hashes. This preparation review does not establish installed sanitizer success, provider or hook behavior, full OCI acceptance, or fresh model-session behavior.",
+  "not_run": [
+    "New runner, capacity or dispatch",
+    "Any candidate function or private fixture replay",
+    "Live shared guard or installed runtime",
+    "841 live source/build inputs, 127 retained objects, tool or prior artifact hashes",
+    "Scanner, baseline, compiler, leases, services, containers, models or network"
+  ],
+  "supporting_files": [
+    "compare.py",
+    "comparison.json",
+    "execution.json"
+  ]
+}

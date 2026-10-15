@@ -1,0 +1,67 @@
+"""Derive the installed TSan promotion contract from reviewed immutable receipts."""
+
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path("/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace")
+EV = ROOT / "evidence/p2996-tsan-promotion"
+
+
+def load(path):
+    return json.loads(path.read_text())
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    previous = load(ROOT / "evidence/p2996-tsan-repair/contract.json")
+    runtime = load(ROOT / "evidence/p2996-tsan-runtime/contract.json")
+    artifacts = load(ROOT / "evidence/p2996-tsan-repair/artifact-inventory.json")["artifacts"]
+    assert previous["tools"][runtime["target"]] == runtime["previous_record"]["sha256"]
+    candidate = next(row for row in artifacts if row["kind"] == "patched-tsan-runtime")
+    assert candidate == runtime["qualified_replacement"]
+    witnesses = {}
+    for mode, kind in (("tsan", "tsan-binary"), ("tsan-ubsan", "tsan-ubsan-binary")):
+        row = next(row for row in artifacts if row["kind"] == kind)
+        assert digest(Path(row["path"])) == row["sha256"]
+        witnesses[mode] = {key: row[key] for key in ("path", "sha256", "bytes")}
+    inputs = dict(previous["inputs"])
+    for path in (
+        "dev/toolchains/p2996_tsan_runtime.py",
+        "evidence/p2996-tsan-runtime/contract.json",
+        "evidence/p2996-tsan-runtime/controls/controls.json",
+        "evidence/p2996-tsan-runtime/preparation-review/review.json",
+        "evidence/p2996-tsan-runtime/final-secret-scan.json",
+        "evidence/p2996-tsan-repair/operation/qualification.json",
+        "evidence/p2996-tsan-repair/operation/closure.json",
+        "evidence/p2996-tsan-repair/artifact-review/review.json",
+        "evidence/p2996-tsan-repair/artifact-inventory.json",
+    ):
+        inputs[path] = digest(ROOT / path)
+    previous.update(
+        scope="Install one privately qualified TSan runtime, then verify five installed-path witnesses",
+        base_head="a3de6bc78da3d5717c5c1367585f396908977e9d",
+        inputs=inputs,
+        target=runtime["target"],
+        before={k: runtime["previous_record"][k] for k in ("sha256", "bytes", "mode")},
+        after=runtime["current_tsan"],
+        replacement=candidate["path"],
+        replacement_identity=runtime["qualified_replacement_identity"],
+        witnesses=witnesses,
+    )
+    for key in ("original_failure", "recipe_sha256", "asan_qualification_sha256", "witness"):
+        previous.pop(key)
+    assert set(previous["sanitizers"]) == set(witnesses) == {"tsan", "tsan-ubsan"}
+    assert previous["target"] not in previous["source_inputs"]
+    EV.mkdir(exist_ok=True)
+    path = EV / "contract.json"
+    path.write_text(json.dumps(previous, indent=2) + "\n")
+    print(json.dumps({"contract_sha256": digest(path), "inputs": len(inputs),
+                      "source_inputs": len(previous["source_inputs"]), "tools": len(previous["tools"])}))
+
+
+if __name__ == "__main__":
+    main()

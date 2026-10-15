@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-10T23:35:46.399609+00:00",
+  "fixture_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z",
+  "offline": true,
+  "no_install": true,
+  "cases": [
+    {
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/empty-cwd",
+        "-E",
+        "cpp-build",
+        "lock",
+        "--global",
+        "--sidecars",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n  {\n    \"lockfile\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/mise.lock\",\n    \"root\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/.mise/locks\",\n    \"sidecars\": [\n      {\n        \"tool\": \"pipx:check-jsonschema\",\n        \"version\": \"0.38.2\",\n        \"graph\": \"uv\",\n        \"path\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/locks/pipx-check-jsonschema/0.38.2\",\n        \"digest\": \"sha256:58bbee94cb12710661c0088b1d264e2b7e5dc9c391bf0263c41d0466b1682f7b\",\n        \"exists\": false\n      },\n      {\n        \"tool\": \"pipx:cli-anything-hub\",\n        \"version\": \"0.4.1\",\n        \"graph\": \"uv\",\n        \"path\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/locks/pipx-cli-anything-hub/0.4.1~680ef3aa\",\n        \"digest\": \"sha256:ad3343f21b848877d3aadde249b4c513a12ad843dcac46278f523f845b9aa6e4\",\n        \"exists\": false\n      },\n      {\n        \"tool\": \"pipx:langchain-model-profiles\",\n        \"version\": \"0.0.6\",\n        \"graph\": \"uv\",\n        \"path\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/locks/pipx-langchain-model-profiles/0.0.6\",\n        \"digest\": \"sha256:c0eb859dab00cb23857a5fc95717ea70fa00ce87e60dba9228004193c99c0ff7\",\n        \"exists\": false\n      },\n      {\n        \"tool\": \"pipx:mgrep\",\n        \"version\": \"0.1.6\",\n        \"graph\": \"uv\",\n        \"path\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/locks/pipx-mgrep/0.1.6\",\n        \"digest\": \"sha256:fe7b3392844677372316992099f751ea947a33ce49e0a829ba81f52ea7675f39\",\n        \"exists\": false\n      },\n      {\n        \"tool\": \"pipx:yamllint\",\n        \"version\": \"1.38.0\",\n        \"graph\": \"uv\",\n        \"path\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/locks/pipx-yamllint/1.38.0\",\n        \"digest\": \"sha256:8754230cc61028560d8a2248ccdf5faec1343840168c0b1fa1d80cd9c69c93a9\",\n        \"exists\": false\n      }\n    ]\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/native-fixture-20261010T233501Z/empty-cwd",
+        "-E",
+        "cpp-build",
+        "install",
+        "--dry-run",
+        "cmake@4.4.4",
+        "ninja@1.13.2",
+        "sccache@0.18.0"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "mise ninja@1.13.2                      \u21e2 already installed\nmise WARN  [mozilla/sccache] failed to fetch version tags, URL may be incorrect: offline mode is enabled\nmise sccache@0.18.0                    \u21e2 would install\nmise WARN  [Kitware/CMake] failed to fetch version tags, URL may be incorrect: offline mode is enabled\nmise cmake@4.4.4                       \u21e2 would install\n"
+    }
+  ]
+}

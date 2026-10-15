@@ -1,0 +1,14 @@
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc:4:34: warning: FixtureValue is defined in "value.h", which isn't directly #included.
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc:7:3: warning: FixtureValue is defined in "value.h", which isn't directly #included.
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc:8:16: warning: FixtureValue is defined in "value.h", which isn't directly #included.
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc should add these lines:
+#include "value.h"  // for FixtureValue
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc should remove these lines:
+- #include "indirect.h"  // lines 2-2
+
+The full include-list for /Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-reflection-20261011T155205Z/fixtures/reflection/main.cc:
+#include <meta>     // for is_type
+#include "value.h"  // for FixtureValue
+---

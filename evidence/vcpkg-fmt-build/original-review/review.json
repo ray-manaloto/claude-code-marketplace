@@ -1,0 +1,163 @@
+{
+  "result": "FINDINGS: one P2 resource-scope correction before native admission",
+  "unit": "12c3b original frozen pre-run review",
+  "reviewer": "cold_bottle_review",
+  "created_at": "2026-10-11T21:10:27.890391+00:00",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "de913727bd6d41c1d7d2c11b52a384902dbd6eec",
+  "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "helper_sha256": "9c15312ec81baf38fd858acf078a9604825527b09e10a1a23079229a059aa3da",
+  "contract_sha256": "a0f5650383836e1087703200e135824f946620ef7c5fc0f7eb376a83a67c6212",
+  "candidate_sha256": "93440686a88c73a7ff4cad0c167bc7c969de01a5b6e7772b2beca2fe6fdfb2b0",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "title": "Limit the one-job claim to compilation and disclose parallel configuration",
+      "path": "dev/toolchains/vcpkg_fmt.py",
+      "line": 38,
+      "evidence": "The environment limits vcpkg build invocations to -j1. The unchanged fmt port omits DISABLE_PARALLEL_CONFIGURE, so the pinned configuration helper creates both Debug and Release tasks and directly invokes Ninja -v without -j1 or a job pool. The whole-install one-job wording therefore overstates the resource limit.",
+      "source_path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/vcpkg-source-e4563094/source/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake",
+      "source_lines": [
+        248,
+        258,
+        262,
+        272
+      ],
+      "source_sha256": "7ebe11c78864d1a7917af7727186165fd0ac145f7f6c533d58c79321cb66ae39",
+      "impact": "Two CMake configuration processes, including their compiler probes, can overlap inside one manifest install. Admission and documentation must describe that concurrency.",
+      "requested_change": "Either constrain configuration scheduling through a reviewed mechanism, or retain the ordinary port and explicitly admit one compilation job per build invocation with at most two concurrent Debug/Release configure processes.",
+      "parent_disposition": "Accepted the latter correction; original frozen finding retained. No corrected delta reviewed here.",
+      "evidence_type": "Static pinned-source assertion; no native reproduction."
+    }
+  ],
+  "no_other_findings": true,
+  "verified_static_behavior": [
+    "New private directory and distinct per-triplet detector/build/package/installed roots; four ordinary sequential installs with compiler tracking and binary caching disabled.",
+    "No --cmake-args/editable/head/dry-run arguments; retained source confirms ordinary ABI computation and one-job build invocation.",
+    "Fresh constructed build environment keeps real HOME, clears inherited compiler/cache variables and selects bounded tool paths and qualified pkgconf.",
+    "Admission bindings, existing full protected guard, canonical lease, confinement probes, 600-second process-group timeout and final failure/preservation propagation remain present.",
+    "Nine detector markers, exact compiler identity/hash/version, both cache configurations and generated compiler metadata, actual compiled-library paths and exact ABI fields are checked. Dynamic dependency output is retained for the later artifact review; consumers remain pending."
+  ],
+  "binding_checks": {
+    "candidate_files": 4,
+    "contract_inputs": 65,
+    "source_inputs": 18,
+    "tools": 15,
+    "unique_abi_paths": 22,
+    "download_sha512_checks": 2,
+    "exact_copy_pairs": 6,
+    "retained_parent_controls": 5,
+    "parent_controls_returncode": 0,
+    "parent_static_returncodes": [
+      0,
+      0
+    ],
+    "parent_baseline_original_files": 19,
+    "scan_returncodes": {
+      "raw": 1,
+      "disposition": 0
+    }
+  },
+  "scan_limit": "One exact content digest independently matched the bound public receipt.",
+  "executed_reviewer_checks": {
+    "file_audit": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-fmt-review-mcvtqf4s/audit.py"
+      ],
+      "returncode": 0,
+      "started_at": "2026-10-11T21:08:04.500165+00:00",
+      "finished_at": "2026-10-11T21:08:04.773992+00:00",
+      "elapsed_seconds": 0.2738504169974476,
+      "timeout_seconds": 30,
+      "script_sha256": "9493260f5059930b546cca8a4a36c6f9757516e419300fedec6a5219d552a0c4"
+    },
+    "six_new_inspect_cell_controls": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-fmt-review-mcvtqf4s/controls.py"
+      ],
+      "returncode": 0,
+      "started_at": "2026-10-11T21:09:21.779875+00:00",
+      "finished_at": "2026-10-11T21:09:21.857619+00:00",
+      "elapsed_seconds": 0.07777395914308727,
+      "timeout_seconds": 30,
+      "script_sha256": "d759b0ffed35e2fe6379b0d95a6dc6097f5cad5c176f4d3c8b62f70e9161e693",
+      "cases": [
+        {
+          "case": "valid-p2996-dynamic",
+          "expected_acceptance": true,
+          "observed_acceptance": true,
+          "error": null,
+          "private_fixture_unchanged": true
+        },
+        {
+          "case": "valid-gcc16-static",
+          "expected_acceptance": true,
+          "observed_acceptance": true,
+          "error": null,
+          "private_fixture_unchanged": true
+        },
+        {
+          "case": "duplicate-detector-marker",
+          "expected_acceptance": false,
+          "observed_acceptance": false,
+          "error": {
+            "type": "AssertionError",
+            "helper_line": 60
+          },
+          "private_fixture_unchanged": true
+        },
+        {
+          "case": "wrong-port-compiler-version",
+          "expected_acceptance": false,
+          "observed_acceptance": false,
+          "error": {
+            "type": "AssertionError",
+            "helper_line": 75
+          },
+          "private_fixture_unchanged": true
+        },
+        {
+          "case": "missing-debug-compiled-library",
+          "expected_acceptance": false,
+          "observed_acceptance": false,
+          "error": {
+            "type": "AssertionError",
+            "helper_line": 84
+          },
+          "private_fixture_unchanged": true
+        },
+        {
+          "case": "wrong-additional-abi-file",
+          "expected_acceptance": false,
+          "observed_acceptance": false,
+          "error": {
+            "type": "AssertionError",
+            "helper_line": 89
+          },
+          "private_fixture_unchanged": true
+        }
+      ],
+      "calls": 6,
+      "method": "Only inspect_cell compiled from AST; injected fixture-only digest and inventory stub. Synthetic compiler/library bytes are non-executable; no real prefix inventory or candidate imports."
+    },
+    "native_commands": 0,
+    "historical_controls_replayed": 0
+  },
+  "claude_acceptance_preservation": "The four-file maintained change does not touch Claude acceptance. Retained static baseline reports all 19 original files passing; no baseline or OCI rerun by this reviewer.",
+  "checks_not_run": [
+    "Native main/imports, protected guard, census, lease, profile, source-copy or build execution",
+    "Existing controls or historical inventories/audits",
+    "Fresh host/target compiler selection, actual port caches/ABI, lipo/otool, package consumers or full matrix",
+    "Services, containers, installations, network, model sessions or Claude OCI/provider acceptance"
+  ],
+  "maintained_file_mutations": 0,
+  "shared_mutations": 0,
+  "native_admission": "Not granted; original resource-scope finding requires the narrow correction.",
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-fmt-review-mcvtqf4s/supporting-manifest.json"
+}

@@ -1,0 +1,30 @@
+{
+  "result": "PASS after one verified content-digest false-positive disposition",
+  "raw_scan_returncode": 1,
+  "raw_scan_sha256": "12de5b1b0194d39f6e5acdc1fe0435b4e2beaa42d02485bd8c0f1d6dc2c9294a",
+  "finding": {
+    "rule": "generic-api-key",
+    "file": "evidence/vcpkg-pkgconfig/contract.json",
+    "json_member": "inputs",
+    "input_path": "evidence/gcc-bootstrap/mise-source/src/system/packages/brew/api.rs.source",
+    "verified_file_sha256": "2e928536f7d3d3994585b1ccbb1eb513800b154b80982401165f3eff4154b70f",
+    "source": "Already pinned primary native mise source; this value is the file content digest, not a credential"
+  },
+  "transformed_scan": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/gitleaks/8.30.1/gitleaks",
+      "stdin",
+      "--redact=100",
+      "--ignore-gitleaks-allow",
+      "--no-banner"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "2:35PM INF scanned ~1801068 bytes (1.80 MB) in 296ms\n2:35PM INF no leaks found\n",
+    "payload_sha256": "f9de9549d19ef53b4ae87bac1e822b80f8e1539775797a58600151924da3ffac",
+    "substitutions": 1,
+    "scope": "Only the verified input digest value replaced in memory; all file bytes remain unchanged"
+  },
+  "supplemental_disposition": "The only broad-prefix match is the literal ghs_* wildcard in pinned HTTP source line 2358. Complete-token-shape scan matches none.",
+  "supplemental_complete_token_files": []
+}

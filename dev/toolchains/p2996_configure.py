@@ -1,0 +1,212 @@
+"""Attest a fresh outer LLVM configure; --configure requires reviewed admission."""
+
+import argparse
+from datetime import datetime, timezone
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import shutil
+import signal
+import subprocess
+import sys
+
+from gcc_install import ROOT, digest, package_state, preserved, read
+from mise_link_probe import snapshot
+from vcpkg_register import install_entries
+
+LOCK_MODULE = Path("/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py")
+LOCK_SHA = "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20"
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    parser.add_argument("--configure", action="store_true")
+    args = parser.parse_args()
+    directory = args.run_dir
+    if not directory.is_absolute() or directory != directory.resolve() or directory.is_relative_to(ROOT):
+        parser.error("use a new normalized absolute private directory outside this worktree")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    (directory / "cwd").mkdir()
+    report = {"state": "running", "configure_requested": args.configure,
+              "helper_sha256": digest(Path(__file__)), "commands": []}
+    evidence = ROOT / "evidence/p2996-configure"
+    load = lambda path: json.loads(path.read_text())
+    historical = read("install-preimages.json")
+    before = {name: historical[name] for name in ("global_files", "packages", "glib_files")}
+    normal_argv = historical["normal_environment"]["argv"]
+    for name in before["global_files"]:
+        p = Path.home() / ".config/mise" / name
+        assert not p.is_symlink()
+        before["global_files"][name] = {"sha256": digest(p), "mode": oct(p.stat().st_mode & 0o777)}
+    before["packages"] = {name: package_state(name) for name in before["packages"]}
+    before["glib_files"] = {name: {"sha256": digest(Path(name))} for name in before["glib_files"]}
+    report["protected_before"] = before
+    data = Path.home() / ".local/share/mise"
+    dirs = {str(data / name): snapshot(data / name) for name in ("shims", "command-wrappers")}
+    installs = install_entries(data / "installs")
+    context = load(Path(normal_argv[-1]).parent / "context.json")
+    env = context["environment"] | {"MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0",
+                                   "MISE_EXEC_AUTO_INSTALL": "0", "GIT_CONFIG_GLOBAL": "/dev/null",
+                                   "GIT_CONFIG_SYSTEM": "/dev/null", "GIT_TERMINAL_PROMPT": "0"}
+
+    def save():
+        (directory / "qualification.json").write_text(json.dumps(report, indent=2) + "\n")
+
+    def run(label, argv, timeout=30, descriptor=None):
+        argv = list(map(str, argv))
+        row = {"case": label, "argv": argv, "started_at": datetime.now(timezone.utc).isoformat()}
+        report["commands"].append(row)
+        save()
+        paths = [directory / (label + suffix) for suffix in (".stdout", ".stderr")]
+        with paths[0].open("wb") as out, paths[1].open("wb") as err:
+            p = subprocess.Popen(argv, env=env, cwd=directory, stdin=subprocess.DEVNULL,
+                                 stdout=out, stderr=err, start_new_session=True,
+                                 pass_fds=() if descriptor is None else (descriptor,))
+            try:
+                p.wait(timeout=timeout)
+            except (subprocess.TimeoutExpired, KeyboardInterrupt):
+                row["interrupted"] = True
+                for sig in (signal.SIGTERM, signal.SIGKILL):
+                    try:
+                        os.killpg(p.pid, sig)
+                    except ProcessLookupError:
+                        pass
+                    if sig == signal.SIGTERM:
+                        try:
+                            p.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            pass
+                p.wait()
+                raise
+            finally:
+                row.update(returncode=p.returncode, logs=[{"path": str(f), "sha256": digest(f)} for f in paths])
+                save()
+        print(json.dumps({"case": label, "returncode": p.returncode}), flush=True)
+        assert p.returncode == 0, label
+        return paths[0].read_text()
+
+    def protected():
+        preserved(before)
+        assert all(snapshot(Path(path)) == value for path, value in dirs.items())
+        assert install_entries(data / "installs") == installs
+
+    try:
+        acquisition = load(ROOT / "evidence/p2996-source/git/acquisition.json")
+        source = Path(acquisition["source"])
+        git = ["/usr/bin/git", "-c", "core.fsmonitor=false", "-C", source]
+        assert run("source-head", git + ["rev-parse", "HEAD"]).strip() == acquisition["pin"]
+        assert run("source-tree", git + ["rev-parse", "HEAD^{tree}"]).strip() == acquisition["tree"]
+        assert run("source-clean", git + ["status", "--porcelain", "--untracked-files=all"]) == ""
+        qualified = load(ROOT / "evidence/p2996-source/review-receipts/qualification.json")
+        cache = ROOT / "dev/toolchains/p2996-bootstrap.cmake"
+        assert digest(cache) == qualified["cache_sha256"]
+        host = load(ROOT / "evidence/tool-foundation/host-qualification.json")["binaries"]
+        for tool in ("cmake", "ninja"):
+            assert digest(Path(host[tool]["resolved_path"])) == host[tool]["sha256"]
+        values = qualified["values"] | {"PYTHON": str(Path(sys.executable).resolve()),
+                                       "PREFIX": str(directory / "prefix")}
+        assert Path(values["NINJA"]).resolve() == Path(host["ninja"]["resolved_path"])
+        sdk = load(ROOT / "evidence/gcc-runtime/qualification.json")["sdk"]
+        assert values["SDK"] == sdk["path"]
+        assert digest(Path(sdk["path"]) / "SDKSettings.json") == sdk["settings_sha256"]
+        inputs = {name: {"path": path, "sha256": digest(Path(path))}
+                  for name, path in values.items() if name not in {"SDK", "PREFIX"}}
+        mise = read("install-proposal.json")["native_mise"]
+        assert digest(Path(mise["path"])) == mise["sha256"]
+        base = [mise["path"], "--no-hooks", "-C", directory / "cwd", "-E", "cpp-build",
+                "exec", "--fresh-env", "--no-deps", "--"]
+        normal = run("default-before", normal_argv)
+        run("apple-compiler-version", [values["CXX"], "--version"])
+        run("cmake-version", base + [host["cmake"]["resolved_path"], "--version"])
+        run("ninja-version", base + [host["ninja"]["resolved_path"], "--version"])
+        proposal = {"source": str(source), "pin": acquisition["pin"], "tree": acquisition["tree"],
+                    "cache_sha256": digest(cache), "inputs": inputs, "sdk": sdk, "mise": mise,
+                    "cmake": host["cmake"], "layout": ["build", "prefix"], "timeout_seconds": 600,
+                    "host_lock_sha256": LOCK_SHA,
+                    "helpers": {name: digest(Path(__file__).with_name(name)) for name in
+                                ("gcc_install.py", "gcc_bottles.py", "mise_link_probe.py", "vcpkg_register.py")}}
+        report["proposal"] = proposal
+        command = base + ["/usr/bin/env", "MAKEFLAGS=-j1", "CMAKE_BUILD_PARALLEL_LEVEL=1",
+                          *["MARKETPLACE_BOOTSTRAP_" + name + "=" + value for name, value in values.items()],
+                          host["cmake"]["resolved_path"], "-S", source / "llvm", "-B", directory / "build",
+                          "-G", "Ninja", "-C", cache, "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"]
+        report["configure_argv"] = list(map(str, command))
+        report["strict_probe_jobs"] = "UNVERIFIED: CMake probe commands omit an explicit Ninja -j limit"
+        protected()
+        if args.configure:
+            admission = load(evidence / "admission.json")
+            assert admission["helper_sha256"] == digest(Path(__file__))
+            assert admission["proposal"] == proposal and admission["run_directory"] == str(directory)
+            review = evidence / "preparation-review.json"
+            assert admission["review_sha256"] == digest(review) and load(review)["result"].startswith("PASS")
+            assert digest(LOCK_MODULE) == LOCK_SHA
+            spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+            lease = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(lease)
+            assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / ".local/state/dotfiles/heavy-gate.lock"
+            assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE))
+            assert not os.environ.get(lease.LOCK_FD_ENV)
+            with lease.held(lease.HEAVY_GATE, "marketplace-p2996-outer-configure", wait_s=0, out=io.StringIO()) as fd:
+                assert fd is not None
+                processes = run("capacity-processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="])
+                active = [line for line in processes.splitlines() if Path(line.split(maxsplit=2)[-1]).name
+                          in {"ninja", "cmake", "clang", "clang++", "gcc-16", "g++-16", "cc1", "cc1plus"}]
+                capacity = {"load": os.getloadavg(), "cpus": os.cpu_count(),
+                            "free_bytes": shutil.disk_usage(directory).free, "active_builds": active,
+                            "total_cpu_percent": sum(float(line.split()[1]) for line in processes.splitlines())}
+                report["capacity"] = capacity
+                assert not active and capacity["free_bytes"] > 8 * 1024**3
+                assert capacity["load"][0] <= 2 * capacity["cpus"]
+                assert capacity["total_cpu_percent"] <= 75 * capacity["cpus"]
+                docker = "/Applications/Docker.app/Contents/Resources/bin/docker"
+                assert run("docker-context", [docker, "context", "show"], timeout=15).strip() == admission["docker_context"]
+                running = run("docker-census", [docker, "ps", "--format", "{{.ID}}\t{{.Image}}"], timeout=15)
+                capacity["running_containers"] = running.splitlines()
+                assert sorted(running.splitlines()) == admission["containers"]
+                if running.strip():
+                    raw = run("docker-stats", [docker, "stats", "--no-stream", "--format", "{{json .}}"], timeout=20)
+                    stats = [json.loads(line) for line in raw.splitlines()]
+                    assert sorted(row["ID"] for row in stats) == sorted(line.split()[0] for line in running.splitlines())
+                    capacity["container_cpu_percent"] = sum(float(row["CPUPerc"].removesuffix("%")) for row in stats)
+                    assert capacity["container_cpu_percent"] <= 100, "active container workload"
+                expected = lease.lock_path(lease.HEAVY_GATE).stat()
+                probe = "import os,json,sys;s=os.fstat(int(sys.argv[1]));print(json.dumps([s.st_dev,s.st_ino]))"
+                actual = run("lease-descriptor", base + [sys.executable, "-B", "-c", probe, str(fd)], descriptor=fd)
+                assert json.loads(actual) == [expected.st_dev, expected.st_ino]
+                protected()
+                assert all(digest(Path(row["path"])) == row["sha256"] for row in inputs.values())
+                assert digest(cache) == proposal["cache_sha256"]
+                assert not (directory / "build").exists() and not (directory / "prefix").exists()
+                report["lease"] = {"path": str(lease.lock_path(lease.HEAVY_GATE)), "held": True}
+                run("outer-configure", command, timeout=600, descriptor=fd)
+                generated = [p for pattern in ("CMakeCache.txt", "build.ninja", "rules.ninja", "*-cfgcmd.txt",
+                                               "*-cache-Release.cmake", "CMakeConfigureLog.yaml")
+                             for p in (directory / "build").rglob(pattern)]
+                report["generated"] = [{"path": str(p), "sha256": digest(p), "bytes": p.stat().st_size}
+                                       for p in sorted(generated)]
+                assert (directory / "build/CMakeCache.txt").is_file()
+                assert not (directory / "prefix").exists()
+            report["lease"]["released_after_operation"] = True
+        assert run("default-after", normal_argv) == normal
+        report["state"] = "PASS: outer configure only; generated files require review" if args.configure else "PASS: preparation only"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            protected()
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,48 @@
+{
+  "state": "running",
+  "commands": [
+    {
+      "case": "nonzero-exit",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import sys;sys.exit(17)"
+      ],
+      "started_at": "2026-10-11T05:06:19.998081+00:00",
+      "returncode": 17,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/nonzero-exit.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/nonzero-exit.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "timeout-descendant",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import os,signal,time;from pathlib import Path;p=os.fork();\nif p==0:\n signal.signal(signal.SIGTERM,signal.SIG_IGN);Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/descendant.pid').write_text(str(os.getpid()));time.sleep(30)\nelse:\n time.sleep(30)"
+      ],
+      "started_at": "2026-10-11T05:06:20.021735+00:00",
+      "interrupted": true,
+      "returncode": -15,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/timeout-descendant.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/controlled-commands/timeout-descendant.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,782 @@
+{
+  "result": "PASS for task 07a preparation and guarded build helper only; actual build remains unexecuted",
+  "reviewer": "cold_bottle_review",
+  "reviewed_at": "2026-10-11T05:48:21.844087+00:00",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "e32a5e8e779216903759b6c34db7c7a581f35d50",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+    "at": "2026-10-11T05:46:47.936853+00:00"
+  },
+  "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+  "maintained_scope": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/p2996-toolchain.md",
+      "sha256": "b55984418a3d65fe698d69443ff72c7f4fb8c9e0f5dca7fb4e85c4cf99c9c00d"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md",
+      "sha256": "e2088124f1378b2e29acc50f3e1a8facee64e23ea1a7396cc2c7ccab8384a67e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md",
+      "sha256": "b0ce4c9fa20140b573a1f6e2658ee859f35cfe3761e5294983500b18fef12743"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md",
+      "sha256": "5913308d89d46148c9301b60439e0e37454051c9d00448ff3ad164f5f201b82c"
+    }
+  ],
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": false,
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "1cd4a1c8ebb2bc16ff81bd2707893659dc8ed86838b9efaf09503e5b47433c28",
+      "operation/qualification.json": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59",
+      "operation-review.json": "bb1b78935ea078f599b7bbe3024f1ad0ce683c9ec465ecec39242f4755526cb0",
+      "generated-review.json": "5aaffce97a6a8fa7e5176db6773baa3bafbae0eea37faefb4ea35bae20eecf90"
+    },
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+    }
+  },
+  "findings": [],
+  "resolved_findings": [
+    {
+      "severity": "P1",
+      "original_path": "dev/toolchains/p2996_build.py",
+      "original_lines": [
+        70,
+        75
+      ],
+      "problem": "A post-spawn receipt-write failure bypassed child cleanup and could release the heavy lease with the build alive.",
+      "reproduction": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/post-spawn-save-failure.json",
+        "sha256": "722c222c0ab38b17705002053475d173f848b0dbbf8290669da0a1d7d99a2d5a",
+        "wrapper_returncode": 0
+      },
+      "fix": "All post-Popen operations now execute inside cleanup protection.",
+      "verification": "Final exact helper AST with injected ENOSPC stops and reaps its real inert child, records -15, and propagates the original OSError."
+    },
+    {
+      "severity": "P1",
+      "original_path": "dev/toolchains/p2996_build.py",
+      "original_lines": [
+        92,
+        102
+      ],
+      "problem": "A second handled signal during cleanup could interrupt the grace wait before SIGKILL, leaving a live child and null final returncode.",
+      "reproduction": {
+        "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-build-review-43cu6a40/termination-during-cleanup.json",
+        "sha256": "d23423342a8365d1862f4830d48170a67edd3d1087654de8bffd169b860c1f1b",
+        "wrapper_returncode": 0
+      },
+      "fix": "Cleanup blocks handled signals while installing ignored dispositions, then restores the prior mask; dispositions remain ignored through cleanup and the final failure receipt before operation exit.",
+      "verification": "Final exact helper AST survives repeated real TERM/HUP/INT during cleanup, reaps its TERM-ignoring private child at -9, and propagates the original KeyboardInterrupt."
+    }
+  ],
+  "executed_checks": {
+    "default_preparation": {
+      "invocations": 1,
+      "returncode": 0,
+      "from_unrelated_private_cwd": true,
+      "command_count": 6,
+      "all_command_returncodes": 0,
+      "qualification_sha256": "ace0311c8387ff4cfbc00819eae0ab3fb2841ee37d35b6be3a13ad4686195838",
+      "stdout_stderr_hashes_verified": 12,
+      "build_requested": false,
+      "protected_state_unchanged": true
+    },
+    "controlled_runtime": {
+      "wrapper_returncode": 0,
+      "cases": [
+        {
+          "case": "success",
+          "helper_returncodes": [
+            0
+          ],
+          "pass": true
+        },
+        {
+          "case": "nonzero",
+          "helper_returncodes": [
+            23
+          ],
+          "pass": true
+        },
+        {
+          "case": "timeout-descendant",
+          "helper_returncodes": [
+            -15
+          ],
+          "pass": true
+        },
+        {
+          "case": "reserve",
+          "helper_returncodes": [
+            -15
+          ],
+          "pass": true
+        },
+        {
+          "case": "signal",
+          "helper_returncodes": [
+            -15
+          ],
+          "pass": true
+        },
+        {
+          "case": "repeated-termination",
+          "helper_returncodes": [
+            -9
+          ],
+          "pass": true
+        },
+        {
+          "case": "post-spawn-save-failure",
+          "helper_returncodes": [
+            -15
+          ],
+          "pass": true
+        },
+        {
+          "case": "descriptor",
+          "helper_returncodes": [
+            0
+          ],
+          "pass": true
+        }
+      ],
+      "method": "Exact run/interrupted AST, real private inert subprocesses, and named save/disk fault injections; no compiler or canonical lease."
+    },
+    "admission_controls": {
+      "wrapper_returncode": 0,
+      "count": 11,
+      "all_pass": true,
+      "method": "Executed exact admission prefix and lock identity assertions with private JSON/hash targets and mocked lease metadata; no module loaded or lease acquired"
+    },
+    "static_commands": [
+      {
+        "case": "tasks-validate",
+        "returncode": 0
+      },
+      {
+        "case": "acceptance-baseline",
+        "returncode": 0
+      },
+      {
+        "case": "diff-check",
+        "returncode": 0
+      }
+    ],
+    "baseline": {
+      "original_Claude_file_hashes": 19,
+      "json": 337,
+      "python": 12,
+      "shell": 6,
+      "toml": 14
+    },
+    "protected_state": {
+      "unchanged": true,
+      "global_files": 9,
+      "packages": 8,
+      "glib_files": 2,
+      "shim_entries": 835,
+      "wrapper_entries": 0,
+      "install_entries": 2198
+    },
+    "parent_receipts": {
+      "wrapper_returncode": 0,
+      "initial_preparation_commands": 6,
+      "original_and_retained_log_pairs": 12,
+      "source_reference_hash_and_size_checks": 19,
+      "generated_file_hash_checks": 8,
+      "prerequisite_receipt_hash_checks": 4
+    }
+  },
+  "static_review": [
+    "Read repository guidance, accepted compiler/build decisions, and selected unit plan and documentation.",
+    "Default mode cannot enter build/lease operations; build mode binds exact helper, proposal, private run directory, independent review hash, and pinned lock module.",
+    "Source HEAD/tree/clean state, six exact input binaries, SDK settings, bootstrap cache, prior receipt identities, and generated artifacts are checked before work; executable/generated identities are checked again after lease admission.",
+    "Explicit tools-only mise selection precedes /usr/bin/env MAKEFLAGS=-j4 and CMAKE_BUILD_PARALLEL_LEVEL=4; the generated outer command selects --parallel 4. Fresh preparation observed these final environment values.",
+    "The eight-job figure is a planning allowance, not an enforced aggregate process limit; documentation preserves the nested configure-probe limitation.",
+    "Six-hour timeout, same-filesystem 32-GiB start capacity, fifteen-second 8-GiB reserve checks, current host/container checks, and held descriptor forwarding are wired into build mode.",
+    "Successful build mode requires final rc 0 and records eight tool binaries plus two child caches as artifacts needing later review. Installation and reflection/runtime qualification remain separate.",
+    "Public marketplace/plugin identity and all 19 original Claude acceptance files are unchanged."
+  ],
+  "not_run_or_not_established": [
+    "No --build invocation, CMake/Ninja target, compiler, install, download, network acquisition, service, model session, or global mutation.",
+    "No canonical heavy-lease acquisition or independent live capacity/container census in this review.",
+    "Private descriptor forwarding was exercised; actual native mise build-child lease ownership awaits the separately admitted operation probe.",
+    "The six-hour duration and fifteen-second real disk interval were not waited in full; bounded controls exercised timeout and injected low reserve using the exact implementation.",
+    "No LLVM build/runtime artifacts, aggregate build concurrency, install exits, P2996 witnesses, or full OCI/fresh Claude hook acceptance are established by this review."
+  ],
+  "operation_requirement": "Task 07b must bind this final helper and review to fresh parent capacity/admission and acquire the canonical lease immediately before the actual operation.",
+  "supporting_receipts": [
+    {
+      "relative_path": "acceptance-baseline.stderr",
+      "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9",
+      "bytes": 87
+    },
+    {
+      "relative_path": "acceptance-baseline.stdout",
+      "sha256": "2c621fbe24e26ad3853c8c0abda29a166c6fe33059725214ebb4cfeaeb031d45",
+      "bytes": 172
+    },
+    {
+      "relative_path": "controlled_checks.py",
+      "sha256": "f237c90531aecbcc2a18ecedebf82333f7bc983fb7859e3fdc347d0e6c853ffb",
+      "bytes": 6789
+    },
+    {
+      "relative_path": "diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "failure-path-rechecks.json",
+      "sha256": "1e98d2c356e66c5f08ee1e96ae142736788ecb479109f7e9ee5fb8beb58df5fa",
+      "bytes": 3377
+    },
+    {
+      "relative_path": "final-control-descriptor/descriptor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-descriptor/descriptor.stdout",
+      "sha256": "59f0eba37eb85681c984d8e4e67ebfb2ee184e9ce522db47ece9af7ba6459d63",
+      "bytes": 22
+    },
+    {
+      "relative_path": "final-control-descriptor/private-descriptor",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-descriptor/run-report.json",
+      "sha256": "b965e6baefe7b28a7dcf208723cba791825e11ac4cb7708cc10bebc49e64970b",
+      "bytes": 983
+    },
+    {
+      "relative_path": "final-control-nonzero/nonzero.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-nonzero/nonzero.stdout",
+      "sha256": "1cd112408dccb146a6125e24bc3839a6f5c3d307d568a4ab7a2a33bc15b4ba45",
+      "bytes": 14
+    },
+    {
+      "relative_path": "final-control-nonzero/run-report.json",
+      "sha256": "8c870d3e1ab1052f537c1c6aa11a0a76222f4a13825208621c075b509f208fe1",
+      "bytes": 949
+    },
+    {
+      "relative_path": "final-control-post-spawn-save-failure/post-spawn-save-failure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-post-spawn-save-failure/post-spawn-save-failure.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-post-spawn-save-failure/run-report.json",
+      "sha256": "28dfa931e24cd094604fba653cb4bfda811739133521c94d8d9789861941b18a",
+      "bytes": 1036
+    },
+    {
+      "relative_path": "final-control-repeated-termination/repeated-termination.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-repeated-termination/repeated-termination.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-repeated-termination/run-report.json",
+      "sha256": "fd9cc20fc09cf7a4e0da82ff6b1c8515239c3de912513c3005e9dd0adb0a90c1",
+      "bytes": 1251
+    },
+    {
+      "relative_path": "final-control-reserve/reserve.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-reserve/reserve.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-reserve/run-report.json",
+      "sha256": "9e717afb55e1af5827546b170518d3ad865e88bc73efddfd355673762459f4d1",
+      "bytes": 1069
+    },
+    {
+      "relative_path": "final-control-signal/run-report.json",
+      "sha256": "47fc15a861f2c7e12362423db10b03375c44601cf1e98a766372b7b5ae08b9ea",
+      "bytes": 1013
+    },
+    {
+      "relative_path": "final-control-signal/signal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-signal/signal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-success/run-report.json",
+      "sha256": "c25822357a004a581be2ab3c8134f81893970b91bcb35bd20347014a1bf968ef",
+      "bytes": 925
+    },
+    {
+      "relative_path": "final-control-success/success.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-success/success.stdout",
+      "sha256": "6612dfe1dd023aeea6d79c5d3756050d4c86be46469e0aa20ea9f3af97af8b87",
+      "bytes": 14
+    },
+    {
+      "relative_path": "final-control-timeout-descendant/descendant.pid",
+      "sha256": "a74fb63206d82c68f71ec1ded688eacfeb029811a84ff178ae5beb9f49fffa1d",
+      "bytes": 5
+    },
+    {
+      "relative_path": "final-control-timeout-descendant/run-report.json",
+      "sha256": "42d5447f5fafec7d5750e9a6591bd051f86e072b594ac71cb933b712bea76bc8",
+      "bytes": 1410
+    },
+    {
+      "relative_path": "final-control-timeout-descendant/timeout-descendant.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-control-timeout-descendant/timeout-descendant.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "final-helper.py.source",
+      "sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+      "bytes": 15312
+    },
+    {
+      "relative_path": "final-runtime-controls.json",
+      "sha256": "1b484f8cd99f9770621a4ff21d1d66d69135007a28e3620388188756a2eb9603",
+      "bytes": 14640
+    },
+    {
+      "relative_path": "fixed-post-spawn-save-failure/fixed-post-spawn-save-failure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "fixed-post-spawn-save-failure/fixed-post-spawn-save-failure.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "fixed-post-spawn-save-failure/run-report.json",
+      "sha256": "f3b83f7b292980d51dc8d95b1297114ef1f0551b8bae56890df14a19f046bbce",
+      "bytes": 1039
+    },
+    {
+      "relative_path": "guard-controls.json",
+      "sha256": "17215316a6514bc77685b375975a9653b64d8bf124da4d0bb2bd33aa68a42ea0",
+      "bytes": 1500
+    },
+    {
+      "relative_path": "guard-fixtures/admission.json",
+      "sha256": "7de2dc0174552b50b82cd29b1600572eb91dd54c50bb53f1aebf57099bf0b790",
+      "bytes": 5805
+    },
+    {
+      "relative_path": "guard-fixtures/private-module.py.source",
+      "sha256": "dbe6d571a74153f8c41af71ef3f434ab246f884dd0a5b8f2c44d0ba8308de4a8",
+      "bytes": 36
+    },
+    {
+      "relative_path": "inert-save-failure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "inert-save-failure.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/build-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/build-environment.stdout",
+      "sha256": "42b3516b16c4140bdb9cf660cefaf6966e89a49db7ae547ce4398043c996f6a8",
+      "bytes": 176
+    },
+    {
+      "relative_path": "native-preparation/default-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/default-after.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "relative_path": "native-preparation/default-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/default-before.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145
+    },
+    {
+      "relative_path": "native-preparation/qualification.json",
+      "sha256": "ace0311c8387ff4cfbc00819eae0ab3fb2841ee37d35b6be3a13ad4686195838",
+      "bytes": 20145
+    },
+    {
+      "relative_path": "native-preparation/source-clean.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-clean.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41
+    },
+    {
+      "relative_path": "native-preparation/source-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "native-preparation/source-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41
+    },
+    {
+      "relative_path": "nonzero/nonzero.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "nonzero/nonzero.stdout",
+      "sha256": "1cd112408dccb146a6125e24bc3839a6f5c3d307d568a4ab7a2a33bc15b4ba45",
+      "bytes": 14
+    },
+    {
+      "relative_path": "nonzero/run-report.json",
+      "sha256": "6e34a74c500216f0a0eb3827f6cf8090f782c26ead078b36a206ccfadd64fa3f",
+      "bytes": 922
+    },
+    {
+      "relative_path": "parent-evidence-review.json",
+      "sha256": "705884540928c175b7b1c0dc626ac249bf2f52f8f101df254814a559d8e84c9a",
+      "bytes": 13137
+    },
+    {
+      "relative_path": "post-spawn-save-failure.json",
+      "sha256": "722c222c0ab38b17705002053475d173f848b0dbbf8290669da0a1d7d99a2d5a",
+      "bytes": 558
+    },
+    {
+      "relative_path": "post-state.json",
+      "sha256": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "bytes": 295716
+    },
+    {
+      "relative_path": "pre-state.json",
+      "sha256": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "bytes": 295716
+    },
+    {
+      "relative_path": "preparation-invocation.json",
+      "sha256": "cd75326fe1612c79a27306db4d282b4d3834730fa553111f8bce06127db3c9c8",
+      "bytes": 1195
+    },
+    {
+      "relative_path": "preparation-invocation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "preparation-invocation.stdout",
+      "sha256": "8fa218c85d9c45b05e83fec24860500007c4b0c68820601c0d4ed2a586aade72",
+      "bytes": 443
+    },
+    {
+      "relative_path": "preparation-result-checks.json",
+      "sha256": "960104cab10a9ad9bc34dfbf39a49cbb3300a240f2fdc2b79cc204c4c4c4e55f",
+      "bytes": 7097
+    },
+    {
+      "relative_path": "repeated-termination/repeated-termination.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "repeated-termination/repeated-termination.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "repeated-termination/run-report.json",
+      "sha256": "a6d4635535c593d8697d56ad44c79e8e777aa627bf3c9692e1e02ec32619ee87",
+      "bytes": 1153
+    },
+    {
+      "relative_path": "reserve/reserve.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "reserve/reserve.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "reserve/run-report.json",
+      "sha256": "1d962801f44208d732fe0552c7b7f1cc078fc1f17847e93d15e27f7c728373b0",
+      "bytes": 1043
+    },
+    {
+      "relative_path": "review-context.json",
+      "sha256": "b67b8325c825493728451cb51e8e0a02c9f1919ffa964bd8a1fba4cd1ad2e129",
+      "bytes": 414
+    },
+    {
+      "relative_path": "reviewed-documentation.diff",
+      "sha256": "2d373a0d66c9bd0c6a50921daddf7daa894600d9f96abf766dfeb91ca67113aa",
+      "bytes": 5755
+    },
+    {
+      "relative_path": "run-report.json",
+      "sha256": "a823dfdb24964d780faeaff965f85f2b832ad98c3a004866553bb4dea9d09778",
+      "bytes": 299
+    },
+    {
+      "relative_path": "runtime-controls.json",
+      "sha256": "d958189e86968d915ba8fe998f0fee33917b99f002d82db72bbea7c463a1998e",
+      "bytes": 9125
+    },
+    {
+      "relative_path": "signal/run-report.json",
+      "sha256": "67ab35a9aab4e10b416cbd2238924876641a1a06f2235f584888a45ced85b4c6",
+      "bytes": 986
+    },
+    {
+      "relative_path": "signal/signal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "signal/signal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "static-checks.json",
+      "sha256": "bf7776d091e06639b5e51fc13f6298d2343bcf1f6c2c8d4e0b9959a5e99a65b1",
+      "bytes": 2193
+    },
+    {
+      "relative_path": "success/run-report.json",
+      "sha256": "0de72cf57bbeeafb7756abe26f29843fd8a7a8c1e7537734c738b79eeecc0210",
+      "bytes": 897
+    },
+    {
+      "relative_path": "success/success.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "success/success.stdout",
+      "sha256": "6612dfe1dd023aeea6d79c5d3756050d4c86be46469e0aa20ea9f3af97af8b87",
+      "bytes": 14
+    },
+    {
+      "relative_path": "tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+      "bytes": 41
+    },
+    {
+      "relative_path": "termination-during-cleanup/run-report.json",
+      "sha256": "a5299ed51c0280bdbe1ae692b04172e1c978aa6ece18d787f08751323af33a37",
+      "bytes": 1184
+    },
+    {
+      "relative_path": "termination-during-cleanup/termination-during-cleanup.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "termination-during-cleanup/termination-during-cleanup.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "termination-during-cleanup.json",
+      "sha256": "d23423342a8365d1862f4830d48170a67edd3d1087654de8bffd169b860c1f1b",
+      "bytes": 1628
+    },
+    {
+      "relative_path": "timeout-descendant/descendant.pid",
+      "sha256": "167893779d2c986123c1fde7797820793ef6a2ee3c167f9ea6d0c43cd4ca58c7",
+      "bytes": 5
+    },
+    {
+      "relative_path": "timeout-descendant/run-report.json",
+      "sha256": "c78caef00c868f3a171bef28c9679af30227f1ff2d00bdde01db7a5e690d24a8",
+      "bytes": 1369
+    },
+    {
+      "relative_path": "timeout-descendant/timeout-descendant.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "relative_path": "timeout-descendant/timeout-descendant.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

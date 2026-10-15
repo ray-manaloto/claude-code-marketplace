@@ -1,0 +1,1323 @@
+{
+  "result": "PASS: task 07d bounded independent reflection compile/link/run review",
+  "unit": "07d independent reflection closure",
+  "findings": [],
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "3a55cd040e4cf31da8b1ae82c19b225ce4bb518a",
+  "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "operation_sha256": "cdc6859a8b2a31c778de9e1d7351e8abd6c816d91e5386924ba91acb81e5cb77",
+  "operation_manifest_sha256": "1a0c71e43ca87e376b89797c7e38c21a1db0eccb934aae6b99557af9019e13e8",
+  "helper_sha256": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff",
+  "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+  "installation_review_sha256": "d9ee10dc202d0de4447393ec2a8391866c541c27ed469d874edd874bc6e81784",
+  "source_diff_sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+  "parent_operation_verification": {
+    "manifest_records": 51,
+    "native_commands": 23,
+    "native_log_hashes": 46,
+    "native_exit_0_count": 22,
+    "intentional_negative_exit": 1,
+    "wrapper_returncode": 0,
+    "wrapper_elapsed_seconds": 13.199200417031534,
+    "original_and_retained_bytes_identical": true,
+    "original_operation_file_set_complete": true,
+    "private_witness_sha256": "f5f4498c883ed1ef4f0699d4b2a123edba443203de7b1361c7572000666c6fae",
+    "source_before_after_identical": true,
+    "default_before_after_identical": true
+  },
+  "maintained_preimages": {
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/status.md": "09e2f88a2e39bdad09b24732a9c2a1f0d0094eac75ec3696120783955ba92f9a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "8df8e269c523e6ad5bf82feb76408d721c22c043fe7bd24b0b77ed544c226c0f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "fbb5c4e94294738cefe5ebe9155b209066f042868a92cfb9cec08bb103a43a64"
+  },
+  "resolved_findings": [
+    {
+      "severity": "P1",
+      "path": "dev/toolchains/p2996_reflection.py",
+      "initial_line": 89,
+      "corrected_line": 94,
+      "issue": "Wrong installation receipt key protected_state_unchanged would fail before qualification.",
+      "resolution": "Frozen helper checks actual build_and_protected_state_unchanged field. Parent operation completed all native checks.",
+      "initial_helper_sha256": "37331e42d38aae89d37eac0bcb2c614753b550070885b1239edf335634fd31cc",
+      "fixed_helper_sha256": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff"
+    }
+  ],
+  "harness_notes": [
+    "Initial read-only inventory display attempted absent operation/context.json. Correct context is bound through the retained default-consumer argv. No native check was run by that failed display.",
+    "Two exploratory shell reads used absent /usr/bin/cat and /usr/bin/rg paths. Replaced by pathlib reads; no product command or state was affected."
+  ],
+  "commands": [
+    {
+      "case": "source-before-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T09:44:42.512714+00:00",
+      "pid": 53302,
+      "returncode": 0,
+      "elapsed_seconds": 0.013382041011936963,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-tree",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T09:44:42.527703+00:00",
+      "pid": 53304,
+      "returncode": 0,
+      "elapsed_seconds": 0.023879125015810132,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-diff",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T09:44:42.553188+00:00",
+      "pid": 53306,
+      "returncode": 0,
+      "elapsed_seconds": 0.4025470420019701,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T09:44:42.957109+00:00",
+      "pid": 53308,
+      "returncode": 0,
+      "elapsed_seconds": 0.9344018750125542,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "named-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T09:44:43.893377+00:00",
+      "pid": 53319,
+      "returncode": 0,
+      "elapsed_seconds": 0.1342162920627743,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/named-profile.stdout",
+          "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/named-profile.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "isolated-environment",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import os,json,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "CPATH",
+        "CPLUS_INCLUDE_PATH",
+        "LIBRARY_PATH",
+        "COMPILER_PATH",
+        "SDKROOT",
+        "DYLD_LIBRARY_PATH",
+        "DYLD_FALLBACK_LIBRARY_PATH",
+        "DYLD_INSERT_LIBRARIES"
+      ],
+      "started_at": "2026-10-11T09:44:44.029298+00:00",
+      "pid": 53320,
+      "returncode": 0,
+      "elapsed_seconds": 0.13022662501316518,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/isolated-environment.stdout",
+          "sha256": "1b27df01098b0396ebb51a29a3af66c7c9987267853b9cb7d0069cd22f24dac5"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/isolated-environment.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T09:44:44.161623+00:00",
+      "pid": 53321,
+      "returncode": 0,
+      "elapsed_seconds": 0.0886433330597356,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/capacity-processes.stdout",
+          "sha256": "2f931d873fb0edce8f80e9e3a0d09cbd2691a84061fd244837e09acaa83de7a9"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "reflection-build",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-freflection",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-nostdlib++",
+        "-O0",
+        "-g",
+        "-v",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection"
+      ],
+      "started_at": "2026-10-11T09:44:44.255820+00:00",
+      "pid": 53324,
+      "returncode": 0,
+      "elapsed_seconds": 1.4280258329818025,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-build.stderr",
+          "sha256": "c0a035a55447d73726ca294fd713b4e2b68a49f4fd2b534201faafaf96074a7a"
+        }
+      ]
+    },
+    {
+      "case": "reflection-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection"
+      ],
+      "started_at": "2026-10-11T09:44:45.685331+00:00",
+      "pid": 53376,
+      "returncode": 0,
+      "elapsed_seconds": 0.24758991703856736,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-run.stdout",
+          "sha256": "4e602f7fb8fc648dc9907a2e6157d4b037e149c5849fb307d076602bb838f00c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-run.stderr",
+          "sha256": "19229d64f9022ae0d30e4cc9ededebbfbc39ca19bea2d1fa7781a8253e3d5d6a"
+        }
+      ]
+    },
+    {
+      "case": "witness-libraries",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection"
+      ],
+      "started_at": "2026-10-11T09:44:45.935361+00:00",
+      "pid": 53377,
+      "returncode": 0,
+      "elapsed_seconds": 0.04893454094417393,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-libraries.stdout",
+          "sha256": "fc40cf812018962f6cbe7e36e933629c361300ab4ade6af86a9224a43b030c33"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-libraries.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "witness-symbols",
+      "argv": [
+        "/usr/bin/nm",
+        "-m",
+        "-u",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection"
+      ],
+      "started_at": "2026-10-11T09:44:45.986913+00:00",
+      "pid": 53379,
+      "returncode": 0,
+      "elapsed_seconds": 0.049899250036105514,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-symbols.stdout",
+          "sha256": "597f58c9e07b764e8b5b4248c7f55e31916e478b8b125d91763034a11f3e7fe9"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-symbols.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "without-reflection",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+        "-E",
+        "p2996",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-std=c++26",
+        "-fno-blocks",
+        "-arch",
+        "arm64",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-fsyntax-only",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp"
+      ],
+      "started_at": "2026-10-11T09:44:46.039332+00:00",
+      "pid": 53380,
+      "returncode": 1,
+      "elapsed_seconds": 0.13533025002107024,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/without-reflection.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/without-reflection.stderr",
+          "sha256": "5790a252e654fc6467f3518f9215852c238eef980e694005c35b533d10f06393"
+        }
+      ]
+    },
+    {
+      "case": "default-consumer",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T09:44:46.176204+00:00",
+      "pid": 53381,
+      "returncode": 0,
+      "elapsed_seconds": 0.08182470803149045,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/default-consumer.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/default-consumer.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T09:44:46.260644+00:00",
+      "pid": 53383,
+      "returncode": 0,
+      "elapsed_seconds": 0.01319124992005527,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-tree",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T09:44:46.275314+00:00",
+      "pid": 53384,
+      "returncode": 0,
+      "elapsed_seconds": 0.01294641604181379,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-diff",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T09:44:46.289813+00:00",
+      "pid": 53385,
+      "returncode": 0,
+      "elapsed_seconds": 0.4187265409855172,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-after-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T09:44:46.710286+00:00",
+      "pid": 53397,
+      "returncode": 0,
+      "elapsed_seconds": 0.9658046669792384,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T09:44:47.677965+00:00",
+      "pid": 53444,
+      "returncode": 0,
+      "elapsed_seconds": 0.045638542040251195,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T09:44:47.725168+00:00",
+      "pid": 53449,
+      "returncode": 0,
+      "elapsed_seconds": 0.6858917910140008,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/acceptance-baseline.stdout",
+          "sha256": "e2c95031211b523934fc374076d248e4d1e325718af68e2772beaeb7c1ef66d2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/acceptance-baseline.stderr",
+          "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae"
+        }
+      ]
+    },
+    {
+      "case": "project-diff-check",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-10-11T09:44:48.412540+00:00",
+      "pid": 53494,
+      "returncode": 0,
+      "elapsed_seconds": 0.02446479198988527,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-diff-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-diff-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "project-identity",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD",
+        "--git-common-dir"
+      ],
+      "started_at": "2026-10-11T09:44:48.438717+00:00",
+      "pid": 53495,
+      "returncode": 0,
+      "elapsed_seconds": 0.013028000015765429,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-identity.stdout",
+          "sha256": "7e57abad7066d10162bd4e6a2880574183c6278317e0e0a06d51747c0b5bbd78"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-identity.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "project-branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "branch",
+        "--show-current"
+      ],
+      "started_at": "2026-10-11T09:44:48.453105+00:00",
+      "pid": 53497,
+      "returncode": 0,
+      "elapsed_seconds": 0.013009082991629839,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-branch.stdout",
+          "sha256": "e346c1210f8462790b30c81725108cdb31dfc81c0a04d9d151bdefdd66ddb81c"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-branch.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "project-status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "status",
+        "--short"
+      ],
+      "started_at": "2026-10-11T09:44:48.467383+00:00",
+      "pid": 53499,
+      "returncode": 0,
+      "elapsed_seconds": 0.04425745795015246,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-status.stdout",
+          "sha256": "ca6ff042695ef27140ac1995d1bc695495b818a3100c1ab0e64aae931acb0cfd"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "environment_context_sha256": "87fc7475ddc4c7b388496b5c6da2c347f1926893dfd1bbd76bf92ed993c476d0",
+  "environment_handling": "Original captured context plus the exact helper offline/no-install/Git-isolation overrides; private prefix only during named-profile probes. Environment values are not persisted.",
+  "extracted_function_sources": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+      "sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "names": [
+        "package_state"
+      ],
+      "ast_sha256": "84f2f449658428131ca2e81d656bb6f335a88712a9ec5dbcf9ac7560238fe07b"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py",
+      "sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "names": [
+        "snapshot"
+      ],
+      "ast_sha256": "86277186ca3965c7d40c2907269418e3af93474590813af5596de59d3846f78f"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "names": [
+        "install_entries"
+      ],
+      "ast_sha256": "8ae1905fd9c9a6a15009134d0dffb9dd1829251146adfdd3aee03c7f7418c0f0"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+      "sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+      "names": [
+        "prefix_inventory"
+      ],
+      "ast_sha256": "6e971a248ed58e203003ca63c327c21b62fa272fde945ced30510cb56be1b7f6"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source",
+      "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+      "names": [
+        "run"
+      ],
+      "ast_sha256": "1ad963ce7601171b76859c01cea40d6ed6918de0d3dd4598707ce8403b83597f"
+    }
+  ],
+  "parent_origin_verification": {
+    "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-reflection-20261011T093605Z/reflection",
+    "sha256": "f5f4498c883ed1ef4f0699d4b2a123edba443203de7b1361c7572000666c6fae",
+    "loaded_private_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+    ],
+    "runtime_output": "reflection value=43 exception=ok\n",
+    "explicit_private_header_paths": true,
+    "private_cpp_exception_symbol_origin": true,
+    "private_unwind_symbol_origin": true
+  },
+  "parent_negative_diagnostic": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp:2:2: error: \"P2996 reflection requires -freflection\"\n    2 | #error \"P2996 reflection requires -freflection\"\n      |  ^\n1 error generated.\n",
+  "before_preservation": {
+    "full_prefix_records": 6411,
+    "retained_records": 159,
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "directory_entries": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "mise_install_entries": 2198,
+    "five_maintained_files_unchanged": true,
+    "mise_binary_unchanged": true
+  },
+  "independent_admission": {
+    "parent_channel": "native collaboration /root",
+    "scope": "One positive compile/link/run and one syntax-only negative, each <=60 seconds; no helper main or shared admission changes",
+    "canonical_lock": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+    "lock_module_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "lease_fd": 3,
+    "at": "2026-10-11T09:44:44.161616+00:00",
+    "active_builders": [],
+    "free_bytes": 57560526848,
+    "load": [
+      3.64990234375,
+      4.0830078125,
+      4.5107421875
+    ]
+  },
+  "independent_origin_verification": {
+    "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection",
+    "sha256": "f86767d24a3eac3f9bf4c4c3f9ad973f4e9e14ccb500764ca3b46ed7a3c99967",
+    "loaded_private_images": [
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+    ],
+    "runtime_output": "reflection value=43 exception=ok\n",
+    "explicit_private_header_paths": true,
+    "private_cpp_exception_symbol_origin": true,
+    "private_unwind_symbol_origin": true
+  },
+  "independent_negative_diagnostic": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp:2:2: error: \"P2996 reflection requires -freflection\"\n    2 | #error \"P2996 reflection requires -freflection\"\n      |  ^\n1 error generated.\n",
+  "lease_released": true,
+  "default_consumer_invocations": 1,
+  "default_consumer_sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+  "static_check_environment_overrides": {
+    "MARKETPLACE_MISE_BIN": "/Users/rmanaloto/.local/bin/mise",
+    "MARKETPLACE_PYTHON": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3"
+  },
+  "runtime_checks_complete": true,
+  "after_preservation": {
+    "full_prefix_records": 6411,
+    "retained_records": 159,
+    "global_files": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "directory_entries": {
+      "/Users/rmanaloto/.local/share/mise/shims": 835,
+      "/Users/rmanaloto/.local/share/mise/command-wrappers": 0
+    },
+    "mise_install_entries": 2198,
+    "five_maintained_files_unchanged": true,
+    "mise_binary_unchanged": true
+  },
+  "all_protected_state_unchanged": true,
+  "source_contract": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-reflection/source-contract.json",
+    "sha256": "871dda00b7d9bc6fd3a24dbc95925653937895923a863105454f7ea5546b7291",
+    "verified_reference_count": 24,
+    "reference_scope": "Pinned source and existing project source files; source-only contract assertions kept distinct from executed checks."
+  },
+  "static_review": {
+    "helper_lines": 207,
+    "witness_lines": 31,
+    "maintained_file_count": 5,
+    "assertions": [
+      "Actual fixed helper and witness inspected against the installation review, actual installation receipt and source contract.",
+      "Admission binds helper, witness, native run directory and private prefix before any compiler work.",
+      "Main helper propagates failed native exits and unexpected negative-control outcomes, writes failure receipts and rechecks protected state in finally.",
+      "Subprocess run AST is unchanged from the pinned reviewed cleanup implementation; no broad timeout/control reruns were made in this unit.",
+      "The witness tests this fork feature gate, compile-time member/type queries and splicing, runtime value update, std::string, stream output and thrown/caught exception.",
+      "The native fresh named profile explicitly selects the private compiler from an unrelated cwd, with implicit flags and include/library injection absent.",
+      "Public marketplace/plugin identity and original Claude/OCI files retain the accepted baseline hashes."
+    ],
+    "source_only_limits": [
+      "This static review does not establish all P2996 semantics or all paths through the helper.",
+      "Existing prior cleanup/control receipts were reused only where the source AST and bindings were unchanged."
+    ]
+  },
+  "executed_checks": {
+    "driver_invocation": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/review_driver.py"
+      ],
+      "started_at": "2026-10-11T09:44:40.654011+00:00",
+      "returncode": 0,
+      "elapsed_seconds": 10.520357041037641,
+      "finished_at": "2026-10-11T09:44:51.174439+00:00"
+    },
+    "native_command_count": 23,
+    "native_log_hash_count": 46,
+    "native_zero_exit_count": 22,
+    "positive_compile_link_count": 1,
+    "positive_run_count": 1,
+    "negative_syntax_only_count": 1,
+    "negative_expected_exit": 1,
+    "unrelated_cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/cwd",
+    "named_profile_matches_parent": true,
+    "clean_environment_matches_parent": true,
+    "source_git_before_after_matches_frozen_operation": true,
+    "baseline": {
+      "checks": {
+        "baseline": 19,
+        "json": 630,
+        "python": 25,
+        "shell": 6,
+        "toml": 14
+      },
+      "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+      "status": "pass"
+    },
+    "tasks_validate_returncode": 0,
+    "diff_check_returncode": 0,
+    "no_workspace_helper_main_execution": true
+  },
+  "limits": [
+    "Only this private reflection/string/stream/exception witness was independently compiled, linked and run.",
+    "No full LLVM/compiler-rt/libc++ test suite, sanitizer/coverage/LTO feature test, plugin provider or full Claude/container acceptance ran.",
+    "No additional installed-tool qualification, source/build/prefix mutation, installation, registration, network research, service, model session, or old broad guard suite ran.",
+    "Prior installed-artifact metadata is reused for artifacts whose full prefix and bounded source/build hashes were verified unchanged.",
+    "The named mise fresh environment was exercised; a new Codex model session was not launched."
+  ],
+  "claude_acceptance_preservation": {
+    "original_hashes_checked": 19,
+    "static_exit": 0,
+    "full_oci_acceptance": "NOT_RUN"
+  },
+  "untracked_observation": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/__pycache__/gcc_bottles.cpython-314.pyc",
+    "sha256": "e55ce075ae6b64d7d1f3ad0280ea29717ed455bc56f7b1397286729d283f2d25",
+    "bytes": 14512,
+    "mtime_utc": "2026-10-11T01:58:03.061654+00:00",
+    "disposition": "Existing cache exposed by the review Git environment disabling global/system configuration. Normal initial Git status omitted it; isolated final status included it. Preserved without mutation; not a new review artifact.",
+    "global_ignore_rule": {
+      "path": "/Users/rmanaloto/.gitignore_global",
+      "line": 18,
+      "pattern": "__pycache__/",
+      "sha256": "52bb19eac3af8baac3bf7dde5154162fb8ed654391afefac911ab89fc703d866"
+    },
+    "parent_native_check_ignore": {
+      "normal_returncode": 0,
+      "isolated_returncode": 1,
+      "evidence_class": "Parent native collaboration observation; reviewer independently read the actual ignore rule, both own status outputs, cache timestamp and hash. No check-ignore command rerun."
+    }
+  },
+  "reviewed_at": "2026-10-11T09:47:30.395619+00:00",
+  "supporting_receipts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/acceptance-baseline.stderr",
+      "sha256": "bdef061716c4ac12ebc03f4292e891e42fcde7c253c0aabc7b967e7e45ca65ae",
+      "bytes": 83,
+      "relative_path": "acceptance-baseline.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/acceptance-baseline.stdout",
+      "sha256": "e2c95031211b523934fc374076d248e4d1e325718af68e2772beaeb7c1ef66d2",
+      "bytes": 172,
+      "relative_path": "acceptance-baseline.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/after-prefix.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211,
+      "relative_path": "after-prefix.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/after-retained.json",
+      "sha256": "2ab347ea03c10b51c2c354ddef600bb91bfefd635e41a1098366a050c2a2bd77",
+      "bytes": 97193,
+      "relative_path": "after-retained.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/after-state.json",
+      "sha256": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "bytes": 295716,
+      "relative_path": "after-state.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/before-prefix.json",
+      "sha256": "2ab80c6ea2b54ad7abd48e4c130944f000465079614dbe2bedcaa6d45d1ec159",
+      "bytes": 1285211,
+      "relative_path": "before-prefix.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/before-retained.json",
+      "sha256": "2ab347ea03c10b51c2c354ddef600bb91bfefd635e41a1098366a050c2a2bd77",
+      "bytes": 97193,
+      "relative_path": "before-retained.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/before-state.json",
+      "sha256": "bd8437e8cc435a95e850b73d9315ca95e75783864c3013b28b7572d6c0994afe",
+      "bytes": 295716,
+      "relative_path": "before-state.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/capacity-processes.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "capacity-processes.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/capacity-processes.stdout",
+      "sha256": "2f931d873fb0edce8f80e9e3a0d09cbd2691a84061fd244837e09acaa83de7a9",
+      "bytes": 96138,
+      "relative_path": "capacity-processes.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/default-consumer.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "default-consumer.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/default-consumer.stdout",
+      "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+      "bytes": 1145,
+      "relative_path": "default-consumer.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/driver-invocation.json",
+      "sha256": "71a9fb96b8f67dfcca083a11cd40ef00b6b29b4edf1be11370a5eff861676498",
+      "bytes": 397,
+      "relative_path": "driver-invocation.json"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/driver.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "driver.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/driver.stdout",
+      "sha256": "973771fe9be196f5b86e35f72620cf8e0306b5f899f2f66af3ac52d680a2be21",
+      "bytes": 1273,
+      "relative_path": "driver.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/isolated-environment.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "isolated-environment.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/isolated-environment.stdout",
+      "sha256": "1b27df01098b0396ebb51a29a3af66c7c9987267853b9cb7d0069cd22f24dac5",
+      "bytes": 269,
+      "relative_path": "isolated-environment.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/lease-trace.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "lease-trace.txt"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/named-profile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "named-profile.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/named-profile.stdout",
+      "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+      "bytes": 1197,
+      "relative_path": "named-profile.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-branch.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "project-branch.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-branch.stdout",
+      "sha256": "e346c1210f8462790b30c81725108cdb31dfc81c0a04d9d151bdefdd66ddb81c",
+      "bytes": 36,
+      "relative_path": "project-branch.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "project-diff-check.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "project-diff-check.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-identity.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "project-identity.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-identity.stdout",
+      "sha256": "7e57abad7066d10162bd4e6a2880574183c6278317e0e0a06d51747c0b5bbd78",
+      "bytes": 111,
+      "relative_path": "project-identity.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "project-status.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/project-status.stdout",
+      "sha256": "ca6ff042695ef27140ac1995d1bc695495b818a3100c1ab0e64aae931acb0cfd",
+      "bytes": 305,
+      "relative_path": "project-status.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-build.stderr",
+      "sha256": "c0a035a55447d73726ca294fd713b4e2b68a49f4fd2b534201faafaf96074a7a",
+      "bytes": 6028,
+      "relative_path": "reflection-build.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "reflection-build.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-run.stderr",
+      "sha256": "19229d64f9022ae0d30e4cc9ededebbfbc39ca19bea2d1fa7781a8253e3d5d6a",
+      "bytes": 7786,
+      "relative_path": "reflection-run.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection-run.stdout",
+      "sha256": "4e602f7fb8fc648dc9907a2e6157d4b037e149c5849fb307d076602bb838f00c",
+      "bytes": 33,
+      "relative_path": "reflection-run.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/review_driver.py",
+      "sha256": "a181faf9fc17cb982e519354afc340f9783f0bc216e6b54ab3ae5e5e9b55eaf7",
+      "bytes": 17182,
+      "relative_path": "review_driver.py"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/runtime-attempt-once",
+      "sha256": "3eeebe851b134038e12aa5baddd89978912f4def784bbc763a10f4216a58b5b4",
+      "bytes": 33,
+      "relative_path": "runtime-attempt-once"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-after-diff.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091,
+      "relative_path": "source-after-diff.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-after-head.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41,
+      "relative_path": "source-after-head.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-after-status.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251,
+      "relative_path": "source-after-status.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-after-tree.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-after-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41,
+      "relative_path": "source-after-tree.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-before-diff.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-diff.stdout",
+      "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e",
+      "bytes": 6091,
+      "relative_path": "source-before-diff.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-head.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-before-head.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-head.stdout",
+      "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30",
+      "bytes": 41,
+      "relative_path": "source-before-head.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-before-status.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-status.stdout",
+      "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6",
+      "bytes": 251,
+      "relative_path": "source-before-status.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-tree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "source-before-tree.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/source-before-tree.stdout",
+      "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e",
+      "bytes": 41,
+      "relative_path": "source-before-tree.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/tasks-validate.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "tasks-validate.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/tasks-validate.stdout",
+      "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b",
+      "bytes": 41,
+      "relative_path": "tasks-validate.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/without-reflection.stderr",
+      "sha256": "5790a252e654fc6467f3518f9215852c238eef980e694005c35b533d10f06393",
+      "bytes": 238,
+      "relative_path": "without-reflection.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/without-reflection.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "without-reflection.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-libraries.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "witness-libraries.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-libraries.stdout",
+      "sha256": "fc40cf812018962f6cbe7e36e933629c361300ab4ade6af86a9224a43b030c33",
+      "bytes": 432,
+      "relative_path": "witness-libraries.stdout"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-symbols.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "relative_path": "witness-symbols.stderr"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/witness-symbols.stdout",
+      "sha256": "597f58c9e07b764e8b5b4248c7f55e31916e478b8b125d91763034a11f3e7fe9",
+      "bytes": 2452,
+      "relative_path": "witness-symbols.stdout"
+    }
+  ],
+  "runtime_artifacts": [
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection",
+      "sha256": "f86767d24a3eac3f9bf4c4c3f9ad973f4e9e14ccb500764ca3b46ed7a3c99967",
+      "bytes": 46344,
+      "relative_path": "reflection"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection.dSYM/Contents/Info.plist",
+      "sha256": "1d9bcb131ff5f9ccd39619b45ffbfafd6b5ae2d5355f5e7f6ab3385814a1bb1a",
+      "bytes": 639,
+      "relative_path": "reflection.dSYM/Contents/Info.plist"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection.dSYM/Contents/Resources/DWARF/reflection",
+      "sha256": "70603175a77b3e5ff3df9e47550d83f40c510a7965743fa381f14d1fb7c2bc9b",
+      "bytes": 114764,
+      "relative_path": "reflection.dSYM/Contents/Resources/DWARF/reflection"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/reflection.dSYM/Contents/Resources/Relocations/aarch64/reflection.yml",
+      "sha256": "80dbcd9893f896b25c64231514007f8396b02a8c08528f2ce190f324986bc97b",
+      "bytes": 198,
+      "relative_path": "reflection.dSYM/Contents/Resources/Relocations/aarch64/reflection.yml"
+    }
+  ],
+  "supporting_receipts_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-reflection-review-vorw1dl9/supporting-receipts.json",
+    "sha256": "a8502ecb54c291758607e0d9de64500e294e13744b65f2bb8e9673e1535d379d",
+    "bytes": 19512
+  }
+}

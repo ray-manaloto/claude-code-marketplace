@@ -1,0 +1,50 @@
+{
+  "skill_name": "antigravity-session-history",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My Antigravity agent in conversation <conversation-id> stopped a couple of days ago; I think it ran out of quota. Is it still running? What did its last three turns do, and why exactly did it stop? Cite steps.",
+      "expected_output": "Snapshots the summaries db and the conversation db (with -wal/-shm) into scratch and opens only the copies with mode=ro&immutable=1; reads the last database steps and finds the closing step_type 17 errors; decodes one with strings and quotes the 429 QUOTA_EXHAUSTED body with model and quotaResetTimeStamp; notes that the JSONL mirror lacks those steps (mirror versus database step counts); reports the server-restart notice that stopped subagents and background tasks; concludes stopped-failed and summarizes the last three turns with [created_at step=N] citations; never starts the app or agy and reads no token file.",
+      "files": [],
+      "assertions": [
+        "Opens Antigravity databases only as copies under the scratch directory (no sqlite3 call on a path under ~/.gemini)",
+        "Concludes the conversation is stopped (stopped-failed), not running, and cites the evidence",
+        "Quotes the quota error with HTTP 429 or QUOTA_EXHAUSTED, the model name and the reset timestamp or delay",
+        "States that the JSONL mirror omits the closing error steps, with the mirror and database step counts or the missing step indexes",
+        "Reports the server-restart notice that stopped subagents and background tasks, with its time or step",
+        "Summarizes the last three turns with [created_at step=N] (or equivalent step-number) citations",
+        "Does not run the Antigravity app or the agy CLI and reads no token or credential file"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm taking over the work Antigravity was doing in <repo-substring>. Write me a takeover brief for conversation <conversation-id>: the plans and other artifacts it wrote, which ones I approved, what it committed or pushed, what's unfinished, and the first five things I should do.",
+      "expected_output": "Writes a digest and an eight-section brief (references/brief-template.md) to scratch; lists each brain artifact with path, updatedAt and SHA-256; identifies plan approvals from USER_INPUT steps saying 'The user has approved this document' with the artifact URI and step; reports commits, pushes and PRs from run_command calls and git output with steps; states the last state (clean idle or stopped on errors) with the final turn-final message; every claim carries [created_at step=N]; proposed and approved are kept apart.",
+      "files": [],
+      "assertions": [
+        "Writes the brief to a file under the scratch/output directory with all eight template sections (role and scope, timeline, user decisions, last state, in-flight, blockers, takeover checklist, confidence notes)",
+        "Lists each top-level brain artifact (*.md) with its updatedAt and SHA-256",
+        "Identifies which artifacts the user approved from 'The user has approved this document' steps, naming the step numbers",
+        "Reports commits, pushes or PRs the conversation made, with step citations",
+        "States the conversation's last state (clean idle or stopped on errors) with the final turn-final message and its step",
+        "Cites claims with [created_at step=N] (or equivalent step-number) citations",
+        "Opens Antigravity databases only as copies under the scratch directory (no sqlite3 call on a path under ~/.gemini)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Which of my Antigravity conversations talked about <term>? List them with where in each conversation it came up, and tell me how much of my Antigravity history that search actually covered.",
+      "expected_output": "Snapshots the summaries db, queries conversations_fts with MATCH and snippet(), then runs rg over the brain JSONL mirrors (and artifacts) for the conversations the index does not cover; lists the union with step locations (chunk step ranges or step_index); reports coverage as indexed N of M conversations, mirrors present for K of M, and which matches came only from rg; notes the other data roots (antigravity-cli has no FTS index).",
+      "files": [],
+      "assertions": [
+        "Queries the conversations_fts full-text index with MATCH",
+        "Searches the brain transcript_full.jsonl mirrors with rg or grep to cover conversations outside the index",
+        "Reports index coverage as a count of indexed conversations out of the total in the summaries table",
+        "Reports how many conversations have a JSONL mirror (or how many were searchable) out of the total",
+        "Lists more matching conversations than the full-text index alone returns, and says which came only from the mirror search",
+        "Gives a step location (step_index or chunk step range) for each listed conversation",
+        "Opens Antigravity databases only as copies under the scratch directory (no sqlite3 call on a path under ~/.gemini)"
+      ]
+    }
+  ]
+}

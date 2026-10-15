@@ -1,0 +1,81 @@
+{
+  "unit": "rule-split",
+  "tickets": [
+    "D178 part 1 (private rule out of the tracked scanner config)"
+  ],
+  "title": "The private-name scanner rule lives in an untracked local file that every scan loads; the tracked .gitleaks.toml holds generic rules only",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/rule-split",
+  "branch": "claude/rule-split",
+  "base_sha": "87638e0",
+  "allocated_from": "87638e0",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "public-text audit G1 U1; parent check 2026-10-14: the published rule matches the TR folder name and two domain words",
+  "delivers": [
+    "the private-tr-project rule is removed from the tracked .gitleaks.toml and kept in ~/.local/state/claude-code-marketplace/private-notes/scanner/private-rules.toml (mode 0600, committed only in the private-notes repo, which has no remote), path overridable by MARKETPLACE_PRIVATE_RULES",
+    "every scan entry point (the A09 outbound and staged scans in dev/git_delivery.py, the issue and gh routes' scanner helper in dev/issue_amend.py) builds a combined config at run time in a private temp file (tracked config plus the private rule), scans with it and deletes it; the helper's public signature stays unchanged (lane gh-guard imports it)",
+    "publish and GitHub-write routes refuse when the private rule file is missing or does not define private-tr-project (fail closed, exit 2 with a reason that names the env var, never a value)",
+    "tests use a synthetic private rule in a temporary file and never read the real one; no test, fixture, log or failure message can contain a real private value",
+    ".claude/rules/secret-scanner.md and any doc that says the rule is in .gitleaks.toml point to the new home"
+  ],
+  "owned_paths": [
+    ".gitleaks.toml",
+    ".claude/rules/secret-scanner.md",
+    "dev/git_delivery.py",
+    "dev/test_git_delivery.py",
+    "dev/issue_amend.py",
+    "dev/test_issue_amend.py",
+    "dev/test_issue_create.py",
+    "dev/test_gh_write.py (synthetic private rule in setUp only; added after gh-guard integrated 94e5445)",
+    "docs/ (only lines that state where the private rule lives)",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/rule-split.md",
+    "outside the repo: ~/.local/state/claude-code-marketplace/private-notes/scanner/private-rules.toml"
+  ],
+  "excluded_shared_paths": [
+    "dev/hooks/",
+    "dev/gh_write.py",
+    "dev/test_gh_write.py",
+    ".claude/settings.json",
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    ".codex/",
+    ".agents/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:delivery",
+    "./dev/mise run test:issue-create",
+    "./dev/mise run test:issue-amend",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- rule-split",
+    "git grep for the rule id and each regex alternative over the lane tip finds nothing tracked"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "writes one file into the local private-notes repo (D178, D144)"
+  },
+  "status": "integrated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "D178 part 2, the history rewrite, runs after this lane integrates",
+    "never print, echo or log the rule's regex or any matched value; diff .gitleaks.toml only per .claude/rules/secret-scanner.md",
+    "CI loses the private rule until the D180 Actions secret lands; record that gap",
+    "retro: `retros/rule-split.md` at 3d4c147 (blob 0884343), gate rc 0; added to the integration branch ahead of the merge in 98ff3e9 (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; lane commits 34f86db through 8b31daa carry a Claude Opus 5.5 trailer and 3d4c147 a Claude Fable 5.1 trailer (retro-writer), so writer_model stays the implementer's",
+    "review disposition (parent): fable cold review PASS-with-findings on 1d65cd0; P2 and P3a-e fixed in d4e4299; the retro-writer (fable, independent of the implementer) verified d4e4299 line by line with no new defect, and the parent accepted that verification in place of a second cold pass",
+    "parent edits from the retro: 1 done in-lane (d4e4299); 2 (.claude/rules/dev-tests.md last bullet: the synthetic private name, no test reads the real private rule) and 3 (both session-handoff handoff-template.md copies: the tracked config plus the private rule file guard A09 publish; bullet rewrapped to the file width, mirror diff empty) applied in 98ff3e9; no ticket-ledger row covers D178 part 1, none added",
+    "integrated 2026-10-14 as 04b560b (parents 98ff3e9, 3d4c147), no conflict, tree 5057109 = merge-tree on 98ff3e9 (d7dfb6a on 38d1cc3 plus the four R1 edit files); gates on the merged tree rc 0 (tasks validate 68, check, check:acceptance-baseline 19, check:research, test:delivery 29, test:issue-create 25, test:issue-amend 27, test:gh-write 5, test:hooks 27, retro:gate, git diff --check 38d1cc3); betterleaks 1.9.0 through scan_config over 38d1cc3..HEAD (9 commits) rc 0, no finding, private rule 0; live check: gh:write with MARKETPLACE_PRIVATE_RULES at a missing absolute path rc 2, the reason names the variable, gh not run; report reviews/ccm-20261014/republish/rule-split-merge-report.md",
+    "lane worktree .claude/worktrees/rule-split removed by the merger after integration (clean, fully merged); branch claude/rule-split kept at 3d4c147"
+  ],
+  "review": "fable cold review PASS-with-findings on 1d65cd0; P2 and P3a-e fixed in d4e4299; the retro-writer (fable) verified d4e4299 line by line with no new defect, and the parent accepts that verification in place of a second cold pass",
+  "retro": "passed",
+  "head_sha": "3d4c147",
+  "integration_merge": "04b560b"
+}

@@ -1,0 +1,631 @@
+{
+  "result": "PASS: bounded R1 correction and preserved receipt comparisons",
+  "recorded_at": "2026-10-12T01:17:10.934920+00:00",
+  "candidate_sha256": "589e1ff95f99570659014c8e3c4f36a51dd21bcaefc9a8a6b9bb976040919261",
+  "checks": {
+    "current_six_snapshots_and_four_maintained_files": {
+      "candidate_sha256": "589e1ff95f99570659014c8e3c4f36a51dd21bcaefc9a8a6b9bb976040919261",
+      "files": {
+        "dev/toolchains/p2996_asan_runtime.py": "b5707d35a19ef75e706824e094dc04184f975faa9d2afdf7b5911a3918211fdf",
+        "docs/sanitizers.md": "b014fdeb3ebeca359060e98480907e77bf9f4c62d7f9c70743921f7adba2e2b2",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "8d39c6faf3dcc62406c041eeac94c55adfb44187e735881e64d7ca2fe6e92a5c",
+        ".planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "390ce280218e89c656f2e777179e6bc3a167ffde7057aaf47fe270b1330db866"
+      },
+      "snapshots": 6
+    },
+    "exact_two_line_correction": {
+      "identity_full_mode_line": 87,
+      "target_identity_guard_line": 75,
+      "candidate_code_executed": false
+    },
+    "preserved_rejected_preparation": {
+      "files": 39,
+      "all_source_digests_bound_to_completed_original_review": true,
+      "changed_live_sources_not_replayed": true
+    },
+    "preserved_rejected_review": {
+      "private_copy_pairs": 14,
+      "review_sha256": "fcda42b1e9d1e97deac1c228244e1b1bf96566a41a3c7633e0e4dd7d05faab4a",
+      "original_finding_immutable": true
+    },
+    "repaired_controls_private_copy_pairs": 39,
+    "recorded_controls": {
+      "controls": 40,
+      "sandbox_subprocesses": 17,
+      "positive_rc0": 2,
+      "rejection_rc1": 15,
+      "special_mode_rejections": 6,
+      "guard_entry_rejections": 2,
+      "composition": {
+        "case": "real-wrapper-composition",
+        "result": "PASS",
+        "events": [
+          "target-identity-checked",
+          "renovate-semantic-check-called",
+          "reflection-guard-reached-with-all-three-overlays"
+        ],
+        "mocked_digest_calls": 63,
+        "live_shared_guard_executed": false,
+        "target_identity_stubbed": true
+      },
+      "outcomes": [
+        {
+          "case": "positive-replace",
+          "returncode": 0,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "case": "positive-restore",
+          "returncode": 0,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "case": "wrong-source",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "wrong-destination",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "source-symlink",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": true
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "5904b5e3cce5d5f92a04e720373309c0d767ca654295ad87f91341b05a1bcfc4"
+        },
+        {
+          "case": "destination-symlink",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": true
+            }
+          },
+          "stderr_sha256": "1f1f206d8f9eae65f020e779ee2be394290e0a4647173d422f4c77cece3a45e6"
+        },
+        {
+          "case": "source-hardlink",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 2,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "bb13e69400ad9cfbce1b066957a2865ec26e17ffa9f4007c35ed1b9b5f178487"
+        },
+        {
+          "case": "destination-hardlink",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 2,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "d88bc3af56d5285558fcaad31709cdbe6703b3d91519211b7f45a419cf347bd2"
+        },
+        {
+          "case": "source-mode",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o644",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "destination-mode",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o644",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "source-setuid",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o4755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "destination-setuid",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o4755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "source-setgid",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o2755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "destination-setgid",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o2755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "source-sticky",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o1755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "destination-sticky",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o1755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a"
+        },
+        {
+          "case": "outside-allowlist",
+          "returncode": 1,
+          "preimages": {
+            "staged": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            },
+            "destination": {
+              "mode": "0o755",
+              "nlink": 1,
+              "is_symlink": false
+            }
+          },
+          "stderr_sha256": "9036cfea3c07c3e29268db9ff0598698eacbb7185d45a2ddf403384f25da1bbc"
+        }
+      ],
+      "reviewer_reran_controls": false
+    },
+    "recorded_parent_control_execution": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/controls.py"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.4713200421538204,
+      "started_at": "2026-10-12T01:10:39.622089+00:00",
+      "finished_at": "2026-10-12T01:10:42.093427+00:00",
+      "script_sha256": "074ee01e4ee31ffbf95c05dcf56dfccedcd9fa5a9448c2a43acd47a22269981e",
+      "stdout": "{\"state\": \"PASS: pure guard composition and private confined replacement/restore controls\", \"controls\": 40, \"commands\": 17, \"receipt\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/controls.json\"}\n",
+      "stderr": ""
+    },
+    "recorded_static": {
+      "returncodes": [
+        0,
+        0,
+        0
+      ],
+      "acceptance_baseline_files": 19,
+      "reviewer_reran": false
+    },
+    "recorded_secret_scan": {
+      "total_text_bindings": 135,
+      "verified_current_text": 103,
+      "reused_prior_verified_text": 32,
+      "reused_paths": [
+        "evidence/p2996-asan-runtime/controls/controls.json",
+        "evidence/p2996-asan-runtime/controls/controls.py.source",
+        "evidence/p2996-asan-runtime/controls/destination-hardlink.stderr",
+        "evidence/p2996-asan-runtime/controls/destination-hardlink.stdout",
+        "evidence/p2996-asan-runtime/controls/destination-mode.stderr",
+        "evidence/p2996-asan-runtime/controls/destination-mode.stdout",
+        "evidence/p2996-asan-runtime/controls/destination-symlink.stderr",
+        "evidence/p2996-asan-runtime/controls/destination-symlink.stdout",
+        "evidence/p2996-asan-runtime/controls/outside-allowlist.stderr",
+        "evidence/p2996-asan-runtime/controls/outside-allowlist.stdout",
+        "evidence/p2996-asan-runtime/controls/positive-replace.stderr",
+        "evidence/p2996-asan-runtime/controls/positive-replace.stdout",
+        "evidence/p2996-asan-runtime/controls/positive-restore.stderr",
+        "evidence/p2996-asan-runtime/controls/positive-restore.stdout",
+        "evidence/p2996-asan-runtime/controls/private.sb",
+        "evidence/p2996-asan-runtime/controls/replace.py.source",
+        "evidence/p2996-asan-runtime/controls/source-hardlink.stderr",
+        "evidence/p2996-asan-runtime/controls/source-hardlink.stdout",
+        "evidence/p2996-asan-runtime/controls/source-mode.stderr",
+        "evidence/p2996-asan-runtime/controls/source-mode.stdout",
+        "evidence/p2996-asan-runtime/controls/source-symlink.stderr",
+        "evidence/p2996-asan-runtime/controls/source-symlink.stdout",
+        "evidence/p2996-asan-runtime/controls/wrong-destination.stderr",
+        "evidence/p2996-asan-runtime/controls/wrong-destination.stdout",
+        "evidence/p2996-asan-runtime/controls/wrong-source.stderr",
+        "evidence/p2996-asan-runtime/controls/wrong-source.stdout",
+        "evidence/p2996-asan-runtime/controls-copy-manifest.json",
+        "evidence/p2996-asan-runtime/controls-execution.json",
+        "evidence/p2996-asan-runtime/pre-review-secret-scan.json",
+        "evidence/p2996-asan-runtime/pre-review-static.json",
+        "evidence/p2996-asan-runtime/repair-postcommit.json",
+        "evidence/p2996-asan-runtime/target-inventory.json"
+      ],
+      "digest_false_positive_dispositions": 2,
+      "raw_returncode": 1,
+      "transformed_returncode": 0,
+      "complete_token_files": [],
+      "reviewer_reran_scanner": false
+    },
+    "current_git_identity": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "symbolic-ref",
+          "--short",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "codex/marketplace-native-onboarding\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stdout": "b452c6d64a125b8c4f3766dcb3093220bf70b7ed\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+          "rev-parse",
+          "--path-format=absolute",
+          "--git-common-dir"
+        ],
+        "returncode": 0,
+        "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "watched_text_sha256": {
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/review.json": "fcda42b1e9d1e97deac1c228244e1b1bf96566a41a3c7633e0e4dd7d05faab4a",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/comparison.json": "f0e5d61b0c81508450a679db89b012d13241743f16025ec6ca8908b177276733",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/candidate.json": "589e1ff95f99570659014c8e3c4f36a51dd21bcaefc9a8a6b9bb976040919261",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/contract.json": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/candidate-inputs.json": "aba45ce5268595f35d7cc9270de53666eb61171a2886423aa8535e88c0d802e7",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_asan_runtime.py": "b5707d35a19ef75e706824e094dc04184f975faa9d2afdf7b5911a3918211fdf",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/docs/sanitizers.md": "b014fdeb3ebeca359060e98480907e77bf9f4c62d7f9c70743921f7adba2e2b2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md": "8d39c6faf3dcc62406c041eeac94c55adfb44187e735881e64d7ca2fe6e92a5c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/.planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md": "390ce280218e89c656f2e777179e6bc3a167ffde7057aaf47fe270b1330db866",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/candidate-inputs.json": "6c11b34403eac79b3f06f2bf9e03e6ecbbd6eab35229f6550a71b93feceee663",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation-copy-manifest.json": "7fdb684fa3a6b2977e14231fa3b5df557ce97da153733df63b684d16f731afaa",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/candidate.json": "a5d7cd984515fcd8f4ba677fd62544c8927cbff0ab272145ef07169ee0bda9eb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/contract.json": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/controls.json": "e86093782f95543e0697e47302fffaee5ce9aac5350d3b5b361d95739889737f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/controls.py.source": "ee47ca2745c972f1ee62da14811171d2d6674bb7457d7264d32a50bdac76e265",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-hardlink.stderr": "9c2a6e2dc2f0e2485fc6e2ec4e134ef225d0c32a076eb4ad5c3a500cf130b1d2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-mode.stderr": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-symlink.stderr": "9ed4783f368eadd84db738a26603621af27322a678fdc344f1ae2f77f545ae49",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/destination-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/outside-allowlist.stderr": "7ab727d37654d295b528346d94f08110ad5688e7bb3bd42ec61bf87b6e911cff",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/outside-allowlist.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/positive-replace.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/positive-replace.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/positive-restore.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/positive-restore.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/private.sb": "4e299be6680983aa37aee7ed5e8a7c4a3bbfcc67f4120b469c88719b7ca9b668",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/replace.py.source": "b44f1c4f9b379c5a9d15eb0425369edf172a27cfb2f000b911af7bbeeb7a8354",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-hardlink.stderr": "2a7a6a4e8d422b7df10c6ad2d6ed937daeeca12b79fee90bf2242eb26a18069a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-mode.stderr": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-symlink.stderr": "3d3c841062128cc3d2f2c5a64a0c06888af3ca09dbb91df4f3a5e56f007b5339",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/source-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/wrong-destination.stderr": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/wrong-destination.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/wrong-source.stderr": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls/wrong-source.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls-copy-manifest.json": "017ec0759e963a24788862ff990602f26a3e84b663882ef61b690769dcdef731",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/controls-execution.json": "21d73e54fe47a3119a713b79f633cdb5c79668c436b542eafa685a9f2de9a70f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/pre-review-secret-scan.json": "3785e20477d259aa0c11a1b4c2d09e3d12d6a535969644249d99f9f9245e8059",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/pre-review-static.json": "a12bac64859b2cb54ec0226f59ce112d9d8d08a1f214a4d08feaf3e9aff52fd1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/repair-postcommit.json": "366a5d65110549d47af5febb671f8c671ee86546dee67dba532133d297ea2a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/target-inventory.json": "7ca6af3e552aaf0d4e22779602307c67188c33e47b9d4d1ac481950c0c49bd62",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/dev__toolchains__p2996_asan_runtime.py.source": "c390c4615eeb2a023dc9bd255b18e2a9425a69f38712c79c126f327825e8c40c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/docs__sanitizers.md.source": "4b0a35b0465b3bd84c6af8c82400bc6facbbd8dea4d35840ebcdd3e84d4726d4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/.planning__2026-10-10-marketplace-macos-reflection-scaffold__task_plan.md.source": "4f8dc2459f723c26fff8b2d850e769d7eba1ca3dd47aebe8d320af32e422db0f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-preparation/.planning__2026-10-10-marketplace-macos-reflection-scaffold__progress.md.source": "9aef09b350bb9a16cf5b90e4a6146d2aef53606fe19b802a3670f0d2ec5248f8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review-copy-manifest.json": "58f5f5ed611d9f37b0f92e723768b6d78c99e910bcf74bfb2190373829915b65",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/review.json": "fcda42b1e9d1e97deac1c228244e1b1bf96566a41a3c7633e0e4dd7d05faab4a",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/supporting-manifest.json": "d1a8d7419eece6f3884df40ad031b1d6637e558c69d65eb9a3b7ec3ce0713dfd",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/supporting-manifest.json": "d1a8d7419eece6f3884df40ad031b1d6637e558c69d65eb9a3b7ec3ce0713dfd",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-candidate.json": "a5d7cd984515fcd8f4ba677fd62544c8927cbff0ab272145ef07169ee0bda9eb",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-candidate.json": "a5d7cd984515fcd8f4ba677fd62544c8927cbff0ab272145ef07169ee0bda9eb",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-candidate-inputs.json": "6c11b34403eac79b3f06f2bf9e03e6ecbbd6eab35229f6550a71b93feceee663",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-candidate-inputs.json": "6c11b34403eac79b3f06f2bf9e03e6ecbbd6eab35229f6550a71b93feceee663",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-contract.json": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-contract.json": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-controls-execution.json": "21d73e54fe47a3119a713b79f633cdb5c79668c436b542eafa685a9f2de9a70f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-controls-execution.json": "21d73e54fe47a3119a713b79f633cdb5c79668c436b542eafa685a9f2de9a70f",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-pre-review-static.json": "a12bac64859b2cb54ec0226f59ce112d9d8d08a1f214a4d08feaf3e9aff52fd1",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-pre-review-static.json": "a12bac64859b2cb54ec0226f59ce112d9d8d08a1f214a4d08feaf3e9aff52fd1",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/original-pre-review-secret-scan.json": "3785e20477d259aa0c11a1b4c2d09e3d12d6a535969644249d99f9f9245e8059",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/original-pre-review-secret-scan.json": "3785e20477d259aa0c11a1b4c2d09e3d12d6a535969644249d99f9f9245e8059",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/compare.py": "f40e25f33355fd09bd7ce099fa4972a57de771ee907a9004c7ed39ab9cc42f3c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/compare.py": "f40e25f33355fd09bd7ce099fa4972a57de771ee907a9004c7ed39ab9cc42f3c",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/comparison.json": "f0e5d61b0c81508450a679db89b012d13241743f16025ec6ca8908b177276733",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/execution.json": "d5ae6acac0c39b26329165de885504bdb397362af0da7c54c7c88733aa25ad2f",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/execution.json": "d5ae6acac0c39b26329165de885504bdb397362af0da7c54c7c88733aa25ad2f",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/mode-control.py": "c0dddfda41cf254b4bb80fa5902666185a360e80590a587f70fe516ef09d745e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/mode-control.py": "c0dddfda41cf254b4bb80fa5902666185a360e80590a587f70fe516ef09d745e",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/mode-control.json": "c59607d7a2e984ebbcbec2637c16f074b7246975ad54a7e9085eec49b6139963",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/mode-control.json": "c59607d7a2e984ebbcbec2637c16f074b7246975ad54a7e9085eec49b6139963",
+    "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-asan-runtime-review-8lwi3r5h/mode-execution.json": "377307f217b51973d688dd42cdfedbd5bb0acee62b5ef76e1e6f45171624a920",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/rejected-review/mode-execution.json": "377307f217b51973d688dd42cdfedbd5bb0acee62b5ef76e1e6f45171624a920",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls-copy-manifest.json": "5cfe4c8c481a5c950a6e97836bb4e90d1504b54c161aedf1b5075194e55ea213",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/controls.py": "074ee01e4ee31ffbf95c05dcf56dfccedcd9fa5a9448c2a43acd47a22269981e",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/controls.py.source": "074ee01e4ee31ffbf95c05dcf56dfccedcd9fa5a9448c2a43acd47a22269981e",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/replace.py": "b44f1c4f9b379c5a9d15eb0425369edf172a27cfb2f000b911af7bbeeb7a8354",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/replace.py.source": "b44f1c4f9b379c5a9d15eb0425369edf172a27cfb2f000b911af7bbeeb7a8354",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/private.sb": "c78fca5e42519c9a409c5f6fab6bbf4b90bcb684bc459ffda5102a88cb8578f9",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/private.sb": "c78fca5e42519c9a409c5f6fab6bbf4b90bcb684bc459ffda5102a88cb8578f9",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/controls.json": "a187fa275cb99d81a8b58145cd661d83d303756dccbae390966b134b1cc21686",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/controls.json": "a187fa275cb99d81a8b58145cd661d83d303756dccbae390966b134b1cc21686",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/execution.json": "2444f411cc69db54ed36634456bc02b69fcf192e75460091534518a242d849a8",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/execution.json": "2444f411cc69db54ed36634456bc02b69fcf192e75460091534518a242d849a8",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/positive-replace.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/positive-replace.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/positive-replace.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/positive-replace.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/positive-restore.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/positive-restore.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/positive-restore.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/positive-restore.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/wrong-source.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/wrong-source.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/wrong-source.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/wrong-source.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/wrong-destination.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/wrong-destination.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/wrong-destination.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/wrong-destination.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-symlink.stderr": "5904b5e3cce5d5f92a04e720373309c0d767ca654295ad87f91341b05a1bcfc4",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-symlink.stderr": "5904b5e3cce5d5f92a04e720373309c0d767ca654295ad87f91341b05a1bcfc4",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-symlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-symlink.stderr": "1f1f206d8f9eae65f020e779ee2be394290e0a4647173d422f4c77cece3a45e6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-symlink.stderr": "1f1f206d8f9eae65f020e779ee2be394290e0a4647173d422f4c77cece3a45e6",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-hardlink.stderr": "bb13e69400ad9cfbce1b066957a2865ec26e17ffa9f4007c35ed1b9b5f178487",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-hardlink.stderr": "bb13e69400ad9cfbce1b066957a2865ec26e17ffa9f4007c35ed1b9b5f178487",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-hardlink.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-hardlink.stderr": "d88bc3af56d5285558fcaad31709cdbe6703b3d91519211b7f45a419cf347bd2",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-hardlink.stderr": "d88bc3af56d5285558fcaad31709cdbe6703b3d91519211b7f45a419cf347bd2",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-mode.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-mode.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-mode.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-mode.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-mode.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-setuid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-setuid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-setuid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-setuid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-setuid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-setuid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-setuid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-setuid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-setgid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-setgid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-setgid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-setgid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-setgid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-setgid.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-setgid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-setgid.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-sticky.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-sticky.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/source-sticky.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/source-sticky.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-sticky.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-sticky.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/destination-sticky.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/destination-sticky.stderr": "8eb5c16a0eb7a0c5d3d1f578df74d0a96ec4151d81dc27fe5ee6a003b19a998a",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/outside-allowlist.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/outside-allowlist.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-mode-repair-_t7l4kfc/outside-allowlist.stderr": "9036cfea3c07c3e29268db9ff0598698eacbb7185d45a2ddf403384f25da1bbc",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repaired-controls/outside-allowlist.stderr": "9036cfea3c07c3e29268db9ff0598698eacbb7185d45a2ddf403384f25da1bbc",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repair-static.json": "cea82fe9a67ed03a92e46ec173a6570ef42c03e04de4ef33951bffcad46363d6",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-asan-runtime/repair-secret-scan.json": "27e7f91af23b27ecc5cdc926fd66cc70544ebbce85047156c825dec677fdd27e"
+  },
+  "not_run": [
+    "Candidate module import or helper functions",
+    "Current installed runtime, complete shared guard, or original 19 input rehash",
+    "Previous 14a1 binaries or artifact checks",
+    "Parent controls, scanner, baseline, runtime or compiler replay",
+    "Capacity, leases, service or container operations, model sessions, or network"
+  ]
+}

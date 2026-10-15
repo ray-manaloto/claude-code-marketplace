@@ -1,0 +1,143 @@
+{
+  "state": "PASS",
+  "commands": [
+    {
+      "case": "frozen-plan",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-snapshot-plan-20261011T0041/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "pour isl/0.28 (dependency)\npour mpfr/4.2.2 (dependency)\npour libmpc/1.4.1 (dependency)\npour gcc/16.2.0 (requested)\n",
+      "stderr": "",
+      "requests": [
+        {
+          "path": "/api/formula/gcc.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/zstd.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/mpfr.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/libmpc.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/isl.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/gmp.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/xz.json",
+          "status": 200
+        },
+        {
+          "path": "/api/formula/lz4.json",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "case": "missing-metadata",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-snapshot-plan-20261011T0041/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "mise WARN  HTTP HEAD https://formulae.brew.sh/api/cask/gcc.json attempt 1 failed after 529\u00b5s (transient): HTTP status server error (501 Unsupported method ('HEAD')) for url (http://127.0.0.1:49157/api/cask/gcc.json); retrying in 179.482055ms\nmise WARN  HTTP HEAD https://formulae.brew.sh/api/cask/gcc.json attempt 2 failed after 3.0ms (transient): HTTP status server error (501 Unsupported method ('HEAD')) for url (http://127.0.0.1:49157/api/cask/gcc.json); retrying in 500.670159ms\nmise WARN  HTTP HEAD https://formulae.brew.sh/api/cask/gcc.json attempt 3 failed after 1.1ms (transient): HTTP status server error (501 Unsupported method ('HEAD')) for url (http://127.0.0.1:49157/api/cask/gcc.json); retrying in 2.417951492s\nmise ERROR failed to fetch Homebrew formula 'gcc'\nmise ERROR HTTP status client error (404 Not Found) for url (http://127.0.0.1:49157/api/formula/gcc.json)\nmise ERROR Version: 2026.10.7 macos-arm64 (2026-10-09)\nmise ERROR Run with --verbose or MISE_VERBOSE=1 for more information\n",
+      "requests": [
+        {
+          "path": "/api/formula/gcc.json",
+          "status": 404
+        },
+        {
+          "path": "/api/formula.json",
+          "status": 404
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/formula/gcc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/zstd.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/mpfr.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/libmpc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/isl.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gmp.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/xz.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/lz4.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gcc.json",
+      "status": 404
+    },
+    {
+      "path": "/api/formula.json",
+      "status": 404
+    }
+  ],
+  "snapshot_sha256": {
+    "/api/formula/gcc.json": "ffe5077ea14438519a1abad7d3a633877600ef602e6beacd1dbf59c0bacec62e",
+    "/api/formula/gmp.json": "20c5bc8d02c0487a6049dd18a5db4aeee22523d335ce41b13d2368da22e60d42",
+    "/api/formula/isl.json": "c655c3ae0b73a91362c71e9072bd4e869357a49e5d8d152f3b5476fb9b67653e",
+    "/api/formula/libmpc.json": "8886085522f13c56fdbe02c8f2046fb708d7e183de44f99cb8a9b644b47b993d",
+    "/api/formula/mpfr.json": "10755fa592357e8864865fc278a13552b1f7fd2361faae626ab074a814486b82",
+    "/api/formula/zstd.json": "cff121a8548e2895380188f07c1d6cf1e8ca4915b9d9312e4a0346ffcc073a29",
+    "/api/formula/lz4.json": "f40a110094ade7180cdd31ef32a2b03f3ce29b467fb819e0973efc43b0b03f39",
+    "/api/formula/xz.json": "799b4352821df06a274505f092e50c65cd1f1ae26c8a5e82689da0a87eac4caa"
+  },
+  "script_sha256": "3c198f6c26b13c816c89c674b203c892c01725b8e06d3688cb75494e6f03da13",
+  "native_version": "2026.10.7 macos-arm64 (2026-10-09)",
+  "all_metadata_served_from_verified_snapshots": true,
+  "missing_metadata_failed_closed": true,
+  "install_or_compiler_executed": false,
+  "loopback_server_stopped": true
+}

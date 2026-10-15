@@ -1,0 +1,131 @@
+"""Collect immutable text and artifact receipts for the private TSan repair trial."""
+
+import fcntl
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+from datetime import datetime, timezone
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+EV = ROOT / 'evidence/p2996-tsan-repair'
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load(path):
+    return json.loads(path.read_text())
+
+
+def save(path, value):
+    path.write_text(json.dumps(value, indent=2) + '\n')
+
+
+contract = load(EV / 'contract.json')
+admission = load(EV / 'admission.json')
+execution = load(EV / 'native-execution.json')
+directory = Path(admission['run_directory'])
+qualification = load(directory / 'qualification.json')
+assert execution['returncode'] == 0
+assert qualification['state'].startswith('PASS: private TSan repair')
+assert qualification['lease_released'] and qualification['protected_state_unchanged']
+assert qualification['helper_sha256'] == admission['helper_sha256'] == sha(ROOT / 'dev/toolchains/p2996_tsan_repair.py')
+assert qualification['admission_sha256'] == sha(EV / 'admission.json')
+assert admission['contract_sha256'] == sha(EV / 'contract.json')
+assert all(row['returncode'] == row['expected_returncode'] for row in qualification['commands'])
+expected = {'original-clean': -11, 'tsan-clean': 0, 'tsan-race': 86,
+            'tsan-ubsan-clean': 0, 'tsan-ubsan-race': 86, 'tsan-ubsan-overflow': 86}
+assert {row['case']: row['returncode'] for row in qualification['commands'] if row['case'] in expected} == expected
+assert set(qualification['cells']) == {'tsan', 'tsan-ubsan'}
+assert {name: set(row['runs']) for name, row in qualification['cells'].items()} == {
+    'tsan': {'clean', 'race'}, 'tsan-ubsan': {'clean', 'race', 'overflow'}}
+for row in qualification['commands']:
+    for log in row['logs']:
+        assert sha(Path(log['path'])) == log['sha256']
+
+artifacts = []
+for variant, record in qualification['repair'].items():
+    path = Path(record['path'])
+    assert path == directory / variant / 'libclang_rt.tsan_osx_dynamic.dylib'
+    assert path.resolve(strict=True) == path and sha(path) == record['sha256']
+    artifacts.append({'kind': variant + '-tsan-runtime', 'path': str(path),
+                      'sha256': record['sha256'], 'bytes': path.stat().st_size})
+for mode, cell in qualification['cells'].items():
+    for kind, record in cell['artifacts'].items():
+        path = Path(record['path'])
+        assert path.resolve(strict=True) == path and sha(path) == record['sha256']
+        artifacts.append({'kind': mode + '-' + kind, 'path': str(path),
+                          'sha256': record['sha256'], 'bytes': path.stat().st_size})
+installed = Path(contract['prefixes']['p2996']) / 'lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib'
+assert sha(installed) == contract['tools'][str(installed)]
+artifacts.append({'kind': 'installed-tsan-unchanged', 'path': str(installed),
+                  'sha256': sha(installed), 'bytes': installed.stat().st_size})
+
+processes = []
+for name, pid in [('native-helper', execution['pid'])] + [
+        (row['case'], row['pid']) for row in qualification['commands']]:
+    try:
+        os.kill(pid, 0)
+        absent = False
+    except ProcessLookupError:
+        absent = True
+    processes.append({'case': name, 'pid': pid, 'absent': absent})
+    assert absent, (name, pid)
+lock = Path.home() / '.local/state/dotfiles/heavy-gate.lock'
+before = lock.read_bytes()
+with lock.open('rb') as handle:
+    fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+assert lock.read_bytes() == before
+
+launch = Path(execution['private_launch_directory'])
+texts = [directory / 'qualification.json', directory / 'private.sb']
+texts += [Path(log['path']) for row in qualification['commands'] for log in row['logs']]
+texts += [launch / name for name in ('launch.json', 'execution.json', 'stdout', 'stderr')]
+assert len(texts) == len(set(texts))
+rows = []
+for path in texts:
+    payload = path.read_bytes()
+    content = payload.decode('utf-8')
+    assert content.encode('utf-8') == payload
+    rows.append({'source': str(path), 'sha256': sha(path), 'bytes': len(payload), 'text': content})
+
+operation = EV / 'operation'
+operation.mkdir(exist_ok=False)
+save(operation / 'text-receipts.json', {'encoding': 'UTF-8, exact bytes', 'files': rows})
+save(EV / 'artifact-inventory.json', {'artifacts': artifacts,
+     'qualification_sha256': sha(directory / 'qualification.json'),
+     'scope': 'Private original/patched TSan trial; installed TSan unchanged'})
+closure = {'recorded_at': datetime.now(timezone.utc).isoformat(),
+           'state': 'PASS: private TSan original crash and patched five-case comparison',
+           'native_returncode': 0,
+           'native_execution_sha256': sha(EV / 'native-execution.json'),
+           'qualification_sha256': sha(directory / 'qualification.json'),
+           'retained_text_files': len(rows),
+           'text_receipts_sha256': sha(operation / 'text-receipts.json'),
+           'command_count': len(qualification['commands']),
+           'command_outcomes': [{'case': row['case'], 'returncode': row['returncode']}
+                                for row in qualification['commands']],
+           'artifact_count': len(artifacts),
+           'artifact_inventory_sha256': sha(EV / 'artifact-inventory.json'),
+           'processes': processes,
+           'lease_probe': {'free': True, 'contents_unchanged': True},
+           'protected_state_unchanged': True,
+           'installed_tsan_unchanged': True}
+save(operation / 'closure.json', closure)
+pairs = []
+for source, name in [(directory / 'qualification.json', 'qualification.json'),
+                     (EV / 'admission.json', 'admission.json'),
+                     (EV / 'native-launch.json', 'native-launch.json'),
+                     (EV / 'native-execution.json', 'native-execution.json')]:
+    target = operation / name
+    shutil.copyfile(source, target)
+    assert sha(source) == sha(target)
+    pairs.append({'source': str(source), 'destination': str(target), 'sha256': sha(target)})
+save(operation / 'copy-manifest.json', {'files': pairs})
+print(json.dumps({'state': closure['state'], 'commands': len(qualification['commands']),
+                  'text_files': len(rows), 'artifacts': len(artifacts),
+                  'processes_absent': len(processes), 'closure_sha256': sha(operation / 'closure.json')}))

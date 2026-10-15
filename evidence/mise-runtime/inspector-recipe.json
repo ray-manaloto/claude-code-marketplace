@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "kind": "09b1 bounded current-mise reattestation recipe",
+  "state": "SOURCE PREREQUISITE COMPLETE; no current-mise version/profile execution performed",
+  "created_at": "2026-10-11T15:18:09.784Z",
+  "workspace_identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "ec1b5353ec9ab684d5a3668675778ca503923d4a",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "closing_head": "eb92a7478186334d31dbfc0c6e0e1da0c6b5abe5"
+  },
+  "parent_reported_historical_09b_commit": "eb92a7478186334d31dbfc0c6e0e1da0c6b5abe5",
+  "scope": {
+    "native_commands": 0,
+    "help_commands": 0,
+    "profiles": 0,
+    "compiler_build_install_network": 0,
+    "full_preservation_scans": 0,
+    "shared_writes": 0,
+    "private_JSON_outputs": 1,
+    "method": "Read existing code and receipts with Node fs; hash exact receipt/probe files. No historical receipt or project file is changed."
+  },
+  "observed_discrepancy": {
+    "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-preservation.json",
+    "sha256": "2114883c19e26b635f4c372e29f6d2365fe1bf10663aee8687633d229472071c",
+    "checks_total": 10588,
+    "matched_checks": 10586,
+    "mismatched_records": 2,
+    "unique_path": "/Users/rmanaloto/.local/bin/mise",
+    "record_categories": [
+      "source_build_record",
+      "proposal_tool"
+    ],
+    "changed_fields": [
+      "sha256",
+      "bytes"
+    ],
+    "unchanged_identity_fields": [
+      "lexists",
+      "exists",
+      "lstat_mode",
+      "resolved_path",
+      "mode",
+      "symlink_target"
+    ],
+    "old_mise": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014",
+      "bytes": 127277984,
+      "version": "2026.10.7"
+    },
+    "current_mise": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+      "bytes": 127303648,
+      "version": "2026.10.8"
+    },
+    "current_identity_basis": "SHA/bytes and unchanged metadata are bound to the supplied independent preservation receipt. Version 2026.10.8 was reported by the parent; this brief did not invoke the binary."
+  },
+  "immutable_stale_aliases": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "fields": [
+        "records[111].sha256",
+        "records[111].bytes"
+      ],
+      "disposition": "Only this unique-path record is copied and overlaid in memory for the frozen protected() function."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/qualification.json",
+      "fields": [
+        "proposal.configuration.mise.sha256",
+        "proposal.configuration.mise.version",
+        "proposal.inputs.MISE.sha256"
+      ],
+      "disposition": "Historical configuration remains unchanged. The new helper uses CURRENT_MISE directly for execution and new tool bindings."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/proposal.json",
+      "fields": [
+        "tools[\"/Users/rmanaloto/.local/bin/mise\"]"
+      ],
+      "disposition": "Preserve as the historical 09b proposal."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/qualification.json",
+      "fields": [
+        "proposal.tools[\"/Users/rmanaloto/.local/bin/mise\"]"
+      ],
+      "disposition": "Preserve the successful historical 09b command evidence; emit a separate current reattestation."
+    }
+  ],
+  "minimal_new_helper": {
+    "shape": "One new helper and its new admission/operation/review receipts; no edits to iwyu_build.py, p2996_reflection.py, old receipts, global configs, profiles, locks, defaults, or installed tools.",
+    "current_mise_object": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "sha256": "dd77de9a7574e38d8409fb06fa85e1581415896639d075987791d8c4e5a57b73",
+      "bytes": 127303648,
+      "version": "2026.10.8"
+    },
+    "protected_function_binding": "def bind_current_protection(load, function):\n    import copy\n    installed = ROOT / \"evidence/p2996-install\"\n    baseline_path = ROOT / \"evidence/p2996-registration/independent-registration/post-state.json\"\n    inventory_path = installed / \"independent-installation/post-install-inventory.json\"\n    assert digest(baseline_path) == \"8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317\"\n    assert digest(inventory_path) == \"c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103\"\n    original = load(inventory_path)\n    inventory = copy.deepcopy(original)\n    indices = [i for i, row in enumerate(inventory[\"records\"]) if row[\"path\"] == CURRENT_MISE[\"path\"]]\n    assert len(indices) == 1\n    i = indices[0]\n    row = inventory[\"records\"][i]\n    assert row[\"sha256\"] == \"f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014\"\n    assert row[\"bytes\"] == 127277984\n    row.update(sha256=CURRENT_MISE[\"sha256\"], bytes=CURRENT_MISE[\"bytes\"])\n    expected = copy.deepcopy(original)\n    expected[\"records\"][i] = original[\"records\"][i] | {\"sha256\": CURRENT_MISE[\"sha256\"], \"bytes\": CURRENT_MISE[\"bytes\"]}\n    assert inventory == expected\n    assert digest(Path(CURRENT_MISE[\"path\"])) == CURRENT_MISE[\"sha256\"]\n    assert Path(CURRENT_MISE[\"path\"]).stat().st_size == CURRENT_MISE[\"bytes\"]\n    scope = globals() | {\"baseline\": load(baseline_path), \"inventory\": inventory,\n                         \"prefix\": Path(inventory[\"prefix\"]), \"evidence\": installed, \"load\": load}\n    protected = function(ROOT / \"dev/toolchains/p2996_reflection.py\", \"protected\",\n                         \"10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff\", scope)\n    return protected, dict(CURRENT_MISE)",
+    "required_existing_symbols": [
+      "ROOT",
+      "Path",
+      "digest",
+      "preserved",
+      "snapshot",
+      "install_entries",
+      "prefix_inventory"
+    ],
+    "qualified_extractor": "Reuse function(path, name, sha, scope) from iwyu_build.py lines 60-64. Extract only frozen protected(), never execute either historical main().",
+    "narrowness": "Match the literal mise path and require exactly one row. Update only sha256 and bytes; retain all mode/path/existence/symlink/Mach-O/category fields and all other records. No recursive hash replacement, path skipping, exception swallowing, or on-disk overlay.",
+    "next_consumer_binding": "Use the separately admitted current_mise object wherever the new helper selects mise or emits its tools map. Do not read the historical configuration.mise.sha256 as a current-runtime guard and do not relabel the old proposal as current.",
+    "preservation_invocation": "After parent admission, invoke the bound unchanged protected() before and after the short probe unit; this brief did not invoke it. The source/build inventory, globals, directory snapshots, install entries, and LLVM prefix inventory remain enforced."
+  },
+  "parity": {
+    "probe": {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+      "sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e",
+      "python": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "meaning": "Reports 32 allowlisted environment values, SHA-256 of the literal PATH string, and Homebrew LLVM PATH membership. It does not hash the mise executable or include its version."
+    },
+    "targets": [
+      {
+        "profile": "default",
+        "receipt_owner": "09b",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/default-after.stdout",
+        "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327",
+        "returncode": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path_sha256": "c35608cc0f5dad8111fedb413b35c2ed5559e8b57dfc2cc6c2fbb32aacde08b4",
+        "homebrew_llvm_on_path": true
+      },
+      {
+        "profile": "cpp-build",
+        "receipt_owner": "09b",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/iwyu-build-20261011T144943Z/named-profile.stdout",
+        "sha256": "b75dd9ae7ebb002d803e715e1164fcce1f9cbf8219b549273a3e3a7b1b03f473",
+        "returncode": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      },
+      {
+        "profile": "p2996",
+        "receipt_owner": "03b2",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T134510Z/p2996-profile.stdout",
+        "sha256": "e36362ece95e3600244447d61fe6cf7965fb5b210d0678c58fb358bb1bee17cb",
+        "returncode": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      },
+      {
+        "profile": "gcc16",
+        "receipt_owner": "03b2",
+        "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-p2996-20261011T134510Z/gcc16-profile.stdout",
+        "sha256": "c2bc009506cdedc0df96a90ea9b0b1881f5ca8d212c09a997cf6033f52aee6ad",
+        "returncode": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path_sha256": "f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b",
+        "homebrew_llvm_on_path": true
+      }
+    ],
+    "default_argv": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+    ],
+    "named_argv_template": [
+      "/Users/rmanaloto/.local/bin/mise",
+      "--no-hooks",
+      "-C",
+      "<new-private-09b1-empty-cwd>",
+      "-E",
+      "<cpp-build|p2996|gcc16>",
+      "exec",
+      "--fresh-env",
+      "--no-deps",
+      "--",
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+    ],
+    "comparison": "Require rc0, empty stderr, exact stdout bytes, and complete decoded JSON equality with the appropriate hash-bound target. No fields are omitted and no PATH normalization/replacement is authorized.",
+    "stable_values": "A same-path binary replacement does not itself change the PATH string, selected compiler/flag values, or probe format. Default retains path hash c35608cc0f5dad8111fedb413b35c2ed5559e8b57dfc2cc6c2fbb32aacde08b4; all named profiles retain f829d625f05308aa9c8ae651e1f848aa060af9fafa626be78f54783407d4d66b; all retain homebrew_llvm_on_path=true.",
+    "obsolete_targets": "Do not compare against install-preimages.json normal_environment.output (older default PATH 043ed24a...) or the original GCC runtime PATH 6899194f.... Latest 09b/03b2 outputs above already bind the accepted later PATH state.",
+    "environment": "Reuse the hash-bound existing normal-environment argv and original context-loading recipe from iwyu_build.py lines 50-53, keeping the raw context environment out of receipts. Keep MISE_OFFLINE=1, MISE_AUTO_INSTALL=0, MISE_EXEC_AUTO_INSTALL=0 and the existing Git isolation values. Do not derive an ambient shell environment or alter global configuration.",
+    "lane_overrides": "Create a separate environment dict per child. Remove both MARKETPLACE_P2996_PREFIX and MARKETPLACE_GCC16_PREFIX first, then apply only the profile-specific prefix below. Default and cpp-build receive neither.",
+    "profile_specific_prefixes": {
+      "cpp-build": {},
+      "p2996": {
+        "MARKETPLACE_P2996_PREFIX": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix"
+      },
+      "gcc16": {
+        "MARKETPLACE_GCC16_PREFIX": "/opt/homebrew/Cellar/gcc/16.2.0"
+      }
+    },
+    "selected_field_contract": "Default intentionally retains its existing Homebrew compiler/CPPFLAGS/LDFLAGS/PKG_CONFIG_PATH values. cpp-build has tools-only with CC/CXX and compiler/header/library flags null. p2996 and gcc16 select only their exact qualified compiler prefix, with the opposite prefix null. Keep MAKEFLAGS=-j2 and CMAKE_BUILD_PARALLEL_LEVEL=2 because no build occurs."
+  },
+  "isolation": {
+    "reason": "The existing allowlist omits DYLD_INSERT_LIBRARIES; retain the accepted additional isolation probe rather than silently assuming that field is clear.",
+    "profiles": [
+      "cpp-build",
+      "p2996",
+      "gcc16"
+    ],
+    "argv_suffix": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "-c",
+      "import os,json,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))",
+      "CFLAGS",
+      "CXXFLAGS",
+      "CPPFLAGS",
+      "LDFLAGS",
+      "CPATH",
+      "CPLUS_INCLUDE_PATH",
+      "LIBRARY_PATH",
+      "COMPILER_PATH",
+      "SDKROOT",
+      "DYLD_LIBRARY_PATH",
+      "DYLD_FALLBACK_LIBRARY_PATH",
+      "DYLD_INSERT_LIBRARIES"
+    ],
+    "expected": "rc0, empty stderr, decoded object with every listed key null. Use each named profile base/environment; this does not apply a null-flags expectation to default.",
+    "source": "p2996_reflection.py lines 125-128 already define this probe and expectation."
+  },
+  "bounded_future_sequence": [
+    "Bind the new helper/admission to exact current_mise SHA and bytes, old input hashes, and the single-record overlay. Reject any additional drift.",
+    "Check current mise identity and --version against 2026.10.8; require the literal executable path and unchanged permissions/symlink state.",
+    "Run protected(), default-before, each of cpp-build/p2996/gcc16 parity probes and its short isolation probe, then default-after and protected(). Use bounded sequential native calls with explicit actual exit/stdout/stderr receipts.",
+    "Require default-before and default-after bytes to equal the same latest default target. Recheck exact current_mise identity after all calls.",
+    "Emit a new current-tool reattestation and independent disposition. This admits later consumers of the new mise only after all checks pass; it neither rebuilds IWYU nor rewrites historical 09b evidence."
+  ],
+  "source_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py",
+      "lines": [
+        64,
+        78
+      ],
+      "supports": "Frozen protection body and all untouched closure checks."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py",
+      "lines": [
+        102,
+        128
+      ],
+      "supports": "Historical standalone mise guard and extra environment isolation probe."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+      "lines": [
+        38,
+        72
+      ],
+      "supports": "Registration baseline, install inventory, environment context, and hash-pinned AST extraction."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+      "lines": [
+        101,
+        137
+      ],
+      "supports": "Independent stale runtime guard, default/cpp-build probes, and proposal bindings; left unchanged."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+      "lines": [
+        215,
+        221
+      ],
+      "supports": "Historical final preservation/tool checks; left unchanged."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+      "lines": [
+        158,
+        167
+      ],
+      "supports": "Per-lane prefix cleanup and later qualified named-profile PATH state."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+      "lines": [
+        1,
+        3
+      ],
+      "supports": "Exact sanitized output semantics."
+    }
+  ],
+  "input_bindings": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.py",
+      "sha256": "10bcbabc0a7143dadd6a6364df0fdb5f7fffbf83c946e81e63254ce5ef18eeff"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_build.py",
+      "sha256": "48b95b5252fef0cfed97c1b45d99678c771a54f9262c5361d68f3fb6a2c34c6c"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/core_matrix.py",
+      "sha256": "c35136f176b64a9a4d26d1ee8bfcd4562b794a8bc597caa7c6ef539a46140208"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/gcc_install.py",
+      "sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3"
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py",
+      "sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-registration/independent-registration/post-state.json",
+      "sha256": "8a5f11975efc9a953d8b57bde87467af5460cd48a3f695224dcaa9148a205317"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/independent-installation/post-install-inventory.json",
+      "sha256": "c745d40123c3dfec10df7beb803df4a6e0a3ccabd143e39ee2f9c292a4734103"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/qualification.json",
+      "sha256": "f4720db22a7d02be7ff34d672086ea6c03ebebd8c6470b8037a694b297732a35"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/proposal.json",
+      "sha256": "abb28db8d94958fc5f8d649d3ffa4fdf877b574453ef6bd6aa071738255f4ba8"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-build/operation/qualification.json",
+      "sha256": "5a6b8c9927210afc8ca11e1e29d2b517eeb8cf9b27b8282e5fdbab3852c3461e"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-p2996/operation/qualification.json",
+      "sha256": "64f9516b1472283e0087cc28cb35c3549d128238cd5dd17cf678678c7bd2ed02"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-bootstrap/install-preimages.json",
+      "sha256": "e66b7bab872b74774702cfbb613e277e0e5ce210601f164c83c9eaa5acb69276"
+    },
+    {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-installation-review-wccnc_bw/current-preservation.json",
+      "sha256": "2114883c19e26b635f4c372e29f6d2365fe1bf10663aee8687633d229472071c"
+    }
+  ],
+  "status_probe_answered": true,
+  "unverified": [
+    "Current mise executable version, all four current profile outputs, and fresh isolation/preservation results remain unexecuted.",
+    "No claim that the executable replacement is behaviorally equivalent is made before the new unit passes."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "unit": "gh-guard",
+  "tickets": [
+    "CT-94 (R-174)",
+    "D179 (dated exception to D92/D113, 2026-10-14)"
+  ],
+  "title": "Raw gh write commands are refused for Claude (Bash deny gate) and Codex (project rules); one scanned route sends gh write text",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/gh-guard",
+  "branch": "claude/gh-guard",
+  "base_sha": "480993a",
+  "allocated_from": "480993a",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "public-text audit scratchpad public-text-guard/G1-audit.md (recommendations 2 and 4); retros/issue-scan.md IS-1",
+  "delivers": [
+    "the Bash PreToolUse deny gate refuses raw gh write commands (issue and pr create, edit, comment, review, close, merge; release, gist, label and repo writes; gh api with a write method, with -f/-F/--field/--raw-field/--input that imply POST, and graphql mutations) with a reason naming the scanned route; gh reads (view, list, api GET, graphql queries) pass",
+    "one scanned route, ./dev/mise run gh:write -- <gh args>, scans every free-text argument and every file named by --body-file, -F @file or --input with the pinned betterleaks and the repository config before it runs gh, refusing on a hit with the arg position and rule id only; it reuses the issue route's scanner helper",
+    "a project Codex rules file under .codex/rules forbids the same raw gh write prefixes and points to the route",
+    "docs/agents/hooks-and-mods.md records the D179 exception and its watch line; docs/agents/issue-tracker.md points comment and PR text at the route"
+  ],
+  "owned_paths": [
+    "dev/hooks/pretooluse_gate.py",
+    "dev/test_hooks.py",
+    "dev/gh_write.py",
+    "dev/test_gh_write.py",
+    "mise.dev.toml (gh:write and test:gh-write rows and the check:research depends line)",
+    ".codex/rules/",
+    "docs/agents/hooks-and-mods.md",
+    "docs/agents/issue-tracker.md",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/gh-guard.md"
+  ],
+  "excluded_shared_paths": [
+    ".claude/settings.json",
+    "dev/hooks/stop_gate.py",
+    "dev/hooks/git_gate.py",
+    "dev/git_delivery.py",
+    "dev/issue_create.py",
+    "dev/issue_amend.py",
+    ".gitleaks.toml",
+    "hk.pkl",
+    ".gitignore",
+    ".claude/",
+    ".agents/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:hooks",
+    "./dev/mise run test:gh-write",
+    "./dev/mise run test:issue-amend",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- gh-guard"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none (tests use a recording gh shim)",
+    "global_settings": "none"
+  },
+  "status": "integrated",
+  "created_at": "2026-10-14",
+  "notes": [
+    "dated exception D179: new gate rule in Python until the D131 C++ port (CT-02b.4)",
+    "the gate must keep refusing nothing the three existing gate rules allow beyond gh writes; the Settings pin stays exact",
+    "never print a private rule value or a matched value",
+    "retro: `retros/gh-guard.md` at 36fe2b7 (blob 3ab4eac), gate rc 0; added to the integration branch ahead of the merge in 8ed943a (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires; every lane commit carries a Claude Opus 5.5 trailer, and the retro says 412e21e and 36fe2b7 were written by Claude Fable 5.1 (retro-writer) under the trailer lines the parent's brief fixed, so writer_model stays the implementer's",
+    "parent edits from the retro: 1 (.claude/rules/dev-tests.md real-HOME sentence) and 2 (CODING_STANDARDS.md rule 16 under Tests) applied in 8ed943a; 3 became ticket-ledger row CT-96 (pending issue) under #138 for GG-1, GG-2 and GG-7, the GitHub issue is the parent's write; 4 (status and review disposition) applied in 8ed943a and completed at integration",
+    "integrated 2026-10-14 as 94e5445 (parents 8ed943a, 36fe2b7), no conflict, tree 8aaef74 = merge-tree; gates on the merged tree rc 0 (tasks validate 68, check, check:acceptance-baseline 19, check:research, test:hooks 27, test:gh-write 5, test:issue-amend 26, retro:gate, git diff --check 8ed943a and 94d32c4, betterleaks 1.9.0 git 94d32c4..HEAD no finding); live check of the merged gate: the raw issue comment probe deny, the issue view probe allow; report reviews/ccm-20261014/republish/gh-guard-merge-report.md",
+    "lane worktree .claude/worktrees/gh-guard removed by the merger after integration (clean, fully merged); branch claude/gh-guard kept"
+  ],
+  "head_sha": "36fe2b7",
+  "integration_merge": "94e5445",
+  "review": "fable cold review PASS-with-findings on 27cae68; P2 continuation and substituted graphql fixed in 412e21e",
+  "retro": "passed"
+}

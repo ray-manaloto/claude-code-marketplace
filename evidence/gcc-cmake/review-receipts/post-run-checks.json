@@ -1,0 +1,167 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "result": "PASS",
+  "commands": [
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T02:46:30.895636+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T02:46:31.290948+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/acceptance-baseline.stdout",
+          "sha256": "7bc665c4660c0a20074f86ded6645600c792a1de9753f3764e88f62ded5e8447"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "baseline_counts": {
+    "baseline": 19,
+    "json": 151,
+    "python": 6,
+    "shell": 5,
+    "toml": 14
+  },
+  "protected_counts": {
+    "globals": 9,
+    "packages": 8,
+    "glib": 2,
+    "public_links": 1791,
+    "runtime_identities": 6,
+    "build_tools": 3,
+    "sdk": 1
+  },
+  "cells": {
+    "Debug": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/Debug/reflection",
+      "sha256": "adf29b3707fbe38e13dd8c6d51a3e1a92960aeed4a3de292ac876a0f113f9ef4",
+      "architecture": "Mach-O 64-bit executable arm64",
+      "summary": {
+        "compiler": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "version": "16.2.0",
+        "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "architecture": "arm64",
+        "configuration": "Debug",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/Debug/reflection"
+      },
+      "direct_libraries": [
+        "/opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib",
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "runtime_loaded_libstdcxx": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "build_returncode": 0,
+      "ctest_returncode": 0,
+      "runtime_returncode": 0,
+      "compile_command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "cmake_module_scanning_flags_present": true
+    },
+    "Release": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/Release/reflection",
+      "sha256": "24ffeee02bc35f97604aa8a359af3a7fa894a872fb51434c75482d31a284046f",
+      "architecture": "Mach-O 64-bit executable arm64",
+      "summary": {
+        "compiler": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "version": "16.2.0",
+        "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "architecture": "arm64",
+        "configuration": "Release",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/Release/reflection"
+      },
+      "direct_libraries": [
+        "/opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib",
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "runtime_loaded_libstdcxx": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "build_returncode": 0,
+      "ctest_returncode": 0,
+      "runtime_returncode": 0,
+      "compile_command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "cmake_module_scanning_flags_present": true
+    },
+    "RelWithDebInfo": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/RelWithDebInfo/reflection",
+      "sha256": "38a1f21b7e41c625de4f5cdc82a05557019f885e14098465c9a7ef5937961ef9",
+      "architecture": "Mach-O 64-bit executable arm64",
+      "summary": {
+        "compiler": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "version": "16.2.0",
+        "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "architecture": "arm64",
+        "configuration": "RelWithDebInfo",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/RelWithDebInfo/reflection"
+      },
+      "direct_libraries": [
+        "/opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib",
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "runtime_loaded_libstdcxx": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "build_returncode": 0,
+      "ctest_returncode": 0,
+      "runtime_returncode": 0,
+      "compile_command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "cmake_module_scanning_flags_present": true
+    },
+    "MinSizeRel": {
+      "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/MinSizeRel/reflection",
+      "sha256": "28d16ed79275c85e751597fdfff5f1d6549c1537290977a65be747d04b95de65",
+      "architecture": "Mach-O 64-bit executable arm64",
+      "summary": {
+        "compiler": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "version": "16.2.0",
+        "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "architecture": "arm64",
+        "configuration": "MinSizeRel",
+        "binary": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-cmake-review-iye7ttrz/run/build/MinSizeRel/reflection"
+      },
+      "direct_libraries": [
+        "/opt/homebrew/opt/gcc/lib/gcc/current/libstdc++.6.dylib",
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "runtime_loaded_libstdcxx": [
+        "/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib"
+      ],
+      "build_returncode": 0,
+      "ctest_returncode": 0,
+      "runtime_returncode": 0,
+      "compile_command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "cmake_module_scanning_flags_present": true
+    }
+  },
+  "all_maintained_inputs_and_harness_unchanged": true,
+  "independent_defaults_equal_original_preimage": true,
+  "all_28_command_results_and_56_log_hashes_verified": true
+}

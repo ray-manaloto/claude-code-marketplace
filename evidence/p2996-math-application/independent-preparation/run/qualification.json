@@ -1,0 +1,242 @@
+{
+  "state": "PASS: preparation only",
+  "apply_requested": false,
+  "applied": false,
+  "helper_sha256": "974918e2f048dcd389201e84a8781293fa34396e7d20cc05705447bd9b37b6c2",
+  "commands": [
+    {
+      "case": "source-before-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T08:00:36.105878+00:00",
+      "pid": 68411,
+      "returncode": 0,
+      "elapsed_seconds": 0.013587040943093598,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T08:00:36.120853+00:00",
+      "pid": 68413,
+      "returncode": 0,
+      "elapsed_seconds": 0.022954625077545643,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T08:00:36.145002+00:00",
+      "pid": 68414,
+      "returncode": 0,
+      "elapsed_seconds": 0.818732584011741,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-status.stdout",
+          "sha256": "4452cf42c428d0e838e7e279781563e20d3344fefcbc4e612d0c9612d0759563"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-before-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-11T08:00:36.966235+00:00",
+      "pid": 68416,
+      "returncode": 0,
+      "elapsed_seconds": 0.4646164169535041,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-diff.stdout",
+          "sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "patch-check",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "apply",
+        "--check",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-compatibility/scratch/sdk-math.patch"
+      ],
+      "started_at": "2026-10-11T08:00:37.432295+00:00",
+      "pid": 68417,
+      "returncode": 0,
+      "elapsed_seconds": 0.023065875051543117,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/patch-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/patch-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T08:00:37.456692+00:00",
+      "pid": 68418,
+      "returncode": 0,
+      "elapsed_seconds": 0.2035024999640882,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T08:00:37.661305+00:00",
+      "pid": 68419,
+      "returncode": 0,
+      "elapsed_seconds": 0.08582954097073525,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-math-apply-review-lurts_7h/run/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "proposal": {
+    "adaptation": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "patch_sha256": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+      "files": [
+        {
+          "path": "clang/lib/Headers/float.h",
+          "before_sha256": "c3e534e33cffd9ba9f02eaa548dce411d26570cac04019df21b7295c6bd2bdaf",
+          "after_sha256": "daf8cad2e875f21ca4ce40acc7c88afc38a6362c6adcccfd2896416cd9ac749c"
+        },
+        {
+          "path": "libcxx/include/float.h",
+          "before_sha256": "f40e5d57ecd44f9d55fdf3d2566828997144f4ef88db4a83edcb4fe7b47c0f93",
+          "after_sha256": "9010672848d9cc99ea8f78eadada13e126fa9d6a78b22bbb832f381ccc4dd051"
+        }
+      ],
+      "prior_source_diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "failure_closure_sha256": "35e239e9aff25e74e169e2a49cb6346f0640f207bdc70c0c88bf9acc06341ce3",
+      "state": "PREPARED_SCRATCH_ONLY"
+    },
+    "receipts": {
+      "evidence/p2996-math-compatibility/scratch/qualification.json": "1cb0a2277fef96e13d82e696fb1bf4a4378dc45f33f67e2d441ce0a55d56fd7c",
+      "evidence/p2996-math-compatibility/scratch/proposal.json": "b5e7f1620606d8b9fe6aa101bf8a0cd12fb92d46867b2de6d6c8e54060235a2e",
+      "evidence/p2996-math-compatibility/scratch/sdk-math.patch": "0c2a47a054bc87e57c7ecfc6036c752598264951559150c666e721906694a6c3",
+      "evidence/p2996-math-compatibility/preparation-review.json": "126d01556d902363e4a99768839592484818283e99d9579f71885d9b907f40a4",
+      "evidence/p2996-math-compatibility/independent-scratch/retained-preimages.json": "c6be1e4317ad78d98fce08b8215388c245eafc481ba75e4bae1d1c199a75dc2e",
+      "evidence/p2996-sdk-compatibility/operation/qualification.json": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b",
+      "evidence/p2996-resume/failure-closure-review.json": "35e239e9aff25e74e169e2a49cb6346f0640f207bdc70c0c88bf9acc06341ce3",
+      "evidence/p2996-resume/failed-incremental-build/qualification.json": "85b1f0cdf29190f9c14579e83ac21e5d09000acb44e8fc3759aa4a9b0bc258ac",
+      "evidence/p2996-resume/failed-incremental-build/helper.py.source": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f"
+    },
+    "lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294"
+    }
+  },
+  "build_and_protected_state_unchanged": true
+}

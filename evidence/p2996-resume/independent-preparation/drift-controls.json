@@ -1,0 +1,133 @@
+{
+  "result": "PASS",
+  "helper_sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+  "scope": "Exact new guard AST with copied receipts/source/history and inert responses; no lease or native build/apply/helper invocation",
+  "controls": [
+    {
+      "case": "sdk-compatibility-without-resume-rejected-before-writes",
+      "result": "PASS",
+      "observed_exception": "SystemExit"
+    },
+    {
+      "case": "valid-closed-application",
+      "result": "PASS",
+      "observed_exception": null
+    },
+    {
+      "case": "application-not-applied",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "application-review-failed",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "application-review-has-finding",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "application-receipt-byte-drift",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "patch-byte-drift",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "valid-at-all-three-stages",
+      "result": "PASS",
+      "observed_exception": null
+    },
+    {
+      "case": "changed-source-head",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "changed-base-tree",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "extra-untracked-source",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "staged-approved-change",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "changed-postimage",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "source-symlink-escape",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "changed-reviewed-receipt",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "changed-native-diff",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "legacy-clean-source",
+      "result": "PASS",
+      "observed_exception": null
+    },
+    {
+      "case": "legacy-dirty-source",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "unchanged-history-immediately-before-build",
+      "result": "PASS",
+      "observed_exception": null
+    },
+    {
+      "case": ".ninja_log-drift-after-snapshot-rejected",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": ".ninja_deps-drift-after-snapshot-rejected",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    },
+    {
+      "case": "missing-history-rejected",
+      "result": "PASS",
+      "observed_exception": "FileNotFoundError"
+    },
+    {
+      "case": "matching-resume-admission",
+      "result": "PASS",
+      "observed_exception": null
+    },
+    {
+      "case": "history-drift-since-preparation-rejected-by-admission",
+      "result": "PASS",
+      "observed_exception": "AssertionError"
+    }
+  ],
+  "static_held_order": {
+    "source-immediate": 20,
+    "history-guard": 21,
+    "llvm-build": 24,
+    "source-after": 25
+  }
+}

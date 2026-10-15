@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "task": "10a2 P2996 CMake qualification harness planning",
+  "result": "SOURCE-ONLY RECOMMENDATION COMPLETE; native behavior UNVERIFIED",
+  "created_at": "2026-10-11T11:55:21.219Z",
+  "identity": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "f4cf7d771fb06cb9d33f73d9adc1f1a5c4df4f05",
+    "method": "Read Git administrative text files only; no Git process and no working-tree cleanliness claim",
+    "later_parent_report": {
+      "head": "a99c7900115128108a3a525de687a2a1f137b07c",
+      "meaning": "Task 10a1 committed; parent reported post-commit baseline rc0 and clean. No additional identity check was performed after the explicit instruction to conclude."
+    }
+  },
+  "scope": {
+    "reviewer": "config_inspector",
+    "owner": "Parent is sole project/global writer; preserve concurrent edits.",
+    "read_only_inputs": [
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_coverage.py",
+        "sha256": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+        "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+        "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9"
+      },
+      {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake-preparation/source-contract.json",
+        "sha256": "7bff3ae15c1510c627a026c9ef7c837ea72d2d0b22908eb9e0c62389aaf1f741"
+      }
+    ],
+    "native_commands_run": [],
+    "network_calls": [],
+    "maintained_writes": [],
+    "global_writes": [],
+    "private_output": "This one JSON planning receipt only."
+  },
+  "recommended_sequence": [
+    {
+      "step": 1,
+      "name": "Reuse frozen admission and preservation scaffold",
+      "details": [
+        "Keep coverage helper lines 25-148 and 216-233 as the established model: fresh normalized private run directory, exact admission/helper/fixture/prerequisite hashes, installed-prefix/global baselines, normal and named-profile snapshots, source identity checks, frozen bounded runner and process-group cleanup, host lease/capacity and final protected-state checks.",
+        "Bind the final committed 10a1 toolchain/fixture and its settled independent review; do not merely bind this provisional planning receipt or the old source proposal.",
+        "Use host-qualified absolute CMake/Ninja identities from the same host receipt consumed by the GCC harness; verify their file hashes and the sibling ctest identity against admitted receipts. Preserve literal compiler invocation paths as well as binary identities. Do not use PATH selection or activate sccache.",
+        "Retain the shared lease for configure, Ninja command queries and every build/test/runtime cell. Pass the existing descriptor to each bounded native run; keep the proven failure/timeout logging and finally preservation."
+      ]
+    },
+    {
+      "step": 2,
+      "name": "One fresh configure with explicit try_compile configuration",
+      "proposed_not_run_argv": [
+        "<named-profile base>",
+        "<pinned absolute cmake>",
+        "--debug-trycompile",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain",
+        "-B",
+        "<new-private-build>",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=<pinned absolute ninja>",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+        "-DCMAKE_TRY_COMPILE_CONFIGURATION=Debug"
+      ],
+      "details": [
+        "Require configure native rc0 and retain its raw stdout/stderr immediately. Confirm all four configuration types and exact SDK/deployment/architecture from cache/manifests and the generated driver commands.",
+        "Do not use CMAKE_BUILD_TYPE to select a Multi-Config cell. CMAKE_TRY_COMPILE_CONFIGURATION=Debug selects the one synchronous configuration used during configure; it does not qualify Release/RelWithDebInfo/MinSizeRel.",
+        "Do not force compiler success, use STATIC_LIBRARY try_compile, disable platform-variable propagation, inject custom rule hooks, or reuse a cached build tree."
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Capture scratch output before any later CMake invocation",
+      "details": [
+        "Immediately snapshot/hash the fresh build/CMakeFiles/CMakeScratch subtree, the configure log, private-runtime-try-compile.log, relevant CMakeFiles/<version> compiler metadata and ABI binaries, and top-level compile_commands.json/cache/configuration manifests. Preserve generated text and native output/binary hashes in private evidence. Do not delete or overwrite failure evidence.",
+        "The documented scratch directory names are unspecified: enumerate immediate child CMakeLists.txt files and classify by exact source membership: CMakeCCompilerABI.c, CMakeCXXCompilerABI.cpp, private_runtime.cpp. Require exactly one match for each of these three cases; retain/report other children without assuming only three directories exist.",
+        "For each classified original child, before any later CMake invocation, query the pinned Ninja with -C <original-child> -f build-Debug.ninja -t commands. Save full native argv/rc/stdout/stderr. Do not execute command strings returned by Ninja.",
+        "Capture the child CMakeLists.txt, CMakeCache.txt, all nested .ninja files and relevant generated source/object/executable/log files. Entry build-Debug.ninja may delegate through include/subninja files; retain the graph rather than reading only the entry file.",
+        "Run the query against the original retained scratch tree. A copied Ninja tree can retain absolute original paths and is not a relocatable build tree. Take the evidence copy before a later CMake call can remove the original."
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Verify generated commands and corroborate execution",
+      "details": [
+        "Separate the two claims in the receipt: Ninja -t commands provides expanded generated commands; it does not itself execute compilation or linking. Corroborate each with the retained CMake try_compile build output/configure log plus fresh object/executable artifacts and the successful configure result.",
+        "For C and CXX ABI, require the expected source identity and the copied CMakeDetermineCompilerABI_<LANG>.bin from the CMake ABI module, together with the matching original scratch build output. For custom try_compile, retain private-runtime-try-compile.log and the matched private_runtime.cpp child.",
+        "Tokenize Ninja-expanded shell command text with shlex; never tokenize raw Ninja syntax as shell syntax. Identify exactly one expected driver compile and its associated driver link per case, preserving raw text and the working directory. Strip only a recognized shell wrapper such as : && ... && :; fail with retained evidence on an unexpected form.",
+        "Check full compiler path tokens and flag/value tokens, not command.startswith or substring matches. Compiler paths may be quoted. clang and clang++ may resolve to the same binary, so resolved inode/path equality alone does not prove correct C versus CXX driver selection.",
+        "Do not implement a general Ninja parser or infer argv by concatenating guessed variables. Use the pinned Ninja expansion. If a response file or unrecognized command form appears, retain it and fail the qualification until its arguments are resolved explicitly.",
+        "Where the recorded CMake log contains the complete expanded command, bind the exact command text to the corresponding case output, allowing only bounded log-prefix/indentation normalization. Do not silently relabel generated commands as executed if this corroboration cannot be established. The exact first-run log layout remains UNVERIFIED."
+      ]
+    },
+    {
+      "step": 5,
+      "name": "Four sequential build/test/direct-runtime cells",
+      "details": [
+        "For each Debug, Release, RelWithDebInfo and MinSizeRel: cmake --build <build> --config <config> --parallel 1 --verbose; then ctest --test-dir <build> -C <config> --output-on-failure --no-tests=error; require native rc0 for both and retain every log.",
+        "Require one matching reflection compile/link pair for the selected configuration in the verbose build output and bind it to the output binary and qualified-<config>.txt. Main compile_commands.json should contain the four exact witness compilation entries; do not assign configurations by array order or assume it contains links or compiler-ABI/custom-try_compile commands.",
+        "Execute each exact produced reflection binary through base + [/usr/bin/env, DYLD_PRINT_LIBRARIES=1, binary], the corrected proven 07d/08a/08c pattern. Require native rc0 and exact stdout reflection value=43 exception=ok followed by newline. Retain and parse full loader stderr, requiring resolved equality for all three qualified private C++ runtime images.",
+        "Record architecture and binary link/rpath evidence using the already admitted native inspection pattern. Require arm64, private libc++/libc++abi/libunwind links and the exact private rpath; output success alone is insufficient.",
+        "Hash each produced binary, per-configuration manifest, compile database and actual compile/link evidence; keep ordinary CTest exit semantics rather than adding PASS_REGULAR_EXPRESSION. The fixture has one test; --no-tests=error prevents an empty test set from passing."
+      ]
+    }
+  ],
+  "command_invariants": {
+    "all_C_and_CXX_driver_compile_and_link_commands": {
+      "literal_driver": "C must invoke /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang; CXX must invoke /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+      "required": [
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-arch arm64",
+        "-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0"
+      ],
+      "notes": "Check token/value semantics and reject contradictory repeated architecture/SDK/runtime options. Native CMake platform flags such as headerpad/search-path flags are expected additions."
+    },
+    "C_ABI": {
+      "required_absent": [
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-nostdlib++",
+        "-freflection",
+        "-std=c++26",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib"
+      ],
+      "notes": "C receives common SDK/resource flags only. Do not accept clang++ merely because it resolves to the same underlying clang binary."
+    },
+    "CXX_ABI": {
+      "compile_required": [
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+      ],
+      "compile_absent": [
+        "-freflection"
+      ],
+      "standard": "Do not require -std=c++26 for compiler ABI: this happens during project() before target-specific CXX_STANDARD is applied.",
+      "link_required": [
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib"
+      ],
+      "notes": "The ABI child deliberately has empty STANDARD_LIBRARIES. Judge its emitted CXX link flags, not that cache variable."
+    },
+    "custom_try_compile": {
+      "compile_required": [
+        "-std=c++26",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+      ],
+      "compile_absent": [
+        "-freflection"
+      ],
+      "link": "Same exact private CXX link invariant as the CXX ABI.",
+      "source": "The fixture-owned __has_feature(reflection) rejection and std::string use must remain byte-bound. This positive compile checks reflection remains absent globally; it is not a run or loader-origin test."
+    },
+    "reflection_target": {
+      "compile_required": [
+        "-std=c++26",
+        "-freflection",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem /Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1"
+      ],
+      "link": "Same exact private CXX link invariant; do not require target_compile_options(-freflection) on the separate link invocation.",
+      "notes": "CXX_STANDARD and -freflection are target compile properties, not global CXX flag or link requirements."
+    }
+  },
+  "negative_controls": {
+    "execution": "Each case uses its own new private build directory and the same fixed configure options. Inject environment values after mise via /usr/bin/env so the named profile cannot erase the intentional bad input. Require exact expected native rc1 and the specific toolchain diagnostic, not merely any failure. Retain failed configure artifacts and logs.",
+    "recommended_table": [
+      {
+        "label": "wrong-lane",
+        "environment": [
+          "MARKETPLACE_CPP_LANE=wrong"
+        ],
+        "cache_arguments": [],
+        "diagnostic": "Select the task-07d qualified global mise p2996 environment."
+      },
+      {
+        "label": "inherited-cxxflags",
+        "environment": [
+          "CXXFLAGS=-DBAD_INHERITED_FLAGS"
+        ],
+        "cache_arguments": [],
+        "diagnostic": "Unexpected CXXFLAGS"
+      },
+      {
+        "label": "wrong-cxx-compiler",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_COMPILER=/usr/bin/clang++"
+        ],
+        "diagnostic": "Conflicting CXX compiler"
+      },
+      {
+        "label": "wrong-architecture",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_OSX_ARCHITECTURES=x86_64"
+        ],
+        "diagnostic": "SDK, deployment target and architecture must match task 07d."
+      },
+      {
+        "label": "compiler-launcher",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_COMPILER_LAUNCHER=/usr/bin/false"
+        ],
+        "diagnostic": "Compiler and linker launchers are not admitted."
+      },
+      {
+        "label": "linker-launcher",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_LINKER_LAUNCHER=/usr/bin/false"
+        ],
+        "diagnostic": "Compiler and linker launchers are not admitted."
+      },
+      {
+        "label": "skip-try-compile-link",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY"
+        ],
+        "diagnostic": "Compiler and try_compile link checks must remain enabled."
+      },
+      {
+        "label": "forced-cxx-success",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_COMPILER_FORCED=TRUE"
+        ],
+        "diagnostic": "Compiler and try_compile link checks must remain enabled."
+      },
+      {
+        "label": "extra-cxx-standard-library",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_STANDARD_LIBRARIES=-lc++"
+        ],
+        "diagnostic": "Unexpected extra C++ standard libraries."
+      },
+      {
+        "label": "conflicting-cxx-link-flags",
+        "environment": [],
+        "cache_arguments": [
+          "-DCMAKE_CXX_LINK_FLAGS=-lc++"
+        ],
+        "diagnostic": "Conflicting C++ link flags"
+      }
+    ],
+    "bound": "Ten small table-driven toolchain controls; they are not a rerun of inherited broad guard batteries. SDK/deployment/prefix exact positive values remain mandatory; add separate negative rows for those only if the parent admission needs distinct branch coverage.",
+    "trap": "Do not call an early environment/cache guard failure proof that the private_runtime.cpp preprocessor error executed. Name the actual guard and diagnostic reached."
+  },
+  "format_and_policy_traps": [
+    "Scratch child names and order are unspecified. The modern source signature uses CMakeScratch; do not assume the older single CMakeTmp directory or a fixed TryCompile-* spelling.",
+    "Pinned docs say old scratch directories are removed at the start of a later CMake execution. Preserve/query them before build, guard-control configure, or diagnostic CMake invocations.",
+    "Bare build.ninja selects CMAKE_DEFAULT_BUILD_TYPE or the first configuration. Neither it nor CMAKE_BUILD_TYPE proves all four Multi-Config cells. Use explicit Debug for each scratch query and explicit --config/-C for four main cells.",
+    "Only build-Debug.ninja belongs in a Debug scratch query; it may contain references to other generated Ninja files. Raw variable declarations or a link rule template are not expanded argv.",
+    "CMAKE_CXX_LINK_FLAGS is set as a normal variable by this toolchain, so it need not appear as a cache entry. STANDARD_LIBRARIES being empty in an ABI child is expected. The native CMP0210 NEW per-language link route must be verified in the expanded link commands.",
+    "CMP0210 NEW propagates into try_compile. Do not override it, use an old minimum-policy mode, or replace native Darwin link templates.",
+    "A working-compiler check reported as skipped can be legitimate after ABI success; CMakeTestCXXCompiler.cmake explicitly does this. Require ABI success/artifacts, not a particular unskipped status message.",
+    "Compiler-ID attempts are separate from the mandatory C/CXX ABI try_compile. Do not classify every compiler-related scratch file or every clang line in verbose output as an ABI case; Clang -cc1 and linker subprocess output are not the outer driver argv.",
+    "CMake compile database entries are compile-only, may contain shell-quoted paths/defines, and must be grouped by actual configuration/output identity rather than list position. Preserve raw JSON and tokenized observations.",
+    "Ninja-expanded commands can contain shell wrappers. Never execute returned strings, reinterpret raw Ninja escaping as shell quoting, or silently ignore response-file arguments.",
+    "CTest PASS_REGULAR_EXPRESSION can ignore an ordinary nonzero exit. The present fixture correctly omits it; preserve rc0 plus independent exact stdout and loader-origin verification.",
+    "No shared/module runtime or 96-tree/384-cell matrix acceptance follows from these four executable cells. Link-flag source support for shared/module targets remains separate from native qualification."
+  ],
+  "maintained_helper_size": {
+    "target": "About 270 lines, keeping the existing frozen scaffold rather than rewriting process/lease/preservation code.",
+    "organization": [
+      "Retain the common scaffold and finalizer largely unchanged.",
+      "Use one compact token-validation routine parameterized by C/CXX and ABI/custom/target mode.",
+      "Use one scratch classifier/capture routine and one three-case verification loop.",
+      "Use one four-configuration build/test/runtime loop and one data table for the relevant negative controls.",
+      "Save raw evidence paths/hashes and concise parsed assertions; avoid a generic YAML or Ninja parser and new package dependencies."
+    ],
+    "failure_rule": "If required command evidence cannot be parsed or tied to execution under the pinned format, retain artifacts and fail. A line budget is not a reason to weaken the private-runtime or actual-command checks."
+  },
+  "primary_references": [
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/command/try_compile.rst",
+      "sha256": "e99785bed743d93d0af1ed241d6ef8c5b0a70359853d41bca2325d0c8c8a24db",
+      "line_ranges": [
+        [
+          95,
+          126
+        ],
+        [
+          173,
+          178
+        ],
+        [
+          206,
+          210
+        ],
+        [
+          317,
+          328
+        ],
+        [
+          341,
+          357
+        ],
+        [
+          427,
+          430
+        ]
+      ],
+      "supports": "Executable source signature, scratch retention/cleanup, copied artifact, configure-log entry, link-flag and policy propagation."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_TRY_COMPILE_CONFIGURATION.rst",
+      "sha256": "e6fe6028cf1e115156b433266f891fdb34eed7ffb520b7a16fef7fd235f86aa1",
+      "line_ranges": [
+        [
+          4,
+          10
+        ]
+      ],
+      "supports": "One synchronous try_compile configuration is chosen even for a multi-configuration build system."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/generator/Ninja Multi-Config.rst",
+      "sha256": "8dfee9fdcd877599a50cbb47b1f4dfba6a504fe7504e8cc47faf32857b31fbd7",
+      "line_ranges": [
+        [
+          12,
+          24
+        ],
+        [
+          36,
+          50
+        ]
+      ],
+      "supports": "Explicit per-config Ninja entry points and default configuration traps."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeDetermineCompilerABI.cmake",
+      "sha256": "4d3fbcc46648144d52247304ec75f43833ecd24c015a5cbd192ac5d42d2ce75a",
+      "line_ranges": [
+        [
+          59,
+          73
+        ],
+        [
+          82,
+          104
+        ],
+        [
+          123,
+          144
+        ]
+      ],
+      "supports": "ABI binary path, verbose compile/link flags, cleared standard libraries, selected config and no-cache native try_compile output/copy."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Modules/CMakeTestCXXCompiler.cmake",
+      "sha256": "95497992c561ab4cc674273ec1ec8b1752ce2d0b08309d3c8fed10cde3c1ba8f",
+      "line_ranges": [
+        [
+          20,
+          37
+        ],
+        [
+          54,
+          76
+        ]
+      ],
+      "supports": "Successful ABI can legitimately skip the separate working-compiler test; fallback compiler success is not the same as ABI evidence."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/policy/CMP0210.rst",
+      "sha256": "f1ac5b7e70aa3494c09620a0924abcd74955cc8814a71b0187441baf9f9aea23",
+      "line_ranges": [
+        [
+          6,
+          23
+        ]
+      ],
+      "supports": "NEW language link flags cover executable/shared/module links."
+    },
+    {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/share/cmake-4.4/Help/variable/CMAKE_LANG_LINK_FLAGS.rst",
+      "sha256": "401a4afd80ab55a95d9ce70aef63b60e3e38b76dc5b2eae79390d3aa0f36c05e",
+      "line_ranges": [
+        [
+          6,
+          31
+        ]
+      ],
+      "supports": "Language-specific link-only flags, ordering, parsing/requoting and CMP0210 requirement."
+    }
+  ],
+  "local_pattern_references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_coverage.py",
+      "sha256": "460693f6a3ad6d02afcfbbf61d58ecf45f5a2de334632e8dc5e6edbf3ec4f52b",
+      "line_ranges": [
+        [
+          25,
+          82
+        ],
+        [
+          89,
+          148
+        ],
+        [
+          165,
+          170
+        ],
+        [
+          216,
+          233
+        ]
+      ],
+      "role": "Frozen guard/runner/lease, corrected direct-runtime environment injection and preservation model."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/gcc-cmake/qualification-harness.py.source",
+      "sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2",
+      "line_ranges": [
+        [
+          65,
+          105
+        ]
+      ],
+      "role": "Already-retained absolute tool identity lookup, four-cell loop, native runtime/metadata and table-driven guard-control pattern; do not copy its older process runner or C++ runtime assertions."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt",
+      "sha256": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11",
+      "line_ranges": [
+        [
+          1,
+          15
+        ],
+        [
+          17,
+          36
+        ],
+        [
+          37,
+          44
+        ]
+      ],
+      "role": "Current four-config source, C++26 non-reflection custom try_compile, target-only reflection and per-config manifest."
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake",
+      "sha256": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+      "line_ranges": [
+        [
+          1,
+          24
+        ],
+        [
+          31,
+          60
+        ],
+        [
+          62,
+          88
+        ]
+      ],
+      "role": "Current exact compiler/environment/platform/CXX runtime-link and no-bypass guard messages."
+    }
+  ],
+  "observed_checks": {
+    "input_read_hashes": "All five scoped files read and hashed.",
+    "pinned_primary_hashes": "All seven installed CMake files used in this brief match the already pinned source-contract inventory.",
+    "git_identity": "Read-only Git metadata verified the stated branch/common directory and f4cf7d... at inspection time; later a99c790... commit is parent-reported.",
+    "native_status": "UNVERIFIED; no CMake, Ninja, compiler, build, CTest, runtime or Git command executed."
+  },
+  "actual_routes": {
+    "tools": [
+      "functions orchestration",
+      "mcp__node_repl__js"
+    ],
+    "operations": [
+      "fs.readFile on scoped source/receipts and Git administrative text",
+      "SHA-256 in node:crypto",
+      "Exclusive mode-0600 private JSON write and exact readback"
+    ],
+    "failures": [],
+    "external_research": [],
+    "notes": "No additional source sweep, old guard suite or maintained-file write was performed."
+  }
+}

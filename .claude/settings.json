@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "PLAN_ID": "2026-10-10-marketplace-macos-reflection-scaffold",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "6",
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "1"
+  },
+  "autoCompactEnabled": true,
+  "autoCompactWindow": 433000,
+  "enabledPlugins": {
+    "planning-with-files@planning-with-files": true,
+    "mattpocock-skills@mattpocock": true,
+    "mise@brentmitchell25": true,
+    "astral@astral-sh": true
+  },
+  "extraKnownMarketplaces": {
+    "planning-with-files": {
+      "source": {
+        "source": "github",
+        "repo": "OthmanAdi/planning-with-files"
+      }
+    },
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    },
+    "brentmitchell25": {
+      "source": {
+        "source": "github",
+        "repo": "brentmitchell25/mise-plugin"
+      }
+    },
+    "astral-sh": {
+      "source": {
+        "source": "github",
+        "repo": "astral-sh/claude-code-plugins"
+      }
+    }
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "async": true,
+            "timeout": 10,
+            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c 'select(.prompt // \"\" | test(\"^(<task-notification>|<event kind=|<<autonomous-loop)\") | not)' >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/doctor/cli.py\" --surface session-start --format context",
+            "timeout": 15,
+            "statusMessage": "Checking checkout state"
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/hooks/pretooluse_gate.py\"",
+            "timeout": 10,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "async": true,
+            "timeout": 10,
+            "command": "/bin/mkdir -p \"$HOME/.local/state/claude-code-marketplace/requests\" && /bin/chmod 700 \"$HOME/.local/state/claude-code-marketplace/requests\" && /usr/bin/jq -c . >> \"$HOME/.local/state/claude-code-marketplace/requests/ledger.jsonl\" || exit 1"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "{ printf '%s\\n' 'Open requests (task_plan ## Open requests, D166; keep every line verbatim):'; /usr/bin/sed -n '/^## Open requests/,/^## /{/^- \\[ \\] /p;}' \"${PWF_PLAN_ROOT:-$CLAUDE_PROJECT_DIR}/.planning/$PLAN_ID/task_plan.md\" 2>/dev/null; } | /usr/bin/jq -cRs '{hookSpecificOutput:{hookEventName:\"SubagentStart\",additionalContext:.}}'"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/hooks/subagent_stop_gate.py\"",
+            "timeout": 15,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/dev/hooks/stop_gate.py\"",
+            "timeout": 10,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ]
+  }
+}

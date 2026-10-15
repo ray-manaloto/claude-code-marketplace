@@ -1,0 +1,47 @@
+{
+  "result": "PASS",
+  "scope": "Eight final prefix guards after stricter relative-link and new-owner checks; no native/shared reads or writes",
+  "helper_sha256": "cecdd666b787db46f28020a5cbb6db2b96938beddf9fe9065ea67d88f285b94a",
+  "cases": [
+    {
+      "case": "before_clean",
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "case": "before_collision",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "old_neighbor_change",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_valid",
+      "accepted": true,
+      "expected": true
+    },
+    {
+      "case": "after_extra_sibling",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_wrong_link",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_absolute_link",
+      "accepted": false,
+      "expected": false
+    },
+    {
+      "case": "after_old_directory_mode_change",
+      "accepted": false,
+      "expected": false
+    }
+  ]
+}

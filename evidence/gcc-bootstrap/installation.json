@@ -1,0 +1,281 @@
+{
+  "state": "PASS: installed",
+  "script_sha256": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+  "apply_requested": true,
+  "commands": [
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/cwd",
+        "version"
+      ],
+      "started_at": "2026-10-11T02:12:49.862887+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/version.stdout",
+          "sha256": "92044869ea358c0fb7a4fd3f7f7262160292ee6bdb8d6b45d3df580fccfb7988"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "captured-plan",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew",
+        "--dry-run"
+      ],
+      "started_at": "2026-10-11T02:12:50.156327+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/captured-plan.stdout",
+          "sha256": "028b44f72eb288698521581aee4022362c367fd505249a67a1d158dd5488ae79"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/captured-plan.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:12:50.237991+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "native-apply",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/cwd",
+        "bootstrap",
+        "packages",
+        "apply",
+        "--manager",
+        "brew"
+      ],
+      "started_at": "2026-10-11T02:12:50.994058+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/native-apply.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/native-apply.stderr",
+          "sha256": "39bac2251466240c127bbda449242938cf75fb4f5c97e7feb9aba2b016018c5f"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:13:01.390800+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/default-after.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-install-apply-20261011T0214/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/formula/gcc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/zstd.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/mpfr.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/libmpc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/isl.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gmp.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/xz.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/lz4.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gcc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/zstd.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/mpfr.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/libmpc.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/isl.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/gmp.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/xz.json",
+      "status": 200
+    },
+    {
+      "path": "/api/formula/lz4.json",
+      "status": 200
+    }
+  ],
+  "normal_context_sha256": "87fc7475ddc4c7b388496b5c6da2c347f1926893dfd1bbd76bf92ed993c476d0",
+  "census": {
+    "at": "2026-10-11T02:12:50.993051+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "admission": {
+    "owner": "/root",
+    "authority": "Accepted later global toolchain phase; scoped installation after inventory, private preimages and review. No broad global exclusivity claimed.",
+    "scope": "Four reviewed native bottle pours; two reviewed directory materializations",
+    "preflight_passed_at": "2026-10-11T02:12:50.993179+00:00"
+  },
+  "installed_packages": {
+    "isl": {
+      "versions": {
+        "0.28": {
+          "receipt_sha256": "7bde5fb5cb7064cbbbdd5ff27f1380195c4c89ad20f90bd99418b79d383fce83"
+        }
+      },
+      "links": {
+        "opt": "../Cellar/isl/0.28",
+        "var/homebrew/linked": "../../../Cellar/isl/0.28"
+      }
+    },
+    "mpfr": {
+      "versions": {
+        "4.2.2": {
+          "receipt_sha256": "b105aae9c1710075ebb4f016f39f5eeea9e8c0800d56bee2e95b99710c11e5f1"
+        }
+      },
+      "links": {
+        "opt": "../Cellar/mpfr/4.2.2",
+        "var/homebrew/linked": "../../../Cellar/mpfr/4.2.2"
+      }
+    },
+    "libmpc": {
+      "versions": {
+        "1.4.1": {
+          "receipt_sha256": "dd49c998dc132e80b4cb8cb8bb0ed2429ed5b4261fcce6fedd83e9e07650b887"
+        }
+      },
+      "links": {
+        "opt": "../Cellar/libmpc/1.4.1",
+        "var/homebrew/linked": "../../../Cellar/libmpc/1.4.1"
+      }
+    },
+    "gcc": {
+      "versions": {
+        "16.2.0": {
+          "receipt_sha256": "445014e08840d7b2118a968bbc02e0c734a58b2922f7ada3c17c1e0ee0e7a1dd"
+        }
+      },
+      "links": {
+        "opt": "../Cellar/gcc/16.2.0",
+        "var/homebrew/linked": "../../../Cellar/gcc/16.2.0"
+      }
+    }
+  },
+  "loopback_server_stopped": true
+}

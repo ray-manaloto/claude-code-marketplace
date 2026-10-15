@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "unit": "09c1 narrow cwd-finding disposition",
+  "result": "PASS: 09C1-01 fixed; pre-run review complete; native qualification pending",
+  "findings": [],
+  "created_at": "2026-10-11T15:51:13.415196+00:00",
+  "workspace": {
+    "root": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "1ddd107bffe56226ae2a5c115fcb4e2ae6b7b6b9",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "b840f31d5e70ebcb523e25994e7551be8c593a385d00fe6746301b868f57fd4a",
+  "contract_sha256": "77208a22af95e9ade5ab5301e9dffa83d200366e998b4db5e8ab0ecbf67b6bcf",
+  "prior_review_sha256": "796c15d79c87a4ff28976d9e5f780a92b66106514ded1d042e2aca6a39b79aa8",
+  "prior_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-pre-run-review.json",
+    "sha256": "796c15d79c87a4ff28976d9e5f780a92b66106514ded1d042e2aca6a39b79aa8",
+    "bytes": 9646
+  },
+  "dispositions": [
+    {
+      "id": "09C1-01",
+      "state": "FIXED",
+      "path": "dev/toolchains/iwyu_reflection.py",
+      "line": 171,
+      "evidence": "A private copy of base changes only the fixer mise -C operand to fixture. The same fixture is the Popen cwd and --basedir; the absolute main.cc allowlist and saved advice.stderr stdin remain unchanged. The shared base and every other helper byte are unchanged."
+    }
+  ],
+  "checks": {
+    "exact_delta_comparison": "PASS: only the two fixer_base assignments and fixer call base replacement",
+    "pure_argv_cwd_case": {
+      "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-cwd-disposition-6wf9nq_n/argv-cwd-check.json",
+      "sha256": "4e38800bc7da2482fafff5364f21d8a35159413059e5a94633e7778a35bcfbf9",
+      "bytes": 3441
+    },
+    "invocation": {
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-cwd-disposition-6wf9nq_n/argv-cwd-check.py"
+      ],
+      "returncode": 0,
+      "started_at": "2026-10-11T15:50:34.267822+00:00",
+      "completed_at": "2026-10-11T15:50:34.309995+00:00",
+      "elapsed_seconds": 0.04219383397139609,
+      "logs": [
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-cwd-disposition-6wf9nq_n/check.stdout",
+          "sha256": "0affb8bb944e4b588d7146ad8509486c25b787416d685096ad58474b6a723364"
+        },
+        {
+          "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-cwd-disposition-6wf9nq_n/check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "prior_controls_reused_without_rerun": {
+      "parser": 15,
+      "mocked_wrapper": 12,
+      "prior_returncode": 0
+    },
+    "retained_revision_static": {
+      "receipt": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/revision-static.json",
+        "sha256": "7080e394acef7ad38245729dec3c1e7b419c17d211a26b74ef2aac22473c9223",
+        "bytes": 416
+      },
+      "returncode": 0,
+      "original_Claude_files": 19,
+      "reviewer_rerun": false
+    }
+  },
+  "references": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/iwyu_reflection.py",
+      "sha256": "b840f31d5e70ebcb523e25994e7551be8c593a385d00fe6746301b868f57fd4a",
+      "bytes": 13286
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-helper.py.source",
+      "sha256": "876a9071c12badb9c5523f5f1acb4d086b02967fbd6b02181fc2cbd7254df00d",
+      "bytes": 13183
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/contract.json",
+      "sha256": "77208a22af95e9ade5ab5301e9dffa83d200366e998b4db5e8ab0ecbf67b6bcf",
+      "bytes": 1783
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/source-recipe.json",
+      "sha256": "057c1350de72edecf1b922842167b347d10fe464cab4e9faf51f6efda84c5161",
+      "bytes": 23130
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-pre-run-review.json",
+      "sha256": "796c15d79c87a4ff28976d9e5f780a92b66106514ded1d042e2aca6a39b79aa8",
+      "bytes": 9646
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/initial-review-supporting-manifest.json",
+      "sha256": "3cd14bd975eea4a00e33c8aaba16e3e573f1ff94c4132ccdb5214da355687494",
+      "bytes": 28594
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/iwyu-reflection/revision-static.json",
+      "sha256": "7080e394acef7ad38245729dec3c1e7b419c17d211a26b74ef2aac22473c9223",
+      "bytes": 416
+    }
+  ],
+  "supporting_manifest": {
+    "path": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-iwyu-reflection-cwd-disposition-6wf9nq_n/supporting-manifest.json",
+    "sha256": "dc9f931fb540e72d2a24b97818983bbbb5178c6ddb377c8a26df99a1ceafbff7",
+    "bytes": 1545
+  },
+  "not_run": [
+    "Prior 27-control suite or full protected-state inventory",
+    "Helper main, native profiles, compiler, IWYU, fixer, Docker or lease",
+    "Native advice/fixer/rebuild/run outcomes, resource relocation or fresh Claude/OCI acceptance"
+  ],
+  "ownership": "Parent sole maintained-file writer; reviewer wrote only this private receipt directory."
+}

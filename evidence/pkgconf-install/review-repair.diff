@@ -1,0 +1,29 @@
+--- original/pkgconf_install.py
++++ repaired/pkgconf_install.py
+@@ -80,7 +80,9 @@
+     keg = PREFIX / "Cellar/pkgconf/3.0.8"
+     observed = {r["path"]: r for r in prefix_inventory(keg)}
+     expected = {str(Path(r["path"]).relative_to("pkgconf/3.0.8")): r for r in manifest["members"]}
+-    expected.pop(".")
++    root = expected.pop(".")
++    assert root["type"] == "5" and keg.is_dir() and not keg.is_symlink()
++    assert oct(keg.stat().st_mode & 0o777) == root["mode"]
+     assert set(observed) == set(expected) | {"INSTALL_RECEIPT.json"}
+     for path, row in expected.items():
+         actual = observed[path]
+@@ -231,7 +233,6 @@
+             report["new_parents"] = {p: preimage(Path(p)) for p, row in manifest["parent_preimages"].items() if row["kind"] == "absent"}
+             exe = PREFIX / "bin/pkg-config"
+             assert exe.resolve() == PREFIX / "Cellar/pkgconf/3.0.8/bin/pkgconf"
+-            assert run("pkg-config-version", [exe, "--version"], descriptor=fd).strip() == "3.0.8"
+             for path in contract["macho_files"]:
+                 binary = PREFIX / "Cellar/pkgconf/3.0.8" / path
+                 label = Path(path).name
+@@ -240,6 +241,7 @@
+                 run(label + "-signature", ["/usr/bin/codesign", "--verify", "--strict", binary], descriptor=fd)
+                 deps = run(label + "-libraries", ["/usr/bin/otool", "-L", binary], descriptor=fd).splitlines()[1:]
+                 assert {line.strip().split()[0] for line in deps} == set(contract["runtime_libraries"][path])
++            assert run("pkg-config-version", [exe, "--version"], descriptor=fd).strip() == "3.0.8"
+             (directory / "pc/witness.pc").write_text('Name: witness\nDescription: private fixture\nVersion: 1.2.3\nLibs: -lwitness\n')
+             env.update(PKG_CONFIG_LIBDIR=str(directory / "pc"), PKG_CONFIG_PATH="")
+             assert run("fixture-version", [exe, "--modversion", "witness"], descriptor=fd).strip() == "1.2.3"

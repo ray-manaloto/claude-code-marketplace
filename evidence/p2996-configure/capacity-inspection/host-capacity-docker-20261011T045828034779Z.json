@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-10-11T04:58:28.034779+00:00",
+  "phase": "docker-and-interval-load",
+  "initial_receipt": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/host-capacity-initial-20261011T045742577769Z.json",
+  "initial_sha256": "fbb28877c311f3071428ff673437f73f2d8e01cd98717e4dc26d92fc01b49115",
+  "context_socket_inventory": [
+    {
+      "context": "colima",
+      "socket_path": "/Users/rmanaloto/.config/colima/default/docker.sock",
+      "exists": false,
+      "resolved": "/Users/rmanaloto/.config/colima/default/docker.sock",
+      "is_socket": false
+    },
+    {
+      "context": "default",
+      "socket_path": "/var/run/docker.sock",
+      "exists": true,
+      "resolved": "/Users/rmanaloto/.docker/run/docker.sock",
+      "is_socket": true
+    },
+    {
+      "context": "desktop-linux",
+      "socket_path": "/Users/rmanaloto/.docker/run/docker.sock",
+      "exists": true,
+      "resolved": "/Users/rmanaloto/.docker/run/docker.sock",
+      "is_socket": true
+    },
+    {
+      "context": "orbstack",
+      "socket_path": "/Users/rmanaloto/.orbstack/run/docker.sock",
+      "exists": true,
+      "resolved": "/Users/rmanaloto/.orbstack/run/docker.sock",
+      "is_socket": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "docker-ps-default",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "--context",
+        "default",
+        "ps",
+        "--format",
+        "{{json .}}"
+      ],
+      "rc": 0,
+      "seconds": 0.148,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": {
+        "running_count": 1,
+        "containers": [
+          {
+            "id": "79f1f7ab1130",
+            "state": "running",
+            "status": "Up 24 minutes",
+            "name_sha256": "8e2187b3a9c364fe71d82631c6d94f71f3449a4c501f059972f981a197dc2215",
+            "name_scope_hint": "dotfiles"
+          }
+        ]
+      }
+    },
+    {
+      "name": "docker-ps-desktop-linux",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "--context",
+        "desktop-linux",
+        "ps",
+        "--format",
+        "{{json .}}"
+      ],
+      "rc": 0,
+      "seconds": 0.149,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": {
+        "running_count": 1,
+        "containers": [
+          {
+            "id": "79f1f7ab1130",
+            "state": "running",
+            "status": "Up 24 minutes",
+            "name_sha256": "8e2187b3a9c364fe71d82631c6d94f71f3449a4c501f059972f981a197dc2215",
+            "name_scope_hint": "dotfiles"
+          }
+        ]
+      }
+    },
+    {
+      "name": "docker-ps-orbstack",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "--context",
+        "orbstack",
+        "ps",
+        "--format",
+        "{{json .}}"
+      ],
+      "rc": 1,
+      "seconds": 0.035,
+      "stderr_bytes": 120,
+      "stderr_sha256": "9ab3648f716f4560eb2c712b6e2e58ec2c246eb0129f135c0ceadb3060a33a2a",
+      "data": {
+        "running_count": 0,
+        "containers": []
+      },
+      "error_class": "daemon-unreachable"
+    },
+    {
+      "name": "host-interval-top",
+      "argv": [
+        "/usr/bin/top",
+        "-l",
+        "2",
+        "-s",
+        "2",
+        "-n",
+        "12",
+        "-o",
+        "cpu",
+        "-stats",
+        "pid,command,cpu,mem"
+      ],
+      "rc": 0,
+      "seconds": 3.355,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "Processes: 1055 total, 3 running, 1052 sleeping, 8442 threads \n2026/10/10 23:58:25\nLoad Avg: 5.20, 5.54, 7.54 \nCPU usage: 22.65% user, 30.92% sys, 46.42% idle \nSharedLibs: 1568M resident, 118M data, 104M linkedit.\nMemRegions: 1071845 total, 17G resident, 367M private, 16G shared.\nPhysMem: 93G used (6275M wired, 21G compressor), 2287M unused.\nVM: 562T vsize, 57G framework vsize, 338767(0) swapins, 1288020(0) swapouts.\nNetworks: packets: 347452255/357G in, 175172974/88G out.\nDisks: 440384311/7338G read, 239211485/4834G written.\n\nPID    COMMAND          %CPU MEM  \n99479  AssetCacheLocato 0.0  3472K\n99436  callservicesd    0.0  35M  \n99255  appstored        0.0  7056K\n99234  adid             0.0  3504K\n98974  DiskUnmountWatch 0.0  2000K\n98239  IDSBlastDoorServ 0.0  4545K\n97436  heard            0.0  12M  \n97329  installd         0.0  2560K\n97326  geodMachServiceB 0.0  2272K\n97321  system_installd  0.0  2560K\n97311  cloudd           0.0  8288K\n97308  backupd-helper   0.0  3312K\nProcesses: 1054 total, 2 running, 1052 sleeping, 8468 threads \n2026/10/10 23:58:28\nLoad Avg: 4.86, 5.46, 7.50 \nCPU usage: 9.26% user, 6.66% sys, 84.7% idle \nSharedLibs: 1568M resident, 118M data, 104M linkedit.\nMemRegions: 0 total, 0B resident, 367M private, 16G shared.\nPhysMem: 93G used (6319M wired, 21G compressor), 2284M unused.\nVM: 561T vsize, 57G framework vsize, 338767(0) swapins, 1288020(0) swapouts.\nNetworks: packets: 347452394/357G in, 175173035/88G out.\nDisks: 440384315/7338G read, 239211491/4834G written.\n\nPID    COMMAND          %CPU MEM   \n637    WindowServer     25.9 1155M+\n71668  zed              24.9 8192M \n0      kernel_task      13.0 64M-  \n46743  Codex (Renderer) 11.8 1417M \n46106  Codex (Service)  9.2  297M- \n72280  top              6.6  6976K+\n96190  com.apple.Virtua 5.2  16G   \n1332   Activity Monitor 5.0  108M- \n91600  herdr            3.0  57M   \n836    sysmond          2.9  6128K-\n31025  2.1.289          2.8  394M+ \n62466  2.1.289          2.3  309M"
+    },
+    {
+      "name": "host-virtual-memory",
+      "argv": [
+        "/usr/bin/vm_stat"
+      ],
+      "rc": 0,
+      "seconds": 0.005,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                   134432.\nPages active:                                2158627.\nPages inactive:                              2152845.\nPages speculative:                              4354.\nPages throttled:                                   0.\nPages wired down:                             403804.\nPages purgeable:                               10400.\n\"Translation faults\":                    53780257192.\nPages copy-on-write:                      3060958331.\nPages zero filled:                       28200278946.\nPages reactivated:                         741775249.\nPages purged:                               74579246.\nFile-backed pages:                           2191658.\nAnonymous pages:                             2124168.\nPages stored in compressor:                  2551192.\nPages occupied by compressor:                1380733.\nDecompressions:                            457201889.\nCompressions:                              524761777.\nPageins:                                   698807713.\nPageouts:                                      44167.\nSwapins:                                      338767.\nSwapouts:                                    1288020."
+    },
+    {
+      "name": "host-swap",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "vm.swapusage"
+      ],
+      "rc": 0,
+      "seconds": 0.005,
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "vm.swapusage: total = 2048.00M  used = 1056.25M  free = 991.75M  (encrypted)"
+    }
+  ],
+  "limitations": [
+    "Nonexistent Colima or OrbStack sockets are not service-started; these contexts were skipped.",
+    "Docker ps covers containers visible to its endpoint, not all work inside a virtualization process.",
+    "Process data contains executable names without command arguments."
+  ]
+}

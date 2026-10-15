@@ -1,0 +1,94 @@
+{
+  "reviewer": "/root/cold_bottle_review",
+  "result": "PASS",
+  "commands": [
+    {
+      "case": "fresh-default",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:18:12.779011+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/fresh-default.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/fresh-default.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "started_at": "2026-10-11T02:18:12.867737+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/tasks-validate.stdout",
+          "sha256": "155bd095e72f5e7fd3d69f73c893e30540848b2215654927f058b93c7b87224b"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/tasks-validate.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "started_at": "2026-10-11T02:18:13.072487+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/acceptance-baseline.stdout",
+          "sha256": "d9b53cc243ef3d93829f4e42e89801d67c6dcfbdd1180ae75a14e31f4b40ed37"
+        },
+        {
+          "path": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-gcc-postinstall-review-1sh5cnu9/acceptance-baseline.stderr",
+          "sha256": "f008bdaa7d7c11cc2645579574f58bba538f2928a43ccf29aeb1673b5c44f1b9"
+        }
+      ]
+    }
+  ],
+  "fresh_default_matches_install_preimage": true,
+  "probe_source_sha256": "35378cccee8455e947d3c00a21853c0111e1df1042097d79137021cf60953c8e",
+  "context_sha256": "87fc7475ddc4c7b388496b5c6da2c347f1926893dfd1bbd76bf92ed993c476d0",
+  "globals_unchanged_after_native_probes": [
+    "config.toml",
+    "mise.lock",
+    "config.cpp-build.toml",
+    "config.gcc16.toml",
+    "config.p2996.toml",
+    "cpp-foundation/common.toml",
+    "mise.cpp-build.lock",
+    "mise.gcc16.lock",
+    "mise.p2996.lock"
+  ],
+  "baseline_counts": {
+    "baseline": 19,
+    "json": 133,
+    "python": 5,
+    "shell": 5,
+    "toml": 14
+  }
+}

@@ -1,0 +1,488 @@
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/CMakeLists.txt
+Current GCC-only gate, private reflection, GNU workaround and weak CTest registration.
+7: if(NOT "$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "gcc16" OR
+8:    NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR
+9:    NOT CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL "16.2.0" OR
+10:    NOT CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchains/gcc16-macos-arm64.cmake")
+11:   message(FATAL_ERROR "Only the task-10b GCC16 toolchain is qualified for this skeleton.")
+12: endif()
+17: add_library(research_core src/core.cpp)
+18: add_library(AggregatedResearch::core ALIAS research_core)
+19: target_include_directories(research_core PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>")
+20: target_compile_options(research_core PRIVATE -freflection -pedantic-errors -Wall -Wextra -Werror)
+21: set_target_properties(research_core PROPERTIES POSITION_INDEPENDENT_CODE YES)
+22: 
+23: add_executable(research_core_smoke src/smoke.cpp)
+24: target_link_libraries(research_core_smoke PRIVATE AggregatedResearch::core)
+25: target_compile_options(research_core_smoke PRIVATE -pedantic-errors -Wall -Wextra -Werror)
+26: set_target_properties(research_core research_core_smoke PROPERTIES
+27:   CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+28: # GCC 16.2 C++26 constexpr exception symbols duplicate when decloning is enabled.
+29: # The isolated witness and reverse control are retained in evidence/core-skeleton.
+30: foreach(_target research_core research_core_smoke)
+31:   target_compile_options(${_target} PRIVATE "$<$<CONFIG:MinSizeRel>:-fno-declone-ctor-dtor>")
+32: endforeach()
+34: enable_testing()
+35: add_test(NAME research_core_smoke COMMAND research_core_smoke)
+36: set_tests_properties(research_core_smoke PROPERTIES
+37:   PASS_REGULAR_EXPRESSION "reflection value=43, members=1" TIMEOUT 10)
+38: file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/core-$<CONFIG>.txt" CONTENT
+39: "library=$<TARGET_FILE:research_core>
+40: binary=$<TARGET_FILE:research_core_smoke>
+41: configuration=$<CONFIG>
+42: shared=${BUILD_SHARED_LIBS}
+43: ")
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include/aggregated_research/core.hpp
+Fixed-width POD public C++ API with no reflection types or export macros.
+3: #include <cstdint>
+4: 
+5: namespace aggregated_research {
+6: 
+7: // Foundation witness only; no research provider or adapter behavior is exposed yet.
+8: struct ReflectionProbe {
+9:     std::int32_t value;
+10:     std::uint32_t member_count;
+11: };
+12: 
+13: [[nodiscard]] ReflectionProbe reflection_probe() noexcept;
+14: 
+15: }  // namespace aggregated_research
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp
+Original SD-6 guard, existing reflection operations, POD assertions and implementation.
+3: #include <meta>
+4: #include <type_traits>
+5: 
+6: #if !defined(__cpp_impl_reflection) || !defined(__cpp_lib_reflection)
+7: #error Reflection must be enabled in the compiler and standard library.
+8: #endif
+9: 
+10: namespace aggregated_research {
+11: namespace {
+12: struct Record { std::int32_t value; };
+13: constexpr auto member = std::meta::nonstatic_data_members_of(
+14:     ^^Record, std::meta::access_context::current())[0];
+15: constexpr auto member_count = std::meta::nonstatic_data_members_of(
+16:     ^^Record, std::meta::access_context::current()).size();
+17: static_assert(member_count == 1);
+18: static_assert(std::meta::identifier_of(member) == "value");
+19: static_assert(std::is_same_v<typename [:std::meta::type_of(member):], std::int32_t>);
+20: static_assert(std::is_trivially_default_constructible_v<ReflectionProbe>);
+21: static_assert(std::is_trivially_copyable_v<ReflectionProbe>);
+22: static_assert(std::is_standard_layout_v<ReflectionProbe>);
+25: ReflectionProbe reflection_probe() noexcept {
+26:     Record record{42};
+27:     record.[:member:] += 1;
+28:     return {record.[:member:], static_cast<std::uint32_t>(member_count)};
+29: }
+30: }  // namespace aggregated_research
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp
+Original leakage guard, exact success output and value-dependent exit status.
+5: #if defined(__cpp_impl_reflection)
+6: #error Reflection implementation flags must not leak through the public interface.
+7: #endif
+8: 
+9: int main() {
+10:     const auto result = aggregated_research::reflection_probe();
+11:     std::cout << "reflection value=" << result.value
+12:               << ", members=" << result.member_count << '\n';
+13:     return result.value == 43 && result.member_count == 1 ? 0 : 1;
+14: }
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake
+Qualified lane/SDK/architecture and exact common/private-runtime link flags.
+1: # Current task-07d prefix; changing it requires a new runtime qualification.
+2: if(CMAKE_VERSION VERSION_LESS "4.4" OR
+3:    NOT CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin" OR
+4:    NOT CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "arm64")
+5:   message(FATAL_ERROR "Use CMake 4.4+ on native macOS ARM64.")
+6: endif()
+7: cmake_policy(GET CMP0210 _p2996_link_policy)
+8: if(NOT _p2996_link_policy STREQUAL "NEW")
+9:   message(FATAL_ERROR "Set cmake_minimum_required(VERSION 4.4) before project().")
+10: endif()
+11: set(_p2996_prefix "$ENV{MARKETPLACE_P2996_PREFIX}")
+12: if(NOT "$ENV{MARKETPLACE_CPP_LANE}" STREQUAL "p2996" OR
+13:    NOT _p2996_prefix STREQUAL "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix")
+14:   message(FATAL_ERROR "Select the task-07d qualified global mise p2996 environment.")
+15: endif()
+53: set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk" CACHE PATH "Task-07d SDK")
+54: set(CMAKE_OSX_DEPLOYMENT_TARGET "27.0" CACHE STRING "Task-07d deployment target")
+55: set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "Task-07d architecture")
+56: if(NOT CMAKE_OSX_SYSROOT STREQUAL "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk" OR
+57:    NOT EXISTS "${CMAKE_OSX_SYSROOT}/SDKSettings.json" OR
+58:    NOT CMAKE_OSX_DEPLOYMENT_TARGET STREQUAL "27.0" OR
+59:    NOT CMAKE_OSX_ARCHITECTURES STREQUAL "arm64")
+60:   message(FATAL_ERROR "SDK, deployment target and architecture must match task 07d.")
+61: endif()
+62: set(CMAKE_C_FLAGS_INIT "--no-default-config -fno-blocks -resource-dir \"${_p2996_prefix}/lib/clang/21\"")
+63: set(CMAKE_CXX_FLAGS_INIT "${CMAKE_C_FLAGS_INIT} -stdlib=libc++ -nostdinc++ -isystem \"${_p2996_prefix}/include/c++/v1\"")
+64: # Native per-language link flags survive the ABI check's STANDARD_LIBRARIES reset.
+65: set(_p2996_link "-nostdlib++ \"${_p2996_prefix}/lib/libc++.dylib\" \"${_p2996_prefix}/lib/libc++abi.dylib\" \"${_p2996_prefix}/lib/libunwind.dylib\" -Wl,-rpath,\"${_p2996_prefix}/lib\"")
+66: if(DEFINED CMAKE_CXX_LINK_FLAGS AND NOT CMAKE_CXX_LINK_FLAGS STREQUAL _p2996_link)
+67:   message(FATAL_ERROR "Conflicting C++ link flags; use a fresh build directory.")
+68: endif()
+69: set(CMAKE_CXX_LINK_FLAGS "${_p2996_link}")
+70: if(CMAKE_CXX_STANDARD_LIBRARIES OR CMAKE_CXX_STANDARD_LIBRARIES_INIT)
+71:   message(FATAL_ERROR "Unexpected extra C++ standard libraries.")
+72: endif()
+73: set(CMAKE_CXX_STANDARD_LIBRARIES_INIT "")
+74: foreach(_language C CXX)
+75:   if(DEFINED CMAKE_${_language}_FLAGS)
+76:     string(STRIP "${CMAKE_${_language}_FLAGS}" _existing_flags)
+77:     if(NOT _existing_flags STREQUAL CMAKE_${_language}_FLAGS_INIT)
+78:       message(FATAL_ERROR "Conflicting ${_language} flags; use a fresh build directory.")
+79:     endif()
+80:   endif()
+81: endforeach()
+82: if(CMAKE_C_COMPILER_FORCED OR CMAKE_CXX_COMPILER_FORCED OR
+83:    CMAKE_TRY_COMPILE_NO_PLATFORM_VARIABLES OR
+84:    (DEFINED CMAKE_TRY_COMPILE_TARGET_TYPE AND
+85:     NOT CMAKE_TRY_COMPILE_TARGET_TYPE STREQUAL "EXECUTABLE"))
+86:   message(FATAL_ERROR "Compiler and try_compile link checks must remain enabled.")
+87: endif()
+88: set(CMAKE_TRY_COMPILE_TARGET_TYPE "EXECUTABLE")
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt
+Positive/negative feature detection, disabled module scanning, target-private reflection and TIMEOUT-only CTest.
+17: try_compile(_private_runtime_links SOURCE_FROM_CONTENT private_runtime.cpp [=[
+18: #if __has_feature(reflection)
+19: #error "Reflection must remain target-private"
+20: #endif
+21: #include <string>
+22: int main() { return std::string("private").size() != 7; }
+23: ]=] CMAKE_FLAGS "-DCMAKE_CXX_SCAN_FOR_MODULES=OFF"
+24:     CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO
+25:     NO_CACHE OUTPUT_VARIABLE _private_runtime_log)
+26: file(WRITE "${CMAKE_BINARY_DIR}/private-runtime-try-compile.log" "${_private_runtime_log}")
+27: if(NOT _private_runtime_links)
+28:   message(FATAL_ERROR "Private C++ runtime try_compile failed; inspect the retained log.")
+29: endif()
+30: add_executable(reflection "../../dev/toolchains/p2996_reflection.cpp")
+31: set_target_properties(reflection PROPERTIES CXX_STANDARD 26 CXX_STANDARD_REQUIRED YES
+32:     CXX_EXTENSIONS NO CXX_SCAN_FOR_MODULES OFF)
+33: target_compile_options(reflection PRIVATE -freflection)
+34: enable_testing()
+35: add_test(NAME reflection COMMAND reflection)
+36: set_tests_properties(reflection PROPERTIES TIMEOUT 10)
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp
+Already qualified feature detection, private libc++ version and reflection operations.
+1: #if !__has_feature(reflection)
+2: #error "P2996 reflection requires -freflection"
+3: #else
+4: #include <meta>
+5: #include <iostream>
+6: #include <stdexcept>
+7: #include <string>
+8: #include <type_traits>
+9: 
+10: static_assert(_LIBCPP_VERSION == 210000);
+11: static_assert(__cplusplus > 202302L);
+12: struct Record { int value; };
+13: constexpr auto member = std::meta::nonstatic_data_members_of(
+14:     ^^Record, std::meta::access_context::current())[0];
+15: static_assert(std::meta::identifier_of(member) == "value");
+16: static_assert(std::is_same_v<typename [:std::meta::type_of(member):], int>);
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/qualification-harness.py.source
+Original eight-cell GCC behavior and compile/runtime checks; reuse its contract, not its older runner.
+73:     options=['-G','Ninja Multi-Config','-DCMAKE_MAKE_PROGRAM='+ninja,
+74:              '-DCMAKE_TOOLCHAIN_FILE='+str(ROOT/'cmake/toolchains/gcc16-macos-arm64.cmake'),
+75:              '-DCMAKE_OSX_SYSROOT='+sdk,'-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0']
+76:     first=directory/'declone-first.cpp';second=directory/'declone-second.cpp'
+77:     first.write_text('#include <stdexcept>\nint probe() { return 42; }\n')
+78:     second.write_text('#include <stdexcept>\nint probe(); int main() { return probe() == 42 ? 0 : 1; }\n')
+79:     cxx=runtime['identities']['cxx']['path']
+80:     for label,flags,expected in [('declone-red',['-Os'],1),('declone-fixed',['-Os','-fno-declone-ctor-dtor'],0),
+81:                                  ('declone-reverse',['-O2','-fdeclone-ctor-dtor'],1)]:
+82:         output=directory/label
+83:         _,err=run(label,base+[cxx,'-std=c++26','-isysroot',sdk,*flags,str(first),str(second),'-o',str(output)],expected)
+84:         if expected: assert 'duplicate symbol' in err
+85:         else: run(label+'-run',base+[str(output)])
+86:     report['cells']={}
+87:     for linkage in ('static','shared'):
+88:         build=directory/linkage
+89:         run('configure-'+linkage,base+[cmake,'-S',str(ROOT),'-B',str(build),*options,
+90:                                       '-DBUILD_SHARED_LIBS='+('ON' if linkage=='shared' else 'OFF')])
+91:         for config in ('Debug','Release','RelWithDebInfo','MinSizeRel'):
+92:             cell=linkage+'-'+config
+93:             run('build-'+cell,base+[cmake,'--build',str(build),'--config',config,'--parallel','1','--verbose'])
+94:             test,_=run('test-'+cell,base+[ctest,'--test-dir',str(build),'-C',config,'--output-on-failure','--no-tests=error'])
+95:             assert '100% tests passed' in test and 'out of 1' in test
+96:             summary=dict(line.split('=',1) for line in (build/('core-'+config+'.txt')).read_text().splitlines() if line)
+97:             binary=Path(summary['binary']); library=Path(summary['library'])
+98:             assert library.suffix==('.dylib' if linkage=='shared' else '.a')
+99:             architecture,_=run('architecture-'+cell,['/usr/bin/file','-b',str(binary)])
+100:             assert 'arm64' in architecture
+101:             architecture,_=run('library-architecture-'+cell,['/usr/bin/lipo','-archs',str(library)])
+102:             assert architecture.strip()=='arm64'
+103:             output,dyld=run('runtime-'+cell,base+['/usr/bin/env','DYLD_PRINT_LIBRARIES=1',str(binary)])
+104:             assert output=='reflection value=43, members=1\n'
+105:             assert '/opt/homebrew/Cellar/gcc/16.2.0/lib/gcc/current/libstdc++.6.dylib' in dyld
+106:             assert ('libresearch_core.dylib' in dyld)==(linkage=='shared')
+107:             libraries,_=run('libraries-'+cell,['/usr/bin/otool','-L',str(binary)])
+108:             assert 'libstdc++.6.dylib' in libraries and 'libc++.1.dylib' not in libraries
+109:             assert ('libresearch_core.dylib' in libraries)==(linkage=='shared')
+110:             report['cells'][cell]={'binary':str(binary),'binary_sha256':digest(binary),
+111:                                    'library':str(library),'library_sha256':digest(library),'summary':summary}
+112:         commands=json.loads((build/'compile_commands.json').read_text())
+113:         assert len(commands)==8
+114:         for row in commands:
+115:             command=row['command']; assert command.startswith(runtime['identities']['cxx']['path'])
+116:             assert '-std=c++26' in command and '-isysroot '+sdk in command
+117:             assert ('-freflection' in command)==(Path(row['file']).name=='core.cpp')
+118:             assert ('-fno-declone-ctor-dtor' in command)==('MinSizeRel' in command)
+119:             assert '/opt/homebrew/opt/llvm' not in command and '-stdlib=libc++' not in command
+120:         report[linkage+'_compile_commands']=commands
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/core-skeleton/core-review.json
+Accepted GCC qualification and explicit exclusions.
+4:   "result": "PASS for task 03a minimal native GCC16 skeleton",
+5:   "findings_remaining": [],
+6:   "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+7:   "branch": "codex/marketplace-native-onboarding",
+8:   "head": "637dbe8b0d059be519f1c4b743555ac4c75aaf24",
+9:   "git_common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+10:   "scope": [
+49:     "unchanged_during_review": true
+50:   },
+51:   "parent_evidence": {
+52:     "qualification": "evidence/core-skeleton/qualification.json",
+53:     "sha256": "b3c2eb34b7d1f68029ea9f8da9e022795f0ca6707bae7a63c8d70d03fefd0159",
+54:     "commands": 57,
+55:     "exact_log_hashes_verified": 114,
+56:     "cells": 8,
+57:     "failed_attempt_receipts_verified": 2,
+58:     "diagnostic_runs_verified": 5,
+59:     "gcc_source_commit": "78d4ac73dd391005b895a6148cd9831e28e1208b",
+60:     "source_acquisition_records_verified": 8,
+61:     "documentation_license_verified": true,
+62:     "details": "/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-core-skeleton-review-k34156aw/parent-evidence-review.json"
+244:     "Only four implementation files plus two short required planning records; all source and prerequisite hashes unchanged during review.",
+245:     "Reflection introspection and member splicing are confined to core.cpp. The public facade contains only fixed-width integers and has trivial-default, trivial-copy and standard-layout assertions.",
+246:     "The smoke consumer links the actual library and compiles without -freflection; its preprocessor guard rejects leakage. Every generated compile command confirmed target-private reflection.",
+247:     "CMake requires the qualified GCC16 toolchain and Ninja Multi-Config, C++26 without extensions, strict diagnostics, ARM64 and explicit SDK through the qualified toolchain.",
+248:     "The MinSizeRel workaround only disables constructor/destructor decloning on the two targets. Language mode, exceptions and RTTI remain enabled. Pinned GCC manual and real red/fix/reverse controls support this scope.",
+249:     "The harness records actual command return codes/log hashes, fails on an unexpected result, kills its owned process group on timeout/interruption, and checks protected state in finally. Timeout and interruption paths were reviewed statically only."
+250:   ],
+251:   "not_executed": [
+252:     "No extra harness rerun or expanded configuration matrix",
+253:     "No artificial timeout/interruption or process-failure injection",
+254:     "No dependency install, global edit, network route, model session, cache server, daemon, container or OCI acceptance",
+255:     "No P2996 LLVM lane, vcpkg dependency graph, sanitizer/coverage matrix, installed or relocated consumer, native module, plugin adapter or provider behavior qualification"
+
+/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-cmake/operation/qualification.json
+Parent-only native 10a2 pass, exact helper/tool/input binding and preservation.
+2:   "state": "PASS: native P2996 CMake probes and four configuration cells",
+1580:   "helper_sha256": "ce124d942f029856097f93f37f8d788024ff0049af6e134371412f52df3b9d72",
+1581:   "witness_sha256": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41",
+1582:   "registration_review_sha256": "c8a131ad9dfcd8657eb51c8ea19b7cbfba473d120aac29d848e198645edb526f",
+1583:   "admission_sha256": "1be15234325519f14f34ff25a37c8477192b367c86c58118146dce4515e1fa01",
+1584:   "fixture_inputs": {
+1585:     "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/p2996-macos-arm64.cmake": "47b3e640dbda214b4e4b291189d31a8c99e151d6081490e2948ba690f656b6a9",
+1586:     "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/p2996-toolchain/CMakeLists.txt": "8f5ef2ad6a5fd353aef84e6f325d8cdede1080546c5d433a3fb5de8ee126cd11",
+1587:     "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_reflection.cpp": "23cf7f270bdda566d002bacce165ac202165f85065092dcb8b742dfad81e3a41"
+1588:   },
+1589:   "source_contract_sha256": "7bff3ae15c1510c627a026c9ef7c837ea72d2d0b22908eb9e0c62389aaf1f741",
+1590:   "tool_hashes": {
+1591:     "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+1592:     "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815",
+1593:     "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+1594:   },
+2235:   "configurations": {
+2236:     "Debug": {
+2237:       "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Debug/reflection",
+2238:       "sha256": "c34ee8fc46bce560f58ec4bae76b3f67b7c2f84c7727085e1719e2939635e411",
+2239:       "summary": {
+2240:         "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+2241:         "version": "21.0.0",
+2242:         "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+2243:         "architecture": "arm64",
+2244:         "configuration": "Debug",
+2245:         "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Debug/reflection"
+2246:       },
+2247:       "loaded_private_images": [
+2248:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+2249:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+2250:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+2251:       ]
+2252:     },
+2253:     "Release": {
+2254:       "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Release/reflection",
+2255:       "sha256": "f6e0a705a2c6306e2c4d5181c726df90dd999bc00b8209738445d7344e818b5c",
+2256:       "summary": {
+2257:         "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+2258:         "version": "21.0.0",
+2259:         "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+2260:         "architecture": "arm64",
+2261:         "configuration": "Release",
+2262:         "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/Release/reflection"
+2263:       },
+2264:       "loaded_private_images": [
+2265:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+2266:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+2267:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+2268:       ]
+2269:     },
+2270:     "RelWithDebInfo": {
+2271:       "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/RelWithDebInfo/reflection",
+2272:       "sha256": "41c7c901afe1f3933a1180756b5e94157e9a42b6958a997a5206302654e91b70",
+2273:       "summary": {
+2274:         "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+2275:         "version": "21.0.0",
+2276:         "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+2277:         "architecture": "arm64",
+2278:         "configuration": "RelWithDebInfo",
+2279:         "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/RelWithDebInfo/reflection"
+2280:       },
+2281:       "loaded_private_images": [
+2282:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+2283:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+2284:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+2285:       ]
+2286:     },
+2287:     "MinSizeRel": {
+2288:       "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/MinSizeRel/reflection",
+2289:       "sha256": "036e2f0180b446ab0782899776735f9829301b0e992cbd5904bbbbb6a3ef833c",
+2290:       "summary": {
+2291:         "compiler": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+2292:         "version": "21.0.0",
+2293:         "sdk": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+2294:         "architecture": "arm64",
+2295:         "configuration": "MinSizeRel",
+2296:         "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/build/MinSizeRel/reflection"
+2297:       },
+2298:       "loaded_private_images": [
+2299:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+2300:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+2301:         "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib"
+2302:       ]
+2303:     }
+2304:   },
+2347:   "lease_released": true,
+2348:   "protected_state_unchanged": true
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Frontend/InitPreprocessor.cpp
+No SD-6 reflection definitions in this source; bounded clang include/lib search also found none.
+
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/Features.def
+reflection feature maps directly to LangOpts.Reflection.
+324: FEATURE(reflection, LangOpts.Reflection)
+325: FEATURE(parameter_reflection, LangOpts.ParameterReflection)
+326: FEATURE(attribute_reflection, LangOpts.AttributeReflection)
+327: FEATURE(expansion_statements, LangOpts.ExpansionStatements)
+328: FEATURE(annotation_attributes, LangOpts.AnnotationAttributes)
+329: FEATURE(entity_proxy_reflection, LangOpts.EntityProxyReflection)
+330: FEATURE(reflection_latest, LangOpts.ReflectionLatest)
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/lib/Lex/PPMacroExpansion.cpp
+__has_feature builtin registration, table dispatch and expansion.
+353:   // Clang Extensions.
+354:   Ident__FILE_NAME__ = RegisterBuiltinMacro("__FILE_NAME__");
+355:   Ident__has_feature = RegisterBuiltinMacro("__has_feature");
+1088: /// HasFeature - Return true if we recognize and implement the feature
+1089: /// specified by the identifier as a standard language feature.
+1090: static bool HasFeature(const Preprocessor &PP, StringRef Feature) {
+1091:   const LangOptions &LangOpts = PP.getLangOpts();
+1092: 
+1093:   // Normalize the feature name, __foo__ becomes foo.
+1094:   if (Feature.starts_with("__") && Feature.ends_with("__") &&
+1095:       Feature.size() >= 4)
+1096:     Feature = Feature.substr(2, Feature.size() - 4);
+1097: 
+1098: #define FEATURE(Name, Predicate) .Case(#Name, Predicate)
+1099:   return llvm::StringSwitch<bool>(Feature)
+1100: #include "clang/Basic/Features.def"
+1101:       .Default(false);
+1102: #undef FEATURE
+1741:   } else if (II == Ident__has_feature) {
+1742:     EvaluateFeatureLikeBuiltinMacro(OS, Tok, II, *this, false,
+1743:       [this](Token &Tok, bool &HasLexedNextToken) -> int {
+1744:         IdentifierInfo *II = ExpectFeatureIdentifierInfo(Tok, *this,
+1745:                                            diag::err_feature_check_malformed);
+1746:         return II && HasFeature(*this, II->getName());
+1747:       });
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/clang/include/clang/Basic/LangOptions.def
+Experimental reflection language option defaults to zero.
+312: LANGOPT(Reflection          , 1, 0, "Experimental C++26 Reflection")
+313: LANGOPT(ParameterReflection , 1, 0, "Augments C++26 Reflection with function parameter reflection")
+314: LANGOPT(AttributeReflection , 1, 0, "Augments C++26 Reflection with standard attribute reflection")
+315: LANGOPT(ExpansionStatements , 1, 0, "Experimental C++26 Expansion Statements")
+316: LANGOPT(AnnotationAttributes, 1, 0, "Experimental C++26 support for annotations")
+317: LANGOPT(EntityProxyReflection, 1, 0, "Augments C++26 Reflection with entity proxy reflection")
+318: LANGOPT(ReflectionLatest    , 1, 0, "Enable all experimental C++26 features supported by Clang/P2996")
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/meta
+Private reflection implementation uses __has_feature(reflection), not SD-6 reflection macros.
+421: #include <__config>
+422: #include <bit>
+423: #include <initializer_list>
+424: #include <optional>
+425: 
+426: #include <__ranges/access.h>
+427: #include <__ranges/concepts.h>
+428: #include <__ranges/size.h>
+429: 
+430: #include <source_location>
+431: #include <span>
+432: #include <string>
+433: #include <string_view>
+434: #include <type_traits>
+435: #include <variant>
+436: #include <vector>
+437: 
+438: #if __has_feature(reflection)
+439: 
+440: _LIBCPP_BEGIN_NAMESPACE_REFLECTION_V2
+441: 
+442: // An opaque handle to a reflected entity.
+443: using info = decltype(^^int);
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/libcxx/include/version
+No SD-6 reflection macro definition in version; whole include tree search found none.
+
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/meta
+Installed header is byte-identical to the qualified fork source; no SD-6 reflection macro definitions.
+421: #include <__config>
+422: #include <bit>
+423: #include <initializer_list>
+424: #include <optional>
+425: 
+426: #include <__ranges/access.h>
+427: #include <__ranges/concepts.h>
+428: #include <__ranges/size.h>
+429: 
+430: #include <source_location>
+431: #include <span>
+432: #include <string>
+433: #include <string_view>
+434: #include <type_traits>
+435: #include <variant>
+436: #include <vector>
+437: 
+438: #if __has_feature(reflection)
+439: 
+440: _LIBCPP_BEGIN_NAMESPACE_REFLECTION_V2
+441: 
+442: // An opaque handle to a reflected entity.
+443: using info = decltype(^^int);
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1/version
+Installed header is byte-identical to the qualified fork source; no SD-6 reflection macro definitions.
+
+
+/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-cmake-20261011T120831Z/configured-evidence/CMakeFiles/4.4.4/CMakeCXXCompiler.cmake
+Recorded archive/link tool selections; actual static/archive commands still require qualification.
+29: set(CMAKE_AR "/usr/bin/ar")
+30: set(CMAKE_CXX_COMPILER_AR "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ar")
+31: set(CMAKE_RANLIB "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib")
+32: set(CMAKE_CXX_COMPILER_RANLIB "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/llvm-ranlib")
+33: set(CMAKE_LINKER "/usr/bin/ld")
+34: set(CMAKE_LINKER_LINK "")
+35: set(CMAKE_LINKER_LLD "")

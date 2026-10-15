@@ -1,0 +1,241 @@
+{
+  "result": "IN_PROGRESS",
+  "private_directory": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj",
+  "identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "branch": "codex/marketplace-native-onboarding",
+    "HEAD": "333e5379f888b1ac292ceca0162fe6a64f851ddd",
+    "common_git_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git"
+  },
+  "helper_sha256": "eb10682c0014e1ba5d8409ef641f46b1037f18b88a5abc68cb6d2c44d6fbfb9f",
+  "prior_helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+  "unchanged_ast": {
+    "save": true,
+    "run": true,
+    "protected": true,
+    "interrupted": true,
+    "admission_and_canonical_lease_guards": true,
+    "held_capacity_descriptor_and_artifact_logic": true
+  },
+  "prior_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/preparation-review.json",
+    "sha256": "3860076852e14583ce41baedbfba8e8d3c757acdc6b1fe6762fe33f62bfd16ab",
+    "result": "PASS for task 07a preparation and guarded build helper only; actual build remains unexecuted"
+  },
+  "application_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sdk-compatibility/application-review.json",
+    "sha256": "065d11649a8ded63e074195d796feea976a50122d59430f533e117e7696d8220"
+  },
+  "parent_preparation": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-resume-preparation-20261011T0638/qualification.json",
+    "sha256": "78d08dd369598195e8bcc0e0f087140f0cd83dd5e15cb6d8320d5baa85e8f755",
+    "commands": [
+      {
+        "case": "source-head",
+        "returncode": 0
+      },
+      {
+        "case": "source-tree",
+        "returncode": 0
+      },
+      {
+        "case": "source-status",
+        "returncode": 0
+      },
+      {
+        "case": "source-diff",
+        "returncode": 0
+      },
+      {
+        "case": "default-before",
+        "returncode": 0
+      },
+      {
+        "case": "build-environment",
+        "returncode": 0
+      },
+      {
+        "case": "default-after",
+        "returncode": 0
+      }
+    ],
+    "all_14_original_and_retained_logs_verified": true
+  },
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": true,
+    "sdk_adaptation": {
+      "patch": {
+        "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "base_commit": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "patch_sha256": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e",
+        "files": [
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFRegisters.h",
+            "before_sha256": "5bbd188f164aa1d5e2ae9d1ae3533d974b7b2f22af8aa4614101d7a044d4a888",
+            "after_sha256": "3b57e485d7d77d6f1a3dafeee94d84e7b89c94bedd33ce7da5310a56adc2cb2e"
+          },
+          {
+            "path": "llvm/include/llvm/CodeGen/RDFGraph.h",
+            "before_sha256": "ee00a075b63e2acda37435f2c2e3d8dc54a44323038eb5a769804e7f2eb3bf1d",
+            "after_sha256": "e4eb41ac6c2947dae06b054c6ba2a93a41b7bb0342bab0dc6f7dafc1efb206fb"
+          },
+          {
+            "path": "llvm/lib/CodeGen/RDFLiveness.cpp",
+            "before_sha256": "5797dde61cc65e67de0616be79723511440eb1c4ffe98eb7a74c80e4e6aed269",
+            "after_sha256": "81e194b5cd757de5e4c7fddf1f84e68f633d6dd5b1d68a4556f762b92aa53479"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.h",
+            "before_sha256": "216f1de0bec8452209edee1cf8f10dce686b41c72c3b04bcccc12a9da8607308",
+            "after_sha256": "b61ba7811eb3bbbf165f9273a50010bba18eebc2a968b013a129728b3605681a"
+          },
+          {
+            "path": "llvm/lib/Target/Hexagon/RDFCopy.cpp",
+            "before_sha256": "ede12cd12d3938d0f1e18c462653c609cb89c0133f69535bd91f23d0d77e202a",
+            "after_sha256": "1c179de932c101a6cb03f1e3ba19b3eb3f8461ad45d0046bf2f966e285ad2857"
+          }
+        ],
+        "state": "PREPARED_SCRATCH_ONLY"
+      },
+      "diff_sha256": "8ecfc758a28d7d7d6f0a893f2794a1881d1dda34449c1d43da3ac3b03fe3a3f2",
+      "receipts": {
+        "operation/qualification.json": "0f9c3681f8729768fc48ff10d4f1a8461264da30dcf7fd6fd0591656dd2e678b",
+        "application-review.json": "065d11649a8ded63e074195d796feea976a50122d59430f533e117e7696d8220",
+        "scratch/proposal.json": "62dbb270e2171c40c90ab400ae49cf37ccd1f868cb1ddece869168c7922c8f79",
+        "scratch/rdf-comparator.patch": "8681e0686578c64b466947f9c7861d0c40bfea83bbe68259066952c4776fe47e"
+      }
+    },
+    "incremental_state": {
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_log": "3ef99ce817f6e2e536af95267886c66603e7bc629dd03beb003ab2ea6f936e54",
+      "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/.ninja_deps": "afa83b2142858557cb09918234dc83caee79e4efcc6127f550370fb34c785b72"
+    },
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "1cd4a1c8ebb2bc16ff81bd2707893659dc8ed86838b9efaf09503e5b47433c28",
+      "operation/qualification.json": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59",
+      "operation-review.json": "bb1b78935ea078f599b7bbe3024f1ad0ce683c9ec465ecec39242f4755526cb0",
+      "generated-review.json": "5aaffce97a6a8fa7e5176db6773baa3bafbae0eea37faefb4ea35bae20eecf90"
+    },
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+      "p2996_sdk_compat.py": "3e4b3fda663476742bed19622d7000660507e2f31667189d699499d3a3e47294"
+    }
+  },
+  "native_preparation_invocations": 1,
+  "native_preparation_invocation": {
+    "argv": [
+      "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+      "-B",
+      "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_build.py",
+      "--run-dir",
+      "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/native-preparation",
+      "--resume",
+      "--sdk-compatibility"
+    ],
+    "cwd": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-resume-review-wsb5cswj/unrelated-cwd",
+    "environment_keys": [
+      "HOME",
+      "LOGNAME",
+      "PATH",
+      "PYTHONDONTWRITEBYTECODE",
+      "USER"
+    ],
+    "state": "EXITED",
+    "returncode": 0,
+    "elapsed_seconds": 1.9548316670116037
+  }
+}

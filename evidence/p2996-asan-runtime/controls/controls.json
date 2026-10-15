@@ -1,0 +1,367 @@
+{
+  "state": "PASS: pure guard composition and private confined replacement/restore controls",
+  "helper_sha256": "c390c4615eeb2a023dc9bd255b18e2a9425a69f38712c79c126f327825e8c40c",
+  "script_sha256": "ee47ca2745c972f1ee62da14811171d2d6674bb7457d7264d32a50bdac76e265",
+  "controls": [
+    {
+      "case": "exact-overlay-post-install-inventory.json",
+      "result": "PASS; original unchanged"
+    },
+    {
+      "case": "second-overlay-post-install-inventory.json",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "exact-overlay-prefix-inventory.json",
+      "result": "PASS; original unchanged"
+    },
+    {
+      "case": "second-overlay-prefix-inventory.json",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "unrelated-same-basename",
+      "result": "PASS; exact object unchanged"
+    },
+    {
+      "case": "post-install-inventory.json-missing",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "post-install-inventory.json-duplicate",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "post-install-inventory.json-mode",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "post-install-inventory.json-digest",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "post-install-inventory.json-size",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "prefix-inventory.json-missing",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "prefix-inventory.json-duplicate",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "prefix-inventory.json-mode",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "prefix-inventory.json-digest",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "prefix-inventory.json-size",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "additional-resolving-alias",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-target-None",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-artifact_inventory-None",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-prefix_inventory-None",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-current_asan-mode",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-current_asan-sha256",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "contract-previous_prefix_record-kind",
+      "result": "REJECTED as required"
+    },
+    {
+      "case": "real-wrapper-composition",
+      "result": "PASS",
+      "events": [
+        "renovate-semantic-check-called",
+        "reflection-guard-reached-with-all-three-overlays"
+      ],
+      "mocked_digest_calls": 63,
+      "live_shared_guard_executed": false
+    },
+    {
+      "case": "wrong-source",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "wrong-destination",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "source-symlink",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "destination-symlink",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "source-hardlink",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "destination-hardlink",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "source-mode",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "destination-mode",
+      "result": "REJECTED; target bytes and staged source preserved"
+    },
+    {
+      "case": "outside-allowlist",
+      "result": "REJECTED; target bytes and staged source preserved"
+    }
+  ],
+  "commands": [
+    {
+      "case": "positive-replace",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/promote.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.09843279188498855,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "positive-restore",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/restore.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.10105987498536706,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "wrong-source",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/wrong-source.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.1154114999808371,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e"
+    },
+    {
+      "case": "wrong-destination",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/wrong-destination.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.17111833300441504,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e"
+    },
+    {
+      "case": "source-symlink",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/source-symlink.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.18543462501838803,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3d3c841062128cc3d2f2c5a64a0c06888af3ca09dbb91df4f3a5e56f007b5339"
+    },
+    {
+      "case": "destination-symlink",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/destination-symlink.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.1430615831632167,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9ed4783f368eadd84db738a26603621af27322a678fdc344f1ae2f77f545ae49"
+    },
+    {
+      "case": "source-hardlink",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/source-hardlink.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.11764100007712841,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2a7a6a4e8d422b7df10c6ad2d6ed937daeeca12b79fee90bf2242eb26a18069a"
+    },
+    {
+      "case": "destination-hardlink",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/destination-hardlink.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.11489462503232062,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9c2a6e2dc2f0e2485fc6e2ec4e134ef225d0c32a076eb4ad5c3a500cf130b1d2"
+    },
+    {
+      "case": "source-mode",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/source-mode.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.11602745810523629,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e"
+    },
+    {
+      "case": "destination-mode",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/destination-mode.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/allowed.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.11465291609056294,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9853aea07aa46dc197f351d2fbf47c9d6cad383029c2978b4ef6dcd3cf87982e"
+    },
+    {
+      "case": "outside-allowlist",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/replace.py",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/run/outside-allowlist.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-asan-runtime-controls-dvbkhgyn/targets/forbidden.dylib",
+        "{\"sha256\": \"d1b88e4a69b285256b1035379928df2be821e23f2a6134dc66609670901031b4\", \"bytes\": 17, \"mode\": \"0o755\"}",
+        "{\"sha256\": \"d737a66f7bda518867f4fad1e935a5055d0248d91fff1b41318a57432eb6309c\", \"bytes\": 30, \"mode\": \"0o755\"}"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 0.11526591703295708,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7ab727d37654d295b528346d94f08110ad5688e7bb3bd42ec61bf87b6e911cff"
+    }
+  ],
+  "contract_sha256": "a4c62d0d1a016ad2fd69e7a277db9db95210b258afd7455fe2a1a32a0b749a9b",
+  "original_installed_runtime_unchanged": true,
+  "historical_inputs_unchanged": true,
+  "qualified_replacement_executed": false
+}

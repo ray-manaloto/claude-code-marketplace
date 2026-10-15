@@ -1,0 +1,89 @@
+version = 1
+
+[[search]]
+id = "codex-schema"
+query = "schema"
+repo = "openai/codex"
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "codex-config-examples"
+query = "model filename:config.toml"
+repo = "openai/codex"
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "codex-hook-examples"
+query = "SessionStart filename:hooks.json"
+repo = "openai/codex"
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+
+[[search.control]]
+query = "README"
+expected_min = 1
+
+# Agent roles, models and effort (research R12, decision D138, 2026-10-14)
+[[search]]
+id = "official-agent-effort-xhigh"
+query = "xhigh path:plugins/claude-security/agents"
+repo = "anthropics/claude-plugins-official"   # 6 hits today; control README 61
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "superpowers-model-selection"
+query = "\"Model Selection\""
+repo = "obra/superpowers"                     # 13 hits (page 2 also 13); control README 30
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "wshobson-fable-tier"
+query = "\"model: fable\""
+repo = "wshobson/agents"                      # 6 hits; control README 75
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+[[search.control]]
+query = "README"
+expected_min = 1
+
+[[search]]
+id = "voltagent-effort"
+query = "effort"
+repo = "VoltAgent/awesome-claude-code-subagents"   # 8 hits, prose only; control README 17
+per_page = 5
+max_pages = 2
+max_items = 10
+timeout_seconds = 15
+[[search.control]]
+query = "README"
+expected_min = 1

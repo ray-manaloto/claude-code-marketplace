@@ -1,0 +1,742 @@
+{
+  "state": "PASS: isolated native link and fresh consumer; no real tool or global registration",
+  "started_at": "2026-10-11T03:57:38.200783+00:00",
+  "helper_sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+  "commands": [
+    {
+      "case": "version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "version"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.297564+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/version.stdout",
+          "sha256": "92044869ea358c0fb7a4fd3f7f7262160292ee6bdb8d6b45d3df580fccfb7988"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-bare-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.318609+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-bare-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-bare-rejected.stderr",
+          "sha256": "4cad805cd4bc29f0e916fbaa3cb14323306b08dc90dc150c4645f6fdc8dd1f49"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-link",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.338219+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-idempotent",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.359115+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-idempotent.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-idempotent.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-overwrite-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.381073+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-overwrite-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-overwrite-rejected.stderr",
+          "sha256": "3a9f131ceb60c5b67f772f4c1a4a1e1f41a58c87c96c506a69cde91a1bb294f4"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-latest-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:clang-p2996@latest",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.402744+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-latest-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-latest-rejected.stderr",
+          "sha256": "0d1deb54783c506d57f09f2c009eb3fa52da757315be76cd51b1f07ad44cb981"
+        }
+      ]
+    },
+    {
+      "case": "clang-p2996-fresh-consumer",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/consumer/cwd",
+        "exec",
+        "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+        "--no-deps",
+        "--",
+        "marketplace-probe-clang-p2996"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.424387+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-fresh-consumer.stdout",
+          "sha256": "70c8391717b453269db09ed9cbf074126d69902294d629c075155ed0c05f8bf2"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/clang-p2996-fresh-consumer.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-bare-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.551324+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-bare-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-bare-rejected.stderr",
+          "sha256": "29909245f43d57a0fb28d6b24c02bb8c4def9445802f511e66f6405a71bbab33"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-link",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.569916+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-idempotent",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.591575+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-idempotent.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-idempotent.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-overwrite-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.612267+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-overwrite-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-overwrite-rejected.stderr",
+          "sha256": "45a00b78ff1c08fe3d1579c68b8700b76e258466db7209d9ec291a4db7aaffc6"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-latest-rejected",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/cwd",
+        "link",
+        "asdf:vcpkg@latest",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg"
+      ],
+      "expected_exit": 1,
+      "started_at": "2026-10-11T03:57:38.634080+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-latest-rejected.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-latest-rejected.stderr",
+          "sha256": "0d1deb54783c506d57f09f2c009eb3fa52da757315be76cd51b1f07ad44cb981"
+        }
+      ]
+    },
+    {
+      "case": "vcpkg-fresh-consumer",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-config",
+        "--no-hooks",
+        "--no-env",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/consumer/cwd",
+        "exec",
+        "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+        "--no-deps",
+        "--",
+        "marketplace-probe-vcpkg"
+      ],
+      "expected_exit": 0,
+      "started_at": "2026-10-11T03:57:38.654609+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-fresh-consumer.stdout",
+          "sha256": "8817c0abcc72dfb9f2db35069ca3d56a45793c7563063f25551c8084a6adfb1c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/vcpkg-fresh-consumer.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "protected_before": {
+    "global_files": {
+      "config.toml": {
+        "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+        "mode": "0o600"
+      },
+      "mise.lock": {
+        "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+        "mode": "0o600"
+      },
+      "config.cpp-build.toml": {
+        "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+        "mode": "0o600"
+      },
+      "config.gcc16.toml": {
+        "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+        "mode": "0o600"
+      },
+      "config.p2996.toml": {
+        "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+        "mode": "0o600"
+      },
+      "cpp-foundation/common.toml": {
+        "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+        "mode": "0o600"
+      },
+      "mise.cpp-build.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.gcc16.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.p2996.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      }
+    },
+    "packages": {
+      "gcc": {
+        "versions": {
+          "16.2.0": {
+            "receipt_sha256": "445014e08840d7b2118a968bbc02e0c734a58b2922f7ada3c17c1e0ee0e7a1dd"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gcc/16.2.0",
+          "var/homebrew/linked": "../../../Cellar/gcc/16.2.0"
+        }
+      },
+      "gmp": {
+        "versions": {
+          "6.3.0": {
+            "receipt_sha256": "9323e66afe78de3f614fba72f558f007a3410d12d750fbff575f6f9e8862763a"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gmp/6.3.0",
+          "var/homebrew/linked": "../../../Cellar/gmp/6.3.0"
+        }
+      },
+      "isl": {
+        "versions": {
+          "0.28": {
+            "receipt_sha256": "7bde5fb5cb7064cbbbdd5ff27f1380195c4c89ad20f90bd99418b79d383fce83"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/isl/0.28",
+          "var/homebrew/linked": "../../../Cellar/isl/0.28"
+        }
+      },
+      "libmpc": {
+        "versions": {
+          "1.4.1": {
+            "receipt_sha256": "dd49c998dc132e80b4cb8cb8bb0ed2429ed5b4261fcce6fedd83e9e07650b887"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/libmpc/1.4.1",
+          "var/homebrew/linked": "../../../Cellar/libmpc/1.4.1"
+        }
+      },
+      "lz4": {
+        "versions": {
+          "1.10.0": {
+            "receipt_sha256": "8ef853e5d90ff209d25aa3aa84a03c67e34ddda896c17f98821e862aa858b89d"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/lz4/1.10.0",
+          "var/homebrew/linked": "../../../Cellar/lz4/1.10.0"
+        }
+      },
+      "mpfr": {
+        "versions": {
+          "4.2.2": {
+            "receipt_sha256": "b105aae9c1710075ebb4f016f39f5eeea9e8c0800d56bee2e95b99710c11e5f1"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/mpfr/4.2.2",
+          "var/homebrew/linked": "../../../Cellar/mpfr/4.2.2"
+        }
+      },
+      "xz": {
+        "versions": {
+          "5.8.4": {
+            "receipt_sha256": "6195f4fa74fceda4934e0a37157f9d9892608eab9c6770c5695b236db00b6d48"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/xz/5.8.4",
+          "var/homebrew/linked": "../../../Cellar/xz/5.8.4"
+        }
+      },
+      "zstd": {
+        "versions": {
+          "1.5.7_1": {
+            "receipt_sha256": "debb6c1bfec9cc2b3ad78263d2b7fe40abf1a5f193d28e27790e4dacbd5e7e3c"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/zstd/1.5.7_1",
+          "var/homebrew/linked": "../../../Cellar/zstd/1.5.7_1"
+        }
+      }
+    },
+    "glib_files": {
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libglib-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "5a126ac1761f171f39275f60e67083cec57835006b350cfa181c3c792158c0ab"
+      },
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libgobject-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "e1b809dc89c6835f2c231888f8147b6b4487b10c992c2e4e7b40d2488ac385cc"
+      }
+    }
+  },
+  "promotions": [
+    {
+      "tool": "asdf:clang-p2996@f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "entries": {
+        "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+          "mode": "0o700",
+          "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996",
+          "sha256": null
+        }
+      },
+      "from": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/data/installs/asdf-clang-p2996",
+      "to": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/consumer/data/installs/asdf-clang-p2996"
+    },
+    {
+      "tool": "asdf:vcpkg@e456309491fd875487bf02b8a0dca76c1b1b00cc",
+      "entries": {
+        "e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+          "mode": "0o700",
+          "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg",
+          "sha256": null
+        }
+      },
+      "from": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/stage/data/installs/asdf-vcpkg",
+      "to": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/consumer/data/installs/asdf-vcpkg"
+    }
+  ],
+  "private_state": {
+    "stage": {
+      "cache": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/latest-version.releases-v1": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cache/lockfiles": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/lockfiles/7b2868b7b809874d": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cache/lockfiles/c110541e8d534c": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cache/lockfiles/f76df2a8966e8142": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "config": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cwd": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/.fake-asdf": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/.fake-asdf/asdf": {
+        "mode": "0o755",
+        "link": null,
+        "sha256": "e6f17bfc7e127d04efe4b4fd662c3a25b0dcb359efc84554e42448ebcf003fbb"
+      },
+      "data/installs": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/shims": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "state": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "state/incomplete-installs": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "state/incomplete-installs/.migrated": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "system-config": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "system-data": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "tmp": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      }
+    },
+    "consumer": {
+      "cache": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/asdf-clang-p2996": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/asdf-clang-p2996/f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/asdf-clang-p2996/f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e/list_bin_paths-e1bee.msgpack.z": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "0fd2790889302dbeb00a8708264d465dc996c813d7fd09513bdad078c37268a5"
+      },
+      "cache/asdf-vcpkg": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cache/asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc/list_bin_paths-e1bee.msgpack.z": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "0fd2790889302dbeb00a8708264d465dc996c813d7fd09513bdad078c37268a5"
+      },
+      "config": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "cwd": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/.fake-asdf": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/.fake-asdf/asdf": {
+        "mode": "0o755",
+        "link": null,
+        "sha256": "e6f17bfc7e127d04efe4b4fd662c3a25b0dcb359efc84554e42448ebcf003fbb"
+      },
+      "data/installs": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/installs/asdf-clang-p2996": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/installs/asdf-clang-p2996/f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-clang-p2996",
+        "sha256": null
+      },
+      "data/installs/asdf-vcpkg": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "data/installs/asdf-vcpkg/e456309491fd875487bf02b8a0dca76c1b1b00cc": {
+        "mode": "0o700",
+        "link": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/mise-link-probe-20261011T0403/prefix-vcpkg",
+        "sha256": null
+      },
+      "state": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "state/incomplete-installs": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "state/incomplete-installs/.migrated": {
+        "mode": "0o600",
+        "link": null,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "system-config": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "system-data": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      },
+      "tmp": {
+        "mode": "0o700",
+        "link": null,
+        "sha256": null
+      }
+    }
+  },
+  "protected_globals_and_shims_unchanged": true,
+  "global_shims_snapshot_sha256": "055275965d47c8faef09d353e3bc70435697c7b692bfe06d3a3fbadfc02a37cb"
+}

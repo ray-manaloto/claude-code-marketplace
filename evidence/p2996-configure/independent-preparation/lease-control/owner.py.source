@@ -1,0 +1,15 @@
+LOCK_PATH='/Users/rmanaloto/dev/github/ray-manaloto/dotfiles/python/src/dotfiles_setup/host_lock.py'
+DIRECTORY=__import__("pathlib").Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control')
+BASE=['/Users/rmanaloto/.local/bin/mise', '--no-hooks', '-C', '/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/cwd', '-E', 'cpp-build', 'exec', '--fresh-env', '--no-deps', '--']
+CHILD="import os,json,sys,time;from pathlib import Path;s=os.fstat(int(sys.argv[1]));Path('/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-p2996-configure-review-ggulgwpv/lease-control/child-ready.json').write_text(json.dumps({'pid':os.getpid(),'pgid':os.getpgrp(),'fd':int(sys.argv[1]),'dev':s.st_dev,'ino':s.st_ino}));time.sleep(30)"
+from pathlib import Path
+import importlib.util,io,json,os,subprocess,sys,time
+spec=importlib.util.spec_from_file_location('scratch_host_lock',LOCK_PATH)
+lease=importlib.util.module_from_spec(spec);spec.loader.exec_module(lease)
+with lease.held(lease.HEAVY_GATE,'private-review-control',wait_s=0,out=io.StringIO()) as fd:
+    assert fd is not None
+    env=dict(os.environ)
+    with (DIRECTORY/'child.stdout').open('wb') as out,(DIRECTORY/'child.stderr').open('wb') as err:
+        child=subprocess.Popen(BASE+[sys.executable,'-B','-c',CHILD,str(fd)],env=env,cwd=DIRECTORY,stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True,pass_fds=(fd,))
+        (DIRECTORY/'owner.json').write_text(json.dumps({'owner_pid':os.getpid(),'child_group':child.pid,'fd':fd,'lock_path':str(lease.lock_path(lease.HEAVY_GATE))}))
+        time.sleep(30)

@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "generic_suites_rerun": false,
+  "vcpkg_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/preparation-review.json",
+    "sha256": "a62e98cb51d5f9a7d04b5c056a1de7b42fe43aa76a6f69fd5f54a04770463736",
+    "bytes": 18958
+  },
+  "vcpkg_source_identity": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+    "sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+    "bytes": 12651
+  },
+  "functions": [
+    {
+      "name": "promote",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "file_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "lines": [
+        19,
+        25
+      ],
+      "ast_sha256": "692bc02e0f411678fbaa5f96bc8ddd57d37a283180d65c6f491dfd8a74e3a4bc",
+      "prior_source": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/preparation/helper.py.source",
+        "sha256": "36c727904ea7e99365d9e93e51786ef5c8f6c650acb6e54c12e0b2b83ecbc797",
+        "bytes": 11606
+      },
+      "prior_function_ast_equal": true
+    },
+    {
+      "name": "census",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "file_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "lines": [
+        28,
+        49
+      ],
+      "ast_sha256": "df1737748ee98d1dc4f3162c3e8d0b8eae9adcb501049e6eced419ace4f95895",
+      "prior_source": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/preparation/helper.py.source",
+        "sha256": "36c727904ea7e99365d9e93e51786ef5c8f6c650acb6e54c12e0b2b83ecbc797",
+        "bytes": 11606
+      },
+      "prior_function_ast_equal": true
+    },
+    {
+      "name": "install_entries",
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "file_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "lines": [
+        52,
+        56
+      ],
+      "ast_sha256": "c0367db6b820637683903bbdc37b106cafabd2e083799629dd55f218f4bf6a7c",
+      "prior_source": {
+        "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/preparation/helper.py.source",
+        "sha256": "36c727904ea7e99365d9e93e51786ef5c8f6c650acb6e54c12e0b2b83ecbc797",
+        "bytes": 11606
+      },
+      "prior_function_ast_equal": true
+    }
+  ],
+  "native_exclusive_rename_prior_outcomes": {
+    "existing_destination_errno": 17,
+    "new_destination_returncode": 0
+  },
+  "prior_vcpkg_guard_controls": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/vcpkg-registration/independent-review/repair-guard-controls.json",
+    "sha256": "a4ec56d13a5ffd8115e65848be082acef84c2560d4fe42c3c95416a099b18716",
+    "bytes": 1245
+  },
+  "cleanup_chain_review": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-install/preparation-review.json",
+    "sha256": "75422cb5389cf0a0cef7108b665ce291411220675a913a040994928ef8a0468b",
+    "bytes": 165493
+  },
+  "cleanup_receipt": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-build/independent-preparation/final-runtime-controls.json",
+    "sha256": "1b484f8cd99f9770621a4ff21d1d66d69135007a28e3620388188756a2eb9603",
+    "bytes": 14640
+  },
+  "cleanup_cases_reused": 8,
+  "frozen_run_source": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source",
+    "sha256": "7b2bb266094f82008fe2c0f8cfba66ed6cd2e107ac301e3d3fb981c1aeb75d1f",
+    "bytes": 22556
+  },
+  "run_function_lines": [
+    71,
+    123
+  ],
+  "run_ast_sha256_python314": "4b3fa184b691dff361653c1c4b377bd75943a12109b8de88ba7a92cd5a3d7265",
+  "registration_loader_binds_same_frozen_source": true,
+  "scope_note": "Current registration imports the same native rename, census and install inventory helpers by file identity. The new call site is tested by controlled AST fixtures; old generic suites are not replayed."
+}

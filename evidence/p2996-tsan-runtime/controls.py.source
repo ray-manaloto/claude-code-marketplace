@@ -1,0 +1,121 @@
+"""Exercise the composed inventory overlay and private exact-file transition."""
+
+import copy
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+EVIDENCE = ROOT / 'evidence/p2996-tsan-runtime'
+sys.path.insert(0, str(ROOT / 'dev/toolchains'))
+import p2996_asan_runtime as asan
+import p2996_tsan_runtime as tsan
+from mise_runtime import load
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+os.umask(0o077)
+directory = Path(tempfile.mkdtemp(prefix='p2996-tsan-runtime-controls-',
+                                  dir=Path.home() / '.local/state/marketplace-tool-foundation'))
+report = {'script_sha256': sha(Path(__file__)), 'contract_sha256': sha(EVIDENCE / 'contract.json'),
+          'module_sha256': sha(ROOT / 'dev/toolchains/p2996_tsan_runtime.py'),
+          'private_directory': str(directory), 'commands': [], 'checks': {}}
+data, asan_data = tsan.contract(), asan.contract()
+for path in (ROOT / tsan.ARTIFACTS, ROOT / tsan.PREFIX):
+    raw = load(path)
+    asan_only = asan.overlay(path, raw, asan_data)
+    combined = tsan.overlay(path, asan_only, data)
+    assert load(path) == raw
+    old_rows = raw['records'] if isinstance(raw, dict) else raw
+    new_rows = combined['records'] if isinstance(combined, dict) else combined
+    assert len(old_rows) == len(new_rows)
+    changed = []
+    for old, new in zip(old_rows, new_rows, strict=True):
+        keys = {key for key in old if old[key] != new[key]}
+        if keys:
+            assert keys == {'sha256', 'bytes'}
+            assert old['path'] in (asan_data['target'], data['target'], asan.RUNTIME, tsan.RUNTIME)
+            changed.append(old['path'])
+        else:
+            assert old == new
+    assert len(changed) == 2
+    report['checks'][str(path.relative_to(ROOT))] = {'changed_rows': changed,
+                                                     'original_sha256': sha(path)}
+assert asan.protected()
+try:
+    tsan.protected()
+except AssertionError:
+    report['checks']['prepromotion_guard'] = 'rejects installed original TSan'
+else:
+    raise AssertionError('postpromotion guard accepted original TSan')
+
+target = directory / 'target.dylib'
+backup = directory / 'original.dylib'
+staged = directory / 'staged.dylib'
+shutil.copyfile(data['target'], target)
+shutil.copyfile(data['target'], backup)
+shutil.copyfile(data['qualified_replacement']['path'], staged)
+for path in (target, backup, staged):
+    path.chmod(0o755)
+before = {key: data['previous_record'][key] for key in ('sha256', 'bytes', 'mode')}
+after = data['current_tsan']
+assert tsan.identity(target) == tsan.identity(backup) == before
+assert tsan.identity(staged) == after
+profile = directory / 'private.sb'
+profile.write_text('(version 1)\n(allow default)\n(deny file-write*)\n'
+                   '(allow file-write* (subpath ' + json.dumps(str(directory)) + ') (literal "/dev/null"))\n'
+                   '(deny network*)\n')
+script = ('import json,sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);'
+          'from p2996_tsan_runtime import replace_exact;'
+          'replace_exact(Path(sys.argv[2]),Path(sys.argv[3]),'
+          'json.loads(sys.argv[4]),json.loads(sys.argv[5]))')
+
+
+def transition(case, source, old, new, expected):
+    argv = ['/usr/bin/sandbox-exec', '-f', str(profile), sys.executable, '-E', '-B', '-c', script,
+            str(ROOT / 'dev/toolchains'), str(source), str(target), json.dumps(old), json.dumps(new)]
+    start = time.monotonic()
+    completed = subprocess.run(argv, cwd=directory, text=True, capture_output=True, timeout=30)
+    logs = {}
+    for suffix, content in (('stdout', completed.stdout), ('stderr', completed.stderr)):
+        path = directory / (case + '.' + suffix)
+        path.write_text(content)
+        logs[suffix] = {'path': str(path), 'sha256': sha(path)}
+    report['commands'].append({'case': case, 'argv': argv, 'returncode': completed.returncode,
+                               'expected_returncode': expected, 'elapsed_seconds': time.monotonic() - start,
+                               'logs': logs})
+    assert completed.returncode == expected, case
+
+
+transition('replace', staged, before, after, 0)
+assert tsan.identity(target) == after and not staged.exists()
+restore = directory / 'restore.dylib'
+shutil.copyfile(backup, restore)
+restore.chmod(0o755)
+transition('restore', restore, after, before, 0)
+assert tsan.identity(target) == before and not restore.exists()
+unknown = directory / 'unknown.dylib'
+unknown.write_bytes(b'unknown target content')
+unknown.chmod(0o755)
+shutil.copyfile(unknown, target)
+staged_again = directory / 'staged-again.dylib'
+shutil.copyfile(data['qualified_replacement']['path'], staged_again)
+staged_again.chmod(0o755)
+unknown_sha = sha(target)
+transition('reject-unknown-target', staged_again, before, after, 1)
+assert sha(target) == unknown_sha and staged_again.exists()
+report['checks']['private_transition'] = 'replacement, restore and unknown-target refusal passed'
+report['state'] = 'PASS: composed overlay and private exact-file controls'
+(EVIDENCE / 'controls').mkdir(exist_ok=False)
+(EVIDENCE / 'controls/controls.json').write_text(json.dumps(report, indent=2) + '\n')
+print(json.dumps({'state': report['state'], 'commands': len(report['commands']),
+                  'report_sha256': sha(EVIDENCE / 'controls/controls.json')}))

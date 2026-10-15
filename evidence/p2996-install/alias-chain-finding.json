@@ -1,0 +1,29 @@
+{
+  "result": "FINDING_REPRODUCED",
+  "helper_sha256": "7739fe59e3029960325c28f904734f1037d43e0dde6466042a59529ffe43f72b",
+  "helper_path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+  "line": 222,
+  "exact_ast_sha256": "26f70567fc21e286c2af66e946b8c5c4048b4f11bab3ae3b208702438b326c0e",
+  "cases": [
+    {
+      "alias": "llvm-ranlib",
+      "target_text": "llvm-ar",
+      "expected_accepted": true,
+      "actual_accepted": true,
+      "error": null,
+      "immediate_target": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/alias-fixture/prefix/bin/llvm-ar",
+      "fully_resolved_target": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/alias-fixture/prefix/bin/llvm-ar"
+    },
+    {
+      "alias": "clang++",
+      "target_text": "clang",
+      "expected_accepted": true,
+      "actual_accepted": false,
+      "error": "AssertionError",
+      "immediate_target": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/alias-fixture/prefix/bin/clang",
+      "fully_resolved_target": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-install-review-20261011T085837205121Z/alias-fixture/prefix/bin/clang-21"
+    }
+  ],
+  "expected_fix": "Compare the alias resolved path with Path(row[target_resolved_relative_to_destination]).resolve(strict=True), while retaining exact readlink and prefix-containment checks.",
+  "real_install_invocations": 0
+}

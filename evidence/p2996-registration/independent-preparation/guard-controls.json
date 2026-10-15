@@ -1,0 +1,326 @@
+{
+  "result": "PASS",
+  "helper": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_register.py",
+  "helper_sha256": "b80d364c30736a407469947b486a8eaf1b8e3ca27a97b4c4675c782a19130542",
+  "case_count": 16,
+  "cases": [
+    {
+      "case": "valid_admission_reaches_stubbed_boundary",
+      "result": "PASS",
+      "expected_helper_line": 167,
+      "observed_helper_lines": [
+        167
+      ],
+      "exception_type": "ReachedPromotion",
+      "promotion_stub_calls": 1,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        },
+        {
+          "event": "save"
+        },
+        {
+          "event": "promotion_stub",
+          "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-fixtures/valid_admission_reaches_stubbed_boundary/stage/asdf-clang-p2996",
+          "destination": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-fixtures/valid_admission_reaches_stubbed_boundary/fake-global-installs/asdf-clang-p2996"
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "relative_run_directory_rejected",
+      "result": "PASS",
+      "expected_helper_line": 38,
+      "observed_helper_lines": [
+        38
+      ],
+      "exception_type": "RunPathRejected",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "protected_run_directory_rejected",
+      "result": "PASS",
+      "expected_helper_line": 38,
+      "observed_helper_lines": [
+        38
+      ],
+      "exception_type": "RunPathRejected",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "occupied_destination_rejected",
+      "result": "PASS",
+      "expected_helper_line": 74,
+      "observed_helper_lines": [
+        162,
+        74
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "wrong_reflection_review_digest_rejected",
+      "result": "PASS",
+      "expected_helper_line": 94,
+      "observed_helper_lines": [
+        94
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "dependency_helper_drift_rejected",
+      "result": "PASS",
+      "expected_helper_line": 108,
+      "observed_helper_lines": [
+        108
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "wrong_admission_helper_rejected",
+      "result": "PASS",
+      "expected_helper_line": 156,
+      "observed_helper_lines": [
+        156
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "wrong_preparation_review_binding_rejected",
+      "result": "PASS",
+      "expected_helper_line": 157,
+      "observed_helper_lines": [
+        157
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "wrong_admission_proposal_rejected",
+      "result": "PASS",
+      "expected_helper_line": 159,
+      "observed_helper_lines": [
+        159
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "unresolved_preparation_review_rejected",
+      "result": "PASS",
+      "expected_helper_line": 158,
+      "observed_helper_lines": [
+        158
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "wrong_admission_run_directory_rejected",
+      "result": "PASS",
+      "expected_helper_line": 160,
+      "observed_helper_lines": [
+        160
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "retained_source_drift_before_promotion_rejected",
+      "result": "PASS",
+      "expected_helper_line": 84,
+      "observed_helper_lines": [
+        162,
+        84
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "complete_prefix_drift_before_promotion_rejected",
+      "result": "PASS",
+      "expected_helper_line": 86,
+      "observed_helper_lines": [
+        162,
+        86
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "immediate_writer_census_failure_rejected",
+      "result": "PASS",
+      "expected_helper_line": 161,
+      "observed_helper_lines": [
+        161
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true,
+          "controlled_blocker": true
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "staged_namespace_drift_before_promotion_rejected",
+      "result": "PASS",
+      "expected_helper_line": 164,
+      "observed_helper_lines": [
+        164
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        }
+      ],
+      "real_promotion_performed": false
+    },
+    {
+      "case": "unexpected_promoted_namespace_rejected",
+      "result": "PASS",
+      "expected_helper_line": 71,
+      "observed_helper_lines": [
+        162,
+        71
+      ],
+      "exception_type": "AssertionError",
+      "promotion_stub_calls": 0,
+      "events": [
+        {
+          "event": "census",
+          "strict": true
+        }
+      ],
+      "real_promotion_performed": false
+    }
+  ],
+  "method": "Exact AST nodes/functions from the frozen helper with private filesystem fixtures. A recording promotion stub prevents all rename calls; a controlled census failure checks the new call site's rejection path. Existing generic rename/census/cleanup suites are reused by exact source identity.",
+  "extracted_support_functions": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/mise_link_probe.py",
+      "file_sha256": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "function": "snapshot",
+      "lines": [
+        18,
+        22
+      ],
+      "ast_sha256": "4c38bb6553f29f071b715a0b3f987df4bfebcf947523e03e4a3c9688322e4f09"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/vcpkg_register.py",
+      "file_sha256": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "function": "install_entries",
+      "lines": [
+        52,
+        56
+      ],
+      "ast_sha256": "c0367db6b820637683903bbdc37b106cafabd2e083799629dd55f218f4bf6a7c"
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_install.py",
+      "file_sha256": "5389d8c5a6f422eb6006f16902728e64dcc7d1303819047417472613be5a99d3",
+      "function": "prefix_inventory",
+      "lines": [
+        25,
+        39
+      ],
+      "ast_sha256": "6111b57b5ee9af6701bbc725f35f3cbbd4faca2571048d74676b276db82824b1"
+    }
+  ],
+  "helper_guard_sources": [
+    {
+      "kind": "FunctionDef",
+      "lines": [
+        65,
+        86
+      ],
+      "ast_sha256": "524c8ba69edf4c724e2a934d9412009bde7a134b17d6969b935748dfe0199469"
+    },
+    {
+      "kind": "If",
+      "lines": [
+        153,
+        170
+      ],
+      "ast_sha256": "9134c9fa190d7841211cbae6d3d18fa84efb0100e9efda2a09c580a333e1daa4"
+    },
+    {
+      "kind": "If",
+      "lines": [
+        36,
+        38
+      ],
+      "ast_sha256": "2b52829d3bda234eb4cd7d3c3e79128f41a7abf1ebfbb9236e95968089e29aa7"
+    },
+    {
+      "kind": "Assert",
+      "lines": [
+        94,
+        94
+      ],
+      "ast_sha256": "3a2eab3f765b42d3fbe3364f0f0c24364e5b3c6e37151b1a2494bea7b1fbaeed"
+    },
+    {
+      "kind": "Assert",
+      "lines": [
+        108,
+        108
+      ],
+      "ast_sha256": "e8b55b53524ee3972c7fccbb745a290a2c67e3a6aa29dc355054326eb5c18e09"
+    }
+  ],
+  "global_paths_mutated": [],
+  "fixture_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-registration-review-20261011T095924768311Z/guard-fixtures",
+  "native_commands_executed_by_fixtures": []
+}

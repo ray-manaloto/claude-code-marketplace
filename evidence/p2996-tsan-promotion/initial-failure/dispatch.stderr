@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_promote.py", line 218, in <module>
+    main()
+    ~~~~^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_promote.py", line 113, in main
+    assert run("project-head", ["/usr/bin/git", "-C", ROOT, "rev-parse", "HEAD"]).strip() == contract["base_head"]
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996_tsan_promote.py", line 78, in run
+    result = native(label, argv, timeout=timeout, descriptor=descriptor)
+  File "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-math-resume/operation/p2996_build.py.source", line 73, in run
+    row = {"case": label, "argv": argv, "started_at": datetime.now(timezone.utc).isoformat()}
+                                                      ^^^^^^^^
+NameError: name 'datetime' is not defined. Did you forget to import 'datetime'?

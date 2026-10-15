@@ -1,0 +1,135 @@
+{
+  "recorded_at": "2026-10-11T20:15:06.006182+00:00",
+  "script_sha256": "ef59527cbadd1d399719229ef167030c2441b794b0fad217a57ca92336b2f1ec",
+  "commands": [
+    {
+      "case": "processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.06586208299268037,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/processes.stdout",
+          "sha256": "592b95cdedbca8263d401457fa41dcb32419a0881dc006475b7dbcfb229a0060"
+        },
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.08189758297521621,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.04194645897950977,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 1.046832416090183,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-stats.stdout",
+          "sha256": "8397aace1249814e42aa08cbc848739278e278bf9b728c16ca322fd4616a6aba"
+        },
+        {
+          "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/pkgconf-install/capacity/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "held_lease": false,
+  "native_operation_started": false,
+  "writer_census": {
+    "at": "2026-10-11T20:15:06.722867+00:00",
+    "processes": [
+      {
+        "pid": 56524,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 56526,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      },
+      {
+        "pid": 56528,
+        "ppid": 21017,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "active_build_processes": [],
+  "cpus": 12,
+  "load": [
+    13.0068359375,
+    10.0322265625,
+    7.54443359375
+  ],
+  "free_bytes": 52906463232,
+  "total_cpu_percent": 870.4,
+  "docker_context": "desktop-linux",
+  "containers": [
+    "53064d00e38a\tvsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86"
+  ],
+  "container_cpu_percent": 3.42,
+  "state": "PASS"
+}

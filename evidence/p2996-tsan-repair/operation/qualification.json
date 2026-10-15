@@ -1,0 +1,2037 @@
+{
+  "state": "PASS: private TSan repair with original startup failure and five reflection witnesses",
+  "helper_sha256": "7ef53903f191daa1b5295db99c4ad9ed3d130be62fc732e359ff7c791d33bd22",
+  "commands": [
+    {
+      "case": "project-head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T02:54:35.381641+00:00",
+      "pid": 18979,
+      "returncode": 0,
+      "elapsed_seconds": 0.012807124992832541,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/project-head.stdout",
+          "sha256": "3008a86c16b08701c15924ea7a46d4a2066986940205a2e98f1bb11e39a8f4cf"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/project-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-12T02:54:35.395864+00:00",
+      "pid": 18981,
+      "returncode": 0,
+      "elapsed_seconds": 0.08799850009381771,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-before.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-12T02:54:35.489206+00:00",
+      "pid": 18985,
+      "returncode": 0,
+      "elapsed_seconds": 0.06436495808884501,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/capacity-processes.stdout",
+          "sha256": "287b17a800ea1f42eeeb63fa71c25f7d24eceda6b0ee567aa32346bcc8b85432"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "editor-identities",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-12T02:54:35.558996+00:00",
+      "pid": 18990,
+      "returncode": 0,
+      "elapsed_seconds": 0.039727750001475215,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-cwd",
+      "argv": [
+        "/usr/sbin/lsof",
+        "-a",
+        "-p",
+        "73356,73398",
+        "-d",
+        "cwd",
+        "-Fpn"
+      ],
+      "started_at": "2026-10-12T02:54:35.600273+00:00",
+      "pid": 18994,
+      "returncode": 0,
+      "elapsed_seconds": 0.05960349994711578,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-cwd.stdout",
+          "sha256": "e3d321400488c1137170636bbd0c5a4da12628f06ffe0e1b5033e396909ef95e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-cwd.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "editor-identities-after",
+      "argv": [
+        "/usr/bin/env",
+        "LC_ALL=C",
+        "TZ=America/Chicago",
+        "/bin/ps",
+        "-p",
+        "36012,73356,73372,73398",
+        "-o",
+        "pid=,ppid=,lstart=,comm="
+      ],
+      "started_at": "2026-10-12T02:54:35.661417+00:00",
+      "pid": 18997,
+      "returncode": 0,
+      "elapsed_seconds": 0.04036412504501641,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities-after.stdout",
+          "sha256": "aeff8fcb553ce3974eeff133e5a54d9e151c17926b5e0503c005a71c0baf2110"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/editor-identities-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-12T02:54:35.703272+00:00",
+      "pid": 19003,
+      "returncode": 0,
+      "elapsed_seconds": 0.019716166891157627,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-12T02:54:35.724388+00:00",
+      "pid": 19004,
+      "returncode": 0,
+      "elapsed_seconds": 0.03232195787131786,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 15
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-12T02:54:35.758186+00:00",
+      "pid": 19007,
+      "returncode": 0,
+      "elapsed_seconds": 1.054690208984539,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-stats.stdout",
+          "sha256": "28e0768f55ddbe5fd513ed809af2607e2b0513ad09e2e5b7259728a531e50e8c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "source-before-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T02:54:39.508066+00:00",
+      "pid": 19429,
+      "returncode": 0,
+      "elapsed_seconds": 0.013739959103986621,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-12T02:54:39.523359+00:00",
+      "pid": 19430,
+      "returncode": 0,
+      "elapsed_seconds": 0.013263375032693148,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-12T02:54:39.537698+00:00",
+      "pid": 19431,
+      "returncode": 0,
+      "elapsed_seconds": 0.4047449170611799,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-before-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-12T02:54:39.943933+00:00",
+      "pid": 19432,
+      "returncode": 0,
+      "elapsed_seconds": 0.9240132498089224,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-before-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "original-runtime-link",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++",
+        "--target=arm64-apple-darwin27.0.0",
+        "-fPIC",
+        "-fvisibility-inlines-hidden",
+        "-Werror=date-time",
+        "-Werror=unguarded-availability-new",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Wwrite-strings",
+        "-Wcast-qual",
+        "-Wmissing-field-initializers",
+        "-Wimplicit-fallthrough",
+        "-Wcovered-switch-default",
+        "-Wno-noexcept-type",
+        "-Wnon-virtual-dtor",
+        "-Wdelete-non-virtual-dtor",
+        "-Wsuggest-override",
+        "-Wstring-conversion",
+        "-Wmisleading-indentation",
+        "-Wctad-maybe-unsupported",
+        "-fdiagnostics-color",
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-dynamiclib",
+        "-Wl,-headerpad_max_install_names",
+        "-stdlib=libc++",
+        "-lc++",
+        "-lc++abi",
+        "-fapplication-extension",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-nodefaultlibs",
+        "-nostdlib++",
+        "-Wl,-U,___ubsan_default_options",
+        "-Wl,-U,___sanitizer_free_hook",
+        "-Wl,-U,___sanitizer_get_dtls_size",
+        "-Wl,-U,___sanitizer_malloc_hook",
+        "-Wl,-U,___sanitizer_report_error_summary",
+        "-Wl,-U,___sanitizer_sandbox_on_notify",
+        "-Wl,-U,___sanitizer_symbolize_code",
+        "-Wl,-U,___sanitizer_symbolize_data",
+        "-Wl,-U,___sanitizer_symbolize_frame",
+        "-Wl,-U,___sanitizer_symbolize_demangle",
+        "-Wl,-U,___sanitizer_symbolize_flush",
+        "-Wl,-U,___sanitizer_symbolize_set_demangle",
+        "-Wl,-U,___sanitizer_symbolize_set_inline_frames",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib",
+        "-install_name",
+        "@rpath/libclang_rt.tsan_osx_dynamic.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_aix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_type_test.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_allocator.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_common.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector1.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector2.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_errno.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_file.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flag_parser.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_haiku.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libignore.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux_s390.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mutex.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_netbsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_freebsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_netbsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_printf.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_common.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_bsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_haiku.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/procmaps.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_range.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_suppressions.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_tls_get_addr.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_arg_retval.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_registry.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_type_traits.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win_interception.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_termination.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_common_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_allocator_checks.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_dl.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_mac_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_posix_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_netbsd_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sancov_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_libcdep_new.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_win_sections.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_allocator_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_chained_origin_depot.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stack_store.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stackdepot.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_printer.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_sparc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libbacktrace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_posix_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_thread_history.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_diag.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_init.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_monitor.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_value.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers_cxx.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_itanium.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_debugging.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_external.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_fd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_ignoreset.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_memintrinsics.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_ann.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_atomic.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_java.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_malloc_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_md5.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mman.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mutexset.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_mutex.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_proc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_thread.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_stack_trace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_suppressions.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_symbolize.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_sync.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_vector_clock.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mach_vm.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_libdispatch.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_new_delete.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_amd64.S.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_aarch64.S.o",
+        "-Wl,-rpath,@loader_path/../lib",
+        "-lc",
+        "-lobjc"
+      ],
+      "started_at": "2026-10-12T02:54:40.941016+00:00",
+      "pid": 19433,
+      "returncode": 0,
+      "elapsed_seconds": 0.3233637912198901,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-link.stderr",
+          "sha256": "44c26294029169b49cd03296707dff76a53bac01fb26159ede04430357bb8407"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "original-runtime-sign",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/codesign",
+        "--sign",
+        "-",
+        "-o",
+        "linker-signed",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib"
+      ],
+      "started_at": "2026-10-12T02:54:41.265986+00:00",
+      "pid": 19447,
+      "returncode": 0,
+      "elapsed_seconds": 0.026240207953378558,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-sign.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-runtime-sign.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "original-arch-object",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/procmaps.o"
+      ],
+      "started_at": "2026-10-12T02:54:41.294093+00:00",
+      "pid": 19458,
+      "returncode": 0,
+      "elapsed_seconds": 0.032559582963585854,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-object.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-object.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "original-arch-runtime",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib"
+      ],
+      "started_at": "2026-10-12T02:54:41.328530+00:00",
+      "pid": 19459,
+      "returncode": 0,
+      "elapsed_seconds": 0.020728499861434102,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-runtime.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-arch-runtime.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "patched-runtime-link",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build/bin/clang++",
+        "--target=arm64-apple-darwin27.0.0",
+        "-fPIC",
+        "-fvisibility-inlines-hidden",
+        "-Werror=date-time",
+        "-Werror=unguarded-availability-new",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Wwrite-strings",
+        "-Wcast-qual",
+        "-Wmissing-field-initializers",
+        "-Wimplicit-fallthrough",
+        "-Wcovered-switch-default",
+        "-Wno-noexcept-type",
+        "-Wnon-virtual-dtor",
+        "-Wdelete-non-virtual-dtor",
+        "-Wsuggest-override",
+        "-Wstring-conversion",
+        "-Wmisleading-indentation",
+        "-Wctad-maybe-unsupported",
+        "-fdiagnostics-color",
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-O3",
+        "-DNDEBUG",
+        "-arch",
+        "arm64",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-dynamiclib",
+        "-Wl,-headerpad_max_install_names",
+        "-stdlib=libc++",
+        "-lc++",
+        "-lc++abi",
+        "-fapplication-extension",
+        "-mmacosx-version-min=27.0",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-nodefaultlibs",
+        "-nostdlib++",
+        "-Wl,-U,___ubsan_default_options",
+        "-Wl,-U,___sanitizer_free_hook",
+        "-Wl,-U,___sanitizer_get_dtls_size",
+        "-Wl,-U,___sanitizer_malloc_hook",
+        "-Wl,-U,___sanitizer_report_error_summary",
+        "-Wl,-U,___sanitizer_sandbox_on_notify",
+        "-Wl,-U,___sanitizer_symbolize_code",
+        "-Wl,-U,___sanitizer_symbolize_data",
+        "-Wl,-U,___sanitizer_symbolize_frame",
+        "-Wl,-U,___sanitizer_symbolize_demangle",
+        "-Wl,-U,___sanitizer_symbolize_flush",
+        "-Wl,-U,___sanitizer_symbolize_set_demangle",
+        "-Wl,-U,___sanitizer_symbolize_set_inline_frames",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+        "-install_name",
+        "@rpath/libclang_rt.tsan_osx_dynamic.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_aix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/interception/CMakeFiles/RTInterception.osx.dir/interception_type_test.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_allocator.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_common.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector1.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_deadlock_detector2.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_errno.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_file.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_flag_parser.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_haiku.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_libignore.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_linux_s390.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_mutex.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_netbsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_freebsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_netbsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_platform_limits_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_printf.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_common.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_bsd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_haiku.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_linux.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/procmaps.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_procmaps_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_range.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_solaris.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_stoptheworld_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_suppressions.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_tls_get_addr.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_arg_retval.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_thread_registry.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_type_traits.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_win_interception.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommon.osx.dir/sanitizer_termination.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_common_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_allocator_checks.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_dl.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_mac_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_posix_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonLibc.osx.dir/sanitizer_stoptheworld_netbsd_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sancov_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_libcdep_new.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonCoverage.osx.dir/sanitizer_coverage_win_sections.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_allocator_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_chained_origin_depot.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stack_store.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stackdepot.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_printer.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_stacktrace_sparc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libbacktrace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_markup_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_posix_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_report_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_symbolizer_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_thread_history.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_linux_libcdep.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_fuchsia.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/sanitizer_common/CMakeFiles/RTSanitizerCommonSymbolizer.osx.dir/sanitizer_unwind_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_diag.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_init.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_monitor.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_value.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_handlers_cxx.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_itanium.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/ubsan/CMakeFiles/RTUbsan.osx.dir/ubsan_type_hash_win.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_debugging.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_external.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_fd.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_flags.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_ignoreset.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_memintrinsics.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_ann.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_atomic.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interface_java.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_malloc_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_md5.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mman.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_mutexset.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_access.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_mutex.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_proc.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_report.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_thread.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_stack_trace.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_suppressions.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_symbolize.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_sync.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_vector_clock.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_mach_vm.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_mac.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_platform_posix.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_interceptors_libdispatch.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_new_delete.cpp.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_amd64.S.o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/objects/compiler-rt/lib/tsan/rtl/CMakeFiles/clang_rt.tsan_osx_dynamic.dir/tsan_rtl_aarch64.S.o",
+        "-Wl,-rpath,@loader_path/../lib",
+        "-lc",
+        "-lobjc"
+      ],
+      "started_at": "2026-10-12T02:54:41.352348+00:00",
+      "pid": 19460,
+      "returncode": 0,
+      "elapsed_seconds": 0.11408095806837082,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-link.stderr",
+          "sha256": "44c26294029169b49cd03296707dff76a53bac01fb26159ede04430357bb8407"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "patched-runtime-sign",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/codesign",
+        "--sign",
+        "-",
+        "-o",
+        "linker-signed",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib"
+      ],
+      "started_at": "2026-10-12T02:54:41.468522+00:00",
+      "pid": 19462,
+      "returncode": 0,
+      "elapsed_seconds": 0.0240881668869406,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-sign.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-runtime-sign.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "patched-arch-object",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/procmaps.o"
+      ],
+      "started_at": "2026-10-12T02:54:41.494476+00:00",
+      "pid": 19463,
+      "returncode": 0,
+      "elapsed_seconds": 0.020729040959849954,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-object.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-object.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "patched-arch-runtime",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib"
+      ],
+      "started_at": "2026-10-12T02:54:41.516847+00:00",
+      "pid": 19464,
+      "returncode": 0,
+      "elapsed_seconds": 0.02005158388055861,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-runtime.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched-arch-runtime.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "original-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+        "clean",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original\"}"
+      ],
+      "started_at": "2026-10-12T02:54:41.541757+00:00",
+      "pid": 19468,
+      "returncode": -11,
+      "elapsed_seconds": 0.29375662514939904,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-clean.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original-clean.stderr",
+          "sha256": "5e8d3393fb4ceb1717a898b46f031f5b1b32384fd6f1e2180dd7f32e43f1debb"
+        }
+      ],
+      "expected_returncode": -11,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "tsan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+        "clean",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched\"}"
+      ],
+      "started_at": "2026-10-12T02:54:41.838010+00:00",
+      "pid": 19487,
+      "returncode": 0,
+      "elapsed_seconds": 0.4078064579516649,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-clean.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-clean.stderr",
+          "sha256": "92ae4c00c8312a123c58341b9343ccfcfcbd4b7d51e3322b027f9080724ac1e8"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "tsan-race",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+        "race",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched\"}"
+      ],
+      "started_at": "2026-10-12T02:54:42.250580+00:00",
+      "pid": 19491,
+      "returncode": 86,
+      "elapsed_seconds": 0.3151849168352783,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-race.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-race.stderr",
+          "sha256": "39dcc447f55b0305ab1154e6a3016da43f84b2f86091b90085f2e10078a62992"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "tsan-ubsan-core",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-fPIC",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "-arch",
+        "arm64",
+        "-std=c++26",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fno-optimize-sibling-calls",
+        "-I",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=thread,undefined",
+        "-freflection",
+        "-c",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/core.o"
+      ],
+      "started_at": "2026-10-12T02:54:42.569860+00:00",
+      "pid": 19495,
+      "returncode": 0,
+      "elapsed_seconds": 0.7319325420539826,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-core.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-core.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "tsan-ubsan-link",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/bin/clang++",
+        "--no-default-config",
+        "-fno-blocks",
+        "-resource-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/clang/21",
+        "-stdlib=libc++",
+        "-nostdinc++",
+        "-isystem",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/include/c++/v1",
+        "-fPIC",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-mmacosx-version-min=27.0",
+        "-arch",
+        "arm64",
+        "-std=c++26",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fno-optimize-sibling-calls",
+        "-I",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=thread,undefined",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/tsan_witness.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/core.o",
+        "-nostdlib++",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.dylib",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.dylib",
+        "-Wl,-rpath,/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness"
+      ],
+      "started_at": "2026-10-12T02:54:43.303536+00:00",
+      "pid": 19496,
+      "returncode": 0,
+      "elapsed_seconds": 0.20906608295626938,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-link.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-link.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "tsan-ubsan-arch-object",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/core.o"
+      ],
+      "started_at": "2026-10-12T02:54:43.514242+00:00",
+      "pid": 19500,
+      "returncode": 0,
+      "elapsed_seconds": 0.020339082926511765,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-object.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-object.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "tsan-ubsan-arch-binary",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness"
+      ],
+      "started_at": "2026-10-12T02:54:43.536323+00:00",
+      "pid": 19501,
+      "returncode": 0,
+      "elapsed_seconds": 0.020554999820888042,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-binary.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-arch-binary.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "tsan-ubsan-clean",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+        "clean",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched\"}"
+      ],
+      "started_at": "2026-10-12T02:54:43.559100+00:00",
+      "pid": 19502,
+      "returncode": 0,
+      "elapsed_seconds": 0.3810686671640724,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-clean.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-clean.stderr",
+          "sha256": "be37c8b107d623bfa515b4179e53a25d84d5751c978a0a78361e3aa1cdf7f5ee"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "tsan-ubsan-race",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+        "race",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched\"}"
+      ],
+      "started_at": "2026-10-12T02:54:43.944553+00:00",
+      "pid": 19503,
+      "returncode": 86,
+      "elapsed_seconds": 0.31876416597515345,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-race.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-race.stderr",
+          "sha256": "9d9b4f48dfb82932447a989d31272df95a02f0d3591f205b506359984305aa5a"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "tsan-ubsan-overflow",
+      "argv": [
+        "/usr/bin/sandbox-exec",
+        "-f",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/private.sb",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-E",
+        "-B",
+        "-c",
+        "import json,os,resource,sys;resource.setrlimit(resource.RLIMIT_CORE,(0,0));os.execve(sys.argv[1],sys.argv[1:3],dict(os.environ,**json.loads(sys.argv[3]),DYLD_PRINT_LIBRARIES='1'))",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+        "overflow",
+        "{\"TSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"UBSAN_OPTIONS\": \"exitcode=86:abort_on_error=0:symbolize=0:halt_on_error=1\", \"DYLD_LIBRARY_PATH\": \"/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched\"}"
+      ],
+      "started_at": "2026-10-12T02:54:44.267235+00:00",
+      "pid": 19504,
+      "returncode": 86,
+      "elapsed_seconds": 0.3214757919777185,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-overflow.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan-overflow.stderr",
+          "sha256": "dfd87ff47322cdc5551db3258711564750775c1226b2d6fe68d00c3773eb24ac"
+        }
+      ],
+      "expected_returncode": 86,
+      "timeout_seconds": 20
+    },
+    {
+      "case": "source-after-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-12T02:54:44.593545+00:00",
+      "pid": 19509,
+      "returncode": 0,
+      "elapsed_seconds": 0.014630791964009404,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-12T02:54:44.610145+00:00",
+      "pid": 19518,
+      "returncode": 0,
+      "elapsed_seconds": 0.012393125100061297,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-diff",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "diff",
+        "--no-ext-diff",
+        "--binary"
+      ],
+      "started_at": "2026-10-12T02:54:44.624405+00:00",
+      "pid": 19519,
+      "returncode": 0,
+      "elapsed_seconds": 0.49631354212760925,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-diff.stdout",
+          "sha256": "279f1d13af983849c3f92fd288edafaa86aaf2efe3e037ec165422892ecc6d2e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "source-after-status",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-12T02:54:45.122992+00:00",
+      "pid": 19545,
+      "returncode": 0,
+      "elapsed_seconds": 0.9699702500365674,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-status.stdout",
+          "sha256": "61f58ad938fc2f063cf9343d40a9910d45921353c45e7977810eb71d7de447d6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/source-after-status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-12T02:54:46.095552+00:00",
+      "pid": 19554,
+      "returncode": 0,
+      "elapsed_seconds": 0.08718291693367064,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-after.stdout",
+          "sha256": "68005afbe742ce0f8e7cd47c27c2830c7955227addae4b2aa18c54ac8ba8083c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "expected_returncode": 0,
+      "timeout_seconds": 60
+    }
+  ],
+  "cells": {
+    "tsan": {
+      "artifacts": {
+        "binary": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+          "sha256": "98bbddbab90890197bebfe79f451d7e5ad6384bd3ad340dc5f47c3b93ad0f018",
+          "bytes": 35336
+        }
+      },
+      "runs": {
+        "clean": {
+          "expected_returncode": 0,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "race": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-native-retry-20261012T020903Z/tsan/witness",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        }
+      }
+    },
+    "tsan-ubsan": {
+      "artifacts": {
+        "object": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/core.o",
+          "sha256": "41ed8e810c5ef60ecca04734198231932798365f18dea97f7fdaf268b762aea3"
+        },
+        "binary": {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+          "sha256": "7ddfb29def4c0293f50876a9139429a64bf6ea9d6adcaf02ce62e07c994e3f99"
+        }
+      },
+      "runs": {
+        "clean": {
+          "expected_returncode": 0,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "race": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        },
+        "overflow": {
+          "expected_returncode": 86,
+          "loaded": [
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libc++abi.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix/lib/libunwind.1.0.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+            "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/tsan-ubsan/witness",
+            "/usr/lib/libRosetta.dylib",
+            "/usr/lib/libSystem.B.dylib",
+            "/usr/lib/libc++.1.dylib",
+            "/usr/lib/libc++abi.dylib",
+            "/usr/lib/libobjc.A.dylib",
+            "/usr/lib/libsharedcache.dylib",
+            "/usr/lib/objc/libobjcMsgSend.dylib",
+            "/usr/lib/objc/libobjcMsgSend1.dylib",
+            "/usr/lib/objc/libobjcMsgSend10.dylib",
+            "/usr/lib/objc/libobjcMsgSend11.dylib",
+            "/usr/lib/objc/libobjcMsgSend12.dylib",
+            "/usr/lib/objc/libobjcMsgSend13.dylib",
+            "/usr/lib/objc/libobjcMsgSend14.dylib",
+            "/usr/lib/objc/libobjcMsgSend15.dylib",
+            "/usr/lib/objc/libobjcMsgSend16.dylib",
+            "/usr/lib/objc/libobjcMsgSend17.dylib",
+            "/usr/lib/objc/libobjcMsgSend18.dylib",
+            "/usr/lib/objc/libobjcMsgSend19.dylib",
+            "/usr/lib/objc/libobjcMsgSend2.dylib",
+            "/usr/lib/objc/libobjcMsgSend20.dylib",
+            "/usr/lib/objc/libobjcMsgSend21.dylib",
+            "/usr/lib/objc/libobjcMsgSend22.dylib",
+            "/usr/lib/objc/libobjcMsgSend23.dylib",
+            "/usr/lib/objc/libobjcMsgSend24.dylib",
+            "/usr/lib/objc/libobjcMsgSend25.dylib",
+            "/usr/lib/objc/libobjcMsgSend26.dylib",
+            "/usr/lib/objc/libobjcMsgSend27.dylib",
+            "/usr/lib/objc/libobjcMsgSend28.dylib",
+            "/usr/lib/objc/libobjcMsgSend29.dylib",
+            "/usr/lib/objc/libobjcMsgSend3.dylib",
+            "/usr/lib/objc/libobjcMsgSend30.dylib",
+            "/usr/lib/objc/libobjcMsgSend31.dylib",
+            "/usr/lib/objc/libobjcMsgSend32.dylib",
+            "/usr/lib/objc/libobjcMsgSend33.dylib",
+            "/usr/lib/objc/libobjcMsgSend34.dylib",
+            "/usr/lib/objc/libobjcMsgSend4.dylib",
+            "/usr/lib/objc/libobjcMsgSend5.dylib",
+            "/usr/lib/objc/libobjcMsgSend6.dylib",
+            "/usr/lib/objc/libobjcMsgSend7.dylib",
+            "/usr/lib/objc/libobjcMsgSend8.dylib",
+            "/usr/lib/objc/libobjcMsgSend9.dylib",
+            "/usr/lib/system/libcache.dylib",
+            "/usr/lib/system/libcommonCrypto.dylib",
+            "/usr/lib/system/libcompiler_rt.dylib",
+            "/usr/lib/system/libcopyfile.dylib",
+            "/usr/lib/system/libcorecrypto.dylib",
+            "/usr/lib/system/libdispatch.dylib",
+            "/usr/lib/system/libdyld.dylib",
+            "/usr/lib/system/libkeymgr.dylib",
+            "/usr/lib/system/libmacho.dylib",
+            "/usr/lib/system/libquarantine.dylib",
+            "/usr/lib/system/libremovefile.dylib",
+            "/usr/lib/system/libsystem_asl.dylib",
+            "/usr/lib/system/libsystem_blocks.dylib",
+            "/usr/lib/system/libsystem_c.dylib",
+            "/usr/lib/system/libsystem_collections.dylib",
+            "/usr/lib/system/libsystem_configuration.dylib",
+            "/usr/lib/system/libsystem_containermanager.dylib",
+            "/usr/lib/system/libsystem_coreservices.dylib",
+            "/usr/lib/system/libsystem_darwin.dylib",
+            "/usr/lib/system/libsystem_darwindirectory.dylib",
+            "/usr/lib/system/libsystem_dnssd.dylib",
+            "/usr/lib/system/libsystem_eligibility.dylib",
+            "/usr/lib/system/libsystem_featureflags.dylib",
+            "/usr/lib/system/libsystem_info.dylib",
+            "/usr/lib/system/libsystem_kernel.dylib",
+            "/usr/lib/system/libsystem_m.dylib",
+            "/usr/lib/system/libsystem_malloc.dylib",
+            "/usr/lib/system/libsystem_networkextension.dylib",
+            "/usr/lib/system/libsystem_notify.dylib",
+            "/usr/lib/system/libsystem_platform.dylib",
+            "/usr/lib/system/libsystem_pthread.dylib",
+            "/usr/lib/system/libsystem_sandbox.dylib",
+            "/usr/lib/system/libsystem_sanitizers.dylib",
+            "/usr/lib/system/libsystem_secinit.dylib",
+            "/usr/lib/system/libsystem_symptoms.dylib",
+            "/usr/lib/system/libsystem_trace.dylib",
+            "/usr/lib/system/libsystem_trial.dylib",
+            "/usr/lib/system/libunwind.dylib",
+            "/usr/lib/system/libxpc.dylib"
+          ]
+        }
+      }
+    }
+  },
+  "admission_sha256": "8c5f61cf3866cdd3d349a6c66c225f1a720bbf63b6fa1f33b3fdf1c736b2a51a",
+  "writer_census_before": {
+    "at": "2026-10-12T02:54:35.381248+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "capacity": {
+    "active": [
+      "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+      "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+    ],
+    "load": [
+      2.880859375,
+      4.72900390625,
+      6.0576171875
+    ],
+    "cpus": 12,
+    "free_bytes": 71033970688,
+    "total_cpu_percent": 141.2,
+    "admitted_editor_services": [
+      "73356",
+      "73398"
+    ],
+    "container_cpu_percent": 5.64
+  },
+  "confinement": {
+    "profile_sha256": "c4a34a9591d3558d8e9df731aebb96b9628029e271c73cf431fe8853cb122c39",
+    "allowed_inherited_fds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "repair": {
+    "original": {
+      "object_sha256": "31b5647345205673e5a3ecb2f112badbf5fbb46064b9cb858f3f5b253a83815e",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/original/libclang_rt.tsan_osx_dynamic.dylib",
+      "sha256": "92ec49fd308e891d77d9c0ad69ecc8471a0915af8c3784172df6d40fcf124422"
+    },
+    "patched": {
+      "object_sha256": "94857f0d0d18aa9c238392bda10457ea02b204fd3c8f0e99ec20cead02bdc2d5",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-tsan-repair-native-20261012T025422Z/patched/libclang_rt.tsan_osx_dynamic.dylib",
+      "sha256": "dfb70486b32d578b5818f4e4aa204a1a27dcfa9e6340313b36ef82b815f17d3a"
+    }
+  },
+  "original_startup_failure": {
+    "returncode": -11,
+    "stdout_empty": true
+  },
+  "writer_census_after": {
+    "at": "2026-10-12T02:54:46.622999+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "lease_released": true,
+  "protected_state_unchanged": true
+}

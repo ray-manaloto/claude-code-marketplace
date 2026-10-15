@@ -1,0 +1,127 @@
+{
+  "helper_sha256": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4",
+  "run_function_ast_sha256": "a82b650a7a58dc9d3fc59b6aa8b40d133daa7eebb78c04ad753a27fbb74d91c3",
+  "tests": [
+    {
+      "case": "path-relative",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "path-worktree-child",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "path-not-normalized",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "path-new-private",
+      "outcome": "accepted",
+      "expected": "accepted"
+    },
+    {
+      "case": "admission-matching",
+      "outcome": "accepted",
+      "expected": "accepted"
+    },
+    {
+      "case": "admission-changed-helper",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "admission-changed-proposal",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "admission-wrong-directory",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "admission-wrong-review-hash",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "admission-failed-review",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "containers-matching",
+      "outcome": "accepted",
+      "expected": "accepted"
+    },
+    {
+      "case": "containers-wrong-context",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "containers-unknown-running",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "containers-stats-id-mismatch",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "containers-high-cpu",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "containers-empty-admitted",
+      "outcome": "accepted",
+      "expected": "accepted"
+    },
+    {
+      "case": "lease-guard-clean",
+      "outcome": "accepted",
+      "expected": "accepted"
+    },
+    {
+      "case": "lease-guard-inherited-DOTFILES_HEAVY_GATE_FD",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "lease-guard-inherited-DOTFILES_LOCK_HOLDER_HEAVY_GATE",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "lease-guard-relocated-lock",
+      "outcome": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "case": "nonzero-exit-recorded",
+      "returncode": 17,
+      "propagated": "AssertionError"
+    },
+    {
+      "case": "timeout-descendant-cleanup",
+      "leader_returncode": -15,
+      "propagated": "TimeoutExpired",
+      "descendant_pid": 92070,
+      "descendant_not_running": true,
+      "ps_exit": 1
+    },
+    {
+      "case": "operation-and-preservation-errors-retained",
+      "outcome": "both retained; preservation error propagates with original cause"
+    }
+  ],
+  "main_invoked": false,
+  "configure_invoked": false,
+  "global_lock_acquired": false,
+  "checked_at": "2026-10-11T05:06:20.405944+00:00"
+}

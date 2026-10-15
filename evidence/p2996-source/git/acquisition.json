@@ -1,0 +1,287 @@
+{
+  "state": "PASS: exact LLVM source only; no configure, build or installation",
+  "started_at": "2026-10-11T03:24:07.127384+00:00",
+  "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+  "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+  "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+  "remote": "https://github.com/bloomberg/clang-p2996.git",
+  "helper_sha256": "44b8a8e645ce3297a49a8200b7eb33ef6db9007d48892c1a9859a0962164b025",
+  "commands": [
+    {
+      "case": "git-version",
+      "argv": [
+        "/usr/bin/git",
+        "--version"
+      ],
+      "started_at": "2026-10-11T03:24:07.127710+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/git-version.stdout",
+          "sha256": "2aa6da9ca331dc6de6fe72460146b9d1ebc22c8df24f3eb2a4c4f7c3c41b93ca"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/git-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "init",
+      "argv": [
+        "/usr/bin/git",
+        "init",
+        "--template=",
+        "--initial-branch=source-acquisition",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source"
+      ],
+      "started_at": "2026-10-11T03:24:07.151912+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/init.stdout",
+          "sha256": "c97a273d5e193156501b8fce31e231aa6772a097824705ba103c6928e98a0b98"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/init.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "remote",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/bloomberg/clang-p2996.git"
+      ],
+      "started_at": "2026-10-11T03:24:07.173446+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/remote.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/remote.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "fetch",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "-c",
+        "fetch.fsckObjects=true",
+        "-c",
+        "pack.threads=1",
+        "fetch",
+        "--depth=1",
+        "--no-tags",
+        "--no-recurse-submodules",
+        "origin",
+        "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e"
+      ],
+      "started_at": "2026-10-11T03:24:07.201781+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/fetch.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/fetch.stderr",
+          "sha256": "44e8d7cc8e4a74bbca741a572899bad371931b1eba6e3e414194d98670b13929"
+        }
+      ]
+    },
+    {
+      "case": "checkout",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "-c",
+        "checkout.workers=1",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "started_at": "2026-10-11T03:27:58.157019+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/checkout.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/checkout.stderr",
+          "sha256": "ebcd3334d9d12e5c4552bd82f702a3824a605a2e1e68760c9e849019289be5d5"
+        }
+      ]
+    },
+    {
+      "case": "head",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T03:28:37.500392+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "tree",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T03:28:37.544720+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "status",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T03:28:37.588772+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/status.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/status.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "connectivity",
+      "argv": [
+        "/usr/bin/git",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "fsck",
+        "--connectivity-only",
+        "--no-reflogs"
+      ],
+      "started_at": "2026-10-11T03:28:39.305088+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/connectivity.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/connectivity.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "verified_inputs": [
+    {
+      "path": "LICENSE.TXT",
+      "sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee"
+    },
+    {
+      "path": "P2996.md",
+      "sha256": "56a1e8869dc1f5e035b7dc661be06591c667254a05abc840824e25fa9b64b141"
+    },
+    {
+      "path": "README.md",
+      "sha256": "dd419716bcaf5183ff17d90a97555a0ec4461125729d6b4a122d52ce5ba4282c"
+    },
+    {
+      "path": "clang/CMakeLists.txt",
+      "sha256": "64978700feb788e3efaf67362e63e0647a54d953a78466994278bc8f8f9dbf74"
+    },
+    {
+      "path": "clang-tools-extra/CMakeLists.txt",
+      "sha256": "d82f2e19dfdf04200f8f578b3bb013a4567e0d9807015f61a76c98b78ba6b605"
+    },
+    {
+      "path": "compiler-rt/CMakeLists.txt",
+      "sha256": "3e1f2905cdf8409ad2dfeb37d664629bb24390acbb629831269a400ccb4e590e"
+    },
+    {
+      "path": "compiler-rt/cmake/builtin-config-ix.cmake",
+      "sha256": "1fd5f55dd25c003d5689638d428679461dbc0ed85e1a2cd353e03480383e4b32"
+    },
+    {
+      "path": "compiler-rt/cmake/config-ix.cmake",
+      "sha256": "fa646d5448bba5cf379516aa3ee94a414d51d74901772a06d761ad73d6b5fe7d"
+    },
+    {
+      "path": "libcxx/CMakeLists.txt",
+      "sha256": "fb020a3ec72a50964f137b12a4e6de54d84e3a97868f1ca4fc485d09227bfe94"
+    },
+    {
+      "path": "libcxxabi/CMakeLists.txt",
+      "sha256": "24426c911cb68594bd41ca9eb69a15a05d30fd7b01b330572a2e7a51c0e5ac89"
+    },
+    {
+      "path": "libunwind/CMakeLists.txt",
+      "sha256": "cc61a59ec60cffd52270680cac335e08cb04236ab79dc45b5fc63b9e18186499"
+    },
+    {
+      "path": "llvm/CMakeLists.txt",
+      "sha256": "7f5b9644923c959e9004db1dbbde2753432ac41e982d7394731b5f33007e4827"
+    },
+    {
+      "path": "llvm/docs/CMake.rst",
+      "sha256": "003df091379602ccb81d257f0a90d0460cb5e721c05a572ef056b3f0d223f117"
+    },
+    {
+      "path": "llvm/docs/GettingStarted.rst",
+      "sha256": "efe68227998b5fc5a1a3902726f74dce98a692fa39e5cc707fbf1ba895952f62"
+    },
+    {
+      "path": "llvm/runtimes/CMakeLists.txt",
+      "sha256": "8151a8c1545d3acf1d048bf28021215419e865cb576d52c34a5a167a1fc0145d"
+    },
+    {
+      "path": "runtimes/CMakeLists.txt",
+      "sha256": "041bf69b40a71359736c20a0dbc162be62a9f59ace9f89c87d0bc612956a1c7d"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "unit": "compaction-40",
+  "tickets": [
+    "R-179 (D188, D190, D191)",
+    "D189 reviewer on Opus 5.5: roster-v2 retro parent edits B-E (same files)"
+  ],
+  "title": "Auto-compaction at about 400K (40% of the 1M context): autoCompactWindow 433000, doctor thresholds, frontier ceiling, docs",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (opus 5.5, high, cold, read-only; D189)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/compaction-40",
+  "branch": "claude/compaction-40",
+  "base_sha": "1ec9edf",
+  "allocated_from": "1ec9edf",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": ".planning/2026-10-10-marketplace-macos-reflection-scaffold/reviews/ccm-20261014/research7/R23-compaction-percent.md",
+  "delivers": [
+    "project .claude/settings.json autoCompactWindow 700000 -> 433000 (only that key; lane roster-v2 owns the env keys in the same file)",
+    "dev/doctor/budget.py thresholds: warn 220000, fork_deny 275000, checkpoint 303000, hard 358000, with dev/test_doctor.py updated; the doctor's SessionStart line shows the new values",
+    ".planning/.../frontier.toml context_ceiling_fraction 0.5 -> 0.275 so windows[model] x fraction = fork_deny (D191); dev/test_ticket_frontier.py updated",
+    "docs/agents/claude-team.md budget table and both ticket-frontier skill copies (SKILL.md line 76, references/config.md, references/model-policy.md) state the new values; mirrors byte-identical",
+    "no CLAUDE_AUTOCOMPACT_PCT_OVERRIDE, no modelSettings, no user-settings change",
+    "the review model becomes opus (D189) wherever the frontier passes it: frontier.toml review = { model = ... } (it overrides the agent file on every Agent call), references/model-policy.md lines 13 and 30, ticket-frontier SKILL.md line 54 (both mirrors) and docs/agents/claude-team.md line 16 (roster-v2 retro, parent edits B-E)",
+    "frontier.toml max_live_agents = 5 (roster-v2 cold review: CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 leaves a fork slot); dev/test_ticket_frontier.py test_live_agent_hard_cap_is_five",
+    "scripts/frontier.py fallback defaults 0.5 -> 0.275 and 8 -> 5 (match references/config.md Default column); FABLE_KINDS without review, pinned by test_fable_kinds_match_shipped_policy",
+    "references/scheduler.md (cap 5, Opus reviewer for hot-path and baseline lanes) and evals/evals.json (ceilings 275000, live 4/5), both mirrors"
+  ],
+  "owned_paths": [
+    ".claude/settings.json (autoCompactWindow only)",
+    "dev/doctor/budget.py",
+    "dev/test_doctor.py",
+    "dev/test_ticket_frontier.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/frontier.toml",
+    "docs/agents/claude-team.md (budget table and the review-model line only)",
+    ".claude/skills/ticket-frontier/",
+    ".agents/skills/ticket-frontier/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/compaction-40.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/agents/",
+    ".claude/AGENTS.md",
+    ".codex/",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except frontier.toml and the lane's retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:doctor",
+    "./dev/mise run test:frontier",
+    "diff -r .claude/skills/ticket-frontier .agents/skills/ticket-frontier",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- compaction-40",
+    "./dev/mise run doctor (shows the new thresholds)"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "none (project settings key only)"
+  },
+  "status": "integrated (merge bbdf0d4, 2026-10-14); not published; autoCompactWindow 433000 and the doctor thresholds load at the user's restart; runtime acceptance pending (R-179 unticked)",
+  "created_at": "2026-10-14",
+  "notes": [
+    "D190, D191; lands before the restart; the new window and thresholds take effect at the restart",
+    "shares .claude/settings.json with roster-v2 (env keys); merge order roster-v2 then compaction-40 or either way, disjoint keys",
+    "retro: `retros/compaction-40.md` at 38d5c1c (blob d5f591b), added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "review disposition (parent): opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d; P3 (the D191 invariant fork_deny == int(windows[model] * fraction) was checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000 in frontier.toml: test:doctor rc 1 naming model='sonnet', reverted: rc 0, 14 tests; review listed in FABLE_KINDS: test:frontier rc 1, removed: rc 0, 31 tests); the implementer-side P3s (frontier.py fallbacks, thresholds below window - 33_000) were applied in 7213170; the parent accepts the retro-writer's verification in place of a second cold pass",
+    "changed paths: 19 against merge base a8e3682 (+262 -92): .claude/settings.json (autoCompactWindow 700000 -> 433000 only), dev/doctor/budget.py, dev/test_doctor.py, dev/test_ticket_frontier.py, frontier.toml, docs/agents/claude-team.md (reviewer row and the Context budget section only), six files under each ticket-frontier skill copy, and the retro; all inside owned_paths",
+    "writers: 7213170, 5c2e2e9 and 6fca41d name Claude Opus 5.5 (implementer, matching writer_model); 0cab4ff, c2aa3fd and 38d5c1c name Claude Fable 5.1 (retro-writer)",
+    "parent edits from the retro applied ahead of the merge: 2 (task_plan.md Context budget lines, D190, D191), 3 (task_plan.md Models line, Opus for review, D189), 4 (this record: three delivers entries, status, review and retro), 5 (task_plan.md D21 row: window superseded by D190); 1 was applied by lane roster-v2 (grep -n \"Fable reviewer\" .claude/agents/frontier-scheduler.md returns nothing); 6 (runtime acceptance) waits for the user's restart",
+    "integrated 2026-10-14 as bbdf0d4 (parents 497af7f, 38d5c1c), no conflict (ort auto-merged .claude/settings.json and docs/agents/claude-team.md), tree ff60e52 = merge-tree on 497af7f; hk pre-merge-commit printed retro gate passed for claude/compaction-40; gates on the merged tree rc 0 (tasks validate 69, check, check:acceptance-baseline 19, check:research 21 test runs, test:doctor 19, test:frontier 31, test:hooks 27, the ticket-frontier mirror diff, doctor, doctor:session-start context line warn 220K, checkpoint 303K, fork_deny 275K, hard 358K, retro:gate, git diff --check 7ec0a71, no \"Fable reviewer\" in frontier-scheduler.md, autoCompactWindow 433000 with both roster-v2 env keys kept, betterleaks 1.9.0 through git_delivery.scan over 7ec0a71..HEAD: 8 commits, no finding, private rule 0)",
+    "lane worktree .claude/worktrees/compaction-40 removed by the merger after integration (clean, fully merged; ignored tool directories only); branch claude/compaction-40 kept at 38d5c1c",
+    "runtime acceptance (retro parent edit 6, owner parent) waits for the user's restart: /autocompact or /context shows the 433k window, and the first non-idle auto compact_boundary has preTokens near 400,000; R-179 stays unticked until that receipt"
+  ],
+  "review": "opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d (every value matches D190/D191, threshold order right, all checks rc 0); P3 (D191 invariant checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000: test:doctor rc 1, real config rc 0, 14 tests; review listed: test:frontier rc 1, removed rc 0, 31 tests); the parent accepts that verification in place of a second cold pass",
+  "retro": "passed",
+  "head_sha": "38d5c1c",
+  "integration_merge": "bbdf0d4"
+}

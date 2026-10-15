@@ -1,0 +1,139 @@
+{
+  "recorded_at": "2026-10-11T23:22:06.036632+00:00",
+  "script_sha256": "ef59527cbadd1d399719229ef167030c2441b794b0fad217a57ca92336b2f1ec",
+  "commands": [
+    {
+      "case": "processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.06876074988394976,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/processes.stdout",
+          "sha256": "bc238f0fc7e5619b553b1df0301b1d2bd2819b91ab89f6da338bea7bec52944e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.0733052920550108,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 15,
+      "elapsed_seconds": 0.04079741705209017,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-census.stdout",
+          "sha256": "4840ee4561a947d2a85967e84b2e5c6bc7b404846880b2ba5e368727ebe718a7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 1.0436693751253188,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-stats.stdout",
+          "sha256": "80523eb6fdb6ecd4c92e06ce580cb4013021d460fdb40be7137a0f123184e685"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-sanitizers-capacity-20261011T232205Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "held_lease": false,
+  "native_operation_started": false,
+  "writer_census": {
+    "at": "2026-10-11T23:22:06.566458+00:00",
+    "processes": [
+      {
+        "pid": 78552,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:tr"
+      },
+      {
+        "pid": 78554,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:graphify"
+      },
+      {
+        "pid": 78556,
+        "ppid": 78530,
+        "executable": "mise",
+        "known_task": "mcp:cbm"
+      }
+    ],
+    "lock_holder_check_rc": 1,
+    "lock_holders": []
+  },
+  "active_build_processes": [
+    "73356   0.0 /opt/homebrew/opt/llvm/bin/clangd",
+    "73398   0.0 /Library/Developer/CommandLineTools/usr/bin/clangd"
+  ],
+  "cpus": 12,
+  "load": [
+    8.6943359375,
+    6.7353515625,
+    6.65869140625
+  ],
+  "free_bytes": 71384506368,
+  "total_cpu_percent": 375.0,
+  "docker_context": "desktop-linux",
+  "containers": [
+    "53064d00e38a\tvsc-dotfiles-273897ea6099ddf28a4d1dd8691cc57291e91ea8e0c7227e3b987af2d7897f86"
+  ],
+  "container_cpu_percent": 3.73,
+  "state": "FAIL",
+  "error": "AssertionError()"
+}

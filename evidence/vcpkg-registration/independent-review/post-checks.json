@@ -1,0 +1,88 @@
+{
+  "protected_state_unchanged": true,
+  "destination_absent": true,
+  "counts": {
+    "global_files_and_new_matching_backups": 9,
+    "packages": 8,
+    "glib_files": 2,
+    "global_install_entries": 2196,
+    "shim_entries": 835,
+    "wrapper_entries": 0,
+    "protected_file_hashes": 20
+  },
+  "global_write_performed": false,
+  "parent_authorized_plan_changes": [],
+  "git": [
+    {
+      "case": "head",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "1b5e33b832286122043f57fbdffe1571c5b6ad12\n",
+      "stderr": ""
+    },
+    {
+      "case": "branch",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "branch",
+        "--show-current"
+      ],
+      "returncode": 0,
+      "stdout": "codex/marketplace-native-onboarding\n",
+      "stderr": ""
+    },
+    {
+      "case": "common-directory",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "returncode": 0,
+      "stdout": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git\n",
+      "stderr": ""
+    },
+    {
+      "case": "status",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "status",
+        "--short"
+      ],
+      "returncode": 0,
+      "stdout": " M .planning/2026-10-10-marketplace-macos-reflection-scaffold/progress.md\n M .planning/2026-10-10-marketplace-macos-reflection-scaffold/task_plan.md\n M docs/vcpkg-toolchain.md\n?? dev/toolchains/vcpkg_register.py\n?? evidence/vcpkg-registration/\n?? vcpkg.json\n",
+      "stderr": ""
+    },
+    {
+      "case": "diff-check",
+      "argv": [
+        "/usr/bin/git",
+        "--no-optional-locks",
+        "-c",
+        "core.fsmonitor=false",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

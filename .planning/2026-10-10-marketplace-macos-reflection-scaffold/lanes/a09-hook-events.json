@@ -1,0 +1,64 @@
+{
+  "unit": "a09-hook-events",
+  "tickets": [
+    "D165 (A09 admits the D154 global hook events)"
+  ],
+  "title": "A09 delivery admits configured prepare-commit-msg, pre-merge-commit and post-commit hooks, which its commit-tree and push --no-verify path never fires",
+  "owner": "implementer",
+  "writer_model": "opus (high)",
+  "reviewer": "reviewer (fable, high, cold, read-only)",
+  "retro_writer": "retro-writer (fable, high)",
+  "worktree": ".claude/worktrees/a09-hook-events",
+  "branch": "claude/a09-hook-events",
+  "base_sha": "9672854",
+  "allocated_from": "9672854",
+  "base_rule": "base_sha = the integration commit the allocation commit is built on; the worktree is cut from the allocation commit",
+  "import_source": "merger report reviews/ccm-20261014/republish/scanner-betterleaks-merge-report.md (inspect-hooks rc 2)",
+  "delivers": [
+    "dev/git_delivery.py safe_configured_hooks admits exactly the events A09 can never trigger (prepare-commit-msg, pre-merge-commit, post-commit added to pre-commit, commit-msg, pre-push), with the comment stating why each cannot fire on commit-tree, update-ref and push --no-verify; every other event is still refused",
+    "dev/test_git_delivery.py: a seam test through the inspect-hooks CLI: the six-event global layout D154 installed passes; an unknown event (for example post-checkout or reference-transaction) still refuses with the same reason"
+  ],
+  "owned_paths": [
+    "dev/git_delivery.py",
+    "dev/test_git_delivery.py",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/retros/a09-hook-events.md"
+  ],
+  "excluded_shared_paths": [
+    "mise.dev.toml",
+    "hk.pkl",
+    ".gitleaks.toml",
+    "dev/hooks/",
+    "docs/",
+    "AGENTS.md",
+    "*/AGENTS.md",
+    ".claude/",
+    ".agents/",
+    ".gitignore",
+    ".planning/2026-10-10-marketplace-macos-reflection-scaffold/ (except the retro record)"
+  ],
+  "required_checks": [
+    "./dev/mise run test:delivery",
+    "./dev/mise tasks validate",
+    "./dev/mise run check",
+    "./dev/mise run check:acceptance-baseline",
+    "git diff --check",
+    "./dev/mise run retro:gate -- a09-hook-events"
+  ],
+  "resource_admissions": {
+    "providers": "none",
+    "network": "none",
+    "global_settings": "read-only (git config --global --get-regexp hook. to mirror the real layout in a scratch HOME)"
+  },
+  "status": "integrated",
+  "review": "fable cold review PASS-with-P3 on 06e1deb (P3-1 check-task env comment, P3-2 exit bindings, P3-3 off-plan betterleaks copy); all three applied or recorded in retros/a09-hook-events.md",
+  "retro": "passed",
+  "head_sha": "5744151",
+  "integration_merge": "30d65a1",
+  "created_at": "2026-10-14",
+  "notes": [
+    "fix to existing Python (D113)",
+    "blocks the scanner-betterleaks publish (DL-212 open)",
+    "retro: retros/a09-hook-events.md at 5744151 (writer fable high); blob b87cf99 added to the integration branch ahead of the merge in 18732c7 (D164)",
+    "integrated 2026-10-14 as 30d65a1 (parents 18732c7, 5744151), no rebase: the lane was cut from 0784d95 on the scrubbed history; parent edits E1-E5 applied in the records commit (E1/E2 with their .agents mirrors; E4 status 'retro passed on 5744151; awaiting integration' superseded by integrated)"
+  ]
+}

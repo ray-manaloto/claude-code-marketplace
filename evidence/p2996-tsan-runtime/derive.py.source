@@ -1,0 +1,71 @@
+"""Derive the exact, source-backed installed TSan overlay contract."""
+
+import hashlib
+import json
+from pathlib import Path
+import stat
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+EVIDENCE = ROOT / 'evidence/p2996-tsan-runtime'
+RUNTIME = 'lib/clang/21/lib/darwin/libclang_rt.tsan_osx_dynamic.dylib'
+
+
+def load(path):
+    return json.loads(path.read_text())
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+asan = load(ROOT / 'evidence/p2996-asan-runtime/contract.json')
+inventory_path = ROOT / 'evidence/p2996-install/independent-installation/post-install-inventory.json'
+prefix_path = ROOT / 'evidence/p2996-install/operation/prefix-inventory.json'
+target = str(Path(asan['prefix']) / RUNTIME)
+previous = [r for r in load(inventory_path)['records'] if r.get('path') == target or r.get('resolved_path') == target]
+member = [r for r in load(prefix_path) if r.get('path') == RUNTIME]
+assert len(previous) == len(member) == 1
+assert previous[0]['sha256'] == member[0]['sha256'] == sha(Path(target))
+repair = ROOT / 'evidence/p2996-tsan-repair'
+qualification = load(repair / 'operation/qualification.json')
+review = load(repair / 'artifact-review/review.json')
+assert review['result'].startswith('PASS') and not review['findings']
+assert review['qualification_sha256'] == sha(repair / 'operation/qualification.json')
+assert qualification['state'].startswith('PASS') and qualification['protected_state_unchanged']
+assert qualification['lease_released']
+patched = qualification['repair']['patched']
+replacement = Path(patched['path'])
+rows = [r for r in load(repair / 'artifact-inventory.json')['artifacts'] if r['kind'] == 'patched-tsan-runtime']
+assert len(rows) == 1 and rows[0]['path'] == str(replacement)
+assert rows[0]['sha256'] == patched['sha256'] == sha(replacement)
+assert rows[0]['bytes'] == replacement.stat().st_size
+assert stat.S_ISREG(replacement.lstat().st_mode) and replacement.lstat().st_nlink == 1
+inputs = dict(asan['inputs'])
+for name in ('dev/toolchains/p2996_asan_runtime.py',
+             'evidence/p2996-asan-runtime/contract.json',
+             'evidence/p2996-asan-promotion/artifact-review.json',
+             'evidence/p2996-asan-promotion/operation/qualification.json',
+             'evidence/p2996-tsan-repair/artifact-review/review.json',
+             'evidence/p2996-tsan-repair/operation/qualification.json',
+             'evidence/p2996-tsan-repair/operation/closure.json',
+             'evidence/p2996-tsan-repair/artifact-inventory.json'):
+    inputs[name] = sha(ROOT / name)
+contract = {
+    'base_head': '847684dc237e669a3d8eaa23795b68ae31625f56',
+    'prefix': asan['prefix'], 'target': target,
+    'previous_record': previous[0], 'previous_prefix_record': member[0],
+    'current_tsan': {'sha256': patched['sha256'], 'bytes': rows[0]['bytes'], 'mode': '0o755'},
+    'qualified_replacement': rows[0],
+    'qualified_replacement_identity': {'sha256': patched['sha256'], 'bytes': rows[0]['bytes'],
+                                       'mode': oct(stat.S_IMODE(replacement.stat().st_mode))},
+    'artifact_inventory': str(inventory_path.relative_to(ROOT)),
+    'prefix_inventory': str(prefix_path.relative_to(ROOT)),
+    'inputs': dict(sorted(inputs.items())),
+    'scope': 'Pure ASan+TSan installed-inventory overlay and private replacement controls; no installed mutation',
+}
+if (EVIDENCE / 'contract.json').exists():
+    assert sha(EVIDENCE / 'contract.json') == 'f0906fe8cd064918a562e91bea468fff960fecb8b7627f8d81f04054d4dc840a'
+(EVIDENCE / 'contract.json').write_text(json.dumps(contract, indent=2) + '\n')
+print(json.dumps({'contract_sha256': sha(EVIDENCE / 'contract.json'),
+                  'inputs': len(inputs), 'before': previous[0]['sha256'],
+                  'after': patched['sha256'], 'replacement_mode': oct(stat.S_IMODE(replacement.stat().st_mode))}))

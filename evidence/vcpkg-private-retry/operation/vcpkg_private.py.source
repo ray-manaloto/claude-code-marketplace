@@ -1,0 +1,232 @@
+"""Qualify private vcpkg roots, managed tools and macOS execution restrictions."""
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import time
+
+from gcc_install import ROOT, census, digest, read
+from mise_runtime import function, load
+from mise_renovate import protected
+from p2996_configure import LOCK_MODULE, LOCK_SHA
+from p2996_install import prefix_inventory
+
+EVIDENCE = ROOT / "evidence/vcpkg-private-retry"
+CONTRACT_SHA = "9e244f8faf785a55dea43b7570542b9626248fbac231cfebcec41e53a4e8b873"
+PRIVATE_NAMES = ("cwd", "downloads", "buildtrees", "packages", "installed", "registries", "cache", "tmp", "manifest")
+
+
+def private_environment(directory):
+    return {"VCPKG_ROOT": str(directory / "vcpkg"), "VCPKG_DOWNLOADS": str(directory / "downloads"),
+            "X_VCPKG_REGISTRIES_CACHE": str(directory / "registries"),
+            "XDG_CACHE_HOME": str(directory / "cache"), "TMPDIR": str(directory / "tmp"),
+            "VCPKG_FORCE_SYSTEM_BINARIES": "1", "VCPKG_DISABLE_METRICS": "1"}
+
+
+def vcpkg_arguments(directory):
+    return [str(directory / "vcpkg/vcpkg"), "--disable-metrics", "--feature-flags=-binarycaching",
+            "--vcpkg-root=" + str(directory / "vcpkg"), "--downloads-root=" + str(directory / "downloads"),
+            "--x-buildtrees-root=" + str(directory / "buildtrees"),
+            "--x-packages-root=" + str(directory / "packages"), "--x-install-root=" + str(directory / "installed"),
+            "--x-manifest-root=" + str(directory / "manifest")]
+
+
+def prepare(directory, contract):
+    source = Path(contract["vcpkg_source"])
+    before = prefix_inventory(source)
+    assert not any(r["kind"] == "symlink" for r in before)
+    assert (source / ".git").is_dir() and not (source / ".git/objects/info/alternates").exists()
+    assert not (source / ".git/commondir").exists()
+    assert before == load(ROOT / contract["source_inventory"]), "vcpkg source inventory drift"
+    shutil.copytree(source, directory / "vcpkg", symlinks=True)
+    assert prefix_inventory(directory / "vcpkg") == before
+    for name in PRIVATE_NAMES:
+        (directory / name).mkdir(exist_ok=False)
+    shutil.copyfile(ROOT / "vcpkg.json", directory / "manifest/vcpkg.json")
+    for row in contract["downloads"]:
+        source_file, target = Path(row["path"]), directory / "downloads" / row["filename"]
+        assert source_file.name == row["filename"] and hashlib.sha512(source_file.read_bytes()).hexdigest() == row["sha512"]
+        shutil.copyfile(source_file, target)
+        assert hashlib.sha512(target.read_bytes()).hexdigest() == row["sha512"]
+    return before
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    directory = parser.parse_args().run_dir
+    foundation = Path.home() / ".local/state/marketplace-tool-foundation"
+    if not directory.is_absolute() or directory != directory.resolve() or directory.parent != foundation:
+        parser.error("use a new normalized directory directly under the private foundation root")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    report = {"state": "running", "helper_sha256": digest(Path(__file__)), "commands": []}
+    normal_argv = read("install-preimages.json")["normal_environment"]["argv"]
+    env = load(Path(normal_argv[-1]).parent / "context.json")["environment"] | {
+        "MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0", "MISE_EXEC_AUTO_INSTALL": "0",
+        "MISE_TASK_RUN_AUTO_INSTALL": "0", "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_TERMINAL_PROMPT": "0", "GIT_OPTIONAL_LOCKS": "0"}
+    for key in list(env):
+        if key.startswith(("VCPKG_", "X_VCPKG_")) or key in ("MARKETPLACE_P2996_PREFIX", "MARKETPLACE_GCC16_PREFIX"):
+            env.pop(key)
+
+    def save():
+        temporary = directory / "qualification.json.tmp"
+        temporary.write_text(json.dumps(report, indent=2) + "\n")
+        temporary.replace(directory / "qualification.json")
+
+    def guard():
+        assert digest(EVIDENCE / "contract.json") == CONTRACT_SHA
+        data = load(EVIDENCE / "contract.json")
+        assert all(digest(ROOT / p) == sha for p, sha in data["inputs"].items())
+        assert all(digest(Path(p)) == sha for p, sha in data["tools"].items())
+        assert sys.executable in data["tools"]
+        assert digest(Path(__file__)) == report["helper_sha256"] and digest(LOCK_MODULE) == LOCK_SHA
+        return data, protected()
+
+    scope = globals() | {"directory": directory, "report": report, "env": env, "save": save}
+    native = function(ROOT / "evidence/p2996-math-resume/operation/p2996_build.py.source", "run", scope)
+
+    def run(label, argv, expected=0, timeout=60, descriptor=None):
+        assert label not in [row["case"] for row in report["commands"]]
+        count = len(report["commands"])
+        try:
+            result = native(label, argv, timeout=timeout, descriptor=descriptor)
+        except AssertionError:
+            assert expected != 0 and len(report["commands"]) == count + 1
+            assert report["commands"][-1]["returncode"] == expected
+            result = (directory / (label + ".stdout")).read_text()
+        else:
+            assert expected == 0, "an expected rejection passed"
+        report["commands"][-1].update(expected_returncode=expected, timeout_seconds=timeout)
+        save()
+        return result
+
+    def interrupted(signum, frame):
+        raise KeyboardInterrupt("received signal " + str(signum))
+
+    for signum in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(signum, interrupted)
+    try:
+        contract, current = guard()
+        admission, review = [load(EVIDENCE / name) for name in ("admission.json", "pre-run-review.json")]
+        assert admission["helper_sha256"] == review["helper_sha256"] == report["helper_sha256"]
+        assert admission["contract_sha256"] == review["contract_sha256"] == CONTRACT_SHA
+        assert admission["review_sha256"] == digest(EVIDENCE / "pre-run-review.json")
+        assert review["result"].startswith("PASS") and not review["findings"]
+        assert admission["run_directory"] == str(directory)
+        report["admission_sha256"] = digest(EVIDENCE / "admission.json")
+        report["writer_census_before"] = census()
+        assert run("project-head", ["/usr/bin/git", "-C", ROOT, "rev-parse", "HEAD"]).strip() == contract["base_head"]
+        normal = run("default-before", normal_argv)
+        assert normal == (ROOT / contract["default_profile"]).read_text()
+        spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+        lease = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(lease)
+        assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / ".local/state/dotfiles/heavy-gate.lock"
+        assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE)) and not os.environ.get(lease.LOCK_FD_ENV)
+        with lease.held(lease.HEAVY_GATE, "marketplace-vcpkg-private", wait_s=0, out=io.StringIO()) as fd:
+            assert fd is not None
+            processes = run("capacity-processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="])
+            active = [line for line in processes.splitlines() if re.fullmatch(
+                r"(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|ld|clangd|clang-tidy|include-what-you-use|vcpkg",
+                Path(line.split(maxsplit=2)[-1]).name)]
+            report["capacity"] = {"active": active, "load": os.getloadavg(), "cpus": os.cpu_count(),
+                                  "free_bytes": shutil.disk_usage(directory).free,
+                                  "total_cpu_percent": sum(float(line.split()[1]) for line in processes.splitlines())}
+            assert not active and report["capacity"]["free_bytes"] >= contract["disk_reserve_bytes"]
+            assert os.getloadavg()[0] <= 2 * os.cpu_count() and report["capacity"]["total_cpu_percent"] <= 75 * os.cpu_count()
+            docker = "/Applications/Docker.app/Contents/Resources/bin/docker"
+            assert run("docker-context", [docker, "context", "show"], timeout=15).strip() == admission["docker_context"]
+            assert run("docker-census", [docker, "ps", "--format", "{{.ID}}\t{{.Image}}"], timeout=15).splitlines() == admission["containers"]
+            stats = run("docker-stats", [docker, "stats", "--no-stream", "--format", "{{json .}}"], timeout=20)
+            report["capacity"]["container_cpu_percent"] = sum(float(json.loads(line)["CPUPerc"].rstrip("%")) for line in stats.splitlines())
+            assert report["capacity"]["container_cpu_percent"] <= 50 * os.cpu_count()
+            guard()
+            source_before = prepare(directory, contract)
+            (directory / "source-before.json").write_text(json.dumps(source_before, indent=2) + "\n")
+            outside = directory.parent / (directory.name + "-outside-control")
+            outside.mkdir(exist_ok=False)
+            (outside / "sentinel").write_text("preserve\n")
+            (directory / "escape").symlink_to(outside, target_is_directory=True)
+            profile = directory / "private.sb"
+            profile.write_text('(version 1)\n(allow default)\n(deny file-write*)\n'
+                               '(allow file-write* (subpath ' + json.dumps(str(directory)) + ') (literal "/dev/null"))\n'
+                               '(deny network*)\n')
+            sandbox = ["/usr/bin/sandbox-exec", "-f", profile]
+            positive = "from pathlib import Path;import sys;Path(sys.argv[1]).write_text('private\\n')"
+            negative = """import errno,socket,sys
+from pathlib import Path
+try:
+ if sys.argv[1] == 'network':
+  s=socket.socket();s.settimeout(2);s.connect(('127.0.0.1',9))
+ else: Path(sys.argv[2]).write_text('forbidden')
+except OSError as e:
+ if e.errno not in (errno.EPERM,errno.EACCES): raise
+ print('DENIED:'+str(e.errno));sys.exit(73)
+sys.exit(74)
+"""
+            run("private-write", sandbox + [sys.executable, "-B", "-c", positive, directory / "allowed"], descriptor=fd)
+            for name, target in [("outside-write", outside / "sentinel"), ("symlink-write", directory / "escape/new")]:
+                assert run(name, sandbox + [sys.executable, "-B", "-c", negative, "write", target], expected=73, descriptor=fd).startswith("DENIED:")
+            assert run("network-denied", sandbox + [sys.executable, "-B", "-c", negative, "network"], expected=73, descriptor=fd).startswith("DENIED:")
+            assert (directory / "allowed").read_text() == "private\n" and (outside / "sentinel").read_text() == "preserve\n"
+            assert not (outside / "new").exists()
+            report["confinement"] = {"profile_sha256": digest(profile), "outside_control": str(outside),
+                                     "allowed_inherited_fds": [0, 1, 2, fd]}
+            identity = run("copied-vcpkg-identity", sandbox + ["/usr/bin/git", "-C", directory / "vcpkg",
+                           "rev-parse", "HEAD", "HEAD^{tree}"], descriptor=fd).splitlines()
+            assert identity == [contract["vcpkg_commit"], contract["vcpkg_tree"]]
+            env.update(private_environment(directory))
+            for lane, prefix in contract["prefixes"].items():
+                for key in ("MARKETPLACE_P2996_PREFIX", "MARKETPLACE_GCC16_PREFIX"):
+                    env.pop(key, None)
+                env["MARKETPLACE_" + lane.upper() + "_PREFIX"] = prefix
+                base = [current["path"], "--no-hooks", "-C", directory / "cwd", "-E", lane, "exec", "--fresh-env", "--no-deps", "--"]
+                assert run(lane + "-profile", base + normal_argv[-2:]) == (ROOT / contract["profiles"][lane]).read_text()
+                probe = "import json,os,shutil;print(json.dumps({'home':os.environ.get('HOME'),'tools':{n:shutil.which(n) for n in ['cmake','ninja']},'private':{n:os.environ.get(n) for n in " + repr(list(private_environment(directory)) + ["VCPKG_FORCE_DOWNLOADED_BINARIES", "VCPKG_BINARY_SOURCES", "VCPKG_DEFAULT_BINARY_CACHE"]) + "}}))"
+                selected = json.loads(run(lane + "-selection", base + sandbox + [sys.executable, "-B", "-c", probe], descriptor=fd))
+                assert selected["home"] == str(Path.home())
+                assert selected["private"] == private_environment(directory) | dict.fromkeys(["VCPKG_FORCE_DOWNLOADED_BINARIES", "VCPKG_BINARY_SOURCES", "VCPKG_DEFAULT_BINARY_CACHE"])
+                for tool, expected in contract["managed_tools"].items():
+                    assert selected["tools"][tool] == expected["path"]
+                    output = run(lane + "-fetch-" + tool, base + sandbox + vcpkg_arguments(directory) + ["fetch", tool, "--x-stderr-status"], descriptor=fd)
+                    assert output.strip() == expected["path"]
+                    assert expected["version"] in run(lane + "-version-" + tool, base + sandbox + [expected["path"], "--version"], descriptor=fd)
+            report["confinement"]["home_unchanged_in_environment"] = True
+            report["private_final"] = {name: prefix_inventory(directory / name) for name in PRIVATE_NAMES if name != "cwd"}
+        report["lease_released"] = True
+        for key in list(private_environment(directory)) + ["MARKETPLACE_P2996_PREFIX", "MARKETPLACE_GCC16_PREFIX"]:
+            env.pop(key, None)
+        assert run("default-after", normal_argv) == normal
+        report["writer_census_after"] = census()
+        report["state"] = "PASS: private copies, managed host-tool selection and kernel write/network controls"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            guard()
+            if "source_before" in locals():
+                assert prefix_inventory(Path(contract["vcpkg_source"])) == source_before
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

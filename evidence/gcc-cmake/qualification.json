@@ -1,0 +1,924 @@
+{
+  "state": "PASS: GCC16 CMake four-configuration fixture",
+  "started_at": "2026-10-11T02:39:06.530701+00:00",
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:39:06.685782+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "ctest-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--version"
+      ],
+      "started_at": "2026-10-11T02:39:07.035303+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/ctest-version.stdout",
+          "sha256": "21710b282175af2534f38143fae98bb3de9762a1ffcce63fda137c2a1a177ece"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/ctest-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "configure",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0"
+      ],
+      "started_at": "2026-10-11T02:39:07.491040+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/configure.stdout",
+          "sha256": "ccb1b0849bac1062fa9ab18206b0567279071a968ad543ec3dc646826e4e048f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/configure.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "--config",
+        "Debug",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T02:39:10.340808+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Debug.stdout",
+          "sha256": "54b1ea54ea0ab94c2224715c80100466d8fd4659e4c53762b55b6930f637a62e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T02:39:11.545507+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Debug.stdout",
+          "sha256": "baa036d6fba4fe818c2890f1e888fea9817d10a97973d40275e4ab3a29d84712"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-Debug",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:11.787631+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Debug.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:11.796826+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Debug.stdout",
+          "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Debug.stderr",
+          "sha256": "59bea0cafbed0b50df658943f3d40d78dea2913f9c0bfc411558b0ccf208b4fb"
+        }
+      ]
+    },
+    {
+      "case": "libraries-Debug",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:12.040795+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Debug.stdout",
+          "sha256": "ee26a3b6c897d073a8b0a92afccdd49007476ac810267e8eadd0070b7448f601"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "--config",
+        "Release",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T02:39:12.085855+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Release.stdout",
+          "sha256": "51b2df3fef541870df62cef249a6b9851834999de3b056d37d129dbad1a06e43"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "-C",
+        "Release",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T02:39:13.542633+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Release.stdout",
+          "sha256": "07391ba9dceab1256a33ababd12a17d6fa57e87081a62f2684bf2767128878de"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-Release",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:13.722398+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Release.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:13.729077+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Release.stdout",
+          "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-Release.stderr",
+          "sha256": "f02f0f84e30e0ec64aad66200e80fad3528c9006bef4dc3afca022c1bbb92ca0"
+        }
+      ]
+    },
+    {
+      "case": "libraries-Release",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:13.859649+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Release.stdout",
+          "sha256": "3299fa98aa2a41d4da6f3c150fee6e4b1607289252dbaac2158f32b9d4c682b9"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T02:39:13.881939+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-RelWithDebInfo.stdout",
+          "sha256": "0599c12ae00e7d113cc1ba33042af2908a001017e56d008c1bbaa16e67aaeb84"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "-C",
+        "RelWithDebInfo",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T02:39:15.191586+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-RelWithDebInfo.stdout",
+          "sha256": "07391ba9dceab1256a33ababd12a17d6fa57e87081a62f2684bf2767128878de"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:15.374458+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-RelWithDebInfo.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:15.381620+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-RelWithDebInfo.stdout",
+          "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-RelWithDebInfo.stderr",
+          "sha256": "0bd660506389b55d362093a451eb7b3ebe2e9a4c9347139926adac00326320f7"
+        }
+      ]
+    },
+    {
+      "case": "libraries-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:15.505902+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-RelWithDebInfo.stdout",
+          "sha256": "cab913092a0f8fd8f2ba5647f18e17d741b112011962c23cccea6d05bed31901"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "--config",
+        "MinSizeRel",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T02:39:15.528111+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-MinSizeRel.stdout",
+          "sha256": "cef0fa06d33d287b93148a0c367e3a45ef63345e387f81b0bbc9631d8dc6a171"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+        "-C",
+        "MinSizeRel",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T02:39:17.171161+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-MinSizeRel.stdout",
+          "sha256": "0ae3d157272712814567dbd108d529f2bdc6973fbbb159bb61c55aae74a491b2"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/test-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-MinSizeRel",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:17.410215+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-MinSizeRel.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/architecture-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:17.419026+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-MinSizeRel.stdout",
+          "sha256": "e3710cfdc4da9ab835673a5b252c035d90895e895acc30f32553b5722e701f38"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/runtime-MinSizeRel.stderr",
+          "sha256": "6133e54e7f3474cddc1ecf632aeb2257f8bb7d544df0987a872ed58971313e2d"
+        }
+      ]
+    },
+    {
+      "case": "libraries-MinSizeRel",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection"
+      ],
+      "started_at": "2026-10-11T02:39:17.608321+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-MinSizeRel.stdout",
+          "sha256": "21881d6f4870c4f327ccfc58390bc8a39af58dfe01e459c89e9d1fb0a7b5d52c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/libraries-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "wrong-profile",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "MARKETPLACE_CPP_LANE=wrong",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-profile",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0"
+      ],
+      "started_at": "2026-10-11T02:39:17.652355+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-profile.stdout",
+          "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-profile.stderr",
+          "sha256": "ce92007e819ae0ffcd40e6d4206f28ba390ad7b7e5e5282742d1483d2aa337d7"
+        }
+      ]
+    },
+    {
+      "case": "dirty-flags",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "CXXFLAGS=-DBAD_INHERITED_FLAGS",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/dirty-flags",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0"
+      ],
+      "started_at": "2026-10-11T02:39:17.841845+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/dirty-flags.stdout",
+          "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/dirty-flags.stderr",
+          "sha256": "1a7df3924b41191bbd338b39eafa0b2b6059dce154ec9f5938a5f4b61772a948"
+        }
+      ]
+    },
+    {
+      "case": "wrong-architecture",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-architecture",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DCMAKE_OSX_ARCHITECTURES=x86_64"
+      ],
+      "started_at": "2026-10-11T02:39:18.031592+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-architecture.stdout",
+          "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-architecture.stderr",
+          "sha256": "729f14d49527a77349e0da14d5da4afbb7648ecd6bbc98e03b8b3675dc1c3004"
+        }
+      ]
+    },
+    {
+      "case": "wrong-compiler",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/scratch/gcc-toolchain",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-compiler",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++"
+      ],
+      "started_at": "2026-10-11T02:39:18.218209+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-compiler.stdout",
+          "sha256": "204e913b87cf5c75b808ca3186aab27bf7d903deb3392da1736bc0c966ba1151"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/wrong-compiler.stderr",
+          "sha256": "922924dd05375a8a2d2b1617bc02e9b0786073a49c3ec91f796731d649170117"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T02:39:18.409133+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-after.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "harness_sha256": "25c6f4b10b8be6c40683c13571c970bdb4822a73daa7ff47532eb5d1c9737da2",
+  "inputs": {
+    "cmake/toolchains/gcc16-macos-arm64.cmake": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+    "scratch/gcc-toolchain/CMakeLists.txt": "b1be8ede864896b6e099f747285006b53f3345a6ce9510ab90fb9421dc3f78b5",
+    "dev/toolchains/reflection.cpp": "2dc8709cc3a8ba2140eb357b092bfb4dd6283a3001ae7515bbd7c76c80553ec7",
+    "evidence/gcc-runtime/qualification.json": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+  },
+  "admission": {
+    "at": "2026-10-11T02:39:06.685684+00:00",
+    "scope": "Tiny CMake fixture; sequential single-job builds only",
+    "census_returncode": 0,
+    "active_builds": [],
+    "load_average": [
+      15.55859375,
+      15.58740234375,
+      18.68701171875
+    ]
+  },
+  "tools": {
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    "ninja": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+    },
+    "ctest": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+      "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+    }
+  },
+  "configurations": {
+    "Debug": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection",
+      "sha256": "dfa6f458e5144bd2255e662b9936495e056ff737348dab02b3f9bb053a8eb10f",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=Debug\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Debug/reflection\n"
+    },
+    "Release": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection",
+      "sha256": "24ffeee02bc35f97604aa8a359af3a7fa894a872fb51434c75482d31a284046f",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=Release\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/Release/reflection\n"
+    },
+    "RelWithDebInfo": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection",
+      "sha256": "8ebb37d1466c02e833d5e5fda99a43081f8d31e80b0e55263877f4481e27262d",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=RelWithDebInfo\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/RelWithDebInfo/reflection\n"
+    },
+    "MinSizeRel": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection",
+      "sha256": "28d16ed79275c85e751597fdfff5f1d6549c1537290977a65be747d04b95de65",
+      "qualified_summary": "compiler=/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16\nversion=16.2.0\nsdk=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk\narchitecture=arm64\nconfiguration=MinSizeRel\nbinary=/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/MinSizeRel/reflection\n"
+    }
+  },
+  "compile_commands": [
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/CMakeFiles/reflection.dir/Debug/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/CMakeFiles/reflection.dir/Release/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/CMakeFiles/reflection.dir/RelWithDebInfo/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/gcc-cmake-20261011T0240/build/CMakeFiles/reflection.dir/MinSizeRel/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/reflection.cpp.o"
+    }
+  ],
+  "protected_state_unchanged": true
+}

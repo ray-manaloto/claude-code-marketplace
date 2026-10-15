@@ -1,0 +1,190 @@
+{
+  "result": "PASS",
+  "helper_sha256": "d75380cab3d63972d45bf89e2c118a418e761915b29e09b6894a3c33a980c6ca",
+  "started_at": "2026-10-11T16:15:59.868258+00:00",
+  "finished_at": "2026-10-11T16:15:59.875591+00:00",
+  "elapsed_seconds": 0.007174083963036537,
+  "extracted_functions": {
+    "header_trace": 25,
+    "main.run": 61
+  },
+  "header_trace_controls": [
+    {
+      "case": "exact-copied-builtin-headers",
+      "outcome": "accepted",
+      "rows": 3
+    },
+    {
+      "case": "empty-trace",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "missing-stddef",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "missing-size-t",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "fallback-outside-copied-resources",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "changed-header-bytes",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "header-absent-from-inventory",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "error-diagnostic",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "fatal-error-diagnostic",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "relative-trace-path",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "noncanonical-trace-path",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    },
+    {
+      "case": "symlink-escape",
+      "outcome": "rejected",
+      "exception": "AssertionError"
+    }
+  ],
+  "mocked_run_controls": [
+    {
+      "case": "expected-zero",
+      "actual_mock_returncode": 0,
+      "expected_returncode": 0,
+      "outcome": "accepted",
+      "exception": null,
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "expected-one",
+      "actual_mock_returncode": 1,
+      "expected_returncode": 1,
+      "outcome": "accepted",
+      "exception": null,
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "unexpected-zero",
+      "actual_mock_returncode": 0,
+      "expected_returncode": 1,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "unexpected-nonzero",
+      "actual_mock_returncode": 23,
+      "expected_returncode": 0,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "wrong-nonzero",
+      "actual_mock_returncode": 2,
+      "expected_returncode": 1,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "signal-result",
+      "actual_mock_returncode": -15,
+      "expected_returncode": 1,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 1
+    },
+    {
+      "case": "assertion-before-receipt",
+      "actual_mock_returncode": null,
+      "expected_returncode": 1,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 0
+    },
+    {
+      "case": "wrong-receipt-case",
+      "actual_mock_returncode": 1,
+      "expected_returncode": 1,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 1,
+      "save_calls": 0
+    },
+    {
+      "case": "spawn-error-propagates",
+      "actual_mock_returncode": null,
+      "expected_returncode": 0,
+      "outcome": "rejected",
+      "exception": "OSError",
+      "mock_calls": 1,
+      "save_calls": 0
+    },
+    {
+      "case": "timeout-propagates",
+      "actual_mock_returncode": null,
+      "expected_returncode": 0,
+      "outcome": "rejected",
+      "exception": "TimeoutExpired",
+      "mock_calls": 1,
+      "save_calls": 0
+    },
+    {
+      "case": "interrupt-propagates",
+      "actual_mock_returncode": null,
+      "expected_returncode": 0,
+      "outcome": "rejected",
+      "exception": "KeyboardInterrupt",
+      "mock_calls": 1,
+      "save_calls": 0
+    },
+    {
+      "case": "duplicate-label",
+      "actual_mock_returncode": null,
+      "expected_returncode": 0,
+      "outcome": "rejected",
+      "exception": "AssertionError",
+      "mock_calls": 0,
+      "save_calls": 0
+    }
+  ],
+  "frozen_files_unchanged": 7,
+  "native_subprocesses": 0,
+  "protected_calls": 0,
+  "limitations": [
+    "Native runner and resource tool behavior not executed.",
+    "Exceptions and exit codes in run controls are mocked, not process-termination tests."
+  ]
+}

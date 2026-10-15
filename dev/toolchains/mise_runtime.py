@@ -1,0 +1,155 @@
+"""Reattest the observed mise replacement without changing shared installations."""
+
+import argparse
+import ast
+import copy
+from datetime import datetime, timezone
+import json
+import os
+from pathlib import Path
+import shutil
+import signal
+import subprocess
+import sys
+import time
+
+from gcc_install import ROOT, census, digest, preserved, read
+from mise_link_probe import snapshot
+from p2996_install import prefix_inventory
+from vcpkg_register import install_entries
+
+CONTRACT = ROOT / "evidence/mise-runtime/contract.json"
+CONTRACT_SHA = "c56618b021993665015b8f40c448504a666cb121076a88fb6217df2611434ff5"
+
+
+def load(path):
+    return json.loads(path.read_text())
+
+
+def contract():
+    assert digest(CONTRACT) == CONTRACT_SHA
+    result = load(CONTRACT)
+    for path, sha in result["inputs"].items():
+        assert digest(ROOT / path) == sha, path
+    return result
+
+
+def overlay(inventory, previous, current):
+    """Change only the unique, exactly matched historical executable record."""
+    assert current["path"] == previous["path"] == "/Users/rmanaloto/.local/bin/mise"
+    result = copy.deepcopy(inventory)
+    rows = [r for r in result["records"] if r["path"] == current["path"]]
+    assert len(rows) == 1 and rows[0] == previous
+    rows[0].update(sha256=current["sha256"], bytes=current["bytes"])
+    assert {k for k in previous if previous[k] != rows[0][k]} == {"sha256", "bytes"}
+    return result
+
+
+def function(path, name, scope):
+    node = next(n for n in ast.walk(ast.parse(path.read_text()))
+                if isinstance(n, ast.FunctionDef) and n.name == name)
+    exec(compile(ast.Module(body=[node], type_ignores=[]), str(path), "exec"), scope)
+    return scope[name]
+
+
+def protected():
+    """Apply the new executable identity while retaining every other guard."""
+    data = contract()
+    evidence = ROOT / "evidence/p2996-install"
+    baseline = load(ROOT / "evidence/p2996-registration/independent-registration/post-state.json")
+    inventory = overlay(load(evidence / "independent-installation/post-install-inventory.json"),
+                        data["previous_record"], data["current_mise"])
+    function(Path(__file__).with_name("p2996_reflection.py"), "protected", globals() | {
+        "baseline": baseline, "inventory": inventory, "prefix": Path(inventory["prefix"]),
+        "evidence": evidence})()
+    proposal = load(ROOT / "evidence/iwyu-build/proposal.json")
+    for path, sha in proposal["inputs"].items():
+        assert digest(ROOT / path) == sha, path
+    for path, sha in proposal["tools"].items():
+        expected = data["current_mise"]["sha256"] if path == data["current_mise"]["path"] else sha
+        assert digest(Path(path)) == expected, path
+    return data["current_mise"]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    directory = parser.parse_args().run_dir
+    foundation = Path.home() / ".local/state/marketplace-tool-foundation"
+    if not directory.is_absolute() or directory != directory.resolve() or directory.parent != foundation:
+        parser.error("use a new normalized directory directly under the private foundation root")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    (directory / "cwd").mkdir()
+    report = {"state": "running", "helper_sha256": digest(Path(__file__)),
+              "contract_sha256": CONTRACT_SHA, "commands": []}
+    normal_argv = read("install-preimages.json")["normal_environment"]["argv"]
+    env = load(Path(normal_argv[-1]).parent / "context.json")["environment"] | {
+        "MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0", "MISE_EXEC_AUTO_INSTALL": "0",
+        "MISE_TASK_RUN_AUTO_INSTALL": "0", "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null"}
+
+    def save():
+        temporary = directory / "qualification.json.tmp"
+        temporary.write_text(json.dumps(report, indent=2) + "\n")
+        temporary.replace(directory / "qualification.json")
+
+    def interrupted(signum, frame):
+        raise KeyboardInterrupt("received signal " + str(signum))
+
+    for signum in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(signum, interrupted)
+    try:
+        data = contract()
+        run = function(ROOT / "evidence/p2996-math-resume/operation/p2996_build.py.source", "run",
+                       globals() | {"directory": directory, "report": report, "env": env, "save": save})
+        report["current_mise"] = protected()
+        report["writer_census_before"] = census()
+        mise = data["current_mise"]["path"]
+        assert run("version", [mise, "--version"]).strip() == data["current_mise"]["version"]
+        assert run("architecture", ["/usr/bin/lipo", "-archs", mise]).strip() == "arm64"
+        help_text = run("exec-help", [mise, "--no-hooks", "exec", "--help"])
+        assert all(flag in help_text for flag in ("--fresh-env", "--no-deps"))
+        probe = "import json,os,sys;print(json.dumps({k:os.environ.get(k) for k in sys.argv[1:]}))"
+        for lane, expected in data["profiles"].items():
+            env.pop("MARKETPLACE_P2996_PREFIX", None)
+            env.pop("MARKETPLACE_GCC16_PREFIX", None)
+            if lane == "p2996":
+                env["MARKETPLACE_P2996_PREFIX"] = data["p2996_prefix"]
+            if lane == "gcc16":
+                env["MARKETPLACE_GCC16_PREFIX"] = load(ROOT / expected)["selected"]["MARKETPLACE_GCC16_PREFIX"]
+            base = [mise, "--no-hooks", "-C", directory / "cwd"]
+            if lane != "default":
+                base += ["-E", lane]
+            base += ["exec", "--fresh-env", "--no-deps", "--"]
+            observed = run(lane + "-profile", base + normal_argv[-2:])
+            assert observed == (ROOT / expected).read_text(), lane
+            assert (directory / (lane + "-profile.stderr")).read_text() == "", lane
+            isolated = run(lane + "-isolation", base + [sys.executable, "-B", "-c", probe, *data["isolation_keys"]])
+            assert (directory / (lane + "-isolation.stderr")).read_text() == "", lane
+            expected_isolation = {k: json.loads(observed)["selected"].get(k) for k in data["isolation_keys"]}
+            assert json.loads(isolated) == expected_isolation, lane
+            if lane != "default":
+                assert expected_isolation == dict.fromkeys(data["isolation_keys"]), lane
+        env.pop("MARKETPLACE_P2996_PREFIX", None)
+        env.pop("MARKETPLACE_GCC16_PREFIX", None)
+        assert run("default-after", normal_argv) == (ROOT / data["profiles"]["default"]).read_text()
+        report["writer_census_after"] = census()
+        report["state"] = "PASS: observed mise replacement and existing profile parity; shared state unchanged"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            protected()
+            assert digest(Path(__file__)) == report["helper_sha256"]
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

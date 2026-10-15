@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "case": "helper-help",
+      "argv": [
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.15.0/bin/python3",
+        "-B",
+        "dev/toolchains/core_matrix.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: core_matrix.py [-h] --run-dir RUN_DIR\n\nRun the admitted two-compiler native core qualification in fresh private\ntrees.\n\noptions:\n  -h, --help         show this help message and exit\n  --run-dir RUN_DIR\n",
+      "stderr": ""
+    },
+    {
+      "case": "tasks-validate",
+      "argv": [
+        "./dev/mise",
+        "tasks",
+        "validate"
+      ],
+      "returncode": 0,
+      "stdout": "\u2713 All 2 task(s) validated successfully\n",
+      "stderr": ""
+    },
+    {
+      "case": "acceptance-baseline",
+      "argv": [
+        "./dev/mise",
+        "run",
+        "check:acceptance-baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\"checks\": {\"baseline\": 19, \"json\": 869, \"python\": 48, \"shell\": 6, \"toml\": 14}, \"root\": \"/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace\", \"status\": \"pass\"}\n",
+      "stderr": "[check:acceptance-baseline] $ \"${MARKETPLACE_PYTHON:-python3}\" dev/check.py --baseline\n"
+    }
+  ],
+  "helper_sha256": "e1873100a488b18cb21f91a70e373ec86c4f335e5f6091205f3256d2378a47b9",
+  "lines": 319,
+  "bounded_configure_log_parser_replay": {
+    "recorded_events": 3,
+    "commands": 6,
+    "status": "PASS with exact native/generated backslash encoding",
+    "native_builds": 0
+  }
+}

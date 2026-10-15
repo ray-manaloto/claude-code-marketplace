@@ -1,0 +1,29 @@
+amends "package://github.com/jdx/hk/releases/download/v2.5.0/hk@2.5.0#/Config.pkl"
+
+// Retro gate (CT-02): refuse a merge commit or push that carries a lane whose
+// retro record fails dev/retro_gate.py. The parent installs these with
+// `./dev/mise run hooks:install`; see docs/agents/claude-team.md.
+min_hk_version = "2.5.0"
+
+hooks {
+    // Records (W0-5, CT-22): refuse staged non-project settings keys before the commit.
+    ["pre-commit"] {
+        stash = "none"
+        steps {
+            ["records"] { check = "./dev/mise run check:records" }
+            ["whitespace"] { check = "git diff --cached --check" }
+        }
+    }
+    ["pre-merge-commit"] {
+        stash = "none"
+        steps {
+            ["retro-gate"] { check = "./dev/mise run retro:gate-merge" }
+        }
+    }
+    ["pre-push"] {
+        stash = "none"
+        steps {
+            ["retro-gate"] { check = "./dev/mise run retro:gate-push" }
+        }
+    }
+}

@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "kind": "task14a1-dyld-header-source-safety-review",
+  "recorded_at": "2026-10-12T00:23:16.366Z",
+  "reviewer": "/root/docs_reviewer",
+  "disposition": "NO_SOURCE_SAFETY_BLOCKER_FOUND_WITHIN_QUALIFIED_MACOS_ARM64_SCOPE_NATIVE_ACCEPTANCE_UNVERIFIED",
+  "project_start": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "55a37282b117fca534a86fedcdbd5c8352405e23",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "project_end": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "55a37282b117fca534a86fedcdbd5c8352405e23",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "prerequisites": [
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/startup-diagnosis.json",
+      "sha256": "563ceea4bd1288d0e6335729db5665ceba6a254b40262f5a36027e889b8b2af0",
+      "bytes": 674
+    },
+    {
+      "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/evidence/p2996-sanitizers/startup-sample.txt.source",
+      "sha256": "8d9612febf700db855fce0c6456629e1f6852e7512c0611ea372c9acf1c76840",
+      "bytes": 7198
+    },
+    {
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/sanitizer-repair-inventory-uok_jpu5/startup-source-parent.json",
+      "sha256": "ef622cdebcc3b94072c6c8768d2ebb887e9dfe9aac90e159763a0d876c83b5c3",
+      "bytes": 3183
+    }
+  ],
+  "sources": [
+    {
+      "name": "sanitizer_procmaps_mac.cpp",
+      "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/compiler-rt/lib/sanitizer_common/sanitizer_procmaps_mac.cpp",
+      "sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+      "bytes": 17205
+    },
+    {
+      "name": "task_info.h",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/mach/task_info.h",
+      "sha256": "97604815a62fbc508daefe7c3f9d81fcb51fbf314cb7f0134782c91775751242",
+      "bytes": 24412
+    },
+    {
+      "name": "dyld_images.h",
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk/usr/include/mach-o/dyld_images.h",
+      "sha256": "909c205966428440ceeac78621f07988f1e488b068e72e8efb1ec130f6cad391",
+      "bytes": 9367
+    }
+  ],
+  "patch": {
+    "path": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/patches/p2996-asan-macos27-dyld.patch",
+    "sha256": "cf6e2fb0ac97f2ece11358f403a9b5fc817f179debad69f8b48ccfbae48d7769",
+    "bytes": 1595,
+    "expected_preimage_sha256": "05599bf2d0295b8141d0c0b5ea5efcdc97674e080ae90136235f27706992707e",
+    "reconstructed_postimage_sha256": "418216e32aa7ce5e551e4370d77bbc2797b8e4eb9ed803de6ffe4e6d2e1fa4ff",
+    "postimage_matches_parent": true,
+    "verification_method": "Strict unified-diff reconstruction in memory, checking old and new hunk offsets/counts and each removed/context line; no patch executable and no source/postimage file write.",
+    "hunks": [
+      {
+        "old_start": 18,
+        "old_count": 0,
+        "new_start": 19,
+        "new_count": 1
+      },
+      {
+        "old_start": 20,
+        "old_count": 0,
+        "new_start": 22,
+        "new_count": 1
+      },
+      {
+        "old_start": 126,
+        "old_count": 1,
+        "new_start": 128,
+        "new_count": 1
+      },
+      {
+        "old_start": 218,
+        "old_count": 0,
+        "new_start": 221,
+        "new_count": 22
+      },
+      {
+        "old_start": 223,
+        "old_count": 1,
+        "new_start": 247,
+        "new_count": 4
+      }
+    ]
+  },
+  "source_findings": [
+    {
+      "id": "reply_validation",
+      "result": "PASS_SOURCE",
+      "patch_lines": [
+        12,
+        19
+      ],
+      "postimage_lines": [
+        222,
+        229
+      ],
+      "sdk_source": "task_info.h:260-272",
+      "detail": "Zero-initialized task_dyld_info_data_t and TASK_DYLD_INFO_COUNT capacity; checks task_info(mach_task_self(), TASK_DYLD_INFO) result and full returned count before inspecting fields, then requires 64-bit record format and nonzero address. COUNT is expressed by the SDK macro in natural_t units, not a byte count."
+    },
+    {
+      "id": "field_extent_and_version",
+      "result": "PASS_SOURCE",
+      "patch_lines": [
+        20,
+        26
+      ],
+      "postimage_lines": [
+        230,
+        236
+      ],
+      "sdk_source": "dyld_images.h:124-138",
+      "detail": "Checks all_image_info_size in bytes through offsetof(dyld_all_image_infos, dyldImageLoadAddress)+sizeof(const mach_header*) before reading the structure. Then requires version>=2 before reading dyldImageLoadAddress, matching the SDK field-introduction comment. Does not require unrelated libSystemInitialized or infoArray state."
+    },
+    {
+      "id": "header_validation_and_const",
+      "result": "PASS_SOURCE",
+      "patch_lines": [
+        [
+          7,
+          9
+        ],
+        [
+          26,
+          30
+        ]
+      ],
+      "postimage_lines": [
+        [
+          128,
+          128
+        ],
+        [
+          236,
+          240
+        ]
+      ],
+      "original_source": "sanitizer_procmaps_mac.cpp:123-141",
+      "detail": "Requires nonnull header, exact MH_MAGIC_64 and MH_DYLINKER. Makes the cache const to match the SDK pointer; old helpers returning mutable pointers can convert to the const cache without introducing writes. The existing generic IsDyldHdr accepts 32/64 and remains unchanged."
+    },
+    {
+      "id": "new_branch_and_failure_path",
+      "result": "PASS_SOURCE",
+      "patch_lines": [
+        33,
+        38
+      ],
+      "postimage_lines": [
+        243,
+        263
+      ],
+      "original_source": "sanitizer_procmaps_mac.cpp:219-238",
+      "detail": "New aligned-version>=27 branch chooses only the TaskInfo helper. Failed validations use CHECK; the else-if preserves the existing >=13 shared-cache/fallback route below 27 and the older VM route. The new branch does not fall through to the known sampled shared-cache block call."
+    },
+    {
+      "id": "mapping_preservation",
+      "result": "PASS_SOURCE",
+      "original_source": "sanitizer_procmaps_mac.cpp:241-end",
+      "postimage_source": "sanitizer_procmaps_mac.cpp:268-end",
+      "detail": "The entire mapping implementation suffix is byte-for-byte identical after accounting for line shifts. Both old dyld lookup helper definitions are unchanged. The patch changes only this file and does not remove mapping iteration, UUID/load-command checks, dyld inclusion or shadow-validation callers."
+    },
+    {
+      "id": "observed_old_route",
+      "result": "OBSERVED_PRIOR_NATIVE_EVIDENCE",
+      "source": "startup-sample.txt.source:41-53",
+      "detail": "The retained sample directly records ASan initialization through MemoryRangeIsAvailable/get_dyld_hdr into shared-cache iteration, Block_copy, malloc, and same-thread ASan initialization lock re-entry. This supports removing the sampled route on this qualified macOS 27.0.1 build; it is not inferred from SDK declarations."
+    },
+    {
+      "id": "direct_source_change_only",
+      "result": "BOUNDED_SOURCE_CONCLUSION",
+      "patch_lines": [
+        11,
+        31
+      ],
+      "detail": "The new helper contains a stack record, a current-task task_info query, pointer reads and checks; it has no direct shared-cache enumeration or block callback. This does not establish allocation-free behavior of task_info, its library/kernel boundary, compiler-generated initialization or failure-reporting paths."
+    }
+  ],
+  "limitations": [
+    {
+      "area": "native_runtime",
+      "status": "UNVERIFIED",
+      "detail": "No compilation, build, sanitizer execution, startup sampling, mapping/shadow acceptance, capacity admission or lease operation occurred. Source approval does not establish a successful repair."
+    },
+    {
+      "area": "pointer_contract",
+      "status": "UNVERIFIED_RUNTIME_ASSUMPTIONS",
+      "detail": "all_image_info_size bounds the dyld_all_image_infos record, not the memory pointed to by dyldImageLoadAddress. Typed dereferences rely on readable, suitably aligned, live current-task dyld metadata during early initialization. The SDK declares the record alignment (16 bytes on nonsimulator targets) but does not by itself prove runtime pointer availability or lifetime."
+    },
+    {
+      "area": "platform_scope",
+      "status": "QUALIFIED_SCOPE_ONLY",
+      "detail": "The file is under SANITIZER_APPLE and dispatch uses GetMacosAlignedVersion. Its implementation/platform mapping was outside the supplied source scope. No claim is made that the branch is exclusive to macOS or qualified for other Apple platforms, 32-bit layouts, older SDKs, x86 targets or future OS releases; the offsetof/sizeof interpretation reviewed here is for the qualified macOS ARM64 layout."
+    },
+    {
+      "area": "shadow_preservation",
+      "status": "PATCH_SCOPE_CHECK_ONLY",
+      "detail": "Mapping suffix equality and single-file diff establish that this patch does not edit downstream mapping/shadow logic. This was not a repository-wide audit of other writers or a fresh execution of shadow-overlap protections."
+    }
+  ],
+  "later_validation_needed": [
+    "Compile the exact verified postimage under the separately reviewed scratch-only preparation.",
+    "Under the separately admitted bounded native operation, verify startup reaches main without the repeated timeout, and preserve positive plus fault-detection sanitizer results and mapping/shadow validation evidence.",
+    "Retain any failure/sample and report task_info/allocation behavior only to the extent directly observed; do not describe the route as allocation-free from these declarations."
+  ],
+  "write_allowlist": [
+    "/private/tmp/marketplace-task14a1-source-review-a38f3h/source-review.json"
+  ],
+  "execution": {
+    "filesystem_and_hash_reads": true,
+    "in_memory_patch_reconstruction": true,
+    "native_commands": [],
+    "network_requests": [],
+    "profiles": [],
+    "credentials_accessed": false,
+    "shared_source_or_repository_writes": [],
+    "private_receipt_writes": 1,
+    "source_copies": 0,
+    "errors": []
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "kind": "task12-host-detection-and-fmt-native-prerequisite",
+  "recorded_at": "2026-10-11T19:46:12.149Z",
+  "reviewer": "/root/docs_reviewer",
+  "status": "SOURCE_BRANCHES_CONFIRMED_NATIVE_HOST_TARGET_SELECTION_LINKAGE_AND_RUNTIME_PARITY_UNVERIFIED",
+  "acceptance": "Prerequisite guidance only; no native operation admitted or executed.",
+  "source_manifest": {
+    "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-host-fmt-prereq-6cgbUY/source-manifest.json",
+    "sha256": "f22f880d85b8785d5de4c86dc914ac7cd556ce28b8a6471b34d25bfd86e363e1"
+  },
+  "project_identity": {
+    "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+    "git_admin": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+    "common_directory": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+    "branch": "codex/marketplace-native-onboarding",
+    "head": "41f91b31912d1fc50ba06aacc159b56315072a03",
+    "method": "exact Git administrative text files; no Git executable"
+  },
+  "summary": [
+    "A normal manifest install computes compiler identities for both arm64-osx host helper actions and the custom target triplet before status adjustment or dry-run exit.",
+    "The host triplet selects the pinned default osx.cmake; the custom target triplets select the marketplace chainloader. MARKETPLACE_CPP_LANE and the matching prefix variable alone do not override the host triplet.",
+    "Setting the shared vcpkg process CC/CXX to Apple /usr/bin/clang and /usr/bin/clang++ is incompatible with the current target chainloader. Leave them unset, constrain PATH and ambient flags, and prove host and target selection separately using fresh native logs.",
+    "Full coverage of the four current target triplets requires four manifest installs producing Debug and Release fmt libraries and eight matching consumer builds/runs. These are all proposed, not executed.",
+    "The selected pkgconf executable is currently absent from additional ABI inputs. Bind the selected path and binary bytes before claiming qualified-tool identity coverage."
+  ],
+  "question_1_host_detection": {
+    "ordinary_manifest_branch": {
+      "answer": "Yes, under enabled compiler tracking and normal non-head/non-editable actions, even when the helper port merely copies CMake files. Binary caching disabled does not disable compiler tracking.",
+      "sequence": [
+        {
+          "fact": "fmt 12.2.0#1 declares vcpkg-cmake and vcpkg-cmake-config with host:true.",
+          "refs": [
+            "fmt_dependencies"
+          ]
+        },
+        {
+          "fact": "Manifest install calls command_set_installed_and_exit_ex; that loads tags and calls compute_all_abis before adjustment to installed status and before --dry-run exit.",
+          "refs": [
+            "manifest_install",
+            "set_installed"
+          ]
+        },
+        {
+          "fact": "compute_all_abis iterates install actions using action.spec.triplet(); populate_abi_tag calls get_compiler_info before dependency ABI checks. Only head/editable action early returns or disabled compiler tracking bypass the ordinary detector here.",
+          "refs": [
+            "build_abi"
+          ]
+        },
+        {
+          "fact": "The two host helper portfiles copy files. Their CMAKE_HELPER_PORT or EMPTY_PACKAGE policies are set after the ABI/detector phase and do not bypass that phase.",
+          "refs": [
+            "helper_cmake",
+            "helper_cmake_config",
+            "set_installed",
+            "build_abi"
+          ]
+        },
+        {
+          "fact": "Compiler tracking defaults true independently of binary caching. Keep it enabled; the project triplet also rejects VCPKG_DISABLE_COMPILER_TRACKING.",
+          "refs": [
+            "tracking_defaults",
+            "common_triplet"
+          ]
+        }
+      ]
+    },
+    "host_target_separation": {
+      "host": "triplets/arm64-osx.cmake sets architecture arm64, Darwin, static library linkage and dynamic CRT; it sets no chainloader. PreBuildInfo::toolchain_file chooses the pinned scripts/toolchains/osx.cmake.",
+      "target": "Each custom target includes common/macos-arm64.cmake, which assigns cmake/toolchains/vcpkg-macos-arm64.cmake. That file selects absolute lane compiler paths.",
+      "tag_extraction": "The generated vcpkg_get_tags function evaluates each selected triplet in a function scope. A target triplet variable assignment is not automatically shared with the next host action.",
+      "detector_arguments": [
+        "-DCMD=BUILD",
+        "-DTARGET_TRIPLET=<action triplet>",
+        "-DTARGET_TRIPLET_FILE=<resolved action triplet file>",
+        "-D_HOST_TRIPLET=<same action triplet>",
+        "-DZ_VCPKG_CHAINLOAD_TOOLCHAIN_FILE=<PreBuildInfo selected toolchain>",
+        "-DCURRENT_PORT_DIR=<private vcpkg root>/scripts/detect_compiler",
+        "-DVCPKG_COMPILER_CACHE_FILE=<resolved private installed compiler cache>"
+      ],
+      "detector_bridge": "Old configure helper copies Z_VCPKG_CHAINLOAD_TOOLCHAIN_FILE into VCPKG_CHAINLOAD_TOOLCHAIN_FILE when unset, then passes it to scripts/buildsystems/vcpkg.cmake, which includes it. Detector configures Release only.",
+      "refs": [
+        "host_triplet",
+        "cmake_vars",
+        "build_abi",
+        "old_configure",
+        "cmake_integration",
+        "detector_port"
+      ]
+    },
+    "environment_and_flags": {
+      "literal_lane_variable": "MARKETPLACE_CPP_LANE",
+      "other_literal_variables": [
+        "MARKETPLACE_P2996_PREFIX",
+        "MARKETPLACE_GCC16_PREFIX"
+      ],
+      "marketplace_compiler_note": "The inspected current project toolchains do not read MARKETPLACE_COMPILER. Guidance uses MARKETPLACE_CPP_LANE from source.",
+      "unix_boundary": "get_action_env uses get_clean_environment on Unix; the retained process implementation ultimately launches with inherited environ. VCPKG_ENV_PASSTHROUGH is ABI tracking, not a Unix environment allowlist.",
+      "explicit_apple_CC_CXX": "REJECTED by current target chainloader: lines 35-38 reject any nonempty CC/CXX unequal to the selected target prefix binaries, before the per-lane CMAKE_C_COMPILER/CMAKE_CXX_COMPILER assignments. P2996 repeats this guard at lines 31-45. The assignments do not override the rejection.",
+      "source_compatible_proposal": [
+        "Retain MARKETPLACE_CPP_LANE=<lane> and exactly its qualified prefix variable; leave the other lane prefix unset/empty as required by the guard.",
+        "Unset CC and CXX for the vcpkg process. Also clear the existing lane-toolchain prohibited ambient compile/link/include/SDK/runtime-loader variables and unapproved compiler/linker launchers. Do not replace real HOME.",
+        "Construct a bounded PATH from the already-qualified CMake and Ninja locations, the later-qualified pkgconf location if needed, and native system tool directories. Exclude lane compiler prefix bins and unqualified compiler shims. Target chainloader compiler paths are absolute, so it does not need those bins on PATH.",
+        "Record and check a fresh host detector result for Apple compiler ID and resolved CLT/Xcode compiler path; /usr/bin compiler stubs are resolved by the detector through xcrun before hashing. Do not infer Apple selection from this proposed PATH alone.",
+        "Record and check a separate target detector result for exact GCC16 or P2996 prefix C/C++ compiler paths and hashes. If the host still selects an unintended compiler, stop that native operation and propose a separately reviewed host-specific control; do not weaken the target guard."
+      ],
+      "flags_to_avoid": "Do not globally inject a chainloader, compiler, or compiler-affecting flags with --cmake-args. That list is appended to actual port build script commands at commands.build.cpp:943-946 but is absent from load_compiler_info argv at 814-827, so it is not a consistent detector/build control. The current helper portfiles do not configure a compiler themselves, so merely passing such a variable does not prove a host helper rejection; rejection occurs if the marketplace chainloader is actually included for target arm64-osx.",
+      "refs": [
+        "shared_chainloader",
+        "gcc_lane",
+        "p2996_lane",
+        "unix_process",
+        "build_abi",
+        "host_osx",
+        "detector",
+        "cmake_args_parse",
+        "helper_cmake",
+        "helper_cmake_config"
+      ]
+    },
+    "required_outer_argv": {
+      "vcpkg_install": [
+        "<qualified private vcpkg executable>",
+        "install",
+        "--triplet=<one custom target triplet>",
+        "--host-triplet=arm64-osx",
+        "--overlay-triplets=<project>/triplets",
+        "--vcpkg-root=<private copied pinned vcpkg root>",
+        "--x-manifest-root=<private copy of the exact vcpkg.json>",
+        "--x-install-root=<private installed root>",
+        "--x-buildtrees-root=<private buildtrees root>",
+        "--x-packages-root=<private packages root>",
+        "--downloads-root=<private prepared distfile cache>",
+        "--x-registries-cache=<existing absolute private registry cache>",
+        "--x-wait-for-lock",
+        "--no-downloads",
+        "--feature-flags=-binarycaching,compilertracking",
+        "--disable-metrics",
+        "--no-sendmetrics"
+      ],
+      "qualification": "The private-root, offline, metrics and force-system-tool controls carry forward from the already-bound prior prerequisite receipt; this is not a new runnable authorization or network-confinement proof. VCPKG_FORCE_SYSTEM_BINARIES must remain set with VCPKG_FORCE_DOWNLOADED_BINARIES absent, and actual tool selections must be recorded.",
+      "cmake_consumer": "When using CMake integration, pass VCPKG_HOST_TRIPLET=arm64-osx, VCPKG_TARGET_TRIPLET, VCPKG_OVERLAY_TRIPLETS, the private installed directory and explicit target VCPKG_CHAINLOAD_TOOLCHAIN_FILE. Integration adds --host-triplet/--triplet/--overlay-triplets to manifest argv, but does not automatically forward the outer chainloader as a global --cmake-args value.",
+      "refs": [
+        "cmake_integration",
+        "common_triplet"
+      ]
+    }
+  },
+  "question_2_smallest_native_witness": {
+    "matrix": {
+      "triplets": [
+        "arm64-osx-gcc16-static",
+        "arm64-osx-gcc16-dynamic",
+        "arm64-osx-p2996-static",
+        "arm64-osx-p2996-dynamic"
+      ],
+      "configurations": [
+        "Debug",
+        "Release"
+      ],
+      "minimum_for_all_current_triplets": "Four ordinary manifest installs, each with both configurations, followed by eight matching consumer configure/build/run witnesses. Run them only under the later native admission and preserve each result before proceeding.",
+      "host": "Keep the host triplet arm64-osx in every invocation. Capture its detector evidence independently of target evidence."
+    },
+    "port_build_requirements": [
+      "Use frozen source/triplet/toolchain/tool identities and fresh private detector/build/install state for the initial qualification. Compiler identity is cached per triplet/toolchain within a vcpkg process; the detector file-hash cache reuses hashes when file size and timestamp match, so a stale cache is not adequate identity evidence.",
+      "Leave VCPKG_BUILD_TYPE undefined so both Debug and Release are built. Check actual CMAKE_BUILD_TYPE and library linkage in both fmt CMake caches, not only the triplet filename.",
+      "Check FMT_MODULE in each actual port cache. The pinned port does not set it; fmt can default it ON when CMAKE_CXX_STANDARD>=20 and the version conditions match. For the smallest non-module witness, use an explicit FMT_MODULE=OFF in the target triplet configure options if the writer chooses to make that intent persistent. Do not confuse a consumer target CXX_STANDARD with the separate port cache.",
+      "Retain the exact fmt distfile and patch SHA512 checks and applied-patch/source identity from the native build. Do not use a header-only fmt replacement.",
+      "Capture verbose fmt compilation and link commands for both configurations. For P2996 require the qualified resource directory, libc++ include path, -nostdinc++, -nostdlib++, explicit prefix runtime dylibs, and prefix rpath required by the project toolchain; for GCC require qualified gcc-16/g++-16 and matching libstdc++ headers/runtime. Inspect each actual command rather than assuming a cache variable proves usage."
+    ],
+    "consumer_witness": [
+      "One small CMake project with cmake_minimum_required(VERSION 4.4), an executable and find_package(fmt CONFIG REQUIRED) confined to the selected private installed <triplet>/share/fmt; link fmt::fmt. Generate the resolved imported target type and $<TARGET_FILE:fmt::fmt> for each configuration.",
+      "Use fresh Ninja Debug and Release build directories, the same target chainloader, explicit matching triplet/private installed root and VCPKG_MANIFEST_INSTALL=OFF after the corresponding install. Set the consumer target language standard explicitly if C++26 is part of the next unit; this does not reconfigure the already-built port.",
+      "The fixture should call a compiled fmt API such as fmt::vformat with arguments and compare the result to a fixed expected string, fail if FMT_HEADER_ONLY is defined, and check FMT_VERSION==120200. Retain a consumer-object undefined-symbol or link-map witness that the fmt call was satisfied by the selected library.",
+      "Check imported target type/path and FMT_SHARED usage: static uses the selected archive; dynamic uses the selected dylib and FMT_SHARED. Debug must resolve the debug library and Release the release library. A header-only target or a successful compile with no library reference is insufficient.",
+      "Record compiler ID/path/version plus actual standard-library header provenance and an implementation macro in the consumer (_LIBCPP_VERSION for P2996; __GLIBCXX__ for GCC). Match these to the port compiler/flags evidence. Macro values alone do not prove header paths.",
+      "Run every executable with the fixed expected output and exit code zero. Retain Mach-O architecture/dependency/rpath metadata for the executable and dynamic fmt library, plus actual loaded-runtime paths. P2996 must resolve its qualified libc++ family; GCC must resolve its qualified libstdc++ family. Check fmt itself as well as the consumer to exclude a cross-runtime library."
+    ],
+    "expected_library_names": {
+      "static_release": "<installed>/<triplet>/lib/libfmt.a",
+      "static_debug": "<installed>/<triplet>/debug/lib/libfmtd.a",
+      "dynamic_release": "<installed>/<triplet>/lib/libfmt.12.2.0.dylib with major/unversioned symlink chain",
+      "dynamic_debug": "<installed>/<triplet>/debug/lib/libfmtd.12.2.0.dylib with major/unversioned symlink chain",
+      "status": "Source-derived expectations only; resolve the actual imported targets, files and symlink chains after native installation."
+    },
+    "mandatory_evidence": [
+      "Exact invocation argv, selected non-secret environment fields, start/end input hashes, exit codes and stdout/stderr; actual tool versions, resolved paths and file hashes, including pkgconf.",
+      "<buildtrees>/detect_compiler/stdout-arm64-osx.log and stdout-<target>.log, matching Release detector CMakeCache.txt and CMakeConfigureLog.yaml, compiler markers, and the exact file named by VCPKG_COMPILER_CACHE_FILE (compiler-file-hash-cache.json; derive its full path from captured argv).",
+      "<buildtrees>/fmt/<target>-dbg/CMakeCache.txt and <target>-rel/CMakeCache.txt; each CMakeFiles/CMakeCXXCompiler.cmake and CMakeConfigureLog.yaml; config-<target>*-out.log and *-err.log; install-<target>-{dbg,rel}-{out,err}.log. The pinned install helper uses LOGFILE_BASE=install and verbose Ninja builds.",
+      "<buildtrees>/fmt/<target>.vcpkg_abi_info.txt and the host helper ABI files; installed status/package metadata. Verify target triplet_abi, compiler hash, ENV:MARKETPLACE_CPP_LANE and matching prefix, all additional_file hashes, port/helper dependency ABIs, and final SHA256 of the complete ABI file.",
+      "Installed fmt target exports/config/version files, both corrected fmt.pc files, selected library bytes/symlinks and headers. Keep actual PKGCONFIG selection and both Debug/Release --print-errors --exists checks tied to the private package paths.",
+      "Each consumer cache, compiler/configure logs, verbose compile/link logs, resolved target-path witness, executable/object or link-map, output/exit result and runtime dependency observations."
+    ],
+    "refs": [
+      "common_triplet",
+      "build_abi",
+      "detector",
+      "fmt_port",
+      "fmt_configure",
+      "fmt_build",
+      "fmt_install",
+      "fmt_targets",
+      "p2996_lane",
+      "gcc_lane",
+      "pkgconfig_check"
+    ]
+  },
+  "pkgconf_abi_input": {
+    "answer": "Add it for the qualified-tool identity contract; it is not currently covered by the inspected common triplet inputs.",
+    "reason": "The actual selected pkg-config executes during required fmt package validation. The inspected ABI construction hashes tracked environment values and explicit additional files, and adds CMake version but no selected pkgconf executable identity. Hashing a helper script or the string PKG_CONFIG alone does not hash the executable bytes.",
+    "proposal": [
+      "After the separately admitted installation/qualification, set a nonempty validated absolute PKG_CONFIG selecting the exact pkgconf executable; retain its resolved path/symlink chain, version, architecture and runtime dependency evidence.",
+      "Track PKG_CONFIG in VCPKG_ENV_PASSTHROUGH and append the selected executable file to VCPKG_HASH_ADDITIONAL_FILES for the custom target triplets. Keep the existing tracked lane and prefix.",
+      "If the selected executable loads non-system package dylibs, bind those actual files (or a separately validated closed package identity artifact) as additional inputs as well. Do not invent a pkgconf path before installation.",
+      "Verify the resulting additional_file_N SHA256 values and ENV:PKG_CONFIG entry in each target ABI file. The original arm64-osx host helpers need no pkgconf-specific ABI change merely because fmt uses the tool."
+    ],
+    "refs": [
+      "common_triplet",
+      "build_abi",
+      "fmt_port",
+      "pkgconfig_select",
+      "pkgconfig_check"
+    ]
+  },
+  "artifact_allowlist": {
+    "this_review": {
+      "private_root": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/task12-host-fmt-prereq-6cgbUY",
+      "files": [
+        "source-manifest.json",
+        "prerequisite.json"
+      ],
+      "source_copies": 0,
+      "shared_writes": 0
+    },
+    "later_native_evidence": {
+      "root": "<separately admitted private native unit root>",
+      "allowlist": [
+        "receipts/{inputs,tool-identities,selected-environment,execution,confinement,results}.json",
+        "logs/<target>/{install.stdout,install.stderr,exit-code}.txt",
+        "buildtrees/detect_compiler/{stdout-arm64-osx.log,stdout-<target>.log,arm64-osx-rel/<bounded detector cache and compiler logs>,<target>-rel/<bounded detector cache and compiler logs>}",
+        "buildtrees/fmt/{<target>.vcpkg_abi_info.txt,config-<target>*.log,install-<target>-dbg-*.log,install-<target>-rel-*.log,<target>-dbg/<bounded cache and compiler/build evidence>,<target>-rel/<bounded cache and compiler/build evidence>}",
+        "buildtrees/{vcpkg-cmake,vcpkg-cmake-config}/arm64-osx.vcpkg_abi_info.txt",
+        "installed/<resolved private compiler cache and installed status/package metadata>",
+        "installed/<target>/{include/fmt/**,share/fmt/**,lib/libfmt*,debug/lib/libfmt*,lib/pkgconfig/fmt.pc,debug/lib/pkgconfig/fmt.pc}",
+        "consumer/<target>/{Debug,Release}/{CMakeCache.txt,CMakeFiles/<compiler/configure logs>,compile_commands.json if generated,verbose-build.log,resolved-fmt-target.txt,fmt-witness,fmt-witness object or link map,run.stdout,run.stderr,run-exit-code,runtime-and-linkage.json}"
+      ],
+      "limit": "These are evidence patterns to instantiate with actual private paths and exact generated names. They are not a filesystem sandbox profile or an authorization to create or run the native operation; the parent owns its separately reviewed write/network allowlist. No full-prefix inventory is required by this source review."
+    }
+  },
+  "execution": {
+    "method": "Read-only retained source/receipt and Git administrative-file reads, bounded filename listing, SHA256 checks, and two private JSON writes.",
+    "native_or_network_commands": [],
+    "research_routes_run": [],
+    "research_route_reason": "No new research requested; retained exact-source prerequisite only.",
+    "shell_ledger": [
+      {
+        "purpose": "bounded filename list of project manifest/triplet/toolchain candidates in preceding context",
+        "chunk": "0350d8",
+        "exit_code": 0
+      }
+    ],
+    "non_native_error": [
+      {
+        "route": "persistent Node filesystem source-map lookup",
+        "detail": "Requested key tool/src/vcpkg/commands.install.cpp was absent in the retained map; no file was accessed for that failed lookup. Corrected to existing tool/commands.install.cpp and reverified its bytes.",
+        "native_exit_code": null
+      }
+    ],
+    "prohibited_actions_not_run": [
+      "profiles",
+      "vcpkg",
+      "CMake",
+      "compilers",
+      "pkgconf",
+      "Git executable",
+      "new source fetch",
+      "sandbox",
+      "capacity or lease admission",
+      "global or maintained writes",
+      "environment or credential reads"
+    ]
+  },
+  "limits": [
+    "All compiler, cache, linkage, installed library, pkgconf, and runtime observations described for the later operation remain UNVERIFIED.",
+    "No new package installation, native execution, or kernel confinement check occurred.",
+    "This review did not assert the pinned vcpkg checkout is Git-clean; observed file hashes and administrative HEAD are recorded separately.",
+    "Prior source-only offline and root controls remain bounded source claims; they are not proof of network denial or write confinement."
+  ]
+}

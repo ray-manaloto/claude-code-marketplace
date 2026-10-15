@@ -1,0 +1,93 @@
+"""Close the bounded Task 14c native timeout without treating it as a pass."""
+
+from pathlib import Path
+import fcntl
+import hashlib
+import json
+import shutil
+import subprocess
+import sys
+
+ROOT = Path('/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace')
+EVIDENCE = ROOT / 'evidence/p2996-lsan'
+RUN = Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-native-retry-20261012T044830Z')
+LAUNCH = Path('/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-lsan-native-launch-p0j171ag')
+DESTINATION = EVIDENCE / 'failed-native'
+sys.path.insert(0, str(ROOT / 'dev/toolchains'))
+from p2996_tsan_runtime import identity, protected
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def copy(path, target):
+    assert path.is_file() and not target.exists()
+    shutil.copy2(path, target)
+    assert sha(path) == sha(target)
+    return sha(target)
+
+
+def main():
+    DESTINATION.mkdir(exist_ok=False)
+    q = json.loads((RUN / 'qualification.json').read_text())
+    execution = json.loads((LAUNCH / 'execution.json').read_text())
+    contract = json.loads((EVIDENCE / 'contract.json').read_text())
+    assert execution['returncode'] == 1 and q['state'] == 'FAIL'
+    assert q['protected_state_unchanged'] and not q.get('lease_released')
+    assert len(q['commands']) == 18 and q['commands'][-1]['case'] == 'lsan-clean'
+    assert q['commands'][-1]['returncode'] == -15 and len(q['cells']) == 1
+    assert all(row['returncode'] == 0 for row in q['commands'][:-1])
+    assert q['cells']['lsan']['runs'] == {}
+    assert execution['helper_sha256'] == sha(ROOT / 'dev/toolchains/p2996_lsan.py')
+    assert execution['admission_sha256'] == sha(EVIDENCE / 'initial-failure/admission.json') or execution['admission_sha256'] == sha(EVIDENCE / 'admission.json')
+    files = {}
+    for row in q['commands']:
+        for log in row['logs']:
+            path = Path(log['path'])
+            assert path.parent == RUN and sha(path) == log['sha256']
+            files[path.name] = copy(path, DESTINATION / path.name)
+    for name in ('qualification.json', 'private.sb'):
+        files[name] = copy(RUN / name, DESTINATION / name)
+    for name in ('launch.json', 'execution.json', 'stdout', 'stderr'):
+        files['launch-' + name] = copy(LAUNCH / name, DESTINATION / ('launch-' + name))
+    for name in ('native-launch.json', 'native-execution.json', 'admission.json'):
+        files['recorded-' + name] = copy(EVIDENCE / name, DESTINATION / ('recorded-' + name))
+    binary = Path(q['cells']['lsan']['artifacts']['binary']['path'])
+    obj = Path(q['cells']['lsan']['artifacts']['object']['path'])
+    artifacts = {name: {'path': str(path), 'sha256': sha(path), 'bytes': path.stat().st_size}
+                 for name, path in (('binary', binary), ('object', obj))}
+    assert all(artifacts[name]['sha256'] == q['cells']['lsan']['artifacts'][name]['sha256'] for name in artifacts)
+    pids = sorted({execution['pid'], *(row['pid'] for row in q['commands'])})
+    ps = subprocess.run(['/bin/ps', '-p', ','.join(map(str, pids)), '-o', 'pid='], capture_output=True, text=True)
+    assert ps.returncode == 1 and not ps.stdout
+    lock = Path.home() / '.local/state/dotfiles/heavy-gate.lock'
+    before = lock.read_bytes()
+    with lock.open('a+b') as descriptor:
+        fcntl.flock(descriptor.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fcntl.flock(descriptor.fileno(), fcntl.LOCK_UN)
+    assert lock.read_bytes() == before
+    protected()
+    runtime = contract['lsan_runtime']
+    assert identity(Path(runtime['path'])) == {key: runtime[key] for key in ('sha256', 'bytes', 'mode')}
+    source = contract['source_provenance']
+    git = ['/usr/bin/git', '-c', 'core.fsmonitor=false', '-C', source['path']]
+    head = subprocess.run(git + ['rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
+    tree = subprocess.run(git + ['rev-parse', 'HEAD^{tree}'], capture_output=True, text=True, check=True).stdout.strip()
+    diff = subprocess.run(git + ['diff', '--no-ext-diff', '--binary'], capture_output=True, check=True).stdout
+    status = subprocess.run(git + ['status', '--porcelain', '--untracked-files=all'], capture_output=True, check=True).stdout
+    assert head == source['head'] and tree == source['tree']
+    assert hashlib.sha256(diff).hexdigest() == source['diff_sha256']
+    assert status == (ROOT / source['status']).read_bytes()
+    report = {'state': 'CLOSED BLOCKED: standalone LSan clean exit timed out', 'native_returncode': 1,
+              'completed_commands': 17, 'timed_out_command': 'lsan-clean', 'timed_out_after_seconds': 20,
+              'protected_state_unchanged': True, 'lease_free': True, 'owned_pids_absent': pids,
+              'source_state_unchanged': True, 'installed_lsan': runtime, 'artifacts': artifacts,
+              'files': files}
+    (DESTINATION / 'closure.json').write_text(json.dumps(report, indent=2) + '\n')
+    print(json.dumps({'state': report['state'], 'closure_sha256': sha(DESTINATION / 'closure.json'),
+                      'text_files': len(files), 'owned_pids_absent': len(pids)}))
+
+
+if __name__ == '__main__':
+    main()

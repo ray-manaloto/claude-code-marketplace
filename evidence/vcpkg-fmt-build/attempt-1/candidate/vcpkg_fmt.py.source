@@ -1,0 +1,271 @@
+"""Build the four qualified fmt triplets in private, offline macOS roots."""
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import time
+
+from gcc_install import ROOT, census, digest, read
+from mise_runtime import function, load
+from mise_renovate import protected
+from p2996_configure import LOCK_MODULE, LOCK_SHA
+from p2996_install import prefix_inventory
+from vcpkg_private import prepare, private_environment, vcpkg_arguments
+
+EVIDENCE = ROOT / "evidence/vcpkg-fmt-build"
+CONTRACT_SHA = "3dc53024966ce96e09f3d17252ee978ed7c0254fc784ba9f32cd62acca0905a8"
+
+
+def build_environment(directory, contract, lane):
+    assert lane in ("p2996", "gcc16")
+    paths = [str(Path(contract["managed_tools"][name]["path"]).parent) for name in ("cmake", "ninja")]
+    paths += ["/opt/homebrew/Cellar/pkgconf/3.0.8/bin", "/usr/bin", "/bin", "/usr/sbin", "/sbin"]
+    return private_environment(directory) | {
+        "HOME": str(Path.home()), "USER": Path.home().name, "LANG": "en_US.UTF-8",
+        "PATH": os.pathsep.join(paths), "PKG_CONFIG": "/opt/homebrew/bin/pkg-config",
+        "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_CONFIG_SYSTEM": "/dev/null",
+        "GIT_TERMINAL_PROMPT": "0", "GIT_OPTIONAL_LOCKS": "0",
+        "VCPKG_MAX_CONCURRENCY": "1", "CMAKE_BUILD_PARALLEL_LEVEL": "1", "MAKEFLAGS": "-j1",
+        "MARKETPLACE_CPP_LANE": lane, "MARKETPLACE_" + lane.upper() + "_PREFIX": contract["prefixes"][lane]}
+
+
+def install_arguments(directory, cell, triplet):
+    replaced = ("--feature-flags=", "--x-install-root=", "--x-buildtrees-root=", "--x-packages-root=")
+    return [arg for arg in vcpkg_arguments(directory) if not arg.startswith(replaced)] + [
+        "install", "--triplet=" + triplet, "--host-triplet=arm64-osx",
+        "--overlay-triplets=" + str(ROOT / "triplets"), "--no-downloads", "--x-wait-for-lock",
+        "--feature-flags=-binarycaching,compilertracking", "--debug",
+        "--x-registries-cache=" + str(directory / "registries"),
+        "--x-install-root=" + str(cell / "installed"), "--x-buildtrees-root=" + str(cell / "buildtrees"),
+        "--x-packages-root=" + str(cell / "packages")]
+
+
+def inspect_cell(cell, triplet, contract, env):
+    lane = triplet.split("-")[2]
+    result = {"detectors": {}, "configurations": {}, "libraries": [], "installed": prefix_inventory(cell / "installed")}
+    for selected, identity in [("arm64-osx", contract["host_compiler"]), (triplet, contract["compilers"][lane])]:
+        log = cell / "buildtrees/detect_compiler" / ("stdout-" + selected + ".log")
+        pairs = re.findall(r"^#COMPILER_([A-Z_]+)#([^\r\n]+)$", log.read_text(), re.MULTILINE)
+        markers = dict(pairs)
+        assert len(pairs) == len(markers) == 9
+        for language in ("C", "CXX"):
+            assert markers[language + "_PATH"] == identity[language]
+            assert markers[language + "_ID"] == identity["id"]
+            assert markers[language + "_HASH"] == hashlib.sha1(Path(identity[language]).read_bytes()).hexdigest()
+            if "version" in identity:
+                assert markers[language + "_VERSION"] == identity["version"]
+        assert markers["HASH"] == hashlib.sha1((markers["C_HASH"] + markers["CXX_HASH"]).encode()).hexdigest()
+        result["detectors"][selected] = {"markers": markers, "log_sha256": digest(log)}
+    for short, configuration in [("dbg", "Debug"), ("rel", "Release")]:
+        build = cell / "buildtrees/fmt" / (triplet + "-" + short)
+        cache = dict(re.findall(r"^([^#/:][^:=]*):[^=]+=(.*)$", (build / "CMakeCache.txt").read_text(), re.MULTILINE))
+        assert cache["CMAKE_BUILD_TYPE"] == configuration and cache["FMT_MODULE"] == "OFF"
+        compiler_file = build / "CMakeFiles/4.4.4/CMakeCXXCompiler.cmake"
+        compiler = dict(re.findall(r'^set\((CMAKE_CXX_COMPILER(?:_ID|_VERSION)?) "([^"\n]*)"\)$', compiler_file.read_text(), re.MULTILINE))
+        assert compiler == {"CMAKE_CXX_COMPILER": contract["compilers"][lane]["CXX"],
+                            "CMAKE_CXX_COMPILER_ID": contract["compilers"][lane]["id"],
+                            "CMAKE_CXX_COMPILER_VERSION": contract["compilers"][lane]["version"]}
+        assert cache["BUILD_SHARED_LIBS"] == ("ON" if triplet.endswith("dynamic") else "OFF")
+        assert cache["CMAKE_MAKE_PROGRAM"] == contract["managed_tools"]["ninja"]["path"]
+        result["configurations"][configuration] = {"cache": cache, "cache_sha256": digest(build / "CMakeCache.txt"),
+                                                  "compiler": compiler, "compiler_sha256": digest(compiler_file)}
+        library = cell / "installed" / triplet / ("debug/lib" if short == "dbg" else "lib")
+        library /= ("libfmtd" if short == "dbg" else "libfmt") + (".12.2.0.dylib" if triplet.endswith("dynamic") else ".a")
+        assert library.is_file() and library.stat().st_size > 0 and not library.is_symlink()
+        result["libraries"].append({"configuration": configuration, "path": str(library), "sha256": digest(library)})
+    abi_path = cell / "buildtrees/fmt" / (triplet + ".vcpkg_abi_info.txt")
+    abi = dict(line.split(" ", 1) for line in abi_path.read_text().splitlines())
+    expected_files = contract["abi_inputs"][triplet]
+    assert {k: v for k, v in abi.items() if k.startswith("additional_file_")} == {
+        "additional_file_" + str(i): row["sha256"] for i, row in enumerate(expected_files)}
+    for name in ["MARKETPLACE_CPP_LANE", "MARKETPLACE_" + lane.upper() + "_PREFIX", "PKG_CONFIG"]:
+        assert abi["ENV:" + name] == hashlib.sha256(env[name].encode()).hexdigest()
+    assert abi["triplet_abi"] == "-".join([digest(ROOT / "triplets" / (triplet + ".cmake")),
+        digest(ROOT / "cmake/toolchains/vcpkg-macos-arm64.cmake"), result["detectors"][triplet]["markers"]["HASH"]])
+    result["abi"] = {"entries": abi, "sha256": digest(abi_path)}
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    parser.add_argument("--build", action="store_true", required=True)
+    directory = parser.parse_args().run_dir
+    foundation = Path.home() / ".local/state/marketplace-tool-foundation"
+    if not directory.is_absolute() or directory != directory.resolve() or directory.parent != foundation:
+        parser.error("use a new normalized directory directly under the private foundation root")
+    os.umask(0o077)
+    directory.mkdir(exist_ok=False)
+    report = {"state": "running", "helper_sha256": digest(Path(__file__)), "commands": [], "cells": {}}
+    normal_argv = read("install-preimages.json")["normal_environment"]["argv"]
+    base_env = load(Path(normal_argv[-1]).parent / "context.json")["environment"] | {
+        "MISE_OFFLINE": "1", "MISE_AUTO_INSTALL": "0", "MISE_EXEC_AUTO_INSTALL": "0",
+        "MISE_TASK_RUN_AUTO_INSTALL": "0"}
+    env = dict(base_env)
+
+    def save():
+        temporary = directory / "qualification.json.tmp"
+        temporary.write_text(json.dumps(report, indent=2) + "\n")
+        temporary.replace(directory / "qualification.json")
+
+    def guard():
+        assert digest(EVIDENCE / "contract.json") == CONTRACT_SHA
+        data = load(EVIDENCE / "contract.json")
+        assert all(digest(ROOT / p) == sha for p, sha in data["inputs"].items())
+        assert all(digest(Path(p)) == sha for p, sha in data["tools"].items())
+        assert all(digest(Path(p)) == sha for p, sha in data["source_inputs"].items())
+        assert sys.executable in data["tools"] and digest(LOCK_MODULE) == LOCK_SHA
+        assert digest(Path(__file__)) == report["helper_sha256"]
+        assert Path("/opt/homebrew/bin/pkg-config").resolve() == Path(data["pkgconf_binary"])
+        assert all(digest(Path(row["path"])) == row["sha256"] for rows in data["abi_inputs"].values() for row in rows)
+        return data, protected()
+
+    scope = globals() | {"directory": directory, "report": report, "env": env, "save": save}
+    native = function(ROOT / "evidence/p2996-math-resume/operation/p2996_build.py.source", "run", scope)
+
+    def run(label, argv, expected=0, timeout=60, descriptor=None, monitor=False):
+        assert label not in [row["case"] for row in report["commands"]]
+        scope["env"] = env
+        count = len(report["commands"])
+        try:
+            result = native(label, argv, timeout=timeout, descriptor=descriptor, monitor=monitor)
+        except AssertionError:
+            assert expected != 0 and len(report["commands"]) == count + 1
+            assert report["commands"][-1]["returncode"] == expected
+            result = (directory / (label + ".stdout")).read_text()
+        else:
+            assert expected == 0, "an expected rejection passed"
+        report["commands"][-1].update(expected_returncode=expected, timeout_seconds=timeout)
+        save()
+        return result
+
+    def interrupted(signum, frame):
+        raise KeyboardInterrupt("received signal " + str(signum))
+
+    for signum in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(signum, interrupted)
+    try:
+        contract, current = guard()
+        admission, review = [load(EVIDENCE / name) for name in ("admission.json", "pre-run-review.json")]
+        assert admission["helper_sha256"] == review["helper_sha256"] == report["helper_sha256"]
+        assert admission["contract_sha256"] == review["contract_sha256"] == CONTRACT_SHA
+        assert admission["review_sha256"] == digest(EVIDENCE / "pre-run-review.json")
+        assert review["result"].startswith("PASS") and not review["findings"]
+        assert admission["run_directory"] == str(directory)
+        report["admission_sha256"] = digest(EVIDENCE / "admission.json")
+        report["writer_census_before"] = census()
+        assert run("project-head", ["/usr/bin/git", "-C", ROOT, "rev-parse", "HEAD"]).strip() == contract["base_head"]
+        normal = run("default-before", normal_argv)
+        assert normal == (ROOT / contract["default_profile"]).read_text()
+        spec = importlib.util.spec_from_file_location("marketplace_host_lock", LOCK_MODULE)
+        lease = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(lease)
+        assert lease.lock_path(lease.HEAVY_GATE) == Path.home() / ".local/state/dotfiles/heavy-gate.lock"
+        assert not os.environ.get(lease.holder_env_name(lease.HEAVY_GATE)) and not os.environ.get(lease.LOCK_FD_ENV)
+        with lease.held(lease.HEAVY_GATE, "marketplace-vcpkg-fmt", wait_s=0, out=io.StringIO()) as fd:
+            assert fd is not None
+            processes = run("capacity-processes", ["/bin/ps", "-axo", "pid=,pcpu=,comm="])
+            active = [line for line in processes.splitlines() if re.fullmatch(
+                r"(?:clang(?:\+\+)?|gcc|g\+\+)(?:-[0-9]+)?|cc1(?:plus)?|ninja|make|cmake|ld|clangd|clang-tidy|include-what-you-use|vcpkg",
+                Path(line.split(maxsplit=2)[-1]).name)]
+            report["capacity"] = {"active": active, "load": os.getloadavg(), "cpus": os.cpu_count(),
+                                  "free_bytes": shutil.disk_usage(directory).free,
+                                  "total_cpu_percent": sum(float(line.split()[1]) for line in processes.splitlines())}
+            assert not active and report["capacity"]["free_bytes"] >= contract["disk_reserve_bytes"]
+            assert os.getloadavg()[0] <= 2 * os.cpu_count() and report["capacity"]["total_cpu_percent"] <= 75 * os.cpu_count()
+            docker = "/Applications/Docker.app/Contents/Resources/bin/docker"
+            assert run("docker-context", [docker, "context", "show"], timeout=15).strip() == admission["docker_context"]
+            assert run("docker-census", [docker, "ps", "--format", "{{.ID}}\t{{.Image}}"], timeout=15).splitlines() == admission["containers"]
+            stats = run("docker-stats", [docker, "stats", "--no-stream", "--format", "{{json .}}"], timeout=20)
+            report["capacity"]["container_cpu_percent"] = sum(float(json.loads(line)["CPUPerc"].rstrip("%")) for line in stats.splitlines())
+            assert report["capacity"]["container_cpu_percent"] <= 50 * os.cpu_count()
+            guard()
+            source_before = prepare(directory, contract)
+            report["source_entries"] = len(source_before)
+            outside = directory.parent / (directory.name + "-outside-control")
+            outside.mkdir(exist_ok=False)
+            (outside / "sentinel").write_text("preserve\n")
+            (directory / "escape").symlink_to(outside, target_is_directory=True)
+            profile = directory / "private.sb"
+            profile.write_text('(version 1)\n(allow default)\n(deny file-write*)\n'
+                               '(allow file-write* (subpath ' + json.dumps(str(directory)) + ') (literal "/dev/null"))\n'
+                               '(deny network*)\n')
+            sandbox = ["/usr/bin/sandbox-exec", "-f", profile]
+            negative = """import errno,socket,sys
+from pathlib import Path
+try:
+ if sys.argv[1] == 'network':
+  s=socket.socket();s.settimeout(2);s.connect(('127.0.0.1',9))
+ else: Path(sys.argv[2]).write_text('forbidden')
+except OSError as e:
+ if e.errno not in (errno.EPERM,errno.EACCES): raise
+ print('DENIED:'+str(e.errno));sys.exit(73)
+sys.exit(74)
+"""
+            run("private-write", sandbox + [sys.executable, "-B", "-c",
+                "from pathlib import Path;import sys;Path(sys.argv[1]).write_text('private\\n')", directory / "allowed"], descriptor=fd)
+            for name, target in [("outside-write", outside / "sentinel"), ("symlink-write", directory / "escape/new"), ("network-denied", None)]:
+                assert run(name, sandbox + [sys.executable, "-B", "-c", negative,
+                           "network" if target is None else "write", str(target)], expected=73, descriptor=fd).startswith("DENIED:")
+            assert (directory / "allowed").read_text() == "private\n" and (outside / "sentinel").read_text() == "preserve\n"
+            assert not (outside / "new").exists()
+            report["confinement"] = {"profile_sha256": digest(profile), "allowed_inherited_fds": [0, 1, 2, fd]}
+            for lane in contract["prefixes"]:
+                env.clear()
+                env.update(base_env | {"MARKETPLACE_" + lane.upper() + "_PREFIX": contract["prefixes"][lane]})
+                base = [current["path"], "--no-hooks", "-C", directory / "cwd", "-E", lane, "exec", "--fresh-env", "--no-deps", "--"]
+                assert run(lane + "-profile", base + normal_argv[-2:]) == (ROOT / contract["profiles"][lane]).read_text()
+                env.clear()
+                env.update(build_environment(directory, contract, lane))
+                report.setdefault("environments", {})[lane] = dict(env)
+                for linkage in ("static", "dynamic"):
+                    triplet = "arm64-osx-" + lane + "-" + linkage
+                    cell = directory / triplet
+                    cell.mkdir()
+                    for name in ("installed", "buildtrees", "packages"):
+                        (cell / name).mkdir()
+                    guard()
+                    run(triplet, sandbox + install_arguments(directory, cell, triplet),
+                        timeout=contract["install_timeout_seconds"], descriptor=fd, monitor=True)
+                    report["cells"][triplet] = inspect_cell(cell, triplet, contract, env)
+                    for row in report["cells"][triplet]["libraries"]:
+                        label = triplet + "-" + row["configuration"]
+                        assert run(label + "-arch", sandbox + ["/usr/bin/lipo", "-archs", row["path"]], descriptor=fd).strip() == "arm64"
+                        if triplet.endswith("dynamic"):
+                            run(label + "-libraries", sandbox + ["/usr/bin/otool", "-L", row["path"]], descriptor=fd)
+                    save()
+        report["lease_released"] = True
+        env.clear()
+        env.update(base_env)
+        assert run("default-after", normal_argv) == normal
+        report["writer_census_after"] = census()
+        report["state"] = "PASS: four private fmt installs and detector/ABI checks; consumers pending"
+    except BaseException as error:
+        report.update(state="FAIL", error=repr(error))
+        raise
+    finally:
+        try:
+            guard()
+            if "source_before" in locals():
+                assert prefix_inventory(Path(contract["vcpkg_source"])) == source_before
+            report["protected_state_unchanged"] = True
+        except BaseException as error:
+            report.update(state="FAIL", preservation_error=repr(error))
+            raise
+        finally:
+            save()
+            print(json.dumps({"state": report["state"], "receipt": str(directory / "qualification.json")}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

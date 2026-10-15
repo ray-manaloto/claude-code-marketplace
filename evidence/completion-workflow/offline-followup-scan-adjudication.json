@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "adjudication_status": "independently_reviewed_pending_publish_gate",
+  "scanned_head": "418368154022fba96093cd79bceaca930418ae3c",
+  "scanned_remote_head": "a071340888192575993be9f8a877ce075c7d15d5",
+  "pre_baseline_exit_code": 1,
+  "pre_baseline_finding_count": 1,
+  "independent_read_only_triage": {
+    "verdict": "PASS",
+    "actionable_findings": [],
+    "reviewer": "/root/followup_closure_review",
+    "finding_count": 1,
+    "finding_fingerprint": "66905b42615cd191906e65cb77fb2ac2d22761b2:evidence/issue-29-context7/measurement.json:generic-api-key:3",
+    "scanned_head": "418368154022fba96093cd79bceaca930418ae3c",
+    "report_sha256": "0b9ea531b3dcf02bbffd4a377798c7c77c64b1d70796fe9f3872e4a4b565272f",
+    "evidence_class": "Independent read-only source and cached-file hashing; no scanner, gate or network rerun",
+    "conclusion": "candidate.api_sha256 is a nonsecret checksum of the cached SDK file dist/lib/api.js",
+    "evidence": [
+      "dev/context7_bridge_probe.py:113 hashes raw file bytes",
+      "dev/context7_bridge_probe.py:144 selects dist/lib/api.js",
+      "dev/context7_bridge_probe.py:195-197 stores the digest",
+      "Independent cached @upstash/context7-mcp 4.3.0 API module hash equals the recorded field",
+      "Measurement bytes match commits 4802b027, 66905b42 and 41836815; producer bytes match 66905b42"
+    ],
+    "required_recovery": "Existing exact-fingerprint reviewed baseline; retain history_scan_rc=1 and require baseline_residual_rc=0; preserve attempt 1 and all publication gates",
+    "limits": "Exact one-finding adjudication only; fresh publication and remote verification pending"
+  },
+  "decision": "Treat these exact nonsecret SDK checksum findings as false positives, subject to fresh exact fingerprint equality and residual scan exit zero.",
+  "baseline_report": {
+    "path": "evidence/completion-workflow/offline-followup-scan-baseline.json",
+    "sha256": "0b9ea531b3dcf02bbffd4a377798c7c77c64b1d70796fe9f3872e4a4b565272f"
+  },
+  "failed_publication": {
+    "actual_exit_code": 2,
+    "local_commit": "418368154022fba96093cd79bceaca930418ae3c",
+    "terminal_sha256": "b80022e1b7fc6dc09458c234fc502074df9d2e70eb3638e80d351a3f39baf173",
+    "remote_unchanged_at_diagnostic": true
+  },
+  "limits": "Pending named publication gate. No scanner rule or global configuration is changed."
+}

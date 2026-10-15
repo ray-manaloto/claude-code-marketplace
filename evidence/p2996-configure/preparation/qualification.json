@@ -1,0 +1,435 @@
+{
+  "state": "PASS: preparation only",
+  "configure_requested": false,
+  "helper_sha256": "cda335c608f3c0b69e2d7d979a8a3bba8e499d2df604ad752b226a788adb7ad2",
+  "commands": [
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T04:57:12.314407+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T04:57:12.328103+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T04:57:12.340292+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-clean.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/source-clean.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T04:57:13.946201+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "apple-compiler-version",
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "--version"
+      ],
+      "started_at": "2026-10-11T04:57:14.091676+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/apple-compiler-version.stdout",
+          "sha256": "a856ec74c559401131ad608625ef252fb2db6c78bc0c480c1c4c782ee4896db1"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/apple-compiler-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "cmake-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--version"
+      ],
+      "started_at": "2026-10-11T04:57:14.143733+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/cmake-version.stdout",
+          "sha256": "4d92ce18ddf9889d463ac875608423312823ad89e7fd5178b02a21ea26a2bd3d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/cmake-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "ninja-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "--version"
+      ],
+      "started_at": "2026-10-11T04:57:14.466256+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/ninja-version.stdout",
+          "sha256": "810ab97f4b3fccb9adf1db7959945b479635931ccc4a0243c34a41b739eae25a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/ninja-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T04:57:14.628892+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/default-after.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "protected_before": {
+    "global_files": {
+      "config.toml": {
+        "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+        "mode": "0o600"
+      },
+      "mise.lock": {
+        "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+        "mode": "0o600"
+      },
+      "config.cpp-build.toml": {
+        "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+        "mode": "0o600"
+      },
+      "config.gcc16.toml": {
+        "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+        "mode": "0o600"
+      },
+      "config.p2996.toml": {
+        "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+        "mode": "0o600"
+      },
+      "cpp-foundation/common.toml": {
+        "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+        "mode": "0o600"
+      },
+      "mise.cpp-build.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.gcc16.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.p2996.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      }
+    },
+    "packages": {
+      "gcc": {
+        "versions": {
+          "16.2.0": {
+            "receipt_sha256": "445014e08840d7b2118a968bbc02e0c734a58b2922f7ada3c17c1e0ee0e7a1dd"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gcc/16.2.0",
+          "var/homebrew/linked": "../../../Cellar/gcc/16.2.0"
+        }
+      },
+      "gmp": {
+        "versions": {
+          "6.3.0": {
+            "receipt_sha256": "9323e66afe78de3f614fba72f558f007a3410d12d750fbff575f6f9e8862763a"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gmp/6.3.0",
+          "var/homebrew/linked": "../../../Cellar/gmp/6.3.0"
+        }
+      },
+      "isl": {
+        "versions": {
+          "0.28": {
+            "receipt_sha256": "7bde5fb5cb7064cbbbdd5ff27f1380195c4c89ad20f90bd99418b79d383fce83"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/isl/0.28",
+          "var/homebrew/linked": "../../../Cellar/isl/0.28"
+        }
+      },
+      "libmpc": {
+        "versions": {
+          "1.4.1": {
+            "receipt_sha256": "dd49c998dc132e80b4cb8cb8bb0ed2429ed5b4261fcce6fedd83e9e07650b887"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/libmpc/1.4.1",
+          "var/homebrew/linked": "../../../Cellar/libmpc/1.4.1"
+        }
+      },
+      "lz4": {
+        "versions": {
+          "1.10.0": {
+            "receipt_sha256": "8ef853e5d90ff209d25aa3aa84a03c67e34ddda896c17f98821e862aa858b89d"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/lz4/1.10.0",
+          "var/homebrew/linked": "../../../Cellar/lz4/1.10.0"
+        }
+      },
+      "mpfr": {
+        "versions": {
+          "4.2.2": {
+            "receipt_sha256": "b105aae9c1710075ebb4f016f39f5eeea9e8c0800d56bee2e95b99710c11e5f1"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/mpfr/4.2.2",
+          "var/homebrew/linked": "../../../Cellar/mpfr/4.2.2"
+        }
+      },
+      "xz": {
+        "versions": {
+          "5.8.4": {
+            "receipt_sha256": "6195f4fa74fceda4934e0a37157f9d9892608eab9c6770c5695b236db00b6d48"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/xz/5.8.4",
+          "var/homebrew/linked": "../../../Cellar/xz/5.8.4"
+        }
+      },
+      "zstd": {
+        "versions": {
+          "1.5.7_1": {
+            "receipt_sha256": "debb6c1bfec9cc2b3ad78263d2b7fe40abf1a5f193d28e27790e4dacbd5e7e3c"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/zstd/1.5.7_1",
+          "var/homebrew/linked": "../../../Cellar/zstd/1.5.7_1"
+        }
+      }
+    },
+    "glib_files": {
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libglib-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "5a126ac1761f171f39275f60e67083cec57835006b350cfa181c3c792158c0ab"
+      },
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libgobject-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "e1b809dc89c6835f2c231888f8147b6b4487b10c992c2e4e7b40d2488ac385cc"
+      }
+    }
+  },
+  "proposal": {
+    "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+    "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+    "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+    "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      }
+    },
+    "sdk": {
+      "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+      "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+    },
+    "mise": {
+      "path": "/Users/rmanaloto/.local/bin/mise",
+      "version": "2026.10.7",
+      "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+    },
+    "cmake": {
+      "version": "4.4.4",
+      "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+      "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+      "file_returncode": 0
+    },
+    "layout": [
+      "build",
+      "prefix"
+    ],
+    "timeout_seconds": 600,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+    }
+  },
+  "configure_argv": [
+    "/Users/rmanaloto/.local/bin/mise",
+    "--no-hooks",
+    "-C",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/cwd",
+    "-E",
+    "cpp-build",
+    "exec",
+    "--fresh-env",
+    "--no-deps",
+    "--",
+    "/usr/bin/env",
+    "MAKEFLAGS=-j1",
+    "CMAKE_BUILD_PARALLEL_LEVEL=1",
+    "MARKETPLACE_BOOTSTRAP_CC=/Library/Developer/CommandLineTools/usr/bin/clang",
+    "MARKETPLACE_BOOTSTRAP_CXX=/Library/Developer/CommandLineTools/usr/bin/clang++",
+    "MARKETPLACE_BOOTSTRAP_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "MARKETPLACE_BOOTSTRAP_NINJA=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+    "MARKETPLACE_BOOTSTRAP_PYTHON=/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+    "MARKETPLACE_BOOTSTRAP_PREFIX=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/prefix",
+    "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+    "-S",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source/llvm",
+    "-B",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-preparation-20261011T0502/build",
+    "-G",
+    "Ninja",
+    "-C",
+    "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/dev/toolchains/p2996-bootstrap.cmake",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+  ],
+  "strict_probe_jobs": "UNVERIFIED: CMake probe commands omit an explicit Ninja -j limit",
+  "protected_state_unchanged": true
+}

@@ -1,0 +1,86 @@
+{
+  "result": "PASS",
+  "findings": [],
+  "unit": "12c1 failure closure only",
+  "created_at": "2026-10-11T18:09:25.360848+00:00",
+  "scope": "Accept the documented preparation and fail-closed native attempt. This is not native qualification or shared-state reattestation.",
+  "reviewer": "independent cold reviewer /root/cold_bottle_review",
+  "parent_return_channel": "native collaboration /root",
+  "checkout": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+  "git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git/worktrees/claude-code-marketplace",
+  "common_git_dir": "/Users/rmanaloto/dev/github/ray-manaloto/claude-code-marketplace/.git",
+  "branch": "codex/marketplace-native-onboarding",
+  "head": "e525b7abe6d792580b1b7d6808d9bb9e8100cddf",
+  "method": "Read Git pointer/ref files; no Git subprocess",
+  "helper_sha256": "8ec73ed6abb2d5956def44b2166d920738091b88555d8fd8f00a73ae898b3f9d",
+  "contract_sha256": "bf4d17adf0423a18c6d0880f84fe3bdaf5e6412a89d845206951d848e41f3969",
+  "candidate_sha256": "2ba28ee5754502567bf0397d85f48019fd238fa6cf32ffa115b7cc82c3b77cb4",
+  "closure_candidate_sha256": "2ba28ee5754502567bf0397d85f48019fd238fa6cf32ffa115b7cc82c3b77cb4",
+  "pre_run_review_sha256": "7351a01f9ad818a480beb21843669a84158810a5aacd8c6266cb44e923f32f36",
+  "pre_run_candidate_sha256": "15c9d3e045a0826decacdabcbff9c2c170dfa655f7e7613960641587706b189b",
+  "native_execution_sha256": "c642292a8d604cc819bba02806f3dc538175085cdf9e694c5b886648898cd69c",
+  "native_qualification_sha256": "f11776b522898132a00ba0e8688fa0561c8082db617c6049ab123936413e6002",
+  "retained_native_result": {
+    "runner_invocations": 1,
+    "returncode": 1,
+    "runtime_seconds": 0.068148083,
+    "state": "FAIL",
+    "failure_path": "/Users/rmanaloto/.config/mise/config.toml",
+    "logged_commands": 0,
+    "copies_started": false,
+    "lease_stage_reached": false,
+    "native_confinement": "UNVERIFIED",
+    "native_host_tool_selection": "UNVERIFIED",
+    "dependency_builds": "UNVERIFIED"
+  },
+  "static_failure_propagation_review": [
+    "The helper and contract remain byte-for-byte equal to the independently approved repair. No guard was weakened or baseline rebound.",
+    "The initial guard at vcpkg_private.py:120 precedes admission reading, census, command execution, lease acquisition and copy preparation. Its protected() chain first invokes gcc_install.preserved(), which asserts the global config hash at gcc_install.py:35.",
+    "The recorded AssertionError path matches that early protected-state failure. The outer exception path retains FAIL; the finally guard fails again and records preservation_error, with save() still executing at lines 225-227.",
+    "The actual operation directory has only qualification.json and the later read-only drift inventory. There are no private source roots, command stdout/stderr logs or outside-control directory. These artifacts and the unchanged source ordering support the reported early stop.",
+    "The retained drift inventory matches the nine historical expected config/profile hashes and records only config.toml and mise.lock changes. It reports npm:renovate 44.149.3 to 44.150.1, unchanged 0600 modes and seven unchanged profile files. Current global files were deliberately not reattested.",
+    "Both external updater source receipts were read and hash-verified. The overall update-all receipt is rc2/INCOMPLETE; its mise phase is rc0/SUCCEEDED. Neither result is promoted to full update success.",
+    "docs/vcpkg-toolchains.md:73-77, task_plan.md:77 and progress.md:1102-1109 accurately distinguish reviewed preparation, the environmental guard stop, and pending separate shared-state reattestation/native qualification."
+  ],
+  "executed_read_only_checks": {
+    "receipt": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-failure-closure-w4xra5ru/receipt-audit.json",
+    "returncode": 0,
+    "copy_pairs": {
+      "native-hold-copy-manifest.json": 3,
+      "admission-copy-manifest.json": 21,
+      "initial-review-copy-manifest.json": 12,
+      "initial-candidate-copy-manifest.json": 3
+    },
+    "total_copy_pairs": 39,
+    "maintained_files_bound": 4,
+    "original_Claude_files": 19,
+    "frozen_inputs_unchanged": 17,
+    "external_updater_receipts_verified": 2,
+    "historical_initial_candidate_handling": "Compared the three retained hashes/bytes with the reviewer initial-review frozen copies, not current worktree paths."
+  },
+  "retained_parent_checks": {
+    "closure_static_exitcodes": [
+      0,
+      0
+    ],
+    "baseline_files": 19,
+    "independently_rerun": false
+  },
+  "not_run": [
+    "tests or prior synthetic/wrapper/triplet batteries",
+    "native sandbox/vcpkg/compiler/profile tools",
+    "full protected()",
+    "source inventory revalidation",
+    "shared-state reattestation",
+    "current config/profile hash probes",
+    "capacity/census/lease operations",
+    "network or source acquisition",
+    "fresh Claude/model session or full OCI acceptance"
+  ],
+  "limitations": [
+    "The native exit and elapsed time are read from retained execution evidence; the attempt was not replayed.",
+    "This closure approves the truthful held status only. It grants no authority to rebind or modify global state or resume native qualification."
+  ],
+  "ownership": "No maintained, global or source files changed. Reviewer files are confined to the new private review directory.",
+  "supporting_manifest": "/private/var/folders/z4/0p475gq56vvczc3y4qlt60f80000gn/T/marketplace-vcpkg-failure-closure-w4xra5ru/supporting-manifest.json"
+}

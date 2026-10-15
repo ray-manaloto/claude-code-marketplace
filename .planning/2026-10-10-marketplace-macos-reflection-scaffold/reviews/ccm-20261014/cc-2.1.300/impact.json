@@ -1,0 +1,1890 @@
+{
+ "schema": "cc-impact/v1",
+ "generated_at": "2026-10-14T23:52:30Z",
+ "range": {
+  "from_exclusive": "2.1.251",
+  "to_inclusive": "2.1.300"
+ },
+ "project": "ray-manaloto/claude-code-marketplace (MP), branch codex/marketplace-native-onboarding",
+ "rows": [
+  {
+   "ids": [
+    "2.1.295#1"
+   ],
+   "area": "hooks",
+   "effect": "unblocks",
+   "prio": 1,
+   "change": "`onFailure: \"block\"` added for command and HTTP hooks (docs: requires 2.1.295)",
+   "affected": [
+    ".claude/settings.json (PreToolUse, Stop, SubagentStop entries)",
+    "dev/test_hooks.py:367",
+    "docs/agents/claude-team.md:102-104",
+    "mise.toml:10 (OCI pin 2.1.251)"
+   ],
+   "tickets": [
+    "CT-02b",
+    "#61"
+   ],
+   "requests": [
+    "R-158"
+   ],
+   "action": "The image's CLI (2.1.251) predates the key, so the gates are fail-open there; bump the OCI pin to >= 2.1.295 (2.1.300, not npm `stable` 2.1.292) and record the minimum CLI version beside the gate rule.",
+   "version": "2.1.295",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295"
+   ],
+   "changelog_text": {
+    "2.1.295#1": "Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through"
+   }
+  },
+  {
+   "ids": [
+    "2.1.300#65"
+   ],
+   "area": "hooks",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`updatedInput` from PreToolUse/PermissionRequest hooks is validated; unknown keys dropped, rejected input denies",
+   "affected": [
+    "dev/hooks/pretooluse_gate.py:184 (emits only permissionDecision deny)"
+   ],
+   "tickets": [
+    "CT-02b"
+   ],
+   "requests": [],
+   "action": "None today; a future rewriting gate (CT-02b.4 C++ port) must emit tool-valid input.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.300#65": "Changed hooks: `updatedInput` from PreToolUse and PermissionRequest hooks is now validated like Claude's own input: unknown keys are dropped, and input the tool rejects denies the call"
+   }
+  },
+  {
+   "ids": [
+    "2.1.288#57",
+    "2.1.290#116"
+   ],
+   "area": "hooks",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "PreToolUse/PermissionRequest hooks whose matching fails now block; permission rules re-applied after a hook rewrites input",
+   "affected": [
+    "dev/hooks/pretooluse_gate.py",
+    "docs/agents/hooks-and-mods.md (D102 rationale)"
+   ],
+   "tickets": [
+    "CT-80"
+   ],
+   "requests": [],
+   "action": "Cite as fail-closed improvement in the CT-80 report; no code change.",
+   "version": "2.1.290",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+   ],
+   "changelog_text": {
+    "2.1.288#57": "Fixed PreToolUse and PermissionRequest hooks being skipped when matching them failed or the tool's input could not be serialized to JSON; the call is now blocked",
+    "2.1.290#116": "Fixed some permission rules and safety checks not being applied to a tool call after a PreToolUse hook rewrote its input"
+   }
+  },
+  {
+   "ids": [
+    "2.1.299#167",
+    "2.1.299#168"
+   ],
+   "area": "hooks",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "UserPromptSubmit runs before a skill or slash command expands; a skill's own UserPromptSubmit first runs on the next prompt",
+   "affected": [
+    ".claude/settings.json UserPromptSubmit capture",
+    "requests:tail",
+    "dev/handoff.py (p:<id8> keys)"
+   ],
+   "tickets": [
+    "CT-88",
+    "CT-87"
+   ],
+   "requests": [
+    "R-056",
+    "R-170"
+   ],
+   "action": "Ledger rows now hold the literal typed `/command args`, which is evidence for user-typed stages (D90); add a CT-87 probe case.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.299#167": "Changed `UserPromptSubmit` hooks to run before a skill or custom slash command expands, so a hook that blocks the prompt now also stops its embedded shell commands",
+    "2.1.299#168": "Changed a skill's own front-matter `UserPromptSubmit` hook to first run on the prompt after the one that invokes the skill"
+   }
+  },
+  {
+   "ids": [
+    "2.1.268#47",
+    "2.1.277#25",
+    "2.1.295#70",
+    "2.1.296#35"
+   ],
+   "area": "hooks",
+   "effect": "FYI",
+   "prio": 2,
+   "change": "Resume no longer waits for SessionStart hooks; SessionStart output and async context on resume/clear fixed",
+   "affected": [
+    ".claude/settings.json SessionStart (doctor + open-request carry)",
+    ".claude/skills/session-resume"
+   ],
+   "tickets": [
+    "CT-87",
+    "CT-89"
+   ],
+   "requests": [
+    "R-170"
+   ],
+   "action": "CT-87 confirms the `resume` and `clear` carry text reaches the model before the first reply.",
+   "version": "2.1.296",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.268",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.277",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+   ],
+   "changelog_text": {
+    "2.1.268#47": "Improved `--continue` / `--resume`: the conversation appears immediately instead of waiting for SessionStart hooks, and the first message no longer re-reads the whole transcript",
+    "2.1.277#25": "Fixed sessions continued after `/clear` (restart, `--continue`, `--resume`) missing part of their first message when a SessionStart hook printed output, causing a full prompt-cache miss",
+    "2.1.295#70": "Fixed an async SessionStart hook's unchanged context being added to the conversation again on every resume",
+    "2.1.296#35": "Fixed a late-loading plugin's SessionStart hook output reaching the new conversation after `/clear` in headless sessions"
+   }
+  },
+  {
+   "ids": [
+    "2.1.292#63",
+    "2.1.290#149"
+   ],
+   "area": "hooks",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`<system-reminder>` tags in hook output are escaped; plugin-hook long text is clipped and logged",
+   "affected": [
+    "PreCompact/SessionStart/SubagentStart carry hooks",
+    "task_plan `## Open requests` (5,114 chars, cap 10,000, #94358)"
+   ],
+   "tickets": [
+    "CT-89"
+   ],
+   "requests": [
+    "R-170"
+   ],
+   "action": "Keep the 10,000-character rule; #94358 is still open.",
+   "version": "2.1.292",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.292"
+   ],
+   "changelog_text": {
+    "2.1.292#63": "Improved hook output handling: `<system-reminder>` tags written in a hook's output are escaped before they reach Claude",
+    "2.1.290#149": "Changed plugin hooks so long text is clipped and logged instead of being refused or dropped silently"
+   }
+  },
+  {
+   "ids": [
+    "2.1.296#57",
+    "2.1.284#37"
+   ],
+   "area": "hooks",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "`--debug` logs each command hook's command, plugin, outcome and duration; failed hooks log status and stderr",
+   "affected": [
+    "CT-87 probe receipts",
+    "dev/test_hooks.py"
+   ],
+   "tickets": [
+    "CT-87",
+    "CT-02b"
+   ],
+   "requests": [],
+   "action": "Use the debug lines as the CT-87 live-probe receipt instead of log-only hook scripts where possible.",
+   "version": "2.1.296",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.284",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+   ],
+   "changelog_text": {
+    "2.1.296#57": "Improved `--debug` output for hooks: command hooks on tool calls, prompts, SessionStart and Stop now log their command, plugin, outcome and duration when they finish, so a slow hook is identifiable",
+    "2.1.284#37": "Fixed the debug log dropping a failed hook's stderr when the hook also wrote to stdout, and logging nothing for a failed hook with no output; failed hooks now also log their status code"
+   }
+  },
+  {
+   "ids": [
+    "2.1.299#122"
+   ],
+   "area": "permissions",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "Plan mode no longer runs a write that a PreToolUse hook or mod `tool.check` allowed",
+   "affected": [
+    ".claude/agents/reviewer.md, extractor.md, frontier-scheduler.md (permissionMode: plan)"
+   ],
+   "tickets": [
+    "CT-19"
+   ],
+   "requests": [],
+   "action": "None; confirms read-only roles stay read-only.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.299#122": "Fixed plan mode running a write (an MCP tool's, a file's, a shell command's) that a `PreToolUse` hook or a mod's `tool.check` hook allowed"
+   }
+  },
+  {
+   "ids": [
+    "2.1.299#2",
+    "2.1.299#3"
+   ],
+   "area": "compaction",
+   "effect": "needs-change",
+   "prio": 1,
+   "change": "Idle compaction (on by default): a 200K+ token conversation idle ~54 min is compacted; `idleCompaction: false` or `DISABLE_AUTO_COMPACT=1` turns it off; `CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS`",
+   "affected": [
+    ".claude/settings.json (autoCompactEnabled true, autoCompactWindow 700000, idleCompaction unset)",
+    "user settings (autoCompactEnabled true, idleCompaction unset)",
+    "docs/agents/claude-team.md:116-127 context budget (warn 400K .. hard 650K)",
+    "dev/doctor/settings.py:14 PROJECT_KEYS",
+    ".claude/AGENTS.md key list",
+    "dev/test_doctor.py:133"
+   ],
+   "tickets": [
+    "CT-89",
+    "CT-23",
+    "CT-29"
+   ],
+   "requests": [
+    "R-170"
+   ],
+   "action": "Decide: set `\"idleCompaction\": false` in project settings (and add the key to PROJECT_KEYS, .claude/AGENTS.md and the doctor test) or accept idle compaction and rely on the PreCompact carry; a parent waiting on lanes for an hour at 200K+ now compacts instead of reaching the /clear checkpoint.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.299#2": "Added idle compaction in the terminal: a 200K+ token conversation left idle for about 54 minutes is compacted before its one-hour prompt cache expires, so your next message doesn't reprocess it all",
+    "2.1.299#3": "Added `CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS` to change idle compaction's 200K-token minimum; `\"idleCompaction\": false` in settings.json turns it off. Both need v2.1.290 or later"
+   }
+  },
+  {
+   "ids": [
+    "2.1.288#79",
+    "2.1.300#10",
+    "2.1.285#87"
+   ],
+   "area": "compaction",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`/autocompact` saves a window per model; smaller-window warning fixed; custom base URL sessions use 1M",
+   "affected": [
+    ".claude/settings.json autoCompactWindow 700000",
+    "dev/doctor/budget.py"
+   ],
+   "tickets": [
+    "CT-87",
+    "CT-23"
+   ],
+   "requests": [],
+   "action": "CT-87 records the effective window (`/context`) so a per-model `/autocompact` value cannot silently override 700000.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.285",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.288#79": "Changed `/autocompact` to save the auto-compact window per model, so each model keeps its own setting when you switch",
+    "2.1.300#10": "Fixed `/autocompact` warning about high token usage when you choose a smaller auto-compact window",
+    "2.1.285#87": "Changed sessions behind a custom `ANTHROPIC_BASE_URL` to use the 1M context window of models that have one (Opus 4.7+, Sonnet 5+, Fable); run `/autocompact 200k` if your gateway stops at 200K"
+   }
+  },
+  {
+   "ids": [
+    "2.1.296#2"
+   ],
+   "area": "subagents",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "`autoCompactWindow` in subagent frontmatter and `--agents` (requires 2.1.296)",
+   "affected": [
+    ".claude/agents/*.md",
+    ".claude/skills/ticket-frontier/references/model-policy.md:47"
+   ],
+   "tickets": [
+    "CT-19",
+    "CT-25"
+   ],
+   "requests": [
+    "R-127"
+   ],
+   "action": "Set per-role windows in agent frontmatter so lane ceilings are enforced by the CLI, not by brief text.",
+   "version": "2.1.296",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+   ],
+   "changelog_text": {
+    "2.1.296#2": "Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window"
+   }
+  },
+  {
+   "ids": [
+    "2.1.280#40",
+    "2.1.299#124"
+   ],
+   "area": "subagents",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "A finished subagent's report survives compaction; SendMessage finds a subagent by name after resume",
+   "affected": [
+    "docs/agents/claude-team.md lane loop",
+    ".claude/skills/ticket-frontier"
+   ],
+   "tickets": [
+    "CT-25"
+   ],
+   "requests": [],
+   "action": "None.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.280",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.280#40": "Fixed a finished subagent's report being lost when the conversation that launched it was compacted before the report was read",
+    "2.1.299#124": "Fixed `SendMessage` not finding a subagent by name after the CLI restarted and resumed the session (names given before the last compaction still need the agent ID)"
+   }
+  },
+  {
+   "ids": [
+    "2.1.288#23"
+   ],
+   "area": "mods",
+   "effect": "unblocks",
+   "prio": 1,
+   "change": "Fixed a plugin `tool.call` hook breaking Bash in worktree-isolated subagents (#92533 still open); npm `stable` is now 2.1.292",
+   "affected": [
+    "docs/agents/hooks-and-mods.md:74-78",
+    ".claude/rules/hooks-and-mods.md:11 (no isolation: worktree)"
+   ],
+   "tickets": [
+    "CT-80",
+    "CT-25"
+   ],
+   "requests": [],
+   "action": "The doc's blocker (\"npm stable was 2.1.287\") no longer holds; run the one admitted host regression probe on 2.1.300 and, if green, lift the ban in both files.",
+   "version": "2.1.288",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288"
+   ],
+   "changelog_text": {
+    "2.1.288#23": "Fixed a plugin's `tool.call` hook making Bash fail and file searches read the wrong folder in subagents that run in a worktree"
+   }
+  },
+  {
+   "ids": [
+    "2.1.299#23",
+    "2.1.299#151",
+    "2.1.292#54",
+    "2.1.295#57"
+   ],
+   "area": "mods",
+   "effect": "FYI",
+   "prio": 2,
+   "change": "Remotely disabled mods now unload between turns; blockable actions fail closed when a mod hook cannot answer",
+   "affected": [
+    "docs/agents/hooks-and-mods.md (D102 rationale, #99130)"
+   ],
+   "tickets": [
+    "CT-80"
+   ],
+   "requests": [],
+   "action": "Gates stay settings hooks: the rollout switch (#99130, still served off on 2.1.295) can still turn mods off.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.292",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.299#23": "Fixed installed mods that kept running in an open session after being turned off remotely; they now unload between turns",
+    "2.1.299#151": "Changed actions a plugin hook can block to be refused, not let through, when the hook cannot be handed them or cannot hand back its answer; a tool that already ran has its result withheld",
+    "2.1.292#54": "Fixed a mod's hook that called `next(e)` and then failed while the turn was interrupted letting the call through; the call is now rejected",
+    "2.1.295#57": "Fixed calls a mod makes while it reloads during a plugin hooks worker restart getting past another mod's guard hook that has a `.catch`; such calls are now refused"
+   }
+  },
+  {
+   "ids": [
+    "2.1.290#2",
+    "2.1.299#169",
+    "2.1.289#17",
+    "2.1.299#119"
+   ],
+   "area": "mods",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "`agentId` on `tool.check`; `turn.start` hears subagents; `agent.spawn` for teammates and on resume",
+   "affected": [
+    "CT-23 agent_gate roster drift",
+    "CT-31 lane pane"
+   ],
+   "tickets": [
+    "CT-23",
+    "CT-31",
+    "CT-59"
+   ],
+   "requests": [
+    "R-127"
+   ],
+   "action": "Specs name these fields and require >= 2.1.299.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.289",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.290#2": "Added `agentId` to the `tool.check` event of plugin hooks, so a hook can tell a subagent's permission check from the main session's",
+    "2.1.299#169": "Changed the `turn.start` mod hook to also hear subagents' and teammates' turns, not only the main loop's; tell them apart by `e.agentId` (absent on the main loop)",
+    "2.1.289#17": "Added `agent.spawn` for teammates, one agent id across plugin hook events, and idle and waiting states in `$.agent.list()`",
+    "2.1.299#119": "Fixed the `agent.spawn` mod hook not running when a finished subagent or a killed teammate is resumed: the hook's event now carries `resume`, and a mod can refuse it"
+   }
+  },
+  {
+   "ids": [
+    "2.1.300#7"
+   ],
+   "area": "mods",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "`agent.spawn` can rewrite a workflow agent's `prompt` and `model`",
+   "affected": [
+    ".claude/settings.json SubagentStart carry hook (D166)"
+   ],
+   "tickets": [
+    "CT-91b",
+    "CT-59"
+   ],
+   "requests": [
+    "R-170",
+    "R-119"
+   ],
+   "action": "A mod route for open-request ids in every brief; keep the hook until the mod event is verified live (D128 pattern).",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.300#7": "Added support for rewriting a workflow agent's `prompt` and `model` in the `agent.spawn` mod hook, which could only refuse workflow agents before"
+   }
+  },
+  {
+   "ids": [
+    "2.1.300#3",
+    "2.1.300#1",
+    "2.1.300#8",
+    "2.1.295#12",
+    "2.1.299#6"
+   ],
+   "area": "mods",
+   "effect": "needs-change",
+   "prio": 2,
+   "change": "`$.ui.view({agentId})`, prompt `virtualText`, `prompt.change`, `$.ui.notify`; Text `size/weight` (`bold` deprecated)",
+   "affected": [
+    "CT-31 status band, lane pane, verify display, grill dialog"
+   ],
+   "tickets": [
+    "CT-31",
+    "CT-13"
+   ],
+   "requests": [
+    "R-120"
+   ],
+   "action": "Target >= 2.1.300 in the CT-31 spec; use `weight`, not the deprecated `bold`.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.300#3": "Added `$.ui.view({ agentId })` for mods: shows an agent's transcript in the main view when you ask, and `$.ui.view({})` goes back",
+    "2.1.300#1": "Added `virtualText` to a mod's prompt decorations: text drawn in the prompt box that never enters the draft or the submitted prompt",
+    "2.1.300#8": "Added the `prompt.change` mod hook, raised when the prompt box's text changes without a typed edit: a recalled history entry, a clear, an undo, or a plugin's fill",
+    "2.1.295#12": "Added `$.ui.notify` for mods: raises a native notification through your own notification setting and says which channel sent it",
+    "2.1.299#6": "Added `size`, `weight`, `mono` and `tabular` to a mod's `Text` and named spacing steps (`xs` to `xl`) to its `Box`; `bold` is deprecated in favor of `weight`"
+   }
+  },
+  {
+   "ids": [
+    "2.1.296#24"
+   ],
+   "area": "mods",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "A plugin's served `$` methods now run in the calling agent's directory; mod events still carry no cwd (#101384 open)",
+   "affected": [
+    "docs/agents/hooks-and-mods.md:79-81"
+   ],
+   "tickets": [
+    "CT-80"
+   ],
+   "requests": [],
+   "action": "Rule stands: directory-dependent rules stay in hooks or hk.",
+   "version": "2.1.296",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.296"
+   ],
+   "changelog_text": {
+    "2.1.296#24": "Fixed a plugin's served `$` methods running in the main session's working directory instead of the calling agent's, and ignoring the turn their calling hook holds"
+   }
+  },
+  {
+   "ids": [
+    "2.1.299#82",
+    "2.1.295#63",
+    "2.1.292#53",
+    "2.1.289#7"
+   ],
+   "area": "mods",
+   "effect": "needs-change",
+   "prio": 2,
+   "change": "`/reload-plugins` and hot-reload races fixed; start-up prompt no longer queued twice; mods load in the first session after an upgrade",
+   "affected": [
+    "docs/agents/hooks-and-mods.md:82-86 and :106 (cite #84320 as live)"
+   ],
+   "tickets": [
+    "CT-35",
+    "CT-80"
+   ],
+   "requests": [],
+   "action": "#84320 was closed not_planned by the stale bot on 2026-10-05, not fixed; correct the citation and keep the awaited reload.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.289",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.292",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.299#82": "Fixed `/reload-plugins` not loading a plugin installed from another terminal a moment earlier",
+    "2.1.295#63": "Fixed a mod's hot reload missing a save made while `/reload-plugins` or session start was reading the mod's files",
+    "2.1.292#53": "Fixed a mod's start-up prompt, command or subagent being queued a second time when the hooks worker was replaced",
+    "2.1.289#7": "Fixed installed mods not loading in the first session after an upgrade"
+   }
+  },
+  {
+   "ids": [
+    "2.1.290#5",
+    "2.1.299#16",
+    "2.1.259#4",
+    "2.1.283#20",
+    "2.1.295#10",
+    "2.1.281#114"
+   ],
+   "area": "plugins",
+   "effect": "needs-change",
+   "prio": 2,
+   "change": "`claude plugin validate`: `--json`, gating hooks with `.catch`, uninstallable marketplace names fail, README install-line advice",
+   "affected": [
+    ".claude-plugin/marketplace.json",
+    "plugins/aggregated-research/.claude-plugin/plugin.json"
+   ],
+   "tickets": [
+    "CT-57"
+   ],
+   "requests": [],
+   "action": "Re-baseline CT-57 on `claude plugin validate --strict --json` at 2.1.300 (its note says --strict exits 1 today).",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.259",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.281",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.283",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.290#5": "Added to `claude plugin validate`: each hook a mod registers at a gating site is listed with whether it has a `.catch` (`gatingHooks` under `--json`)",
+    "2.1.299#16": "Added a note in `/plugin` and `claude plugin validate` naming a mod's hooks that are skipped where an organization manages Claude Code",
+    "2.1.259#4": "Added `--json` to `claude plugin validate` for a machine-readable validation report",
+    "2.1.283#20": "Fixed `claude plugin validate` saying Claude Code accepts a plugin or marketplace name it cannot install; such names in `marketplace.json` now fail validation",
+    "2.1.295#10": "Added advice to `claude plugin validate` when a plugin's README has no install line: it prints the line to paste and never changes the exit code, even with `--strict`",
+    "2.1.281#114": "Improved plugin hook-failure errors to name the offending plugin, and added a `claude plugin validate` warning when a shell-form hook leaves `${CLAUDE_PLUGIN_ROOT}` unquoted (it breaks on plugin paths with spaces)"
+   }
+  },
+  {
+   "ids": [
+    "2.1.269#1",
+    "2.1.299#12",
+    "2.1.299#95"
+   ],
+   "area": "plugins",
+   "effect": "unblocks",
+   "prio": 3,
+   "change": "`claude plugin eval` runs a plugin eval suite with JSON and HTML reports",
+   "affected": [
+    "ci/acceptance.sh (hand-rolled claude -p checks)"
+   ],
+   "tickets": [
+    "#54",
+    "#49",
+    "CT-57"
+   ],
+   "requests": [],
+   "action": "Evaluate it as the harness for fresh plugin/session acceptance.",
+   "version": "2.1.299",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.269",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.299"
+   ],
+   "changelog_text": {
+    "2.1.269#1": "Added `claude plugin eval`: run a plugin's eval suite against Claude Code and get scored, reproducible results (JSON + HTML report); see `claude plugin eval --help`",
+    "2.1.299#12": "Added `--disallow-tools` and a `disallowed_tools` case field to `claude plugin eval` to keep specific built-in tools, such as Agent, out of eval runs",
+    "2.1.299#95": "Fixed `claude plugin eval` passing runs that the API refused: a run that ends on an API error now scores 0 without grading and makes the suite exit 1"
+   }
+  },
+  {
+   "ids": [
+    "2.1.286#39"
+   ],
+   "area": "skills",
+   "effect": "needs-change",
+   "prio": 1,
+   "change": "When project or user skills include one named `verify`, Claude is told to run it right before committing",
+   "affected": [
+    "planned .claude/skills/verify/ (+ .agents mirror)"
+   ],
+   "tickets": [
+    "CT-32a",
+    "CT-32b"
+   ],
+   "requests": [],
+   "action": "Naming the CT-32a skill `verify` switches on this pre-commit instruction; decide it in the spec and test it in a lane.",
+   "version": "2.1.286",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.286"
+   ],
+   "changelog_text": {
+    "2.1.286#39": "Improved commit guidance: when your project or user skills include one named `verify`, Claude is now told to run it right before committing, except for docs-only and tests-only commits"
+   }
+  },
+  {
+   "ids": [
+    "2.1.277#1",
+    "2.1.281#138",
+    "2.1.290#101"
+   ],
+   "area": "memory",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "AGENTS.md read natively when no CLAUDE.md exists at or above the working directory",
+   "affected": [
+    "CLAUDE.md (@AGENTS.md)",
+    "plugins/aggregated-research/AGENTS.md (no CLAUDE.md)"
+   ],
+   "tickets": [
+    "CT-14"
+   ],
+   "requests": [],
+   "action": "No change: root CLAUDE.md sits above the plugin dir, so the docs say only CLAUDE.md loads; CT-14's importer is still needed.",
+   "version": "2.1.290",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.277",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.281",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290"
+   ],
+   "changelog_text": {
+    "2.1.277#1": "Added AGENTS.md support: in a project with no CLAUDE.md, Claude Code reads AGENTS.md instead; change it under \"Project instructions\" in `/config`",
+    "2.1.281#138": "Changed AGENTS.md support to also work on Amazon Bedrock, Google Vertex AI, Microsoft Foundry, LLM gateways, and sessions with telemetry disabled",
+    "2.1.290#101": "Fixed a subdirectory's AGENTS.md not being attached when a file under it is @-mentioned"
+   }
+  },
+  {
+   "ids": [
+    "2.1.288#53",
+    "2.1.293#29",
+    "2.1.288#61"
+   ],
+   "area": "memory",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "Path-scoped `.claude/rules` and nested CLAUDE.md load on Write/Edit and on single-file Bash reads; InstructionsLoaded reports agent_id/agent_type",
+   "affected": [
+    ".claude/rules/*.md (6 files)",
+    "nested CLAUDE.md importers (dev/, docs/, evidence/, .planning/, .claude/)"
+   ],
+   "tickets": [
+    "CT-61"
+   ],
+   "requests": [],
+   "action": "CT-61 (`guidance:fired`) can use the InstructionsLoaded hook directly.",
+   "version": "2.1.293",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.293"
+   ],
+   "changelog_text": {
+    "2.1.288#53": "Fixed path-scoped `.claude/rules` and nested CLAUDE.md files not loading when Write or Edit creates or changes a file in their scope (previously only Read loaded them)",
+    "2.1.293#29": "Fixed path-scoped rules and nested CLAUDE.md files not loading when Claude views a file with a single-file cat, head, tail, sed -n or grep command in the Bash tool instead of the Read tool",
+    "2.1.288#61": "Fixed the InstructionsLoaded hook omitting agent_id and agent_type when a subagent's file access loads a rule or nested CLAUDE.md; rules and nested CLAUDE.md files loaded on file access now also report effort"
+   }
+  },
+  {
+   "ids": [
+    "2.1.271#5"
+   ],
+   "area": "subagents",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`omitClaudeMd` agent frontmatter starts a subagent without CLAUDE.md files",
+   "affected": [
+    ".claude/agents/extractor.md"
+   ],
+   "tickets": [
+    "CT-19"
+   ],
+   "requests": [],
+   "action": "Optional for the mechanical extractor only; reviewers need the project rules.",
+   "version": "2.1.271",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.271"
+   ],
+   "changelog_text": {
+    "2.1.271#5": "Added `omitClaudeMd` to agent frontmatter and `--agents` JSON, letting custom and plugin subagents run without user, project and local CLAUDE.md files; managed policy files still load"
+   }
+  },
+  {
+   "ids": [
+    "2.1.286#29",
+    "2.1.290#109",
+    "2.1.295#35",
+    "2.1.300#24"
+   ],
+   "area": "worktrees",
+   "effect": "unblocks",
+   "prio": 2,
+   "change": "Worktree subagents: CLAUDE.md double load, lost Bash/write after parent worktree switch, wrong git status, plugin WorktreeCreate hooks fixed",
+   "affected": [
+    ".claude/worktrees/<unit> lanes",
+    "docs/agents/claude-team.md lane lifecycle"
+   ],
+   "tickets": [
+    "CT-17",
+    "CT-25",
+    "CT-80"
+   ],
+   "requests": [],
+   "action": "Fold into the #92533 regression probe.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.286",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.290",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.286#29": "Fixed subagents spawned with worktree isolation loading the project CLAUDE.md and its imports a second time from the worktree copy on their first file read",
+    "2.1.290#109": "Fixed background subagents losing write and Bash access in their worktree after the main session enters or exits a different worktree",
+    "2.1.295#35": "Fixed subagents in their own linked worktree being shown the parent session's git branch, status and recent commits",
+    "2.1.300#24": "Fixed plugin `WorktreeCreate` and `WorktreeRemove` hooks not running when Claude Code starts with `--worktree` (not yet with `--tmux`)"
+   }
+  },
+  {
+   "ids": [
+    "2.1.283#5",
+    "2.1.261#4"
+   ],
+   "area": "skills",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`/doctor prompt-audit` audits CLAUDE.md, AGENTS.md, rules, skills and agents; `/skill-doctor` reports unused skills",
+   "affected": [
+    "AGENTS.md hierarchy",
+    ".claude/skills",
+    ".claude/agents"
+   ],
+   "tickets": [
+    "CT-38"
+   ],
+   "requests": [],
+   "action": "Run once (user-typed slash commands) before the CT-38 skill-modularity rule.",
+   "version": "2.1.283",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.261",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.283"
+   ],
+   "changelog_text": {
+    "2.1.283#5": "Added `/doctor prompt-audit` (also `/checkup prompt-audit`) to audit your CLAUDE.md files, skills, agents and commands for prompting patterns written for older models",
+    "2.1.261#4": "Added `/skill-doctor` to show which loaded skills go unused and what they cost in context, so you can prune them"
+   }
+  },
+  {
+   "ids": [
+    "2.1.271#6",
+    "2.1.268#6",
+    "2.1.283#7",
+    "2.1.284#67",
+    "2.1.288#44"
+   ],
+   "area": "plugins",
+   "effect": "needs-change",
+   "prio": 2,
+   "change": "Plugin install `--accept-command`/`--json`; `plugin_errors` entries gain `path`; first headless turn waits for MCP; HTTPS clone fallback",
+   "affected": [
+    "ci/acceptance.sh:56-62, :183 (plugin install --yes; has(\"plugin_errors\") | not)",
+    ".github/workflows/acceptance.yml"
+   ],
+   "tickets": [
+    "#61",
+    "#54",
+    "CT-08"
+   ],
+   "requests": [
+    "R-158"
+   ],
+   "action": "Only the admitted acceptance run on the bumped image can confirm these; no edit before it.",
+   "version": "2.1.288",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.268",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.271",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.283",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.284",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288"
+   ],
+   "changelog_text": {
+    "2.1.271#6": "Added `--accept-command <sha256>` to `claude plugin install` and `claude plugin update` to accept exactly the command a previous `--json` run displayed, instead of `-y`",
+    "2.1.268#6": "Added `--json` to `claude plugin install`, `uninstall`, `update`, `enable` and `disable`, and `errorDetails`/`noteDetails` to each row of `claude plugin list --json`",
+    "2.1.283#7": "Added `path` to `--plugin-dir` load-failure entries in the stream-json `system/init` `plugin_errors`, naming the directory that did not load",
+    "2.1.284#67": "Changed the non-interactive first turn to still wait up to 2s for connecting MCP servers named by `--allowedTools` or an `mcp_tool` hook, even when `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` is `0`",
+    "2.1.288#44": "Fixed `claude plugin install` failing for GitHub-source plugins on macOS and Linux machines with no GitHub SSH key: the clone now falls back to HTTPS and prints a notice"
+   }
+  },
+  {
+   "ids": [
+    "2.1.288#50"
+   ],
+   "area": "platform",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "npm auto-updater no longer reports success when only the placeholder `claude` stub installed",
+   "affected": [
+    "mise.toml:6-10 allow_builds note",
+    ".github/workflows/acceptance.yml:27-35 smoke step"
+   ],
+   "tickets": [
+    "#61"
+   ],
+   "requests": [
+    "R-158"
+   ],
+   "action": "Keep the version-matching smoke step; it already catches a stub.",
+   "version": "2.1.288",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.288"
+   ],
+   "changelog_text": {
+    "2.1.288#50": "Fixed the npm auto-updater reporting success when the platform-native binary failed to download and only the placeholder `claude` stub was installed"
+   }
+  },
+  {
+   "ids": [
+    "2.1.277#69"
+   ],
+   "area": "tools",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "TaskOutput tool removed; `taskOutputMaxChars` and `TASK_MAX_OUTPUT_LENGTH` have no effect",
+   "affected": [
+    "none (grep of MP finds no use)"
+   ],
+   "tickets": [],
+   "requests": [
+    "R-158"
+   ],
+   "action": "None.",
+   "version": "2.1.277",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.277"
+   ],
+   "changelog_text": {
+    "2.1.277#69": "Removed the deprecated TaskOutput tool; Claude reads a background task's output file with Read instead, and the `taskOutputMaxChars` setting and `TASK_MAX_OUTPUT_LENGTH` no longer have any effect"
+   }
+  },
+  {
+   "ids": [
+    "2.1.300#62"
+   ],
+   "area": "sessions",
+   "effect": "needs-change",
+   "prio": 1,
+   "change": "Local session transcripts also record each API request's system prompt, tools and parameters",
+   "affected": [
+    ".claude/rules/evidence.md (transcripts never tracked)",
+    "agentsview indexing",
+    "planned transcript detectors"
+   ],
+   "tickets": [
+    "CT-20"
+   ],
+   "requests": [
+    "R-174"
+   ],
+   "action": "Transcripts now embed CLAUDE.md/AGENTS.md text, plan context and private names: treat them as private, add to the R-174 audit.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.300#62": "Changed local session transcripts to also record each API request's system prompt, tools and parameters, so a transcript you choose to share can reproduce a request exactly"
+   }
+  },
+  {
+   "ids": [
+    "2.1.300#56",
+    "2.1.300#41"
+   ],
+   "area": "tools",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "Exit force-kills background commands still running 1.5 s after stop; Claude no longer polls a background command's output",
+   "affected": [
+    "long background builds (toolchain lanes)"
+   ],
+   "tickets": [
+    "CT-63"
+   ],
+   "requests": [],
+   "action": "Do not exit a session that owns a running heavy build.",
+   "version": "2.1.300",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.300"
+   ],
+   "changelog_text": {
+    "2.1.300#56": "Changed exit to force-kill background commands still running 1.5 seconds after being asked to stop; in fullscreen mode they could previously be left running",
+    "2.1.300#41": "Fixed Claude polling a background command's output file or sleeping while it runs"
+   }
+  },
+  {
+   "ids": [
+    "2.1.285#1"
+   ],
+   "area": "env var",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`CLAUDE_CODE_DISABLE_WEB_FETCH=1` turns the WebFetch tool off (requires 2.1.285)",
+   "affected": [
+    "docs/agents/research-workflow.md:13 (WebFetch stays unused)"
+   ],
+   "tickets": [
+    "CT-36"
+   ],
+   "requests": [],
+   "action": "A native kill switch now exists; CT-36 chose no settings backstop (D87, D92, D95), so raise it only as a decision question.",
+   "version": "2.1.285",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.285"
+   ],
+   "changelog_text": {
+    "2.1.285#1": "Added `CLAUDE_CODE_DISABLE_WEB_FETCH` environment variable to turn off the WebFetch tool"
+   }
+  },
+  {
+   "ids": [
+    "2.1.259#2"
+   ],
+   "area": "cli",
+   "effect": "FYI",
+   "prio": 3,
+   "change": "`--permission-prompts none` denies anything that would prompt on unattended headless hosts",
+   "affected": [
+    "ci/acceptance.sh claude -p runs"
+   ],
+   "tickets": [
+    "CT-87",
+    "#61"
+   ],
+   "requests": [],
+   "action": "Option for the CT-87 probe and CI.",
+   "version": "2.1.259",
+   "source_urls": [
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.259"
+   ],
+   "changelog_text": {
+    "2.1.259#2": "Added `--permission-prompts none` for unattended headless hosts: anything that would prompt is denied automatically while the active permission mode (including auto mode) keeps deciding"
+   }
+  }
+ ],
+ "touchpoint_coverage": [
+  {
+   "touchpoint": "deny gates",
+   "project_surface": ".claude/settings.json; dev/hooks/*_gate.py; CT-02b, CT-32b, CT-93b",
+   "matched": 18,
+   "curated": 5,
+   "fyi_ids": [
+    "2.1.259#27",
+    "2.1.271#51",
+    "2.1.274#36",
+    "2.1.275#32",
+    "2.1.277#42",
+    "2.1.281#52",
+    "2.1.284#38",
+    "2.1.288#31",
+    "2.1.290#114",
+    "2.1.292#13",
+    "2.1.294#2",
+    "2.1.296#7",
+    "2.1.299#134"
+   ]
+  },
+  {
+   "touchpoint": "request capture and carry hooks",
+   "project_surface": ".claude/settings.json; CT-87, CT-88, CT-89; R-170",
+   "matched": 24,
+   "curated": 7,
+   "fyi_ids": [
+    "2.1.257#77",
+    "2.1.265#5",
+    "2.1.265#26",
+    "2.1.271#51",
+    "2.1.273#21",
+    "2.1.274#22",
+    "2.1.274#23",
+    "2.1.280#73",
+    "2.1.282#28",
+    "2.1.287#10",
+    "2.1.287#51",
+    "2.1.295#71",
+    "2.1.295#78",
+    "2.1.296#19",
+    "2.1.296#20",
+    "2.1.296#34",
+    "2.1.299#24"
+   ]
+  },
+  {
+   "touchpoint": "compaction",
+   "project_surface": ".claude/settings.json; CLAUDE.md compact instructions; R-170",
+   "matched": 59,
+   "curated": 8,
+   "fyi_ids": [
+    "2.1.257#42",
+    "2.1.260#32",
+    "2.1.260#47",
+    "2.1.267#10",
+    "2.1.268#23",
+    "2.1.268#24",
+    "2.1.268#25",
+    "2.1.269#15",
+    "2.1.269#36",
+    "2.1.271#31",
+    "2.1.273#1",
+    "2.1.273#15",
+    "2.1.273#21",
+    "2.1.274#14",
+    "2.1.274#15",
+    "2.1.275#6",
+    "2.1.280#33",
+    "2.1.280#54",
+    "2.1.280#81",
+    "2.1.281#106",
+    "2.1.282#11",
+    "2.1.282#51",
+    "2.1.283#53",
+    "2.1.284#12",
+    "2.1.285#10",
+    "2.1.285#13",
+    "2.1.285#52",
+    "2.1.285#66",
+    "2.1.286#31",
+    "2.1.286#50",
+    "2.1.287#19",
+    "2.1.287#26",
+    "2.1.287#47",
+    "2.1.288#9",
+    "2.1.288#10",
+    "2.1.288#33",
+    "2.1.288#58",
+    "2.1.288#65",
+    "2.1.290#19",
+    "2.1.290#39",
+    "2.1.290#99",
+    "2.1.292#38",
+    "2.1.293#4",
+    "2.1.295#90",
+    "2.1.296#60",
+    "2.1.299#19",
+    "2.1.299#127",
+    "2.1.299#145",
+    "2.1.300#37",
+    "2.1.300#38",
+    "2.1.300#40"
+   ]
+  },
+  {
+   "touchpoint": "mods",
+   "project_surface": "docs/agents/hooks-and-mods.md; CT-23, CT-31, CT-35, CT-36, CT-61, CT-80",
+   "matched": 104,
+   "curated": 21,
+   "fyi_ids": [
+    "2.1.260#3",
+    "2.1.268#56",
+    "2.1.287#1",
+    "2.1.287#2",
+    "2.1.288#1",
+    "2.1.288#20",
+    "2.1.288#29",
+    "2.1.288#89",
+    "2.1.289#1",
+    "2.1.289#18",
+    "2.1.289#20",
+    "2.1.289#21",
+    "2.1.289#23",
+    "2.1.289#25",
+    "2.1.289#27",
+    "2.1.290#1",
+    "2.1.290#3",
+    "2.1.290#4",
+    "2.1.290#32",
+    "2.1.290#41",
+    "2.1.290#42",
+    "2.1.290#43",
+    "2.1.290#45",
+    "2.1.290#47",
+    "2.1.290#54",
+    "2.1.290#55",
+    "2.1.290#70",
+    "2.1.290#128",
+    "2.1.290#144",
+    "2.1.292#4",
+    "2.1.292#5",
+    "2.1.292#6",
+    "2.1.292#39",
+    "2.1.292#50",
+    "2.1.292#52",
+    "2.1.292#56",
+    "2.1.292#58",
+    "2.1.292#59",
+    "2.1.293#3",
+    "2.1.293#21",
+    "2.1.293#22",
+    "2.1.295#13",
+    "2.1.295#39",
+    "2.1.295#64",
+    "2.1.295#68",
+    "2.1.295#75",
+    "2.1.295#83",
+    "2.1.295#84",
+    "2.1.295#96",
+    "2.1.295#107",
+    "2.1.295#118",
+    "2.1.295#122",
+    "2.1.296#19",
+    "2.1.296#25",
+    "2.1.296#26",
+    "2.1.299#4",
+    "2.1.299#5",
+    "2.1.299#8",
+    "2.1.299#15",
+    "2.1.299#20",
+    "2.1.299#22",
+    "2.1.299#24",
+    "2.1.299#36",
+    "2.1.299#50",
+    "2.1.299#54",
+    "2.1.299#59",
+    "2.1.299#71",
+    "2.1.299#72",
+    "2.1.299#75",
+    "2.1.299#87",
+    "2.1.299#118",
+    "2.1.299#120",
+    "2.1.299#121",
+    "2.1.299#132",
+    "2.1.299#139",
+    "2.1.299#143",
+    "2.1.299#155",
+    "2.1.299#157",
+    "2.1.300#4",
+    "2.1.300#26",
+    "2.1.300#27",
+    "2.1.300#35",
+    "2.1.300#52"
+   ]
+  },
+  {
+   "touchpoint": "worktrees",
+   "project_surface": ".claude/worktrees; #92533; CT-17, CT-25",
+   "matched": 41,
+   "curated": 5,
+   "fyi_ids": [
+    "2.1.257#54",
+    "2.1.257#63",
+    "2.1.257#81",
+    "2.1.259#18",
+    "2.1.259#29",
+    "2.1.260#11",
+    "2.1.260#26",
+    "2.1.260#42",
+    "2.1.265#36",
+    "2.1.267#23",
+    "2.1.268#28",
+    "2.1.273#17",
+    "2.1.274#46",
+    "2.1.274#56",
+    "2.1.277#46",
+    "2.1.281#39",
+    "2.1.281#113",
+    "2.1.282#21",
+    "2.1.283#38",
+    "2.1.284#45",
+    "2.1.285#15",
+    "2.1.285#41",
+    "2.1.285#42",
+    "2.1.285#56",
+    "2.1.286#63",
+    "2.1.287#20",
+    "2.1.290#50",
+    "2.1.290#102",
+    "2.1.299#109",
+    "2.1.299#113",
+    "2.1.299#146",
+    "2.1.299#147",
+    "2.1.299#165",
+    "2.1.300#29",
+    "2.1.300#30",
+    "2.1.300#33"
+   ]
+  },
+  {
+   "touchpoint": "skills",
+   "project_surface": ".claude/skills (6) + .agents mirror; CT-32a, CT-38, CT-59",
+   "matched": 95,
+   "curated": 5,
+   "fyi_ids": [
+    "2.1.257#45",
+    "2.1.257#46",
+    "2.1.259#10",
+    "2.1.259#15",
+    "2.1.260#14",
+    "2.1.260#36",
+    "2.1.260#50",
+    "2.1.261#31",
+    "2.1.265#5",
+    "2.1.265#18",
+    "2.1.265#20",
+    "2.1.265#29",
+    "2.1.265#38",
+    "2.1.267#15",
+    "2.1.268#36",
+    "2.1.269#52",
+    "2.1.269#58",
+    "2.1.271#33",
+    "2.1.271#40",
+    "2.1.271#41",
+    "2.1.271#64",
+    "2.1.271#70",
+    "2.1.273#5",
+    "2.1.273#37",
+    "2.1.275#4",
+    "2.1.275#7",
+    "2.1.275#36",
+    "2.1.275#46",
+    "2.1.277#34",
+    "2.1.277#46",
+    "2.1.280#2",
+    "2.1.280#20",
+    "2.1.280#24",
+    "2.1.280#26",
+    "2.1.280#29",
+    "2.1.281#9",
+    "2.1.281#79",
+    "2.1.281#90",
+    "2.1.281#99",
+    "2.1.281#115",
+    "2.1.281#117",
+    "2.1.281#128",
+    "2.1.281#129",
+    "2.1.282#22",
+    "2.1.282#39",
+    "2.1.282#40",
+    "2.1.282#41",
+    "2.1.282#56",
+    "2.1.282#57",
+    "2.1.282#62",
+    "2.1.282#63",
+    "2.1.282#64",
+    "2.1.283#52",
+    "2.1.283#55",
+    "2.1.283#68",
+    "2.1.283#75",
+    "2.1.286#43",
+    "2.1.286#47",
+    "2.1.286#56",
+    "2.1.286#59",
+    "2.1.286#64",
+    "2.1.287#44",
+    "2.1.287#54",
+    "2.1.287#67",
+    "2.1.290#37",
+    "2.1.290#91",
+    "2.1.290#128",
+    "2.1.290#133",
+    "2.1.290#146",
+    "2.1.290#162",
+    "2.1.292#14",
+    "2.1.292#38",
+    "2.1.292#76",
+    "2.1.293#11",
+    "2.1.293#31",
+    "2.1.293#45",
+    "2.1.295#45",
+    "2.1.295#72",
+    "2.1.295#107",
+    "2.1.295#113",
+    "2.1.296#40",
+    "2.1.296#60",
+    "2.1.299#8",
+    "2.1.299#128",
+    "2.1.299#143",
+    "2.1.299#144",
+    "2.1.299#145",
+    "2.1.299#154",
+    "2.1.300#52",
+    "2.1.300#60"
+   ]
+  },
+  {
+   "touchpoint": "subagents",
+   "project_surface": ".claude/agents (6); CT-19, CT-56, CT-59",
+   "matched": 108,
+   "curated": 14,
+   "fyi_ids": [
+    "2.1.257#4",
+    "2.1.257#25",
+    "2.1.257#28",
+    "2.1.257#40",
+    "2.1.257#47",
+    "2.1.257#51",
+    "2.1.257#53",
+    "2.1.257#62",
+    "2.1.257#70",
+    "2.1.259#34",
+    "2.1.260#11",
+    "2.1.260#27",
+    "2.1.260#28",
+    "2.1.260#29",
+    "2.1.260#32",
+    "2.1.260#50",
+    "2.1.260#59",
+    "2.1.261#3",
+    "2.1.261#29",
+    "2.1.261#31",
+    "2.1.265#4",
+    "2.1.265#5",
+    "2.1.265#20",
+    "2.1.265#37",
+    "2.1.267#15",
+    "2.1.267#36",
+    "2.1.268#10",
+    "2.1.271#13",
+    "2.1.271#30",
+    "2.1.271#65",
+    "2.1.273#14",
+    "2.1.273#16",
+    "2.1.273#18",
+    "2.1.273#24",
+    "2.1.274#8",
+    "2.1.274#18",
+    "2.1.274#33",
+    "2.1.274#49",
+    "2.1.274#51",
+    "2.1.274#62",
+    "2.1.275#7",
+    "2.1.275#32",
+    "2.1.277#26",
+    "2.1.277#48",
+    "2.1.277#66",
+    "2.1.277#67",
+    "2.1.280#17",
+    "2.1.280#18",
+    "2.1.280#39",
+    "2.1.280#41",
+    "2.1.280#44",
+    "2.1.281#39",
+    "2.1.284#39",
+    "2.1.284#43",
+    "2.1.285#7",
+    "2.1.285#17",
+    "2.1.285#20",
+    "2.1.285#22",
+    "2.1.285#76",
+    "2.1.286#26",
+    "2.1.286#27",
+    "2.1.286#28",
+    "2.1.286#30",
+    "2.1.286#31",
+    "2.1.286#40",
+    "2.1.288#8",
+    "2.1.288#16",
+    "2.1.288#42",
+    "2.1.290#15",
+    "2.1.290#40",
+    "2.1.290#87",
+    "2.1.290#154",
+    "2.1.292#2",
+    "2.1.292#7",
+    "2.1.292#26",
+    "2.1.292#28",
+    "2.1.293#2",
+    "2.1.293#9",
+    "2.1.293#10",
+    "2.1.295#26",
+    "2.1.295#45",
+    "2.1.295#46",
+    "2.1.295#50",
+    "2.1.295#60",
+    "2.1.295#113",
+    "2.1.296#3",
+    "2.1.296#14",
+    "2.1.299#25",
+    "2.1.299#57",
+    "2.1.299#81",
+    "2.1.299#123",
+    "2.1.299#163",
+    "2.1.300#15",
+    "2.1.300#28"
+   ]
+  },
+  {
+   "touchpoint": "plugins and marketplace",
+   "project_surface": ".claude-plugin/marketplace.json; plugin.json; ci/acceptance.sh; CT-57, #48, #53, #54",
+   "matched": 91,
+   "curated": 11,
+   "fyi_ids": [
+    "2.1.259#26",
+    "2.1.260#6",
+    "2.1.260#19",
+    "2.1.260#33",
+    "2.1.261#8",
+    "2.1.261#30",
+    "2.1.265#2",
+    "2.1.265#23",
+    "2.1.265#46",
+    "2.1.267#8",
+    "2.1.268#15",
+    "2.1.268#35",
+    "2.1.274#34",
+    "2.1.274#65",
+    "2.1.275#5",
+    "2.1.275#10",
+    "2.1.275#11",
+    "2.1.275#30",
+    "2.1.277#11",
+    "2.1.277#31",
+    "2.1.277#37",
+    "2.1.277#56",
+    "2.1.280#49",
+    "2.1.280#50",
+    "2.1.280#69",
+    "2.1.280#84",
+    "2.1.281#7",
+    "2.1.281#55",
+    "2.1.281#56",
+    "2.1.281#59",
+    "2.1.281#60",
+    "2.1.281#63",
+    "2.1.281#123",
+    "2.1.281#125",
+    "2.1.281#127",
+    "2.1.283#21",
+    "2.1.283#22",
+    "2.1.283#23",
+    "2.1.283#26",
+    "2.1.284#23",
+    "2.1.284#35",
+    "2.1.284#36",
+    "2.1.284#56",
+    "2.1.285#4",
+    "2.1.285#8",
+    "2.1.285#11",
+    "2.1.285#25",
+    "2.1.285#51",
+    "2.1.285#71",
+    "2.1.285#72",
+    "2.1.286#37",
+    "2.1.286#38",
+    "2.1.286#58",
+    "2.1.287#46",
+    "2.1.287#62",
+    "2.1.288#24",
+    "2.1.288#25",
+    "2.1.288#52",
+    "2.1.289#6",
+    "2.1.289#16",
+    "2.1.289#22",
+    "2.1.290#34",
+    "2.1.290#98",
+    "2.1.292#1",
+    "2.1.292#17",
+    "2.1.292#46",
+    "2.1.292#47",
+    "2.1.292#65",
+    "2.1.295#4",
+    "2.1.295#24",
+    "2.1.295#25",
+    "2.1.295#51",
+    "2.1.295#75",
+    "2.1.295#81",
+    "2.1.295#109",
+    "2.1.296#27",
+    "2.1.296#41",
+    "2.1.296#49",
+    "2.1.299#27",
+    "2.1.299#120"
+   ]
+  },
+  {
+   "touchpoint": "headless and OCI acceptance",
+   "project_surface": "mise.toml pin; ci/acceptance.sh; acceptance.yml; #61",
+   "matched": 106,
+   "curated": 5,
+   "fyi_ids": [
+    "2.1.257#12",
+    "2.1.257#43",
+    "2.1.257#50",
+    "2.1.257#59",
+    "2.1.259#32",
+    "2.1.260#3",
+    "2.1.260#4",
+    "2.1.260#40",
+    "2.1.260#44",
+    "2.1.261#22",
+    "2.1.265#20",
+    "2.1.265#30",
+    "2.1.267#30",
+    "2.1.268#38",
+    "2.1.268#39",
+    "2.1.269#2",
+    "2.1.269#11",
+    "2.1.269#17",
+    "2.1.269#29",
+    "2.1.269#41",
+    "2.1.271#23",
+    "2.1.271#30",
+    "2.1.271#66",
+    "2.1.273#18",
+    "2.1.274#2",
+    "2.1.274#25",
+    "2.1.274#31",
+    "2.1.274#35",
+    "2.1.274#41",
+    "2.1.274#52",
+    "2.1.275#7",
+    "2.1.275#43",
+    "2.1.275#51",
+    "2.1.277#5",
+    "2.1.277#45",
+    "2.1.277#53",
+    "2.1.277#61",
+    "2.1.277#65",
+    "2.1.277#68",
+    "2.1.280#39",
+    "2.1.280#80",
+    "2.1.281#27",
+    "2.1.281#28",
+    "2.1.281#29",
+    "2.1.281#42",
+    "2.1.281#112",
+    "2.1.283#61",
+    "2.1.284#35",
+    "2.1.284#68",
+    "2.1.285#7",
+    "2.1.285#16",
+    "2.1.285#17",
+    "2.1.285#91",
+    "2.1.286#12",
+    "2.1.286#51",
+    "2.1.286#55",
+    "2.1.286#58",
+    "2.1.287#18",
+    "2.1.287#42",
+    "2.1.287#44",
+    "2.1.287#57",
+    "2.1.287#59",
+    "2.1.287#73",
+    "2.1.288#8",
+    "2.1.288#31",
+    "2.1.288#32",
+    "2.1.288#39",
+    "2.1.288#60",
+    "2.1.288#75",
+    "2.1.290#21",
+    "2.1.290#25",
+    "2.1.290#95",
+    "2.1.292#18",
+    "2.1.292#60",
+    "2.1.295#5",
+    "2.1.295#17",
+    "2.1.295#18",
+    "2.1.295#72",
+    "2.1.295#75",
+    "2.1.295#85",
+    "2.1.295#98",
+    "2.1.295#106",
+    "2.1.296#9",
+    "2.1.296#19",
+    "2.1.296#20",
+    "2.1.296#37",
+    "2.1.299#20",
+    "2.1.299#41",
+    "2.1.299#73",
+    "2.1.299#76",
+    "2.1.299#80",
+    "2.1.299#85",
+    "2.1.299#93",
+    "2.1.299#98",
+    "2.1.299#104",
+    "2.1.299#105",
+    "2.1.299#115",
+    "2.1.299#118",
+    "2.1.299#166",
+    "2.1.300#37",
+    "2.1.300#40"
+   ]
+  },
+  {
+   "touchpoint": "instructions",
+   "project_surface": "AGENTS.md hierarchy; .claude/rules; CT-14, CT-61",
+   "matched": 20,
+   "curated": 9,
+   "fyi_ids": [
+    "2.1.260#53",
+    "2.1.269#26",
+    "2.1.277#53",
+    "2.1.281#42",
+    "2.1.281#119",
+    "2.1.282#17",
+    "2.1.284#34",
+    "2.1.287#19",
+    "2.1.287#54",
+    "2.1.290#23",
+    "2.1.290#153"
+   ]
+  },
+  {
+   "touchpoint": "transcripts and sessions records",
+   "project_surface": "session-handoff/resume skills; dev/handoff.py; CT-20; R-174",
+   "matched": 100,
+   "curated": 4,
+   "fyi_ids": [
+    "2.1.257#2",
+    "2.1.257#28",
+    "2.1.257#35",
+    "2.1.257#47",
+    "2.1.257#53",
+    "2.1.257#77",
+    "2.1.257#87",
+    "2.1.259#14",
+    "2.1.259#34",
+    "2.1.260#26",
+    "2.1.260#28",
+    "2.1.260#51",
+    "2.1.261#22",
+    "2.1.265#9",
+    "2.1.267#10",
+    "2.1.267#11",
+    "2.1.267#34",
+    "2.1.268#40",
+    "2.1.268#46",
+    "2.1.268#48",
+    "2.1.269#13",
+    "2.1.269#54",
+    "2.1.271#28",
+    "2.1.271#34",
+    "2.1.271#35",
+    "2.1.271#36",
+    "2.1.271#37",
+    "2.1.271#49",
+    "2.1.274#9",
+    "2.1.274#15",
+    "2.1.274#21",
+    "2.1.274#25",
+    "2.1.274#49",
+    "2.1.274#57",
+    "2.1.275#12",
+    "2.1.275#20",
+    "2.1.275#21",
+    "2.1.275#22",
+    "2.1.275#28",
+    "2.1.275#29",
+    "2.1.277#6",
+    "2.1.277#27",
+    "2.1.277#42",
+    "2.1.277#45",
+    "2.1.280#15",
+    "2.1.280#34",
+    "2.1.280#61",
+    "2.1.282#7",
+    "2.1.282#52",
+    "2.1.284#24",
+    "2.1.285#2",
+    "2.1.285#14",
+    "2.1.285#32",
+    "2.1.285#52",
+    "2.1.285#80",
+    "2.1.285#82",
+    "2.1.286#4",
+    "2.1.286#6",
+    "2.1.286#19",
+    "2.1.286#20",
+    "2.1.286#21",
+    "2.1.286#26",
+    "2.1.286#31",
+    "2.1.287#27",
+    "2.1.287#52",
+    "2.1.287#76",
+    "2.1.288#1",
+    "2.1.288#10",
+    "2.1.288#11",
+    "2.1.288#12",
+    "2.1.288#63",
+    "2.1.290#59",
+    "2.1.290#60",
+    "2.1.290#97",
+    "2.1.290#112",
+    "2.1.290#139",
+    "2.1.292#19",
+    "2.1.292#20",
+    "2.1.292#37",
+    "2.1.292#41",
+    "2.1.292#61",
+    "2.1.293#15",
+    "2.1.295#71",
+    "2.1.295#84",
+    "2.1.296#16",
+    "2.1.296#45",
+    "2.1.296#52",
+    "2.1.296#58",
+    "2.1.299#15",
+    "2.1.299#31",
+    "2.1.299#33",
+    "2.1.299#85",
+    "2.1.299#140",
+    "2.1.300#22",
+    "2.1.300#23",
+    "2.1.300#27"
+   ]
+  }
+ ],
+ "upstream_issues": [
+  {
+   "number": 100869,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-09T17:54:59Z",
+   "title": "Plugin hooks module: classic.* events (classic.Stop, classic.PreToolUse, classic.Notification, classic.PermissionRequest) never reach the module, while settings hooks for the same events fire in the same session (2.1.295)",
+   "url": "https://github.com/anthropics/claude-code/issues/100869",
+   "note": "Open; no changelog entry names it"
+  },
+  {
+   "number": 101384,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-11T22:30:21Z",
+   "title": "[FEATURE] Mods API: give the working directory for each tool call and each configured command hook",
+   "url": "https://github.com/anthropics/claude-code/issues/101384",
+   "note": "No changelog entry adds cwd to mod events; 2.1.296#24 only moves served $ methods to the caller's cwd"
+  },
+  {
+   "number": 102134,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-14T22:08:38Z",
+   "title": "[BUG] session.compact mod hook no longer raised in 2.1.299 (manual and automatic compaction)",
+   "url": "https://github.com/anthropics/claude-code/issues/102134",
+   "note": "Open; 2026-10-14 comments attribute it to the server-managed `sec-default` policy hold, not a dispatch regression"
+  },
+  {
+   "number": 84320,
+   "kind": "issue",
+   "state": "closed",
+   "state_reason": "not_planned",
+   "closed_at": "2026-10-05T22:19:16Z",
+   "updated_at": "2026-10-05T22:19:16Z",
+   "title": "Queued input silently executes before an earlier-queued /reload-plugins — the turn then runs against stale plugin state",
+   "url": "https://github.com/anthropics/claude-code/issues/84320",
+   "note": "Closed not_planned by the stale bot 2026-10-05, not fixed; docs still describe it as open"
+  },
+  {
+   "number": 92533,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-04T20:22:57Z",
+   "title": "Any function-hook tool.call on Bash breaks Agent isolation: \"worktree\" — every Bash call refused with \"isolation context for this agent was lost\"",
+   "url": "https://github.com/anthropics/claude-code/issues/92533",
+   "note": "2.1.288 changelog claims the fix (2.1.288#23); npm stable now 2.1.292; doc ban waits on a host regression probe"
+  },
+  {
+   "number": 94358,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-09-14T18:37:26Z",
+   "title": "Hook `additionalContext` is silently truncated at 10,000 characters, discarding injected instructions",
+   "url": "https://github.com/anthropics/claude-code/issues/94358",
+   "note": "Open; additionalContext still capped at 10,000 characters; open-request section is 5,114"
+  },
+  {
+   "number": 94594,
+   "kind": "PR",
+   "state": "closed",
+   "state_reason": null,
+   "closed_at": "2026-09-15T21:08:26Z",
+   "updated_at": "2026-09-15T21:08:26Z",
+   "title": "diff: run git when the built-in panel would, never at the session's start",
+   "url": "https://github.com/anthropics/claude-code/pull/94594",
+   "note": "Merged 2026-09-15: diff mod stopped awaiting git in session.start; confirms session.start holds the first prompt"
+  },
+  {
+   "number": 96831,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-08T10:02:59Z",
+   "title": "[Bug] Function hooks `classic.PreToolUse` and `skill.prompt` not dispatched to modules despite documentation",
+   "url": "https://github.com/anthropics/claude-code/issues/96831",
+   "note": "Open; 2026-10-08: reproduces only in `claude --bg` on 2.1.294"
+  },
+  {
+   "number": 99130,
+   "kind": "issue",
+   "state": "open",
+   "state_reason": null,
+   "closed_at": null,
+   "updated_at": "2026-10-12T02:22:22Z",
+   "title": "Mods off remotely on 2.1.288 despite docs saying on by default since 2.1.287 (rollout switch serves off)",
+   "url": "https://github.com/anthropics/claude-code/issues/99130",
+   "note": "Open; 2026-10-12 report: switch still served off on 2.1.295; 2.1.299#23 makes running mods unload when switched off"
+  }
+ ]
+}

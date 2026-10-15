@@ -1,0 +1,674 @@
+{
+  "state": "FAIL",
+  "build_requested": true,
+  "resume": false,
+  "helper_sha256": "ef179e70c3bf2daa804c077a810cff8f1912bb41c4e89c60f55d488abf8f9ecd",
+  "commands": [
+    {
+      "case": "source-head",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_at": "2026-10-11T05:52:31.662011+00:00",
+      "pid": 76165,
+      "returncode": 0,
+      "elapsed_seconds": 0.013241374981589615,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-head.stdout",
+          "sha256": "eb3990b60c43f2b6384a8831e19465f3a9ae61cbda27dbfb1e76f9149ca73d30"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-head.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-tree",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "started_at": "2026-10-11T05:52:31.676462+00:00",
+      "pid": 76166,
+      "returncode": 0,
+      "elapsed_seconds": 0.012724083033390343,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-tree.stdout",
+          "sha256": "234d7d4422f75b2c9216bb367116788015246008c59c059b749d73be90c4233e"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-tree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "source-clean",
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "started_at": "2026-10-11T05:52:31.690154+00:00",
+      "pid": 76168,
+      "returncode": 0,
+      "elapsed_seconds": 1.1818323750048876,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-clean.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/source-clean.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T05:52:33.066621+00:00",
+      "pid": 76170,
+      "returncode": 0,
+      "elapsed_seconds": 0.14521420805249363,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/default-before.stdout",
+          "sha256": "e3da694b17d81a58fe139a45da1b93ed09df28f1e7c52878e8bb4d63c5a7e327"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-environment",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "MAKEFLAGS=-j4",
+        "CMAKE_BUILD_PARALLEL_LEVEL=4",
+        "NINJA_STATUS=[%f/%t %es] ",
+        "MARKETPLACE_BOOTSTRAP_CC=/Library/Developer/CommandLineTools/usr/bin/clang",
+        "MARKETPLACE_BOOTSTRAP_CXX=/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "MARKETPLACE_BOOTSTRAP_NINJA=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "MARKETPLACE_BOOTSTRAP_PYTHON=/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "MARKETPLACE_BOOTSTRAP_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "MARKETPLACE_BOOTSTRAP_PREFIX=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import os,json,sys;print(json.dumps({k:os.environ.get(k,'') for k in sys.argv[1:]}))",
+        "CC",
+        "CXX",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "MARKETPLACE_CPP_LANE",
+        "MAKEFLAGS",
+        "CMAKE_BUILD_PARALLEL_LEVEL"
+      ],
+      "started_at": "2026-10-11T05:52:33.213250+00:00",
+      "pid": 76171,
+      "returncode": 0,
+      "elapsed_seconds": 0.08240049995947629,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/build-environment.stdout",
+          "sha256": "42b3516b16c4140bdb9cf660cefaf6966e89a49db7ae547ce4398043c996f6a8"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/build-environment.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-processes",
+      "argv": [
+        "/bin/ps",
+        "-axo",
+        "pid=,pcpu=,comm="
+      ],
+      "started_at": "2026-10-11T05:52:33.384613+00:00",
+      "pid": 76172,
+      "returncode": 0,
+      "elapsed_seconds": 0.08396845893003047,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/capacity-processes.stdout",
+          "sha256": "bf0e5d2d490fe5a0722cbc73628a3461997d6dbb3f80fca3f820f0808e774b9f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/capacity-processes.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "capacity-memory",
+      "argv": [
+        "/usr/bin/memory_pressure",
+        "-Q"
+      ],
+      "started_at": "2026-10-11T05:52:33.472389+00:00",
+      "pid": 76173,
+      "returncode": 0,
+      "elapsed_seconds": 0.005042833974584937,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/capacity-memory.stdout",
+          "sha256": "993e9fb4c15da1013e93759c76a516e016bf69367bd1fe62864161c5267862f0"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/capacity-memory.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-context",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-11T05:52:33.479230+00:00",
+      "pid": 76174,
+      "returncode": 0,
+      "elapsed_seconds": 0.3766283330041915,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-context.stdout",
+          "sha256": "75270b95abcf0516180e80ce1a2b6f98e42b13765c38de5239be80925439ba63"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-context.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-census",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "ps",
+        "--format",
+        "{{.ID}}\t{{.Image}}"
+      ],
+      "started_at": "2026-10-11T05:52:33.857465+00:00",
+      "pid": 76342,
+      "returncode": 0,
+      "elapsed_seconds": 0.039619999937713146,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-census.stdout",
+          "sha256": "7ed7d4c8ae8ad6ab5ce66b1fb8504ecb15b5627bf89350aeb385689eed0da740"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-census.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "docker-stats",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker",
+        "stats",
+        "--no-stream",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-10-11T05:52:33.898412+00:00",
+      "pid": 76346,
+      "returncode": 0,
+      "elapsed_seconds": 1.0975394579581916,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-stats.stdout",
+          "sha256": "54c3c5e2bb1981da50c75e09dcc766d6a907cb2741398294e6ccc037a3ffc9c6"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/docker-stats.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "lease-descriptor",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "MAKEFLAGS=-j4",
+        "CMAKE_BUILD_PARALLEL_LEVEL=4",
+        "NINJA_STATUS=[%f/%t %es] ",
+        "MARKETPLACE_BOOTSTRAP_CC=/Library/Developer/CommandLineTools/usr/bin/clang",
+        "MARKETPLACE_BOOTSTRAP_CXX=/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "MARKETPLACE_BOOTSTRAP_NINJA=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "MARKETPLACE_BOOTSTRAP_PYTHON=/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "MARKETPLACE_BOOTSTRAP_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "MARKETPLACE_BOOTSTRAP_PREFIX=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "-B",
+        "-c",
+        "import os,json,sys;s=os.fstat(int(sys.argv[1]));print(json.dumps([s.st_dev,s.st_ino]))",
+        "3"
+      ],
+      "started_at": "2026-10-11T05:52:34.997344+00:00",
+      "pid": 76748,
+      "returncode": 0,
+      "elapsed_seconds": 0.14157516695559025,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/lease-descriptor.stdout",
+          "sha256": "47ffb103720876685c013eac62ef7fbc33f14380ee6e9b951f2d4a291cc32a61"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/lease-descriptor.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "llvm-build",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/cwd",
+        "-E",
+        "cpp-build",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "MAKEFLAGS=-j4",
+        "CMAKE_BUILD_PARALLEL_LEVEL=4",
+        "NINJA_STATUS=[%f/%t %es] ",
+        "MARKETPLACE_BOOTSTRAP_CC=/Library/Developer/CommandLineTools/usr/bin/clang",
+        "MARKETPLACE_BOOTSTRAP_CXX=/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "MARKETPLACE_BOOTSTRAP_NINJA=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "MARKETPLACE_BOOTSTRAP_PYTHON=/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "MARKETPLACE_BOOTSTRAP_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "MARKETPLACE_BOOTSTRAP_PREFIX=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+        "--parallel",
+        "4"
+      ],
+      "started_at": "2026-10-11T05:52:35.413480+00:00",
+      "pid": 76761,
+      "last_monitor": {
+        "at": "2026-10-11T05:58:35.585590+00:00",
+        "free_bytes": 61109555200
+      },
+      "returncode": 1,
+      "elapsed_seconds": 363.49094987497665,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/llvm-build.stdout",
+          "sha256": "fa3a5db44aa61c2fbefc3284237618e2e8e306b7e0c557f5a8905b79f8401cf2"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/llvm-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "protected_before": {
+    "global_files": {
+      "config.toml": {
+        "sha256": "f0532bf79433cdfd6d0327c4a3956adc3e13ef71aa6024fe50a4249f0041098d",
+        "mode": "0o600"
+      },
+      "mise.lock": {
+        "sha256": "f8a14bc6ae825a0b6f4d471e28733588e12ed49da2a301a03691e12daf57c9a0",
+        "mode": "0o600"
+      },
+      "config.cpp-build.toml": {
+        "sha256": "5865023d2e85cf4d08bec1afb06d96b4572bdc9ec59e1adca25a0c87534299bb",
+        "mode": "0o600"
+      },
+      "config.gcc16.toml": {
+        "sha256": "a2f52ce1f32ae66fa3cf98e54af7f410c779a8b1c9068b0996b1750f0bbb0d12",
+        "mode": "0o600"
+      },
+      "config.p2996.toml": {
+        "sha256": "97491b73a71dfa73dea4f458fe6b0ad150b3fd52d07b773dcab67c9c93a6a4ef",
+        "mode": "0o600"
+      },
+      "cpp-foundation/common.toml": {
+        "sha256": "d1c35f4773a8d2094bcb675f24332aa61d387c326f23815b89157aadee9b63f1",
+        "mode": "0o600"
+      },
+      "mise.cpp-build.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.gcc16.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      },
+      "mise.p2996.lock": {
+        "sha256": "0b9a4b6c5c7d889e3cf281752cc58fa6d0f8277dec5735ee310d906f2ddb26d8",
+        "mode": "0o600"
+      }
+    },
+    "packages": {
+      "gcc": {
+        "versions": {
+          "16.2.0": {
+            "receipt_sha256": "445014e08840d7b2118a968bbc02e0c734a58b2922f7ada3c17c1e0ee0e7a1dd"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gcc/16.2.0",
+          "var/homebrew/linked": "../../../Cellar/gcc/16.2.0"
+        }
+      },
+      "gmp": {
+        "versions": {
+          "6.3.0": {
+            "receipt_sha256": "9323e66afe78de3f614fba72f558f007a3410d12d750fbff575f6f9e8862763a"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/gmp/6.3.0",
+          "var/homebrew/linked": "../../../Cellar/gmp/6.3.0"
+        }
+      },
+      "isl": {
+        "versions": {
+          "0.28": {
+            "receipt_sha256": "7bde5fb5cb7064cbbbdd5ff27f1380195c4c89ad20f90bd99418b79d383fce83"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/isl/0.28",
+          "var/homebrew/linked": "../../../Cellar/isl/0.28"
+        }
+      },
+      "libmpc": {
+        "versions": {
+          "1.4.1": {
+            "receipt_sha256": "dd49c998dc132e80b4cb8cb8bb0ed2429ed5b4261fcce6fedd83e9e07650b887"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/libmpc/1.4.1",
+          "var/homebrew/linked": "../../../Cellar/libmpc/1.4.1"
+        }
+      },
+      "lz4": {
+        "versions": {
+          "1.10.0": {
+            "receipt_sha256": "8ef853e5d90ff209d25aa3aa84a03c67e34ddda896c17f98821e862aa858b89d"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/lz4/1.10.0",
+          "var/homebrew/linked": "../../../Cellar/lz4/1.10.0"
+        }
+      },
+      "mpfr": {
+        "versions": {
+          "4.2.2": {
+            "receipt_sha256": "b105aae9c1710075ebb4f016f39f5eeea9e8c0800d56bee2e95b99710c11e5f1"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/mpfr/4.2.2",
+          "var/homebrew/linked": "../../../Cellar/mpfr/4.2.2"
+        }
+      },
+      "xz": {
+        "versions": {
+          "5.8.4": {
+            "receipt_sha256": "6195f4fa74fceda4934e0a37157f9d9892608eab9c6770c5695b236db00b6d48"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/xz/5.8.4",
+          "var/homebrew/linked": "../../../Cellar/xz/5.8.4"
+        }
+      },
+      "zstd": {
+        "versions": {
+          "1.5.7_1": {
+            "receipt_sha256": "debb6c1bfec9cc2b3ad78263d2b7fe40abf1a5f193d28e27790e4dacbd5e7e3c"
+          }
+        },
+        "links": {
+          "opt": "../Cellar/zstd/1.5.7_1",
+          "var/homebrew/linked": "../../../Cellar/zstd/1.5.7_1"
+        }
+      }
+    },
+    "glib_files": {
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libglib-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "5a126ac1761f171f39275f60e67083cec57835006b350cfa181c3c792158c0ab"
+      },
+      "/opt/homebrew/Cellar/glib/2.90.1/share/gdb/auto-load/opt/homebrew/Cellar/glib/2.90.1/lib/libgobject-2.0.so.0.9000.1-gdb.py": {
+        "sha256": "e1b809dc89c6835f2c231888f8147b6b4487b10c992c2e4e7b40d2488ac385cc"
+      }
+    }
+  },
+  "proposal": {
+    "configuration": {
+      "source": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-source-f17c8d6c/source",
+      "pin": "f17c8d6c7bfef5e02ccadcf33517fd2a53b51b6e",
+      "tree": "9899759f9004a7df8442ec57000a17e53e6ad5f6",
+      "cache_sha256": "ced7a723f499b70d6416dfae9fe9c8fc131218306e46bea7c7253407ea764a5f",
+      "inputs": {
+        "CC": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "CXX": {
+          "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+          "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+        },
+        "NINJA": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+          "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+        },
+        "PYTHON": {
+          "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+          "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+        }
+      },
+      "sdk": {
+        "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "settings_sha256": "7b93ad7e534cc4b31c6a4e39d19b5e0288acf2168c2649479a796d1cb51939fb"
+      },
+      "mise": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      },
+      "cmake": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "layout": [
+        "build",
+        "prefix"
+      ],
+      "timeout_seconds": 600,
+      "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+      "helpers": {
+        "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+        "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+        "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+        "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6"
+      }
+    },
+    "workspace": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z",
+    "resume": false,
+    "jobs_per_build": 4,
+    "capacity_job_allowance": 8,
+    "timeout_seconds": 21600,
+    "minimum_start_free_bytes": 34359738368,
+    "disk_reserve_bytes": 8589934592,
+    "host_lock_sha256": "b20e5d969e7534b9a93a61c1ca1669483300aa8949f682be9ee90cda34d72d20",
+    "inputs": {
+      "CC": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "CXX": {
+        "path": "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "sha256": "1590ac950a3d627817d09ade5cb60b2115f17a72182a3141e010b4bcc482a0c9"
+      },
+      "NINJA": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+      },
+      "PYTHON": {
+        "path": "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+        "sha256": "26425d16b160c10f52f887e317c53b0036d00bf8ff10a171e6fb1e942feebc17"
+      },
+      "CMAKE": {
+        "version": "4.4.4",
+        "mise_which": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "resolved_path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb",
+        "file": "Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64]\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake (for architecture arm64):\tMach-O 64-bit executable arm64",
+        "file_returncode": 0
+      },
+      "MISE": {
+        "path": "/Users/rmanaloto/.local/bin/mise",
+        "version": "2026.10.7",
+        "sha256": "f5171e341518a57e8c4e9280e28443e35d66212c51164c83be76794e0a78b014"
+      }
+    },
+    "receipts": {
+      "admission.json": "1cd4a1c8ebb2bc16ff81bd2707893659dc8ed86838b9efaf09503e5b47433c28",
+      "operation/qualification.json": "49c56427c95877b2f9c9a48e7ad5906e95617be613b71885c568d63ad5d00a59",
+      "operation-review.json": "bb1b78935ea078f599b7bbe3024f1ad0ce683c9ec465ecec39242f4755526cb0",
+      "generated-review.json": "5aaffce97a6a8fa7e5176db6773baa3bafbae0eea37faefb4ea35bae20eecf90"
+    },
+    "helpers": {
+      "gcc_install.py": "78067e9292a6efd9dd8d70bf5d0468a641e78814a335ee196aa9a61a7aec44d3",
+      "gcc_bottles.py": "04a877c68f05ddccf302ce1a57492c7514780f17ea15fe499c898748bfbc7588",
+      "mise_link_probe.py": "b5eba47313527daaed5d6de36d05105e0b2d044494025b5b16a3d31cb9868eb0",
+      "vcpkg_register.py": "2e41d87e285392f9d52c96870d34a59d3ce7021263adbc6bd4f2053636612ca6",
+      "p2996_configure.py": "84218f849ddcb3edfe6159838fd149f44a248ea80e37360cbf2abc9a58e8b7a4"
+    }
+  },
+  "build_argv": [
+    "/Users/rmanaloto/.local/bin/mise",
+    "--no-hooks",
+    "-C",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-build-20261011T055151Z/cwd",
+    "-E",
+    "cpp-build",
+    "exec",
+    "--fresh-env",
+    "--no-deps",
+    "--",
+    "/usr/bin/env",
+    "MAKEFLAGS=-j4",
+    "CMAKE_BUILD_PARALLEL_LEVEL=4",
+    "NINJA_STATUS=[%f/%t %es] ",
+    "MARKETPLACE_BOOTSTRAP_CC=/Library/Developer/CommandLineTools/usr/bin/clang",
+    "MARKETPLACE_BOOTSTRAP_CXX=/Library/Developer/CommandLineTools/usr/bin/clang++",
+    "MARKETPLACE_BOOTSTRAP_NINJA=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+    "MARKETPLACE_BOOTSTRAP_PYTHON=/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3.14",
+    "MARKETPLACE_BOOTSTRAP_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+    "MARKETPLACE_BOOTSTRAP_PREFIX=/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/prefix",
+    "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+    "--build",
+    "/Users/rmanaloto/.local/state/marketplace-tool-foundation/p2996-configure-20261011T051205Z/build",
+    "--parallel",
+    "4"
+  ],
+  "observed_environment": {
+    "CC": "",
+    "CXX": "",
+    "CFLAGS": "",
+    "CXXFLAGS": "",
+    "CPPFLAGS": "",
+    "LDFLAGS": "",
+    "MARKETPLACE_CPP_LANE": "tools-only",
+    "MAKEFLAGS": "-j4",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "4"
+  },
+  "capacity": {
+    "load": [
+      3.0751953125,
+      3.94970703125,
+      4.46826171875
+    ],
+    "cpus": 12,
+    "active_builds": [],
+    "free_bytes": 61249622016,
+    "memory_free_percent": 73,
+    "total_cpu_percent": 142.4,
+    "container_cpu_percent": 3.3
+  },
+  "lease": {
+    "path": "/Users/rmanaloto/.local/state/dotfiles/heavy-gate.lock",
+    "held": true
+  },
+  "error": "AssertionError('llvm-build')",
+  "protected_state_unchanged": true
+}

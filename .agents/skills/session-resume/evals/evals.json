@@ -1,0 +1,43 @@
+{
+  "skill_name": "session-resume",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/session-resume ccm-20261014",
+      "expected_output": "Reads the HANDOFF pointer from the plan's `## Next Step`, compares `claude --version` with the CLI row, runs the doctor session-start surface, runs `dev/handoff.py check --agents-done`, dispatches one extractor with the fixed brief, rewrites the owner line with `dev/handoff.py owner --session ccm-20261014 --session-id ${CLAUDE_SESSION_ID}` (the substituted id of this session), then prints the first three actions, the pending-user list and the slash commands the user must type from HANDOFF §2(j).",
+      "files": [],
+      "expectations": [
+        "Runs the doctor session-start surface and quotes its P1/P2/P3 counts",
+        "Runs dev/handoff.py check and reports its exit code",
+        "Dispatches exactly one extractor agent with the brief from references/extractor-brief.md",
+        "Runs dev/handoff.py owner --session ccm-20261014 --session-id with this session's substituted id",
+        "Lists the first three actions, the pending-user items and the user-typed slash commands"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I just restarted the terminal and started claude without -n. Resume the marketplace plan.",
+      "expected_output": "Follows the same steps; because the session has no name it asks the user to type `/rename <name>` before rewriting the owner line, and passes `--session-id ${CLAUDE_SESSION_ID}` (substituted at load, updated on /clear) for the owner line's session id, never the newest transcript.",
+      "files": [],
+      "expectations": [
+        "Asks the user to /rename when the session has no name",
+        "Does not skip the check or the extractor",
+        "Prints the pending-user list and the slash commands to type",
+        "Passes the substituted ${CLAUDE_SESSION_ID} to owner and never reads the newest transcript for the id"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/session-resume ccm-20261015T101500.123456789-05 (I ran /quit after upgrading, pasted the start command without its prompt, and typed /reload-skills and /reload-plugins first)",
+      "expected_output": "Sees that `claude --version` differs from the version HANDOFF §1's CLI row says the handing-off session ran, so the release intake (R-176: offline/research/R22-cc-2.1.300/ and reviews/ccm-20261014/cc-2.1.300/) comes first. Runs the doctor and check, then the four checks under \"Detect a failure after a restart\" in .claude/skills/session-start/SKILL.md (\"1. Did not fire\", \"2. Reload missing or not accepted\", \"3. Reload finished after the first prompt reached the transcript\", \"4. No title, or an error\") against ~/.local/state/claude-code-marketplace/session-start/events.jsonl with SID set to the substituted ${CLAUDE_SESSION_ID}, and reports each as pass or fail with its row; a fail goes ahead of the plan's own next action. Dispatches the extractor, then runs `dev/handoff.py owner --session ccm-20261015T101500.123456789-05 --session-id ${CLAUDE_SESSION_ID}`, which equals the id the start command fixed.",
+      "files": [],
+      "expectations": [
+        "Runs claude --version and puts the R-176 release intake first when it differs from the CLI row's handing-off version",
+        "Runs the four session-start checks by their names with SID from ${CLAUDE_SESSION_ID} and reports each pass or fail with its row",
+        "Reports 'mod not integrated' and goes on when the session-start skill or the log is absent",
+        "Runs dev/handoff.py owner with --session-id ${CLAUDE_SESSION_ID}, which equals the id the start command fixed, never the newest transcript",
+        "Does not skip the check or the extractor"
+      ]
+    }
+  ]
+}

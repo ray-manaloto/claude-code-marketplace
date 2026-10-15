@@ -1,0 +1,1810 @@
+{
+  "state": "PASS: native skeleton, GCC16 static/shared, four configurations",
+  "started_at": "2026-10-11T03:03:31.306987+00:00",
+  "commands": [
+    {
+      "case": "default-before",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T03:03:31.479640+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/default-before.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/default-before.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "ctest-version",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--version"
+      ],
+      "started_at": "2026-10-11T03:03:31.886640+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/ctest-version.stdout",
+          "sha256": "21710b282175af2534f38143fae98bb3de9762a1ffcce63fda137c2a1a177ece"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/ctest-version.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-red",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-Os",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-first.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-second.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-red"
+      ],
+      "started_at": "2026-10-11T03:03:32.024706+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-red.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-red.stderr",
+          "sha256": "64c17c03c097d8df4f504afb17ee6217d18f673cdeb9ed2b772a44f6dfd1df71"
+        }
+      ]
+    },
+    {
+      "case": "declone-fixed",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-Os",
+        "-fno-declone-ctor-dtor",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-first.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-second.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed"
+      ],
+      "started_at": "2026-10-11T03:03:33.133545+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-fixed-run",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed"
+      ],
+      "started_at": "2026-10-11T03:03:34.174337+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed-run.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-fixed-run.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "declone-reverse",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16",
+        "-std=c++26",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-O2",
+        "-fdeclone-ctor-dtor",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-first.cpp",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-second.cpp",
+        "-o",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-reverse"
+      ],
+      "started_at": "2026-10-11T03:03:34.407437+00:00",
+      "returncode": 1,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-reverse.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/declone-reverse.stderr",
+          "sha256": "8f1e4635bc5abf83d3ee9ee1d06991a4921d8f284f166fdef31ada9fbfbaa021"
+        }
+      ]
+    },
+    {
+      "case": "configure-static",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DBUILD_SHARED_LIBS=OFF"
+      ],
+      "started_at": "2026-10-11T03:03:35.064745+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/configure-static.stdout",
+          "sha256": "c4954efe5c86b37bcb6916ceecddc44589a1d63e8a19f18e13e359154ccc3a2c"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/configure-static.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "--config",
+        "Debug",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:36.471812+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Debug.stdout",
+          "sha256": "91e03ea90532a9fbfbe10dac69c71d1300ad744ae037d202a34d4f92f01e207d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:39.043713+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-Debug.stdout",
+          "sha256": "802fbdb741cbfbf65389419537917f0a3d9f8849d1c2f7268c89562c98f4e185"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-Debug",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:39.336952+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-Debug.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-Debug",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:03:39.352605+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-Debug.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:39.403662+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-Debug.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-Debug.stderr",
+          "sha256": "6d5ef8dc7af4a048957fad5e04b5ee196ed3d84d12086099824b8b2a8e171e52"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-Debug",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:39.647067+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-Debug.stdout",
+          "sha256": "266194b46c75e0862916c9d82afebf146abe1a33649cf71974b71b0647aa03b5"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "--config",
+        "Release",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:39.670028+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Release.stdout",
+          "sha256": "3bd245322ff6655dea6121679873687ddf9c6ab6e6c0e0bfe207e3ae47d4f0d8"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "-C",
+        "Release",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:42.327494+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-Release.stdout",
+          "sha256": "9b7afcdc767a050bb26b26311c5fa8ef7b16c219f2a7c26237d3a6ecb6bee4a4"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-Release",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:42.567501+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-Release.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-Release",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:03:42.575271+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-Release.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:42.596955+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-Release.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-Release.stderr",
+          "sha256": "37f80e9ebef99020e617991645cd281666fa74bcd054c0eea14b18586f6a3bba"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-Release",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:42.845083+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-Release.stdout",
+          "sha256": "2ac02d0373f4c7fecde110c41119be5ad9663e51fd5477b4acdf4a371cc7c94b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:42.870239+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-RelWithDebInfo.stdout",
+          "sha256": "7fbc3da84ea4b5aa6e3c6b3d8579b17a9c64a2ea342ffb736030dc0a4432547f"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "-C",
+        "RelWithDebInfo",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:46.499539+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-RelWithDebInfo.stdout",
+          "sha256": "802fbdb741cbfbf65389419537917f0a3d9f8849d1c2f7268c89562c98f4e185"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:46.798240+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-RelWithDebInfo.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:03:46.812746+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-RelWithDebInfo.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:46.857285+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-RelWithDebInfo.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-RelWithDebInfo.stderr",
+          "sha256": "f51eb7b8b1823f7a0cfb5e60c1277b6812209fd2c47d42e4003961d222cf6060"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:47.043651+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-RelWithDebInfo.stdout",
+          "sha256": "bae57ee11f01622884c2ba1c76d6c81624237ff0e9cbc585bd9736844de5b0bd"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "--config",
+        "MinSizeRel",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:47.067918+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-MinSizeRel.stdout",
+          "sha256": "a37907ccc12775c6711579e97bd8e890f0d39214910b395f1a854a16fc450cd5"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+        "-C",
+        "MinSizeRel",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:49.359778+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-MinSizeRel.stdout",
+          "sha256": "997225234ab2e703af4ef8e7762dce68fd4c7f6a98e4f4e8f541dfd7f2f19099"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:49.620881+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-MinSizeRel.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/libresearch_core.a"
+      ],
+      "started_at": "2026-10-11T03:03:49.632707+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-MinSizeRel.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-static-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:49.655806+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-MinSizeRel.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-static-MinSizeRel.stderr",
+          "sha256": "02c3e3fe3a06ed4a933388388562a4292038b9e99e7f1d18ade9380270df408a"
+        }
+      ]
+    },
+    {
+      "case": "libraries-static-MinSizeRel",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:49.843922+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-MinSizeRel.stdout",
+          "sha256": "3e8d79de6572450d8cc6a6260777d1639b74341f6d03dc353cca082d786e6f5a"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-static-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "configure-shared",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "-S",
+        "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace",
+        "-B",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "-G",
+        "Ninja Multi-Config",
+        "-DCMAKE_MAKE_PROGRAM=/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+        "-DCMAKE_TOOLCHAIN_FILE=/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/cmake/toolchains/gcc16-macos-arm64.cmake",
+        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=27.0",
+        "-DBUILD_SHARED_LIBS=ON"
+      ],
+      "started_at": "2026-10-11T03:03:49.890973+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/configure-shared.stdout",
+          "sha256": "a6b2990fb628c39a51895ece2674889c3ace49b58f33fafe4d28066124607cb8"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/configure-shared.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "--config",
+        "Debug",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:51.799779+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Debug.stdout",
+          "sha256": "9120401bec7aa5de57fd1883ddeb1a9151760149bdf9de6e17d85256dd0214f7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:54.442873+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-Debug.stdout",
+          "sha256": "debc09e7c0e945f1ec1396de1f2b0e42fe887285a7ee72f90c4e70cdaf3e2a54"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-Debug",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:54.679332+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-Debug.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-Debug",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:03:54.688317+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-Debug.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-Debug",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:54.708632+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Debug.stderr",
+          "sha256": "3756e27377f552b5653ecfb9b9d1f34c76e608a9e65aaf0880167b8f1f8402bf"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-Debug",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:54.836925+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-Debug.stdout",
+          "sha256": "db761631e830dd63a8a61c60dbbc133cf985b2031cd1d0570a75e357b6d9e36b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-Debug.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "--config",
+        "Release",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:54.857581+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Release.stdout",
+          "sha256": "d4704d3449f6eaa2daddaed3b560cf7ca222e0ba0d1f94ae1947c2a6eea73a81"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "-C",
+        "Release",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:03:57.299459+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-Release.stdout",
+          "sha256": "757b747c64b2400ce7652ab17163db080ffe4cd81b8309c3d68b6d6ef2b16428"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-Release",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:57.596904+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-Release.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-Release",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:03:57.606329+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-Release.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-Release",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:57.629295+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Release.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-Release.stderr",
+          "sha256": "aed3f261b09e7e111d8c0052780019e6a02c74f23b0aa39582b275e1c90be617"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-Release",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:03:57.767160+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-Release.stdout",
+          "sha256": "62cdf441cddab69bde040077424aec91e401c07deec9b4b7dd5067c2ed45b583"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-Release.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:03:57.793557+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-RelWithDebInfo.stdout",
+          "sha256": "2d3e6df100f0e1dc005c58d8f9cf9ed13339f00bf60dc00cbf07b18d64d70c89"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "-C",
+        "RelWithDebInfo",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:04:00.656216+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-RelWithDebInfo.stdout",
+          "sha256": "e5606b8dd856385a7b2341a313efb4f611d0f5cb56561f3eafce3d9498f185e7"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:00.950640+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-RelWithDebInfo.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:04:00.959770+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-RelWithDebInfo.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-RelWithDebInfo",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:00.997920+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-RelWithDebInfo.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-RelWithDebInfo.stderr",
+          "sha256": "627b0b5e9c28406ee12003ea97ed2d6297cdc20405e92e6ffcc8c36570373da8"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-RelWithDebInfo",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:01.126265+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-RelWithDebInfo.stdout",
+          "sha256": "e94c02757ae13e482f796d7655a7bede1ec4350e9802f16e0a0b0d4b590f66de"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-RelWithDebInfo.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "build-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+        "--build",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "--config",
+        "MinSizeRel",
+        "--parallel",
+        "1",
+        "--verbose"
+      ],
+      "started_at": "2026-10-11T03:04:01.147381+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-MinSizeRel.stdout",
+          "sha256": "9c3a1cc1fd0e5b5c6537f111290255defbb9ec08e0c3158c90bc1d1a0c9ae316"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/build-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "test-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+        "--test-dir",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+        "-C",
+        "MinSizeRel",
+        "--output-on-failure",
+        "--no-tests=error"
+      ],
+      "started_at": "2026-10-11T03:04:02.920378+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-MinSizeRel.stdout",
+          "sha256": "debc09e7c0e945f1ec1396de1f2b0e42fe887285a7ee72f90c4e70cdaf3e2a54"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/test-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "architecture-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/file",
+        "-b",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:03.217885+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-MinSizeRel.stdout",
+          "sha256": "643cc5d2dac8a288bdceeae0d8057fecf55ce5eb10dd5ea30d2d48cc957c662b"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/architecture-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "library-architecture-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/lipo",
+        "-archs",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/libresearch_core.dylib"
+      ],
+      "started_at": "2026-10-11T03:04:03.227737+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-MinSizeRel.stdout",
+          "sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/library-architecture-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "runtime-shared-MinSizeRel",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/cwd",
+        "-E",
+        "gcc16",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/usr/bin/env",
+        "DYLD_PRINT_LIBRARIES=1",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:03.269664+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-MinSizeRel.stdout",
+          "sha256": "40d78cb80c4b1dfb7469ddd0bbf6dfe9a57e5c36007f579cb1bc87cdd4aa458d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/runtime-shared-MinSizeRel.stderr",
+          "sha256": "0bf056a4f5fb3a4e3bab1462a825c54b3c3524cbdf6201ae77c6976b57815d6c"
+        }
+      ]
+    },
+    {
+      "case": "libraries-shared-MinSizeRel",
+      "argv": [
+        "/usr/bin/otool",
+        "-L",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/research_core_smoke"
+      ],
+      "started_at": "2026-10-11T03:04:03.451902+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-MinSizeRel.stdout",
+          "sha256": "75e8a170441ed4935787acd67ea3e9d626e78b9c7a040874200c9483cfb51d55"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/libraries-shared-MinSizeRel.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "case": "default-after",
+      "argv": [
+        "/Users/rmanaloto/.local/bin/mise",
+        "--no-hooks",
+        "-C",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/empty-cwd",
+        "exec",
+        "--fresh-env",
+        "--no-deps",
+        "--",
+        "/Users/rmanaloto/.local/share/mise/installs/python/3.14.8/bin/python3",
+        "/Users/rmanaloto/.local/state/marketplace-tool-foundation/global-apply-20261010T235635Z/allowlist_probe.py"
+      ],
+      "started_at": "2026-10-11T03:04:03.498238+00:00",
+      "returncode": 0,
+      "logs": [
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/default-after.stdout",
+          "sha256": "ba4db337eb779b96b6a269015b4134ec66f443967a198da80f9e0f10a6a6451d"
+        },
+        {
+          "path": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/default-after.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "harness_sha256": "7296e287075db91966ae14f89f743d67e666d5b1b9f54c71585eb693b9b2d1ab",
+  "inputs": {
+    "CMakeLists.txt": "5e6a0c7068e46961e06469992158928f49a6cb837aba32f8c3fcd522ad9816c0",
+    "include/aggregated_research/core.hpp": "b16a797742ea349d9116a87bc253fb05158c5fc4836d1a2d8058205d085b210a",
+    "src/core.cpp": "3a759528d114a902040f43f396fec8c92cad1765ace462d56e76ddc5f7143840",
+    "src/smoke.cpp": "b7249ccf79259b4da3120ca82339a657166c3c2ea1c8383d3394a699880acae8",
+    "cmake/toolchains/gcc16-macos-arm64.cmake": "1a4a2a33c91b3b46ffa79700537a733875cd788719e48cf9e3edc276da242454",
+    "evidence/gcc-runtime/qualification.json": "4058660895eec8a6da93810ae534df69ee6e7e367799ec509af730ab5a770192"
+  },
+  "admission": {
+    "at": "2026-10-11T03:03:31.479549+00:00",
+    "scope": "Tiny native skeleton; static/shared, four configurations, sequential single-job builds only",
+    "census_returncode": 0,
+    "active_builds": [],
+    "load_average": [
+      13.86376953125,
+      14.6337890625,
+      15.4619140625
+    ]
+  },
+  "tools": {
+    "cmake": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/cmake",
+      "sha256": "80cbc0d5ee08c9e6166bcc44bf51faf5469e360346f5cefbf36e8f8e4351a4cb"
+    },
+    "ninja": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/ninja/1.13.2/ninja",
+      "sha256": "458cdf3a6cf289118da14cc897b5106d152c66545947329b016629d9df085815"
+    },
+    "ctest": {
+      "path": "/Users/rmanaloto/.local/share/mise/installs/cmake/4.4.4/cmake-4.4.4-macos-universal/CMake.app/Contents/bin/ctest",
+      "sha256": "3c91499c53345b601504d30f84662dbaa043ecaee8915c66a769c95b7d6fcd88"
+    }
+  },
+  "cells": {
+    "static-Debug": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/research_core_smoke",
+      "binary_sha256": "4508575376bc9399d12eb028baf912eccaaf0d166dd9f14bc3c1b2c11dc1866f",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/libresearch_core.a",
+      "library_sha256": "bc27c99e350e7a75dccceb9e3e7f41c8b50f933efddc1c60786488535f3cde1d",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/libresearch_core.a",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Debug/research_core_smoke",
+        "configuration": "Debug",
+        "shared": "OFF"
+      }
+    },
+    "static-Release": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/research_core_smoke",
+      "binary_sha256": "d6f863e044a742cd162941788525eff68789538d6d59ae5b891d3972db6949e1",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/libresearch_core.a",
+      "library_sha256": "80f1824a5d248162cee4a830c856315a69bf3a17ea7443ef0ba50d8a34c1045b",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/libresearch_core.a",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/Release/research_core_smoke",
+        "configuration": "Release",
+        "shared": "OFF"
+      }
+    },
+    "static-RelWithDebInfo": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/research_core_smoke",
+      "binary_sha256": "54359c1e0f0e31be3870ea6846fb93c93e22285c464c2fc2c1a74a292f680da3",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/libresearch_core.a",
+      "library_sha256": "734dd73713c79e8119d37c1942337706a1135102f2cb95d33ebe1bd80a611056",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/libresearch_core.a",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/RelWithDebInfo/research_core_smoke",
+        "configuration": "RelWithDebInfo",
+        "shared": "OFF"
+      }
+    },
+    "static-MinSizeRel": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/research_core_smoke",
+      "binary_sha256": "6b1bf5452a51a4f406f9ed30238688fa663de908e7e410df83af370a6b7001b9",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/libresearch_core.a",
+      "library_sha256": "fe92b6788abbe72f14d458bf55fffb3af249d0b9a390a12c281e1383071d0c43",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/libresearch_core.a",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/MinSizeRel/research_core_smoke",
+        "configuration": "MinSizeRel",
+        "shared": "OFF"
+      }
+    },
+    "shared-Debug": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/research_core_smoke",
+      "binary_sha256": "07acce113c2fa1819178d0cd4e028cd321deb1d1ad131c8bed473ec5e228e332",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/libresearch_core.dylib",
+      "library_sha256": "0200ba669e6eff108d47a64b2d8508e1db23c11ff33621ec76dd53c32140b433",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/libresearch_core.dylib",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Debug/research_core_smoke",
+        "configuration": "Debug",
+        "shared": "ON"
+      }
+    },
+    "shared-Release": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/research_core_smoke",
+      "binary_sha256": "2cac7ac3733d75c44d77f90aed589d838bd681945cdc3ab080fd9eb8443f4086",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/libresearch_core.dylib",
+      "library_sha256": "7528f4d584cfd922e436f42cf95d1bbd578f689d9901128bb07b9d65ddc1579d",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/libresearch_core.dylib",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/Release/research_core_smoke",
+        "configuration": "Release",
+        "shared": "ON"
+      }
+    },
+    "shared-RelWithDebInfo": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/research_core_smoke",
+      "binary_sha256": "617011c5bd2055ed57bbcec9bde6507d696eaa233799c302e99b4a37b876adb1",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/libresearch_core.dylib",
+      "library_sha256": "fa7c5cf387f13f74d7bb779e8fb4cfb79388f143b49ff9def49c3201d2f6bb20",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/libresearch_core.dylib",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/RelWithDebInfo/research_core_smoke",
+        "configuration": "RelWithDebInfo",
+        "shared": "ON"
+      }
+    },
+    "shared-MinSizeRel": {
+      "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/research_core_smoke",
+      "binary_sha256": "7ba76c14188c3040389c5e3ebc11d1cf15a7d8a842d24c3e5ad558d38ec8c8ac",
+      "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/libresearch_core.dylib",
+      "library_sha256": "233beeedccdf5468913b5a25b944ad443194172d22532bdb2a55ae19f8f1bc47",
+      "summary": {
+        "library": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/libresearch_core.dylib",
+        "binary": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/MinSizeRel/research_core_smoke",
+        "configuration": "MinSizeRel",
+        "shared": "ON"
+      }
+    }
+  },
+  "static_compile_commands": [
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Debug/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Debug/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core.dir/Debug/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Release/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Release/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core.dir/Release/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/static/CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o"
+    }
+  ],
+  "shared_compile_commands": [
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Debug/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Debug/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core.dir/Debug/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/Release/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/Release/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core.dir/Release/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core.dir/RelWithDebInfo/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -Dresearch_core_EXPORTS -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -fPIC -freflection -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/core.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core.dir/MinSizeRel/src/core.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Debug\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -g -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core_smoke.dir/Debug/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"Release\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O3 -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core_smoke.dir/Release/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -O2 -g -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core_smoke.dir/RelWithDebInfo/src/smoke.cpp.o"
+    },
+    {
+      "directory": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared",
+      "command": "/opt/homebrew/Cellar/gcc/16.2.0/bin/g++-16 -DCMAKE_INTDIR=\\\"MinSizeRel\\\" -I/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/include -Os -DNDEBUG -std=c++26 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX27.0.sdk -mmacosx-version-min=27.0 -pedantic-errors -Wall -Wextra -Werror -fno-declone-ctor-dtor -fmodules-ts -fmodule-mapper=CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o -c /Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "file": "/Users/rmanaloto/.codex/worktrees/2a14/claude-code-marketplace/src/smoke.cpp",
+      "output": "/Users/rmanaloto/.local/state/marketplace-tool-foundation/core-skeleton-20261011T0320/shared/CMakeFiles/research_core_smoke.dir/MinSizeRel/src/smoke.cpp.o"
+    }
+  ],
+  "protected_state_unchanged": true
+}
