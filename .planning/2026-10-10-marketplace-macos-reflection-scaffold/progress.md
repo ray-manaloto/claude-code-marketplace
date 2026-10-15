@@ -952,6 +952,26 @@ verbatim in `progress-archive-2026-10-13.md`.
   report). Nothing pushed. Report:
   `reviews/ccm-20261014/republish/ct35a-session-start-mod-merge-report.md`.
 
+- 2026-10-14 (handoff-skills integration, D164, R-175): handoff-skills merged `a8e3682` (records
+  `451e65f`, retro blob `1e2c31e` byte-identical to `f12c535`); no conflict, tree `aed2b4c` =
+  merge-tree. session-handoff step 5 prints HANDOFF §8 as the one start command and offers three
+  restart paths (`/clear`, `/quit` then §8, or §8 by hand with `/reload-skills` and
+  `/reload-plugins`); session-resume checks `claude --version` against the CLI row, quotes the four
+  session-start log checks and passes `--session-id ${CLAUDE_SESSION_ID}` on every path. Review:
+  Opus 5.5 cold review (D189) FAIL on `b087860` for merge order only, cleared by `696d338`; P2-1,
+  P2-2 and the P3s fixed in `f12c535`; the parent accepted the retro-writer's verification in place
+  of a second cold pass. All 15 changed paths are inside `owned_paths`; RT-1 was a skill-text fix,
+  and the lane did not edit `dev/test_handoff.py`. Parent edits in `451e65f`: the lane's
+  `required_checks` gains `test:handoff` (2), `.claude/AGENTS.md` names `test:handoff` for skill
+  edits (7); 3 is the parent's, 4 and 6 wait for a `dev/` lane, 5 for R-176. Gates rc 0 on the
+  merged tree: tasks validate (69), check, check:acceptance-baseline (19), check:research,
+  test:handoff (61), both mirror diffs, retro:gate, `git diff --check 9eb0c99`, betterleaks 1.9.0
+  through `git_delivery.scan` over `9eb0c99..HEAD` (9 commits, no finding, private rule 0). Root
+  `write --dry-run --agents-done`: rc 2, block 15/16, NEXT 8/12; findings H.request-unprojected (6),
+  H.request-unlinked (R-179, R-180), H.head-not-remote (ahead 49), H.mode-not-inject-smart. Worktree
+  removed, branch kept. R-175 not ticked. Nothing pushed. Report:
+  `reviews/ccm-20261014/republish/handoff-skills-merge-report.md`.
+
 - NEXT (2026-10-14 rev 13, owner: next session `ccm-20261014T034212.915972000-05`; rewrite in place,
   keep last): Wave 0a of Phase 4b: CT-40, the D7 spike, `21-offline` (lane record first), the first
   CT-80 check (D77, D82, D104). History was replaced (D143, D148): rebase old-history branches,

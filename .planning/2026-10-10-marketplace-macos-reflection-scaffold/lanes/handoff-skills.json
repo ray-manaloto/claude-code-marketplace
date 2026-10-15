@@ -60,7 +60,7 @@
     "network": "none",
     "global_settings": "none"
   },
-  "status": "reviewed, retro passed at lane tip f12c535; merge pending",
+  "status": "integrated (merge a8e3682, 2026-10-14); not published; the first /quit restart onto 2.1.300 exercises the new paths",
   "created_at": "2026-10-14",
   "notes": [
     "the interfaces it documents come from lanes handoff-script (next-name, --session-id, startup probe; branch claude/handoff-script at 0e4f6e7, under review) and ct35a-session-start-mod (log path and checks; running); read both branches, do not edit their files",
@@ -69,8 +69,13 @@
     "retro: `retros/handoff-skills.md` at f12c535 (blob 1e2c31e), added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
     "review disposition (parent): opus 5.5 cold review (read-only, D189) FAIL on b087860, only because lane handoff-script had to merge first (P1); 696d338 merges the integration tip 6257246, which holds handoff-script as 4726121, and clears it; the retro-writer (fable 5.1) applied P2-1 (step 5 prints HANDOFF §8 verbatim), P2-2 (`${CLAUDE_SESSION_ID}` in the resume steps) and the P3s (the four ct35a checks quoted by name, one action shape, background tasks listed by task id) in f12c535 and verified them (test:handoff rc 0, 61 tests; mirror diffs rc 0; greps); the parent accepts that verification in place of a second cold pass",
     "changed paths: 15, all inside owned_paths (7 skill files, their 7 .agents mirrors, the retro); RT-1 changed the skill text to match dev/test_handoff.py:526, and the lane did not edit dev/test_handoff.py (its changes there come from lane handoff-script through the merges)",
-    "parent edits from the retro, applied ahead of the merge: 2 (this record: notes, required_checks gains ./dev/mise run test:handoff, status, review, retro) and 7 (.claude/AGENTS.md test:handoff line); 1 closed (nothing to apply); 3 (the root write --dry-run before the real /session-handoff) is the parent's; 4 (dev/handoff.py section_start three restart paths and its test) and 6 (dev/handoff.py docstring line 12) are recorded follow-ups for a later dev/ lane; 5 waits for R-176 to be ticked; HS-5 and HS-6 stay deferred, owner parent"
+    "parent edits from the retro, applied ahead of the merge: 2 (this record: notes, required_checks gains ./dev/mise run test:handoff, status, review, retro) and 7 (.claude/AGENTS.md test:handoff line); 1 closed (nothing to apply); 3 (the root write --dry-run before the real /session-handoff) is the parent's; 4 (dev/handoff.py section_start three restart paths and its test) and 6 (dev/handoff.py docstring line 12) are recorded follow-ups for a later dev/ lane; 5 waits for R-176 to be ticked; HS-5 and HS-6 stay deferred, owner parent",
+    "integrated 2026-10-14 as a8e3682 (parents 451e65f, f12c535), no conflict, tree aed2b4c = merge-tree on 451e65f (5c0c82e on 9eb0c99 plus the R1 .claude/AGENTS.md and lane-record edits); hk pre-merge-commit printed retro gate passed for claude/handoff-skills; gates on the merged tree rc 0 (tasks validate 69, check, check:acceptance-baseline 19, check:research, test:handoff 61, both mirror diffs, json.tool on the four evals.json, retro:gate, git diff --check 9eb0c99, betterleaks 1.9.0 through git_delivery.scan over 9eb0c99..HEAD: 9 commits, no finding, private rule 0)",
+    "root write --dry-run --agents-done after the merge: rc 2, nothing moved; Next Step block 15 lines (limit 16), NEXT bullet 8 (limit 12), widths at most 100, no next-session; findings H.request-unprojected (6 captured), H.request-unlinked (R-179, R-180), H.head-not-remote (ahead 49), H.mode-not-inject-smart; none a budget error",
+    "lane worktree .claude/worktrees/handoff-skills removed by the merger after integration (clean, fully merged); branch claude/handoff-skills kept at f12c535"
   ],
   "review": "opus 5.5 cold review (read-only, D189) FAIL on b087860 for merge order only (P1, cleared by 696d338 merging 6257246 with handoff-script 4726121); P2-1 (HANDOFF §8 verbatim), P2-2 (${CLAUDE_SESSION_ID}) and the P3s fixed in f12c535 by the retro-writer (fable 5.1), who verified them; the parent accepts that verification in place of a second cold pass",
-  "retro": "passed"
+  "retro": "passed",
+  "head_sha": "f12c535",
+  "integration_merge": "a8e3682"
 }
