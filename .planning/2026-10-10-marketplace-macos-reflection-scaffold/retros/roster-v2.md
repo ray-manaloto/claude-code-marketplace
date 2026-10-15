@@ -2,8 +2,9 @@
 
 Unit: `roster-v2` (D189, DL-242; source R12c §1.1, §1.3, §7.3; request R-177 #141). Worktree
 `.claude/worktrees/roster-v2`, branch `claude/roster-v2`, cut from allocation commit `cc07e8c`
-(record `base_sha` `2c9d536`); lane commit `aeaa116` (4 files, +12/−3); the integration tip was
-still `cc07e8c` at commit time, so no merge was needed. Writer: implementer (Opus 5.5).
+(record `base_sha` `2c9d536`); lane commit `aeaa116` (4 files, +12/−3), retro commit `64d4cf2`; the integration tip
+moved to `4726121` (R-175 handoff changes, no owned path touched) and was merged `--no-ff` as `30dc039`;
+every required check below was rerun on the merged bytes with the same exits. Writer: implementer (Opus 5.5).
 Takes effect at the user's restart: agent files and settings `env` load at session start.
 
 Delivered, each name or key confirmed in the 2.1.300 offline copy
