@@ -13,6 +13,7 @@ import io
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -509,11 +510,9 @@ class OwnerAndStartTests(Fixture):
     def test_start_command(self):
         line = handoff.start_command(self.ctx, name="ccm-x", session_id=None)
         self.assertIn(f"export PLAN_ID={PLAN_ID} PWF_PLAN_ROOT={self.fx['repo']}", line)
-        self.assertIn('claude -n ccm-x "', line)
+        self.assertIn("claude -n ccm-x --session-id ", line)  # the id itself: StartCommandCliTests
         self.assertIn("session-resume", line)
         self.assertIn("HANDOFF-2026-10-14.md", line)
-        self.assertNotIn("--session-id", line)
-        self.assertIn("--session-id abc", handoff.start_command(self.ctx, name="ccm-x", session_id="abc"))
 
     def test_section_start_types_resume_only_after_clear(self):
         text = handoff.section_start(self.ctx, {}, "ccm-20261014T034212.915972000-05")
@@ -560,6 +559,203 @@ class CliTests(Fixture):
         with self.assertRaises(SystemExit) as caught:
             self.run_cli("bogus")
         self.assertEqual(caught.exception.code, 1)
+
+
+NAME_RE = r"ccm-\d{8}T\d{6}\.\d{9}[+-]\d{2}"  # D61: local %Y%m%dT%H%M%S.%N, hour offset
+FAKE_STAMP = "20261014T184849.575921000-0500"
+
+
+def fake_date(bin_dir: Path, stamp: str = FAKE_STAMP, rc: int = 0, stderr: str = "", sleep: float = 0) -> Path:
+    """A `date` on PATH that logs its argv, sleeps `sleep` seconds, prints `stamp` (stdout) and `stderr`, and
+    exits `rc`; returns the log path."""
+    bin_dir.mkdir(parents=True, exist_ok=True)
+    log = bin_dir / "date.log"
+    (bin_dir / "date").write_text(f"#!/bin/sh\nprintf '%s\\n' \"$*\" >> '{log}'\n" + (f"sleep {sleep}\n" if sleep else "")
+                                  + (f"printf '%s\\n' '{stamp}'\n" if stamp else "")
+                                  + (f"printf '%s\\n' '{stderr}' >&2\n" if stderr else "") + f"exit {rc}\n")
+    (bin_dir / "date").chmod(0o755)
+    return log
+
+
+class SubprocessCli(Fixture):
+    """`python3 -I dev/handoff.py ...` as a child process in the fixture's scrubbed environment."""
+
+    def cli(self, *args, path_first: Path | None = None):
+        env = dict(os.environ)
+        if path_first:
+            env["PATH"] = f"{path_first}{os.pathsep}{env.get('PATH', '')}"
+        result = subprocess.run([sys.executable, "-I", str(DEV / "handoff.py"), "--repo", str(self.fx["repo"]),
+                                 "--plan-id", PLAN_ID, *args], capture_output=True, text=True, env=env, timeout=60)
+        return result.returncode, result.stdout, result.stderr
+
+
+class NextNameTests(SubprocessCli):
+    def test_next_name_is_one_os_date_call_cut_to_the_hour_offset(self):
+        log = fake_date(self.tmp / "bin")
+        rc, out, err = self.cli("next-name", path_first=self.tmp / "bin")
+        self.assertEqual((rc, err), (0, ""))
+        self.assertEqual(out, "ccm-20261014T184849.575921000-05\n")
+        self.assertEqual(log.read_text().splitlines(), ["+%Y%m%dT%H%M%S.%N%z"])
+
+    def test_next_name_from_the_host_date_has_the_d61_shape(self):
+        rc, out, err = self.cli("next-name")
+        self.assertEqual(rc, 0, err)
+        self.assertRegex(out, rf"\A{NAME_RE}\n\Z")
+
+    def test_a_date_without_nanoseconds_is_refused(self):
+        fake_date(self.tmp / "bin", stamp="20261014T184849.N-0500")
+        rc, out, err = self.cli("next-name", path_first=self.tmp / "bin")
+        self.assertEqual((rc, out), (2, ""))
+        self.assertIn("date output does not match", err)
+
+    def test_a_date_that_exits_nonzero_is_refused_naming_its_exit_and_stderr(self):
+        # P3 (cold review): a stamp on stdout with rc 1 was accepted; rc 1 with no output blamed %N
+        for stamp, stderr in ((FAKE_STAMP, "date: illegal option -- N"), ("", "")):
+            with self.subTest(stamp=bool(stamp)):
+                fake_date(self.tmp / "bin", stamp=stamp, rc=1, stderr=stderr)
+                rc, out, err = self.cli("next-name", path_first=self.tmp / "bin")
+                self.assertEqual((rc, out), (2, ""), err)
+                self.assertIn("date exited 1", err)
+                self.assertIn(stderr, err)
+                self.assertNotIn("%N?", err)
+
+    def test_a_hung_date_is_refused_not_an_error(self):
+        fake_date(self.tmp / "bin", sleep=5)
+        with mock.patch.dict(os.environ, {"PATH": f"{self.tmp / 'bin'}{os.pathsep}{os.environ.get('PATH', '')}"}), \
+                mock.patch.object(handoff, "DATE_TIMEOUT_S", 0.2):
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                rc = handoff.main(["--repo", str(self.fx["repo"]), "--plan-id", PLAN_ID, "next-name"])
+        self.assertEqual((rc, out.getvalue()), (2, ""), err.getvalue())
+        self.assertIn("date did not answer within 0.2 s", err.getvalue())
+
+
+class StartCommandCliTests(SubprocessCli):
+    UUID = r"[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"
+
+    def test_default_name_is_a_fresh_next_name_never_the_owner(self):
+        fake_date(self.tmp / "bin")
+        rc, out, err = self.cli("start-command", path_first=self.tmp / "bin")
+        self.assertEqual(rc, 0, err)
+        self.assertIn("claude -n ccm-20261014T184849.575921000-05 ", out)
+        self.assertNotIn("old-session", out)
+
+    def test_printed_command_fixes_a_session_id_and_hands_it_to_owner(self):
+        rc, out, err = self.cli("start-command", "--name", "ccm-x")
+        self.assertEqual(rc, 0, err)
+        launch = out.splitlines()[-1]
+        sid = re.search(rf"^claude -n ccm-x --session-id ({self.UUID}) \"", launch)
+        self.assertTrue(sid, launch)
+        self.assertIn(f"dev/handoff.py owner --session ccm-x --session-id {sid[1]}", launch)
+        given = "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"
+        rc, out, _ = self.cli("start-command", "--name", "ccm-x", "--session-id", given)
+        self.assertIn(f"claude -n ccm-x --session-id {given} \"", out)
+        self.assertIn(f"owner --session ccm-x --session-id {given}", out)
+
+    def test_a_session_id_that_is_not_a_uuid_is_a_usage_error(self):
+        # P3 (cold review): `claude --session-id <uuid>` (2.1.300 --help) takes only a valid UUID
+        before = (self.fx["plan"] / "task_plan.md").read_text()
+        for args in (("start-command", "--name", "ccm-x"), ("owner", "--session", "ccm-new")):
+            with self.subTest(command=args[0]):
+                rc, out, err = self.cli(*args, "--session-id", "abc")
+                self.assertEqual((rc, out), (1, ""), err)
+                self.assertIn("--session-id: not a UUID: 'abc'", err)
+        self.assertEqual((self.fx["plan"] / "task_plan.md").read_text(), before)
+
+    def test_owner_records_the_given_session_id(self):
+        rc, out, err = self.cli("owner", "--session", "ccm-new", "--session-id", "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee")
+        self.assertEqual(rc, 0, err)
+        text = " ".join((self.fx["plan"] / "task_plan.md").read_text().split())
+        self.assertIn("Owner: session `ccm-new` (`aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee`)", text)
+
+
+# Lane handoff-skills' name-free owner sentence (`claude/handoff-skills` 521b3e7, verbatim) over the scratch
+# fixture's other sections: no backticked span, so `write` must generate the next session's name (HS-3).
+NAME_FREE_OWNER = """Owner: start with the HANDOFF §8 command (a fresh next-name, D61, D76); rewrite owner line 4 with
+dev/handoff.py owner.
+"""
+NAME_FREE_TEMPLATE = TEMPLATE.replace("Owner: start as `next-session` (HANDOFF §8).\n", NAME_FREE_OWNER)
+assert "`" not in NAME_FREE_OWNER and NAME_FREE_TEMPLATE != TEMPLATE
+
+
+class WriteNameFreeTests(SubprocessCli):
+    def dry_run(self, template_text: str):
+        template = self.tmp / "name-free-template.md"
+        template.write_text(template_text)
+        log = fake_date(self.tmp / "bin")
+        fake_plugin(self.tmp / "pwf")  # the child runs the real injection probe
+        with mock.patch.dict(os.environ, {"CLAUDE_PLUGIN_ROOT": str(self.tmp / "pwf")}):
+            rc, out, err = self.cli("write", "--dry-run", "--agents-done", "--template", str(template),
+                                    path_first=self.tmp / "bin")
+        return rc, out, err, log
+
+    def test_a_name_free_template_gets_a_fresh_next_name_in_the_block_bullet_and_start_command(self):
+        rc, out, err, log = self.dry_run(NAME_FREE_TEMPLATE)
+        self.assertEqual(rc, 0, out + err)
+        added = "\n".join(l[1:] for l in out.splitlines() if l.startswith("+") and not l.startswith("+++"))
+        self.assertNotIn("next-session", added)
+        self.assertIn("owner: next session `ccm-20261014T184849.575921000-05`", added)
+        self.assertIn("/session-resume ccm-20261014T184849.575921000-05", added)
+        self.assertRegex(added, rf"claude -n ccm-20261014T184849\.575921000-05 --session-id {StartCommandCliTests.UUID} \"")
+        self.assertEqual(log.read_text().splitlines(), ["+%Y%m%dT%H%M%S.%N%z"])
+
+    def test_a_backticked_owner_name_is_still_used(self):
+        rc, out, err, log = self.dry_run(TEMPLATE)
+        self.assertEqual(rc, 0, out + err)
+        self.assertIn("owner: next session `next-session`", out)
+        self.assertRegex(out, rf"claude -n next-session --session-id {StartCommandCliTests.UUID} \"")
+        self.assertFalse(log.exists(), "date was called although the template named the session")
+
+
+def fake_plugin(root: Path, drop_source: str = "") -> Path:
+    """A planning-with-files cache stand-in: the session-start hook logs each payload's `source` and emits
+    head-50/tail-20 frames unless the source is `drop_source`; the pretool twin emits head-30."""
+    log = root / "sources.log"
+    (root / "hooks").mkdir(parents=True)
+    (root / "scripts").mkdir()
+    frames = ('plan="$PWF_PLAN_ROOT/.planning/$PLAN_ID"\n'
+              "echo '===BEGIN-PWF-DATA kind=plan nonce=n==='\nhead -50 \"$plan/task_plan.md\"\n"
+              '[ "$PWF_INJECT" = smart ] && echo "phases: 0/1 complete"\n'
+              "echo '===END-PWF-DATA kind=plan nonce=n==='\necho '===BEGIN-PWF-DATA kind=progress nonce=p==='\n"
+              "tail -20 \"$plan/progress.md\"\necho '===END-PWF-DATA kind=progress nonce=p==='\n")
+    (root / "hooks/claude-hook.sh").write_text(
+        "src=$(sed -n 's/.*\"source\": \"\\([a-z]*\\)\".*/\\1/p')\n"
+        f"printf '%s\\n' \"$src\" >> '{log}'\n[ \"$src\" = '{drop_source}' ] && exit 0\n" + frames)
+    (root / "scripts/inject-plan.py").write_text(
+        "import os\nfrom pathlib import Path\n"
+        "plan = Path(os.environ['PWF_PLAN_ROOT']) / '.planning' / os.environ['PLAN_ID'] / 'task_plan.md'\n"
+        "print('===BEGIN-PWF-DATA kind=plan nonce=n===')\nprint('\\n'.join(plan.read_text().splitlines()[:30]))\n"
+        "print('===END-PWF-DATA kind=plan nonce=n===')\n")
+    return log
+
+
+class StartupProbeTests(SubprocessCli):
+    def probe_check(self, drop_source: str = ""):
+        log = fake_plugin(self.tmp / "pwf", drop_source)
+        with mock.patch.dict(os.environ, {"CLAUDE_PLUGIN_ROOT": str(self.tmp / "pwf")}):
+            rc, out, err = self.cli("check", "--json", "--agents-done")
+        return rc, json.loads(out or "{}"), sorted(log.read_text().split()), err
+
+    def test_probe_fires_session_start_for_startup_as_well_as_clear(self):
+        rc, data, sources, err = self.probe_check()
+        self.assertEqual((rc, data.get("findings")), (0, []), err)
+        self.assertEqual(sources, ["clear", "clear", "startup"])
+
+    def test_a_restart_that_injects_no_plan_is_caught(self):
+        rc, data, sources, _ = self.probe_check(drop_source="startup")
+        self.assertEqual(rc, 2)
+        found = [(f["id"], f["subject"]) for f in data["findings"]]
+        self.assertEqual(found, [("H.injection-probe-failed", "startup probe did not run: no plan frame emitted")])
+
+
+class DoctorContextLineTests(Fixture):
+    def test_context_line_names_the_quit_and_restart_path(self):
+        doctor_ctx = mock.Mock(repo=str(self.fx["repo"]), plan_id=PLAN_ID, findings=())
+        [line] = handoff.context_lines(doctor_ctx)
+        self.assertIn("handoff: HANDOFF-2026-10-14.md §2 · check PASS (0 H findings)", line)
+        self.assertIn("/quit, then the §8 start command", line)
+        self.assertIn("/session-resume <name> after /clear", line)
+        self.assertNotIn("after /clear only", line)
 
 
 OWNER_ID = "11111111-2222-3333-4444-555555555555"
