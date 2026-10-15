@@ -21,7 +21,10 @@
     ".planning/.../frontier.toml context_ceiling_fraction 0.5 -> 0.275 so windows[model] x fraction = fork_deny (D191); dev/test_ticket_frontier.py updated",
     "docs/agents/claude-team.md budget table and both ticket-frontier skill copies (SKILL.md line 76, references/config.md, references/model-policy.md) state the new values; mirrors byte-identical",
     "no CLAUDE_AUTOCOMPACT_PCT_OVERRIDE, no modelSettings, no user-settings change",
-    "the review model becomes opus (D189) wherever the frontier passes it: frontier.toml review = { model = ... } (it overrides the agent file on every Agent call), references/model-policy.md lines 13 and 30, ticket-frontier SKILL.md line 54 (both mirrors) and docs/agents/claude-team.md line 16 (roster-v2 retro, parent edits B-E)"
+    "the review model becomes opus (D189) wherever the frontier passes it: frontier.toml review = { model = ... } (it overrides the agent file on every Agent call), references/model-policy.md lines 13 and 30, ticket-frontier SKILL.md line 54 (both mirrors) and docs/agents/claude-team.md line 16 (roster-v2 retro, parent edits B-E)",
+    "frontier.toml max_live_agents = 5 (roster-v2 cold review: CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS=6 leaves a fork slot); dev/test_ticket_frontier.py test_live_agent_hard_cap_is_five",
+    "scripts/frontier.py fallback defaults 0.5 -> 0.275 and 8 -> 5 (match references/config.md Default column); FABLE_KINDS without review, pinned by test_fable_kinds_match_shipped_policy",
+    "references/scheduler.md (cap 5, Opus reviewer for hot-path and baseline lanes) and evals/evals.json (ceilings 275000, live 4/5), both mirrors"
   ],
   "owned_paths": [
     ".claude/settings.json (autoCompactWindow only)",
@@ -61,10 +64,17 @@
     "network": "none",
     "global_settings": "none (project settings key only)"
   },
-  "status": "allocated",
+  "status": "reviewed, retro passed at lane tip 38d5c1c; merge pending",
   "created_at": "2026-10-14",
   "notes": [
     "D190, D191; lands before the restart; the new window and thresholds take effect at the restart",
-    "shares .claude/settings.json with roster-v2 (env keys); merge order roster-v2 then compaction-40 or either way, disjoint keys"
-  ]
+    "shares .claude/settings.json with roster-v2 (env keys); merge order roster-v2 then compaction-40 or either way, disjoint keys",
+    "retro: `retros/compaction-40.md` at 38d5c1c (blob d5f591b), added to the integration branch ahead of the merge (D164); the retro field holds the literal \"passed\" the Stop gate (dev/hooks/stop_gate.py) requires",
+    "review disposition (parent): opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d; P3 (the D191 invariant fork_deny == int(windows[model] * fraction) was checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000 in frontier.toml: test:doctor rc 1 naming model='sonnet', reverted: rc 0, 14 tests; review listed in FABLE_KINDS: test:frontier rc 1, removed: rc 0, 31 tests); the implementer-side P3s (frontier.py fallbacks, thresholds below window - 33_000) were applied in 7213170; the parent accepts the retro-writer's verification in place of a second cold pass",
+    "changed paths: 19 against merge base a8e3682 (+262 -92): .claude/settings.json (autoCompactWindow 700000 -> 433000 only), dev/doctor/budget.py, dev/test_doctor.py, dev/test_ticket_frontier.py, frontier.toml, docs/agents/claude-team.md (reviewer row and the Context budget section only), six files under each ticket-frontier skill copy, and the retro; all inside owned_paths",
+    "writers: 7213170, 5c2e2e9 and 6fca41d name Claude Opus 5.5 (implementer, matching writer_model); 0cab4ff, c2aa3fd and 38d5c1c name Claude Fable 5.1 (retro-writer)",
+    "parent edits from the retro applied ahead of the merge: 2 (task_plan.md Context budget lines, D190, D191), 3 (task_plan.md Models line, Opus for review, D189), 4 (this record: three delivers entries, status, review and retro), 5 (task_plan.md D21 row: window superseded by D190); 1 was applied by lane roster-v2 (grep -n \"Fable reviewer\" .claude/agents/frontier-scheduler.md returns nothing); 6 (runtime acceptance) waits for the user's restart"
+  ],
+  "review": "opus 5.5 cold review (high, read-only, D189) PASS with two P3s on 6fca41d (every value matches D190/D191, threshold order right, all checks rc 0); P3 (D191 invariant checked for opus only) and P3 (FABLE_KINDS still listed review) applied test-first in 0cab4ff by the retro-writer (fable 5.1), who verified them (planted sonnet = 200000: test:doctor rc 1, real config rc 0, 14 tests; review listed: test:frontier rc 1, removed rc 0, 31 tests); the parent accepts that verification in place of a second cold pass",
+  "retro": "passed"
 }

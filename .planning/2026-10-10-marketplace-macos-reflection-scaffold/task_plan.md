@@ -679,7 +679,7 @@ the user's artifact comments D109, D110 and D112, and the interactive rounds Q82
 | D18 | Heavy tickets via `/implement` in a lane worktree with a lane record | approved 2026-10-13 |
 | D19 | T4 Phase C: new attempt needs a new budget and explicit approval; decide after sweep B | approved 2026-10-13 |
 | D20 | Draft PR to `main` and the #91 relabel: both on the user's word after CT-02 publishes | approved 2026-10-13 |
-| D21 | Auto-compaction: project `autoCompactEnabled: true`, `autoCompactWindow: 700000`; user flips both personal copies | approved 2026-10-13; personal flip of `~/.claude/settings.json` and `~/.claude.json` admitted (user, grill-with-docs round 1, 2026-10-14; DL-72) |
+| D21 | Auto-compaction: project `autoCompactEnabled: true`, `autoCompactWindow: 700000`; user flips both personal copies | approved 2026-10-13; personal flip of `~/.claude/settings.json` and `~/.claude.json` admitted (user, grill-with-docs round 1, 2026-10-14; DL-72); window superseded by D190 (433000) |
 | D22 | Hook set and latency budget: C4's inventory only (SessionStart doctor 15 s, prompt hook, Bash and Agent gates, existing Stop gates) | approved 2026-10-13; the set becomes mods except the three deny gates (D92, D97, D102); w0-doctor's SessionStart entry stays until A2-11 (D101) |
 | D23 | Ticket table: accept C4's reconciled CT-01..CT-24 (+CT-02b) at `/to-tickets` | approved 2026-10-13 |
 | D24 | CT-21 import policy: index files committed, 119-file payload only through the CT-21 lane, keep-private sets in the 0700 mirror; fifth wave-1 lane | approved 2026-10-13 |
@@ -857,9 +857,9 @@ A stage counts as invoked only when the user types it; `skill-invocations.md` re
 Lane protocol: `docs/agents/claude-team.md` (roles, lifecycle, retro gate) and R8 §Integration
 (one merger, `--no-ff` without `--no-commit`, `check:research` serialized, publish after each
 integration, lanes never write shared planning files, never `isolation: worktree`).
-Context budget (C4, binding; one threshold dict in `dev/doctor/budget.py`): warn 400 K,
-fork deny 500 K, checkpoint 550 K (run session-handoff, `dev/handoff.py write`; delegate with small briefs), hard 650 K,
-all below `autoCompactWindow` 700 K. Until the CT-23 mods exist (A2-13, A2-14), the parent applies
+Context budget (C4, D190, D191; one threshold dict in `dev/doctor/budget.py`): warn 220 K,
+fork deny 275 K, checkpoint 303 K (run session-handoff, `dev/handoff.py write`; delegate with small briefs), hard 358 K,
+all below the 400 K compaction point of `autoCompactWindow` 433000. Until the CT-23 mods exist (A2-13, A2-14), the parent applies
 the rule by hand.
 
 ## Appendix A: Claude takeover (2026-10-13)
@@ -899,7 +899,7 @@ Conventions from the takeover interview (rounds 1-2, all accepted):
   `CODING_STANDARDS.md`, navigation in the nearest `AGENTS.md` or
   `.claude/rules`, repeated workflows in skills, roles in `.claude/agents`.
 - Models: Opus 5.5 implementers for code lanes, Sonnet 5.5 for documentation
-  lanes, Fable for review, retro and synthesis, Haiku for mechanical extraction.
+  lanes, Opus for review (D189), Fable for retro and synthesis, Haiku for mechanical extraction.
   Up to `max_parallel` writer lanes run at once (3, `frontier.toml`), one always a C++ lane (D65, D78);
   host-heavy runs go one at a time under the standing admission D68, a notice per run, no
   question; a concurrent second heavy run needs its own admission (D42).
