@@ -61,6 +61,8 @@ compaction carry it (CL1, CL2). Each item links its sub-issue of the Requests in
 - [ ] R-177 (R-127, D185): prioritize the claude-agent and codex-agent skill teams, with the prerequisite machine-readable JSON and OKF inventory of settings, environment variables and feature flags for both harnesses (Codex's earlier work read through codex-session-history); issue: #141; p:5a8b9624, p:8983a5df
 - [ ] R-179 (D188): auto-compaction at 40% of the active model's context limit instead of the fixed 700K window; a Claude Code mod only if no native setting does it (research first, D100); issue: pending
 - [ ] R-180 (D188): research why the repo has both mise.toml and mise.dev.toml and whether one file can serve; run Claude Code in CI/CD on the latest pinned version, with the native installer if possible; the image-pin bump (CT-08 batch 4) waits for it; issue: pending
+- [ ] R-181 (D192): roster team review of the Codex project sandbox against the settings, env-var and feature-flag inventory; add back what workspace-write turns off (network access for research, gh and push; writable roots outside the repo) before lane codex-agents-fix merges; issue: pending
+- [ ] R-182 (R-177): review how Codex generated the settings, env-var and feature-flag inventory and build an on-demand regenerator that reruns on every Claude Code and Codex release (deterministic collectors, release diff, JSON and OKF output); issue: pending
 
 ## Goal
 Integrate wave 0, publish each integration through A09, file CT-01..CT-81 (+CT-02b, CT-20a/b,
