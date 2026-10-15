@@ -20,6 +20,11 @@ module is `hooks/register.ts`. It calls only the engine and the OS `date` comman
 the engine ignores a title (#67389), so none is sent. `session.start` does not fire after
 `/clear`, `/resume` or `/branch`.
 
+Where `sec-default@builtin` is seated (managed settings, a `managed-mcp.json`, or a Team or
+Enterprise sign-in), `classic.*` hooks of this project plugin do not run: no skills reload and
+no title, while the `session.start` reload still runs (#102134). `claude doctor` shows
+`Organization policy: not applicable to Pro and Max accounts` where none applies.
+
 ## Status lines
 
 - `session-start: /reload-plugins held: <the reload's line>`: the reload would change MCP or
@@ -28,8 +33,43 @@ the engine ignores a title (#67389), so none is sent. `session.start` does not f
 - `session-start ERROR: /reload-plugins rejected: <reason>`: the engine refused the command.
 - `session-start ERROR: date exited <code>: <stderr>`: skills still reload; no title was set.
 
-No status line after a start means the reload applied, or the hook did not run: check
-`claude --debug` for a `session-start` line.
+No status line after a start means the reload applied, or the hook did not run: the
+diagnostic log below tells the two apart.
+
+## Diagnostic log
+
+Every step appends one JSON line to
+`~/.local/state/claude-code-marketplace/session-start/events.jsonl` (directory 0700, file 0600;
+`MARKETPLACE_SESSION_START_LOG` names another directory) through `/bin/sh`, and the same row goes
+to the debug log (`$.ui.log`, `claude --debug`). Fields: `ts` (UTC, ns, from `date -u`),
+`session_id`, `cli_version`, `event` (`session.start` or `classic.SessionStart` with `source`),
+`step`, `result` (cut to 500 characters), `duration_ms` (on `reload_plugins_end`) and
+`transcript_path` (on a classic `fired` row).
+
+| `event` | `step` values, in order |
+| --- | --- |
+| `session.start` | `fired` (`interactive` or `not interactive: no reload`), `reload_plugins_begin`, `reload_plugins_end` (`accepted`, `held: ...`, `rejected: ...`) |
+| `classic.SessionStart` | `fired`; on startup and clear `reload_skills_returned`, then `title_set`, `title_kept` (`claude -n`), `title_skipped` (clear, or after an `error` row when `date` failed) |
+
+## Detect a failure after a restart
+
+Set `L=~/.local/state/claude-code-marketplace/session-start/events.jsonl` and `SID` to the
+session's id (its transcript file's name). Each check prints nothing when all is well, except
+check 3.
+
+1. Did not fire (mods off, the rollout switch, an untrusted folder, or a `sec-default` hold for the
+   classic rows): `jq -r --arg s "$SID" 'select(.session_id==$s and .step=="fired") | .event' "$L"`
+   prints nothing, or only `session.start`.
+2. Reload missing or not accepted:
+   `jq -r --arg s "$SID" 'select(.session_id==$s and .step=="reload_plugins_end") | .result' "$L"`
+   prints nothing (missing) or anything other than `accepted`.
+3. Reload finished after the first prompt reached the transcript:
+   `python3 -I -c 'import json,sys,datetime as d;L,S=sys.argv[1:];R=[json.loads(l) for l in open(L)];R=[r for r in R if r.get("session_id")==S];T=next(r["transcript_path"] for r in R if r.get("transcript_path"));e=[r["ts"] for r in R if r["step"]=="reload_plugins_end"];u=next(r["timestamp"] for r in map(json.loads,open(T)) if r.get("type")=="user" and not r.get("isMeta") and isinstance(r.get("message",{}).get("content"),str));a=d.datetime.strptime(e[-1][:22],"%Y%m%dT%H%M%S.%f").replace(tzinfo=d.timezone.utc);b=d.datetime.fromisoformat(u.replace("Z","+00:00"));print("LATE" if a>b else "ok",a.isoformat(),b.isoformat())' "$L" "$SID"`
+   prints `LATE` when the reload lost the race. `StopIteration` means no classic row or no typed
+   prompt yet; `IndexError` means no `reload_plugins_end` row (check 2).
+4. No title, or an error:
+   `jq -c --arg s "$SID" 'select(.session_id==$s and (.step=="title_skipped" or .step=="error"))' "$L"`
+   prints a row. On startup this means no `ccm-` title; on clear `title_skipped` is expected.
 
 ## Checks and rollback
 
