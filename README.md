@@ -1,5 +1,10 @@
 # claude-code-marketplace
 
+> **Sunset (2026-11-03):** this repository is no longer developed. Work continues in
+> [ray-manaloto/dotfiles](https://github.com/ray-manaloto/dotfiles); the open issues moved there
+> (label `from-marketplace`). The marketplace and its plugin stay installable until the dotfiles
+> `agent-toolkit` plugin replaces them; this repository is archived then.
+
 A curated marketplace of [Claude Code](https://claude.com/claude-code) plugins by
 [Raymond Manaloto](https://github.com/ray-manaloto).
 
